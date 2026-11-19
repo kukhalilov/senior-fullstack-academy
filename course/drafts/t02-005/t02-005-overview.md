@@ -12,14 +12,14 @@ Controllers are one way to turn selected HTTP requests into application operatio
 startup: application parts → controller/action models → endpoint metadata
 request: middleware → endpoint routing selects action → MVC binds/validates inputs
         → authorization/resource/action/exception/result filters → action
-        → IActionResult execution/formatting → response
+    → MVC result execution/formatting (or an IResult's own execution) → response
 ```
 
 The action does not itself necessarily serialize or write the response. It may return a typed value, an `IActionResult`, or `ActionResult<T>`; MVC executes that result using the configured services and formatters. An `IActionResult` is therefore a response plan, not the response bytes. `ActionResult<T>` makes a common API contract explicit: a typed success body or an alternate action result such as 404.
 
 ## The central decisions
 
-Choose `ControllerBase` for HTTP APIs; it supplies API-oriented helpers without view support. Choose `Controller` when MVC views are part of the application. Declare routes and HTTP methods clearly, use `[ApiController]` deliberately for its API conventions, and make status/body behavior visible in return types and API metadata. Use filters for MVC-specific hooks around action invocation; use middleware for behavior that must apply broadly before MVC or across endpoint types. Avoid hiding important contracts in a large set of global conventions.
+Choose `ControllerBase` for HTTP APIs; it supplies API-oriented helpers without view support. Choose `Controller` when MVC views are part of the application. Declare routes and HTTP methods clearly, use `[ApiController]` deliberately for its API conventions, and make status/body behavior visible in return types and API metadata. Use filters for MVC-specific hooks around action invocation; use middleware for behavior that must apply broadly before MVC or across endpoint types. Controller actions can return `IResult`/`HttpResults`, but these use their own execution path and do not use MVC formatter negotiation. Avoid hiding important contracts in a large set of global conventions.
 
 Controller discovery and action discovery are metadata-driven. Application parts expose candidate types; controller/action attributes and conventions refine which types and methods become endpoints and what metadata they carry. This happens independently of a specific request. Routing and route-template semantics are covered in the preceding routing lesson; this topic concerns how MVC contributes action endpoints and what happens after one is selected.
 
@@ -34,7 +34,7 @@ For `GET /api/orders/42`, routing selects an action descriptor. MVC binds `42`, 
 - Treating a route match, a successful model bind, and valid domain input as the same thing.
 - Using filters as a substitute for authentication/authorization middleware or putting every concern into global filters.
 - Returning a body for statuses whose semantics prohibit one, or assuming a typed C# return type alone fully describes the wire contract.
-- Treating `IResult` and `IActionResult` as interchangeable: they belong to different endpoint/result execution models.
+- Treating `IResult` and `IActionResult` as interchangeable: both can be returned by controller actions, but they use different execution and formatting behavior.
 - Registering a reusable filter that captures request-specific mutable state, or implementing both sync and async variants without understanding which path MVC selects.
 - Relying on implicit discovery or conventions without tests that inspect the resulting endpoints and responses.
 

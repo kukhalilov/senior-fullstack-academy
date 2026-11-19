@@ -1,6 +1,6 @@
 # ASP.NET Core MVC controllers actions filters conventions and results — Reference: MVC service registration, options, global filters, and conventions
 
-Sources: Microsoft's [controller services and configuration](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0), [filters](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-11.0), [application model](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/application-model?view=aspnetcore-11.0), and [Web API behavior](https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0).
+Sources: Microsoft's [controller services and configuration](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0), [filters](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-11.0), [application model](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/application-model?view=aspnetcore-11.0), [Web API behavior](https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0), and [ASP.NET Core 11 MVC compatibility API removal](https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/mvc-compatibility-options-removed?view=aspnetcore-11.0).
 
 ## Registration shapes
 
@@ -10,7 +10,7 @@ Sources: Microsoft's [controller services and configuration](https://learn.micro
 
 ## Behavior-sensitive options
 
-`RespectBrowserAcceptHeader` changes how browser-style Accept headers participate in negotiation. `ReturnHttpNotAcceptable` can make unsupported requested representations produce 406 instead of a fallback. `SuppressAsyncSuffixInActionNames` controls action-name treatment of async method suffixes. `EnableEndpointRouting` is a legacy compatibility switch; modern applications should use endpoint routing and avoid reviving obsolete routing patterns without a specific migration need. `MaxModelBindingCollectionSize` is a resource guard; tune it based on expected payload sizes and service capacity. `ModelBindingMessageProvider` changes user-facing binding messages, which should be clear without exposing sensitive internals.
+`RespectBrowserAcceptHeader` changes how browser-style Accept headers participate in negotiation. `ReturnHttpNotAcceptable` can make unsupported requested representations produce 406 instead of a fallback. `SuppressAsyncSuffixInActionNames` controls action-name treatment of async method suffixes. `EnableEndpointRouting` remains a compatibility option whose default is true; modern applications should use endpoint routing and avoid reviving legacy routing patterns without a specific migration need. ASP.NET Core 11 removes `CompatibilityVersion`, `SetCompatibilityVersion`, and related MVC compatibility APIs; they had no runtime effect since ASP.NET Core 3.0, so remove those calls during migration rather than replacing them. `MaxModelBindingCollectionSize` is a resource guard; tune it based on expected payload sizes and service capacity. `ModelBindingMessageProvider` changes user-facing binding messages, which should be clear without exposing sensitive internals.
 
 ## Controller activation and context
 

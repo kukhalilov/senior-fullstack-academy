@@ -19,19 +19,19 @@ Filters run after endpoint selection, inside MVC. They are not an alternative ro
 ```text
 authorization → resource (around most MVC work, including binding)
   → action (around action invocation)
-    → exception handling around action/result creation
+    → exception filters handle eligible failures before result execution
     → result (around execution of the selected result)
 ```
 
 Exact control flow depends on short-circuiting and exceptions. Authorization filters execute first. A resource filter can short-circuit before model binding. An action filter can inspect arguments and action results. An exception filter handles a subset of MVC exceptions, not failures earlier in middleware and not a universal replacement for exception-handling middleware. A result filter can inspect or suppress result execution; always-run result filters cover additional short-circuit cases. Async interfaces receive a delegate that continues the pipeline; code before and after that delegate corresponds to “before” and “after.”
 
-Filters can be global, controller-scoped, or action-scoped. Scope contributes to ordering; `IOrderedFilter.Order` provides explicit order. Do not assume attribute source order fully describes execution. Prefer one of the sync or async interface paths for a concern. `ActionFilterAttribute` supplies both patterns; overriding both can create confusing behavior. `ServiceFilterAttribute` resolves a registered filter service; `TypeFilterAttribute` creates the implementation and resolves constructor dependencies, optionally passing explicit arguments. `IsReusable` is an optimization hint, not a guarantee that request state is safe to retain.
+Filters can be global, controller-scoped, or action-scoped. For filters at a given stage, lower `IOrderedFilter.Order` runs first; scope breaks ties (global, controller, then action), and after callbacks unwind in reverse. Do not assume attribute source order fully describes execution. Prefer one of the sync or async interface paths for a concern. `ActionFilterAttribute` supplies both patterns; overriding both can create confusing behavior. `ServiceFilterAttribute` resolves a registered filter service; `TypeFilterAttribute` creates the implementation and resolves constructor dependencies, optionally passing explicit arguments. `IsReusable` is an optimization hint, not a guarantee that request state is safe to retain.
 
 ## 4. An action result is an executable response description
 
 `IActionResult` represents many possible response behaviors. `ActionResult<T>` combines a success value of `T` with an alternate action result and can improve API description. Result helpers such as `Ok`, `NotFound`, `CreatedAtAction`, `File`, `Challenge`, and `Forbid` create result objects; MVC executes them later. `ObjectResult` carries an object, optional declared type/status, and content types for formatter selection. `JsonResult` explicitly requests JSON behavior; `ContentResult` produces text; redirects, files, views, and authentication results have specialized semantics.
 
-Content negotiation is a runtime decision involving available output formatters, the result's value and metadata, configured options, and request headers. A `Produces` annotation documents or constrains metadata in certain paths; it does not by itself prove a particular serialization outcome. `ReturnHttpNotAcceptable` controls whether an unacceptable `Accept` request yields 406 instead of falling back. Tests should assert status, headers, and representative serialized payloads, not only the C# object returned by an action.
+Content negotiation is a runtime decision involving available output formatters, the result's value and metadata, configured options, and request headers. MVC controller actions can also return `HttpResults` implementing `IResult`; those execute through `IResult.ExecuteAsync`, bypass MVC output formatters/content negotiation, and choose their own content type. A `Produces` annotation documents or constrains metadata in certain paths; it does not by itself prove a particular serialization outcome. `ReturnHttpNotAcceptable` controls whether an unacceptable `Accept` request yields 406 instead of falling back. Tests should assert status, headers, and representative serialized payloads, not only the C# object returned by an action.
 
 ## 5. Services, activation, and conventions
 

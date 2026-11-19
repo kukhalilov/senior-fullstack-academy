@@ -1,6 +1,6 @@
 # ASP.NET Core MVC controllers actions filters conventions and results — Reference: Controller types, action discovery, attributes, conventions, and application model
 
-Sources: Microsoft's [controllers](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0), [actions](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0), [application model](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/application-model?view=aspnetcore-11.0),.
+Sources: Microsoft's [controllers](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0), [actions](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0), and [application model](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/application-model?view=aspnetcore-11.0).
 
 ## From assemblies to actions
 

@@ -4,7 +4,7 @@ Sources: Microsoft's [action return types](https://learn.microsoft.com/en-us/asp
 
 ## Contract choices
 
-Use a concrete typed return when every successful path returns the same representation and error handling is expressed elsewhere. Use `IActionResult` when the action legitimately chooses among result kinds. Use `ActionResult<TValue>` when the API has a primary typed body plus alternate HTTP outcomes. `ActionResult<TValue>.Value` carries the typed value; `.Result` carries an explicit result. The implicit conversion supports returning a `TValue` directly, but conversion is not available for every arbitrary interface or shape. Keep the declared contract aligned with actual statuses and payloads. `IResult` belongs primarily to Minimal APIs; it is not interchangeable with MVC's `IActionResult` pipeline.
+Use a concrete typed return when every successful path returns the same representation and error handling is expressed elsewhere. Use `IActionResult` when the action legitimately chooses among MVC result kinds. Use `ActionResult<TValue>` when the API has a primary typed body plus alternate HTTP outcomes. `ActionResult<TValue>.Value` carries the typed value; `.Result` carries an explicit result. The implicit conversion supports returning a `TValue` directly, but conversion is not available for every arbitrary interface or shape. MVC controller actions also support ASP.NET Core `HttpResults` implementing `IResult`; these execute through `IResult.ExecuteAsync` and bypass MVC formatters/content negotiation, which can be useful when sharing result code with Minimal APIs. Keep the declared contract aligned with actual statuses and payloads.
 
 ## Result execution and formatting
 
@@ -39,6 +39,7 @@ The following index is the manifest's complete declared inventory for this refer
 - `ActionResult<TValue>.Value`
 - `ActionResult<TValue> implicit conversion`
 - `IResult versus IActionResult`
+- `HttpResults in MVC controller actions`
 - `IStatusCodeActionResult`
 - `IConvertToActionResult`
 - `ObjectResult`
@@ -116,7 +117,7 @@ The action returns a typed value or response description; MVC result execution s
 The preceding sections explain the complete declared set by contract, status, formatter, content, redirect, file, view, authentication, metadata, and test roles.
 
 ## Cross-item comparison
-`ObjectResult` negotiates through formatters; `JsonResult` is JSON-oriented; `ContentResult` writes text. `ActionResult<T>` combines a typed value and alternate MVC result. `FileStreamResult` streams, while `FileContentResult` holds bytes.
+`ObjectResult` negotiates through MVC formatters; `JsonResult` is JSON-oriented; `ContentResult` writes text; `IResult` executes its own response behavior without MVC content negotiation. `ActionResult<T>` combines a typed value and alternate MVC result. `FileStreamResult` streams, while `FileContentResult` holds bytes.
 
 ## Examples
 Return `CreatedAtAction` after creation when the location points to a stable retrieval endpoint; return `AcceptedAtAction` when processing continues asynchronously and a status endpoint exists.

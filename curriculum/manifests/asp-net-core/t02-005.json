@@ -174,6 +174,7 @@
         "ActionResult<TValue>.Value",
         "ActionResult<TValue> implicit conversion",
         "IResult versus IActionResult",
+        "HttpResults in MVC controller actions",
         "IStatusCodeActionResult",
         "IConvertToActionResult",
         "ObjectResult",
@@ -357,25 +358,28 @@
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
       "items": [
-        "ASP.NET Core 11's release highlights include passkey support for Identity and OpenAPI improvements, but controller/filter fundamentals remain the action-invocation model. Keep release-specific API changes in the relevant Identity and OpenAPI topics rather than presenting the entire MVC pipeline as new."
+        "ASP.NET Core 11's release highlights include passkey support for Identity and OpenAPI improvements, but controller/filter fundamentals remain the action-invocation model. Keep release-specific API changes in the relevant Identity and OpenAPI topics rather than presenting the entire MVC pipeline as new.",
+        "ASP.NET Core 11 removes CompatibilityVersion, SetCompatibilityVersion, and related MVC compatibility APIs. These APIs had no effect since ASP.NET Core 3.0; remove their calls during migration."
       ],
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/mvc-compatibility-options-removed?view=aspnetcore-11.0"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core 11 MVC, API, and .NET API reference",
-    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/application-model?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1?view=aspnetcore-11.0",

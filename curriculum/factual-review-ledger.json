@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1378,
-    "pending": 971,
-    "claimsChecked": 68334,
-    "claimsCorrected": 3096,
+    "reviewed": 1386,
+    "pending": 963,
+    "claimsChecked": 69130,
+    "claimsCorrected": 3114,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -123201,13 +123201,39 @@
       "topicId": "t02-005",
       "phase": "overview",
       "draft": "course/drafts/t02-005/t02-005-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 55,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 55 externally verifiable sentence-level claim units. Checked each supplied inventory term assigned to this lesson against its frozen group and reviewed all examples, solutions, and interview answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0",
@@ -123217,22 +123243,54 @@
         "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the MVC mental model, endpoint/action boundary, filter scope, and response execution. Clarified that controller actions also support IResult/HttpResults, with execution separate from MVC formatter negotiation."
     },
     {
       "taskId": "t02-005-concepts",
       "topicId": "t02-005",
       "phase": "concepts",
       "draft": "course/drafts/t02-005/t02-005-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 84,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 84 externally verifiable sentence-level claim units. Checked each supplied inventory term assigned to this lesson against its frozen group and reviewed all examples, solutions, and interview answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/application-model?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0",
@@ -123242,22 +123300,44 @@
         "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited discovery, filter stages/order, result types, negotiation, and registration concepts. Corrected filter exception boundaries and Order/scope precedence, and added the IResult controller-action execution distinction."
     },
     {
       "taskId": "t02-005-reference-controller-discovery-and-action-model",
       "topicId": "t02-005",
       "phase": "reference",
       "draft": "course/drafts/t02-005/t02-005-reference-controller-discovery-and-action-model.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 123,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 123 externally verifiable sentence-level claim units. Checked each supplied inventory term assigned to this lesson against its frozen group and reviewed all examples, solutions, and interview answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/application-model?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0",
@@ -123267,22 +123347,34 @@
         "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 70 discovery/action-model inventory entries, attributes, descriptors, conventions, selector metadata, and application parts against Microsoft documentation. Fixed malformed source reference punctuation; found no missing assigned terms or substantive claim errors."
     },
     {
       "taskId": "t02-005-reference-filters-and-execution-pipeline",
       "topicId": "t02-005",
       "phase": "reference",
       "draft": "course/drafts/t02-005/t02-005-reference-filters-and-execution-pipeline.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 128,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 128 externally verifiable sentence-level claim units. Checked each supplied inventory term assigned to this lesson against its frozen group and reviewed all examples, solutions, and interview answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0",
@@ -123292,22 +123384,39 @@
         "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 69 filter interface, stage, context, delegate, scope/order, activation, and short-circuit entries. Corrected lower Order before scope tie-breaking, reverse after-callback nesting, eligible exception-filter coverage, and always-run result-filter cases. Confirmed the middleware/filter boundary."
     },
     {
       "taskId": "t02-005-reference-action-results-and-content-negotiation",
       "topicId": "t02-005",
       "phase": "reference",
       "draft": "course/drafts/t02-005/t02-005-reference-action-results-and-content-negotiation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 130,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 130 externally verifiable sentence-level claim units. Checked each supplied inventory term assigned to this lesson against its frozen group and reviewed all examples, solutions, and interview answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0",
@@ -123317,22 +123426,49 @@
         "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 76 result/negotiation inventory entries, including status and file results, formatter selection, metadata, and tests. Added the current HttpResults/IResult support in MVC controller actions and its ExecuteAsync/no-MVC-negotiation behavior."
     },
     {
       "taskId": "t02-005-reference-controller-service-registration-and-conventions",
       "topicId": "t02-005",
       "phase": "reference",
       "draft": "course/drafts/t02-005/t02-005-reference-controller-service-registration-and-conventions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 121,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 121 externally verifiable sentence-level claim units. Checked each supplied inventory term assigned to this lesson against its frozen group and reviewed all examples, solutions, and interview answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/mvc-compatibility-options-removed?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0",
@@ -123342,22 +123478,55 @@
         "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/mvc-compatibility-options-removed?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 55 MVC registration, options, activation, filter-provider, and ApiBehaviorOptions entries. Clarified EnableEndpointRouting default/compatibility role and added the .NET 11 removal of MVC CompatibilityVersion APIs, which were no-ops since .NET Core 3.0."
     },
     {
       "taskId": "t02-005-practice",
       "topicId": "t02-005",
       "phase": "practice",
       "draft": "course/drafts/t02-005/t02-005-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 100,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 100 externally verifiable sentence-level claim units. Checked each supplied inventory term assigned to this lesson against its frozen group and reviewed all examples, solutions, and interview answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0",
@@ -123367,22 +123536,49 @@
         "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked each exercise, diagnosis sequence, worked solution, and edge case against the reviewed discovery, filter, return-type, and content-negotiation rules; no correction was needed."
     },
     {
       "taskId": "t02-005-interview",
       "topicId": "t02-005",
       "phase": "interview",
       "draft": "course/drafts/t02-005/t02-005-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 55,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 55 externally verifiable sentence-level claim units. Checked each supplied inventory term assigned to this lesson against its frozen group and reviewed all examples, solutions, and interview answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0",
+              "section": "Controller/action discovery, filter execution and ordering, MVC result types and formatting, service registration/options, or ASP.NET Core 11 breaking changes, as relevant to this lesson.",
+              "verdict": "Checked against the official Microsoft documentation for the stated framework behavior; where multiple result execution models apply, their formatter and pipeline differences are explicit."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/actions?view=aspnetcore-11.0",
@@ -123392,9 +123588,10 @@
         "https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all interview prompts and answers against official MVC/action/filter/return-type guidance. Corrected filter ordering and exception boundaries and clarified the supported IResult/HttpResults return path for controllers."
     },
     {
       "taskId": "t02-006-overview",
@@ -211958,6 +212155,14 @@
       "status": "full claim and frozen-inventory audit complete for all 8 lessons",
       "findings": [
         "Audited all 206 named entries across four inventories and all eight lessons. Verified endpoint matching phases, Order-before-precedence selection, conventional MVC route ordering, route-template syntax and precedence, catch-all URL generation, invariant-culture constraint conversions, MVC model binding sources, Minimal API source inference/body rules, and link generation against Microsoft documentation. Corrected the * versus ** distinction (outbound escaping, not inbound decoding), added the .NET 11 endpoint-filter parameter-check behavior and .NET 11 JSON union-type scope, clarified ModelBinder terminology and HeaderValueProvider implementation status, and improved complex-segment, optional-extension, and alpha-constraint explanations. Examples, solutions, and interview answers were checked; no unresolved factual or assigned-inventory gaps remain. Lessons remain drafts."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "ASP.NET Core MVC controllers, action discovery, filters, results, and conventions (t02-005)",
+      "status": "full claim and frozen-inventory audit complete for all 8 lessons",
+      "findings": [
+        "Audited all 270 named inventory entries across four groups and all eight lessons against Microsoft MVC, filter, Web API return-type/formatting, and ASP.NET Core 11 migration documentation. Verified action discovery and application parts, filter stages and Order-before-scope rules, short-circuit/exception boundaries, MVC and HttpResults return paths, content negotiation, file result behavior, service registration, activation, and ApiBehaviorOptions. Corrected inaccurate filter exception/order wording, clarified that MVC controller actions support IResult/HttpResults but bypass MVC formatters, and added the .NET 11 removal of no-op MVC compatibility-version APIs. Checked examples, exercises, and interview explanations; no unresolved factual or inventory gaps remain. Lessons remain drafts."
       ]
     }
   ]

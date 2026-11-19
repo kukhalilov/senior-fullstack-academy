@@ -12,7 +12,7 @@ Sources: Microsoft's [controllers and actions](https://learn.microsoft.com/en-us
 
 ## 3. When would you return a concrete DTO, `IActionResult`, or `ActionResult<T>`?
 
-**Strong answer:** Use a concrete DTO when the return contract is a single shape and status handling is elsewhere; `IActionResult` when several result types are chosen; `ActionResult<T>` when the API has a primary typed response and alternate status results. Explain that result execution happens later, and test the HTTP response because a unit test of a returned object does not exercise formatting.
+**Strong answer:** Use a concrete DTO when the return contract is a single shape and status handling is elsewhere; `IActionResult` when several MVC result types are chosen; `ActionResult<T>` when the API has a primary typed response and alternate status results. Controller actions also support `IResult`/`HttpResults`, which can share implementations with Minimal APIs but bypass MVC formatters and content negotiation. Explain that result execution happens later, and test the HTTP response because a unit test of a returned object does not exercise formatting.
 
 ## 4. Explain MVC filter order and compare filters with middleware.
 
@@ -20,7 +20,7 @@ Sources: Microsoft's [controllers and actions](https://learn.microsoft.com/en-us
 
 ## 5. How do filter scope and `Order` interact? What should be tested?
 
-**Strong answer:** Global, controller, and action scopes contribute nesting/order; `IOrderedFilter.Order` provides explicit ordering. Short-circuiting prevents inner work. Do not infer execution solely from source declaration order. Use a focused test to assert before/after nesting, behavior on short-circuit, and exception paths.
+**Strong answer:** Within a filter stage, lower `Order` runs first; scope breaks ties in global, controller, action order, and after callbacks unwind in reverse. Equal order and scope may be undefined. Short-circuiting prevents inner work. Test nesting, short-circuit, and exception paths instead of inferring source-code order.
 
 ## 6. Compare `ServiceFilterAttribute` and `TypeFilterAttribute`.
 
@@ -28,7 +28,7 @@ Sources: Microsoft's [controllers and actions](https://learn.microsoft.com/en-us
 
 ## 7. Which failures can an MVC exception filter catch?
 
-**Strong answer:** It handles exceptions in the MVC action/result-creation region subject to filter execution boundaries. It will not catch earlier middleware failures and is not universal for exceptions during all response writing or outside MVC. Use exception-handling middleware for consistent application-wide handling; filters are useful for MVC-specific behavior.
+**Strong answer:** It can handle eligible unhandled failures in MVC action invocation, including controller/action creation, action filters, and action methods. It does not handle resource-filter, result-filter, MVC result-execution, or pre-MVC middleware failures. Model-binding failures normally become ModelState errors, so use the API's invalid-model-state policy for those; use exception-handling middleware for consistent application-wide exception handling.
 
 ## 8. What does content negotiation depend on?
 
