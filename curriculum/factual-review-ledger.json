@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1159,
-    "pending": 1190,
-    "claimsChecked": 49589,
-    "claimsCorrected": 2545,
+    "reviewed": 1160,
+    "pending": 1189,
+    "claimsChecked": 49620,
+    "claimsCorrected": 2547,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -98611,13 +98611,54 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-experimental-css-rhythmic-sizing.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Current published CSS Rhythmic Sizing Level 1 status/date and latest editor draft; experimental/browser support caveat.",
+          "sources": [
+            "https://www.w3.org/TR/css-rhythm-1/",
+            "https://drafts.csswg.org/css-rhythm/",
+            "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/line-height-step"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "line-height-step exact grammar, initial value, applicability, inheritance, computed value and animation type.",
+          "sources": [
+            "https://www.w3.org/TR/css-rhythm-1/#line-height-step"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "Positive step rounds each calculated line box upward to a multiple, distributes added space equally on both sides, and zero disables the adjustment.",
+          "sources": [
+            "https://www.w3.org/TR/css-rhythm-1/#line-height-step"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "Effects of inline content and vertical-align, line-height relationship, and distinction from block-step and line-grid.",
+          "sources": [
+            "https://www.w3.org/TR/css-rhythm-1/#line-height-step",
+            "https://drafts.csswg.org/css-inline-3/",
+            "https://drafts.csswg.org/css-rhythm/",
+            "https://www.w3.org/TR/css-line-grid-1/"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "MDN currently reports no browser support for line-height-step.",
+          "sources": [
+            "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/line-height-step"
+          ],
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -98974,9 +99015,12 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://www.w3.org/TR/css-rhythm-1/",
+        "https://drafts.csswg.org/css-rhythm/",
+        "https://www.w3.org/TR/css-line-grid-1/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually checked 31 factual claims against the published 2026-02-17 CSS Rhythmic Sizing Level 1 Working Draft, current Editor’s Draft, MDN compatibility information, and related Inline Layout/Line Grid specifications. Replaced the index blurb with exact grammar and metadata, step rounding and symmetric spacing algorithm, line-height/inline-content interactions, practical examples, comparisons, and fallback. Corrected two omissions: the property applies to block containers and inherits; its no-browser-support status is explicit. Related block-step and line-grid features are identified as separate mechanisms. No unresolved lesson issues."
     },
     {
       "taskId": "t07-018-reference-experimental-css-box-model",
