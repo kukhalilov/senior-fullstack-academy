@@ -8,7 +8,7 @@ Explain what layout model you would choose, how you would debug an overflow, and
 
 1. **Flexbox or grid?** Flexbox when one primary axis is central; grid when two-dimensional placement/shared tracks are central. Either can size content responsively, so decide from the relationship rather than a slogan.
 2. **Why does `1fr` overflow?** The track’s automatic minimum may reflect min-content size. Set a suitable min track sizing function and content wrapping/minimum policy.
-3. **What does `min-inline-size: 0` do in a flex/grid item?** It permits the item to shrink below its automatic minimum along the inline axis; a wrapping or overflow strategy must then handle content.
+3. **What does `min-inline-size: 0` do in a flex/grid item?** It removes that item’s automatic inline-axis minimum, which can let it shrink below a content-based minimum when the layout has less inline space. Track sizing and other constraints still apply; the declaration does not itself wrap or clip long content, so choose an appropriate content overflow policy too.
 4. **How does absolute differ from relative positioning?** Absolute removes the box from normal flow; relative offsets it while retaining its flow allocation.
 5. **What is the difference between scroll padding and scroll margin?** One adjusts the container snapport; the other expands the target’s snap area.
 6. **Why use container queries?** They let reusable descendants adapt to an ancestor’s size rather than assuming the viewport predicts their available space.
@@ -21,8 +21,8 @@ Flex sizing has a base size, grow/shrink distribution, and min/max constraints; 
 # Scenario questions
 
 1. **A sidebar disappears at a particular viewport, but the component is also reused in a narrow panel.** Use a query container for component-local layout if the condition is the component’s own available size; retain viewport queries for environment-level changes.
-2. **A popup has a large `z-index` but remains behind another overlay.** Inspect stacking-context ancestry and top-layer membership; a child cannot outrank an ancestor context.
-3. **A horizontally scrollable carousel cannot be used by keyboard.** Preserve native scrolling, ensure scrollable content is focusable/reachable and controls have accessible labels, and provide real links/buttons rather than relying only on experimental generated markers.
+2. **A popup has a large `z-index` but remains behind another overlay.** Inspect stacking-context ancestry and top-layer membership. A child cannot outrank an ancestor context, and `z-index` does not promote an element into the browser-managed top layer.
+3. **A horizontally scrollable carousel cannot be used by keyboard.** Preserve native scrolling. If users must focus the region itself to scroll it, give it a keyboard focus stop (often `tabindex="0"`) and an accessible name; also provide labeled native buttons or links for navigation. Keep every item reachable and pause automatic rotation when focus enters; do not rely only on mouse/touch input or draft-generated markers.
 
 # Tradeoffs and alternatives
 
@@ -48,3 +48,7 @@ Score 0–2 for each answer: correct model selection; sizing/axis reasoning; ove
 - [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
 - [CSS Flexible Box Layout Level 2 draft](https://drafts.csswg.org/css-flexbox-2/)
 - [CSS Overflow Level 5 draft](https://drafts.csswg.org/css-overflow-5/)
+- [CSS Scroll Snap Module Level 1](https://www.w3.org/TR/css-scroll-snap-1/)
+- [CSS Positioned Layout Module Level 3 draft](https://drafts.csswg.org/css-position-3/)
+- [CSS Conditional Rules Module Level 5 draft](https://drafts.csswg.org/css-conditional-5/)
+- [WAI-ARIA Authoring Practices: Carousel Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/carousel/) — informative keyboard, labeling, and rotation guidance for carousel controls.
