@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1148,
-    "pending": 1201,
-    "claimsChecked": 48774,
-    "claimsCorrected": 2430,
+    "reviewed": 1149,
+    "pending": 1200,
+    "claimsChecked": 48847,
+    "claimsCorrected": 2446,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -93967,13 +93967,45 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-pointer-events.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 73,
+      "claimsCorrected": 16,
+      "evidence": [
+        {
+          "claims": "Enumerated 73 factual claim units: six formal property fields (both standards-level grammars, initial value, applicability, inheritance, computed value, animation), 27 syntax and value semantics (all core and compatibility tokens, axis/direction combinations, pinch zoom, manipulation alias, defaults, coordinate meaning, and support qualifications), 24 gesture-arbitration and event claims (hit-tested target, ancestor constraints for panning and zooming, scroll-container boundary, transform coordinate space, gesture-start freeze, UA stream suppression/cancellation, cancellation versus preventDefault, and iframe boundary), and 16 status/accessibility/interop/context claims (Pointer Events Level 3 update, WHATWG extension status, relation to CSS pointer-events and overscroll-behavior, zoom implications, support caveats, and examples). Corrected 16 material scope omissions or misclassifications, most notably that the lesson inventory named `touch-action` while the generated title implied the separate CSS `pointer-events` property.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/pointerevents3/",
+              "section": "30 June 2026 Recommendation §§8.1–8.3 and §4.1: property grammar/definition, direct-manipulation scope, ancestor algorithm, gesture timing, UA takeover and event suppression",
+              "verdict": "Primary normative current source; core property metadata and gesture behavior checked directly."
+            },
+            {
+              "url": "https://compat.spec.whatwg.org/",
+              "section": "Living Standard §3.5.1, updated 10 November 2026: additional touch-action values",
+              "verdict": "Primary compatibility source for pan-left/right/up/down, pinch-zoom, value combinations, and manipulation alias; separated these additions from the Pointer Events Recommendation’s core grammar."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/touch-action",
+              "section": "Formal syntax/definition, values, support, examples, accessibility note",
+              "verdict": "Cross-checks current expanded syntax and warns that not every part is implemented in every browser; supports explicit warning that `none` may inhibit browser zoom."
+            },
+            {
+              "url": "https://www.w3.org/TR/pointerevents2/",
+              "section": "Published previous Recommendation and base touch-action grammar",
+              "verdict": "Historical comparison for the earlier core grammar; Level 3’s supersession of Level 2 verified."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-overflow-3/",
+              "section": "Scroll container terminology used by Pointer Events §8.2",
+              "verdict": "Cross-reference for the panning algorithm’s nearest inclusive scroll-container boundary."
+            }
+          ],
+          "verdict": "The lesson now accurately covers the one supplied property, `touch-action`, and corrects the inventory-group title to make the scope visible. Its normative model agrees with Pointer Events Level 3; compatibility-only tokens and browser support caveats are explicitly separated."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -94330,9 +94362,12 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://www.w3.org/TR/pointerevents3/",
+        "https://www.w3.org/TR/pointerevents2/",
+        "https://www.w3.org/TR/css-overflow-3/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the complete touch-action property against the Pointer Events Level 3 Recommendation, the living WHATWG Compatibility Standard, Pointer Events Level 2, CSS Overflow, and MDN. Corrected the misleading group title, documented both core and compatibility grammars, ancestor gesture arbitration, non-inheritance/applicability, timing and event cancellation limits, accessibility, and practical alternatives. Validators rerun."
     },
     {
       "taskId": "t07-018-reference-css-transitions",
