@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1068,
-    "pending": 1279,
-    "claimsChecked": 41775,
-    "claimsCorrected": 1684,
+    "reviewed": 1069,
+    "pending": 1278,
+    "claimsChecked": 41833,
+    "claimsCorrected": 1692,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -70372,13 +70372,50 @@
       "topicId": "t07-015",
       "phase": "reference",
       "draft": "course/drafts/t07-015/t07-015-reference-navigation-api.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claim": "Navigation interface, entry list, same-origin visibility, current entry and traversal semantics",
+          "source": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#the-navigation-interface",
+          "section": "7.2.6.2–7.2.6.6",
+          "verdict": "verified; clarified eligibility and history-entry identity semantics"
+        },
+        {
+          "claim": "navigate/reload/traverse options and NavigationResult promise settlement behavior",
+          "source": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#initiating-navigations",
+          "section": "7.2.6.7",
+          "verdict": "corrected; ordinary cross-document navigation and reload promises may never settle; documented non-navigation responses and same-document distinctions"
+        },
+        {
+          "claim": "Navigation events, handler IDL attributes, NavigationType and NavigationCurrentEntryChangeEvent",
+          "source": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#event-interfaces",
+          "section": "7.2.6.2, 7.2.6.3, 7.2.7.1",
+          "verdict": "verified; added omitted event handler attributes, constructor/init dictionary, and enum values"
+        },
+        {
+          "claim": "NavigationHistoryEntry URL privacy, key/id lifetime, state cloning, and disposal event",
+          "source": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#the-navigationhistoryentry-interface",
+          "section": "7.2.6.5",
+          "verdict": "verified; refined exact referrer-policy conditions and included ondispose"
+        },
+        {
+          "claim": "NavigateEvent fields, interception eligibility, precommit behavior, controller API, focus and scrolling",
+          "source": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#the-navigate-event",
+          "section": "7.2.6.10.1–7.2.6.10.5",
+          "verdict": "verified; added NavigationPrecommitController.redirect/addHandler, event initialization, handler types, and exact enum values"
+        },
+        {
+          "claim": "Browser availability and teaching fallback",
+          "source": "https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API",
+          "section": "Browser compatibility / Baseline",
+          "verdict": "verified; clarified Baseline 2026 does not imply legacy browser support"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://dom.spec.whatwg.org/",
         "https://html.spec.whatwg.org/multipage/",
@@ -70449,9 +70486,14 @@
         "https://fullscreen.spec.whatwg.org/",
         "https://w3c.github.io/selection-api/",
         "https://developer.mozilla.org/en-US/docs/Web/API/Range/createContextualFragment",
-        "https://url.spec.whatwg.org/"
+        "https://url.spec.whatwg.org/",
+        "https://html.spec.whatwg.org/multipage/nav-history-apis.html#the-navigation-interface",
+        "https://html.spec.whatwg.org/multipage/nav-history-apis.html#initiating-navigations",
+        "https://html.spec.whatwg.org/multipage/nav-history-apis.html#the-navigationhistoryentry-interface",
+        "https://html.spec.whatwg.org/multipage/nav-history-apis.html#the-navigate-event",
+        "https://html.spec.whatwg.org/multipage/nav-history-apis.html#event-interfaces"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-by-claim audit against current HTML Living Standard and MDN availability reference. Corrected NavigationResult promise settlement generalization and URL null conditions; expanded the frozen inventory to current option dictionaries, event constructors/attributes, navigation enums, and NavigationPrecommitController. All listed API names and stated behaviors checked against current standard sections; no unresolved issues."
     },
     {
       "taskId": "t07-015-reference-observer-apis",

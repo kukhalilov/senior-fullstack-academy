@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This reference covers the WHATWG HTML Navigation API as checked 2026-11-16. MDN marks the core API Baseline 2026, newly available since January 2026, but some subfeatures may vary and older browsers are not covered. Use feature detection and ordinary URL links as the fallback. See [WHATWG Navigation API](https://html.spec.whatwg.org/multipage/nav-history-apis.html), [MDN Navigation API](https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API), [MDN Navigation](https://developer.mozilla.org/en-US/docs/Web/API/Navigation), and [MDN NavigateEvent](https://developer.mozilla.org/en-US/docs/Web/API/NavigateEvent).
+This reference covers the WHATWG HTML Navigation API as checked 2026-11-19. MDN marks the core API Baseline 2026, newly available since January 2026; Baseline describes recent browser availability, not support in older browsers or every subfeature. Use feature detection and ordinary URL links as the fallback. See [WHATWG Navigation API](https://html.spec.whatwg.org/multipage/nav-history-apis.html), [MDN Navigation API](https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API), [MDN Navigation](https://developer.mozilla.org/en-US/docs/Web/API/Navigation), and [MDN NavigateEvent](https://developer.mozilla.org/en-US/docs/Web/API/NavigateEvent).
 
 # How this group fits the mental model
 
@@ -24,25 +24,39 @@ The API can coexist with `history`, `location`, anchors, and forms. Progressive 
 - `Navigation.entries()` — Returns a new array of the contiguous same-origin history entries available to this browsing context. It is not the browser's entire tab history.
 - `Navigation.updateCurrentEntry()` — Updates serialized Navigation API state for the current entry and fires `currententrychange`; it does not itself navigate or render a new page.
 - `Navigation.navigate()` — Starts navigation to a URL and returns a `NavigationResult` containing `committed` and `finished` promises. Options can include state, info, and history behavior.
+- `NavigationNavigateOptions.state` — Serializable state for the resulting same-document entry; ignored when the navigation becomes cross-document.
+- `NavigationNavigateOptions.info` — Per-navigation value exposed as `NavigateEvent.info`; it is not serialized into entry state.
+- `NavigationNavigateOptions.history` — `auto`, `push`, or `replace`; `auto` follows the navigation algorithm default, while explicit values request push or replacement behavior where permitted.
+- `NavigationOptions.info` — Optional transient info accepted by traversal methods and exposed on the corresponding `NavigateEvent`.
+- `NavigationReloadOptions.state` — Optional state associated with an intercepted reload; it does not make a normal cross-document reload same-document.
+- `NavigationUpdateCurrentEntryOptions.state` — Required state value passed to `updateCurrentEntry()`.
+- `NavigationNavigateOptions.state`, `NavigationNavigateOptions.info`, and `NavigationNavigateOptions.history` are the complete own members of the navigate options dictionary; it inherits `NavigationOptions.info`. `NavigationReloadOptions.state` is its own member, also inheriting info. `NavigationUpdateCurrentEntryOptions.state` is required.
 - `Navigation.reload()` — Reloads the current location, optionally associating state/info under the API's rules; it returns the navigation result promises.
 - `Navigation.traverseTo()` — Traverses to an entry identified by its stable `key`, if the target remains in the eligible history list.
 - `Navigation.back()` — Traverses one eligible entry backward; inspect `canGoBack` for UI affordances and handle rejected promises/cancellation.
 - `Navigation.forward()` — Traverses one eligible entry forward.
 - `Navigation navigate() history behavior values auto/push/replace` — The `history` option accepts `auto`, `push`, or `replace`; these select whether navigation creates/replaces an entry according to the API's navigation rules. They do not mean an arbitrary cross-origin route can be converted to same-document content.
-- `NavigationResult.committed` — Promise resolving when the current entry/URL commit occurs; it can reject if precommit/navigation fails.
-- `NavigationResult.finished` — Promise resolving when navigation handlers finish, or rejecting on navigation failure/cancellation.
+- `NavigationResult.committed` — Promise resolving when the current entry/URL commit occurs for a same-document managed navigation; it can reject if precommit/navigation fails. For ordinary cross-document navigation, it never settles.
+- `NavigationResult.finished` — Promise resolving when same-document navigation handlers finish, or rejecting on navigation failure/cancellation. For ordinary cross-document navigation, it never settles. For non-intercepted same-document fragment navigations, both promises fulfill promptly; ordinary reload promises likewise never settle unless intercepted.
+- `NavigationType` — Enumeration values `push`, `replace`, `reload`, and `traverse`.
+- `NavigationHistoryBehavior` — Enumeration values `auto`, `push`, and `replace` accepted by `NavigationNavigateOptions.history`.
+- `Navigation.onnavigate`, `Navigation.onnavigatesuccess`, `Navigation.onnavigateerror`, and `Navigation.oncurrententrychange` — Event-handler IDL attributes corresponding to the four named `Navigation` events.
+- `NavigationCurrentEntryChangeEvent` — Event fired for a current-entry change; its constructor takes an init dictionary, `navigationType` is null for `updateCurrentEntry()`, and `from` identifies the prior entry (or the current entry for reload/update cases).
+- `NavigationCurrentEntryChangeEventInit.navigationType` — Nullable type defaulting to null. `NavigationCurrentEntryChangeEventInit.from` — Required prior `NavigationHistoryEntry`.
+- `NavigationCurrentEntryChangeEvent() constructor` — Constructs that event using `NavigationCurrentEntryChangeEventInit`.
 - `navigate event` — Fires for many navigation types and is the central interception point. It is not universal: location-bar/new-document and browser-UI cases can be outside interception, and download/cross-origin cases are not generally interceptable.
 - `navigatesuccess event` — Fires when a managed navigation completes successfully.
 - `navigateerror event` — Fires when a managed navigation fails; handle it or the result promise rejection to present recovery UI.
 - `currententrychange event` — Fires when current entry changes or its state is updated. Its `NavigationCurrentEntryChangeEvent` includes `from` and a navigation type (null for `updateCurrentEntry`).
 - `NavigationHistoryEntry` — Object representing one entry in the exposed navigation list.
-- `NavigationHistoryEntry.url` — Absolute URL for the entry; can be null when cross-document referrer policy intentionally hides that URL.
+- `NavigationHistoryEntry.url` — Absolute URL for the entry; it can be null specifically when it refers to another Document whose referrer policy is `no-referrer` or `origin`.
 - `NavigationHistoryEntry.key` — User-agent generated stable slot key for traversal. Replacement can reuse the slot key.
 - `NavigationHistoryEntry.id` — User-agent generated unique entry identity; useful to associate cache records with that specific entry.
 - `NavigationHistoryEntry.index` — Index in `navigation.entries()`, or -1 if the entry is not in that list.
 - `NavigationHistoryEntry.sameDocument` — Whether this entry belongs to the same `Document` as the current document.
 - `NavigationHistoryEntry.getState()` — Returns a fresh deserialization/clone of that entry's Navigation API state. It is distinct from `history.state`.
 - `dispose event` — Fires on a `NavigationHistoryEntry` after it is no longer in the history list; release entry-specific resources when appropriate.
+- `NavigationHistoryEntry.ondispose` — Event-handler IDL attribute for the entry's `dispose` event.
 - `NavigationDestination` — Immutable snapshot of the destination for a navigation event/transition.
 - `NavigationDestination.url` — Destination URL.
 - `NavigationDestination.key` — Destination entry's key for traversal; empty for navigation types without an existing traversed entry.
@@ -73,6 +87,14 @@ The API can coexist with `history`, `location`, anchors, and forms. Progressive 
 - `NavigateEvent.hasUAVisualTransition` — Whether the browser performed a visual transition before event dispatch; synchronous DOM update can be important for the expected visual experience.
 - `NavigateEvent.sourceElement` — Initiating link, area, submit button, or form element when applicable; can be null.
 - `NavigateEvent.intercept()` — During synchronous event dispatch, converts an eligible navigation to same-document handling. It requires a trusted event and `canIntercept`; it can register precommit and main handlers and control focus/scroll behavior.
+- `NavigateEvent() constructor` and `NavigateEventInit` — Constructor surface for the event; its init dictionary includes navigationType (default `push`), required destination and AbortSignal, booleans for canIntercept/userInitiated/hashChange/hasUAVisualTransition, nullable formData/downloadRequest/sourceElement, and arbitrary info.
+- `NavigationInterceptOptions` — Dictionary with optional `precommitHandler`, `handler`, `focusReset`, and `scroll` members.
+- `NavigationFocusReset` and `NavigationScrollBehavior` — Each accepts `after-transition` or `manual`; `manual` leaves the corresponding behavior to the application.
+- `NavigationPrecommitController` — Controller supplied to the asynchronous precommit callback. Its `redirect(url, options)` can change a push/replace destination before commit, subject to URL-rewrite rules; `addHandler(handler)` adds post-commit work.
+- `NavigationPrecommitHandler` — Promise-returning callback receiving a `NavigationPrecommitController`; rejection aborts before commit.
+- `NavigationPrecommitController.redirect()` — Replaces the destination URL for push/replace navigations before commit; it cannot redirect reload/traverse and the same-origin URL rewrite restrictions apply.
+- `NavigationPrecommitController.addHandler()` — Registers work that runs after commit, equivalent to adding an intercept handler.
+- `NavigationInterceptHandler` — Promise-returning callback whose completion controls the managed navigation's finished lifecycle.
 - `NavigateEvent.intercept precommitHandler` — Runs after event dispatch but before URL/current-entry commit. A rejected promise aborts the navigation. It is only allowed for cancelable events.
 - `NavigateEvent.intercept handler` — Runs after commit; its returned promise signals navigation work completion and causes success/error lifecycle reporting.
 - `NavigateEvent.intercept focusReset` — Controls focus reset; default behavior resets focus after handlers, while `manual` leaves focus responsibility to the app.
@@ -85,9 +107,9 @@ The API can coexist with `history`, `location`, anchors, and forms. Progressive 
 
 Navigation API state is serialized using structured serialization rules. Store small serializable route state, not DOM nodes, functions, or secrets. Each `getState()` produces a new deserialized value for object state, so object identity comparisons do not work. The `key` identifies a reusable history slot; `id` identifies a particular entry. Use `id` for per-entry caches and `key` for traversal targets.
 
-`navigate()` and traversal methods are asynchronous. Handle both promise outcomes; an aborted navigation can reject. In a `navigate` handler, connect data fetching to `event.signal` so starting another navigation or pressing Stop cancels obsolete work. Avoid a route handler that consumes a POST form and then silently drops its `formData` or submitter intent.
+`navigate()` and traversal methods are asynchronous, but their result promises are not universal completion signals: both remain pending for cross-document navigation, ordinary non-intercepted reloads, and certain responses that do not navigate (204/205 or attachment responses). For same-document intercepted navigation, `committed` represents the commit after precommit handlers and `finished` tracks handler completion; aborts and failures can reject. Handle rejection. In a `navigate` handler, connect data fetching to `event.signal` so starting another navigation or pressing Stop cancels obsolete work. Avoid a route handler that consumes a POST form and then silently drops its `formData` or submitter intent.
 
-`intercept()` must run during the synchronous `navigate` event dispatch. A cross-origin destination, download request, or untrusted synthetic event is not an eligible SPA route. Use `precommitHandler` for checks that must succeed before committing URL/history; use `handler` for rendering after commit. Preserve focus and scroll behavior intentionally, and ensure route failure leaves a recoverable interface.
+`intercept()` must run during the synchronous `navigate` event dispatch. A cross-origin destination, download request, or untrusted synthetic event is not an eligible SPA route. Use `precommitHandler` for checks that must succeed before committing URL/history; it can use its controller to redirect or append post-commit handlers. Use `handler` for rendering after commit. Preserve focus and scroll behavior intentionally, and ensure route failure leaves a recoverable interface.
 
 # Example: progressive enhancement
 
