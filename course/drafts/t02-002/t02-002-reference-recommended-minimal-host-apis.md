@@ -11,7 +11,7 @@ Builder APIs configure the process; app APIs compose request handling and contro
 ## Supplied names explained
 
 - `WebApplication.CreateBuilder` — creates the recommended web builder with common ASP.NET Core host, configuration, logging, DI, and server defaults using the supplied/default arguments/options.
-- `WebApplication.CreateSlimBuilder` — creates a reduced-default builder intended for smaller applications; explicitly add needed JSON configuration, logging providers, HTTP JSON settings, and validation rather than assuming full defaults.
+- `WebApplication.CreateSlimBuilder` — creates a builder with fewer web-hosting features for smaller/AOT-oriented applications. It still includes appsettings JSON and user-secrets configuration, console logging, and logging configuration. Compared with `CreateBuilder`, documented omissions include hosting startup assemblies, `UseStartup`, Windows EventLog/Debug/EventSource logging providers, static web assets, IIS integration, Kestrel HTTPS and QUIC (HTTP/3) configuration, and regex/alpha route constraints. Add only omitted features the app needs and verify compatibility with the target runtime.
 - `WebApplicationBuilder` — mutable composition object exposing service registrations, configuration, logging, environment, and host/web-host customization before build.
 - `WebApplicationBuilder.Services` — `IServiceCollection` used to register application/framework services before `Build`.
 - `WebApplicationBuilder.Configuration` — configuration view assembled during host construction; read/modify providers as permitted before build, and avoid storing secret values in source.
@@ -48,11 +48,11 @@ Builder APIs configure the process; app APIs compose request handling and contro
 - `ContentRootPath` — base directory for application content and default configuration file lookup; it is not necessarily the process current directory in every deployment.
 - `WebRootPath` — path for public static web assets; keep secrets and private files outside it.
 - `EnvironmentName` — configured host environment label such as Development, Staging, or Production; it selects environment behavior but is not a security boundary by itself.
-- `Slim builder default services` — reduced builder does not register every service that a full web builder normally provides; add framework services needed by the app explicitly.
-- `Slim builder JSON configuration` — JSON providers may be omitted/reduced in slim setup; add the appropriate configuration source if the app relies on appsettings files.
-- `Slim builder logging providers` — logging destinations can be omitted or differ; configure console/other required providers for local and deployed observability.
-- `Slim builder HTTP JSON defaults` — HTTP JSON serialization options may not match full builder defaults; configure serializer behavior deliberately and contract-test it.
-- `Slim builder dependency injection validation` — scope/build validation defaults may differ; explicitly enable desired validation so captive-scope errors are caught in development/CI.
+- `Slim builder default services` — reduced builder does not enable every full-builder hosting feature; add framework services and integrations the app actually needs, after checking the documented comparison for the target runtime.
+- `Slim builder JSON configuration` — `CreateSlimBuilder` includes `appsettings.json`, environment-specific appsettings files, and User Secrets in Development. Check the current builder docs before adding duplicate providers; custom sources can still be registered explicitly.
+- `Slim builder logging providers` — slim defaults include console logging and logging configuration but omit providers such as Debug, EventSource, and Windows EventLog. Add the destinations the deployment actually needs.
+- `Slim builder HTTP JSON defaults` — the builder supports Minimal API HTTP JSON, but Native AOT apps must register generated serializer metadata for request/response types. Configure JSON behavior deliberately and test the wire contract.
+- `Slim builder dependency injection validation` — current `CreateSlimBuilder` retains the default service-provider scope/build validation in Development. Do not assume the same validation is active in Staging/Production; explicitly configure validation when those environments need it.
 
 ## Cross-item comparison
 
@@ -68,7 +68,7 @@ app.MapHealthChecks("/health/ready");
 await app.RunAsync();
 ```
 
-This example uses the full web builder's common defaults. A slim builder needs deliberate setup for the configuration/logging/serialization/validation defaults the application requires. A production readiness endpoint should reflect actual ability to receive traffic, not merely return success because the process started.
+This example uses the full web builder's common defaults. A slim builder already includes appsettings JSON and console logging, but may need deliberate setup for omitted hosting features, logging destinations, or Native AOT JSON source-generated metadata. A production readiness endpoint should reflect actual ability to receive traffic, not merely return success because the process started.
 
 ## Common mistakes
 

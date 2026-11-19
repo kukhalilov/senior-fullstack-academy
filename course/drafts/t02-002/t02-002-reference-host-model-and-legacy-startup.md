@@ -58,13 +58,13 @@ Host abstractions own process startup and lifetime; web-host abstractions add HT
 - `UseIISIntegration` — configures out-of-process IIS integration/proxy behavior for the ASP.NET Core app.
 - `UseUrls` — configures one or more server URL bindings through web-host settings; production endpoint/TLS details should use supported server configuration and deployment controls.
 - `ASPNETCORE_URLS` — environment variable used by ASP.NET Core hosting to configure URL bindings in applicable hosting models; verify precedence against explicit server endpoints.
-- `ASPNETCORE_ENVIRONMENT` — common ASP.NET Core environment-name variable. Its precedence relative to `DOTNET_ENVIRONMENT` depends on the host/builder model and version; test the actual path.
-- `DOTNET_ENVIRONMENT` — Generic Host environment-name variable used by generic hosting. Do not assume precedence is identical across all web host models.
+- `ASPNETCORE_ENVIRONMENT` — common ASP.NET Core environment-name variable. With current `WebApplication` minimal hosting, `DOTNET_ENVIRONMENT` takes precedence; with legacy `WebHost`, `ASPNETCORE_ENVIRONMENT` takes precedence. When both are set, verify the exact hosting model and deployment configuration.
+- `DOTNET_ENVIRONMENT` — Generic Host environment-name variable. It takes precedence over `ASPNETCORE_ENVIRONMENT` in current `WebApplication` hosting; legacy `WebHost` uses the opposite precedence.
 - `WebApplicationFactory<TEntryPoint> hosting integration` — ASP.NET Core integration-test factory that boots an app entry point with test host customization, often backed by TestServer; it does not exercise real sockets/proxy/TLS deployment behavior.
 
 ## Cross-item comparison
 
-`IHostApplicationBuilder`/`HostApplicationBuilder` use a property-based modern configuration style; `IHostBuilder` is callback-based and remains supported. `WebApplicationBuilder` adds web-specific defaults; Generic Host can also run worker/console processes. `IHostedService` has basic start/stop; `BackgroundService` supplies an async execution loop; `IHostedLifecycleService` adds before/after hooks. `ASPNETCORE_ENVIRONMENT` and `DOTNET_ENVIRONMENT` are both environment inputs but precedence is host/version-sensitive. `ApplicationStarted` signals lifecycle, while readiness must reflect application serviceability.
+`IHostApplicationBuilder`/`HostApplicationBuilder` use a property-based modern configuration style; `IHostBuilder` is callback-based and remains supported. `WebApplicationBuilder` adds web-specific defaults; Generic Host can also run worker/console processes. `IHostedService` has basic start/stop; `BackgroundService` supplies an async execution loop; `IHostedLifecycleService` adds before/after hooks. In current `WebApplication` hosting, `DOTNET_ENVIRONMENT` wins over `ASPNETCORE_ENVIRONMENT`; legacy `WebHost` reverses that order. `ApplicationStarted` signals lifecycle, while readiness must reflect application serviceability.
 
 ## Examples
 

@@ -18,8 +18,8 @@ Defaults accelerate common applications but are not invisible guarantees. Extens
 - `Default web root` — conventional static web asset root, commonly `wwwroot`; explicit static-asset hosting can change how it is used.
 - `Development environment defaults` — development configuration can enable scope validation and user secrets and uses developer-oriented exception behavior. Do not expose Development behavior publicly.
 - `Production exception behavior` — production should return safe error responses and log diagnostic details server-side; do not reveal stack traces or secrets to clients.
-- `WebApplication automatic middleware` — some current `WebApplication` behavior may automatically insert or analyze middleware under specific conditions. Know the target-version defaults; explicitly configure security-sensitive order and avoid relying on accidental insertion.
-- `WebApplication route analysis` — endpoint-aware middleware analysis can detect/order certain middleware relative to mapped endpoints. It is not a replacement for understanding middleware ordering or verifying runtime behavior.
+- `WebApplication automatic middleware` — `WebApplication` adds routing and endpoint execution around mapped endpoints, adds the Developer Exception Page in Development, and adds authentication/authorization middleware when their services are registered. These defaults are conditional; explicitly place middleware such as CORS where required (before authentication/authorization) and verify the resulting pipeline.
+- `WebApplication route analysis` — when endpoints are mapped, `WebApplication` adds routing and endpoint execution if the app hasn't explicitly configured them; it can also add authentication/authorization when their services are registered and the corresponding middleware wasn't called. This convenience does not insert CORS or replace deliberate security ordering.
 - `ConfigureAppConfiguration` — builder callback/extension for adding or customizing application configuration sources before build.
 - `ConfigureLogging` — host builder callback for configuring logging providers/filters before service provider construction.
 - `ConfigureServices` — builder callback for registering application and framework services.
@@ -44,7 +44,7 @@ Defaults accelerate common applications but are not invisible guarantees. Extens
 
 ## Cross-item comparison
 
-`ConfigureAppConfiguration`, `ConfigureLogging`, `ConfigureServices`, and `ConfigureHostOptions` affect different host subsystems but all act before the final provider/app is built. `WebApplication automatic middleware` and `WebApplication route analysis` are framework behaviors, not replacements for correct explicit security ordering. `TestServer` exercises the pipeline; a real server/proxy test is needed for sockets, TLS, forwarding, and deployment topology. Replacing DI changes more than registration syntax: scope, disposal, validation, and framework integration must be verified.
+`ConfigureAppConfiguration`, `ConfigureLogging`, `ConfigureServices`, and `ConfigureHostOptions` affect different host subsystems but all act before the final provider/app is built. `WebApplication` supplies conditional routing/authentication/authorization/endpoint defaults; CORS and other middleware still need deliberate configuration. `TestServer` exercises the pipeline; a real server/proxy test is needed for sockets, TLS, forwarding, and deployment topology. Replacing DI changes more than registration syntax: scope, disposal, validation, and framework integration must be verified.
 
 ## Examples
 

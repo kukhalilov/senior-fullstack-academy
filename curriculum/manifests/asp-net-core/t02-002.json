@@ -243,21 +243,23 @@
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
       "items": [
-        ".NET 11 reached general availability on November 10, 2026 and is the current STS release. Current .NET 11 templates use the minimal hosting model centered on WebApplicationBuilder and WebApplication. The older Startup and IWebHostBuilder model remains available for compatibility but is not the default shape for new templates."
+        ".NET 11 reached general availability on November 10, 2026 and is the current STS release. Current .NET 11 templates use the minimal hosting model centered on WebApplicationBuilder and WebApplication. The older Startup and IWebHostBuilder model remains available for compatibility but is not the default shape for new templates.",
+        "Starting in .NET 10, the entire BackgroundService.ExecuteAsync method runs on a background thread. Its synchronous prefix therefore no longer delays startup of other hosted services; move work that must gate host startup into StartAsync or an IHostedLifecycleService startup callback."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/web-host",
-        "https://learn.microsoft.com/en-us/dotnet/core/whats-new"
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task"
       ]
     }
   ],
   "sourceSnapshot": {
-    "authority": "Microsoft Learn ASP.NET Core 10 and .NET 10 hosting documentation and API reference",
-    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "authority": "Microsoft Learn ASP.NET Core 11 and .NET 11 hosting documentation and API reference",
+    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-11.0",
@@ -266,7 +268,13 @@
       "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.webapplication.createslimbuilder?view=aspnetcore-11.0",
-      "https://learn.microsoft.com/en-us/dotnet/core/whats-new"
+      "https://learn.microsoft.com/en-us/dotnet/core/whats-new",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/native-aot?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
+      "https://github.com/dotnet/aspnetcore/blob/main/src/DefaultBuilder/src/WebApplicationBuilder.cs"
     ]
   },
   "scopeExclusions": [

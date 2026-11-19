@@ -17,7 +17,7 @@ A message-processing web API depends on a required queue endpoint, SQL database,
 3. A missing required endpoint URL causes the first user request to fail. Move the failure earlier without printing secrets.
 4. Two hosted services depend on shared state, while `ServicesStartConcurrently` is enabled. What design should replace reliance on registration order?
 5. The worker's `StopAsync` waits indefinitely for a remote call. Explain why this is unsafe and what to change.
-6. `CreateSlimBuilder` produces an app without expected JSON settings and console logs. What is the correct response?
+6. A team assumes `CreateSlimBuilder` omits `appsettings.json` and console logging, then adds duplicate providers. What should they verify and change?
 7. A test using TestServer passes, but production TLS and proxy routing fail. Identify the missing test boundary.
 
 ## Progressive hints
@@ -27,7 +27,7 @@ A message-processing web API depends on a required queue endpoint, SQL database,
 3. Use options binding/validation at startup.
 4. Make dependency orchestration explicit or make the shared state independently safe.
 5. Host and orchestrator both have finite shutdown windows.
-6. Slim builder intentionally omits some defaults.
+6. Slim defaults currently include appsettings JSON and console logging, so first inspect the target runtime's effective providers and remove duplicate registrations. Add only genuinely omitted behavior the app requires, such as another logging destination or hosting feature.
 7. TestServer is in-process and does not open real sockets or configure a reverse proxy.
 
 ## Complete solutions
@@ -37,7 +37,7 @@ A message-processing web API depends on a required queue endpoint, SQL database,
 3. Bind a typed options object and validate URL/required fields with `IValidateOptions<TOptions>` and `ValidateOnStart`. Fail host startup with a safe message identifying the setting name, while logging no credential value. This validates local configuration, not current remote availability; dependency readiness is a separate check.
 4. Avoid incidental registration-order coupling. Use a coordinator that starts required components sequentially, make the shared resource independently initialized and awaitable, or disable concurrent starts if ordered start is a real invariant. Use synchronization for shared mutable state and test shutdown dependencies too.
 5. `StopAsync` has a cancellation/deadline, and the container may kill the process when its grace period expires. Propagate cancellation to network calls, stop claiming work, use bounded timeouts, persist checkpoints/leases, and make processing resumable/idempotent. Do not swallow cancellation.
-6. Read the exact slim-builder defaults for the target runtime and explicitly add the JSON configuration provider, logging providers, HTTP JSON settings, and validation the application needs. Add tests for the effective configuration and logs; do not revert blindly without identifying needed defaults.
+6. Check the documented defaults and effective registrations for the target runtime. `CreateSlimBuilder` includes appsettings JSON, Development user secrets, console logging, and logging configuration; it omits selected providers/features. Avoid duplicate providers, add only a needed omission, and test effective configuration and logs.
 7. Add an end-to-end test using the real Kestrel/IIS/reverse-proxy/TLS topology (or a production-like container/proxy) to verify sockets, certificates, forwarding, route behavior, and trust configuration. Keep TestServer for fast pipeline tests.
 
 ## Tests and edge cases

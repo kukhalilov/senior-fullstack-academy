@@ -10,7 +10,7 @@ Sources: Microsoft's [ASP.NET Core fundamentals](https://learn.microsoft.com/en-
 4. Compare Generic Host and legacy Web Host/Startup patterns.
 5. How should a `BackgroundService` use scoped services?
 6. What is the difference between host startup and readiness?
-7. Compare `IHostedService`, `BackgroundService`, and `IHostedLifecycleService`.
+7. Compare `IHostedService`, `BackgroundService`, and `IHostedLifecycleService`. What changed for `ExecuteAsync` in .NET 10?
 8. How do you validate required configuration before serving?
 9. What happens to a host when a background service throws?
 10. How do you design graceful shutdown in a container?
@@ -25,7 +25,7 @@ Sources: Microsoft's [ASP.NET Core fundamentals](https://learn.microsoft.com/en-
 4. Generic Host is the common lifetime/configuration/DI/logging/hosted-service model. Web Host/Startup are supported compatibility APIs; new web templates favor minimal hosting.
 5. Inject a scope/context factory and create/dispose a scope per unit of work; do not capture scoped DbContext in the singleton worker.
 6. Host started means lifecycle startup completed; readiness means the service can correctly receive traffic, including required warm-up/dependencies.
-7. `IHostedService` defines start/stop; `BackgroundService` supplies a long-running async execution loop; `IHostedLifecycleService` adds callbacks surrounding start/stop.
+7. `IHostedService` defines start/stop; `BackgroundService` supplies a long-running async execution loop; `IHostedLifecycleService` adds callbacks surrounding start/stop. Since .NET 10, all of `ExecuteAsync` runs on a background thread, so its synchronous prefix no longer blocks other hosted services from starting. Use `StartAsync` or lifecycle callbacks for startup-critical work.
 8. Bind and validate options with `IValidateOptions<T>`/`ValidateOnStart`; fail safely before requests. External service health is separate readiness behavior.
 9. `HostOptions.BackgroundServiceExceptionBehavior` determines whether to stop the host or ignore the fault. Ignoring requires explicit degradation health/alerting; stopping is safer if service correctness depends on the worker.
 10. On SIGTERM stop new work, observe cancellation, finish/checkpoint within a bounded deadline, and make unfinished work resumable. Align host timeout with container/orchestrator grace period.
@@ -48,7 +48,7 @@ It provides a cooperative window, not an absolute completion guarantee. The host
 
 ### Why can slim builder break an app?
 
-Some defaults are intentionally absent. An app can lose a JSON provider, expected logging sink, HTTP JSON defaults, or DI validation. Re-add required defaults explicitly and test effective behavior; smaller configuration is not equivalent configuration.
+It intentionally omits selected web-hosting defaults, such as some logging providers and hosting features. Current slim defaults still include appsettings JSON, Development user secrets, console logging, and logging configuration. Check the target runtime's documented and effective setup; add only an omitted feature the app needs, and test the resulting behavior.
 
 ## Scenario questions
 

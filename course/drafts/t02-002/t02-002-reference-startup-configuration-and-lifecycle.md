@@ -31,8 +31,8 @@ These names describe when configuration becomes available, when dependencies are
 - `IHostLifetime.WaitForStartAsync` — lifetime-provider hook awaited by the host before hosted-service startup, allowing a lifetime integration to coordinate when startup begins.
 - `IHostedService.StartAsync` — host callback to initialize/start a hosted component. Keep it short; long work can delay all app startup and readiness.
 - `IHostedService.StopAsync` — host callback for cooperative cleanup during graceful shutdown; respect the token/deadline and persist critical work incrementally.
-- `BackgroundService.ExecuteAsync` — asynchronous execution loop for a `BackgroundService`, normally completing when the stopping token is signaled or faulting on an unhandled error.
-- `BackgroundService stopping token` — cancellation token passed to `ExecuteAsync` that signals shutdown; propagate it to waits and downstream operations and do not swallow cancellation as an ordinary failure.
+- `BackgroundService.ExecuteAsync` — asynchronous execution loop for a `BackgroundService`, normally completing when the stopping token is signaled or faulting on an unhandled error. Starting in .NET 10, the entire method runs on a background thread, so its synchronous prefix no longer blocks other hosted services from starting. Put startup-critical work in `StartAsync` or an appropriate lifecycle callback.
+- `BackgroundService stopping token` — cancellation token passed to `ExecuteAsync` that signals shutdown; propagate it to waits and downstream operations and do not swallow cancellation as an ordinary failure. The host's shutdown deadline can still terminate a process that ignores cancellation.
 - `IHostedLifecycleService.StartingAsync` — callback before `IHostedService.StartAsync`, useful for explicit pre-start coordination.
 - `IHostedLifecycleService.StartedAsync` — callback after `StartAsync` completes for that lifecycle stage; it is still part of host startup sequencing.
 - `IHostedLifecycleService.StoppingAsync` — callback before ordinary `StopAsync` during graceful shutdown.
@@ -55,7 +55,7 @@ These names describe when configuration becomes available, when dependencies are
 
 ## Cross-item comparison
 
-`ValidateOnStart` and `IValidateOptions<TOptions>` validate local configuration during host startup; readiness probes answer whether the running app should receive traffic. `IHostedService` has start/stop callbacks; `BackgroundService` adds a long-running loop; `IHostedLifecycleService` adds surrounding phases. `ApplicationStarted` is a lifecycle signal; dependency warm-up or downstream availability may require a separate readiness condition. `StopAsync` is cooperative and time-bounded.
+`ValidateOnStart` and `IValidateOptions<TOptions>` validate local configuration during host startup; readiness probes answer whether the running app should receive traffic. `IHostedService` has start/stop callbacks; `BackgroundService` adds a long-running loop; `IHostedLifecycleService` adds surrounding phases. Since .NET 10, `BackgroundService.ExecuteAsync` no longer blocks other service startup while its synchronous prefix runs. `ApplicationStarted` is a lifecycle signal; dependency warm-up or downstream availability may require a separate readiness condition. `StopAsync` is cooperative and time-bounded.
 
 ## Examples
 
