@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This reference covers IntersectionObserver and ResizeObserver as defined by current web-platform specifications. Delivery is asynchronous and entries describe observer snapshots, not a general rendering-complete signal. `scrollMargin` is part of current IntersectionObserver options; support can lag and should be checked in target browsers. See [MDN IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver), [MDN ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver), and [WHATWG HTML](https://html.spec.whatwg.org/multipage/).
+This reference covers the current Intersection Observer and Resize Observer specifications as checked 2026-11-19. Delivery is asynchronous and entries describe observer snapshots, not a general rendering-complete signal. Current Intersection Observer also defines visibility tracking (`trackVisibility`, `delay`, and `isVisible`); this more expensive capability may be unavailable or vary across browsers, so feature-detect it and verify target support. See [MDN IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver), [MDN ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver), and [WHATWG HTML](https://html.spec.whatwg.org/multipage/).
 
 # How this group fits the mental model
 
@@ -13,42 +13,52 @@ IntersectionObserver answers whether a target intersects a root region under con
 # Supplied names explained
 
 - `IntersectionObserver` — Observes intersection changes for targets relative to a viewport or ancestor root and calls a callback with queued entries.
-- `IntersectionObserver.observe()` — Starts observing a target Element. The initial observation is queued even if intersection state seems unchanged.
+- `IntersectionObserver() constructor` and `IntersectionObserverCallback` — The constructor receives one callback and shared observer options; the callback receives a sequence of entries and the observer.
+- `IntersectionObserver.root` — Read-only root node, or null for the implicit root. `IntersectionObserver.rootMargin` — Normalized root offsets. `IntersectionObserver.scrollMargin` — Normalized nested scroll-container offsets. `IntersectionObserver.thresholds` — Sorted configured thresholds. `IntersectionObserver.delay` — Effective minimum per-target notification interval. `IntersectionObserver.trackVisibility` — Whether visibility tracking is enabled.
+- `IntersectionObserver.observe()` — Starts observing a target Element; an initial observation is processed asynchronously even if no threshold transition has occurred yet.
 - `IntersectionObserver.unobserve()` — Stops observing one target.
 - `IntersectionObserver.disconnect()` — Stops observing all targets.
 - `IntersectionObserver.takeRecords()` — Returns and clears pending intersection entries without waiting for callback delivery.
-- `IntersectionObserverEntry` — Snapshot record for one target at an observation time.
+- `IntersectionObserverEntry` — Snapshot record for one target at an observation time. `IntersectionObserverEntry() constructor` takes `IntersectionObserverEntryInit`, whose required fields are time, rootBounds, boundingClientRect, intersectionRect, isIntersecting, isVisible, intersectionRatio, and target.
+- `IntersectionObserverEntryInit.time`, `IntersectionObserverEntryInit.rootBounds`, `IntersectionObserverEntryInit.boundingClientRect`, `IntersectionObserverEntryInit.intersectionRect`, `IntersectionObserverEntryInit.isIntersecting`, `IntersectionObserverEntryInit.isVisible`, `IntersectionObserverEntryInit.intersectionRatio`, and `IntersectionObserverEntryInit.target` — The eight required members used to construct an entry.
 - `IntersectionObserverEntry.boundingClientRect` — Target rectangle from the corresponding geometry measurement.
 - `IntersectionObserverEntry.intersectionRatio` — Intersection area divided by target bounding-box area, in the range 0–1 (with special zero-area rules).
 - `IntersectionObserverEntry.intersectionRect` — Rectangle representing the visible intersection region after clipping.
 - `IntersectionObserverEntry.isIntersecting` — Whether target and root intersect or are edge-adjacent under the API algorithm; it is not equivalent to “visibly painted to a person.”
+- `IntersectionObserverEntry.isVisible` — Result of the visibility algorithm, meaningful when visibility tracking is enabled; it still is not a general guarantee of human perception or ad viewability.
 - `IntersectionObserverEntry.rootBounds` — Root intersection rectangle, or null in cases where root geometry is unavailable/hidden by policy.
 - `IntersectionObserverEntry.target` — Observed element.
 - `IntersectionObserverEntry.time` — High-resolution timestamp associated with the observation.
 - `IntersectionObserverInit.root` — Root element or Document; null uses the viewport.
 - `IntersectionObserverInit.rootMargin` — CSS-like margins expanding/shrinking the root intersection rectangle; percentages resolve relative to root width per spec behavior.
 - `IntersectionObserverInit.scrollMargin` — Margins applied to nested scroll-container clip rectangles along the path between root and target, adjusting intersection computation for nested scrolling.
-- `IntersectionObserverInit.threshold` — One threshold or array of thresholds at which callbacks are queued as ratio crosses values; sorted/deduplicated by API processing.
+- `IntersectionObserverInit.threshold` — One threshold or array of thresholds at which callbacks are queued as ratio crosses values; sorted by API processing, constrained to 0–1, and defaults to 0.
+- `IntersectionObserverInit.delay` — Minimum milliseconds between notifications for a target; when `trackVisibility` is true, the specification raises values below 100 ms to 100 ms.
+- `IntersectionObserverInit.trackVisibility` — Requests visibility tracking, which is more computationally expensive than intersection-only tracking.
+- ResizeObserver() constructor and `ResizeObserverCallback` — The constructor takes a callback; each delivery provides a sequence of `ResizeObserverEntry` objects and the observer.
 - `ResizeObserver` — Observes selected element box-size changes.
-- `ResizeObserver.observe()` — Starts observing a target with optional box choice: `content-box` (default), `border-box`, or `device-pixel-content-box`.
+- `ResizeObserver.observe()` — Starts observing a target with optional `ResizeObserverOptions.box`: `content-box` (default), `border-box`, or `device-pixel-content-box`. The chosen box controls which changes trigger notification, not which size properties the entry exposes; observing the same target again replaces its prior observation choice.
+- `ResizeObserverBoxOptions` — Enum values `content-box`, `border-box`, and `device-pixel-content-box`.
+- `ResizeObserverOptions.box` — Selects the observed box and defaults to `content-box`.
 - `ResizeObserver.unobserve()` — Stops observing one target.
 - `ResizeObserver.disconnect()` — Stops observing all targets.
 - `ResizeObserverEntry` — Snapshot of a target and box sizes for a delivery.
 - `ResizeObserverEntry.borderBoxSize` — Frozen sequence of logical inline/block sizes for the content box plus padding/border; sequence shape accommodates fragmented elements.
 - `ResizeObserverEntry.contentBoxSize` — Frozen sequence of logical inline/block sizes for the content box, accommodating fragments.
-- `ResizeObserverEntry.devicePixelContentBoxSize` — Frozen sequence of content box sizes in device pixels, where supported.
+- `ResizeObserverEntry.devicePixelContentBoxSize` — Frozen sequence of content box sizes in integral device pixels before transforms; its computation depends on browser pixel snapping and can be more expensive, where supported.
+- `ResizeObserverSize.inlineSize` and `.blockSize` — Logical inline and block dimensions of a reported box; use these instead of assuming physical width/height.
 - `ResizeObserverEntry.contentRect` — Legacy physical-axis DOMRectReadOnly view of the content box; newer code should use box-size sequences and account for logical axes.
 - `ResizeObserverEntry.target` — Observed element whose size is described.
 
 # Intersection thresholds and margins
 
-An observer callback is queued when the threshold index or `isIntersecting` state changes. Threshold `0` is common for “near view” lazy loading; a list of thresholds can report coarse progress. Large target-to-root size differences and zero-area targets affect ratios. `rootMargin` changes the root rectangle, while `scrollMargin` adjusts clipping rectangles for nested scroll containers; they are not interchangeable.
+An observer callback is queued when the threshold index, `isIntersecting` state, or (when enabled) `isVisible` state changes. Threshold `0` is common for “near view” lazy loading; a list of thresholds can report coarse progress. Large target-to-root size differences and zero-area targets affect ratios. `rootMargin` changes the root rectangle, while `scrollMargin` adjusts clipping rectangles for nested scroll containers; they are not interchangeable. For a cross-origin target in an implicit-root observer, the standard restricts geometry exposure and ignores margins to limit information leakage; `rootBounds` may be null.
 
-Intersection does not prove the target is unobscured, legible, or actually seen. Occlusion tracking is a distinct newer capability with separate support/behavior; do not infer it from `isIntersecting`. Use `loading="lazy"` for native image/iframe loading where appropriate instead of reimplementing it.
+Intersection does not prove the target is unobscured, legible, or actually seen. The newer `trackVisibility`/`isVisible` path asks the user agent to apply a conservative visibility algorithm; it is more expensive, throttled by at least 100 ms, and has uneven implementation availability. It still does not replace product-specific viewability rules. `isIntersecting` continues to describe geometry; inspect `isVisible` when visibility tracking was requested. Use `loading="lazy"` for native image/iframe loading where appropriate instead of reimplementing it.
 
 # Resize delivery and feedback loops
 
-The observer reports logical box dimensions; inline/block axes depend on writing mode. If the callback changes an observed element's size, another delivery may occur. A cycle can trigger a browser resize-loop error and defer notifications. Make callback writes idempotent, compare sizes, and avoid measuring-and-mutating recursively. Use the observation box matching the requirement; device-pixel content box can be costly/unsupported and is useful for pixel-aligned canvas work.
+The observer reports logical box dimensions; inline/block axes depend on writing mode. `ResizeObserverSize.inlineSize` is the logical inline dimension; `ResizeObserverSize.blockSize` is the logical block dimension; entries return frozen sequences to accommodate fragmented elements, though the current Level 1 definition returns a single size corresponding to the first column in multicolumn layout. The observation box controls notification triggers; every entry still exposes all three box-size sequences. CSS transforms do not themselves trigger observations. Non-replaced inline elements do not generate observations; SVG graphics elements report their bounding box rather than CSS content/border boxes. If the callback changes an observed element's size, another delivery may occur. A cycle can trigger a browser resize-loop error and defer notifications. Make callback writes idempotent, compare sizes, and avoid measuring-and-mutating recursively. Use the observation box matching the requirement; device-pixel content box can be costly/unsupported and is useful for pixel-aligned canvas work.
 
 # Lifecycle and performance
 
@@ -101,3 +111,5 @@ The positive root margin starts work before the sentinel reaches the visible vie
 - [MDN IntersectionObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry)
 - [MDN ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)
 - [MDN ResizeObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry)
+- [W3C Intersection Observer Editor’s Draft](https://w3c.github.io/IntersectionObserver/)
+- [W3C Resize Observer specification](https://www.w3.org/TR/resize-observer/)
