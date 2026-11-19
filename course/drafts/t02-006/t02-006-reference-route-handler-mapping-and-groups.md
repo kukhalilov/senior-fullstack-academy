@@ -1,6 +1,6 @@
 # ASP.NET Core Minimal APIs route handlers endpoint filters validation and results — Reference: Minimal route registration, HTTP verbs, route groups, metadata, and conventions
 
-Sources: Microsoft's [Minimal APIs overview](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0), [route handlers](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/route-handlers?view=aspnetcore-11.0), and [OpenAPI overview](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0).
+Sources: Microsoft's [Minimal APIs overview](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0), [route handlers](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/route-handlers?view=aspnetcore-11.0), and [OpenAPI customization](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/customize-openapi?view=aspnetcore-11.0).
 
 ## Scope and version
 
@@ -24,7 +24,7 @@ Mapping returns a convention builder. `IEndpointConventionBuilder` represents me
 
 A route-handler delegate may return a string, a serializable value, an `IResult`, or a typed result. Its parameter signature participates in binding and overload selection. Services can be registered in DI and inferred for supported parameter types, but explicit `[FromServices]` can make intent clear. Be aware that adding a DI registration can alter inference for a complex parameter. For public API handlers, explicit source attributes reduce accidental contract changes.
 
-Endpoint names are exposed through `EndpointNameMetadata` and `IEndpointNameMetadata`. Response and documentation tooling reads metadata interfaces such as `IProducesResponseTypeMetadata`, `ITagsMetadata`, `IEndpointSummaryMetadata`, and `IEndpointDescriptionMetadata`. `AddOpenApiOperationTransformer` applies document-time transformations; it changes the generated document, not endpoint runtime behavior.
+Endpoint names are exposed through `EndpointNameMetadata` and `IEndpointNameMetadata`. Response and documentation tooling reads metadata interfaces such as `IProducesResponseTypeMetadata`, `ITagsMetadata`, `IEndpointSummaryMetadata`, and `IEndpointDescriptionMetadata`. `OpenApiOptions.AddOperationTransformer` registers a document-wide operation transformer; the endpoint-specific `AddOpenApiOperationTransformer` extension modifies one endpoint's generated operation. Both change the OpenAPI document, not endpoint runtime behavior.
 
 ## Practical group example
 
@@ -129,6 +129,7 @@ Do not think declaration order universally selects endpoints; do not duplicate n
 - `ITagsMetadata`
 - `IEndpointSummaryMetadata`
 - `IEndpointDescriptionMetadata`
+- `OpenApiOptions.AddOperationTransformer`
 - `AddOpenApiOperationTransformer`
 
 ## How this group fits the mental model

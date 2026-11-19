@@ -1,10 +1,10 @@
 # ASP.NET Core Minimal APIs route handlers endpoint filters validation and results — Reference: Results, typed result contracts, file responses, and API descriptions
 
-Sources: Microsoft's [Minimal API responses](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-11.0), [OpenAPI overview](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0), and [ASP.NET Core 11 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11).
+Sources: Microsoft's [Minimal API responses](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-11.0), [OpenAPI document generation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/openapi?view=aspnetcore-11.0), [OpenAPI customization](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/customize-openapi?view=aspnetcore-11.0), and [ASP.NET Core 11 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0).
 
 ## Scope and version
 
-Targets ASP.NET Core 11 Minimal API result contracts and API descriptions. ASP.NET Core 11 supports OpenAPI 3.2.0; file response description improvements are version-specific. OpenAPI customization and API versioning are treated in t02-013.
+Targets ASP.NET Core 11 Minimal API result contracts and API descriptions. ASP.NET Core 11 generates OpenAPI 3.2.0 by default (ASP.NET Core 10 defaults to 3.1.0); `OpenApiOptions.OpenApiVersion` can select the document version. File response description improvements are version-specific. OpenAPI customization and API versioning are treated in t02-013.
 
 ## Return shapes
 

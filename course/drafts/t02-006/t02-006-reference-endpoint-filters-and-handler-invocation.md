@@ -1,6 +1,6 @@
 # ASP.NET Core Minimal APIs route handlers endpoint filters validation and results — Reference: Filter interfaces, invocation context, factories, and short-circuit results
 
-Sources: Microsoft's [Minimal API filter guide](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/min-api-filters?view=aspnetcore-11.0), [Minimal APIs overview](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0), and [responses](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-11.0).
+Sources: Microsoft's [Minimal API filter guide](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/min-api-filters?view=aspnetcore-11.0), [Minimal APIs overview](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0), [responses](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-11.0), and [ASP.NET Core 11 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0).
 
 ## Scope and version
 
@@ -12,13 +12,13 @@ This reference covers filters that wrap Minimal API route-handler invocation. It
 
 Filters are composed in registration order with nested before/after execution. Group filters apply to endpoints in the group; endpoint filters apply to one endpoint. `AddEndpointFilter` adds an instance or callback; `AddEndpointFilter<TFilter>` resolves a filter implementation through DI according to its activation model. `AddEndpointFilterFactory` provides endpoint-aware construction. `IEndpointFilterFactory.CreateInstance` receives `EndpointFilterFactoryContext` (including handler method metadata) and a next filter, and creates a delegate once while building the endpoint. Use this to inspect the handler signature and build a typed adapter instead of repeatedly discovering parameter information per request.
 
-`EndpointFilterAttribute` attaches filter metadata/declaration to handler methods in supported scenarios. `EndpointFilterFactoryContext.MethodInfo` exposes reflection metadata; avoid making fragile assumptions about compiler-generated lambda method shapes. `IEndpointFilterFactory` and factory delegates can capture endpoint-stable metadata; request-specific data belongs in each invocation context. Understand service lifetimes: endpoint construction can occur once, while a filter instance may serve concurrent requests. Do not store request state in fields.
+`EndpointFilterAttribute` attaches filter metadata/declaration to handler methods in supported scenarios. `EndpointFilterFactoryContext.MethodInfo` exposes reflection metadata; avoid making fragile assumptions about compiler-generated lambda method shapes. `IEndpointFilterFactory` and factory delegates can capture endpoint-stable metadata; request-specific data belongs in each invocation context. Understand service lifetimes: endpoint construction can occur once, while a filter instance may serve concurrent requests. Do not store request state in fields. “Minimal API route-handler filter model” is a descriptive label for these endpoint filters, not the name of a public `RouteHandlerFilter` class.
 
 ## What filters can and cannot do
 
 Filters are useful for endpoint-local argument validation, timing, result transformation, and shared handler behavior. They can inspect `HttpContext`, but their existence does not enforce authorization unless an authorization policy is also attached and processed by authorization middleware. They do not wrap pre-routing middleware or all request processing. Use middleware for broad correlation, exception handling, and behavior that must apply to non-Minimal endpoints. Use MVC filters for controller-action-specific contexts.
 
-Exception handling: a filter can catch exceptions from the inner handler delegate if it wraps that await in `try/catch`, but this is endpoint-local. It does not catch exceptions before the filter runs, from outer middleware, or failures after the filter returns when the result is executed. Use exception-handling middleware for consistent application-wide error mapping.
+In ASP.NET Core 11, a configured filter pipeline also runs after supported parameter-check failures such as invalid route/query/header parsing. The response status is 400 and the handler is skipped; in Development, set `RouteHandlerOptions.ThrowOnBadRequest = false` so the filter observes the 400 rather than a developer exception. This does not cover body deserialization failures or exceptions thrown by custom binding. Exception handling is otherwise endpoint-local: a filter can catch exceptions from the inner handler delegate if it wraps that await in `try/catch`, but it does not catch failures before the filter runs, outer middleware, or result execution after it returns. Use exception-handling middleware for consistent application-wide error mapping.
 
 Result transformation is type-sensitive. `IResult` implementations may expose metadata interfaces such as `IStatusCodeHttpResult`, `IValueHttpResult<T>`, `IContentTypeHttpResult`, or `IFileHttpResult`; check the relevant interface before casting. A transformed value still needs to be a valid endpoint result and may alter OpenAPI/runtime expectations. Keep declared metadata aligned with actual transformed response.
 
@@ -87,12 +87,13 @@ Calling the continuation more than once; assuming argument indexes without check
 - `Endpoint filter versus middleware`
 - `Endpoint filter metadata`
 - `Endpoint filter factory activation`
-- `RouteHandlerFilter`
+- `Minimal API route-handler filter model`
 - `IEndpointFilterFactory service lifetime`
 - `Endpoint filter invocation allocation`
 - `Endpoint filter HTTP context access`
 - `Endpoint filter before and after handler`
 - `Filter result serialization`
+- `Endpoint filters observe parameter-binding failures in ASP.NET Core 11`
 
 ## How this group fits the mental model
 A filter is a nested invocation wrapper between binding and the handler result; it is endpoint-scoped rather than application-wide.

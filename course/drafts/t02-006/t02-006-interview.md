@@ -1,6 +1,6 @@
 # ASP.NET Core Minimal APIs route handlers endpoint filters validation and results — Interview questions and reasoning
 
-Sources: Microsoft's [Minimal APIs](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0), [binding](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/parameter-binding?view=aspnetcore-11.0), [filters](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/min-api-filters?view=aspnetcore-11.0), [responses](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-11.0), and [ASP.NET Core validation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/validation?view=aspnetcore-11.0).
+Sources: Microsoft's [Minimal APIs](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0), [binding](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/parameter-binding?view=aspnetcore-11.0), [filters](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/min-api-filters?view=aspnetcore-11.0), [responses](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-11.0), [ASP.NET Core validation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/validation?view=aspnetcore-11.0), and [ASP.NET Core 11 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0).
 
 ## Core questions
 
@@ -18,6 +18,7 @@ Sources: Microsoft's [Minimal APIs](https://learn.microsoft.com/en-us/aspnet/cor
 12. Why can a method-group handler return an empty response?
 13. How would you stream a large file and describe it in OpenAPI?
 14. What serializer configuration affects Minimal API input/output?
+15. Which ASP.NET Core 11 changes affect Minimal API filters, JSON bodies, and OpenAPI documents?
 
 ## Concise interview answers
 
@@ -35,6 +36,7 @@ Sources: Microsoft's [Minimal APIs](https://learn.microsoft.com/en-us/aspnet/cor
 12. Overload resolution can choose `RequestDelegate`, which discards a return value; use a lambda or cast to `Delegate` and heed analyzer ASP0016.
 13. Return a stream-based file result, set content type/range/caching as intended, authorize it, and provide explicit binary response metadata.
 14. `ConfigureHttpJsonOptions` affects HTTP JSON behavior; test request deserialization and response serialization separately.
+15. Configured endpoint filters can observe supported parameter-check failures when `ThrowOnBadRequest` is false in Development; C# union types work for `System.Text.Json` JSON bodies; generated OpenAPI documents default to 3.2.0 in ASP.NET Core 11, compared with 3.1.0 in ASP.NET Core 10.
 
 ## Deep follow-up answers
 

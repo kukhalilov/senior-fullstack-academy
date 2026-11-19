@@ -1,6 +1,6 @@
 # ASP.NET Core Minimal APIs route handlers endpoint filters validation and results — Reference: Parameter sources, special types, custom binding, validation, and JSON options
 
-Sources: Microsoft's [parameter binding](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/parameter-binding?view=aspnetcore-11.0), [validation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/validation?view=aspnetcore-11.0), [Minimal API quick reference](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0), [responses](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-11.0), and [.NET 11 async validation APIs](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview).
+Sources: Microsoft's [parameter binding](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/parameter-binding?view=aspnetcore-11.0), [validation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/validation?view=aspnetcore-11.0), [Minimal API quick reference](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0), [responses](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-11.0), [.NET 11 async validation APIs](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview), and [`FromBodyAttribute` API reference](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute?view=aspnetcore-11.0).
 
 ## Scope and version
 
@@ -14,7 +14,7 @@ Special types such as `HttpContext`, `HttpRequest`, `HttpResponse`, `ClaimsPrinc
 
 Route values, query, and headers have distinct parsing/encoding semantics. `TryParse` and `IParsable<TSelf>` support simple conversion from string-like values. `BindAsync` can implement richer async binding using request context; `IBindableFromHttpContext<TSelf>` offers a static-abstract pattern. Custom binding must distinguish absent, malformed, and invalid values intentionally and should avoid leaking low-level exception details.
 
-Body binding ordinarily deserializes one JSON body DTO. Multiple body parameters are unsupported because a request body is a single stream. Use a composed request type rather than attempting to read it independently multiple times. `DisableInferBodyFromParameters` can turn off inferred-body behavior. `[FromBody]` exposes `EmptyBodyBehavior` and `AllowEmpty` to control empty-body policy; configure this deliberately. Nullability and optional/default values influence missing-value behavior, but nullable reference annotations are not a substitute for explicit validation constraints or domain rules. Route-handler binding failures produce framework bad-request behavior; distinguish these from automatic validation responses and domain errors.
+Body binding ordinarily deserializes one JSON body DTO. Multiple body parameters are unsupported because a request body is a single stream. Use a composed request type rather than attempting to read it independently multiple times. `DisableInferBodyFromParameters` can turn off inferred-body behavior. `[FromBody]` exposes `EmptyBodyBehavior`; through the `IFromBodyMetadata` interface it also exposes the `AllowEmpty` metadata value. Set `EmptyBodyBehavior` deliberately when an empty request body is part of the contract. Nullability and optional/default values influence missing-value behavior, but nullable reference annotations are not a substitute for explicit validation constraints or domain rules. Route-handler binding failures produce framework bad-request behavior; distinguish these from automatic validation responses and domain errors.
 
 ## Validation registration and execution
 
@@ -28,7 +28,7 @@ Validation errors are returned as a client error with problem-style details by d
 
 ## JSON options and serialization
 
-`ConfigureHttpJsonOptions` configures endpoint HTTP JSON behavior; `HttpJsonOptions` wraps `JsonSerializerOptions` used by Minimal APIs. `JsonSerializerOptions.Web` describes the web defaults. `IOptions<Microsoft.AspNetCore.Http.Json.JsonOptions>` exposes configured options through DI. Endpoint JSON serializer options affect request body deserialization and response JSON serialization for endpoints using the corresponding HTTP JSON APIs. `JsonTypeInfo<T>` supports metadata-based serialization and source-generated contexts, important for trimming/AOT and explicit serializer metadata.
+`ConfigureHttpJsonOptions` configures endpoint HTTP JSON behavior; `HttpJsonOptions` wraps `JsonSerializerOptions` used by Minimal APIs. `JsonSerializerOptions.Web` describes the web defaults. `IOptions<Microsoft.AspNetCore.Http.Json.JsonOptions>` exposes configured options through DI. Endpoint JSON serializer options affect request body deserialization and response JSON serialization for endpoints using the corresponding HTTP JSON APIs. `JsonTypeInfo<T>` supports metadata-based serialization and source-generated contexts, important for trimming/AOT and explicit serializer metadata. In .NET 11, C# union types are supported for JSON request and response bodies processed by `System.Text.Json`; they are not a route/query/header/form parsing mechanism and are distinct from `Results<T1,T2>` typed HTTP result unions.
 
 Request deserialization and response serialization are separate directions. Decide enum representation, case behavior, null handling, unmapped members, converters, and source generation intentionally. A string return is plain text; ordinary object returns are JSON; `Results.Json` uses JSON result semantics. Integration tests should check bytes/content type and error cases, not merely the bound CLR object.
 
@@ -96,7 +96,7 @@ Assuming registration alone guarantees generated metadata; confusing invalid JSO
 - `DisableInferBodyFromParameters`
 - `EmptyBodyBehavior`
 - `FromBodyAttribute.EmptyBodyBehavior`
-- `FromBodyAttribute.AllowEmpty`
+- `IFromBodyMetadata.AllowEmpty`
 - `Route handler nullability metadata`
 - `Minimal API binding failure response`
 - `Minimal API validation`
@@ -117,6 +117,7 @@ Assuming registration alone guarantees generated metadata; confusing invalid JSO
 - `Request body JSON deserialization`
 - `Response body JSON serialization`
 - `JSON enum serialization`
+- `C# union types in Minimal API JSON bodies`
 - `Nullable reference validation behavior`
 - `Asynchronous validation in .NET 11`
 - `AsyncValidationAttribute`

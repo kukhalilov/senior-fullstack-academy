@@ -80,6 +80,7 @@
         "ITagsMetadata",
         "IEndpointSummaryMetadata",
         "IEndpointDescriptionMetadata",
+        "OpenApiOptions.AddOperationTransformer",
         "AddOpenApiOperationTransformer"
       ]
     },
@@ -115,12 +116,13 @@
         "Endpoint filter versus middleware",
         "Endpoint filter metadata",
         "Endpoint filter factory activation",
-        "RouteHandlerFilter",
+        "Minimal API route-handler filter model",
         "IEndpointFilterFactory service lifetime",
         "Endpoint filter invocation allocation",
         "Endpoint filter HTTP context access",
         "Endpoint filter before and after handler",
-        "Filter result serialization"
+        "Filter result serialization",
+        "Endpoint filters observe parameter-binding failures in ASP.NET Core 11"
       ]
     },
     {
@@ -157,11 +159,12 @@
         "Route handler query binding",
         "Route handler header binding",
         "Route handler form binding",
+        "C# union types in Minimal API JSON bodies",
         "Multiple body parameters are unsupported",
         "DisableInferBodyFromParameters",
         "EmptyBodyBehavior",
         "FromBodyAttribute.EmptyBodyBehavior",
-        "FromBodyAttribute.AllowEmpty",
+        "IFromBodyMetadata.AllowEmpty",
         "Route handler nullability metadata",
         "Minimal API binding failure response",
         "Minimal API validation",
@@ -329,22 +332,22 @@
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 10 and 11 / .NET 11 GA checked 2026-11-14",
+      "edition": "ASP.NET Core 10 and 11 / .NET 11 GA checked 2026-11-20",
       "items": [
-      "ASP.NET Core 10 introduced built-in Minimal API validation support through Microsoft.Extensions.Validation and AddValidation. .NET 11 adds asynchronous DataAnnotations validation APIs, including AsyncValidationAttribute, IAsyncValidatableObject, Validator.ValidateObjectAsync, and asynchronous options validation. ASP.NET Core 11's OpenAPI integration supports OpenAPI 3.2.0 and improved descriptions for binary file responses. WithOpenApi was deprecated in .NET 10; use OpenAPI operation transformers for document customization."
+      "ASP.NET Core 10 introduced built-in Minimal API validation support through Microsoft.Extensions.Validation and AddValidation. .NET 11 adds asynchronous DataAnnotations validation APIs, including AsyncValidationAttribute, IAsyncValidatableObject, Validator.ValidateObjectAsync, and asynchronous options validation; Minimal API validation uses the asynchronous path. ASP.NET Core 11 endpoint filters can observe supported parameter-check failures when configured, with ThrowOnBadRequest=false in Development. .NET 11 C# union types work with JSON request/response bodies, not route/query/header/form binding. ASP.NET Core 11's OpenAPI integration defaults to OpenAPI 3.2.0 (3.1.0 in .NET 10) and improves binary file response descriptions. WithOpenApi was deprecated in .NET 10; use document-wide or endpoint-specific operation transformers for customization."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/validation?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
-      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/10/withopenapi-deprecated?view=aspnetcore-10.0"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core 11 Minimal API documentation and .NET 11 release notes",
-    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/route-handlers?view=aspnetcore-11.0",
@@ -352,8 +355,11 @@
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/min-api-filters?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/validation?view=aspnetcore-11.0",
-      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
-      "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/customize-openapi?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/openapi?view=aspnetcore-11.0"
     ]
   },
   "scopeExclusions": [
