@@ -2,60 +2,91 @@
 
 # Scope and version
 
-This lesson explains all 5 supplied properties in **CSS Writing Modes properties** and no additional inventory names. MDN descriptions and support labels were captured on 2026-11-16. 5 names have an MDN Baseline label, 0 have Limited availability, and 0 are explicitly marked Experimental in the 2026-11-16 capture. These labels can overlap; the row for every name preserves its own status. A missing Baseline label is not proof that no browser implements it. Support can change after this capture. The CSS Snapshot 2026 reports specification maturity rather than browser adoption. [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
+This lesson covers exactly five supplied properties: `direction`, `text-combine-upright`, `text-orientation`, `unicode-bidi`, and `writing-mode`. CSS Writing Modes Level 4 defines horizontal and vertical writing, inline direction, glyph orientation, and bidi integration. The published specification is a Candidate Recommendation; check current browser behavior for the target language/script and do not treat every editorial note or edge case as equally interoperable.
 
 # How this group fits the mental model
 
-Writing mode determines the direction and orientation of inline and block flow. Direction sets inline base direction for text, while text orientation and combination affect glyph presentation; bidi controls interact with the Unicode Bidirectional Algorithm and should be used sparingly. The overview and concepts lessons explain the surrounding layout model; this catalog now ties every supplied name to its role. A short MDN description is not a complete grammar. Follow the linked specification/reference for exact values, applicability, inheritance, computed-value rules, and browser-specific support before using an unfamiliar value.
+Keep three questions separate:
+
+1. **Which way do lines and blocks flow?** `writing-mode` sets block-flow direction, such as horizontal lines stacking top-to-bottom or vertical lines stacking right-to-left.
+2. **Which way does inline content progress?** `direction` sets inline base direction (`ltr` or `rtl`) and affects direction-sensitive layout. The Unicode Bidirectional Algorithm then handles mixed-direction runs.
+3. **How are glyphs oriented inside vertical lines?** `text-orientation` controls upright/sideways presentation; `text-combine-upright` can compose a short horizontal run into a single upright unit.
+
+These properties are not text-rotation shortcuts. A true vertical writing mode changes logical axes, line progression, baselines, and the mapping of logical properties to physical sides. Inline direction and writing mode together define the writing mode used by the layout model.
 
 # Supplied names explained
 
-| Exact supplied property | Meaning in this model |
+| Exact supplied property | Values and detailed role |
 | --- | --- |
-| `direction` | The direction CSS property sets the direction of text, table and grid columns, and horizontal overflow. Use rtl for languages written from right to left (like Hebrew or Arabic), and ltr for those written from left to right (like English and most other languages). **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/direction) |
-| `text-combine-upright` | The text-combine-upright CSS property sets the combination of characters into the space of a single character. If the combined text is wider than 1em, the user agent must fit the contents within 1em. The resulting composition is treated as a single upright glyph for layout and decoration. This property only has an effect in vertical writing modes. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-combine-upright) |
-| `text-orientation` | The text-orientation CSS property sets the orientation of the text characters in a line. It only affects text in vertical mode (when writing-mode is not horizontal-tb). It is useful for controlling the display of languages that use vertical script, and also for making vertical table headers. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-orientation) |
-| `unicode-bidi` | The unicode-bidi CSS property, together with the direction property, determines how bidirectional text in a document is handled. For example, if a block of content contains both left-to-right and right-to-left text, the user-agent uses a complex Unicode algorithm to decide how to display the text. The unicode-bidi property overrides this algorithm and allows the developer to control the text embedding. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/unicode-bidi) |
-| `writing-mode` | The writing-mode CSS property sets whether lines of text are laid out horizontally or vertically, as well as the direction in which text flows. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/writing-mode) |
+| `writing-mode` | Values are `horizontal-tb`, `vertical-rl`, `vertical-lr`, `sideways-rl`, and `sideways-lr`; initial `horizontal-tb`; inherited. It sets line orientation and block flow: horizontal lines with blocks progressing top-to-bottom; vertical lines with blocks progressing right-to-left or left-to-right. In `sideways-*`, the writing mode is vertical but the typographic mode is horizontal. It establishes how block/inline and logical sides map to physical dimensions. Do not confuse vertical writing (vertical lines) with a vertical block-flow direction (top-to-bottom). |
+| `direction` | `ltr \| rtl`; sets inline base direction. It affects ordering of inline content in concert with Unicode bidi processing, table column ordering, horizontal overflow direction, and default text alignment. In HTML, use the semantic `dir` attribute to express content direction so it works without CSS. It does not select horizontal versus vertical writing. |
+| `text-orientation` | `mixed \| upright \| sideways`; initial `mixed`; inherited. In vertical writing, `mixed` follows script-sensitive vertical typography, `upright` keeps horizontal-script characters upright, and `sideways` typesets all text sideways (90° clockwise). It does not rotate an entire box; it orients glyphs/runs within vertical lines. It has no effect in horizontal typographic modes. In the draft, `upright` also makes the used `direction` LTR for bidi reordering, a notable mixed-direction edge case. |
+| `text-combine-upright` | `none \| all \| digits <integer>?`; initial `none`; inherited; applies to non-replaced inline elements. In vertical writing, `all` attempts to compose consecutive typographic character units horizontally into one upright unit. `digits N` applies to each maximal run of ASCII digits no longer than N; omitted N defaults to 2, and values outside 2–4 are invalid. The result is fitted into a 1em square. This is commonly used for short numerals in Japanese tate-chu-yoko. Only qualifying plain-text runs combine; box boundaries can affect eligibility. It has no effect in horizontal writing. |
+| `unicode-bidi` | `normal \| embed \| isolate \| bidi-override \| isolate-override \| plaintext`; initial `normal`; not inherited. Non-normal values create bidi scopes or override/isolate behavior; `plaintext` uses the paragraph’s content to determine base direction. This is a low-level control, not a replacement for correct language/direction markup. The Writing Modes spec recommends HTML authors avoid using it and use HTML’s `dir`, `<bdi>`, or `<bdo>` semantics where appropriate. |
+
+CSS-wide keywords are also accepted. `writing-mode`, `direction`, and `text-orientation` work together to establish the writing context. `unicode-bidi` affects how inline boxes participate in Unicode reordering; it does not set the `direction` property. `text-combine-upright` is inherited, while the others in this inventory are not.
 
 # Cross-item comparison
 
-`writing-mode` establishes block-flow orientation; `direction` sets inline base direction; `text-orientation` handles glyph orientation in vertical text; `text-combine-upright` combines short runs upright in vertical layout; `unicode-bidi` controls embedding/isolation behavior. Logical properties resolve against these axes.
+| Need | Use | Do not substitute |
+| --- | --- | --- |
+| Set paragraph or component direction for Arabic/Hebrew or mixed-content context | HTML `dir="rtl"` / `dir="ltr"`; CSS `direction` when styling non-HTML content or a specific visual case | `unicode-bidi` override as a general RTL switch |
+| Lay out vertical Japanese/Chinese/Mongolian content | Appropriate `writing-mode` plus script-appropriate `text-orientation` | Rotating a horizontal box with `transform` |
+| Keep a short numeral upright inside vertical text | Narrowly scoped `text-combine-upright: digits 2` (or another required supported count) | Applying `all` broadly to arbitrary prose or long numbers |
+| Isolate a mixed-direction inline token such as a user name or URL | Semantic HTML `<bdi>` or `dir="auto"` where suitable | Manual bidi overrides that can reorder surrounding text unexpectedly |
+
+Logical properties (`margin-inline-start`, `inset-block-end`, `text-align: start`) follow the resulting axes; physical `left`, `top`, and similar values do not. For internationalized layouts, choose semantic direction first, then style in logical dimensions. Legacy SVG 1.1 values such as `lr`, `tb`, and `tb-rl` are obsolete outside legacy SVG attribute handling; use the modern CSS values in new stylesheets.
 
 # Examples
 
-Test a localized component with `writing-mode: vertical-rl` and RTL text to reveal assumptions in physical margins, alignment, and icon orientation.
+This example uses the conventional CSS vertical mode for Japanese vertical text. The short date segment is scoped so only its digits combine. `writing-mode` also accepts sideways modes when the entire typographic flow should be rotated.
 
-```css
-.vertical-label { writing-mode: vertical-rl; text-orientation: mixed; }
+```html
+<p class="vertical-note" lang="ja">
+  <time datetime="2026-04-16" class="date">2026</time> 年の記録
+</p>
 ```
 
-The example illustrates a layout choice; adapt it to actual content and test target browsers, zoom, writing modes, keyboard use, and narrow containers.
+```css
+.vertical-note {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.date {
+  text-combine-upright: digits 4;
+}
+
+.message {
+  direction: rtl;
+  text-align: start;
+}
+```
+
+For HTML mixed-direction fragments, prefer markup such as `<bdi dir="auto">…</bdi>` so the fragment is isolated from surrounding text. Use CSS `unicode-bidi` only when its low-level behavior is specifically required and understood.
 
 # Common mistakes
 
-- Using `direction` as a replacement for correct language and Unicode text.
-- Setting `unicode-bidi` without understanding embedding/isolation effects.
-- Assuming vertical text is simply horizontal text rotated.
-- Mapping logical properties to physical edges without checking writing mode.
-- Inferring a property’s full value grammar from its name or the brief definition alone.
-- Assuming MDN support labels prove support in every browser version or embedded webview.
-- Confusing the CSS Working Group draft status with a browser implementation guarantee.
+- Treating `direction: rtl` as equivalent to a vertical writing mode.
+- Assuming vertical writing simply rotates Latin horizontal text; script-specific glyph orientation and line/block flow are separate.
+- Using `direction` without correct language and semantic direction markup.
+- Applying `unicode-bidi: bidi-override` to ordinary content; it can force visual ordering and harm reading/copying behavior.
+- Using `unicode-bidi` instead of HTML `dir`, `<bdi>`, or `<bdo>` semantics.
+- Applying `text-combine-upright: all` to long or arbitrary content; eligible run boundaries and compression rules matter.
+- Assuming logical start/end always mean left/right or top/bottom.
+- Applying `text-orientation` as if it affected glyphs in horizontal writing mode.
 
 # Knowledge checks with answers
 
-1. **Which exact names are represented here?** `direction`, `text-combine-upright`, `text-orientation`, `unicode-bidi`, `writing-mode`. Each has an individual definition and support link above.
-2. **What should be checked beyond this concise description?** Full grammar, applicable boxes, inheritance, computed behavior, interactions, and the target browser compatibility data.
-3. **What is the MDN status label’s date?** The local reference capture is dated 2026-11-16; consult current compatibility data for future production decisions.
+1. **Which property controls block-flow direction?** `writing-mode`.
+2. **Which property controls inline base direction?** `direction`; in HTML, express document/content direction with `dir` where possible.
+3. **What is the purpose of `text-orientation`?** It chooses glyph/run orientation in vertical writing, for example mixed script-sensitive orientation versus upright or sideways text.
+4. **What does `text-combine-upright: digits 2` do?** It can compose a qualifying run of two ASCII digits horizontally into one upright unit in vertical writing.
+5. **Should HTML authors usually set `unicode-bidi` directly?** No. The spec recommends HTML direction/isolation markup; CSS bidi controls are low-level and easy to misuse.
+6. **Why can `margin-inline-start` map differently from `margin-left`?** Logical sides map through writing mode and direction; physical sides remain tied to the physical canvas.
 
 # Sources
 
-- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
-- [MDN CSS property reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
-- [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
-- [CSS Flexible Box Layout Level 2 draft](https://drafts.csswg.org/css-flexbox-2/)
-- [CSS Overflow Level 4 draft](https://drafts.csswg.org/css-overflow-4/)
-- [CSS Overflow Level 5 draft](https://drafts.csswg.org/css-overflow-5/)
-- [CSS Scroll Snap Level 2 draft](https://drafts.csswg.org/css-scroll-snap-2/)
-- [CSS Display Level 4 draft](https://drafts.csswg.org/css-display-4/)
-- [CSS Anchor Positioning Level 1 draft](https://drafts.csswg.org/css-anchor-position-1/)
+- [CSS Writing Modes Level 4](https://www.w3.org/TR/css-writing-modes-4/) — §§1–3, 5, 6, and 9: writing-mode values and axes, direction/bidi, glyph orientation, logical mapping, and text-combination grammar and run behavior.
+- [HTML Standard](https://html.spec.whatwg.org/) — semantic `dir`, `<bdi>`, and `<bdo>` directionality handling.
+- [Unicode Bidirectional Algorithm, UAX #9](https://www.unicode.org/reports/tr9/) — algorithm CSS uses for mixed-direction text.
