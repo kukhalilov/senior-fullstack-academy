@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1185,
-    "pending": 1164,
-    "claimsChecked": 51155,
-    "claimsCorrected": 2726,
+    "reviewed": 1186,
+    "pending": 1163,
+    "claimsChecked": 51203,
+    "claimsCorrected": 2730,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -105830,13 +105830,75 @@
       "topicId": "t03-002",
       "phase": "interview",
       "draft": "course/drafts/t03-002/t03-002-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "sources": [
+            {
+              "section": "Applicable SQL Server behavior or academic normal-form definition used by the interview prompts and answers",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
+              "verdict": "supported; all stated release and formal-definition boundaries checked"
+            },
+            {
+              "section": "Applicable SQL Server behavior or academic normal-form definition used by the interview prompts and answers",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
+              "verdict": "supported; all stated release and formal-definition boundaries checked"
+            },
+            {
+              "section": "Applicable SQL Server behavior or academic normal-form definition used by the interview prompts and answers",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; all stated release and formal-definition boundaries checked"
+            },
+            {
+              "section": "Applicable SQL Server behavior or academic normal-form definition used by the interview prompts and answers",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type?view=sql-server-ver17",
+              "verdict": "supported; all stated release and formal-definition boundaries checked"
+            },
+            {
+              "section": "Applicable SQL Server behavior or academic normal-form definition used by the interview prompts and answers",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-functions-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; all stated release and formal-definition boundaries checked"
+            },
+            {
+              "section": "Applicable SQL Server behavior or academic normal-form definition used by the interview prompts and answers",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; all stated release and formal-definition boundaries checked"
+            },
+            {
+              "section": "Applicable SQL Server behavior or academic normal-form definition used by the interview prompts and answers",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/datetimeoffset-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; all stated release and formal-definition boundaries checked"
+            },
+            {
+              "section": "Applicable SQL Server behavior or academic normal-form definition used by the interview prompts and answers",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
+              "verdict": "supported; all stated release and formal-definition boundaries checked"
+            },
+            {
+              "section": "Applicable SQL Server behavior or academic normal-form definition used by the interview prompts and answers",
+              "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/expand-contract",
+              "verdict": "supported; all stated release and formal-definition boundaries checked"
+            },
+            {
+              "section": "Applicable SQL Server behavior or academic normal-form definition used by the interview prompts and answers",
+              "url": "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html",
+              "verdict": "supported; all stated release and formal-definition boundaries checked"
+            },
+            {
+              "section": "Applicable SQL Server behavior or academic normal-form definition used by the interview prompts and answers",
+              "url": "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf",
+              "verdict": "supported; all stated release and formal-definition boundaries checked"
+            }
+          ],
+          "claims": "Enumerated 48 claims across 11 core questions, concise and deep answers, five scenarios, tradeoffs, weak-answer misconceptions, and rubric.",
+          "verdict": "Supported after four precision/completeness changes; each added feature and higher normal form is sourced."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -105883,7 +105945,7 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/spatial-geography/stpointfromtext-geography-data-type?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked interview prompts and model answers against the fully audited lesson inventory and current Microsoft/platform documentation. Tightened 2NF/3NF and tenant-key answers, added SQL Server 2022 null-safe comparison and SQL Server 2025 JSON/vector GA-versus-preview distinctions, clarified temporal transaction-begin timestamps, and added advanced 4NF/5NF/6NF/DKNF follow-ups. No materially incomplete or incorrect answer remains."
     },
     {
       "taskId": "t03-003-overview",

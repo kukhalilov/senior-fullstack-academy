@@ -4,23 +4,29 @@
 
 1. What distinguishes a candidate key, superkey, primary key, and alternate key?
 2. When would you choose a natural or surrogate key?
-3. Explain 1NF, 2NF, 3NF, and BCNF without claiming that normalization is a performance guarantee.
+3. State the formal 2NF/3NF conditions, contrast BCNF, and explain why normalization is not a performance guarantee.
 4. What does SQL Server do when NULL participates in comparisons, CHECK constraints, and UNIQUE constraints?
 5. How do foreign keys, junction tables, and tenant-scoped keys preserve relationships?
 6. When should a value use decimal, float, datetime2, datetimeoffset, or rowversion?
 7. How do collation and UTF-8 affect equality, uniqueness, and varchar capacity?
 8. How would you safely add a required column to a large production table?
+9. What did SQL Server 2022 add for null-safe comparison, and what is new in SQL Server 2025 JSON and vector support?
+10. How do system-versioned temporal history and business-valid time differ?
+11. When would normalization beyond BCNF matter, and what do 4NF, 5NF, 6NF, and DKNF target?
 
 # Concise interview answers
 
 1. A superkey uniquely identifies rows; a candidate key is a minimal superkey; the primary key is the chosen candidate; other candidates are alternate keys and should remain UNIQUE if required.
 2. Use natural keys when stable and meaningful; use a surrogate for stable internal references when domain identifiers can mutate, while preserving business-key constraints.
-3. 1NF avoids repeating groups/non-atomic fields; 2NF removes partial dependencies on composite keys; 3NF removes transitive non-key dependencies under its formal condition; BCNF requires every nontrivial determinant be a superkey. They reduce anomalies, not necessarily query cost.
-4. Comparisons with NULL often yield UNKNOWN; WHERE keeps TRUE only; CHECK rejects FALSE, so UNKNOWN passes; SQL Server unique keys treat NULL as a key value and permit at most one NULL for a single-column unique key.
-5. A foreign key enforces the parent reference; a junction table represents many-to-many relationships; a composite tenant key prevents a valid child identifier from referencing a row belonging to a different tenant.
+3. 2NF means no non-prime attribute depends on a proper subset of a candidate key. In 3NF, every nontrivial FD `X → A` has a superkey determinant or a prime dependent attribute; BCNF removes that prime-attribute exception and requires every nontrivial determinant to be a superkey. These forms reduce redundancy anomalies, not necessarily query cost.
+4. Ordinary comparisons involving NULL can yield UNKNOWN; WHERE keeps TRUE only; CHECK rejects FALSE, so UNKNOWN passes. SQL Server single-column UNIQUE keys permit at most one NULL. For null-safe comparison, SQL Server 2022+ `IS [NOT] DISTINCT FROM` always returns TRUE or FALSE.
+5. A foreign key enforces the parent reference; a junction table represents many-to-many relationships. To prevent cross-tenant links, the parent must expose a unique `(TenantId, Id)` key and the child must reference that exact pair with a composite FK.
 6. Decimal for exact decimal values, float for accepted approximation, datetime2 for date/time without zone, datetimeoffset when the numeric offset should be retained, and rowversion for optimistic change detection rather than time.
 7. Collation controls string comparison/sort and sometimes encoding; UTF-8 varchar capacity is byte-bounded, so byte length and character count differ. Unique constraints follow collation equality semantics.
 8. Expand compatibly, deploy compatible code, backfill in controlled resumable batches, validate, switch authority, then contract after old clients are gone.
+9. SQL Server 2022 introduced `IS [NOT] DISTINCT FROM` for null-safe comparisons. SQL Server 2025 made the native JSON type/indexes and vector type/scalar functions GA; the JSON type accepts objects/arrays rather than top-level scalars. On boxed SQL Server 2025, `CREATE VECTOR INDEX` and `VECTOR_SEARCH` remain preview and require `PREVIEW_FEATURES`.
+10. System-versioned temporal tables retain database-time row history using period values based on transaction begin time in UTC. Business-valid time says when a fact was true in the domain; system history does not infer that timeline or capture actor identity by itself.
+11. 4NF addresses nontrivial multivalued dependencies whose determinant is not a superkey; 5NF addresses nontrivial join dependencies not implied by candidate keys. 6NF removes all nontrivial join dependencies and is mainly useful in specialized temporal decompositions. DKNF is an ideal where every constraint follows from domains and keys, but it is not always practical or achievable.
 
 # Deep follow-up answers
 
@@ -59,6 +65,7 @@ Score 0–2 for each: identifies key/dependency precisely; reasons about NULL as
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-table-constraint-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/null-and-unknown-transact-sql?view=sql-server-ver17)
+- [Microsoft Learn — IS [NOT] DISTINCT FROM](https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-unique-indexes?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/data-types/decimal-and-numeric-transact-sql?view=sql-server-ver17)
@@ -78,6 +85,7 @@ Score 0–2 for each: identifies key/dependency precisely; reasons about NULL as
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-functions-transact-sql?view=sql-server-ver17)
+- [Microsoft Learn — CREATE VECTOR INDEX](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/hierarchical-data-sql-server?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/data-types/string-and-binary-types?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-sequence-transact-sql?view=sql-server-ver17)
@@ -89,3 +97,5 @@ Score 0–2 for each: identifies key/dependency precisely; reasons about NULL as
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description)
+- [Rensselaer Polytechnic Institute — Normalization](https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html)
+- [Boston University — Normal Forms](https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf)
