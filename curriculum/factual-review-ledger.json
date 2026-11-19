@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1095,
-    "pending": 1252,
-    "claimsChecked": 43315,
-    "claimsCorrected": 1929,
+    "reviewed": 1096,
+    "pending": 1251,
+    "claimsChecked": 43393,
+    "claimsCorrected": 1938,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -75257,7 +75257,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -75266,13 +75272,74 @@
       "topicId": "t07-017",
       "phase": "concepts",
       "draft": "course/drafts/t07-017/t07-017-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 78,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Audited the full layout mental model, examples, mechanisms table and knowledge checks. Clarified that container queries select nearest eligible ancestors and distinguished size containment from style queries (including style-query containers with container-type: normal); spelled out inline-size versus size containment. Added the missing high-level multicolumn/fragmentation model and break constraints so those assigned property groups have conceptual grounding. Rechecked flex free-space/shrink behavior, grid intrinsic minima, alignment/gaps, positioned containing blocks and sticky/scrollport caveats, top-layer overlay role, overflow hidden versus clip, scroll snap semantics, content-visibility caveats, writing modes, and module maturity framing.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-display-4/",
+              "section": "box generation, display models, reading flow status",
+              "verdict": "current Editor’s Draft checked"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-flexbox-1/",
+              "section": "flex base sizes, free-space distribution and line behavior",
+              "verdict": "current specification checked"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-grid-2/",
+              "section": "track sizing, fractional units and intrinsic constraints",
+              "verdict": "published Recommendation checked"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-align-3/",
+              "section": "alignment subjects and axes",
+              "verdict": "current Editor’s Draft checked"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-position-3/",
+              "section": "positioned containing blocks, sticky positioning and stacking",
+              "verdict": "current Editor’s Draft checked"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-overflow-5/",
+              "section": "overflow, scroll markers and scroll behavior",
+              "verdict": "current Editor’s Draft checked"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-contain-3/",
+              "section": "container query selection and size/style query capabilities",
+              "verdict": "current Editor’s Draft checked"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-conditional-5/",
+              "section": "container condition grammar",
+              "verdict": "current Editor’s Draft checked"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-multicol-2/",
+              "section": "multicol flow and balancing",
+              "verdict": "current Editor’s Draft checked"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-break-3/",
+              "section": "fragmentainers and break/widow/orphan constraints",
+              "verdict": "current Editor’s Draft checked"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "specification maturity landscape",
+              "verdict": "current Group Note checked"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -75469,7 +75536,15 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-conditional-5/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -75681,7 +75756,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -75893,7 +75974,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76105,7 +76192,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76317,7 +76410,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76529,7 +76628,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76741,7 +76846,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76953,7 +77064,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77165,7 +77282,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77377,7 +77500,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77589,7 +77718,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77801,7 +77936,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78013,7 +78154,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78225,7 +78372,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78437,7 +78590,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78649,7 +78808,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78861,7 +79026,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79073,7 +79244,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79285,7 +79462,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79497,7 +79680,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79709,7 +79898,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79921,7 +80116,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -80133,7 +80334,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -80345,7 +80552,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -80557,7 +80770,13 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-try-order",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-visibility",
         "https://drafts.csswg.org/css-overflow-4/#propdef-max-lines",
-        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target"
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-initial-target",
+        "https://drafts.csswg.org/css-align-3/",
+        "https://drafts.csswg.org/css-position-3/",
+        "https://drafts.csswg.org/css-contain-3/",
+        "https://drafts.csswg.org/css-multicol-2/",
+        "https://drafts.csswg.org/css-break-3/",
+        "https://drafts.csswg.org/css-conditional-5/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },

@@ -40,7 +40,11 @@ Overflow controls clipping and whether a box becomes a scroll container. Hidden 
 
 ## Responsive and internationalized layout
 
-Media conditions answer questions about the environment; container conditions answer questions about a named ancestor. Fluid sizes, min/max constraints, and intrinsic sizing can reduce breakpoint dependence. Logical properties map inline and block axes to the writing mode; the mapping changes for RTL and vertical text. A component should be tested with translated content, zoom, long words, and varied font metrics.
+Media conditions answer questions about the environment. Size container queries use the nearest eligible ancestor with the required size containment, optionally selected by name; style queries can test computed property values on a style container, including one whose `container-type` remains `normal`. `container-type: inline-size` enables inline-axis size containment, while `size` enables both axes and has stronger layout effects. Fluid sizes, min/max constraints, and intrinsic sizing can reduce breakpoint dependence. Logical properties map inline and block axes to the writing mode; the mapping changes with writing mode and direction. A component should be tested with translated content, zoom, long words, and varied font metrics.
+
+## Columns and fragmentation
+
+Multi-column layout flows content through columns in reading order, while fragmentation divides content across columns or pages according to break rules. These models are useful for flowing text and paged output, not substitutes for grid's shared two-dimensional tracks. Breaks can be constrained by `break-before`, `break-after`, `break-inside`, widows/orphans, and the available fragmentainer size; the browser may still need to balance competing constraints.
 
 ## Containment and rendering work
 
@@ -60,7 +64,8 @@ The CSS Snapshot 2026 is a W3C Group Note that describes CSS specification matur
 | Alignment | subject, container, axis, free space | position/distribution | Am I aligning items, tracks, or content? |
 | Positioning | containing block, inset, scrollport | offset or sticky placement | Which ancestor establishes the reference? |
 | Overflow | scrollable overflow, clip edge | visible/clip/scroll | Can users reach the excess content? |
-| Responsive conditions | viewport or query container | alternate declarations | Which box is being queried? |
+| Responsive conditions | viewport or nearest eligible query container | alternate declarations | Which box is being queried, and on which axis? |
+| Fragmentation | page/column fragmentainer and break constraints | content split across fragments | Which break opportunities and keep-together constraints apply? |
 
 # Worked examples
 
@@ -116,7 +121,7 @@ The card establishes an intended containing block; the badge uses logical insets
 2. **Why can a grid column overflow despite using `1fr`?** Its automatic minimum can reflect a large min-content contribution; use a deliberate track/item minimum and wrapping policy.
 3. **What does `position: absolute` change?** It removes the box from normal flow and positions it relative to its containing block.
 4. **What is the difference between scroll padding and scroll margin?** Padding adjusts the container snapport; margin expands a target’s snap area.
-5. **What does container-type do?** It establishes a query container capability and the associated containment behavior.
+5. **What does `container-type` do?** It controls containment and size-query eligibility: `inline-size` contains the inline axis and `size` contains both axes. `normal` elements can still be style-query containers. A query selects the nearest eligible ancestor, optionally by name.
 6. **Does CSS Snapshot 2026 guarantee browser support?** No; it profiles specification maturity.
 
 # Sources
@@ -127,3 +132,9 @@ The card establishes an intended containing block; the badge uses logical insets
 - [CSS Flexible Box Layout Level 2 draft](https://drafts.csswg.org/css-flexbox-2/)
 - [CSS Overflow Level 5 draft](https://drafts.csswg.org/css-overflow-5/)
 - [CSS Scroll Snap Level 2 draft](https://drafts.csswg.org/css-scroll-snap-2/)
+- [CSS Box Alignment Level 3](https://drafts.csswg.org/css-align-3/)
+- [CSS Positioned Layout Level 3](https://drafts.csswg.org/css-position-3/)
+- [CSS Containment Level 3](https://drafts.csswg.org/css-contain-3/)
+- [CSS Multi-column Layout Level 2](https://drafts.csswg.org/css-multicol-2/)
+- [CSS Fragmentation Level 3](https://drafts.csswg.org/css-break-3/)
+- [CSS Conditional Rules Level 5](https://drafts.csswg.org/css-conditional-5/)
