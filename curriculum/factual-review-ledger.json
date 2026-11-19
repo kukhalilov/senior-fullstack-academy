@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1078,
-    "pending": 1269,
-    "claimsChecked": 42189,
-    "claimsCorrected": 1738,
+    "reviewed": 1079,
+    "pending": 1268,
+    "claimsChecked": 42245,
+    "claimsCorrected": 1748,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -71647,13 +71647,104 @@
       "topicId": "t07-016",
       "phase": "reference",
       "draft": "course/drafts/t07-016/t07-016-reference-experimental-pseudo-elements.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 56,
+      "claimsCorrected": 10,
+      "evidence": [
+        {
+          "claims": "Rechecked every originally pinned experimental entry, current scope note, support statement, examples, comparisons, pitfalls, and knowledge-check answers. Expanded the controlled manifest inventory to cover newer CSS editor-draft additions missing from the pinned MDN snapshot.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/webvtt1/",
+              "section": "WebVTT cue regions and cue-region selector matching",
+              "verdict": "corrected argument grammar and non-video scope"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-overflow-5/",
+              "section": "Scroll navigation controls, marker grouping, activation, and scroll-marker generation conditions",
+              "verdict": "corrected generated-marker model and example"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-view-transitions-2/",
+              "section": "Level 2 nested view-transition group children pseudo-element",
+              "verdict": "added missing current draft feature"
+            }
+          ]
+        },
+        {
+          "claims": "Clarified ::cue-region and ::cue-region(#id): regions are WebVTT objects on video text tracks; the argument matches a region ID and is not a general selector list; permitted styles follow cue rules.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/webvtt1/",
+              "section": "Sections on CSS boxes for WebVTT and ::cue-region pseudo-element",
+              "verdict": "corrected overly broad argument description"
+            }
+          ]
+        },
+        {
+          "claims": "Corrected scroll marker definitions and conditions: scroll-marker-group on the nearest scroll container plus non-none generated marker content; scroll-marker-group placement/mode; markers target originating elements. Replaced the invalid example selector with a child-content marker and matching feature query.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-overflow-5/",
+              "section": "Sections 3.1.1–3.1.8 scroll marker generation, property behavior and focus interaction",
+              "verdict": "corrected example and incomplete generation rules"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::scroll-marker",
+              "section": "Current reference for marker availability and generated selectors",
+              "verdict": "cross-checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::scroll-marker-group",
+              "section": "Group pseudo-element behavior",
+              "verdict": "cross-checked"
+            }
+          ]
+        },
+        {
+          "claims": "Added and described ::view-transition-group-children(name), ::interest-button, and ::first-letter::prefix/::suffix with their draft status, generation context, nesting, at-risk or accessibility limitations.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-pseudo-4/",
+              "section": "Interest button and first-letter prefix/suffix definitions and risk status",
+              "verdict": "added absent current draft names and accessibility constraints"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-view-transitions-2/",
+              "section": "Nested view-transition groups and group-children rendering tree",
+              "verdict": "added Level 2 omission"
+            }
+          ]
+        },
+        {
+          "claims": "Added the CSS Forms Level 1 draft inventory and checked slider, text-field, reveal/clear, number-step, date/time, and color-input pseudo-element descriptions and host-control dependencies.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-forms-1/",
+              "section": "Sections 4.4–4.9: slider-thumb/track/fill, field-content, reveal/clear icons, number step controls, localized field components/separators, and color swatch",
+              "verdict": "added newer names and scope limitations"
+            }
+          ]
+        },
+        {
+          "claims": "Preserved usable media and navigation fallbacks; clarified that selector feature queries test syntax and do not prove complete behavior, keyboard interaction, or assistive-technology support.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-overflow-5/",
+              "section": "Scroll marker interaction and user-agent accessibility behavior",
+              "verdict": "supported; examples state progressive-enhancement limits"
+            },
+            {
+              "url": "https://www.w3.org/TR/webvtt1/",
+              "section": "Caption/cue-region rendering behavior",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference",
@@ -71685,9 +71776,16 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Attribute_selectors",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Column_combinator",
         "https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute",
-        "https://drafts.csswg.org/cssom/#dom-css-escape"
+        "https://drafts.csswg.org/cssom/#dom-css-escape",
+        "https://www.w3.org/TR/webvtt1/",
+        "https://drafts.csswg.org/css-overflow-5/",
+        "https://drafts.csswg.org/css-forms-1/",
+        "https://drafts.csswg.org/css-pseudo-4/",
+        "https://drafts.csswg.org/css-view-transitions-2/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::scroll-marker",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::scroll-marker-group"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited all pinned experimental names and expanded the inventory to cover newer current CSS draft pseudo-elements absent from the pinned dataset: View Transitions Level 2 group-children; CSS Pseudo interest-button and at-risk first-letter prefix/suffix; CSS Forms slider, field, reveal/clear, number step, date/time, and color swatch parts. Corrected WebVTT cue-region argument matching to ID-only, corrected scroll-marker generation conditions and replaced the invalid example selector, distinguished syntax support from implementation/accessibility support, and preserved semantic fallbacks. No unresolved factual omissions remain within this expanded inventory."
     },
     {
       "taskId": "t07-016-reference-current-index-pseudo-classes",
