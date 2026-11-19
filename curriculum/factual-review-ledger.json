@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1136,
-    "pending": 1213,
-    "claimsChecked": 47307,
-    "claimsCorrected": 2257,
+    "reviewed": 1137,
+    "pending": 1212,
+    "claimsChecked": 47552,
+    "claimsCorrected": 2274,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -90398,13 +90398,50 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-text.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 245,
+      "claimsCorrected": 17,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 245 factual claims: all 23 supplied properties, their complete assigned value families and interactions; white-space shorthand/longhand decomposition and collapse/preserve mappings; forced versus soft breaks and source-text preservation; line-break and word-break language/script tailoring; manual and phrase-analysis behavior; overflow-wrap emergency breaks and min-content sizing difference; automatic/manual hyphenation, language resources, character marker and limits; tab stops; alignment/last-line/justification rules; first-line and hanging indentation; presentation-only text transformations; punctuation hanging; contextual inter-script and French spacing; percentage letter/word tracking; text-fit Level 5 grammar, scaling scopes, limits, excluded parts, draft/test/zoom caveats; examples, scope boundaries, and checks.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-text-4/",
+              "section": "Editor’s Draft status; §§2–9 text transform, whitespace processing, wrapping, line-breaking, hyphenation, alignment, justification, spacing, and full property definitions",
+              "verdict": "supported; 17 incorrect or incomplete claims in the shallow draft corrected"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-text-5/",
+              "section": "Status and §1.1 text-fit grammar, scaling behavior, percentage clamps, non-scalable parts, and zoom issue",
+              "verdict": "supported; Level 5 proposal and lack of tests explicitly identified"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-text-3/",
+              "section": "Prior module grammar and behavior used as historical context",
+              "verdict": "supported; Level 3 and current Level 4 draft are kept distinct"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-writing-modes-4/",
+              "section": "Inline-axis start/end, logical alignment, and writing-mode context",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.unicode.org/reports/tr14/",
+              "section": "Unicode line-break classes and baseline line-break algorithm",
+              "verdict": "supported; Unicode baseline is described as tailored by language and CSS rules"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "CSS Snapshot role and specification-status context",
+              "verdict": "supported; specification status is distinguished from deployment support"
+            }
+          ],
+          "verdict": "All claims checked against primary specifications and Unicode standard; material omissions corrected; no unresolved issues within the assigned inventory."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -90761,7 +90798,12 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-text-4/",
+        "https://drafts.csswg.org/css-text-5/",
+        "https://drafts.csswg.org/css-text-3/",
+        "https://drafts.csswg.org/css-writing-modes-4/",
+        "https://www.unicode.org/reports/tr14/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },

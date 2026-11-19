@@ -4,75 +4,164 @@
 
 # Scope and version
 
-This reference explains all 23 supplied names in **CSS Text properties**. Property names and short descriptions were captured for offline use from the linked property references on 2026-11-16. 18 supplied names have an MDN Baseline label, 4 are marked Limited availability, and 1 is explicitly marked Experimental in the 2026-11-16 capture. Each row preserves the individual status; an absent Baseline label does not by itself prove absence of every implementation. The CSS Snapshot 2026 describes specification stability rather than browser adoption. [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
+This lesson audits all 23 supplied properties in the `css-text` inventory. Its main reference is the CSS Text Module Level 4 Editor’s Draft dated 26 October 2026. That draft is work in progress; it explicitly notes that portions of white-space processing remain under discussion. CSS Text Level 3 is an older module and useful baseline, but Level 4 adds syntax and algorithms that should not be projected backward onto every implementation. The `text-fit` property is described by the separate CSS Text Level 5 delta draft, also work in progress; treat its grammar and behavior as proposed and check support before use. Specification maturity, browser availability, and language-specific quality are different questions. [CSS Text 4](https://drafts.csswg.org/css-text-4/) · [CSS Text 5](https://drafts.csswg.org/css-text-5/) · [CSS Text 3](https://drafts.csswg.org/css-text-3/) · [Unicode Line Breaking Algorithm, UAX #14](https://www.unicode.org/reports/tr14/)
 
 # How this group fits the mental model
 
-Text properties control whitespace, wrapping, line breaking, transformation, alignment, spacing, and overflow. Their results depend on language, writing mode, font shaping, and available inline size. Each property definition still has its own value grammar, applicability, inheritance, computed-value rules, and browser support. Read the name together with its linked reference; do not infer a full grammar from the name alone.
+Text layout is easier to debug when split into four stages:
+
+1. **Process spaces.** `white-space-collapse` decides which spaces, tabs, and segment breaks collapse or remain; `white-space` is a shorthand that also controls wrapping and, in Level 4, trimming.
+2. **Find legal break opportunities.** Language and script rules provide defaults. `line-break`, `word-break`, `hyphens`, `overflow-wrap`, and markup such as `<wbr>` adjust where breaks may occur. A hyphenation break is a rendering opportunity and does not insert characters into the document’s underlying text.
+3. **Choose a break and fit the line.** `text-wrap-mode` enables/disables soft wrapping; `text-wrap-style` selects a strategy among opportunities already available. `text-fit`, if implemented, is a newer proposal to scale inline content when it does not fit. Emergency breaks and fitting are not substitutes for sensible layout.
+4. **Style the resulting lines and runs.** Alignment, indentation, punctuation hanging, contextual spacing, and letter/word spacing affect presentation. Text transforms change what is drawn, not the semantic source text.
+
+Correct language metadata (`lang`), writing mode, fonts, scripts, markup, inline size, and available hyphenation/word-boundary dictionaries all matter. A value that works for English paragraphs may be poor for Japanese headings, Thai text, Arabic shaping, or mixed-script content. CSS does not promise identical line breaks on every platform.
+
+In the Level 4 property definitions, all 23 assigned names are inherited. Most apply to text; `text-align`, `text-align-last`, `text-indent`, and the Level 5 `text-fit` apply to block containers, while `letter-spacing` applies to inline boxes and text. Aliased `word-wrap` follows `overflow-wrap`.
 
 # Supplied names explained
 
-| Exact inventory name | Meaning |
+## Whitespace, wrapping, and legal break opportunities
+
+| Exact name | Grammar and practical behavior |
 | --- | --- |
-| `hanging-punctuation` | The hanging-punctuation CSS property specifies whether a punctuation mark should hang at the start or end of a line of text. Hanging punctuation may be placed outside the line box. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/hanging-punctuation) |
-| `hyphenate-character` | The hyphenate-character CSS property sets the character (or string) used at the end of a line before a hyphenation break. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/hyphenate-character) |
-| `hyphenate-limit-chars` | The hyphenate-limit-chars CSS property specifies the minimum word length to allow hyphenation of words as well as the minimum number of characters before and after the hyphen. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/hyphenate-limit-chars) |
-| `hyphens` | The hyphens CSS property specifies how words should be hyphenated when text wraps across multiple lines. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/hyphens) |
-| `letter-spacing` | The letter-spacing CSS property sets the spacing between text characters. This value is added to the natural spacing between characters while rendering the text. Positive values of letter-spacing spread characters further apart, while negative values of letter-spacing bring characters closer together. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/letter-spacing) |
-| `line-break` | The line-break CSS property sets how to break lines of Chinese, Japanese, or Korean (CJK) text when working with punctuation and symbols. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/line-break) |
-| `overflow-wrap` | The overflow-wrap CSS property applies to text, setting whether the browser should insert line breaks within an otherwise unbreakable string to prevent text from overflowing its line box. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-wrap) |
-| `tab-size` | The tab-size CSS property is used to customize the width of tab characters (U+0009). **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/tab-size) |
-| `text-align` | The text-align CSS property sets the horizontal alignment of the inline-level content inside a block element or table-cell box. This means it works like vertical-align but in the horizontal direction. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-align) |
-| `text-align-last` | The text-align-last CSS property sets how the last line of a block or a line, right before a forced line break, is aligned. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-align-last) |
-| `text-autospace` | The text-autospace CSS property allows you to specify the space applied between Chinese/Japanese/Korean (CJK) and non-CJK characters. **Support snapshot:** Baseline 2025. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-autospace) |
-| `text-fit` | The text-fit CSS property can be used to scale the rendered font size of text nodes (and other inline content) so that they fit exactly within the inline dimension of their containing boxes, optionally limited by a maximum or minimum scaling factor. **Support snapshot:** Limited availability; MDN marks the feature experimental. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-fit) |
-| `text-indent` | The text-indent CSS property sets the length of empty space (indentation) that is put before lines of text in a block. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-indent) |
-| `text-justify` | The text-justify CSS property sets what type of justification should be applied to text when text-align: justify; is set on an element. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-justify) |
-| `text-transform` | The text-transform CSS property specifies how to capitalize an element's text. It can be used to make text appear in all-uppercase or all-lowercase, or with each word capitalized. It also can help improve legibility for ruby. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-transform) |
-| `text-wrap` | The text-wrap CSS shorthand property controls how text inside an element is wrapped. The different values provide: **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap) |
-| `text-wrap-mode` | The text-wrap-mode CSS property controls whether the text inside an element is wrapped. **Support snapshot:** Baseline 2024. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap-mode) |
-| `text-wrap-style` | The text-wrap-style CSS property controls how text inside an element is wrapped, providing alternate ways of determining where to create line breaks in order to fit the content within a block element. **Support snapshot:** Baseline 2024. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap-style) |
-| `white-space` | The white-space CSS shorthand property sets how white space inside an element is handled. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/white-space) |
-| `white-space-collapse` | The white-space-collapse CSS property controls how white space inside an element is collapsed. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/white-space-collapse) |
-| `word-break` | The word-break CSS property sets whether line breaks appear wherever the text would otherwise overflow its content box. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/word-break) |
-| `word-spacing` | The word-spacing CSS property sets the spacing between words and between tags. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/word-spacing) |
-| `word-wrap` | Legacy alias of `overflow-wrap`; the modern property allows breaks inside an otherwise unbreakable string to prevent inline overflow. **Support snapshot:** Legacy alias of Baseline overflow-wrap. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-wrap) |
+| `white-space` | Shorthand combining `white-space-collapse`, `text-wrap-mode`, and in the Level 4 draft `white-space-trim`. Common keywords map as follows: `normal` = collapse + wrap; `pre` = preserve + nowrap; `pre-wrap` = preserve + wrap; `pre-line` = preserve-breaks + wrap; `nowrap` = collapse + nowrap; `break-spaces` = preserve with a wrap opportunity after each space/tab. An omitted longhand is reset to its initial value. Whitespace processing is rendering behavior; it does not rewrite DOM text. The Level 4 shorthand mixes longhands with different inheritance behavior, another reason to use longhands when precise control matters. |
+| `white-space-collapse` | `collapse`, `discard`, `preserve`, `preserve-breaks`, `preserve-spaces`, or `break-spaces`. `collapse` collapses runs; `preserve` retains spaces and segment breaks; `preserve-breaks` collapses spaces but keeps segment breaks as forced breaks; `preserve-spaces` preserves spacing but turns tabs and segment breaks into spaces; `break-spaces` preserves spaces and exposes a wrap opportunity after each preserved space/tab; `discard` discards whitespace. CSS Text 4’s section is still under discussion and may change. Parser normalization can occur before CSS, so CSS cannot recover source whitespace already removed by markup processing. |
+| `text-wrap-mode` | `wrap` or `nowrap`. Controls whether soft wrapping is allowed. It does not itself determine where breaks are legal. In `white-space: pre`, wrapping is disabled while source segment breaks remain forced breaks. |
+| `text-wrap-style` | `auto`, `balance`, `stable`, `pretty`, or `avoid-short-last-line` in the Level 4 draft. It selects a strategy for choosing among existing soft wrap opportunities: `auto` is UA-defined/default; `balance` aims for balanced lines and is intended for short headings/captions; `stable` avoids reflowing earlier lines while editing; `pretty` can spend more time seeking a better body-text layout; `avoid-short-last-line` tries to avoid an excessively short last line. It does not create new break opportunities. Quality, limits, and performance are user-agent dependent; `balance` may fall back to `auto` for long blocks. |
+| `text-wrap` | Shorthand for `text-wrap-mode` and `text-wrap-style`, such as `wrap balance` or `nowrap`. As with other shorthands, omitted components reset to their initial values. Use the mode to answer “may this wrap?” and the style to answer “which legal breaks should be selected?” |
+| `line-break` | `auto`, `loose`, `normal`, `strict`, or `anywhere`. Primarily tailors punctuation/character line-breaking strictness for CJK and related writing systems; the exact tailoring for some levels is UA- and language-dependent. `anywhere` permits a break around every typographic character unit, even where ordinary prohibitions apply, and does not prioritize opportunities; it is much more aggressive than ordinary punctuation strictness. Hyphenation is not applied for this value. |
+| `word-break` | `normal`, `break-all`, `keep-all`, `manual`, `auto-phrase`, or legacy `break-word`. `break-all` permits breaking between typographic character units in otherwise unbroken words and disables hyphenation; `keep-all` suppresses many intra-word CJK opportunities; `manual` disables UA lexical word analysis (useful for misdetected Southeast Asian language text when authors mark boundaries with `<wbr>` or U+200B); `auto-phrase` asks a supporting UA to detect phrase boundaries, requiring suitable language analysis and metadata, and suppresses hyphenation. Legacy `break-word` is retained for compatibility and has the effect of `normal` plus `overflow-wrap:anywhere`, regardless of `overflow-wrap`; prefer the modern properties. It must not override explicit `<wbr>`/U+200B breaks or breaks required by `line-break`. |
+| `overflow-wrap` | `normal`, `break-word`, or `anywhere`. `normal` uses ordinary legal opportunities. If none prevents overflow, `anywhere` may add an emergency break inside an otherwise unbreakable sequence; those opportunities count for min-content sizing. `break-word` has the similar emergency visual effect but its added opportunities do **not** count for min-content sizing. Grapheme clusters remain together, no hyphen character is inserted, and shaping-sensitive text (for example Arabic joining) is shaped as if unbroken. Use for long URLs/IDs, not as the first choice for ordinary prose. |
+| `word-wrap` | Legacy alias of `overflow-wrap`, retained for compatibility. It is not a separate wrapping algorithm or a separate modern control. |
+| `hyphens` | `none`, `manual`, or `auto` (initial `manual`). `manual` allows only explicitly marked conditional-hyphen opportunities; `auto` additionally permits language-sensitive automatic hyphenation when the UA knows the content language and has an appropriate resource. Automatic splitting depends on correct `lang`, dictionaries/rules, word-length limits, and typography. It may change spelling at a line break in some languages, but must not alter the underlying text, selection, or search content. `none` suppresses hyphenation, including conditional hyphens, while visible ordinary hyphen characters still provide their normal line-break opportunities. |
+| `hyphenate-character` | `auto` or a string. Chooses the visible marker at an automatic or discretionary hyphenation point; `auto` uses the UA’s language/typographic convention. It changes the rendering marker, not the source text. A custom string can be empty or contain multiple characters; implementations may truncate it, but not in the middle of a typographic character unit. It has no effect when no hyphenation break is taken. |
+| `hyphenate-limit-chars` | One to three values, each `auto` or a non-negative integer: `[ auto | <integer [0,∞]> ]{1,3}`. Values set the minimum total word length, minimum characters before the break, and minimum characters after it. If the third value is omitted, it matches the second; if the second is omitted, it is `auto`. `auto` lets the UA choose language/layout-sensitive limits. Combining marks and intra-word punctuation do not count in the draft’s character-count rule. Limits guide hyphenation; they do not force it. |
+| `tab-size` | A non-negative number or length; initial value `8`. A number is a count of space advances, while a length specifies the tab stop size directly. Tabs advance to tab stops rather than adding a fixed gap after every preceding character. Rendering also depends on whitespace preservation: collapsed tabs do not act like visible aligned code tabs. |
+
+## Alignment, transformation, and spacing
+
+| Exact name | Grammar and practical behavior |
+| --- | --- |
+| `text-align` | Shorthand values: `start`, `end`, `left`, `right`, `center`, `justify`, `match-parent`, `justify-all`, and a single-character `<string>` for character alignment in a table cell. `start`/`end` follow the inline direction; `left`/`right` are physical. `justify` distributes spacing according to `text-justify`; the last line before a forced break is normally start-aligned. `justify-all` also justifies the last line. Most values reset the last-line setting to `auto`; `match-parent` sets both alignment longhands. It aligns inline content within each line box, not the block box within the viewport. |
+| `text-align-last` | `auto`, `start`, `end`, `left`, `right`, `center`, `justify`, or `match-parent`. Controls the last line and lines immediately before forced breaks. `auto` follows the general alignment, except a justified block’s last line defaults to start alignment. It does not change the alignment of every ordinary line. |
+| `text-justify` | `auto`, `none`, `inter-word`, `inter-character`, `ruby`, optionally combined with `no-compress`; legacy `distribute` aliases `inter-character`. It selects justification behavior only when alignment is justified. `auto` chooses a language-appropriate UA method; `inter-word` mainly expands word separators; `inter-character` distributes at character opportunities; `ruby` follows ruby-oriented rules; `none` adds no justification spacing; `no-compress` prevents compression of spacing from `text-autospace` and `text-spacing-trim`. Justification is writing-system-sensitive and CSS does not define a single ideal algorithm. |
+| `text-indent` | A `<length-percentage>` with optional `hanging` and/or `each-line` keywords. By default only the first formatted line is indented; `each-line` also affects lines after forced breaks, and `hanging` reverses which lines receive the indent. A percentage is relative to the block container’s own inline-size, not the font size. Negative or overlarge indents can overflow. Indentation is not a replacement for paragraph margins or semantic structure. |
+| `text-transform` | `none`, `capitalize`, `uppercase`, `lowercase`, `full-width`, `full-size-kana`, and `math-auto` in the current Level 4 draft. Case conversion is language-sensitive (for example, locale-specific casing); `full-width` maps characters where a full-width counterpart exists; `full-size-kana` expands small Kana; `math-auto` is for mathematical text processing. These are presentational transforms: they do not change source text or make lossy transformed text a safe substitute for correct content, labels, or accessible names. |
+| `hanging-punctuation` | `none` or combinations of `first`, `last`, and `[force-end | allow-end]`. `first` can hang opening punctuation/ideographic space at the start of an element’s first formatted line; `last` can hang closing punctuation at the end of its last formatted line; `force-end` forces eligible stops/commas to hang at line ends; `allow-end` permits them conditionally. At most one punctuation character may hang at a line edge. It can protrude beyond the content edge and cause overflow if padding is insufficient. |
+| `text-autospace` | Current Level 4 grammar: `normal | auto | <autospace>`, where `<autospace>` includes `no-autospace`, combinations of `ideograph-alpha`, `ideograph-numeric`, and `punctuation`, optionally with `insert` or `replace`. `normal` provides default ideograph/letter and ideograph/numeral spacing; `auto` lets the UA choose spacing; `no-autospace` disables automatic spacing. `punctuation` currently adds language-specific nonbreaking spacing for French punctuation in this draft. `insert` adds only where no Unicode separator exists; `replace` also replaces an existing U+0020. It is a rendering-only effect and must not change copied plain text. The feature is additive with `word-spacing` and `letter-spacing`; use correct language tags and inspect target browsers. |
+| `letter-spacing` | `normal` or a `<length-percentage>` in the current Level 4 draft. Adds tracking between typographic character units; percentages resolve against the current element’s used font-size, unlike inherited `em` lengths, which become absolute lengths. Negative values are permitted but may be limited by implementations. CSS suppresses added spacing at the start and end of a line so it does not create trailing edge spacing. Excessive tracking can impair readability and interact visibly with shaping, ligatures, and scripts. |
+| `word-spacing` | `normal` or a `<length-percentage>`, added to the font’s natural spacing at word separators; percentages are relative to the used font-size. Values may be negative. It does not generally create word boundaries for scripts whose words are detected linguistically rather than separated by a character. It is not the same as `letter-spacing`, which tracks between typographic character units. |
+| `text-fit` | A CSS Text Level 5 draft proposal for scaling inline-level content when it does not fit its line box. Its grammar is `[ none | grow | shrink ] [ consistent | per-line | per-line-all ]? <percentage>?`; `grow`/`shrink` set direction; `consistent` shares one scale across lines, `per-line` scales each line but skips the last line and lines ending at forced breaks, and `per-line-all` includes those lines. An optional percentage caps growth at 100% or above, or limits shrinkage to a minimum from 0% through 100%; without a valid limit, scaling is unbounded. `none` disables fitting. The draft has no test coverage; `text-indent`, line padding, non-percentage letter/word spacing, and atomic inlines are examples of parts that are not scaled. The draft also records an unresolved zoom concern when the container’s inline size follows the viewport. This is not a general substitute for responsive layout, wrapping, or accessible text sizing. Treat it as draft-only and verify implementation before use. |
 
 # Cross-item comparison
 
-`white-space` governs spaces, wrapping, and line-break preservation; `overflow-wrap` permits breaks inside long tokens; `word-break` changes break opportunities; `hyphens` enables language-sensitive hyphenation. `text-overflow` only signals clipped inline overflow and does not itself cause clipping.
-
-| Item | How to interpret it |
-| --- | --- |
-| `hanging-punctuation` | See its individual linked definition above; apply its property-specific value grammar and context. |
-| `hyphenate-character` | See its individual linked definition above; apply its property-specific value grammar and context. |
+| Question | Controls | Key distinction |
+| --- | --- | --- |
+| Are source spaces/newlines collapsed? | `white-space` / `white-space-collapse` | Controls whitespace processing; does not change the source DOM string. |
+| Are soft wraps allowed? | `text-wrap-mode` or `white-space` | Controls permission to wrap, not break locations. |
+| Where may ordinary text break? | `line-break`, `word-break`, language rules | Adjusts script/word/punctuation opportunities. Include `lang` for language-sensitive behavior. |
+| Can a long token break to avoid overflow? | `overflow-wrap` | Adds emergency opportunities; `anywhere` and `break-word` differ in min-content sizing. |
+| Can a word break with a visible hyphen? | `hyphens`, `hyphenate-character`, `hyphenate-limit-chars` | Language-sensitive hyphenation, visible mark, and thresholds are separate controls. |
+| Which available line break should the UA choose? | `text-wrap-style` | Selects a wrapping strategy but does not create opportunities. |
+| How is inline content distributed in a line? | `text-align`, `text-align-last`, `text-justify` | Alignment applies per line; justification is one alignment method, tuned by language-sensitive rules. |
+| What text gets indented? | `text-indent` | Applies to first/forced-break lines by default; soft-wrapped lines are not separate paragraphs. |
+| Is spacing automatic or explicit? | `text-autospace`, `letter-spacing`, `word-spacing` | Contextual script-boundary spacing versus tracking versus extra space at word separator characters. |
 
 # Examples
 
-Use `overflow-wrap: anywhere` or a suitable wrapping strategy for untrusted long identifiers; retain readable line lengths and test real multilingual text.
+## Multilingual prose with deliberate emergency wrapping
 
+```html
+<p lang="en" class="intro">
+  Read the documentation at
+  https://example.invalid/a-very-long-unbroken-resource-identifier.
+</p>
+```
 
+```css
+.intro {
+  white-space: normal;
+  text-wrap: wrap pretty;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  hyphenate-limit-chars: 8 3 3;
+}
+```
 
-The example is a starting point for reasoning, not a support guarantee. Inspect the computed style and test the rendered result in the browsers and writing modes relevant to the project.
+Normal English break points and language-aware hyphenation are preferred; `overflow-wrap:anywhere` is an emergency escape for a long URL/token. It does not insert a hyphen. A browser that lacks a hyphenation dictionary may simply provide no automatic word breaks. `pretty` is a draft strategy preference, not a promise of a particular line arrangement.
+
+## Preserve source whitespace in code, but keep long lines usable
+
+```css
+pre code {
+  white-space: pre-wrap;
+  tab-size: 4;
+  overflow-wrap: anywhere;
+}
+```
+
+The preserved newlines and spaces remain visible and soft wrapping is allowed. `overflow-wrap` can still split an otherwise unbreakable token. Use `pre` instead if code lines must remain unwrapped and the containing region supplies horizontal scrolling; do not use `word-break:break-all` as the default code strategy.
+
+## Logical alignment and character-based table alignment
+
+```css
+.article { text-align: start; }
+.article p { text-indent: 1.5em; }
+.article .centered-heading { text-align: center; }
+.article .last-line { text-align-last: end; }
+```
+
+Logical `start`/`end` adapt to direction and writing mode. Physical `left`/`right` do not. `text-align-last` affects the final line; it does not make every line end-aligned.
+
+## Script-aware spacing and presentation-only transforms
+
+```css
+:lang(ja) .mixed-script-label {
+  text-autospace: normal;
+  text-transform: full-width;
+}
+
+.metadata { word-spacing: 0.04em; }
+.display-title { letter-spacing: -0.015em; }
+```
+
+Use these as visual refinements after checking actual Japanese/Latin output. Keep meaningful text in its correct source case and Unicode form; do not rely on CSS casing for user names, identifiers, form values, accessible labels, or search behavior.
 
 # Common mistakes
 
-- Using `word-break: break-all` as the default fix for overflow.
-- Treating `text-overflow: ellipsis` as a complete clipping solution.
-- Forgetting language metadata affects hyphenation and line breaking.
-- Teaching `word-wrap` as a separate modern property; it is an alias of `overflow-wrap`.
-- Assuming a property listed by an index is a stable or interoperable standard.
-- Treating a shorthand, alias, vendor extension, or draft property as interchangeable with its neighboring names.
-- Skipping value grammar, inheritance, cascade, and applicable-box details in the linked definition.
+- Treating `white-space` as only “preserve spaces” and forgetting it also controls wrapping and resets shorthand longhands.
+- Confusing forced line breaks from preserved newlines with soft wraps at legal opportunities.
+- Expecting `text-wrap-style: balance` or `pretty` to invent a break point or guarantee identical layout across engines.
+- Using `word-break: break-all` for URLs/prose when `overflow-wrap` is the targeted emergency control.
+- Assuming `overflow-wrap:anywhere` and `break-word` are identical for intrinsic min-content sizing.
+- Expecting `hyphens:auto` to work without correct `lang` or a usable UA dictionary; CSS cannot infer every language’s rules.
+- Believing a displayed hyphen is inserted into the DOM or copied text.
+- Treating `text-align: justify` as a complete, language-independent justification algorithm or assuming the last line is justified by default.
+- Using `text-indent` to simulate paragraph spacing or thinking it indents every wrapped line.
+- Treating `letter-spacing` and `word-spacing` as interchangeable; one tracks character units, the other adds at word separators.
+- Assuming text transformations alter stored/searchable text, or that `capitalize` means title-case each word by ASCII spaces.
+- Using `text-fit` as a settled production feature or as an excuse to prevent users from zooming text.
+- Relying on new Level 4/5 values without checking current engine support and accessibility implications.
 
 # Knowledge checks with answers
 
-1. **Which exact names are representative of this group?** `hanging-punctuation`, `hyphenate-character`, `hyphenate-limit-chars`. Consult each linked row for its specific behavior.
-2. **Does inclusion in this inventory prove support?** No; check the linked reference and target browser support data.
-3. **What should be checked before using one of these properties?** Its grammar, applicability, inheritance, status, interactions, and fallback needs.
+1. **What is the difference between `text-wrap-mode` and `text-wrap-style`?** Mode allows or forbids soft wrapping; style chooses among existing break opportunities.
+2. **Why can `overflow-wrap:anywhere` change a grid or flex item’s min-content size differently from `break-word`?** Anywhere-created opportunities count when calculating min-content size; break-word-created ones do not.
+3. **Does `white-space:pre-wrap` mean “no wrapping”?** No. It preserves whitespace and permits wrapping. `pre` preserves whitespace but disables soft wrapping.
+4. **Why may automatic hyphenation not appear even with `hyphens:auto`?** The language may be missing/incorrect, the browser may lack a suitable dictionary, or word-length limits may disallow the break.
+5. **Which property changes the selection of a visible hyphenation marker?** `hyphenate-character`; it does not itself cause hyphenation.
+6. **Which values in `text-align` are writing-mode-aware?** `start` and `end`; `left` and `right` refer to physical sides.
+7. **Will `text-align-last:justify` justify every line?** No. It controls the last line / lines before forced breaks; ordinary lines are governed by `text-align`.
+8. **Does `word-break:keep-all` remove an explicit `<wbr>` opportunity?** No. Explicitly introduced required opportunities must be honored.
+9. **Does `text-transform:uppercase` uppercase the underlying text returned by the DOM?** No. It changes presentation, not source content.
+10. **Which spacing property adds extra space at word-separator characters?** `word-spacing`; `letter-spacing` adds tracking between typographic character units, and `text-autospace` is contextual script-aware spacing.
 
 # Sources
 
+- [CSS Text Module Level 4 Editor’s Draft](https://drafts.csswg.org/css-text-4/)
+- [CSS Text Module Level 5 Editor’s Draft](https://drafts.csswg.org/css-text-5/)
+- [CSS Text Module Level 3](https://drafts.csswg.org/css-text-3/)
+- [Unicode Standard Annex #14: Unicode Line Breaking Algorithm](https://www.unicode.org/reports/tr14/)
+- [CSS Writing Modes Module Level 4](https://drafts.csswg.org/css-writing-modes-4/)
 - [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
-- [MDN CSS property index](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
-- [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
