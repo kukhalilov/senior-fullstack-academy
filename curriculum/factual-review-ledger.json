@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1293,
-    "pending": 1056,
-    "claimsChecked": 60040,
-    "claimsCorrected": 2979,
+    "reviewed": 1300,
+    "pending": 1049,
+    "claimsChecked": 60867,
+    "claimsCorrected": 2994,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -117684,13 +117684,59 @@
       "topicId": "t04-004",
       "phase": "overview",
       "draft": "course/drafts/t04-004/t04-004-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 49,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 49 externally verifiable claims and exact inventory items where applicable, including EF API behavior, entity state transitions, query execution semantics, examples and conflict handling. Reviewed state manager, entity states, tracking/read modes, identity resolution, optimistic conflicts, and context concurrency.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
+              "section": "Entity states, tracked values, SaveChanges and context lifetime",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
+              "section": "Tracking/no-tracking defaults and projection boundaries",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/identity-resolution",
+              "section": "Identity resolution, duplicate-key instances, and graph behavior",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic concurrency predicates, exceptions, and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection",
+              "section": "Snapshot and notification change detection, strategies and DetectChanges",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/debug-views",
+              "section": "ChangeTracker debug view output and diagnostics",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/explicit-tracking",
+              "section": "Add/Attach/Update graph state rules and disconnected entities",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "Navigation/FK fix-up and relationship state changes",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
         "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
@@ -117702,20 +117748,66 @@
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed state manager, entity states, tracking/read modes, identity resolution, optimistic conflicts, and context concurrency."
     },
     {
       "taskId": "t04-004-concepts",
       "topicId": "t04-004",
       "phase": "concepts",
       "draft": "course/drafts/t04-004/t04-004-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 92,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 92 externally verifiable claims and exact inventory items where applicable, including EF API behavior, entity state transitions, query execution semantics, examples and conflict handling. Checked state and detection mechanisms, tracked/no-tracking projections, disconnected graph risks, concurrency handling and thread-safety boundary.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
+              "section": "Entity states, tracked values, SaveChanges and context lifetime",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
+              "section": "Tracking/no-tracking defaults and projection boundaries",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/identity-resolution",
+              "section": "Identity resolution, duplicate-key instances, and graph behavior",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic concurrency predicates, exceptions, and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection",
+              "section": "Snapshot and notification change detection, strategies and DetectChanges",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/debug-views",
+              "section": "ChangeTracker debug view output and diagnostics",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/explicit-tracking",
+              "section": "Add/Attach/Update graph state rules and disconnected entities",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "Navigation/FK fix-up and relationship state changes",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
         "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
@@ -117727,20 +117819,66 @@
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked state and detection mechanisms, tracked/no-tracking projections, disconnected graph risks, concurrency handling and thread-safety boundary."
     },
     {
       "taskId": "t04-004-reference-entity-states-and-change-detection",
       "topicId": "t04-004",
       "phase": "reference",
       "draft": "course/drafts/t04-004/t04-004-reference-entity-states-and-change-detection.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 214,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 214 externally verifiable claims and exact inventory items where applicable, including EF API behavior, entity state transitions, query execution semantics, examples and conflict handling. Checked all 40 inventory items including state transitions, tracking APIs, notification strategies, DetectChanges, snapshots, debug views and values.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
+              "section": "Entity states, tracked values, SaveChanges and context lifetime",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
+              "section": "Tracking/no-tracking defaults and projection boundaries",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/identity-resolution",
+              "section": "Identity resolution, duplicate-key instances, and graph behavior",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic concurrency predicates, exceptions, and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection",
+              "section": "Snapshot and notification change detection, strategies and DetectChanges",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/debug-views",
+              "section": "ChangeTracker debug view output and diagnostics",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/explicit-tracking",
+              "section": "Add/Attach/Update graph state rules and disconnected entities",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "Navigation/FK fix-up and relationship state changes",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
         "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
@@ -117752,20 +117890,66 @@
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 40 inventory items including state transitions, tracking APIs, notification strategies, DetectChanges, snapshots, debug views and values."
     },
     {
       "taskId": "t04-004-reference-tracking-identity-and-no-tracking",
       "topicId": "t04-004",
       "phase": "reference",
       "draft": "course/drafts/t04-004/t04-004-reference-tracking-identity-and-no-tracking.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 134,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 134 externally verifiable claims and exact inventory items where applicable, including EF API behavior, entity state transitions, query execution semantics, examples and conflict handling. Checked all 18 supplied query/identity items, tracking projections, identity map, duplicate tracking, graph attach and keyless exclusions.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
+              "section": "Entity states, tracked values, SaveChanges and context lifetime",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
+              "section": "Tracking/no-tracking defaults and projection boundaries",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/identity-resolution",
+              "section": "Identity resolution, duplicate-key instances, and graph behavior",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic concurrency predicates, exceptions, and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection",
+              "section": "Snapshot and notification change detection, strategies and DetectChanges",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/debug-views",
+              "section": "ChangeTracker debug view output and diagnostics",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/explicit-tracking",
+              "section": "Add/Attach/Update graph state rules and disconnected entities",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "Navigation/FK fix-up and relationship state changes",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
         "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
@@ -117777,20 +117961,66 @@
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 18 supplied query/identity items, tracking projections, identity map, duplicate tracking, graph attach and keyless exclusions."
     },
     {
       "taskId": "t04-004-reference-concurrency-and-conflict-resolution",
       "topicId": "t04-004",
       "phase": "reference",
       "draft": "course/drafts/t04-004/t04-004-reference-concurrency-and-conflict-resolution.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 167,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 167 externally verifiable claims and exact inventory items where applicable, including EF API behavior, entity state transitions, query execution semantics, examples and conflict handling. Checked all 20 concurrency items, generated/application tokens, concurrency predicates, store/client/merge resolution and safe retry semantics.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
+              "section": "Entity states, tracked values, SaveChanges and context lifetime",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
+              "section": "Tracking/no-tracking defaults and projection boundaries",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/identity-resolution",
+              "section": "Identity resolution, duplicate-key instances, and graph behavior",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic concurrency predicates, exceptions, and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection",
+              "section": "Snapshot and notification change detection, strategies and DetectChanges",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/debug-views",
+              "section": "ChangeTracker debug view output and diagnostics",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/explicit-tracking",
+              "section": "Add/Attach/Update graph state rules and disconnected entities",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "Navigation/FK fix-up and relationship state changes",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
         "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
@@ -117802,20 +118032,66 @@
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 20 concurrency items, generated/application tokens, concurrency predicates, store/client/merge resolution and safe retry semantics."
     },
     {
       "taskId": "t04-004-practice",
       "topicId": "t04-004",
       "phase": "practice",
       "draft": "course/drafts/t04-004/t04-004-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 93,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 93 externally verifiable claims and exact inventory items where applicable, including EF API behavior, entity state transitions, query execution semantics, examples and conflict handling. Checked state transitions, attach/update graph examples, no-tracking identity resolution, conflict handling solutions and edge cases.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
+              "section": "Entity states, tracked values, SaveChanges and context lifetime",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
+              "section": "Tracking/no-tracking defaults and projection boundaries",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/identity-resolution",
+              "section": "Identity resolution, duplicate-key instances, and graph behavior",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic concurrency predicates, exceptions, and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection",
+              "section": "Snapshot and notification change detection, strategies and DetectChanges",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/debug-views",
+              "section": "ChangeTracker debug view output and diagnostics",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/explicit-tracking",
+              "section": "Add/Attach/Update graph state rules and disconnected entities",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "Navigation/FK fix-up and relationship state changes",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
         "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
@@ -117827,20 +118103,66 @@
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked state transitions, attach/update graph examples, no-tracking identity resolution, conflict handling solutions and edge cases."
     },
     {
       "taskId": "t04-004-interview",
       "topicId": "t04-004",
       "phase": "interview",
       "draft": "course/drafts/t04-004/t04-004-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 78,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 78 externally verifiable claims and exact inventory items where applicable, including EF API behavior, entity state transitions, query execution semantics, examples and conflict handling. Checked interview answers and production scenarios for tracking, duplicate identity, snapshots, conflicts, and DbContext concurrency.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
+              "section": "Entity states, tracked values, SaveChanges and context lifetime",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
+              "section": "Tracking/no-tracking defaults and projection boundaries",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/identity-resolution",
+              "section": "Identity resolution, duplicate-key instances, and graph behavior",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic concurrency predicates, exceptions, and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/change-detection",
+              "section": "Snapshot and notification change detection, strategies and DetectChanges",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/debug-views",
+              "section": "ChangeTracker debug view output and diagnostics",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/explicit-tracking",
+              "section": "Add/Attach/Update graph state rules and disconnected entities",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
+              "section": "Navigation/FK fix-up and relationship state changes",
+              "verdict": "Checked against current Microsoft EF Core documentation; state transitions and application decision boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/",
         "https://learn.microsoft.com/en-us/ef/core/querying/tracking",
@@ -117852,7 +118174,7 @@
         "https://learn.microsoft.com/en-us/ef/core/change-tracking/relationship-changes",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked interview answers and production scenarios for tracking, duplicate identity, snapshots, conflicts, and DbContext concurrency."
     },
     {
       "taskId": "t04-005-overview",
