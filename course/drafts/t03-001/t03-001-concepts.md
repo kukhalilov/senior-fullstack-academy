@@ -17,11 +17,11 @@ Know basic tables, keys, JSON objects, queries, transactions, indexes, replicas,
 
 Write down the business facts, uniqueness rules, references, deletion behavior, and which writes must be atomic. Then inventory query shapes and how often each runs. Relational tables make references/constraints explicit and support joins; document aggregates group data that is commonly accessed together. Embedding duplicates facts when they change independently; references can require more reads or a multi-document transaction. Either model can be poorly designed if it ignores actual access and update patterns.
 
-A relational primary key identifies rows; foreign keys enforce reference rules. A document validator constrains writes but is not automatically equivalent to every relational constraint. Single-document atomicity in MongoDB is useful only when the invariant fits within that document. Across documents, MongoDB has multi-document transactions with topology and cost implications. [MongoDB atomicity](https://www.mongodb.com/docs/manual/core/write-operations-atomicity/) [transactions](https://www.mongodb.com/docs/manual/core/transactions/) [PostgreSQL constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)
+A relational primary key identifies rows; foreign keys enforce reference rules. A document validator constrains writes but is not automatically equivalent to every relational constraint. Single-document atomicity in MongoDB is useful only when the invariant fits within that document. Across documents, MongoDB has multi-document transactions with topology and cost implications. [MongoDB atomicity](https://www.mongodb.com/docs/manual/core/write-operations-atomicity/) [transactions](https://www.mongodb.com/docs/manual/core/transactions/) [PostgreSQL constraints](https://www.postgresql.org/docs/19/ddl-constraints.html)
 
 ## Similar labels do not guarantee identical semantics
 
-SQL Server, PostgreSQL, and MySQL implement relational transactions but differ in SQL dialect, data type/coercion, constraints, isolation, locking/MVCC, optimizer, and service feature exposure. Named isolation levels are not interchangeable proof of identical phenomena. MongoDB’s read concern and write concern name policies for read consistency and write acknowledgement; they should be matched to failure and freshness requirements. Synchronous replication only means a configured acknowledgement boundary; whether it waits for durable hardening, votes, or journal depends on the product/configuration. [SQL Server locking and row versioning](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17) [PostgreSQL isolation](https://www.postgresql.org/docs/18/transaction-iso.html) [MySQL InnoDB transactions](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html) [MongoDB read concern](https://www.mongodb.com/docs/manual/reference/read-concern/) [write concern](https://www.mongodb.com/docs/manual/reference/write-concern/)
+SQL Server, PostgreSQL, and MySQL implement relational transactions but differ in SQL dialect, data type/coercion, constraints, isolation, locking/MVCC, optimizer, and service feature exposure. Named isolation levels are not interchangeable proof of identical phenomena. MongoDB’s read concern and write concern name policies for read consistency and write acknowledgement; they should be matched to failure and freshness requirements. Synchronous replication only means a configured acknowledgement boundary; whether it waits for durable hardening, votes, or journal depends on the product/configuration. [SQL Server locking and row versioning](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17) [PostgreSQL isolation](https://www.postgresql.org/docs/19/transaction-iso.html) [MySQL InnoDB transactions](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html) [MongoDB read concern](https://www.mongodb.com/docs/manual/reference/read-concern/) [write concern](https://www.mongodb.com/docs/manual/reference/write-concern/)
 
 ## Query and indexes are a coupled design
 
@@ -70,10 +70,10 @@ A tenant dashboard reads a tenant’s profile and recent orders, while order cre
 
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17)
-- [Official documentation](https://www.postgresql.org/docs/18/)
+- [Official documentation](https://www.postgresql.org/docs/19/)
 - [Official documentation](https://www.postgresql.org/support/versioning/)
-- [Official documentation](https://www.postgresql.org/docs/18/release-18-7.html)
-- [Official documentation](https://www.postgresql.org/about/news/postgresql-187-1712-1616-1520-1425-and-19-rc-2-released-3442/)
+- [Official documentation](https://www.postgresql.org/docs/19/release-19.html)
+- [Official documentation](https://www.postgresql.org/about/news/postgresql-19-released-3449/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/relnotes/mysql/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html)
@@ -97,8 +97,8 @@ A tenant dashboard reads a tenant’s profile and recent orders, while order cre
 - [Official documentation](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?view=azuresql)
 - [Official documentation](https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview?view=azuresql)
 - [Official documentation](https://www.mongodb.com/docs/manual/data-modeling/concepts/embedding-vs-references/)
-- [Official documentation](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [Official documentation](https://www.postgresql.org/docs/19/ddl-constraints.html)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17)
-- [Official documentation](https://www.postgresql.org/docs/18/transaction-iso.html)
+- [Official documentation](https://www.postgresql.org/docs/19/transaction-iso.html)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html)

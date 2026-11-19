@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1171,
-    "pending": 1178,
-    "claimsChecked": 50240,
-    "claimsCorrected": 2662,
+    "reviewed": 1172,
+    "pending": 1177,
+    "claimsChecked": 50304,
+    "claimsCorrected": 2665,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -104369,13 +104369,35 @@
       "topicId": "t03-001",
       "phase": "concepts",
       "draft": "course/drafts/t03-001/t03-001-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 64,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Checked 64 claim units on relational/document modeling, constraint boundaries, atomicity, isolation, acknowledgement and durability semantics, indexes, scaling, managed-service compatibility, benchmarking, and workload selection against official database documentation. Replaced stale PostgreSQL 18 references with the current PostgreSQL 19 documentation where the lesson explains current behavior. Clarified that relational/document boundaries do not imply identical constraints or transaction scope, replication acknowledgement depends on configuration, and managed compatibility services do not guarantee engine parity.",
+          "sources": [
+            "https://www.postgresql.org/docs/19/",
+            "https://www.postgresql.org/docs/19/ddl-constraints.html",
+            "https://www.postgresql.org/docs/19/transaction-iso.html",
+            "https://www.postgresql.org/docs/19/release-19.html",
+            "https://www.postgresql.org/about/news/postgresql-19-released-3449/",
+            "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
+            "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html",
+            "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html",
+            "https://www.mongodb.com/docs/manual/core/write-operations-atomicity/",
+            "https://www.mongodb.com/docs/manual/core/transactions/",
+            "https://www.mongodb.com/docs/manual/reference/read-concern/",
+            "https://www.mongodb.com/docs/manual/reference/write-concern/",
+            "https://www.mongodb.com/docs/manual/data-modeling/",
+            "https://www.mongodb.com/docs/manual/data-modeling/concepts/embedding-vs-references/",
+            "https://docs.aws.amazon.com/documentdb/latest/developerguide/what-is.html"
+          ],
+          "verdict": "verified; three stale or under-specified claims/references corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17",
@@ -104410,9 +104432,14 @@
         "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
         "https://www.postgresql.org/docs/18/transaction-iso.html",
-        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html"
+        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html",
+        "https://www.postgresql.org/docs/19/",
+        "https://www.postgresql.org/docs/19/ddl-constraints.html",
+        "https://www.postgresql.org/docs/19/transaction-iso.html",
+        "https://www.postgresql.org/docs/19/release-19.html",
+        "https://www.postgresql.org/about/news/postgresql-19-released-3449/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual concept audit against current SQL Server, PostgreSQL 19, MySQL, MongoDB, and Amazon DocumentDB documentation."
     },
     {
       "taskId": "t03-001-reference-data-model-and-query-surface",
