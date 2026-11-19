@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1167,
-    "pending": 1182,
-    "claimsChecked": 49977,
-    "claimsCorrected": 2618,
+    "reviewed": 1168,
+    "pending": 1181,
+    "claimsChecked": 50055,
+    "claimsCorrected": 2641,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -103045,13 +103045,29 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-experimental-css-text.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 78,
+      "claimsCorrected": 23,
+      "evidence": [
+        {
+          "claims": "Checked 78 claim units against the current CSS Text Level 4 Editor’s Draft and published W3C Working Draft, MDN reference, current MDN Browser Compatibility Data, and Japanese/Chinese layout requirements. Replaced the generic gloss with the full property grammar, omitted-component defaults, all position and whole-property values, exact normal compatibility mapping, contextual character-class behavior, font/OpenType constraints, inheritance/computed-value/animation descriptors, shorthand distinctions, tested examples, and current browser-support limits. Corrected the unsupported/incomplete draft description, including its obsolete claim that the feature is disabled without halt/chws; current CSSWG text discusses halt/vhal and forbids hwid substitution. Marked draft status and spotty test coverage explicitly.",
+          "sources": [
+            "https://drafts.csswg.org/css-text-4/#text-spacing-trim-property",
+            "https://drafts.csswg.org/css-text-4/#text-spacing-trim-fullwidth-punctuation",
+            "https://drafts.csswg.org/css-text-4/#text-spacing-trim-collapsing",
+            "https://drafts.csswg.org/css-text-4/#text-spacing-trim-character-classes",
+            "https://drafts.csswg.org/css-text-4/#text-spacing-property",
+            "https://www.w3.org/TR/2026/WD-css-text-4-20260814/",
+            "https://github.com/mdn/browser-compat-data/blob/main/css/properties/text-spacing-trim.json",
+            "https://www.w3.org/TR/jlreq/",
+            "https://www.w3.org/TR/clreq/"
+          ],
+          "verdict": "verified and substantially corrected; no known omission in the assigned property scope"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -103433,9 +103449,18 @@
         "https://www.w3.org/TR/css-size-adjust/",
         "https://github.com/mdn/browser-compat-data/blob/main/css/properties/text-size-adjust.json",
         "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/viewport",
-        "https://www.w3.org/TR/css-text-decor-4/"
+        "https://www.w3.org/TR/css-text-decor-4/",
+        "https://drafts.csswg.org/css-text-4/#text-spacing-trim-property",
+        "https://drafts.csswg.org/css-text-4/#text-spacing-trim-fullwidth-punctuation",
+        "https://drafts.csswg.org/css-text-4/#text-spacing-trim-collapsing",
+        "https://drafts.csswg.org/css-text-4/#text-spacing-trim-character-classes",
+        "https://drafts.csswg.org/css-text-4/#text-spacing-property",
+        "https://www.w3.org/TR/2026/WD-css-text-4-20260814/",
+        "https://github.com/mdn/browser-compat-data/blob/main/css/properties/text-spacing-trim.json",
+        "https://www.w3.org/TR/jlreq/",
+        "https://www.w3.org/TR/clreq/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual specification-level audit of all formal descriptors, grammar branches, values/defaults, shaping behavior, compatibility and support status."
     },
     {
       "taskId": "t07-018-practice",
