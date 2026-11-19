@@ -2,71 +2,96 @@
 
 # Scope and version
 
-This lesson explains all 15 supplied properties in **CSS Positioned Layout properties** and no additional inventory names. MDN descriptions and support labels were captured on 2026-11-16. 15 names have an MDN Baseline label, 0 have Limited availability, and 0 are explicitly marked Experimental in the 2026-11-16 capture. These labels can overlap; the row for every name preserves its own status. A missing Baseline label is not proof that no browser implements it. Support can change after this capture. The CSS Snapshot 2026 reports specification maturity rather than browser adoption. [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
+This lesson covers exactly the 15 assigned properties in **CSS Positioned Layout properties**. The captured MDN property pages from 2026-11-16 mark these established properties Baseline Widely available; check the particular compatibility table for your target browsers and newer syntax. The current CSS Positioned Layout Level 3 and Level 4 Editor’s Drafts are work in progress. Their draft status does not imply that every described behavior has shipped.
 
 # How this group fits the mental model
 
-Positioning changes how a box participates in normal flow or establishes an inset reference. The containing block, inset properties, writing mode, and stacking context determine where it appears; `float` and `clear` are older flow-wrapping tools, not modern general layout systems. The overview and concepts lessons explain the surrounding layout model; this catalog now ties every supplied name to its role. A short MDN description is not a complete grammar. Follow the linked specification/reference for exact values, applicability, inheritance, computed-value rules, and browser-specific support before using an unfamiliar value.
+Positioning answers two different questions: **Does this box keep its normal-flow space?** and **Which rectangle provides its coordinate system?** `static` uses ordinary flow; `relative` keeps its original slot and shifts the painted box; `absolute` leaves normal flow and uses an absolute-positioning containing block; `fixed` is a special absolute scheme attached to a fixed containing block; `sticky` keeps its flow slot and is visually constrained relative to a scrollport as scrolling proceeds.
+
+Insets (`top`, `right`, `bottom`, `left`, their logical counterparts, and shorthands) are offsets, not coordinates in a universal page space. Their reference depends on the positioning scheme and its containing block. Writing modes determine how logical `block`/`inline` edges map to physical sides. `float` is a separate flow-wrapping model: a float is out of normal flow for block placement but affects surrounding line boxes, so it is not equivalent to absolute positioning.
 
 # Supplied names explained
 
-| Exact supplied property | Meaning in this model |
-| --- | --- |
-| `bottom` | The bottom CSS property participates in setting the vertical position of a positioned element. This inset property has no effect on non-positioned elements. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/bottom) |
-| `clear` | The clear CSS property sets whether an element must be moved below (cleared) floating elements that precede it. The clear property applies to floating and non-floating elements. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/clear) |
-| `float` | The float CSS property places an element on the left or right side of its container, allowing text and inline elements to wrap around it. The element is removed from the normal flow of the page, though still remaining a part of the flow (in contrast to absolute positioning). **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/float) |
-| `inset` | The inset CSS shorthand property corresponds to the top, right, bottom, and/or left properties. It has the same multi-value syntax of the margin shorthand. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset) |
-| `inset-block` | The inset-block CSS shorthand property defines the logical block start and end offsets of an element, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-block) |
-| `inset-block-end` | The inset-block-end CSS property defines the logical block end offset of an element, which maps to a physical inset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-block-end) |
-| `inset-block-start` | The inset-block-start CSS property defines the logical block start offset of an element, which maps to a physical inset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-block-start) |
-| `inset-inline` | The inset-inline CSS shorthand property defines the logical start and end offsets of an element in the inline direction, which maps to physical offsets depending on the element's writing mode, directionality, and text orientation. It corresponds to the top and bottom, or right and left properties depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-inline) |
-| `inset-inline-end` | The inset-inline-end CSS property defines the logical inline end inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-inline-end) |
-| `inset-inline-start` | The inset-inline-start CSS property defines the logical inline start inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-inline-start) |
-| `left` | The left CSS property participates in specifying the horizontal position of a positioned element. This inset property has no effect on non-positioned elements. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/left) |
-| `position` | The position CSS property sets how an element is positioned in a document. The top, right, bottom, and left physical properties and the inset-block-start, inset-block-end, inset-inline-start, and inset-inline-end flow-relative logical properties can be used to determine the final location of positioned elements. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position) |
-| `right` | The right CSS property participates in specifying the horizontal position of a positioned element. This inset property has no effect on non-positioned elements. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/right) |
-| `top` | The top CSS property sets the vertical position of a positioned element. This inset property has no effect on non-positioned elements. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/top) |
-| `z-index` | The z-index CSS property sets the z-order of a positioned element and its descendants or flex and grid items. Overlapping elements with a larger z-index cover those with a smaller one. **MDN support snapshot:** Baseline. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/z-index) |
+| Exact name | Role | Practical behavior and gotchas |
+| --- | --- | --- |
+| `position` | Selects `static`, `relative`, `absolute`, `fixed`, or `sticky`. | `static` is normal flow and ignores inset offsets. `relative` remains in flow; offsets visually move it while its original space remains. `absolute` is out of flow and positioned against the nearest ancestor establishing an absolute containing block (often a positioned ancestor). `fixed` uses the nearest fixed-position containing block, usually the viewport if none is established by an ancestor. `sticky` behaves like relative positioning until a scroll threshold, then stays constrained by its nearest scrollport and containing block. Sticky needs a non-`auto` inset on the axis to stick; an intervening scroll container, insufficient room, or oversized sticky box can make it appear not to work. |
+| `top` | Physical top inset for a positioned box. | With absolute/fixed positioning it offsets from the containing block’s top edge; with relative positioning it shifts from the box’s normal position; with sticky positioning it defines a scrollport threshold. Percentages refer to the containing block’s height. It has no positioning effect when `position: static`. |
+| `right` | Physical right inset for a positioned box. | Same positioning-scheme distinctions as `top`; percentages refer to the containing block’s width. It is physical, so use logical inset properties for writing-mode-aware layouts. |
+| `bottom` | Physical bottom inset for a positioned box. | Same scheme distinctions; percentages refer to the containing block’s height. In absolute layout, paired inset/size constraints participate in solving the final size and position rather than merely translating the box. |
+| `left` | Physical left inset for a positioned box. | Same scheme distinctions; percentages refer to the containing block’s width. When opposing insets over-constrain an axis, direction and writing-mode rules resolve which side controls or how auto margins/sizes are calculated. |
+| `inset` | Physical shorthand for `top`, `right`, `bottom`, and `left`. | Uses the familiar one-to-four-value expansion: one value all sides; two vertical/horizontal; three top/horizontal/bottom; four top/right/bottom/left. It has no independent geometry: each expanded inset follows the current positioning scheme. |
+| `inset-block-start` | Logical inset at the block-start edge. | Maps to a physical side according to `writing-mode`; for horizontal writing it is usually top, while vertical writing changes the mapping. Percentages resolve against the relevant containing-block dimension for the block axis. |
+| `inset-block-end` | Logical inset at the block-end edge. | Opposite block edge to `inset-block-start`; maps with writing mode rather than hard-coding bottom. It has the same scheme-dependent meaning as the physical inset properties. |
+| `inset-inline-start` | Logical inset at the inline-start edge. | Maps using writing mode and text direction; in common LTR horizontal writing it is left, while RTL or vertical writing changes the mapping. Prefer it for direction-aware components. |
+| `inset-inline-end` | Logical inset at the inline-end edge. | Opposite inline edge to `inset-inline-start`; avoids hard-coded right/left assumptions. |
+| `inset-block` | Shorthand for `inset-block-start` and `inset-block-end`. | One value sets both logical block edges; two set start then end. It is not the physical top/bottom shorthand in every writing mode. |
+| `inset-inline` | Shorthand for `inset-inline-start` and `inset-inline-end`. | One value sets both logical inline edges; two set start then end. Use logical properties when the component must work in RTL or vertical writing. |
+| `float` | Moves a box to a side so inline content can wrap around it. | Established values include `left`, `right`, and `none`; logical `inline-start` and `inline-end` allow flow-relative placement. A float is removed from normal block flow but remains part of the surrounding formatting behavior: line boxes wrap around it, later floats are constrained, and its parent may need a new block formatting context/flow-root to contain it. It is suited to text wrapping around figures, not modern page-level columns. |
+| `clear` | Prevents a box from sitting alongside specified preceding floats. | Values include `none`, `left`, `right`, `both`, and logical `inline-start`/`inline-end`. It moves the cleared box below applicable floats in its block formatting context; it does not clear arbitrary positioned elements or replace margin/layout spacing. |
+| `z-index` | Sets a stacking level for boxes that participate in stacking. | Accepts `auto` or an integer. A positioned box with an integer `z-index` establishes a local stacking context; fixed and sticky positioned boxes form stacking contexts even with `auto`. Flex/grid items can also use integer `z-index` without becoming positioned. Descendants are compared within their stacking context, so a huge number cannot escape an ancestor context. `z-index` changes stacking, not normal-flow layout. |
 
 # Cross-item comparison
 
-`relative` remains in flow and offsets its painted box; `absolute` is out of flow and uses a containing block; `fixed` is generally viewport-fixed but can be affected by ancestor containing-block creation; `sticky` participates in flow and sticks within a scrollport after a threshold. `inset` and logical inset shorthands set edge offsets. `z-index` orders positioned/flex/grid items within stacking-context rules.
+For a badge anchored to a card, give the card `position: relative` and the badge `position: absolute` with logical insets. The card remains in normal flow and supplies the badge’s containing block; the badge does not reserve space. For a persistent header, compare `sticky` (retains its flow slot and sticks within a scrollport) with `fixed` (removed from flow and attached to its fixed containing block). Neither choice guarantees room for content underneath; account for overlap, safe areas, zoom, and focus visibility.
+
+Logical insets and physical insets set equivalent kinds of offsets but differ in mapping. `inset` groups the four physical sides; `inset-block`/`inset-inline` group logical pairs. Floats and clears do not use the positioned-box coordinate model. Stacking is a separate painting relationship: first understand stacking-context boundaries, then choose a local `z-index` scale rather than escalating values without checking ancestors.
 
 # Examples
 
-Use a positioned wrapper as the deliberate containing block for a badge; keep the badge decorative and verify it does not cover text or focus outlines at zoom.
+The badge is anchored to the card’s padding box because the card establishes the containing block. Logical end/start keeps it in the same semantic corner in RTL and vertical writing modes.
 
 ```css
-.card { position: relative; }
-.card__badge { position: absolute; inset-block-start: .5rem; inset-inline-end: .5rem; }
+.card {
+  position: relative;
+}
+
+.card__badge {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.5rem;
+}
+
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 10;
+}
 ```
 
-The example illustrates a layout choice; adapt it to actual content and test target browsers, zoom, writing modes, keyboard use, and narrow containers.
+For a floated editorial image, use a flow-relative side and clear only where the following content must begin below the float:
+
+```css
+.article-image { float: inline-start; margin-inline-end: 1rem; }
+.article-section { clear: inline-start; }
+```
 
 # Common mistakes
 
-- Assuming a large `z-index` escapes an ancestor stacking context.
-- Forgetting absolute positioning removes the box from normal flow.
-- Assuming fixed always means the visual viewport regardless of transforms/containment.
-- Using float for page-level columns rather than its text-wrapping purpose.
-- Inferring a property’s full value grammar from its name or the brief definition alone.
-- Assuming MDN support labels prove support in every browser version or embedded webview.
-- Confusing the CSS Working Group draft status with a browser implementation guarantee.
+- Assuming `position: fixed` always uses the viewport. Ancestor properties such as transforms, containment, and related containing-block triggers can establish a nearer fixed containing block.
+- Expecting `absolute` or `fixed` boxes to reserve space for themselves.
+- Expecting `sticky` to stick without a non-auto inset, a useful scrollport, and enough containing-block space.
+- Setting `z-index: 999999` without checking whether an ancestor stacking context traps the element.
+- Assuming `z-index` only applies to positioned boxes; flex and grid items also accept an integer stacking level.
+- Treating `float` as fully removed from all flow behavior. Inline content still wraps around it.
+- Using physical `left`/`right` for components that need to adapt to RTL or vertical writing.
+- Treating `inset` as an unconditional translation shorthand; absolute opposing insets also affect sizing.
+- Assuming `clear` clears every overlap. It only addresses the applicable preceding floats.
 
 # Knowledge checks with answers
 
-1. **Which exact names are represented here?** `bottom`, `clear`, `float`, `inset`, `inset-block`, `inset-block-end`, `inset-block-start`, `inset-inline`, `inset-inline-end`, `inset-inline-start`, `left`, `position`, `right`, `top`, `z-index`. Each has an individual definition and support link above.
-2. **What should be checked beyond this concise description?** Full grammar, applicable boxes, inheritance, computed behavior, interactions, and the target browser compatibility data.
-3. **What is the MDN status label’s date?** The local reference capture is dated 2026-11-16; consult current compatibility data for future production decisions.
+1. **Why does an absolutely positioned badge overlap the card without pushing later content?** The badge is out of normal flow. The relatively positioned card establishes its containing block but keeps its own flow slot.
+2. **Why might a fixed dialog child scroll with a transformed parent?** That ancestor can establish a fixed-position containing block, so the child is fixed relative to it instead of the viewport.
+3. **What does `inset: 0 1rem` expand to?** Top and bottom are `0`; right and left are `1rem`. These are physical sides, unlike `inset-block`/`inset-inline`.
+4. **Why can `z-index: 100000` still appear behind another component?** Its stacking context is compared as a unit within its parent context; its child cannot outrank an element in a higher ancestor context.
+5. **How does a float differ from absolute positioning?** Both leave normal block placement, but a float affects surrounding inline line layout and text wraps beside it; an absolutely positioned box does not participate in that wrapping.
+6. **When can `clear: both` help?** When the element should be placed below preceding left and right floats in the relevant block formatting context.
 
 # Sources
 
-- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
-- [MDN CSS property reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
-- [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
-- [CSS Flexible Box Layout Level 2 draft](https://drafts.csswg.org/css-flexbox-2/)
-- [CSS Overflow Level 4 draft](https://drafts.csswg.org/css-overflow-4/)
-- [CSS Overflow Level 5 draft](https://drafts.csswg.org/css-overflow-5/)
-- [CSS Scroll Snap Level 2 draft](https://drafts.csswg.org/css-scroll-snap-2/)
-- [CSS Display Level 4 draft](https://drafts.csswg.org/css-display-4/)
-- [CSS Anchor Positioning Level 1 draft](https://drafts.csswg.org/css-anchor-position-1/)
+- [CSS Positioned Layout Module Level 3, current Editor’s Draft](https://drafts.csswg.org/css-position-3/) — position schemes, containing blocks, inset values, sticky behavior, absolute layout, and stacking. Work in progress.
+- [CSS Positioned Layout Module Level 4, current Editor’s Draft](https://drafts.csswg.org/css-position-4/) — painting/stacking and top layer model. Work in progress.
+- [CSS 2.2 Visual Formatting Model](https://www.w3.org/TR/CSS22/visuren.html) — established float, clear, normal-flow, and classic stacking concepts; read with newer modules for current extensions.
+- [CSS Display Module Level 3](https://drafts.csswg.org/css-display-3/) and [CSS Logical Properties and Values Level 1](https://www.w3.org/TR/css-logical-1/) — formatting-context behavior, blockification, and logical flow-relative sides.
+- [CSS Transforms Module Level 1](https://www.w3.org/TR/css-transforms-1/) and [CSS Containment Module Level 2](https://www.w3.org/TR/css-contain-2/) — ancestor effects relevant to containing blocks and fixed positioning.
+- [MDN CSS position](https://developer.mozilla.org/en-US/docs/Web/CSS/position), [z-index](https://developer.mozilla.org/en-US/docs/Web/CSS/z-index), [float](https://developer.mozilla.org/en-US/docs/Web/CSS/float), and [clear](https://developer.mozilla.org/en-US/docs/Web/CSS/clear) — practical guides and compatibility links; consult each assigned property page for its complete grammar and target-browser data.
+- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/) — published specification maturity snapshot, not a browser implementation table.
