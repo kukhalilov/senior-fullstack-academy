@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1179,
-    "pending": 1170,
-    "claimsChecked": 50803,
-    "claimsCorrected": 2709,
+    "reviewed": 1180,
+    "pending": 1169,
+    "claimsChecked": 50855,
+    "claimsCorrected": 2712,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -105008,13 +105008,95 @@
       "topicId": "t03-002",
       "phase": "concepts",
       "draft": "course/drafts/t03-002/t03-002-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated 52 claims covering normalization, keys and dependencies, 3-valued NULL logic, foreign-key enforcement and trust, numeric/text/time types, collation, migrations, and current SQL Server 2025 JSON/vector features.",
+          "sources": [
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-table-constraint-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/null-and-unknown-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-unique-indexes?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-type-precedence-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/collations/collation-and-unicode-support?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/rowversion-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/datetimeoffset-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/char-and-varchar-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-functions-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            },
+            {
+              "section": "Applicable official SQL Server relational-model, constraints, type, release, or schema-evolution behavior",
+              "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/expand-contract",
+              "verdict": "supported; normal-form definitions and release scope explicitly checked"
+            }
+          ],
+          "verdict": "Supported after three precision/completeness corrections; no material assigned-scope issue remains."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -105052,7 +105134,7 @@
         "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Enumerated and verified the lesson’s relational identity, dependency, normal-form, NULL, constraint trust, type, collation, temporal, migration, JSON, and vector claims against Microsoft primary documentation. Replaced imprecise 2NF/3NF wording with candidate-key-based conditions and clarified lossless/dependency-preserving decomposition; added SQL Server 2025 vector GA versus VECTOR_SEARCH/index preview status. No unresolved assigned-scope omissions remain."
     },
     {
       "taskId": "t03-002-reference-relational-facts-keys-and-normalization",
