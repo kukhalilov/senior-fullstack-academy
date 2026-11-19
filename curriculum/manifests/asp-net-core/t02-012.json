@@ -103,7 +103,46 @@
         "PasswordValidator<TUser>",
         "IUserValidator<TUser>",
         "IPasswordValidator<TUser>",
-        "Identity store abstraction versus EF Core store implementation"
+        "Identity store abstraction versus EF Core store implementation",
+        "UserManager<TUser>.GetUserAsync",
+        "UserManager<TUser>.SetUserNameAsync",
+        "UserManager<TUser>.GetPhoneNumberAsync",
+        "UserManager<TUser>.SetPhoneNumberAsync",
+        "UserManager<TUser>.GetTwoFactorEnabledAsync",
+        "UserManager<TUser>.SetTwoFactorEnabledAsync",
+        "UserManager<TUser>.AccessFailedAsync",
+        "UserManager<TUser>.ResetAccessFailedCountAsync",
+        "UserManager<TUser>.GetAccessFailedCountAsync",
+        "UserManager<TUser>.IsLockedOutAsync",
+        "UserManager<TUser>.GenerateUserTokenAsync",
+        "UserManager<TUser>.VerifyUserTokenAsync",
+        "UserManager<TUser>.GenerateTwoFactorTokenAsync",
+        "UserManager<TUser>.VerifyTwoFactorTokenAsync",
+        "UserManager<TUser>.FindByLoginAsync",
+        "UserManager<TUser>.GetLoginsAsync",
+        "UserManager<TUser>.AddLoginAsync",
+        "UserManager<TUser>.RemoveLoginAsync",
+        "UserManager<TUser>.GetAuthenticationTokenAsync",
+        "UserManager<TUser>.SetAuthenticationTokenAsync",
+        "UserManager<TUser>.RemoveAuthenticationTokenAsync",
+        "UserManager<TUser>.RemoveClaimsAsync",
+        "UserManager<TUser>.ReplaceClaimAsync",
+        "UserManager<TUser>.GetUsersInRoleAsync",
+        "SignInManager<TUser>.GetTwoFactorAuthenticationUserAsync",
+        "SignInManager<TUser>.ExternalLoginSignInAsync",
+        "IUserLoginStore<TUser>",
+        "IUserTwoFactorStore<TUser>",
+        "IUserLockoutStore<TUser>",
+        "IUserSecurityStampStore<TUser>",
+        "IUserPhoneNumberStore<TUser>",
+        "IUserTokenStore<TUser>",
+        "RoleManager<TRole>",
+        "RoleManager<TRole>.CreateAsync",
+        "RoleManager<TRole>.UpdateAsync",
+        "RoleManager<TRole>.DeleteAsync",
+        "RoleManager<TRole>.AddClaimAsync",
+        "RoleManager<TRole>.GetClaimsAsync",
+        "RoleManager<TRole>.RemoveClaimAsync"
       ]
     },
     {
@@ -135,7 +174,13 @@
         "AddEntityFrameworkStores<TContext>",
         "Identity API endpoint authorization",
         "Identity API account confirmation requirement",
-        "Identity API tokens are not OAuth server tokens"
+        "Identity API tokens are not OAuth server tokens",
+        "MapIdentityApi<TUser> route inventory",
+        "POST /manage/2fa",
+        "GET /manage/info",
+        "POST /manage/info",
+        "Identity API access-token response",
+        "Identity API refresh response"
       ]
     },
     {
@@ -375,7 +420,10 @@
         "Recovery code one-time use",
         "Passkey versus password",
         "Passkey versus second-factor authenticator",
-        "Identity MFA limitations"
+        "Identity MFA limitations",
+        "IdentityPasskeyOptions defaults",
+        "Identity passkey supported scenarios: existing-account enrollment, passwordless account creation, passwordless sign-in",
+        "Passkey count and display-name application-level limits"
       ]
     },
     {
@@ -462,8 +510,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core Identity, cookie, JWT bearer, OpenID Connect, and passkey docs plus API reference",
-    "edition": "ASP.NET Core 11 GA checked 2026-11-14; recent change notes include ASP.NET Core 10 passkeys",
-    "checkedAt": "2026-11-14",
+    "edition": "ASP.NET Core 11 GA and ASP.NET Core 10 passkeys checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity",
       "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity-configuration",
@@ -474,7 +522,10 @@
       "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.usermanager-1",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitypasskeyoptions",
-      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitypasskeyoptions?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitypasskeyoptions.attestationconveyancepreference?view=aspnetcore-10.0"
     ]
   },
   "scopeExclusions": [

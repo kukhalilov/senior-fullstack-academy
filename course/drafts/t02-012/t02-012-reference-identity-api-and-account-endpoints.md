@@ -34,6 +34,12 @@ ASP.NET Core Identity API endpoints provide a convenient account/API surface for
 | `useCookies query parameter` | On login, requests a persistent cookie when `useSessionCookies` is not true. |
 | `useSessionCookies query parameter` | On login, requests a nonpersistent browser session cookie. |
 | `Identity API endpoint customization boundary` | Customize or replace routes when business policy requires; retain endpoint authorization, antiforgery, validation, rate limits, and safe enumeration behavior. |
+| `MapIdentityApi<TUser> route inventory` | The framework maps `POST /register`, `POST /login`, `POST /refresh`, `GET /confirmEmail`, `POST /resendConfirmationEmail`, `POST /forgotPassword`, `POST /resetPassword`, `POST /manage/2fa`, `GET /manage/info`, and `POST /manage/info`. These routes form an account API, not a complete application authorization policy. |
+| `POST /manage/2fa` | Reads or updates authenticator-app 2FA state for the authenticated account, including shared-key setup, authenticator verification, and recovery-code management. Review the framework request/response contract for the target version; never expose the setup key after enrollment or recovery codes beyond the one-time display. |
+| `GET /manage/info` | Reads the signed-in user's account information through the built-in API. Apply the normal authorization and privacy controls. |
+| `POST /manage/info` | Updates the signed-in user's account information through the built-in API. Apply confirmation, uniqueness, validation, authorization, and abuse controls; do not treat a client-side form as authorization. |
+| `Identity API access-token response` | Token mode returns `tokenType`, `accessToken`, `expiresIn`, and `refreshToken`. The access token is sent as a bearer credential; protect both tokens and use the refresh endpoint only for this built-in token flow. |
+| `Identity API refresh response` | A successful `POST /refresh` returns a new access-token response, including a refresh token. Replace the client-side token set and handle refresh failure by requiring sign-in; do not assume this provides OAuth-standard revocation or interoperability. |
 | `AddEntityFrameworkStores<TContext>` | Connects Identity persistence to EF Core; accounts/tokens are stored in the configured context/database. |
 | `Identity API endpoint authorization` | Protect application resources with authorization metadata/policies; a route being in the app or a client-side guard does not authorize it. |
 | `Identity API account confirmation requirement` | Confirmation settings can prevent sign-in until email/phone/account requirements are satisfied. |
@@ -60,7 +66,7 @@ app.MapGet("/profile", (ClaimsPrincipal user) => new
 }).RequireAuthorization();
 ```
 
-The built-in `/login` endpoint accepts `useCookies`/`useSessionCookies` choices; when both are false or omitted, it returns proprietary access/refresh tokens. Do not accept these as JWTs in another service. For browser `fetch`, include credentials when cookie cross-origin policy allows it, and protect state-changing cookie-authenticated operations against CSRF.
+The built-in `/login` endpoint accepts `useCookies`/`useSessionCookies` choices; when both are false or omitted, it returns proprietary access/refresh tokens. Setting `useCookies=true` requests a persistent cookie unless `useSessionCookies=true`; setting `useSessionCookies=true` requests a nonpersistent session cookie, including when both are true. Do not accept these tokens as JWTs in another service. For browser `fetch`, include credentials when cookie cross-origin policy allows it, and protect state-changing cookie-authenticated operations against CSRF.
 
 ## Common mistakes
 

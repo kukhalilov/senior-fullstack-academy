@@ -2,11 +2,15 @@
 
 ## Scope and version
 
-ASP.NET Core Identity's built-in passkey flows target Identity accounts, not every WebAuthn server use case. This lesson covers the Identity options and account-level security flows represented by the supplied inventory. Passkeys arrived in ASP.NET Core 10; check the target framework's API reference for exact availability and defaults. [ASP.NET Core passkey guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/) [ASP.NET Core 10 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-10.0) [IdentityPasskeyOptions](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitypasskeyoptions)
+ASP.NET Core Identity's built-in passkey flows target Identity accounts, not every WebAuthn server use case. They support adding a passkey to an existing account, passwordless account creation, and passwordless sign-in; they are not a general-purpose WebAuthn server. Passkey support arrived in ASP.NET Core 10. [ASP.NET Core passkey guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/?view=aspnetcore-10.0) [IdentityPasskeyOptions](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitypasskeyoptions?view=aspnetcore-10.0)
 
 ## How this group fits the mental model
 
 A registration ceremony lets an authenticator create a public-key credential for a relying party. The server supplies fresh challenge and relying-party context; the browser mediates the ceremony; the server validates the response and stores credential information. On sign-in, a fresh assertion is checked against the expected origin, relying-party ID, challenge, credential, and stored public key. The private key remains with the authenticator. Identity's passkey support is a primary sign-in path. Its authenticator-app two-factor and recovery-code flows are separate account workflows.
+
+The documented `IdentityPasskeyOptions` defaults matter: the challenge is 32 bytes, the browser timeout hint is five minutes, an unset `ServerDomain` derives the relying-party ID from the request host, and a null attestation-conveyance preference lets the browser default to `none`. The timeout is a browser hint, not server-side challenge expiry. An unset relying-party domain makes trusted host-header and forwarded-host configuration a security requirement. [Passkey options](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/?view=aspnetcore-10.0) [Attestation preference API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.identitypasskeyoptions.attestationconveyancepreference?view=aspnetcore-10.0)
+
+**Identity passkey supported scenarios: existing-account enrollment, passwordless account creation, passwordless sign-in.** The framework supports each of these Identity account flows. **Passkey count and display-name application-level limits.** The Blazor template demonstrates limits in its management UI; custom applications must enforce their own suitable limits and validation. [Passkey support and template limits](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
 
 ## Supplied names explained
 
@@ -25,6 +29,7 @@ A registration ceremony lets an authenticator create a public-key credential for
 | `IdentityPasskeyOptions.UserVerificationRequirement` | Requests authenticator user verification such as a local PIN/biometric. It does not mean Identity's separate second-factor workflow has been completed. |
 | `IdentityPasskeyOptions.ValidateOrigin` | Callback for validating ceremony origin. Use a strict explicit allowlist based on trusted application origins; never accept arbitrary Host or forwarded-host values. |
 | `IdentityPasskeyOptions.VerifyAttestationStatement` | Custom callback for verifying attestation. Identity does not validate attestation statements by default. Custom policy requires a maintained trust source and a clear reason to collect/use provenance. |
+| `IdentityPasskeyOptions defaults` | The documented defaults include a 32-byte challenge, a five-minute browser timeout hint, host-derived RP ID when `ServerDomain` is null, and browser-default (`none`) attestation preference when unset. Verify the target framework API reference because defaults are security- and compatibility-relevant. |
 | `UserPasskeyInfo` | Stored Identity representation of a user's passkey credential and metadata. Restrict management to the authenticated account owner. |
 | `UserPasskeyInfo.CredentialId` | Credential identifier used to locate a registered key. It is an identifier rather than a private secret; enforce uniqueness and ownership. |
 | `UserPasskeyInfo.PublicKey` | Key used by the server to verify assertions. The authenticator retains the corresponding private key. |
@@ -131,7 +136,7 @@ builder.Services.Configure<IdentityPasskeyOptions>(options =>
 });
 ```
 
-These properties are part of the documented options surface. The default origin validation allows subdomains and disallows cross-origin iframes; when strict origin control is needed, use the documented `ValidateOrigin` callback and a deliberate allowlist. If `ServerDomain` is omitted, Identity infers the relying-party ID from the host, so validate Host headers and configure trusted forwarded hosts. Passkey operations require HTTPS. [Passkey security guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/)
+These properties are part of the documented options surface. The default origin validation allows subdomains and disallows cross-origin iframes; when strict origin control is needed, use the documented `ValidateOrigin` callback and a deliberate allowlist. If `ServerDomain` is omitted, Identity infers the relying-party ID from the host, so validate Host headers and configure trusted forwarded hosts. Passkey operations require HTTPS. The Blazor template also demonstrates application-level limits on passkey count and display-name length; do not assume those UI limits are enforced by the framework store for every custom endpoint. [Passkey security guidance](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/passkeys/?view=aspnetcore-10.0)
 
 ### Protect registration state if using the lower-level handler
 

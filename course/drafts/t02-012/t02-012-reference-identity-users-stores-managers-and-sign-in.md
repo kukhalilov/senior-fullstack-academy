@@ -72,6 +72,30 @@ The user entity represents account data; stores persist it; managers coordinate 
 | `UserManager<TUser>.SetEmailAsync` | Updates the email field but does not by itself prove ownership; use the confirmation workflow when required. |
 | `UserManager<TUser>.GetSecurityStampAsync` | Reads the stamp used to detect account credential/security changes. |
 | `UserManager<TUser>.UpdateSecurityStampAsync` | Changes the stamp so validation can invalidate existing authentication state according to policy. |
+| `UserManager<TUser>.GetUserAsync` | Resolves the current principal to its Identity user through the configured store; a missing or stale principal may produce no user. |
+| `UserManager<TUser>.SetUserNameAsync` | Updates the username and normalized lookup value through the manager's validation/store workflow. |
+| `UserManager<TUser>.GetPhoneNumberAsync` | Reads the stored phone number, if supported by the store. |
+| `UserManager<TUser>.SetPhoneNumberAsync` | Changes the stored phone number. Setting a number does not establish ownership; use the verification flow before treating it as confirmed. |
+| `UserManager<TUser>.GetTwoFactorEnabledAsync` | Reads the account's 2FA-enabled flag. |
+| `UserManager<TUser>.SetTwoFactorEnabledAsync` | Changes the account's 2FA-enabled flag. Enabling should follow completed enrollment and verified authenticator setup, not just flip the flag. |
+| `UserManager<TUser>.AccessFailedAsync` | Increments the account's failed-access counter and can lock the user when the configured threshold is reached. |
+| `UserManager<TUser>.ResetAccessFailedCountAsync` | Resets the failed-access counter through the configured store. |
+| `UserManager<TUser>.GetAccessFailedCountAsync` | Reads the current failed-access counter. Normal sign-in flows coordinate these operations with lockout policy; do not build a parallel password endpoint that skips them. |
+| `UserManager<TUser>.IsLockedOutAsync` | Checks the store's lockout state; the result is account state, not a network-wide rate-limit decision. |
+| `UserManager<TUser>.GenerateUserTokenAsync` | Generates a token for a named provider and purpose. |
+| `UserManager<TUser>.VerifyUserTokenAsync` | Verifies a token for the specified provider and purpose. Purpose and provider must match; these workflow tokens are not API access tokens. |
+| `UserManager<TUser>.GenerateTwoFactorTokenAsync` | Generates a configured second-factor token. |
+| `UserManager<TUser>.VerifyTwoFactorTokenAsync` | Verifies a configured second-factor token. Prefer SignInManager's pending-user flow so a code cannot be detached from the login being completed. |
+| `UserManager<TUser>.FindByLoginAsync` | Looks up a user by external provider/key; provider keys are issuer-scoped identifiers, not email addresses. |
+| `UserManager<TUser>.GetLoginsAsync` | Lists the external provider associations linked to a user. |
+| `UserManager<TUser>.AddLoginAsync` | Adds an external provider association after a fresh, authorized linking flow. |
+| `UserManager<TUser>.RemoveLoginAsync` | Removes an external provider association; ensure a recovery credential remains. |
+| `UserManager<TUser>.GetAuthenticationTokenAsync` | Reads a provider token via a token-capable store. Treat the value as a credential, minimize retention, and protect it at rest. |
+| `UserManager<TUser>.SetAuthenticationTokenAsync` | Stores a provider token via a token-capable store; protect it at rest and retain it only as long as needed. |
+| `UserManager<TUser>.RemoveAuthenticationTokenAsync` | Removes a stored provider token when it is no longer needed or must be revoked locally. |
+| `UserManager<TUser>.RemoveClaimsAsync` | Removes persisted user claims through the store; authorize changes and keep claim provenance explicit. |
+| `UserManager<TUser>.ReplaceClaimAsync` | Replaces a persisted user claim through the store; authorize changes and keep claim provenance explicit. |
+| `UserManager<TUser>.GetUsersInRoleAsync` | Lists members of a role when the configured role store supports that operation; avoid using a large enumeration as an authorization check. |
 
 ### Sign-in, stores, and results
 
@@ -87,12 +111,27 @@ The user entity represents account data; stores persist it; managers coordinate 
 | `SignInManager<TUser>.TwoFactorAuthenticatorSignInAsync` | Completes the second-factor sign-in using an authenticator-generated code. |
 | `SignInManager<TUser>.TwoFactorRecoveryCodeSignInAsync` | Completes sign-in with a one-time recovery code; protect and consume codes carefully. |
 | `SignInManager<TUser>.TwoFactorSignInAsync` | Validates a code from a configured two-factor token provider. |
+| `SignInManager<TUser>.GetTwoFactorAuthenticationUserAsync` | Retrieves the account in the pending two-factor sign-in flow; do not accept an arbitrary client-supplied user ID as a substitute. |
+| `SignInManager<TUser>.ExternalLoginSignInAsync` | Completes local sign-in using a previously linked external provider/key, while applying configured lockout/confirmation behavior. |
 | `IUserStore<TUser>` | Minimum persistence contract for user CRUD and normalized lookup operations. |
 | `IUserPasswordStore<TUser>` | Optional store contract for password hashes. |
 | `IUserEmailStore<TUser>` | Optional contract for email/confirmation state. |
 | `IUserRoleStore<TUser>` | Optional contract for role membership. |
 | `IUserClaimStore<TUser>` | Optional contract for user claims. |
 | `IUserAuthenticationTokenStore<TUser>` | Optional store for external-provider authentication tokens; storage and encryption choices matter. |
+| `IUserLoginStore<TUser>` | Optional store for provider/key associations that map external identities to local users. |
+| `IUserTwoFactorStore<TUser>` | Optional contract for reading/writing whether a user has 2FA enabled. |
+| `IUserLockoutStore<TUser>` | Optional contract for failed-access counts, lockout end time, and lockout enablement. |
+| `IUserSecurityStampStore<TUser>` | Optional contract for a security stamp used to detect selected credential/security changes. |
+| `IUserPhoneNumberStore<TUser>` | Optional contract for a phone number and its confirmation state. |
+| `IUserTokenStore<TUser>` | Optional store contract for user tokens; do not confuse stored provider tokens with Identity-generated confirmation/reset tokens. |
+| `RoleManager<TRole>` | Coordinates role validation, lookup, create/update/delete, and claims over an `IRoleStore<TRole>`. Role assignment still requires application authorization. |
+| `RoleManager<TRole>.CreateAsync` | Validates and persists a role; inspect `IdentityResult`. |
+| `RoleManager<TRole>.UpdateAsync` | Validates and persists a role update; audit permission changes. |
+| `RoleManager<TRole>.DeleteAsync` | Deletes a role through the configured role store and returns the operation result. |
+| `RoleManager<TRole>.AddClaimAsync` | Adds a claim to a role through a claim-capable role store. |
+| `RoleManager<TRole>.GetClaimsAsync` | Retrieves claims attached to a role when the role store supports claims. |
+| `RoleManager<TRole>.RemoveClaimAsync` | Removes a claim from a role when the role store supports claims. Role claims become authorization inputs only after principal construction and policy evaluation. |
 | `IRoleStore<TRole>` | Persistence contract for role creation, lookup, update, and deletion. |
 | `IdentityResult` | Result object indicating whether a manager operation succeeded and which errors were returned. |
 | `IdentityResult.Succeeded` | Boolean success state; check it after manager operations. |
