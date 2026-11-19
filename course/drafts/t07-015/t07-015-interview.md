@@ -22,7 +22,7 @@
 5. `localStorage` is shared by same-origin documents and generally persists across browser restarts subject to policy. `sessionStorage` is scoped to a top-level browsing context and page session; an opener can cause an initial copy in some cases. Both store strings and may throw.
 6. `pushState()` adds same-origin session history state and changes the URL without automatically loading/rendering the page. Navigation API centralizes eligible application navigation and exposes same-origin entries plus a `navigate` event, with commit/finish promises and enhanced interception.
 7. Parsing untrusted input as HTML can create dangerous nodes. Prefer text; for intentional rich markup, use a supported sanitizer or a reviewed maintained sanitizer fallback. Sanitization does not make serialized output permanently trusted.
-8. `dispatchEvent()` synchronously dispatches a synthetic untrusted event through listeners. It does not create trusted user activation or reproduce all browser activation/default behavior.
+8. `dispatchEvent()` synchronously dispatches a synthetic untrusted event through listeners and the normal dispatch rules apply, including applicable default/activation behavior for that event. It does not create trusted user activation or reproduce the browser’s trusted-input and user-activation context.
 
 # Deep follow-up answers
 
@@ -48,7 +48,7 @@ Safe methods such as `setHTML()` apply a safe policy that removes XSS-unsafe con
 
 ## What is special about Navigation API interception?
 
-The API exposes same-origin-contiguous entries for the current browsing context, not a complete cross-origin tab history. A `navigate` event is not necessarily interceptable; check `canIntercept`, destination, download intent, and application policy. `intercept()` must be called synchronously in the event dispatch. Its handler promise participates in navigation completion; the result distinguishes commitment from finished work. Keep real URLs and handle failure, focus, scroll, refresh, and unsupported browsers.
+The API exposes same-origin-contiguous entries for the current browsing context, not a complete cross-origin tab history. A `navigate` event is not necessarily interceptable; check `canIntercept`, destination, download intent, and application policy. `intercept()` must be called synchronously in the event dispatch. For an intercepted same-document navigation, its handler promise participates in navigation completion; `committed` and `finished` can settle according to the navigation lifecycle. Do not await them as universal signals: for ordinary cross-document navigation, non-intercepted reloads, and some non-navigation responses, the returned promises never settle. Keep real URLs and handle failure, focus, scroll, refresh, and unsupported browsers.
 
 # Scenario questions
 

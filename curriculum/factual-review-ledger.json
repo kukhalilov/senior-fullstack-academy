@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1071,
-    "pending": 1276,
-    "claimsChecked": 41923,
-    "claimsCorrected": 1701,
+    "reviewed": 1072,
+    "pending": 1275,
+    "claimsChecked": 41970,
+    "claimsCorrected": 1703,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -70802,13 +70802,50 @@
       "topicId": "t07-015",
       "phase": "interview",
       "draft": "course/drafts/t07-015/t07-015-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 47,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "DOM text/markup APIs, static versus live collections, propagation/cancellation and shadow event behavior",
+          "source": "https://dom.spec.whatwg.org/",
+          "section": "Events, NodeList, Element and shadow tree algorithms",
+          "verdict": "verified; clarified dispatchEvent default-action semantics without implying trusted activation"
+        },
+        {
+          "claim": "MutationObserver batching and record draining; abort signal semantics",
+          "source": "https://dom.spec.whatwg.org/",
+          "section": "4.3 Mutation observers; 3 Aborting ongoing activities",
+          "verdict": "verified; queued mutation records and cooperative cancellation correctly bounded"
+        },
+        {
+          "claim": "IntersectionObserver and ResizeObserver use cases and constraints",
+          "source": "https://w3c.github.io/IntersectionObserver/; https://www.w3.org/TR/resize-observer/",
+          "section": "Observer interfaces and processing models",
+          "verdict": "verified; distinction between DOM changes, geometric intersection and element box changes is accurate"
+        },
+        {
+          "claim": "Web Storage scope, lifetime, failure, and storage event delivery",
+          "source": "https://html.spec.whatwg.org/multipage/webstorage.html",
+          "section": "12.2 API and event delivery",
+          "verdict": "verified; same-origin localStorage synchronization and non-sensitive-data cautions are accurate"
+        },
+        {
+          "claim": "HTML Sanitizer safe/unsafe entry points and fallback security boundaries",
+          "source": "https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html; https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API",
+          "section": "8.6 Sanitization; availability",
+          "verdict": "verified; safe methods, limitations, and current limited availability are accurately stated"
+        },
+        {
+          "claim": "Navigation API history visibility, interception eligibility, and promise outcomes",
+          "source": "https://html.spec.whatwg.org/multipage/nav-history-apis.html",
+          "section": "7.2.6.2–7.2.6.10",
+          "verdict": "corrected; documented that cross-document and normal reload results can remain pending forever, and clarified post-handler completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://dom.spec.whatwg.org/",
         "https://html.spec.whatwg.org/multipage/",
@@ -70883,9 +70920,10 @@
         "https://w3c.github.io/IntersectionObserver/",
         "https://www.w3.org/TR/resize-observer/",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/trackVisibility",
-        "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/scrollMargin"
+        "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/scrollMargin",
+        "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-by-claim audit of all core questions, answers, follow-ups, scenarios, comparisons, weak-answer corrections, and rubric. Verified against DOM/HTML standards and current observer and Sanitizer references. Corrected synthetic dispatch/default action explanation and Navigation API promise settlement caveat. No unresolved errors or omissions."
     },
     {
       "taskId": "t07-016-overview",
