@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1125,
-    "pending": 1224,
-    "claimsChecked": 45600,
-    "claimsCorrected": 2162,
+    "reviewed": 1126,
+    "pending": 1223,
+    "claimsChecked": 45712,
+    "claimsCorrected": 2169,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -83657,7 +83657,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -84007,7 +84009,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -84384,7 +84388,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "Claim-by-claim review against CSS Variables Level 1 and Properties and Values API primary specifications; complete --* inventory scope checked."
     },
@@ -84761,7 +84767,9 @@
         "https://drafts.csswg.org/cssom/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "All four supplied text fill/stroke properties checked against the WHATWG Compatibility Standard and individual compatibility references."
     },
@@ -85133,7 +85141,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "Rewrote the generated summary into a specification-backed reference covering exact values, defaults, inheritance, interaction effects, fallbacks, and draft maturity for all 20 assigned properties. Corrected omissions and oversimplifications around caret shorthand, cursor keywords/hotspots, inertness, user selection, outline-offset inset, resize applicability, and native appearance semantics."
     },
@@ -85142,13 +85152,40 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-inline.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 112,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Current grammars, initial values, applicability, inheritance, computed behavior, line-height inheritance, baseline keyword sets, shorthand reset behavior, text metric trimming behavior, and initial-letter layout/applicability.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-inline-3/",
+              "section": "CSS Inline Layout Level 3, 14 October 2026 Editor’s Draft: §§2–7",
+              "verdict": "Primary current editor draft supports current grammars and inline layout behavior; identified as work in progress, not presented as a Recommendation."
+            },
+            {
+              "url": "https://www.w3.org/TR/CSS21/visudet.html",
+              "section": "CSS 2.1 Recommendation: line height and vertical alignment",
+              "verdict": "Published baseline behavior for long-established line-height/vertical-align features."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-align-3/",
+              "section": "CSS Box Alignment Level 3 baseline alignment",
+              "verdict": "Cross-check for baseline alignment terminology and behavior in alignment contexts."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "CSS Snapshot 2026",
+              "verdict": "Used to distinguish specification maturity from browser adoption."
+            }
+          ],
+          "verdict": "Checked every assigned name and corrected omissions about inheritance, shorthand resets, actual applicability, formatting-context limits, font/script metrics, and draft maturity. The lesson does not infer support from the inventory snapshot."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -85483,9 +85520,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Expanded the generated summaries into a specification-backed inline layout guide: line box and font metric mental model, exact assigned property grammars/defaults/inheritance, shorthand reset behavior, baseline selection, line-height inheritance, text trimming scope, initial-letter applicability, and maturity distinctions."
     },
     {
       "taskId": "t07-018-reference-css-cascading-and-inheritance",
@@ -85833,7 +85872,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -86183,7 +86224,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -86533,7 +86576,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -86883,7 +86928,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -87233,7 +87280,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -87583,7 +87632,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -87933,7 +87984,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -88283,7 +88336,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -88633,7 +88688,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -88983,7 +89040,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -89333,7 +89392,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -89683,7 +89744,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -90033,7 +90096,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -90383,7 +90448,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -90733,7 +90800,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -91083,7 +91152,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -91433,7 +91504,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -91783,7 +91856,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -92133,7 +92208,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -92483,7 +92560,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -92833,7 +92912,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -93183,7 +93264,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -93533,7 +93616,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -93883,7 +93968,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -94233,7 +94320,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -94583,7 +94672,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -94933,7 +95024,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -95283,7 +95376,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -95633,7 +95728,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -95983,7 +96080,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -96333,7 +96432,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -96683,7 +96784,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -97033,7 +97136,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -97383,7 +97488,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -97733,7 +97840,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -98083,7 +98192,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -98433,7 +98544,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -98783,7 +98896,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -99133,7 +99248,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -99483,7 +99600,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -99833,7 +99952,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -100183,7 +100304,9 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
         "https://compat.spec.whatwg.org/",
         "https://drafts.csswg.org/css-ui-4/",
-        "https://www.w3.org/TR/css-ui-3/"
+        "https://www.w3.org/TR/css-ui-3/",
+        "https://www.w3.org/TR/CSS21/visudet.html",
+        "https://www.w3.org/TR/css-align-3/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
