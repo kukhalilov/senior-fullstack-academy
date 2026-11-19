@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1161,
-    "pending": 1188,
-    "claimsChecked": 49659,
-    "claimsCorrected": 2551,
+    "reviewed": 1162,
+    "pending": 1187,
+    "claimsChecked": 49694,
+    "claimsCorrected": 2553,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -99439,13 +99439,54 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-experimental-mathml.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "MathML Core latest published maturity/date, browser-focused scope and current Editor’s Draft distinction.",
+          "sources": [
+            "https://www.w3.org/TR/mathml-core/",
+            "https://w3c.github.io/mathml-core/"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "math-shift exact grammar and property metadata including inheritance, applicability, computed value, visual media and non-animation.",
+          "sources": [
+            "https://www.w3.org/TR/mathml-core/#the-math-shift"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "normal/compact select SuperscriptShiftUp/SuperscriptShiftUpCramped; final msup shift also obeys clearance and baseline constraints.",
+          "sources": [
+            "https://www.w3.org/TR/mathml-core/#the-math-shift",
+            "https://www.w3.org/TR/mathml-core/#base-with-superscript"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "Automatic MathML stylesheet contexts, inheritance, display/script structures, and distinction from math-style/math-depth.",
+          "sources": [
+            "https://www.w3.org/TR/mathml-core/#displaystyle-scriptlevel-and-math-shift-in-scripts",
+            "https://www.w3.org/TR/mathml-core/#the-math-style-property",
+            "https://www.w3.org/TR/mathml-core/#the-math-depth-property"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "OpenType MATH font data role, fallback metrics caveat and MDN Baseline 2025 status.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/typography/opentype/spec/math",
+            "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/math-shift"
+          ],
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -99802,9 +99843,12 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://www.w3.org/TR/mathml-core/",
+        "https://w3c.github.io/mathml-core/",
+        "https://learn.microsoft.com/en-us/typography/opentype/spec/math"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually checked 35 factual claims against MathML Core’s 2025-06-24 W3C Candidate Recommendation Snapshot, current Editor’s Draft, MDN, and the OpenType MATH specification. Replaced the one-line paraphrase with exact syntax/metadata, normal-versus-compact constant selection, interaction with final collision/baseline constraints, inheritance/default MathML stylesheet contexts, math-style/math-depth distinctions, font support caveats, examples, and HTML-versus-MathML scope. Corrected two implications: compact does not directly specify a fixed smaller pixel shift or font size, and the property is not an HTML sup substitute. No unresolved lesson issues."
     },
     {
       "taskId": "t07-018-reference-experimental-css-ruby",
