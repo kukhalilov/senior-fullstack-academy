@@ -28,10 +28,10 @@ This reference explains every frozen manifest entry in **Insert, update, delete,
 | `DELETE joined source` | Deletes target rows related to a source using a join. Ensure the join condition expresses the intended relationship and inspect target keys before the delete. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/delete-transact-sql?view=sql-server-ver17)) |
 | `DELETE TOP unordered selection` | DELETE TOP affects an unordered qualifying subset. For oldest-first or priority order, select TOP keys with ORDER BY inside a subquery and delete by those keys. ([source](https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17)) |
 | `TRUNCATE TABLE boundary` | Removes all rows by deallocating data pages, resets an identity counter to its defined seed, and can be rolled back inside a SQL Server transaction. SQL Server disallows it for tables referenced by foreign keys (except self-reference), participating in indexed views, published for replication, system-versioned temporal, or referenced by EDGE constraints; it requires ALTER permission and does not fire DELETE triggers. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/truncate-table-transact-sql?view=sql-server-ver17)) |
-| `DML without WHERE risk` | UPDATE or DELETE without WHERE targets every qualifying table row (all rows if no other limiting construct applies). Do not rely on a GUI preview or presumed key uniqueness as a safety barrier. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/insert-transact-sql?view=sql-server-ver17)) |
+| `DML without WHERE risk` | UPDATE or DELETE without WHERE targets every qualifying table row (all rows if no other limiting construct applies). Do not rely on a GUI preview or presumed key uniqueness as a safety barrier. ([UPDATE](https://learn.microsoft.com/en-us/sql/t-sql/queries/update-transact-sql?view=sql-server-ver17), [DELETE](https://learn.microsoft.com/en-us/sql/t-sql/statements/delete-transact-sql?view=sql-server-ver17)) |
 | `OUTPUT clause` | Returns expressions from each affected row for INSERT, UPDATE, DELETE, or MERGE. Direct client output is forbidden when the target has an enabled trigger for that action; use OUTPUT INTO where allowed. ([source](https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17)) |
-| `INSERTED pseudo-table` | In OUTPUT, INSERTED represents new values for INSERT/UPDATE and values after the DML statement but before triggers execute. It is not the trigger’s inserted transition table and cannot be used for DELETE output. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/insert-transact-sql?view=sql-server-ver17)) |
-| `DELETED pseudo-table` | In OUTPUT, DELETED represents old values for UPDATE/DELETE. It cannot be used for INSERT output; update auditing can pair DELETED and INSERTED columns. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/delete-transact-sql?view=sql-server-ver17)) |
+| `INSERTED pseudo-table` | In OUTPUT, INSERTED represents new values for INSERT/UPDATE and values after the DML statement but before triggers execute. It is not the trigger’s inserted transition table and cannot be used for DELETE output. ([source](https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17)) |
+| `DELETED pseudo-table` | In OUTPUT, DELETED represents old values for UPDATE/DELETE. It cannot be used for INSERT output; update auditing can pair DELETED and INSERTED columns. ([source](https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17)) |
 | `OUTPUT INTO` | Captures OUTPUT rows into a table variable or eligible table. The nested operation is atomic, but the destination has restrictions: for example it cannot have triggers or foreign keys. ([source](https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17)) |
 | `OUTPUT direct-client trigger restriction` | If OUTPUT omits INTO, the modified target cannot have an enabled trigger for that DML action. OUTPUT INTO is subject to restrictions on its destination table. ([source](https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17)) |
 | `OUTPUT result after statement error` | An OUTPUT result set can be returned even when an error causes the DML statement to roll back. Discard all such client results on error and do not persist them as committed audit evidence. ([source](https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17)) |
@@ -40,50 +40,63 @@ This reference explains every frozen manifest entry in **Insert, update, delete,
 | `@@ROWCOUNT` | Returns the rows affected or read by the immediately preceding statement and is reset or overwritten by many statements. Capture it immediately; it reports a count, not proof that the intended keys changed. ([source](https://learn.microsoft.com/en-us/sql/t-sql/functions/rowcount-transact-sql?view=sql-server-ver17)) |
 | `DML trigger interaction` | AFTER triggers run after a DML action and INSTEAD OF triggers replace the modification. OUTPUT values are before triggers, trigger side effects can alter final data, and MERGE action-trigger ordering is not guaranteed. ([source](https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver17)) |
 
-# Reasoning checks
-
-1. Name the keys and expected row count before executing a write.
-2. For source-driven updates and MERGE, prove one source match per target key.
-3. For OUTPUT, state which row image is used, when triggers run, and how errors/rollback invalidate client output.
-4. For file loads, identify the process that reads the file, the format/parser, and the security principal.
-5. State the batch commit and restart behavior, including whether any earlier batch can remain committed.
-6. Explain how duplicate prevention, stale-write detection, and timeout retries are enforced by database invariants and idempotency.
-
 # Scope and version
 
-Target SQL Server 2025 (17.x) unless an entry says otherwise. SQL Server 2017 added BULK INSERT CSV support; bcp 18+ adds client-side features ([BULK INSERT](https://learn.microsoft.com/en-us/sql/t-sql/statements/bulk-insert-transact-sql?view=sql-server-ver17), [bcp](https://learn.microsoft.com/en-us/sql/tools/bcp/bcp-utility?view=sql-server-ver17)).
+SQL Server 2025 (17.x) DML behavior. The inventory table covers exact syntax and restrictions.
 
 # How this group fits the mental model
 
-Separate target selection, row-image observation, match/action policy, file transport, and transaction outcome. They are related but provide different guarantees.
+Select target rows, apply the state transition, then observe row count or statement images. OUTPUT, triggers, and commit outcome are separate stages.
 
 # Supplied names explained
 
-The item-by-item table above explains every exact inventory name for this group.
+The item-by-item table explains all 31 supplied names.
 
 # Cross-item comparison
 
-INSERT creates rows, UPDATE changes them, DELETE removes selected rows, TRUNCATE removes all under different restrictions. OUTPUT returns images; @@ROWCOUNT returns a count. BULK INSERT is server-side, bcp client-side, and OPENROWSET(BULK...) exposes a rowset.
+INSERT adds rows; UPDATE changes qualifying rows; DELETE removes qualifying rows; TRUNCATE removes all rows under different permission, trigger, and constraint rules. OUTPUT returns statement images; @@ROWCOUNT reports a count.
 
 # Examples
 
-Use ordered key selection in a subquery before applying TOP to a batch DELETE; DML TOP itself does not order affected rows.
+
+
+```sql
+DECLARE @Changed TABLE (OldName nvarchar(200), NewName nvarchar(200));
+DECLARE @Rows int;
+
+BEGIN TRANSACTION;
+UPDATE dbo.Product
+SET Name = @NewName
+OUTPUT DELETED.Name, INSERTED.Name INTO @Changed
+WHERE ProductId = @ProductId;
+SET @Rows = @@ROWCOUNT;
+
+IF @Rows <> 1
+BEGIN
+    ROLLBACK TRANSACTION;
+    THROW 50001, 'Expected exactly one product row.', 1;
+END;
+
+COMMIT TRANSACTION;
+SELECT OldName, NewName FROM @Changed;
+```
+
+`OUTPUT INTO` is used because an enabled UPDATE trigger exists. The returned row image is from the DML statement before trigger side effects; use a separate read if the final post-trigger state is needed. The output is only presented after successful commit.
 
 # Common mistakes
 
-- Treating OUTPUT as proof of commit.
-- Assuming duplicate update sources are deterministic.
-- Using partial snapshots with NOT MATCHED BY SOURCE.
-- Treating FIRSTROW as CSV-aware.
-- Assuming BATCHSIZE only changes speed.
+- Confusing statement row images with committed final state.
+- Treating batch/lock/retry behavior as an implementation detail rather than part of correctness.
 
 # Knowledge checks with answers
 
-1. INSERT OUTPUT cannot refer to DELETED.
-2. Direct OUTPUT is disallowed for a target with an enabled same-action trigger.
-3. TRUNCATE does not fire DELETE triggers.
-4. Duplicate UPDATE sources are undefined.
-5. Capture @@ROWCOUNT immediately.
+1. **Which virtual table can an INSERT output use?** `INSERTED`; `DELETED` represents old values for UPDATE/DELETE.
+2. **Why does a direct client OUTPUT fail when an enabled matching trigger exists?** SQL Server restricts direct OUTPUT for that action; use `OUTPUT INTO` where destination-table rules permit.
+3. **What should a client do with OUTPUT rows if the DML reports an error?** Discard them. SQL Server can return output even when the statement rolls back.
+4. **A joined UPDATE has two matching source rows for one target. Which value wins?** The result is undefined; reduce the source to one deterministic row per target key.
+5. **How do you delete the oldest 100 queue entries deterministically?** Select the ordered TOP keys in a subquery/CTE, with a unique tie-breaker, then delete by those keys.
+6. **Why capture `@@ROWCOUNT` immediately?** Later statements can overwrite/reset it; it reports affected/read rows, not whether the business intent was satisfied.
+
 
 # Sources
 
