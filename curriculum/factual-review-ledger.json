@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1158,
-    "pending": 1191,
-    "claimsChecked": 49535,
-    "claimsCorrected": 2542,
+    "reviewed": 1159,
+    "pending": 1190,
+    "claimsChecked": 49589,
+    "claimsCorrected": 2545,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -98186,13 +98186,63 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-experimental-css-values-and-units.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 54,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claim": "interpolate-size current location, grammar, initial/inherited/computed/animation properties and numeric-only versus allow-keywords semantics.",
+          "sources": [
+            "https://drafts.csswg.org/css-sizing-4/#interpolate-size-property"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "Only compatible length-percentage and sizing-keyword pairs interpolate under allow-keywords; distinct keywords generally remain non-interpolable; computed value at transition start matters.",
+          "sources": [
+            "https://drafts.csswg.org/css-sizing-4/#interpolate-size-property",
+            "https://drafts.csswg.org/css-sizing-4/#interpolating-calc-size"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "link-parameters maturity, grammar, applicability, inheritance, computed/animation rules and param-spec syntax.",
+          "sources": [
+            "https://www.w3.org/TR/css-link-params-1/",
+            "https://drafts.csswg.org/css-link-params/#link-parameters-property"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "Parameter defaults, typed parsing, empty-value distinction, element-context resolution, three delivery routes, source order and last-value-wins behavior.",
+          "sources": [
+            "https://drafts.csswg.org/css-link-params/#param-function",
+            "https://drafts.csswg.org/css-link-params/#link-parameters-property",
+            "https://drafts.csswg.org/css-link-params/#url-modifier",
+            "https://drafts.csswg.org/css-link-params/#fragment-directive"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "External resource consumption through CSS environment variables, color/accent-color effects, resource scope and fallback need.",
+          "sources": [
+            "https://drafts.csswg.org/css-link-params/#using-link-parameters",
+            "https://drafts.csswg.org/css-link-params/#security"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "MDN identifies both features as Experimental and Limited availability; current browser support must be checked.",
+          "sources": [
+            "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/interpolate-size",
+            "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/link-parameters"
+          ],
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -98549,9 +98599,12 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-sizing-4/",
+        "https://drafts.csswg.org/css-link-params/",
+        "https://www.w3.org/TR/css-link-params-1/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually checked 54 factual claims against current CSSWG CSS Box Sizing Level 4 and CSS Linked Parameters Level 1 drafts, the 2026-11-03 First Public Working Draft, and MDN support summaries. Replaced index paraphrases with exact grammars, applicability/inheritance, contextual interpolation limits, parameter syntax/default/type resolution, empty-value distinction, three delivery mechanisms, source precedence, resource consumption, fallbacks, and maturity. Corrected three misleading implications: interpolate-size does not make all intrinsic-size pairs interpolable; link-parameters is not generic external-style inheritance; and its published W3C status is FPWD. No unresolved lesson issues."
     },
     {
       "taskId": "t07-018-reference-experimental-css-rhythmic-sizing",
