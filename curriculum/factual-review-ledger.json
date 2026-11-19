@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1135,
-    "pending": 1214,
-    "claimsChecked": 47093,
-    "claimsCorrected": 2245,
+    "reviewed": 1136,
+    "pending": 1213,
+    "claimsChecked": 47307,
+    "claimsCorrected": 2257,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -89990,13 +89990,45 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-fonts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 214,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 214 factual claims: the 24 assigned property names and their grammars, initial behavior, inheritance/applicability where material; generic family inventory and fallback per character/cluster; font matching and weight/style ranges; font shorthand ordering, supported CSS2 variant subset, and reset-only versus independently cascading subproperties; size/metric adjustment and its computed-versus-used-value effects; synthesis shorthand/longhands and oblique-only behavior; OpenType feature and variable-axis distinction, tag syntax, supported-axis handling, duplicates, clamping, and high-level-property precedence; all supplied variant value families and their intended typographic effects; font-specific named alternates; emoji presentation and explicit variation-selector precedence; palette definitions and limits; draft/Recommendation status, at-risk notices, and companion-inventory boundaries; examples, corrections, and knowledge-check answers.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-fonts-4/",
+              "section": "Status; §2.1–2.8 family/size/shorthand/synthesis; §5 font matching; §6 feature properties; §7 precedence; §8 variations; §9 color fonts and emoji; property index",
+              "verdict": "supported; 10 omissions or overgeneralizations from the shallow draft corrected"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-fonts-5/",
+              "section": "Status and §3.4 font-size-adjust metric grammar; delta relationship to Fonts 4",
+              "verdict": "supported; metric-selector and from-font syntax attributed to the newer work-in-progress draft"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-fonts-3/",
+              "section": "2018 Recommendation; historical baseline for family, size, weight, features, variants, and font-size-adjust",
+              "verdict": "supported; distinguished stable historical text from newer draft additions"
+            },
+            {
+              "url": "https://www.unicode.org/reports/tr51/",
+              "section": "Emoji presentation and variation sequences",
+              "verdict": "supported; CSS behavior and Unicode presentation semantics kept distinct"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "Snapshot status and role",
+              "verdict": "supported; snapshot stability explicitly distinguished from browser availability"
+            }
+          ],
+          "verdict": "All in-scope claims checked against primary specifications; errors and material omissions corrected; no unresolved in-scope issues."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -90353,7 +90385,11 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-fonts-4/",
+        "https://drafts.csswg.org/css-fonts-5/",
+        "https://www.w3.org/TR/css-fonts-3/",
+        "https://www.unicode.org/reports/tr51/"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
