@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1147,
-    "pending": 1202,
-    "claimsChecked": 48655,
-    "claimsCorrected": 2412,
+    "reviewed": 1148,
+    "pending": 1201,
+    "claimsChecked": 48774,
+    "claimsCorrected": 2430,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -93545,13 +93545,60 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-text-decoration.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 119,
+      "claimsCorrected": 18,
+      "evidence": [
+        {
+          "claims": "Enumerated 119 factual claim units: 56 formal property-definition fields (14 inventory names × grammar, initial value, applicability, and inheritance), 36 value/behavior claims (line types, shorthand resets, decoration propagation, emphasis mark grammar and script exclusions, shadow syntax/painting, underline positioning and offset, thickness, skip-ink, and inset endpoint math), and 27 interaction, status, accessibility, example, and scope claims. Corrected 18 material omissions or misleading generalizations from the shallow generated reference, including the distinction between propagation and inheritance, exact shorthand boundaries, text-emphasis position not being reset, skip-ink applying only to underlines/overlines, and the draft-only status of text-decoration-inset and Level 4 text-shadow extensions.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/css-text-decor-3/",
+              "section": "Published CSS Text Decoration Level 3 Candidate Recommendation; stable property model and status cross-check",
+              "verdict": "Used as published snapshot and history comparator; Level 3 grammar and behavior checked against the live CSSWG draft."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-text-decor-3/",
+              "section": "Current Level 3 editor text: §§2–5, property definitions, decoration propagation, emphasis, shadow, paint order",
+              "verdict": "Primary source for established line decoration, emphasis, and text-shadow rules; grammar, defaults, applicability, inheritance, and rendering distinctions checked."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-text-decor-4/",
+              "section": "17 August 2026 Editor’s Draft: §§2.4–2.10, 3.1–3.5, and 4",
+              "verdict": "Primary current work-in-progress source for thickness, underline offset/from-font, inset, and skip-ink; draft status is stated explicitly and rough/unvetted sections are not presented as settled interoperable behavior."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-backgrounds-3/",
+              "section": "Line-width value definition reused by text-decoration-thickness",
+              "verdict": "Primary CSSWG source confirms non-negative length plus thin, medium, and thick keywords."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-inset",
+              "section": "Property reference and captured support metadata",
+              "verdict": "Cross-checks author-facing description; absence of a captured Baseline label is not treated as proof of zero implementation, and CSSWG draft status is kept explicit."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration",
+              "section": "Shorthand reference and support metadata",
+              "verdict": "Cross-checks shorthand description; current Level 4 shorthand components are distinguished from the older Level 3 shorthand."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-emphasis",
+              "section": "Shorthand reference and support metadata",
+              "verdict": "Cross-checks the shorthand scope; position is correctly documented as an independent longhand."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-shadow",
+              "section": "Property reference and support metadata",
+              "verdict": "Cross-checks the established author-facing property; Level 4 inset/spread extensions are labeled draft-only."
+            }
+          ],
+          "verdict": "All supplied names and material behavior claims are checked against CSSWG sources, with the published Level 3 Recommendation used to distinguish settled behavior from the current Level 4 Editor’s Draft. The rewritten lesson is complete for its frozen inventory; compatibility is not inferred from specification inclusion."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -93908,9 +93955,12 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-text-decor-3/",
+        "https://drafts.csswg.org/css-text-decor-4/",
+        "https://www.w3.org/TR/css-text-decor-3/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the full 14-name inventory against CSS Text Decoration Level 3 and the current Level 4 Editor’s Draft, with published Level 3 and MDN cross-checks. Replaced the generic generated index with a detailed reference covering grammars, defaults, inheritance, applicability, line-decoration propagation, cascade/shorthand boundaries, writing modes, emphasis marks, shadows, accessibility, examples, and draft/support distinctions. Validators rerun."
     },
     {
       "taskId": "t07-018-reference-pointer-events",
