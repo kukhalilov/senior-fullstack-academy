@@ -271,30 +271,45 @@
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-16",
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
       "items": [
-        "Current minimal-host templates can insert middleware automatically based on registered services and endpoint metadata. The final ordering is not always identical to historical explicit Startup examples; inspect current .NET 11 documentation and generated diagnostics when order matters. In ASP.NET Core 11, response compression adds Vary: Accept-Encoding to every response when compression is enabled, and Kestrel applies RequestHeadersTimeout to incomplete HTTP/2 and HTTP/3 trailer headers."
+        "Current minimal-host templates can insert middleware automatically based on registered services and endpoint metadata. The final ordering is not always identical to historical explicit Startup examples; inspect current .NET 11 documentation and generated diagnostics when order matters.",
+        "ASP.NET Core 11 response-compression middleware adds Vary: Accept-Encoding to every response when compression is enabled, including responses that remain uncompressed, so shared caches distinguish negotiated representations.",
+        "ASP.NET Core 11 adds Zstandard (zstd) support to response compression and request decompression, with zstd enabled by default.",
+        "ASP.NET Core 11 fixed-window rate limiting reports RetryAfter metadata accurately at the next window boundary; an OnRejected handler can propagate it to the Retry-After header.",
+        "Kestrel in ASP.NET Core 11 applies RequestHeadersTimeout to incomplete HTTP/2 and HTTP/3 trailer header blocks.",
+        "Starting in .NET 10, ExceptionHandlerOptions.SuppressDiagnosticsCallback controls whether diagnostics are emitted for handled exceptions."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/webapplication?view=aspnetcore-11.0"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/webapplication?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.exceptionhandleroptions?view=aspnetcore-11.0"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core 11 middleware, routing, error handling, security, request/response, API references, and release notes",
-    "edition": "ASP.NET Core 11 / .NET 11 GA middleware checked 2026-11-16",
-    "checkedAt": "2026-11-16",
+    "edition": "ASP.NET Core 11 / .NET 11 GA middleware checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/middleware?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/write?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/extensibility?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/built-in?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/request-response?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/use-http-context?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/static-files?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.exceptionhandleroptions?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.webapplication?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"

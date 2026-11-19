@@ -27,7 +27,7 @@ Verify the effective host pipeline with an integration test. [Middleware orderin
 ## Exercises
 
 1. **Short circuit:** A calls next; B returns 401 for anonymous users; C logs around next; endpoint returns 200. Write each log order and explain which stages are skipped.
-2. **Private document:** Static files run before authorization and `/wwwroot/contracts/acme.pdf` is confidential. Explain the exposure and redesign delivery.
+2. **Private document:** Static files run before authorization. The confidential file is stored at `wwwroot/contracts/acme.pdf` and is exposed at the URL `/contracts/acme.pdf`. Explain the exposure and redesign delivery.
 3. **Branches:** `/legacy` should run special behavior then common logging. A debug header should produce a terminal diagnostic response. Select helpers and explain path/rejoin behavior.
 4. **Body bug:** Middleware reads the request body and JSON binding sees empty input. Explain and give a safe repair or remove the read.
 5. **Scoped service:** Conventional middleware constructor takes a scoped audit DbContext. Explain the mismatch and give two sound designs.
