@@ -23,7 +23,7 @@ Pseudo-elements extend selector matching to generated boxes, fragments, native c
 ### Native UI, media, and highlights
 
 - `::backdrop` represents the backdrop rendered immediately below a top-layer element, such as a modal dialog or fullscreen element.
-- `::checkmark` targets the checkmark inside the currently selected `<option>` of a customizable `<select>`. It is available only when the select uses a picker and opts into `appearance: base-select`; it is not the native checkbox/radio checkmark.
+- The current MDN reference documents `::checkmark` inside the selected `<option>` of a customizable `<select>`, which opts in with `appearance: base-select`. The newer CSS Form Control Styling Level 1 editor draft also defines it for checked checkbox/radio controls under its basic-appearance model. Browser implementations and the draft scope differ, so check the exact control and engine; do not infer that ordinary native checkboxes expose a styleable checkmark.
 - `::file-selector-button` targets the button part of a file-upload input; the actual file picker remains browser-controlled.
 - `::picker-icon` targets the icon associated with a form-control picker, such as the closed-state arrow of a customizable `<select>`; availability depends on the control and supported base appearance.
 - `::picker(select)` targets the popup picker of a customizable `<select>`. The control and picker opt into customizable-select styling with `appearance: base-select`; support and native behavior vary by browser.
@@ -88,7 +88,8 @@ If a user must understand or act on the generated content, put that information 
 3. **Should essential text live only in `::after`?** No; generated decoration may be absent from semantic/accessible content and should not carry required meaning.
 4. **What do view-transition pseudo-elements represent?** Temporary old/new rendered snapshots organized in a transition pseudo-element tree.
 5. **Does `::target-text` select the element named by `#section`?** No. It styles a text range identified by text-fragment navigation; `:target` selects the element indicated by an ordinary fragment identifier.
-6. **What must be true before styling `::picker(select)` and `option::checkmark`?** The customizable select and its picker must opt into `appearance: base-select`, and the target browser must support the relevant control feature.
+6. **Does `::checkmark` have only a customizable-select meaning in every current specification?** No. MDN documents the selected-option use, while the newer CSS Forms editor draft also defines checked checkbox/radio uses under its basic-appearance model; implementation support must be checked.
+7. **What must be true before styling `::picker(select)` and `option::checkmark`?** The customizable select and its picker must opt into `appearance: base-select`, and the target browser must support the relevant control feature.
 
 ### Full syntax inventory
 

@@ -7,8 +7,8 @@
     "lessons": 2347,
     "reviewed": 1078,
     "pending": 1269,
-    "claimsChecked": 42188,
-    "claimsCorrected": 1737,
+    "claimsChecked": 42189,
+    "claimsCorrected": 1738,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -71482,8 +71482,8 @@
       "draft": "course/drafts/t07-016/t07-016-reference-standard-pseudo-elements.md",
       "status": "reviewed",
       "claimInventory": "complete",
-      "claimsChecked": 48,
-      "claimsCorrected": 7,
+      "claimsChecked": 49,
+      "claimsCorrected": 8,
       "evidence": [
         {
           "claims": "Enumerated and checked every assigned pseudo-element, example, comparison, support statement, common mistake, and answer against current CSS specifications, WebVTT, and MDN.",
@@ -71579,6 +71579,21 @@
               "verdict": "supported; identified current-index inventory omission for the next assigned lesson"
             }
           ]
+        },
+        {
+          "claims": "Reconciled the MDN customizable-select scope for ::checkmark with the newer CSS Form Control Styling editor draft, which also defines checkbox/radio checkmarks under a basic-appearance model; explicitly differentiated draft scope from implemented support.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-forms-1/",
+              "section": "Sections 4.3–4.4: ::checkmark generation for checked checkbox/radio and option elements under basic appearance",
+              "verdict": "corrected overly categorical statement; current implementation remains engine-dependent"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3A%3Acheckmark",
+              "section": "Currently documented customizable-select implementation and base-select requirements",
+              "verdict": "distinguished current reference coverage from newer draft scope"
+            }
+          ]
         }
       ],
       "issues": [],
@@ -71625,7 +71640,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3A%3Apicker",
         "https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Fragment/Text_fragments"
       ],
-      "reviewNote": "Manually audited the complete pinned pseudo-element inventory and the lesson claims against current CSS Pseudo-Elements, CSS Forms, WebVTT, CSS Shadow, View Transitions, and MDN references. Corrected the selected-option-only scope of ::checkmark, the base-select opt-in for picker pseudo-elements, ::cue() internal cue-node grammar/property restrictions, ::target-text text-fragment semantics, and Custom Highlight API registration. Clarified typography, marker/highlight restrictions, shadow exposure, and transition snapshots. Identified ::view-transition-group-children() as a Level 2 addition and assigned it to the immediately following current-index/draft reference audit. No unresolved factual omissions remain within this lesson inventory."
+      "reviewNote": "Manually audited the complete pinned pseudo-element inventory and the lesson claims against current CSS Pseudo-Elements, CSS Forms, WebVTT, CSS Shadow, View Transitions, and MDN references. Corrected the selected-option-only scope of ::checkmark, the base-select opt-in for picker pseudo-elements, ::cue() internal cue-node grammar/property restrictions, ::target-text text-fragment semantics, and Custom Highlight API registration. Clarified typography, marker/highlight restrictions, shadow exposure, and transition snapshots. Identified ::view-transition-group-children() as a Level 2 addition and assigned it to the immediately following current-index/draft reference audit. No unresolved factual omissions remain within this lesson inventory. A final reconciliation against the October 2026 CSS Form Control Styling draft corrected an overly narrow statement: the draft additionally defines ::checkmark for checked checkbox/radio controls under basic appearance, while the current MDN page documents the selected-option customizable-select behavior. The lesson now explicitly separates the draft scope from engine implementation."
     },
     {
       "taskId": "t07-016-reference-experimental-pseudo-elements",
