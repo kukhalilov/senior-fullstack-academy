@@ -12,7 +12,7 @@ A form element is both a submission configuration object and a live view over co
 
 # Supplied names explained
 
-- `new HTMLFormElement()` — Constructs a form element through the HTML element constructor. In application code, `document.createElement("form")` is often clearer.
+- `HTMLFormElement()` constructor — The HTML interface exposes the special HTML element constructor used as `super()` when defining a customized built-in element that extends `HTMLFormElement`. Calling `new HTMLFormElement()` directly throws; create an ordinary form with `document.createElement("form")`.
 - `acceptCharset` — Reflects `accept-charset`. The current standard accepts UTF-8 for form submission; the historical plural interface does not imply arbitrary encodings are supported.
 - `action` — Reflects the submission URL, resolved as a URL by the platform. An empty/missing value follows the standard's current document URL behavior.
 - `autocomplete` — Reflects the form's `on`/`off` autofill default for descendant/form-owned controls; individual controls can specify their own field tokens or policy.

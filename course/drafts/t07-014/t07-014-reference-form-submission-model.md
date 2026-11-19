@@ -100,4 +100,4 @@ If the handler cancels native submission, it now owns pending state, errors, dup
 11. Does dispatching `new SubmitEvent("submit")` make the browser submit the form? **No. It only dispatches a synthetic event; `requestSubmit()` requests the native validation and submission path.**
 12. What does `form.elements.item(index)` return for an out-of-range index? **`null`.**
 
-Sources: [WHATWG forms](https://html.spec.whatwg.org/multipage/forms.html), [WHATWG form elements](https://html.spec.whatwg.org/multipage/form-elements.html), [MDN form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form).
+Sources: [WHATWG forms](https://html.spec.whatwg.org/multipage/forms.html), [WHATWG FormData interface](https://xhr.spec.whatwg.org/#interface-formdata), [WHATWG form elements](https://html.spec.whatwg.org/multipage/form-elements.html), [MDN FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData), [MDN form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form).

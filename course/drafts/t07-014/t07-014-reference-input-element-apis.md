@@ -12,6 +12,7 @@ The DOM interface exposes live control state and operations. Reflected propertie
 
 # Supplied names explained
 
+- `HTMLInputElement()` constructor — The special HTML element constructor is used as `super()` by a customized built-in element extending `HTMLInputElement`; direct `new HTMLInputElement()` throws. Create an ordinary input with `document.createElement("input")`.
 - `accept` — Reflected file-type chooser hint for file inputs. It does not validate file contents.
 - `alpha` — Current color input property reflecting alpha-channel selection. Browser support for the associated feature can vary.
 - `alt` — Alternative text for image submit inputs.
@@ -67,8 +68,19 @@ The DOM interface exposes live control state and operations. Reflected propertie
 - `setRangeText()` — Replaces a range of text in a supported text-entry control and updates selection according to an optional selection mode. Unsupported types can throw.
 - `setSelectionRange()` — Sets selection start/end/direction for supported text-entry types; throws `InvalidStateError` for unsupported input states.
 - `showPicker()` — Opens a browser-provided picker for applicable types (date/time/color/file, depending on platform). It generally requires transient user activation and can throw when unsupported, disabled/readonly, or called in a disallowed context.
+- `popoverTargetElement` — Gets or sets the popover element controlled by an `<input type="button">`; it is the DOM property counterpart of `popovertarget`.
+- `popoverTargetAction` — Gets or sets `toggle`, `show`, or `hide` behavior for the input's popover target, corresponding to `popovertargetaction`.
+- `align` (obsolete) — Legacy alignment property documented by MDN; use CSS instead.
+- `incremental` (non-standard) — Historical search-input property affecting when search events fire in some engines. Do not depend on it for portable behavior.
+- `useMap` (obsolete) — Legacy client-side image-map property documented by MDN; it is obsolete and not part of current standard input behavior.
+- `webkitdirectory` (non-standard extension) — Requests directory selection from a file input in supporting browsers. It is vendor-prefixed; feature-detect and do not assume portable support.
+- `webkitEntries` (non-standard extension) — Browser-specific file-system entry list for selected files/directories. Use the standard `files` `FileList` API unless an application specifically targets this extension.
 - `input event` — Fires as the user changes a value through interaction for controls that support it. Programmatically assigning `.value` does not itself fire `input`; dispatching a synthetic event is not equivalent to trusted user input.
 - `change event` — Fires when a value change is committed according to that control's interaction model, often on blur/selection/commit rather than every keystroke. Exact timing differs by control type.
+- `select event` — Fires when the user selects text in a supported text-entry input. It reports selection activity; it is not a value-change event.
+- `selectionchange event` — Fires on the text control when its text selection changes. It is distinct from the document Selection API's selectionchange event.
+- `cancel event` — Can fire when a user cancels the file picker or reselects the same file selection; support varies, so it is not a replacement for `change` when detecting newly selected file values.
+- `search event` — A search-specific event for `<input type="search">` in supporting browsers. Its timing is browser-specific; use the standard `input` event for portable value-change handling.
 
 # Cross-item comparison
 
@@ -113,4 +125,6 @@ email.setCustomValidity(isAllowed(email.value) ? '' : 'Enter an allowed address.
 5. Which API changes text selection? **`setSelectionRange()` or `setRangeText()` on supported text-entry states.**
 6. What can make `showPicker()` throw even for a supported input type? **The input may be immutable, the call may lack transient user activation, or the document may be in a disallowed cross-origin context (with the standard's historical file/color exceptions).**
 
-Sources: [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), [WHATWG form elements](https://html.spec.whatwg.org/multipage/form-elements.html), [MDN HTMLInputElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
+Inventory names covered: HTMLInputElement() constructor; HTMLInputElement.accept; HTMLInputElement.alpha; HTMLInputElement.alt; HTMLInputElement.autocomplete; HTMLInputElement.capture; HTMLInputElement.defaultChecked; HTMLInputElement.checked; HTMLInputElement.colorSpace; HTMLInputElement.dirName; HTMLInputElement.disabled; HTMLInputElement.form; HTMLInputElement.files; HTMLInputElement.formAction; HTMLInputElement.formEnctype; HTMLInputElement.formMethod; HTMLInputElement.formNoValidate; HTMLInputElement.formTarget; HTMLInputElement.height; HTMLInputElement.indeterminate; HTMLInputElement.list; HTMLInputElement.max; HTMLInputElement.maxLength; HTMLInputElement.min; HTMLInputElement.minLength; HTMLInputElement.multiple; HTMLInputElement.name; HTMLInputElement.pattern; HTMLInputElement.placeholder; HTMLInputElement.popoverTargetElement; HTMLInputElement.popoverTargetAction; HTMLInputElement.readOnly; HTMLInputElement.required; HTMLInputElement.size; HTMLInputElement.src; HTMLInputElement.step; HTMLInputElement.type; HTMLInputElement.defaultValue; HTMLInputElement.value; HTMLInputElement.valueAsDate; HTMLInputElement.valueAsNumber; HTMLInputElement.width; HTMLInputElement.stepUp(); HTMLInputElement.stepDown(); HTMLInputElement.willValidate; HTMLInputElement.validity; HTMLInputElement.validationMessage; HTMLInputElement.checkValidity(); HTMLInputElement.reportValidity(); HTMLInputElement.setCustomValidity(); HTMLInputElement.labels; HTMLInputElement.select(); HTMLInputElement.selectionStart; HTMLInputElement.selectionEnd; HTMLInputElement.selectionDirection; HTMLInputElement.setRangeText(); HTMLInputElement.setSelectionRange(); HTMLInputElement.showPicker(); HTMLInputElement.align (obsolete); HTMLInputElement.incremental (non-standard); HTMLInputElement.useMap (obsolete); HTMLInputElement.webkitdirectory (non-standard); HTMLInputElement.webkitEntries (non-standard); input event; change event; invalid event; select event; selectionchange event; cancel event; search event.
+
+Sources: [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), [WHATWG DOM HTML element constructors](https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors), [WHATWG form elements](https://html.spec.whatwg.org/multipage/form-elements.html), [MDN HTMLInputElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement), [MDN HTMLInputElement selectionchange](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event), [MDN input event](https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event), [MDN change event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event).

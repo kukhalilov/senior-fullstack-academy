@@ -12,7 +12,7 @@ The select owns a live list of options. Each option has default selectedness fro
 
 # Supplied names explained
 
-- new HTMLSelectElement() — HTML element constructor; document.createElement("select") is usually clearer in ordinary code.
+- HTMLSelectElement() constructor — The HTML interface exposes the special HTML element constructor used as `super()` when defining a customized built-in element that extends `HTMLSelectElement`. Calling `new HTMLSelectElement()` directly throws; create an ordinary select with `document.createElement("select")`.
 - autocomplete, disabled, multiple, name, required, and size — IDL properties reflect the corresponding select attributes. form is a read-only reference to the current form owner.
 - type — Read-only control type: select-one or select-multiple according to the multiple state.
 - options — A same-object, live HTMLOptionsCollection containing the select options, including those nested in groups.
@@ -36,8 +36,8 @@ It extends HTMLCollection, so it supports live indexed lookup and inherited item
 # HTMLOptionElement API
 
 - new Option(text?, value?, defaultSelected?, selected?) — Creates an option. defaultSelected controls default/reset selectedness; selected controls current selectedness. If value is omitted, the option's text-derived value is used.
-- HTMLOptionElement() — The interface constructor is exposed by HTML constructor machinery, but Option() is purpose-built to initialize its text, value, and selection flags.
-- disabled reflects the option attribute and disabled optgroup context. Programmatic selection changes remain possible even for disabled options.
+- HTMLOptionElement() constructor — The HTML interface exposes the special HTML element constructor for customized built-in elements; direct `new HTMLOptionElement()` is not ordinary option creation. `new Option(...)` is the supported factory for initializing text, value, and selection flags, while `document.createElement("option")` creates an ordinary option.
+- disabled reflects only the option's own disabled attribute. An option inside a disabled optgroup is effectively unavailable too, but the option's disabled property itself remains false unless the option attribute is present. Programmatic selection changes can still occur even for disabled options.
 - form is a read-only reference to the owning select's form, or null without one.
 - label gives the option label: a nonempty label attribute is used; otherwise text content supplies it.
 - defaultSelected reflects the selected content attribute; selected is live selectedness. User changes do not necessarily rewrite the attribute.
@@ -66,6 +66,11 @@ For a multi-select, repeated form entries are created for selected options. sele
 
 HTMLSelectElement.value represents only the first chosen option, while selectedOptions represents the full current selection. The live options collection represents all available options, not just selected ones. HTMLOptionElement.selected is current state; defaultSelected is the reset baseline.
 
+# Events
+
+- HTMLSelectElement input event — Fires when a user changes the selected value through interaction; assigning selectedIndex, value, or option.selected in script does not itself dispatch input.
+- HTMLSelectElement change event — Fires when the user commits a selection change according to the platform's interaction model. For a picker this is commonly when the choice is committed; exact timing can differ by platform and control presentation.
+
 # Knowledge checks with answers
 
 1. What does select.value return for a multi-select? **Only the first selected option value, or the empty string.**
@@ -74,6 +79,6 @@ HTMLSelectElement.value represents only the first chosen option, while selectedO
 4. How do you read repeated multi-select values from submission data? **FormData.getAll(name).**
 5. What does setting select.options.length = 0 do? **Removes all options from the live options collection.**
 
-Inventory names covered: HTMLSelectElement() constructor; HTMLSelectElement.autocomplete; HTMLSelectElement.disabled; HTMLSelectElement.form; HTMLSelectElement.multiple; HTMLSelectElement.name; HTMLSelectElement.required; HTMLSelectElement.size; HTMLSelectElement.type; HTMLSelectElement.options; HTMLSelectElement.length; HTMLSelectElement.item(); HTMLSelectElement.namedItem(); HTMLSelectElement.add(); HTMLSelectElement.remove(); HTMLSelectElement indexed setter; HTMLSelectElement.selectedOptions; HTMLSelectElement.selectedIndex; HTMLSelectElement.value; HTMLSelectElement.willValidate; HTMLSelectElement.validity; HTMLSelectElement.validationMessage; HTMLSelectElement.checkValidity(); HTMLSelectElement.reportValidity(); HTMLSelectElement.setCustomValidity(); HTMLSelectElement.showPicker(); HTMLSelectElement.labels; HTMLOptionsCollection; HTMLOptionsCollection.item(); HTMLOptionsCollection.namedItem(); HTMLOptionsCollection.length setter; HTMLOptionsCollection.selectedIndex setter; HTMLOptionElement() constructor; Option() constructor; HTMLOptionElement.disabled; HTMLOptionElement.form; HTMLOptionElement.label; HTMLOptionElement.defaultSelected; HTMLOptionElement.selected; HTMLOptionElement.value; HTMLOptionElement.text; HTMLOptionElement.index.
+Inventory names covered: HTMLSelectElement() constructor; HTMLSelectElement.autocomplete; HTMLSelectElement.disabled; HTMLSelectElement.form; HTMLSelectElement.multiple; HTMLSelectElement.name; HTMLSelectElement.required; HTMLSelectElement.size; HTMLSelectElement.type; HTMLSelectElement.options; HTMLSelectElement.length; HTMLSelectElement.item(); HTMLSelectElement.namedItem(); HTMLSelectElement.add(); HTMLSelectElement.remove(); HTMLSelectElement indexed setter; HTMLSelectElement.selectedOptions; HTMLSelectElement.selectedIndex; HTMLSelectElement.value; HTMLSelectElement.willValidate; HTMLSelectElement.validity; HTMLSelectElement.validationMessage; HTMLSelectElement.checkValidity(); HTMLSelectElement.reportValidity(); HTMLSelectElement.setCustomValidity(); HTMLSelectElement.showPicker(); HTMLSelectElement.labels; HTMLSelectElement input event; HTMLSelectElement change event; HTMLOptionsCollection; HTMLOptionsCollection.item(); HTMLOptionsCollection.namedItem(); HTMLOptionsCollection.length setter; HTMLOptionsCollection.selectedIndex setter; HTMLOptionElement() constructor; Option() constructor; HTMLOptionElement.disabled; HTMLOptionElement.form; HTMLOptionElement.label; HTMLOptionElement.defaultSelected; HTMLOptionElement.selected; HTMLOptionElement.value; HTMLOptionElement.text; HTMLOptionElement.index.
 
 Sources: [WHATWG form elements](https://html.spec.whatwg.org/multipage/form-elements.html), [MDN HTMLSelectElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement), [MDN HTMLOptionsCollection](https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection), [MDN HTMLOptionElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement).

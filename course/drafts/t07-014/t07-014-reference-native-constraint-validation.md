@@ -18,8 +18,8 @@ Constraints are browser-computed facts about a control's current value and attri
 - `ValidityState.rangeOverflow` — A value exceeds the applicable `max` constraint for a type with range semantics.
 - `ValidityState.rangeUnderflow` — A value is below the applicable `min` constraint.
 - `ValidityState.stepMismatch` — A value does not align to the allowed step from the type's step base. `step="any"` disables the step constraint for applicable numeric/date-time states.
-- `ValidityState.tooLong` — A user-entered value exceeds `maxlength` under the control's length rules. Programmatically assigned values can interact differently with length checking; always enforce size on the server.
-- `ValidityState.tooShort` — A user-entered value is shorter than `minlength` under the constraint rules. A custom script must not rely on this as the only length guard.
+- `ValidityState.tooLong` — A user-entered value exceeds `maxlength` under the control's length rules, measured in UTF-16 code units. Programmatically assigned values do not necessarily trigger the flag; always enforce size on the server.
+- `ValidityState.tooShort` — A user-entered value is shorter than `minlength` under the constraint rules, measured in UTF-16 code units. A custom script must not rely on this as the only length guard.
 - `ValidityState.typeMismatch` — A nonempty value does not match the syntax expected by a type such as email or URL. It does not prove the address exists or URL is safe.
 - `ValidityState.valid` — True if no applicable validity flag is failing. A control can be barred from validation; inspect `willValidate` when deciding what a validity result means.
 - `ValidityState.valueMissing` — A required value/selection is missing for a control where `required` applies.
@@ -34,8 +34,8 @@ Constraints are browser-computed facts about a control's current value and attri
 - `min` — Lower numeric/date/time bound. It can cause `rangeUnderflow` and also participates in the step base when relevant.
 - `max` — Upper numeric/date/time bound; values above it can cause `rangeOverflow`.
 - `step` — Permitted increment. Misalignment can cause `stepMismatch`; `any` permits any representable value. Default steps vary by input type.
-- `minlength` — Minimum character length constraint for supported text values. Browser behavior has user-edit edge cases; validate canonical data on the server.
-- `maxlength` — Maximum character length constraint for supported text values. It may limit user entry but is not a storage/resource limit for attacker-controlled requests.
+- `minlength` — Minimum UTF-16 code-unit length constraint for supported text values. Browser behavior has user-edit edge cases; validate canonical data on the server.
+- `maxlength` — Maximum UTF-16 code-unit length constraint for supported text values. It may limit user entry but is not a storage/resource limit for attacker-controlled requests.
 - `novalidate` — Form attribute skipping interactive constraint validation during native form submission. Script calls to `checkValidity()` still inspect constraints.
 - `formnovalidate` — Submitter attribute that skips interactive constraint validation for that submission only.
 - `invalid event` — Event fired at a control when it fails validity checks during validation. It does not bubble normally; use capture or handle per-control events when observing the form. Canceling it can suppress browser reporting behavior.
@@ -81,4 +81,4 @@ Recompute/clear the custom message when the value changes; otherwise a stale non
 4. Does a valid email syntax prove mailbox ownership? **No.**
 5. How do you clear a custom error? **Call `setCustomValidity('')`.**
 
-Sources: [MDN constraint validation](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation), [WHATWG forms](https://html.spec.whatwg.org/multipage/forms.html), [WHATWG input](https://html.spec.whatwg.org/multipage/input.html).
+Sources: [MDN constraint validation](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation), [WHATWG forms](https://html.spec.whatwg.org/multipage/forms.html), [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), [WHATWG form-control infrastructure](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html).

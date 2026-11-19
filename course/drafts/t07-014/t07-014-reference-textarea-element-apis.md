@@ -12,7 +12,7 @@ A textarea has a default value from its text content and a live value that users
 
 # Supplied names explained
 
-- new HTMLTextAreaElement() — Constructs an HTML textarea; document.createElement("textarea") is commonly used for dynamic UI.
+- HTMLTextAreaElement() constructor — The HTML interface exposes the special HTML element constructor used as `super()` when defining a customized built-in element that extends `HTMLTextAreaElement`. Calling `new HTMLTextAreaElement()` directly throws; create an ordinary textarea with `document.createElement("textarea")`.
 - autocomplete, cols, dirName, disabled, maxLength, minLength, name, placeholder, readOnly, required, rows, and wrap — Reflect or expose the corresponding attributes. cols/rows are presentation dimensions, not limits on content length.
 - form — Read-only current form owner, or null when there is none.
 - type — Read-only string whose value is textarea.
@@ -53,6 +53,13 @@ This replaces the selected text and selects the replacement. Programmatic value/
 
 defaultValue is the markup/reset baseline; value and textLength describe current text. cols and rows affect display dimensions, while maxLength/minLength constrain editable value length. Selection methods address portions of the current value and do not set the form submission name or replace validation.
 
+# Events
+
+- HTMLTextAreaElement input event — Fired when a user action changes the current value. Assigning the value property alone does not fire it.
+- HTMLTextAreaElement change event — Fired when the user commits a change according to the control's interaction model; it is not guaranteed to fire on every keystroke.
+- HTMLTextAreaElement select event — Fired when text is selected in the control. setRangeText() can cause the control's selection to change and fire selection-related events.
+- HTMLTextAreaElement selectionchange event — Fired at the textarea when its text selection changes. This is distinct from the document-level Selection API event.
+
 # Knowledge checks with answers
 
 1. Where does a textarea's default value come from? **Its text content, exposed as defaultValue.**
@@ -61,6 +68,6 @@ defaultValue is the markup/reset baseline; value and textLength describe current
 4. What does setRangeText(text) replace? **The current selection.**
 5. Which setRangeText mode selects the inserted text? **select.**
 
-Inventory names covered: HTMLTextAreaElement() constructor; HTMLTextAreaElement.autocomplete; HTMLTextAreaElement.cols; HTMLTextAreaElement.dirName; HTMLTextAreaElement.disabled; HTMLTextAreaElement.form; HTMLTextAreaElement.maxLength; HTMLTextAreaElement.minLength; HTMLTextAreaElement.name; HTMLTextAreaElement.placeholder; HTMLTextAreaElement.readOnly; HTMLTextAreaElement.required; HTMLTextAreaElement.rows; HTMLTextAreaElement.wrap; HTMLTextAreaElement.type; HTMLTextAreaElement.defaultValue; HTMLTextAreaElement.value; HTMLTextAreaElement.textLength; HTMLTextAreaElement.willValidate; HTMLTextAreaElement.validity; HTMLTextAreaElement.validationMessage; HTMLTextAreaElement.checkValidity(); HTMLTextAreaElement.reportValidity(); HTMLTextAreaElement.setCustomValidity(); HTMLTextAreaElement.labels; HTMLTextAreaElement.select(); HTMLTextAreaElement.selectionStart; HTMLTextAreaElement.selectionEnd; HTMLTextAreaElement.selectionDirection; HTMLTextAreaElement.setRangeText(); HTMLTextAreaElement.setSelectionRange(); SelectionMode=select; SelectionMode=start; SelectionMode=end; SelectionMode=preserve.
+Inventory names covered: HTMLTextAreaElement() constructor; HTMLTextAreaElement.autocomplete; HTMLTextAreaElement.cols; HTMLTextAreaElement.dirName; HTMLTextAreaElement.disabled; HTMLTextAreaElement.form; HTMLTextAreaElement.maxLength; HTMLTextAreaElement.minLength; HTMLTextAreaElement.name; HTMLTextAreaElement.placeholder; HTMLTextAreaElement.readOnly; HTMLTextAreaElement.required; HTMLTextAreaElement.rows; HTMLTextAreaElement.wrap; HTMLTextAreaElement.type; HTMLTextAreaElement.defaultValue; HTMLTextAreaElement.value; HTMLTextAreaElement.textLength; HTMLTextAreaElement.willValidate; HTMLTextAreaElement.validity; HTMLTextAreaElement.validationMessage; HTMLTextAreaElement.checkValidity(); HTMLTextAreaElement.reportValidity(); HTMLTextAreaElement.setCustomValidity(); HTMLTextAreaElement.labels; HTMLTextAreaElement.select(); HTMLTextAreaElement.selectionStart; HTMLTextAreaElement.selectionEnd; HTMLTextAreaElement.selectionDirection; HTMLTextAreaElement.setRangeText(); HTMLTextAreaElement.setSelectionRange(); SelectionMode=select; SelectionMode=start; SelectionMode=end; SelectionMode=preserve; HTMLTextAreaElement input event; HTMLTextAreaElement change event; HTMLTextAreaElement select event; HTMLTextAreaElement selectionchange event.
 
-Sources: [WHATWG form elements](https://html.spec.whatwg.org/multipage/form-elements.html), [MDN HTMLTextAreaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement), [MDN setRangeText](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText), [MDN setSelectionRange](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange).
+Sources: [WHATWG form elements](https://html.spec.whatwg.org/multipage/form-elements.html), [MDN HTMLTextAreaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement), [MDN setRangeText](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText), [MDN setSelectionRange](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange), [MDN textarea select event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event), [MDN textarea selectionchange event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event).

@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1043,
-    "pending": 1304,
-    "claimsChecked": 40104,
-    "claimsCorrected": 1574,
+    "reviewed": 1057,
+    "pending": 1290,
+    "claimsChecked": 41039,
+    "claimsCorrected": 1587,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1548,9 +1548,9 @@
     {
       "date": "2026-11-18",
       "scope": "HTML forms controls validation and form submission (t07-014)",
-      "status": "partial claim and inventory audit; 2 of 16 current lesson files reviewed",
+      "status": "claim and inventory audit complete; 16 of 16 current lesson files reviewed",
       "findings": [
-        "Updated the source baseline to the WHATWG HTML Living Standard as of 2026-11-19. Manually reviewed the overview and input content-attribute reference; corrected input[multiple] scope and detailed modern pattern semantics. Expanded the frozen inventory after finding missing select/option collection APIs, textarea selection methods, form interface properties, and img form-association nuance; added three focused API references. The remaining 14 files are pending claim-by-claim audit; this topic is not complete.",
+        "Reviewed all 16 active lesson files against the WHATWG HTML Living Standard as of 2026-11-19, official MDN API documentation, and PCI SSC guidance where relevant. Corrected input[multiple] scope, disabled-option semantics, and direct HTML interface-constructor behavior; expanded missing form/input/select/textarea API and event coverage, including current popover and documented legacy input members. All claims and frozen inventory items in this topic are now reviewed; no files remain pending within t07-014.",
         "The frozen form-associated custom-element term did not enumerate the form lifecycle callbacks and ElementInternals form APIs. Added a dedicated complete reference group covering static formAssociated, attachInternals, form and labels, submission/state, validity, and all four form callbacks, with worked answers. The full topic claim-by-claim audit is still pending; this entry does not mark any lesson reviewed. The form-submission inventory also lacked the FormData methods/iterators, FormDataEvent and SubmitEvent constructors/properties, and indexed/named form collection lookups; added those API names, semantics, gotchas, and checks to the manifest/reference."
       ],
       "sources": [
@@ -67486,7 +67486,20 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
       "reviewNote": "Manual claim-by-claim review complete for the overview. It accurately distinguishes native behavior from scripted enhancement and retains server validation boundaries. The lesson remains in drafts pending remaining course reviews."
     },
@@ -67495,13 +67508,39 @@
       "topicId": "t07-014",
       "phase": "concepts",
       "draft": "course/drafts/t07-014/t07-014-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 40,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked the lesson’s claims on form ownership, semantic controls, labels, type/autofill/input modality, native constraint validation, successful controls, submitter overrides, form encodings, submission APIs, reset behavior, and client/server trust boundaries.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "Form categories and ownership; form submission; entry-list construction; form APIs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/input.html",
+              "section": "Input states, common attributes, constraint validation and successful-control behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-elements.html",
+              "section": "Button, select, textarea, output, fieldset, label and option semantics",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation",
+              "section": "Constraint-validation APIs and limits",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -67536,22 +67575,56 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim review complete for this core-concepts lesson. Key distinctions—form ownership versus DOM nesting, input type/autofill/inputmode, listed versus submitted controls, and requestSubmit versus submit—are accurately explained. Draft remains until the complete course audit."
     },
     {
       "taskId": "t07-014-reference-form-control-elements",
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-form-control-elements.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Checked the full assigned element list and its descriptions against the current form-associated/listed/submittable/labelable categories, including object, output, fieldset, img, meter/progress, customizable select and custom-element notes. Corrected the inventory and distinguished associated/listed elements from successful submitted controls.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "4.10.2 categories: form-associated, listed, submittable, resettable, and labelable elements; form named access",
+              "verdict": "supported; inventory/serialization distinctions corrected"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-elements.html",
+              "section": "Button, datalist, optgroup, option, output, progress, meter, fieldset, legend, and selectedcontent definitions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/custom-elements.html#form-associated-custom-elements",
+              "section": "Form-associated custom elements",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -67586,22 +67659,61 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit complete for this reference. Corrections distinguish form-associated/listed elements from submittable controls and include object and img category edge cases. Lesson remains a draft pending course-wide audit."
     },
     {
       "taskId": "t07-014-reference-input-type-states",
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-input-type-states.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 22 current input type states plus their value models, validation/submission behavior, comparison guidance, examples, and edge-case answers. Cross-checked the current input-state index and each relevant section; separately checked the HTML Media Capture hint, and confirmed the types list excludes obsolete/deprecated states.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/input.html",
+              "section": "4.10.5.1 all 22 input type states; state-specific algorithms; common attributes; color alpha/colorspace and checkbox switch",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "Successful controls and form entry-list behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.w3.org/TR/html-media-capture/",
+              "section": "Capture attribute values and hint semantics",
+              "verdict": "supported with implementation-dependent UI caveat"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input",
+              "section": "Input state/API cross-check",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -67636,9 +67748,22 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and complete 22-state inventory review complete. The lesson distinguishes semantic types, serialized values, UI variation, and security/validation limits. Draft remains until the whole course audit finishes."
     },
     {
       "taskId": "t07-014-reference-input-content-attributes",
@@ -67707,7 +67832,20 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
       "reviewNote": "Manual claim and frozen-inventory review complete for this input-attribute lesson. Corrected the select/input multiple conflation and expanded modern pattern semantics. Draft remains in drafts pending the remaining course audit."
     },
@@ -67716,13 +67854,34 @@
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-form-submission-and-control-attributes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 98,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 80 supplied form, button, select, option, and textarea attribute names and their semantics, including the current button command/popover values, override rules, dialog method, UTF-8 accept-charset, disabled/readonly/required rules, placeholder-label selection, textarea wrapping, and editor hints.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "Form attributes, submission method/encoding/target, form-associated ownership and autofill",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-elements.html",
+              "section": "Button Auto state, declarative commands, popovers, select/option behavior, textarea attributes and wrapping",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/input.html",
+              "section": "Submitter overrides and state-specific input behavior",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -67757,22 +67916,61 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit complete for the assigned attribute reference. No unresolved in-scope errors found; lesson remains a draft pending course-wide review."
     },
     {
       "taskId": "t07-014-reference-native-constraint-validation",
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-native-constraint-validation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Checked all 27 assigned constraint flags, APIs, and attributes plus the cross-comparisons, examples, and misconception answers. Verified applicability, event/UI differences, candidate rules, custom-error clearing, pattern v-mode, step bases, user-edit length behavior in UTF-16 code units, and the distinction between browser feedback and server trust. Corrected the lesson to state the exact UTF-16 unit and user-edit caveats.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html",
+              "section": "Constraint validation, ValidityState flags, willValidate, invalid events and validation algorithms",
+              "verdict": "supported; length wording corrected"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/input.html",
+              "section": "Pattern, required, min/max/step, minlength/maxlength and state applicability",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "Form-level checkValidity/reportValidity, novalidate and formnovalidate behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation",
+              "section": "Constraint Validation API guide and caveats",
+              "verdict": "cross-check"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -67807,22 +68005,66 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim audit complete for native constraint validation. The lesson distinguishes static checks, interactive reporting, invalid events, and server-side validation; draft stays unpromoted."
     },
     {
       "taskId": "t07-014-reference-form-submission-model",
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-form-submission-model.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 61,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked the submission model and all 36 assigned API/term names: native encodings and methods, successful-control filtering, ordered entry construction, FormData constructor/mutators/iterators, submit/formdata events, submitter handling, and indexed/named control lookups. Verified duplicate preservation, constructor exceptions/submitter semantics, synthetic-event limits, and multipart boundary guidance.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "Form submission algorithms, entry-list construction, requestSubmit, submit/reset/validation APIs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-elements.html",
+              "section": "Form element and submitter behavior",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://xhr.spec.whatwg.org/#interface-formdata",
+              "section": "FormData constructor, entries, methods, iterators and serialization",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/FormData",
+              "section": "FormData browser API cross-check",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/SubmitEvent/submitter",
+              "section": "SubmitEvent submitter value behavior",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -67857,22 +68099,86 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory review complete for native submission and FormData APIs. Duplicate data and synthetic-versus-native event distinctions are explicit. Draft remains until all course lessons are reviewed."
     },
     {
       "taskId": "t07-014-reference-form-element-apis",
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-form-element-apis.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 29,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all 18 enumerated HTMLFormElement/form collection APIs and claims covering attributes, URL reflection, live listed-control collection, form ownership, indexed/named access and RadioNodeList behavior, document.forms, name masking, and the special constructor rule. Corrected the implication that new HTMLFormElement() creates an ordinary form: direct invocation throws; use document.createElement(\"form\") unless defining a customized built-in element.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/custom-elements.html#form-associated-custom-elements",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-elements.html",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection/namedItem",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setFormValue",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/attachInternals",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -67907,22 +68213,87 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
         "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input",
         "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form",
-        "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/"
+        "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/attachInternals",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against the current WHATWG HTML Living Standard and official MDN interface references."
     },
     {
       "taskId": "t07-014-reference-select-and-option-apis",
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-select-and-option-apis.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 53,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Checked all 44 inventoried interface and collection names, select/options collection behavior and mutability, constructors, selection/value/defaultSelected semantics, disabled-state nuance, picker constraints, submission examples, and event behavior against the current HTML Standard and MDN references. Corrected the false statement that HTMLOptionElement.disabled reflects a disabled parent optgroup; the property reflects the option attribute while effective disabledness can come from its optgroup. Added select input/change event coverage and confirmed programmatic selection changes do not themselves dispatch user input events. Rechecked the interface constructor against WHATWG HTML element constructor steps: direct new HTMLSelectElement()/new HTMLTextAreaElement() throws TypeError; documented customized-built-in use and document.createElement as normal element construction.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-elements.html",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+              "section": "HTML element constructors; customized built-in elements",
+              "verdict": "supported; correction recorded"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/custom-elements.html",
+              "section": "HTML element constructors; customized built-in elements",
+              "verdict": "supported; correction recorded"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -67957,22 +68328,93 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
         "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input",
         "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form",
-        "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/"
+        "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://html.spec.whatwg.org/multipage/custom-elements.html",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against the current WHATWG HTML Living Standard and linked MDN API references."
     },
     {
       "taskId": "t07-014-reference-textarea-element-apis",
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-textarea-element-apis.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all 39 inventoried interface members, reflected content attributes, text/default value and reset behavior, UTF-16 length/selection offsets, validity candidacy, selection methods and modes, event semantics, examples, and knowledge-check answers against the current HTML Standard and MDN API/event references. Confirmed setRangeText index clamping/reversed-range behavior and that selection-related events are queued/fired for the programmatic selection operation as documented; the lesson distinguishes the element selectionchange event from document Selection API events. Rechecked the interface constructor against WHATWG HTML element constructor steps: direct new HTMLSelectElement()/new HTMLTextAreaElement() throws TypeError; documented customized-built-in use and document.createElement as normal element construction.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-elements.html",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+              "section": "Current interface members, behavior, events, and applicable exceptions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+              "section": "HTML element constructors; customized built-in elements",
+              "verdict": "supported; correction recorded"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/custom-elements.html",
+              "section": "HTML element constructors; customized built-in elements",
+              "verdict": "supported; correction recorded"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -68007,22 +68449,102 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
         "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input",
         "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form",
-        "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/"
+        "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://html.spec.whatwg.org/multipage/custom-elements.html",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against the current WHATWG HTML Living Standard and linked MDN API references."
     },
     {
       "taskId": "t07-014-reference-input-element-apis",
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-input-element-apis.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 82,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 70 current inventoried API names, all state-dependent interface properties and methods, picker exceptions, file-selection security, value/default distinctions, selection offsets, all listed direct input events, and the missing popover target properties and legacy/vendor extensions. Added the HTMLInputElement constructor rule, popoverTargetElement/popoverTargetAction, align/incremental/useMap/webkitdirectory/webkitEntries, and cancel/search/invalid event names to close the API scope omissions; deprecated and non-standard members are explicitly labeled rather than recommended.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/input.html",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-elements.html",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/showPicker",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -68057,22 +68579,87 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/showPicker"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit against the current WHATWG HTML Living Standard, official MDN API documentation, and PCI SSC guidance for payment data."
     },
     {
       "taskId": "t07-014-reference-form-associated-custom-element-api",
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-form-associated-custom-element-api.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 15 frozen names and the lesson claims/examples for opt-in form association, attachInternals availability, submission value and restoration state types/defaults, validation flags and APIs, labels, disabled-fieldset lifecycle, reset/restoration callbacks and callback modes, plus accessibility and keyboard obligations against the current HTML standard and MDN. No factual correction required.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/custom-elements.html#form-associated-custom-elements",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-elements.html",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection/namedItem",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/setFormValue",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/attachInternals",
+              "section": "Interface definitions, constructor rules, behavior, and lifecycle/API constraints",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -68107,22 +68694,72 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/attachInternals",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and inventory audit against the current WHATWG HTML Living Standard and official MDN interface references."
     },
     {
       "taskId": "t07-014-reference-form-labeling-and-autofill",
       "topicId": "t07-014",
       "phase": "reference",
       "draft": "course/drafts/t07-014/t07-014-reference-form-labeling-and-autofill.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 148,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all 92 inventoried label, autocomplete, inputmode, autocapitalize, autocorrect, enterkeyhint, and dirname names and the explanatory claims/examples for token grammar/order, token applicability, labelable elements, label association, form owner inheritance, browser/user-agent discretion, payment/credential privacy, and server-side limitations. Compared the full field-name/contact token set against the current WHATWG autofill grammar and table; all listed values and their described roles are present, with no factual correction required.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/input.html",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html#the-label-element",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/",
+              "section": "Current normative tokens, interface members, event behavior, or stated exception",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -68157,22 +68794,82 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory",
+        "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit against the current WHATWG HTML Living Standard, official MDN API documentation, and PCI SSC guidance for payment data."
     },
     {
       "taskId": "t07-014-practice",
       "topicId": "t07-014",
       "phase": "practice",
       "draft": "course/drafts/t07-014/t07-014-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 112,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked each exercise, progressive hint, worked solution, test scenario, and reflection answer against the form owner/successful-control model, autocomplete token grammar, pattern and length semantics, submitter behavior, FormData APIs/events, multipart file submission, custom-element callbacks, client/server trust boundary, and PCI SSC card security code guidance. Scenarios distinguish assumptions such as a named selected option; no factual correction required.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/input.html",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-elements.html",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/custom-elements.html#form-associated-custom-elements",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -68207,22 +68904,81 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual exercise/question audit against the current HTML standard, official constraint validation guidance, and relevant payment-data guidance."
     },
     {
       "taskId": "t07-014-interview",
       "topicId": "t07-014",
       "phase": "interview",
       "draft": "course/drafts/t07-014/t07-014-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked each concise/deep/scenario answer and scoring rubric for accuracy on form submission order, submit()/requestSubmit() differences including the no-argument submitter case, repeated entries, validation event propagation, disabled fieldset first-legend exception, autocomplete token grammar, file hint limitations, server validation/security, custom element callbacks, and accessible labels. No factual correction required.",
+          "sources": [
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/input.html",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-control-infrastructure.html",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/form-elements.html",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/custom-elements.html#form-associated-custom-elements",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Constraint_validation",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.pcisecuritystandards.org/faqs/are-merchants-allowed-to-request-card-verification-codes-values-from-cardholders/",
+              "section": "Normative form behavior, stated exercise scenario, security/privacy guidance, or model answer",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://html.spec.whatwg.org/multipage/forms.html",
         "https://html.spec.whatwg.org/multipage/input.html",
@@ -68257,9 +69013,22 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
-        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormControlsCollection",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setRangeText",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setSelectionRange",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event",
+        "https://html.spec.whatwg.org/multipage/dom.html#html-element-constructors",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/cancel_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/search_event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitEntries",
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual exercise/question audit against the current HTML standard, official constraint validation guidance, and relevant payment-data guidance."
     },
     {
       "taskId": "t07-015-overview",

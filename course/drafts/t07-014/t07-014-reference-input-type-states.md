@@ -69,4 +69,4 @@ The second field remains text because postal codes are identifiers, not quantiti
 5. When is a checkbox value included? **When it is checked and otherwise successful.**
 6. What changes when a checkbox has the `switch` attribute? **It represents a two-state switch; the underlying checkedness/submission model remains checkbox-like, and indeterminate state has no effect. Browser UI/support can vary.**
 
-Sources: [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input), [WHATWG forms](https://html.spec.whatwg.org/multipage/forms.html).
+Sources: [WHATWG input](https://html.spec.whatwg.org/multipage/input.html), [MDN input reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input), [WHATWG forms](https://html.spec.whatwg.org/multipage/forms.html), [W3C HTML Media Capture](https://www.w3.org/TR/html-media-capture/).
