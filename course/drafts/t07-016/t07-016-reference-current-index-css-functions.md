@@ -1,74 +1,97 @@
-# CSS selectors at-rules cascade values and box model — Reference: Additional functions in the current MDN CSS reference, checked 2026-11-16
+# CSS selectors at-rules cascade values and box model — Reference: Additional functions in the current MDN CSS reference, checked 2026-11-19
 
 ## Scope and version
 
-These names appeared in MDN's live [CSS value-function index](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/Functions) when checked on 2026-11-16 but were absent from the curriculum's pinned MDN data commit. They extend rather than replace the pinned list. Their standardization and browser support differ; check each current reference and CSS module before use.
+This reference covers only the 18 names assigned to the `current-index-css-functions` inventory in the manifest. They were collected from MDN's live CSS function index as a supplement to the curriculum's pinned MDN data snapshot. A reference entry means the syntax is documented; it does not mean the feature is standardized at a stable level or implemented in browsers. Several functions below are defined only in CSS Working Drafts or Editor's Drafts. Check the linked module and target-browser support before depending on one.
 
 ## How this group fits the mental model
 
-CSS's function vocabulary grows across math, grid, color, font, shape, conditional, and tree-counting features. A function's presence in a reference is not a support guarantee, and context is important: `repeat()` is grid syntax; font alternate functions belong in font-variant-alternates; tree-counting functions inspect the element tree; and experimental functions may be accepted only in selected browsers.
+A CSS function is parsed as part of a property or at-rule value. The consuming grammar matters: `repeat()` is for grid track lists, font alternates belong to `font-variant-alternates`, and `dynamic-range-limit-mix()` belongs to the `dynamic-range-limit` property. Other functions produce colors, math values, shapes, or values derived from the element tree. Some have only draft definitions. CSS does not make an unsupported function work through a fallback branch automatically; use ordinary earlier declarations when progressive enhancement is appropriate.
 
 ## Supplied names explained
 
-### Color and dynamic-range values
+### Color and dynamic-range policy
 
-- **`contrast-color()`** — Returns a color chosen to maximize contrast against a supplied base color, using the function's candidate-color algorithm. It is not the filter function `contrast()`, which changes the image contrast. Verify its support and do not use it as a substitute for testing actual text/background combinations against accessibility requirements.
-- **`device-cmyk()`** — Constructs a device-dependent CMYK color, optionally with a fallback color for output environments that cannot represent it. It is chiefly relevant to print/color-managed workflows; screen conversion may differ by output device.
-- **`dynamic-range-limit-mix()`** — Mixes dynamic-range-limit values with percentages for HDR rendering behavior. It controls luminance-range policy, not ordinary color interpolation or image opacity.
+- **`contrast-color(color)`** — Resolves to either `white` or `black`, whichever the user agent's algorithm judges to give greater text contrast when the input is a solid background; a tie resolves to white. CSS Color 5 leaves the precise selection algorithm user-agent-defined. This convenience cannot guarantee WCAG contrast or legibility for transparency, compositing, font size, or surrounding colors. It is a CSS Color 5 Editor's Draft feature.
+- **`device-cmyk(c, m, y, k [, alpha])`** — Represents device-dependent CMYK channels (numbers in 0–1 or percentages in 0–100%, with out-of-range channels clamped at computed-value time); modern syntax can include alpha. CMYK values have no device-independent colorimetric meaning by themselves. With a usable `@color-profile device-cmyk` ICC profile and processing support, conversion uses that profile; otherwise CSS Color 5 specifies a naive sRGB conversion. Do not confuse this with an automatic fallback-color argument: provide alternate colors separately, for example with color-gamut media queries or the module's color fallback mechanisms. Device CMYK cannot be used directly in interpolation/compositing operations that require a colorimetric value before conversion. This is a CSS Color 5 Editor's Draft feature.
+- **`dynamic-range-limit-mix(value percentage, …)`** — Mixes one or more `<dynamic-range-limit>` policy values, whose current keywords are `standard`, `constrained`, and `no-limit`, with percentages. It controls HDR luminance-range policy and is accepted for the `dynamic-range-limit` property; it is not a general color mixer. Percentages are normalized, and privacy rules avoid exposing the display's actual HDR headroom as a directly observable computed result. Defined in CSS Color HDR Level 1, an Editor's Draft.
 
-### Conditional and mathematical functions
+### Conditional and mathematical values
 
-- **`if()`** — Selects a value based on supported style, media, or feature conditions in CSS conditional-value grammar. It is not a general JavaScript expression language; branch values must satisfy the consuming property's grammar, and support is evolving.
-- **`progress()`** — Computes normalized progress of a value between a start and end value, returning a number from 0 to 1 according to its math-function definition. Units/dimensions must be compatible; a zero-width interval and direction matter.
-- **`random()`** — Produces a pseudo-random value within a specified range in grammars that support it. Its optional sharing/stream controls determine which declarations reuse a random result; do not use it for security, cryptography, or application data.
+- **`if(condition: value; …)`** — Selects the value from the first true branch; an optional `else` branch handles the no-match case. The current CSS Values 5 draft defines boolean conditions including `supports()`, `media()`, and `style()` tests. It is a value-selection notation, not a general-purpose scripting language; the selected tokens still have to parse in the consuming property's grammar. Draft syntax and support can change.
+- **`progress(value, start, end)`** — Computes `(value - start) / (end - start)` using consistently typed numbers, dimensions, or percentages. By default the result is clamped to [0, 1]; the `no-clamp` option permits values outside that interval. If start and end are equal, the default result is 0; with `no-clamp`, the result is 0, negative infinity, or positive infinity according to whether value equals, is below, or is above that shared value. Defined in CSS Values 5, an Editor's Draft.
+- **`random([random-key,] min, max [, step])`** — Produces a CSS pseudo-random value in an inclusive range with compatible argument types; an optional positive step restricts the possible values to `min + N × step`. When `max` is below `min`, the draft treats it as equal to `min`. The optional key controls reuse: it defaults to `auto`; explicit cache keys can be dashed identifiers with `element-scoped`, `property-scoped`, or `property-index-scoped` behavior, while `fixed <number>` supplies a fixed base value. CSS evaluation is declarative, so a given cache identity resolves consistently rather than promising a new value on every repaint. The draft does not promise cryptographic strength; never use it for secrets, security tokens, or application data. Defined in CSS Values 5, an Editor's Draft.
 
-### Grid, shape, font, and tree functions
+### Grid, geometry, and corner shape
 
-- **`repeat()`** — Repeats a grid track-list fragment, including fixed repetitions and auto-repeat forms such as `auto-fill`/`auto-fit`; its grammar is specific to grid track sizing.
-- **`shape()`** — Defines a basic shape from a command sequence, including move/line/curve-style operations in the supported shape grammar. It can express path-like CSS geometry; syntax and interpolation support vary.
-- **`superellipse()`** — Defines a superellipse curve value for corner-shape and related geometry, controlling how rounded/squircle-like corners curve between edges.
-- **`sibling-count()`** — Returns the element's total number of siblings, including the element itself, for CSS calculations where the function is accepted.
-- **`sibling-index()`** — Returns the element's one-based position among its siblings for CSS calculations where the function is accepted; tree/shadow context affects which siblings are considered.
-- **`stylistic()`** — Requests a font-specific stylistic alternate set by an OpenType feature value, through `font-variant-alternates`.
-- **`styleset()`** — Requests a named/numbered set of stylistic alternates for a coherent group of glyphs through `font-variant-alternates`.
-- **`character-variant()`** — Requests font-specific character variants, potentially selecting alternate glyph forms for individual characters.
-- **`swash()`** — Requests a font's swash glyph alternate, commonly a decorative terminal or flourish.
-- **`ornaments()`** — Requests ornamental glyph alternates, such as fleurons, when available in the chosen font.
-- **`annotation()`** — Requests annotation glyph alternates, such as circled or inverted forms, when available in the font.
-- **`type()`** — Declares or references a value type in CSS linked-parameter/custom-function grammar. It is specialized syntax, not a standalone color/length value.
+- **`shape()`** — Defines a path-like basic shape using CSS-friendly commands and values, including CSS units and math functions. The command set includes `from`, `move`, `line`, horizontal/vertical lines, curves, arcs, and close-path operations. It can be used where `<basic-shape>` is accepted, such as `clip-path` and shape-related properties; it supports interpolation with `path()` only when the path command lists correspond. This is a CSS Shapes Level 1 Editor's Draft addition; do not assume uniform support.
+- **`superellipse(K)`** — Defines a quarter-superellipse corner curve using exponent `2^K`; it is a `<corner-shape-value>` for `corner-shape` and related corner-shape properties in CSS Borders and Box Decorations Level 4. Useful reference points: `superellipse(0)` is bevel, `superellipse(1)` is circular/round, `superellipse(-1)` is a concave scoop, and positive infinity approaches a straight corner. This is a Working Draft feature. It is not a general-purpose path or basic-shape function.
+
+### Values derived from the element tree
+
+- **`sibling-count()`** — Produces the integer count of child elements in the parent of the element on which it resolves. It includes that element when it is among those children. CSS Values 5 defines tree-scoped behavior: references that cannot resolve across a shadow-tree boundary yield zero. Pseudo-elements resolve against their associated real or ultimate originating element according to the draft's rules. It does not filter siblings with an `of <selector>` clause.
+- **`sibling-index()`** — Produces the element's one-based index among its inclusive siblings, similar in numbering to `:nth-child()` but as an integer value usable in calculations. It is not a selector and does not select/filter elements. Tree-scoping and pseudo-element resolution follow CSS Values 5; an inaccessible cross-shadow reference yields zero. Both tree-counting functions remain CSS Values 5 Editor's Draft features.
+
+### Font-provided glyph alternates
+
+These functions are values of `font-variant-alternates`, not instructions to draw or transform arbitrary glyphs. They request OpenType alternates supplied by the selected font. Names generally need mappings established by `@font-feature-values`; a font may not provide the requested feature, so verify the actual font and fallback behavior.
+
+- **`stylistic(name)`** — Requests a font-specific stylistic alternate (`salt`).
+- **`styleset(name, …)`** — Requests one or more stylistic sets (`ss01`–`ss20` in OpenType).
+- **`character-variant(name, …)`** — Requests character variants (`cv01`–`cv99` in OpenType); exact glyph behavior depends on the font's feature data.
+- **`swash(name)`** — Requests a swash alternate (`swsh`), often a decorative flourish where available.
+- **`ornaments(name)`** — Requests an ornament alternate (`ornm`) where supplied by the font.
+- **`annotation(name)`** — Requests an annotation alternate (`nalt`) where supplied by the font.
+
+### Custom-function type syntax
+
+- **`type(syntax)`** — Wraps a CSS Properties and Values API syntax definition when CSS custom-function parameter or return types need a compound syntax. In the CSS Custom Functions and Mixins Level 1 draft, a single syntax component such as `<length>` can be written without `type()`, while a syntax combinator such as `<number> | <percentage>` must be wrapped, for example `type(<number> | <percentage>)`. This is signature grammar for `@function`, not a standalone value that can be assigned to ordinary properties. The feature remains an Editor's Draft.
 
 ## Cross-item comparison
 
-`contrast-color()` chooses a contrasting color; `contrast()` modifies an image's contrast. `device-cmyk()` targets device-dependent print colors; `dynamic-range-limit-mix()` combines HDR range-policy values. `progress()` normalizes a numeric position; `random()` generates a chosen pseudo-random stream value. `repeat()` composes grid tracks; `shape()` and `superellipse()` describe geometry. Font alternate functions select font-provided glyph forms rather than drawing shapes. `sibling-index()` and `sibling-count()` derive values from tree position/count and should not be confused with `:nth-child()`, which selects elements. `if()` conditionally chooses typed CSS values; it does not perform arbitrary script.
+`contrast-color()` chooses black or white relative to a background; the established filter function `contrast()` alters rendered image contrast. `device-cmyk()` describes device-dependent color channels, whereas `dynamic-range-limit-mix()` mixes HDR output policies. `progress()` normalizes a position and `random()` generates presentation values with CSS-defined reuse behavior. `shape()` describes path geometry; `superellipse()` describes a corner curve. The font functions request existing font glyph variants. `sibling-index()` and `sibling-count()` derive integers from tree position/count, while `:nth-child()` is a selector. `if()` chooses CSS tokens conditionally; `type()` describes a custom-function signature.
 
 ## Examples
 
 ```css
-/* Established grid use of repeat(). */
+/* Keep the ordinary declaration first for browsers without the newer function. */
+.badge { color: white; }
+.badge { color: contrast-color(var(--badge-background)); }
+
+/* repeat() belongs to grid track sizing; it is documented in the standard-functions lesson. */
 .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-/* A font alternate only works when the selected font provides the glyph set. */
+/* A font alternate works only when the font has the requested feature mapping. */
 .title { font-variant-alternates: stylistic(ornate-title); }
 
-/* A contrasting color is a convenience, not an accessibility audit. */
-.badge { color: contrast-color(var(--badge-background)); }
+/* Tree-counting outputs can feed ordinary math where the draft function is supported. */
+.item { --position: sibling-index(); }
 ```
 
-The last two examples are support-dependent. Keep a fallback declaration, verify syntax in target browsers, and inspect actual contrast after compositing/transparency. Experimental functions should not carry essential application behavior.
+The `repeat()` declaration is shown only as a context comparison; `repeat()` is intentionally not part of this lesson's assigned inventory. For experimental or draft-only functions, check current support and retain an established fallback if the behavior is important. A prior declaration is useful only when the later declaration is rejected as unsupported; it cannot rescue a supported declaration whose computed result is unusable.
+
+The font alternate names in this inventory are `stylistic()`, `styleset()`, `character-variant()`, `swash()`, `ornaments()`, and `annotation()`.
+
+Primary specifications: [CSS Values 5](https://drafts.csswg.org/css-values-5/), [CSS Color 5](https://drafts.csswg.org/css-color-5/), [CSS Color HDR 1](https://drafts.csswg.org/css-color-hdr-1/), [CSS Shapes 1](https://drafts.csswg.org/css-shapes-1/), [CSS Borders 4](https://drafts.csswg.org/css-borders-4/), [CSS Fonts 4](https://drafts.csswg.org/css-fonts-4/), and [CSS Custom Functions and Mixins 1](https://drafts.csswg.org/css-mixins-1/). The [MDN CSS function index](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/Functions) is an index, not the normative definition or a support guarantee.
 
 ## Common mistakes
 
-- Confusing `contrast-color()` with the established image filter `contrast()`.
-- Assuming a generated contrast choice automatically meets WCAG for all font sizes, opacity, or composited backgrounds.
-- Treating `random()` as secure randomness or expecting a fresh value on every paint.
-- Using `repeat()` outside grid track-list grammar.
-- Assuming font alternate names exist in every font or that an unsupported font feature has a visible fallback glyph.
-- Confusing sibling-count functions with selector matching or accessibility order.
-- Treating a live MDN index as a single standard maturity level; check status and browser support for each item.
+- Treating appearance in the MDN reference as proof of stable standardization or broad browser support.
+- Assuming `contrast-color()` guarantees an accessibility threshold or accounts for transparency and compositing.
+- Treating `device-cmyk()` as having universal RGB-equivalent color or an implicit fallback argument.
+- Using `dynamic-range-limit-mix()` as a color-mixing function or assuming it reveals the display's HDR headroom.
+- Assuming `progress()` always clamps, or overlooking the equal-start/end special case.
+- Expecting `random()` to change on each paint, to be cryptographically secure, or to share values without considering its key.
+- Using `shape()` as ordinary string path syntax; its CSS command grammar differs from SVG `path()` even though compatible command lists can interpolate.
+- Treating `superellipse()` as a general shape function rather than a corner-shape value.
+- Confusing tree-count functions with selector matching, flat-tree order, or accessibility order.
+- Assuming font alternate names work across fonts without `@font-feature-values` mappings and matching font support.
+- Using `type()` in an ordinary property value rather than a custom-function signature.
 
 ## Knowledge checks with answers
 
-1. **Which function changes image contrast and which chooses a contrasting color?** `contrast()` is a filter; `contrast-color()` returns a color relative to a base color.
-2. **Can `random()` be used to generate passwords?** No; it is a presentation value feature, not a cryptographic API.
-3. **Where is `repeat()` valid?** In grid track-list syntax.
-4. **What does `sibling-index()` return?** A one-based sibling position in contexts where the function is supported.
+1. **Does `contrast-color()` guarantee WCAG-compliant text contrast?** No. The CSS Color 5 draft leaves the exact black/white selection algorithm user-agent-defined, and contrast alone does not guarantee legibility.
+2. **How does `progress()` differ with and without `no-clamp`?** Without it, the fraction is clamped to [0, 1]; with it, the result can extend beyond that range, including the defined equal-endpoint infinities.
+3. **Why can two `random()` calls return the same value?** The random-key/cache identity can make CSS random functions share a base value; the default `auto` is scoped to produce distinct identities across instances, properties, and elements.
+4. **What does `sibling-index()` return, and is it a selector?** It returns a one-based integer position among inclusive siblings where the tree-scoped reference resolves; it is a value function, not a selector.
+5. **When is `type()` needed in the custom-function syntax described here?** For compound syntax definitions that use syntax combinators, such as `<number> | <percentage>`; one syntax component can be written directly.
