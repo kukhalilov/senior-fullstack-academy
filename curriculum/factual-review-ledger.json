@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1313,
-    "pending": 1036,
-    "claimsChecked": 62290,
-    "claimsCorrected": 3016,
+    "reviewed": 1320,
+    "pending": 1029,
+    "claimsChecked": 63143,
+    "claimsCorrected": 3031,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -118978,168 +118978,455 @@
       "topicId": "t04-007",
       "phase": "overview",
       "draft": "course/drafts/t04-007/t04-007-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 51,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 51 externally verifiable claims and exact inventory items where applicable, including CLI/PMC APIs, migration semantics, seeding invocation, operational deployment and version boundaries. Reviewed migration mental model, data-loss/non-reversibility, production deployment, seeding and expand-contract overview.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
+              "section": "Migration/model snapshot lifecycle and provider scope",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
+              "section": "Deployment strategies, scripts, bundles, locks and identities",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
+              "section": "Migration file/history, operations and EF11 --add",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
+              "section": "HasData vs UseSeeding/UseAsyncSeeding and lock behavior",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
+              "section": "EF Core 9 migration locking and runtime seeding introduction",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 migration CLI addition (stale release banner)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release evidence",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
         "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed migration mental model, data-loss/non-reversibility, production deployment, seeding and expand-contract overview."
     },
     {
       "taskId": "t04-007-concepts",
       "topicId": "t04-007",
       "phase": "concepts",
       "draft": "course/drafts/t04-007/t04-007-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 91 externally verifiable claims and exact inventory items where applicable, including CLI/PMC APIs, migration semantics, seeding invocation, operational deployment and version boundaries. Checked model snapshot, Up/Down risks, EF9 locking, reviewed script/bundle strategy, seeding, migration compatibility and backfill boundaries.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
+              "section": "Migration/model snapshot lifecycle and provider scope",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
+              "section": "Deployment strategies, scripts, bundles, locks and identities",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
+              "section": "Migration file/history, operations and EF11 --add",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
+              "section": "HasData vs UseSeeding/UseAsyncSeeding and lock behavior",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
+              "section": "EF Core 9 migration locking and runtime seeding introduction",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 migration CLI addition (stale release banner)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release evidence",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
         "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked model snapshot, Up/Down risks, EF9 locking, reviewed script/bundle strategy, seeding, migration compatibility and backfill boundaries."
     },
     {
       "taskId": "t04-007-reference-migration-authoring-and-model-snapshot",
       "topicId": "t04-007",
       "phase": "reference",
       "draft": "course/drafts/t04-007/t04-007-reference-migration-authoring-and-model-snapshot.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 176,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 176 externally verifiable claims and exact inventory items where applicable, including CLI/PMC APIs, migration semantics, seeding invocation, operational deployment and version boundaries. Checked all 26 assigned operations, model snapshot metadata, pending-change detection APIs and migration/database divergence.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
+              "section": "Migration/model snapshot lifecycle and provider scope",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
+              "section": "Deployment strategies, scripts, bundles, locks and identities",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
+              "section": "Migration file/history, operations and EF11 --add",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
+              "section": "HasData vs UseSeeding/UseAsyncSeeding and lock behavior",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
+              "section": "EF Core 9 migration locking and runtime seeding introduction",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 migration CLI addition (stale release banner)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release evidence",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
         "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 26 assigned operations, model snapshot metadata, pending-change detection APIs and migration/database divergence."
     },
     {
       "taskId": "t04-007-reference-migration-application-and-deployment",
       "topicId": "t04-007",
       "phase": "reference",
       "draft": "course/drafts/t04-007/t04-007-reference-migration-application-and-deployment.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 194,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 194 externally verifiable claims and exact inventory items where applicable, including CLI/PMC APIs, migration semantics, seeding invocation, operational deployment and version boundaries. Checked all 24 deployment items including migration script/bundle/lock behavior, sync seeding and EF11 database update --add semantics.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
+              "section": "Migration/model snapshot lifecycle and provider scope",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
+              "section": "Deployment strategies, scripts, bundles, locks and identities",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
+              "section": "Migration file/history, operations and EF11 --add",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
+              "section": "HasData vs UseSeeding/UseAsyncSeeding and lock behavior",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
+              "section": "EF Core 9 migration locking and runtime seeding introduction",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 migration CLI addition (stale release banner)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release evidence",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
         "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 24 deployment items including migration script/bundle/lock behavior, sync seeding and EF11 database update --add semantics."
     },
     {
       "taskId": "t04-007-reference-data-seeding-and-schema-evolution",
       "topicId": "t04-007",
       "phase": "reference",
       "draft": "course/drafts/t04-007/t04-007-reference-data-seeding-and-schema-evolution.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 165,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 165 externally verifiable claims and exact inventory items where applicable, including CLI/PMC APIs, migration semantics, seeding invocation, operational deployment and version boundaries. Checked all 19 items for seeding APIs, migration-managed values, backfill/expand-contract, multiple contexts, squashing and baseline caveats.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
+              "section": "Migration/model snapshot lifecycle and provider scope",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
+              "section": "Deployment strategies, scripts, bundles, locks and identities",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
+              "section": "Migration file/history, operations and EF11 --add",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
+              "section": "HasData vs UseSeeding/UseAsyncSeeding and lock behavior",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
+              "section": "EF Core 9 migration locking and runtime seeding introduction",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 migration CLI addition (stale release banner)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release evidence",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
         "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 19 items for seeding APIs, migration-managed values, backfill/expand-contract, multiple contexts, squashing and baseline caveats."
     },
     {
       "taskId": "t04-007-practice",
       "topicId": "t04-007",
       "phase": "practice",
       "draft": "course/drafts/t04-007/t04-007-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 96,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 96 externally verifiable claims and exact inventory items where applicable, including CLI/PMC APIs, migration semantics, seeding invocation, operational deployment and version boundaries. Checked migration-review, deployment identity, idempotence, seed behavior and compatibility exercises/answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
+              "section": "Migration/model snapshot lifecycle and provider scope",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
+              "section": "Deployment strategies, scripts, bundles, locks and identities",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
+              "section": "Migration file/history, operations and EF11 --add",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
+              "section": "HasData vs UseSeeding/UseAsyncSeeding and lock behavior",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
+              "section": "EF Core 9 migration locking and runtime seeding introduction",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 migration CLI addition (stale release banner)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release evidence",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
         "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked migration-review, deployment identity, idempotence, seed behavior and compatibility exercises/answers."
     },
     {
       "taskId": "t04-007-interview",
       "topicId": "t04-007",
       "phase": "interview",
       "draft": "course/drafts/t04-007/t04-007-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 80,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 80 externally verifiable claims and exact inventory items where applicable, including CLI/PMC APIs, migration semantics, seeding invocation, operational deployment and version boundaries. Checked migration tool and runtime distinctions, rollback risk, locking, seeding and safe rollout responses.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
+              "section": "Migration/model snapshot lifecycle and provider scope",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
+              "section": "Deployment strategies, scripts, bundles, locks and identities",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
+              "section": "Migration file/history, operations and EF11 --add",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
+              "section": "HasData vs UseSeeding/UseAsyncSeeding and lock behavior",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
+              "section": "EF Core 9 migration locking and runtime seeding introduction",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 migration CLI addition (stale release banner)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release evidence",
+              "verdict": "Checked against official Microsoft/dotnet documentation; production and version boundaries are captured in lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
         "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing",
         "https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-9.0/whatsnew",
-        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-10.0/whatsnew"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked migration tool and runtime distinctions, rollback risk, locking, seeding and safe rollout responses."
     },
     {
       "taskId": "t04-008-overview",
