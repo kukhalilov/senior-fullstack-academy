@@ -1,55 +1,119 @@
-<!-- GENERATED DRAFT: automated shape and editorial checks passed; independent factual verification is not implied. -->
-
 # CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Fill and Stroke stroke-color properties
 
-# Scope and version
+## Scope and version
 
-This reference explains all 1 supplied names in **CSS Fill and Stroke stroke-color properties**. Property names and short descriptions were captured for offline use from the linked property references on 2026-11-16. 0 supplied names have an MDN Baseline label, 0 are marked Limited availability, and 1 is explicitly marked Experimental in the 2026-11-16 capture. Each row preserves the individual status; an absent Baseline label does not by itself prove absence of every implementation. The CSS Snapshot 2026 describes specification stability rather than browser adoption. [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
+This reference covers the one supplied name, `stroke-color`, from CSS Fill and Stroke Level 3. The latest published W3C text is a First Public Working Draft dated 2017-04-13. The current CSSWG Editor’s Draft is dated 2026-03-04 and remains a work in progress. The current compatibility dataset reports Safari support from 11.1, but no support in Chrome, Edge, or Firefox. Sources checked on 2026-11-20.
 
-# How this group fits the mental model
+## How this group fits the mental model
 
-The supplied names belong to the CSS Fill and Stroke stroke-color properties CSS family. Their definitions specify accepted value syntax, applicable boxes/elements, inheritance, computed values, and rendering effects. A property can be listed in an index even when its specification or implementations are experimental. Each property definition still has its own value grammar, applicability, inheritance, computed-value rules, and browser support. Read the name together with its linked reference; do not infer a full grammar from the name alone.
+A stroke paints along the outline of a shape or text glyphs; a fill paints the interior. CSS Fill and Stroke Level 3 is designing a richer paint model with separate longhands for paint color, paint images, geometry, opacity, and positioning. In that model, `stroke-color` supplies one or more color layers; it does not specify the stroke’s thickness or shape.
 
-# Supplied names explained
+This is different from the familiar, widely implemented SVG `stroke` presentation property/CSS property. In current browsers, `stroke: rebeccapurple` typically assigns one legacy SVG paint value. The new Fill and Stroke draft defines `stroke` as a shorthand for several new stroke painting properties. Do not assume that a browser which supports legacy `stroke` also implements this new shorthand or `stroke-color`.
 
-| Exact inventory name | Meaning |
+## Supplied names explained
+
+This inventory contains one CSS property: `stroke-color`.
+
+### Exact grammar and property definition
+
+The current Editor’s Draft defines:
+
+```css
+stroke-color: <color>#;
+```
+
+The hash means a comma-separated list with one or more `<color>` values. Any valid CSS `<color>` is available, subject to the CSS Color grammar supported by the user agent. The property definition is:
+
+| Descriptor | CSS Fill and Stroke Level 3 Editor’s Draft |
 | --- | --- |
-| `stroke-color` | CSS Fill and Stroke Level 3 property that supplies color paint for CSS/SVG strokes; the published specification is a First Public Working Draft and its current editor draft is still evolving. Treat it as draft rather than a stable cross-browser baseline. **Support snapshot:** W3C Working Draft; limited support; MDN marks the feature experimental. [MDN/spec reference](https://drafts.csswg.org/fill-stroke/) |
+| Initial | `transparent` |
+| Applies to | Text and SVG shapes |
+| Inherited | Yes |
+| Percentages | Not applicable |
+| Computed value | The computed color |
+| Animation | By computed value |
+| Media | Visual |
 
-# Cross-item comparison
+The property sets stroke colors for an element. It does not by itself create a visible outline: a stroke also needs nonzero stroke geometry (such as a width) and a visible paint result. With its initial transparent color, no visible solid-color layer is supplied by default.
 
-Compare each property's role and value grammar with adjacent properties in this module. Shorthands may reset omitted longhands; aliases and vendor-specific properties may share behavior without identical standards status. Check the individual description and the current browser support data before depending on an entry.
+### Color layers and image interaction
 
-| Item | How to interpret it |
-| --- | --- |
-| `stroke-color` | See its individual linked definition above; apply its property-specific value grammar and context. |
+A single color is the common case. Multiple values create multiple stroke layers. The first listed color is painted on top (closest to the viewer); later colors are painted behind earlier ones. Thus the list order is visually significant.
 
-# Examples
+Color layers work alongside `stroke-image`, not as an overlay on top of every image. For each layer, a color is drawn only when the corresponding `stroke-image` is `none` or an invalid image. If the image is valid, it wins and the color for that same layer is not painted. This makes the color a fallback for its layer, including the legacy SVG `stroke` fallback behavior that the draft is designed to model.
 
-Choose a property from this group based on the actual rendering need, then test its computed value and visual result in the target browsers. Keep a fallback for content and layout if the property is unsupported.
+The number of stroke layers is the larger of the number of comma-separated `stroke-color` values and `stroke-image` values; `none` still counts as an image layer. If the lists differ in length, they align from the end. Missing front `stroke-color` values are transparent; missing front image values are `none`. This matters when layering only some of the paints: it can change which color is visible and which layer sits on top.
 
+## Examples
 
+### Example under the draft model
 
-The example is a starting point for reasoning, not a support guarantee. Inspect the computed style and test the rendered result in the browsers and writing modes relevant to the project.
+```css
+/* Existing paint fallback for browsers using legacy SVG stroke behavior. */
+.icon path {
+  fill: none;
+  stroke: #302b63;
+  stroke-width: 12px;
+}
 
-# Common mistakes
+/* Draft longhands: narrow purple stroke in front of a wider gold stroke. */
+@supports (stroke-color: rebeccapurple) {
+  .icon path {
+    stroke-color: rebeccapurple, gold;
+    stroke-width: 4px, 12px;
+  }
+}
+```
 
-- Treating the property name alone as enough to infer its allowed values.
-- Assuming listed means standardized or interoperable.
-- Forgetting cascade, inheritance, writing mode, or containing-block effects.
-- Using an experimental property without a fallback or browser-support check.
-- Assuming a property listed by an index is a stable or interoperable standard.
-- Treating a shorthand, alias, vendor extension, or draft property as interchangeable with its neighboring names.
-- Skipping value grammar, inheritance, cascade, and applicable-box details in the linked definition.
+This illustrates intended CSS Fill and Stroke behavior, not a promise that a given browser implements it. Browser implementations can differ in whether they parse and apply the draft property. Verify both the support condition and the rendered result. The legacy `stroke` declaration is a fallback for its supported SVG paint behavior; it does not reproduce arbitrary multi-layer stroke-color lists.
 
-# Knowledge checks with answers
+## Cross-item comparison
 
-1. **Which exact names are representative of this group?** `stroke-color`. Consult each linked row for its specific behavior.
-2. **Does inclusion in this inventory prove support?** No; check the linked reference and target browser support data.
-3. **What should be checked before using one of these properties?** Its grammar, applicability, inheritance, status, interactions, and fallback needs.
+`stroke-color` controls solid stroke-paint layers. `stroke-image` supplies image paint; `stroke-width` and `stroke-opacity` control geometry and transparency; `fill-color` paints interiors. The legacy SVG `stroke` property is a separate, broadly implemented interface with different practical behavior from the newer draft shorthand.
 
-# Sources
+## Related paint and geometry controls
 
-- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
-- [MDN CSS property index](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
-- [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
+Use the property that matches the part of the drawing you intend to change:
+
+- `stroke-color` supplies solid colors for stroke paint layers.
+- `stroke-image` supplies image or SVG paint-server layers; valid images take precedence over colors for matching layers.
+- `stroke-width` controls thickness, not color.
+- `stroke-opacity` controls opacity of stroke painting.
+- `stroke-align`, `stroke-linecap`, and `stroke-linejoin` control placement, line ends, and corners in the newer draft model.
+- `fill-color` paints shape/text interiors, not outlines.
+- Legacy SVG `stroke` remains the practical fallback for a simple color or paint server on SVG elements where supported. For text-only outlines, `-webkit-text-stroke` is a separate compatibility feature with its own support and syntax.
+
+The Editor’s Draft proposes `stroke` as a shorthand that resets its stroke-paint longhands. Existing browsers have historically treated `stroke` as a direct analogue of the SVG presentation attribute instead of implementing that new shorthand behavior. This means shorthand/longhand relationships in the draft do not describe every browser’s current behavior; check the feature’s support independently.
+
+## Support and production use
+
+MDN’s browser compatibility data marks `stroke-color` experimental. The current data says Safari added it in 11.1, with the corresponding iOS and WebView entries mirroring Safari; Chrome, Edge, and Firefox are marked unsupported. That partial record does not establish implementation of every evolving detail, such as multi-layer interactions or the newer `stroke` shorthand.
+
+For common cross-browser SVG strokes, prefer the established `stroke` color and width declarations, and keep a tested visual fallback. Use `stroke-color` only after verifying the required value and layering behavior in each target browser. If a feature is essential, test the actual path, text, paint layers, and fallback behavior rather than relying only on a CSS property support query.
+
+## Common mistakes
+
+- Treating `stroke-color` as an alias for the current widely implemented SVG `stroke` paint property.
+- Assuming support for legacy SVG `stroke` means support for the proposed Fill and Stroke `stroke` shorthand or its longhands.
+- Forgetting that `stroke-color` accepts a comma-separated list, with the first color painted on top.
+- Expecting a color to show through a valid corresponding `stroke-image`; the image wins that layer.
+- Assuming the initial `transparent` value creates a visible stroke.
+- Using `stroke-color` to change width, opacity, cap, join, or fill.
+- Treating the Editor’s Draft as a stable, interoperable browser contract.
+
+## Knowledge checks with answers
+
+1. **What is the complete value shape?** One or more comma-separated CSS `<color>` values: `<color>#`.
+2. **Which listed color is on top?** The first; subsequent colors are behind it.
+3. **When is a layer’s color drawn instead of its image?** When that corresponding `stroke-image` is `none` or invalid. A valid image wins.
+4. **Does `stroke-color` set the stroke width?** No; width is a separate geometry property.
+5. **Does legacy browser support for `stroke` guarantee support for `stroke-color`?** No. Compatibility data distinguishes the experimental longhand from the legacy paint behavior.
+6. **What is the safe practical approach for a simple SVG outline?** Use the established `stroke` paint and `stroke-width` behavior as the baseline, then test any draft longhands and layered result separately.
+
+## Sources
+
+- [CSS Fill and Stroke Module Level 3 Editor’s Draft, §4.1 and §4.4.1](https://drafts.csswg.org/fill-stroke/#stroke-color) (layer model, exact property grammar, descriptors, paint fallback)
+- [CSS Fill and Stroke Module Level 3, First Public Working Draft](https://www.w3.org/TR/fill-stroke-3/) (published status and earlier published text)
+- [MDN Browser Compatibility Data: `stroke-color`](https://github.com/mdn/browser-compat-data/blob/main/css/properties/stroke-color.json) (current engine support data)
+- [MDN: `stroke` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/stroke) (legacy SVG stroke behavior and implementation differences)
+- [CSS Color Module Level 4](https://drafts.csswg.org/css-color-4/) (CSS `<color>` type)
