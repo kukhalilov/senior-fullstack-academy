@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1191,
-    "pending": 1158,
-    "claimsChecked": 51359,
-    "claimsCorrected": 2738,
+    "reviewed": 1192,
+    "pending": 1157,
+    "claimsChecked": 51382,
+    "claimsCorrected": 2739,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -106253,17 +106253,40 @@
       "topicId": "t03-003",
       "phase": "reference",
       "draft": "course/drafts/t03-003/t03-003-reference-row-limits-and-pagination.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 23,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "section": "TOP expression conversion, PERCENT rounding, WITH TIES, parentheses compatibility, and preference over SET ROWCOUNT",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17",
+          "verdict": "supported"
+        },
+        {
+          "section": "OFFSET/FETCH syntax, SQL Server 2012 availability, expression constraints, scope limitations, stable paging conditions, and row ordering",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
+          "verdict": "supported"
+        },
+        {
+          "section": "SET ROWCOUNT session behavior and planned future change to DML effects",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-rowcount-transact-sql?view=sql-server-ver17",
+          "verdict": "supported; added omitted future DML deprecation boundary"
+        },
+        {
+          "section": "SNAPSHOT/SERIALIZABLE isolation semantics and snapshot configuration",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
+          "verdict": "supported; statement-level RCSI distinguished from transaction-level snapshot"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-rowcount-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver17",
@@ -106274,11 +106297,10 @@
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/operator-precedence-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 23 supplied row-limit and pagination items against SQL Server TOP, ORDER BY/OFFSET-FETCH, SET ROWCOUNT, and transaction-isolation documentation. Verified count rounding/ties, syntax/version boundaries, input ranges, top/page/keyset tradeoffs, deterministic ordering, transaction snapshot guidance, and session-level ROWCOUNT behavior. Added the current Microsoft warning that SET ROWCOUNT is planned to stop affecting DML in a future release, and recommends TOP for DML. No assigned items are missing."
     },
     {
       "taskId": "t03-003-practice",
