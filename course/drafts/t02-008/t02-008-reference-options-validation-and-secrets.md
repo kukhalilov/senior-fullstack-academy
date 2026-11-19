@@ -8,15 +8,15 @@ Options validation tests configuration correctness before or during access. This
 
 ## Synchronous validation choices
 
-`OptionsBuilder<TOptions>.Validate(predicate)` registers a boolean rule; `.ValidateDataAnnotations()` applies DataAnnotations; a validation delegate can express a cross-property condition. `IValidateOptions<TOptions>.Validate(name, options)` can implement reusable named validation and returns `ValidateOptionsResult`: `Success`, `Fail(errors)`, or `Skip` when a validator does not apply to the name. `ValidateOptions<TOptions>` is a helper base class. `DataAnnotationValidateOptions<TOptions>` is the DataAnnotations-backed validator. `ValidateOptionsAttribute` and `OptionsValidatorAttribute` support generated validation patterns; the source generator can create efficient trim-friendly validators for attributed types. `RequiredAttribute`, `RangeAttribute`, and nested-member attributes such as `ValidateObjectMembersAttribute`, `ValidateEnumeratedItemsAttribute`, and `ValidateNestedOptionsAttribute` express presence, bounds, and nested collection/type traversal. Use them when their semantics match; avoid duplicating custom rules without a clear owner.
+`OptionsBuilder<TOptions>.Validate(predicate)` registers a synchronous boolean rule; .NET 11 adds asynchronous delegate overloads of the same `Validate` method that accept a `CancellationToken` and return `Task<bool>` (with up to five DI service dependencies). There is no `OptionsBuilder.ValidateAsync` method. `ValidateDataAnnotations()` applies DataAnnotations; `IValidateOptions<TOptions>.Validate(name, options)` implements reusable named validation and returns `ValidateOptionsResult`: `Success`, `Fail(errors)`, or `Skip` when a validator does not apply. `ValidateOptions<TOptions>` and its dependency-taking forms are reusable validator implementations. `DataAnnotationValidateOptions<TOptions>` is the DataAnnotations-backed validator. `OptionsValidatorAttribute` triggers generated validator code; the generator is enabled by default with supported package versions and has compile-time diagnostics and nested traversal rules. `RequiredAttribute`, `RangeAttribute`, `ValidateObjectMembersAttribute`, and `ValidateEnumeratedItemsAttribute` express presence, bounds, and explicit nested/object-collection traversal. There is no `ValidateNestedOptionsAttribute`. By default, DataAnnotations does not recursively validate nested members or collection items; apply the appropriate supported traversal attribute. Use annotations when their semantics match and keep custom rule ownership clear.
 
-`OptionsBuilder<TOptions>.ValidateOnStart()` and `AddOptionsWithValidateOnStart` arrange startup validation. `IStartupValidator` participates in synchronous startup validation; `ValidateOnStart` failure surfaces as `OptionsValidationException`/`ValidationException` and prevents a healthy host from serving requests. Without startup validation, invalid options may fail on first access instead. Named options need the intended names validated; ensure the startup path creates/checks all required named variants rather than assuming only default is used.
+`OptionsBuilder<TOptions>.ValidateOnStart()` and `AddOptionsWithValidateOnStart` arrange startup validation for the selected options name. The host runs the registered startup validator before startup completes; .NET 11 adds `IAsyncStartupValidator`, and `IStartupValidator` is retained for synchronous compatibility but is obsolete. `ValidateOnStart` failure prevents successful host startup. Without startup validation, invalid options may fail on first creation/access. Named options need the intended names validated; registering a validator type through `AddOptionsWithValidateOnStart<TOptions,TValidateOptions>` does not scope that validator registration to only the builder's name.
 
 ## .NET 11 asynchronous validation boundary
 
-`IAsyncValidateOptions<TOptions>.ValidateAsync(name, options, cancellationToken)` supports async validation. `OptionsBuilder<TOptions>.ValidateAsync` registers an async delegate. `IAsyncStartupValidator` supports asynchronous startup validation. These enable I/O-dependent checks without blocking a thread, but they introduce a hard sync/async boundary: synchronous access such as `IOptions<T>.Value`, `IOptionsSnapshot<T>` access, and `IOptionsMonitor<T>.CurrentValue` cannot await async validators and throws when asynchronous validation is required. Use the documented asynchronous validation/startup APIs and keep async validators from being invoked through sync-only paths. Test startup and runtime access on the exact .NET 11 target.
+`IAsyncValidateOptions<TOptions>.ValidateAsync(name, options, cancellationToken)` supports async validation. In .NET 11 it derives from `IValidateOptions<TOptions>`, so a custom validator must also implement synchronous `Validate`; register it as `IValidateOptions<TOptions>` or through `OptionsBuilder.Validate<TValidateOptions>()`, not directly as `IAsyncValidateOptions<TOptions>`. An async-only rule should fail or skip appropriately on the sync method rather than block on I/O. Async `Validate` delegate overloads and `ValidateDataAnnotations` participate in async options creation. `ValidateOnStart` invokes asynchronous startup validation and can seed the initial default `IOptions<TOptions>` and `IOptionsMonitor<TOptions>` caches. It does not seed later `IOptionsSnapshot<TOptions>` scope caches, and `IOptionsMonitor<TOptions>` recreates values synchronously after a change. Therefore synchronous creation/access throws `OptionsValidationException` whenever that path must run an async-only validator: before async startup validation, for new snapshot values, and on monitor reload. A cached initial value that was successfully validated during startup can still be read synchronously. Test startup, new-scope, reload, and direct factory paths separately on the .NET 11 target. [Async validation compatibility details](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/async-options-validation-sync-access)
 
-`Asynchronous options validation in .NET 11` must not be described as merely “same behavior but async”: construction/access semantics change. Async validators should honor cancellation, be deterministic, and avoid expensive/unavailable network dependencies unless startup must fail closed on that dependency. A remote check is not a durable invariant; validate again at operation time if the value can change.
+`Asynchronous options validation in .NET 11` must not be described as merely “same behavior but async”: construction/access semantics change. Async validators should honor cancellation, be deterministic, and avoid expensive/unavailable network dependencies unless startup must fail closed on that dependency. .NET 11 DataAnnotations also adds `AsyncValidationAttribute`, `IAsyncValidatableObject`, and `Validator.ValidateObjectAsync`, `TryValidateObjectAsync`, `ValidatePropertyAsync`, and `ValidateValueAsync`; options' DataAnnotations validator uses the async path during async creation, while its synchronous path remains synchronous. A remote check is not a durable invariant; validate again at operation time if the value can change. [Async DataAnnotations APIs](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries)
 
 ## Secrets and precedence
 
@@ -33,7 +33,7 @@ builder.Services.AddOptions<PaymentsOptions>()
     .ValidateOnStart();
 ```
 
-For synchronous rules this validates at startup. In .NET 11, if the options require async validation, register/use the async validation path and async startup validator; do not assume synchronous `ValidateOnStart` or `.Value` can execute it. Validate nested objects explicitly with supported annotations or a validator. Options validation checks shape/readiness; model validation checks caller input; domain validation protects business rules.
+For synchronous rules this validates at startup. In .NET 11, `ValidateOnStart` invokes the async startup path for async validators; do not read a value synchronously before startup validation completes or assume snapshot creation/monitor reload can await. Validate nested objects explicitly with supported annotations or a validator. Options validation checks settings readiness; model validation checks caller input; domain validation protects business rules.
 
 ## Common mistakes
 
@@ -43,7 +43,7 @@ Relying on first-use failures for critical startup settings; validating only the
 
 1. **What is the difference between `Fail` and `Skip`?** Fail rejects the current options; skip means the validator does not apply to that name/instance.
 2. **What happens on invalid `ValidateOnStart` options?** Startup validation fails before the app is considered healthy.
-3. **What happens when async validators are required but sync `.Value` is read?** .NET 11 throws; use the async path.
+3. **What happens when async validators are required but a synchronous path must create options?** .NET 11 throws; async startup can seed initial default singleton/monitor caches, but later snapshot creation and monitor reload remain synchronous.
 4. **Is User Secrets for production?** No, it is intended for local development.
 5. **Does reload guarantee secret rotation everywhere?** No; providers and dependent consumers must refresh/observe and update their state.
 
@@ -56,7 +56,7 @@ The complete inventory below preserves every declared validation API, result sta
 ### Exact terms covered
 
 - `OptionsBuilder<TOptions>.Validate`
-- `OptionsBuilder<TOptions>.ValidateAsync`
+- `OptionsBuilder<TOptions>.Validate async delegate overloads`
 - `OptionsBuilder<TOptions>.ValidateDataAnnotations`
 - `OptionsBuilder<TOptions>.ValidateOnStart`
 - `OptionsBuilder<TOptions>.Services`
@@ -69,7 +69,6 @@ The complete inventory below preserves every declared validation API, result sta
 - `ValidateOptionsResult.Fail`
 - `ValidateOptionsResult.Skip`
 - `ValidateOptions<TOptions>`
-- `ValidateOptionsAttribute`
 - `OptionsValidatorAttribute`
 - `Options validation source generator`
 - `DataAnnotationValidateOptions<TOptions>`
@@ -94,7 +93,33 @@ The complete inventory below preserves every declared validation API, result sta
 - `RangeAttribute`
 - `ValidateObjectMembersAttribute`
 - `ValidateEnumeratedItemsAttribute`
-- `ValidateNestedOptionsAttribute`
+- `AsyncValidationAttribute`
+- `AsyncValidationAttribute.IsValidAsync`
+- `IAsyncValidatableObject`
+- `IAsyncValidatableObject.ValidateAsync`
+- `Validator.ValidateObjectAsync`
+- `Validator.TryValidateObjectAsync`
+- `Validator.ValidatePropertyAsync`
+- `Validator.ValidateValueAsync`
+- `IAsyncValidateOptions<TOptions> inherits IValidateOptions<TOptions>`
+- `.NET 11 async validator synchronous Validate implementation requirement`
+- `IStartupValidator obsolete in .NET 11`
+- `IAsyncStartupValidator.ValidateAsync(CancellationToken)`
+- `AsyncValidateOptions<TOptions>`
+- `AsyncValidateOptions<TOptions,TDep>`
+- `AsyncValidateOptions<TOptions,TDep1,TDep2>`
+- `AsyncValidateOptions<TOptions,TDep1,TDep2,TDep3>`
+- `AsyncValidateOptions<TOptions,TDep1,TDep2,TDep3,TDep4>`
+- `AsyncValidateOptions<TOptions,TDep1,TDep2,TDep3,TDep4,TDep5>`
+- `ValidateOptions<TOptions,TDep>`
+- `ValidateOptions<TOptions,TDep1,TDep2>`
+- `ValidateOptions<TOptions,TDep1,TDep2,TDep3>`
+- `ValidateOptions<TOptions,TDep1,TDep2,TDep3,TDep4>`
+- `ValidateOptions<TOptions,TDep1,TDep2,TDep3,TDep4,TDep5>`
+- `DataAnnotations nested validation is opt-in`
+- `Async startup validation seeds initial IOptions and IOptionsMonitor caches`
+- `IOptionsSnapshot creation remains synchronous with async validators`
+- `IOptionsMonitor reload remains synchronous with async validators`
 - `Secret Manager User Secrets`
 - `UserSecretsId`
 - `dotnet user-secrets init`

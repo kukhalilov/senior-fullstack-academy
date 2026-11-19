@@ -10,7 +10,7 @@ This reference covers binding a configuration tree to CLR values and generated b
 
 `IConfiguration` indexer and `GetSection` support direct access for bootstrap/dynamic-key cases. `ConfigurationBinder.Get<T>` creates a typed object; `Bind` populates an existing instance; `GetValue<T>` reads/converts a scalar. These are available through `ConfigurationBinder` overloads and `IConfiguration` extensions (`Get<T>`, `Bind`, `GetValue<T>`). `GetRequiredSection` fails early when a required subtree is absent. `GetConnectionString` reads the conventional `ConnectionStrings` section; it does not validate connectivity or ensure the returned string is secret-safe. `GetDebugView` helps inspect effective keys and origins, but may expose sensitive values.
 
-Strongly typed binding is easier to validate and test than scattered string lookups. An options class generally needs a public parameterless constructor and public read/write properties; fields and private members are not normally bound. Public property binding requirements depend on the API/options; `BinderOptions.BindNonPublicProperties` can opt into non-public properties for supported reflection binding. Avoid broad private binding unless needed because it creates surprising configuration surface.
+Strongly typed binding is easier to validate and test than scattered string lookups. Mutable object binding commonly uses a public parameterless constructor and public writable properties; `ConfigurationBinder.Get<T>` also supports a type with exactly one public parameterized constructor (a common immutable-record pattern). Multiple public parameterized constructors are ambiguous and fail. Fields and private setters are not normally bound; `BinderOptions.BindNonPublicProperties` can opt into non-public properties for supported reflection binding. `ConfigurationKeyNameAttribute` maps a property to a differently named configuration key, and .NET 11 `ConfigurationIgnoreAttribute` excludes a property from binding. Avoid broad private binding unless needed because it creates surprising configuration surface.
 
 ## Shape and conversion behavior
 
@@ -20,7 +20,9 @@ Binder supports scalar conversions, nullable values, enum names/numbers, arrays,
 
 ## Source generation, trimming, and AOT
 
-`ConfigurationBindingGenerator` is enabled with the `EnableConfigurationBindingGenerator` MSBuild property. Starting with .NET 8, the generator intercepts supported call sites from `ConfigurationBinder` and options configuration extensions, emitting typed code for trim/AOT-friendly paths. It is not “all reflection binding becomes source generated”: call-site interception, supported shapes, APIs, and diagnostics determine coverage. Unsupported cases can retain reflection-based behavior/warnings or fail to match generated expectations. Review generated-binding diagnostics, inspect generated code when a deployment issue warrants it, and publish/test the actual trimmed/AOT target.
+`ConfigurationBindingGenerator` is enabled with the `EnableConfigurationBindingGenerator` MSBuild property. Starting with .NET 8, the generator intercepts call sites from `ConfigurationBinder`, `OptionsBuilderConfigurationExtensions`, and `OptionsConfigurationServiceCollectionExtensions`, emitting typed code for trim/AOT-friendly paths. It is not “all reflection binding becomes source generated”: call-site interception, supported shapes, APIs, and diagnostics determine coverage. The generated binder does not support custom `TypeConverter` conversions that reflection binding can use; unsupported cases can retain reflection-based behavior/warnings or fail to match generated expectations. Review generated-binding diagnostics, inspect generated code when a deployment issue warrants it, and publish/test the actual trimmed/AOT target.
+
+Important binder behavior changes are versioned. Starting in .NET 8, invalid array/list elements can be silently skipped unless error-on-unknown handling is enabled, and dictionary entries for empty configuration sections are materialized with default values. In .NET 10, explicit JSON `null` is distinct from a missing key and binds as null/default, including in arrays; an empty JSON array is bound as empty. In .NET 11, `ConfigurationIgnoreAttribute` excludes properties, and an empty array can bind to a constructor parameter. Validate requiredness and collection counts explicitly rather than inferring them from a successful bind. [.NET 8 failed collection elements](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/8.0/configurationbinder-skips-failed-array-elements) [.NET 8 empty dictionary keys](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/8.0/dictionary-configuration-binding) [.NET 10 null binding](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/configuration-null-values-preserved) [.NET 11 library changes](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries)
 
 The `Microsoft.Extensions.Configuration.Binder` package may be needed when using binder extensions outside shared framework scenarios. Package references and versions should align with the target framework. In AOT-sensitive applications, prefer supported source-generated paths and treat trimming warnings as design feedback rather than suppressing them blindly.
 
@@ -78,6 +80,14 @@ The inventory below includes every named binder method, overload family, value s
 - `Nested object binding`
 - `Array binding`
 - `Record options binding`
+- `Single public parameterized constructor binding`
+- `Multiple public parameterized constructors fail binding`
+- `ConfigurationKeyNameAttribute`
+- `ConfigurationIgnoreAttribute`
+- `.NET 8 invalid collection element skipping`
+- `.NET 8 empty dictionary section binding`
+- `.NET 10 null and empty-array binding`
+- `.NET 11 empty-array constructor parameter binding`
 - `Public property binding requirements`
 - `Missing key default values`
 - `Invalid conversion behavior`
@@ -96,6 +106,7 @@ The inventory below includes every named binder method, overload family, value s
 - `Strongly typed configuration binding`
 - `Configuration binder package reference`
 - `ConfigurationBinder source-generated overload limitations`
+- `Generated binder custom TypeConverter limitation`
 
 ## How this group fits the mental model
 Binding is the conversion step between resolved configuration keys and a typed object; generated binding is an alternative implementation for supported call sites.

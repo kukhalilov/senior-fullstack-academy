@@ -28,13 +28,13 @@ A singleton worker needs a stable startup URL. A scoped request service needs th
 
 `Payments:Timeout=-1` binds, and first request fails. Identify fixes.
 
-**Solution:** Add a range/custom options validator and `ValidateOnStart` for synchronous rules. If validation genuinely requires async I/O on .NET 11, use async validation and async startup validation; synchronous `.Value` access must not trigger async validation. Add a test for missing, invalid, and valid settings.
+**Solution:** Add a range/custom options validator and `ValidateOnStart` for synchronous rules. If validation genuinely requires async I/O on .NET 11, register an async `Validate` delegate or `IAsyncValidateOptions` and use `ValidateOnStart` so async startup validation runs. Startup can seed initial `IOptions<T>`/`IOptionsMonitor<T>` caches, but a new `IOptionsSnapshot<T>` value and monitor reload still use synchronous creation and fail for an async-only rule. Add tests for pre-start access, startup, a new scope, reload, missing, invalid, and valid settings.
 
 ### 4. Diagnose generated binding warnings
 
 An AOT publish reports trimming warnings for a `Bind` call despite `EnableConfigurationBindingGenerator=true`.
 
-**Solution:** The generator intercepts supported call sites/shapes, not every reflection path. Check generated diagnostics/call site, supported binder APIs and types, package/framework versions, and generated output. Test the actual trimmed publish. Do not suppress warnings until runtime behavior is verified.
+**Solution:** The generator intercepts supported call sites/shapes, not every reflection path. It does not support custom `TypeConverter` conversions that reflection binding can use. Check generated diagnostics/call site, supported binder APIs and types, package/framework versions, and generated output. Test the actual trimmed publish. Do not suppress warnings until runtime behavior is verified.
 
 ### 5. Handle a secret rotation
 
@@ -64,7 +64,7 @@ Each exercise gives the full diagnosis and corrective direction. The production 
 
 ## Tests and edge cases
 
-Test provider order, empty-string override, missing/invalid conversions, enum/array/nested binding, unknown keys, named instances, snapshot scope, monitor invalidation, providers without reload, startup async validation, generator diagnostics/AOT, and redaction of debug output.
+Test provider order, empty-string override, missing/invalid conversions, enum/array/nested binding, unknown keys, named instances, snapshot scope, monitor invalidation, providers without reload, startup async validation, generator diagnostics/AOT, and redaction of debug output. Also test .NET 8 invalid array-element skipping/empty dictionary sections, .NET 10 null and empty-array binding, and .NET 11 chained empty-string override/ignored properties.
 
 ## Reflection questions
 

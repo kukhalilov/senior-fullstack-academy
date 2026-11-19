@@ -28,7 +28,7 @@ Sources: Microsoft's [configuration](https://learn.microsoft.com/en-us/dotnet/co
 7. Change tokens invalidate monitor cache and invoke callbacks when provider supports reload. This is not atomic reconfiguration of all consumers.
 8. Direct access is flexible for dynamic keys; typed options group related settings and support validation/lifetime semantics.
 9. Use `GetRequiredSection` plus options validation, explicit required/range rules, and startup validation for critical values.
-10. Async validation APIs are available; synchronous value access throws if async validation is required, so use async validation/startup APIs.
+10. Async validation APIs are available through async overloads of `OptionsBuilder.Validate` and `IAsyncValidateOptions`; startup validation can seed initial `IOptions` and monitor caches. New snapshot values and monitor reloads remain synchronous and throw if async-only validation must run. `IStartupValidator` is obsolete.
 11. It intercepts supported binder call sites to generate trim/AOT-friendly code; it does not support every reflection shape.
 12. Use User Secrets locally, protected environment/managed stores in production, least privilege, rotation, and redacted diagnostics.
 
@@ -36,7 +36,7 @@ Sources: Microsoft's [configuration](https://learn.microsoft.com/en-us/dotnet/co
 
 ### Why can an empty environment variable override a JSON value?
 
-An empty value is still a configured value, and in .NET 11 a changed compatibility rule clarifies chained configuration behavior around empty strings. Provider ordering and its empty-value semantics matter. Inspect the effective source and do not assume blank means “unset”; explicitly validate required non-empty values.
+An empty value is still configured. Starting in .NET 11, `AddConfiguration` reports an empty string in the chained root as present, so it overrides an earlier outer-provider value; a null from the chained root remains indistinguishable from missing. Inspect the effective source and do not assume blank means “unset”; explicitly validate required non-empty values. [.NET 11 change](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/chained-configuration-empty-string)
 
 ### What is the cost of using `IOptionsMonitor` everywhere?
 
@@ -52,7 +52,7 @@ It can make startup/access depend on a remote service, and the check can become 
 2. **Scoped snapshot is injected into a singleton.** It violates lifetime; use monitor or redesign the singleton's need.
 3. **Monitor callback fires but connection pool still uses old secret.** The callback does not rebuild consumers; implement safe refresh/recreation.
 4. **AOT warnings remain after enabling generator.** Inspect supported call site/type and diagnostics; generator is not universal.
-5. **A service fails on first request for missing URL.** Add startup validation and meaningful non-secret errors.
+5. **A service fails on first request for missing URL.** Add startup validation and meaningful non-secret errors. With async validators, test initial startup caches separately from new scopes and monitor reloads, which still construct synchronously.
 
 ## Tradeoffs and alternatives
 

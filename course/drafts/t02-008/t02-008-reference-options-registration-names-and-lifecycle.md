@@ -18,9 +18,9 @@ This reference covers registration, naming, creation, caching, lifetime, and rel
 
 `IOptions<TOptions>.Value` is stable for app lifetime and does not support reload/name selection. `IOptionsSnapshot<TOptions>.Value` and `.Get(name)` provide per-scope options; recomputation occurs once for each name accessed in a scope, not continuously on every property read. It cannot be injected into a singleton. `IOptionsMonitor<TOptions>.CurrentValue`, `.Get(name)`, and `.OnChange(listener)` expose current/default or named values and change callbacks; it is safe to inject into singleton services. Its callbacks may run when a source change token fires and should be thread-safe, short, and exception-conscious.
 
-`IOptionsMonitorCache<TOptions>.GetOrAdd` gets/creates cached options; `TryAdd` inserts if absent; `TryRemove` invalidates a name; `Clear` invalidates all names. `IOptionsChangeTokenSource<TOptions>` supplies a change token for an options name. A monitor subscribes to one or more sources, invalidates relevant caches, recreates values, and invokes listeners. Selective invalidation depends on source/name. `OptionsCache<TOptions>` is the underlying default cache implementation. Multiple token sources may trigger separate reloads; there is no distributed atomic snapshot across providers.
+`IOptionsMonitorCache<TOptions>.GetOrAdd` gets/creates cached options; `TryAdd` inserts if absent; `TryRemove` invalidates a name; `Clear` invalidates all names. `IOptionsChangeTokenSource<TOptions>` supplies a change token for an options name. A monitor subscribes to one or more sources, invalidates relevant caches, recreates values, and invokes listeners. `IOptionsMonitor<TOptions>.OnChange` returns an `IDisposable`; dispose the subscription when its consumer lifetime ends to release callbacks. Selective invalidation depends on source/name. `OptionsCache<TOptions>` is the underlying default cache implementation. Multiple token sources may trigger separate reloads; there is no distributed atomic snapshot across providers.
 
-Options are mutable CLR objects, but treat them as immutable after resolution. Mutating a monitor value affects shared consumers; copy values into owned state if a component must derive mutable runtime state. `OptionsBuilder<TOptions>.Services` exposes the service collection for fluent registration extensions.
+Options are mutable CLR objects, but treat them as immutable after resolution. Mutating a monitor value affects shared consumers; copy values into owned state if a component must derive mutable runtime state. `OptionsBuilder<TOptions>.Services` exposes the service collection for fluent registration extensions. `OptionsBuilderConfigurationExtensions.BindConfiguration` binds from the named configuration section and registers the associated change-token source for monitor reload.
 
 ## Choose the interface by consumer lifetime
 
@@ -53,6 +53,7 @@ Injecting snapshot into singleton; assuming monitor callbacks atomically reconfi
 2. **When do post-configure delegates run?** After all applicable configure delegates.
 3. **How often is a snapshot recomputed?** Once per name per DI scope after invalidation/new scope, when accessed.
 4. **What does monitor reload invalidate?** The relevant named cached options instance(s), based on change-token sources.
+5. **Who owns an `OnChange` subscription?** The code that calls `OnChange` should dispose the returned `IDisposable` when it no longer needs the callback.
 
 ## Supplied names explained
 
@@ -117,6 +118,9 @@ The complete inventory below covers the interface/property/method surface, concr
 - `Options instance identity`
 - `Options object mutability after resolution`
 - `Options pattern versus direct IConfiguration injection`
+- `OptionsBuilderConfigurationExtensions.BindConfiguration`
+- `IOptionsMonitor<TOptions>.OnChange returns IDisposable`
+- `Disposing an OnChange subscription`
 ## How this group fits the mental model
 Options registration maps a configuration section to a named object, then factory/cache/lifetime rules determine which instance each consumer reads.
 

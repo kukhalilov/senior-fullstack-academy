@@ -1,6 +1,6 @@
 # ASP.NET Core configuration providers binding and options lifecycle — Reference: Configuration abstractions, provider sources, hierarchical keys, and precedence
 
-Sources: Microsoft's [configuration](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration), [configuration providers](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration-providers),.
+Sources: Microsoft's [configuration](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration), [configuration providers](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration-providers), and [configuration API references](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.configurationrootextensions?view=net-11.0).
 
 ## Scope and version
 
@@ -24,7 +24,9 @@ Optional files let an app start without that source; required files fail load wh
 
 When multiple providers define the same key, the last provider in the root's provider order normally supplies the effective value. Default application configuration ordering is framework-specific; appsettings, environment-specific JSON, user secrets (in development), environment variables, and command-line arguments often appear in an intentional order. Host configuration and application configuration have different responsibilities and precedence. Inspect the actual `IConfigurationRoot.Providers` order instead of assuming defaults.
 
-`GetDebugView`/configuration debug view and `IConfigurationDebugView` diagnostic extensions can show effective values and their origins. This is extremely useful for precedence bugs, but debug output can contain secrets. Restrict access, redact sensitive keys, and never dump it into public logs or support tickets. “Configuration value origin inspection” means identifying which provider supplied a resolved key; provider order alone may not reveal all source-specific behavior.
+`ConfigurationRootExtensions.GetDebugView` on an `IConfigurationRoot` shows effective values and their origins. Its overload accepting a `ConfigurationDebugViewContext` callback can redact or transform values before rendering; the default overload can expose secrets. Restrict access and never dump an unredacted view into public logs or support tickets. “Configuration value origin inspection” means identifying which provider supplied a resolved key; provider order alone may not reveal all source-specific behavior.
+
+Version behavior matters at empty/null boundaries. In .NET 10, the JSON provider preserves explicit `null` and the binder applies it (including to nullable values, array elements, and empty arrays); binding `null` to non-nullable value types sets `default(T)`. In .NET 11, `AddConfiguration` treats an empty string in the chained configuration as present, so it overrides earlier outer providers; a `null` value from the wrapped `IConfiguration` remains indistinguishable from a missing key. [.NET 10 null binding](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/configuration-null-values-preserved) [.NET 11 chained empty string](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/chained-configuration-empty-string)
 
 ## Comparisons and examples
 
@@ -77,7 +79,9 @@ The inventory below is the complete declared name set for this reference. The pr
 - `IConfigurationProvider.TryGet`
 - `IConfigurationProvider.Set`
 - `IConfigurationProvider.GetChildKeys`
-- `IConfigurationProvider.OnReload`
+- `IConfigurationProvider.GetReloadToken`
+- `ConfigurationProvider.GetReloadToken`
+- `ConfigurationProvider.OnReload`
 - `AddConfiguration`
 - `AddJsonFile`
 - `AddJsonStream`
@@ -111,10 +115,15 @@ The inventory below is the complete declared name set for this reference. The pr
 - `Configuration source versus provider`
 - `Provider-specific reload capability`
 - `Configuration debug view`
-- `IConfigurationDebugView (diagnostic extension)`
+- `ConfigurationRootExtensions.GetDebugView(IConfigurationRoot)`
+- `ConfigurationRootExtensions.GetDebugView(IConfigurationRoot, Func<ConfigurationDebugViewContext,String>)`
+- `ConfigurationDebugViewContext`
+- `Configuration debug-view redaction callback`
 - `Configuration value origin inspection`
 - `Default application configuration ordering`
 - `Host configuration versus application configuration`
+- `.NET 10 null configuration binding behavior`
+- `.NET 11 chained empty-string precedence`
 
 ## How this group fits the mental model
 Sources create providers and the root composes providers into the effective key/value view used by binders and options.
