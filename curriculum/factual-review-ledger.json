@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1306,
-    "pending": 1043,
-    "claimsChecked": 61580,
-    "claimsCorrected": 3006,
+    "reviewed": 1313,
+    "pending": 1036,
+    "claimsChecked": 62290,
+    "claimsCorrected": 3016,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -118565,161 +118565,413 @@
       "topicId": "t04-006",
       "phase": "overview",
       "draft": "course/drafts/t04-006/t04-006-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 48 externally verifiable claims and inventory items where applicable, including API behavior, generated query tradeoffs, context lifetime, provider/version constraints, examples and answers. Reviewed the choice among projection/eager/explicit/lazy loading, N+1, cartesian explosion, split consistency and measurement.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
+              "section": "Include/ThenInclude, filtered include, fix-up and auto-inclusion",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
+              "section": "Entry-based explicit loading and related query aggregation",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
+              "section": "Proxy and ILazyLoader patterns, N+1 risks and context requirement",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, data duplication, buffering, roundtrips and consistency tradeoffs",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 include SQL optimizations (page release banner is stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release artifact",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed the choice among projection/eager/explicit/lazy loading, N+1, cartesian explosion, split consistency and measurement."
     },
     {
       "taskId": "t04-006-concepts",
       "topicId": "t04-006",
       "phase": "concepts",
       "draft": "course/drafts/t04-006/t04-006-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 86,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 86 externally verifiable claims and inventory items where applicable, including API behavior, generated query tradeoffs, context lifetime, provider/version constraints, examples and answers. Checked navigation loading behavior, filtered include fix-up, lazy-load context lifetime, split-query buffering/consistency and provider conditions.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
+              "section": "Include/ThenInclude, filtered include, fix-up and auto-inclusion",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
+              "section": "Entry-based explicit loading and related query aggregation",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
+              "section": "Proxy and ILazyLoader patterns, N+1 risks and context requirement",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, data duplication, buffering, roundtrips and consistency tradeoffs",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 include SQL optimizations (page release banner is stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release artifact",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked navigation loading behavior, filtered include fix-up, lazy-load context lifetime, split-query buffering/consistency and provider conditions."
     },
     {
       "taskId": "t04-006-reference-eager-loading-and-projection",
       "topicId": "t04-006",
       "phase": "reference",
       "draft": "course/drafts/t04-006/t04-006-reference-eager-loading-and-projection.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 145,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 145 externally verifiable claims and inventory items where applicable, including API behavior, generated query tradeoffs, context lifetime, provider/version constraints, examples and answers. Checked all 23 inventory items for Include overloads/chains, filtered include, auto-inclusion, fix-up, query shape and projection.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
+              "section": "Include/ThenInclude, filtered include, fix-up and auto-inclusion",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
+              "section": "Entry-based explicit loading and related query aggregation",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
+              "section": "Proxy and ILazyLoader patterns, N+1 risks and context requirement",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, data duplication, buffering, roundtrips and consistency tradeoffs",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 include SQL optimizations (page release banner is stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release artifact",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 23 inventory items for Include overloads/chains, filtered include, auto-inclusion, fix-up, query shape and projection."
     },
     {
       "taskId": "t04-006-reference-explicit-and-lazy-loading",
       "topicId": "t04-006",
       "phase": "reference",
       "draft": "course/drafts/t04-006/t04-006-reference-explicit-and-lazy-loading.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 144,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 144 externally verifiable claims and inventory items where applicable, including API behavior, generated query tradeoffs, context lifetime, provider/version constraints, examples and answers. Checked all 23 items for Entry APIs, Query/Load, loader injection, proxies, virtual constraints, IsLoaded and N+1/lifetime hazards.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
+              "section": "Include/ThenInclude, filtered include, fix-up and auto-inclusion",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
+              "section": "Entry-based explicit loading and related query aggregation",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
+              "section": "Proxy and ILazyLoader patterns, N+1 risks and context requirement",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, data duplication, buffering, roundtrips and consistency tradeoffs",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 include SQL optimizations (page release banner is stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release artifact",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 23 items for Entry APIs, Query/Load, loader injection, proxies, virtual constraints, IsLoaded and N+1/lifetime hazards."
     },
     {
       "taskId": "t04-006-reference-split-query-and-load-behavior",
       "topicId": "t04-006",
       "phase": "reference",
       "draft": "course/drafts/t04-006/t04-006-reference-split-query-and-load-behavior.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 119,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 119 externally verifiable claims and inventory items where applicable, including API behavior, generated query tradeoffs, context lifetime, provider/version constraints, examples and answers. Checked all 16 items for single/split semantics, cartesian/data duplication, warning, buffering/MARS, concurrent consistency and EF11 SQL optimization.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
+              "section": "Include/ThenInclude, filtered include, fix-up and auto-inclusion",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
+              "section": "Entry-based explicit loading and related query aggregation",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
+              "section": "Proxy and ILazyLoader patterns, N+1 risks and context requirement",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, data duplication, buffering, roundtrips and consistency tradeoffs",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 include SQL optimizations (page release banner is stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release artifact",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 16 items for single/split semantics, cartesian/data duplication, warning, buffering/MARS, concurrent consistency and EF11 SQL optimization."
     },
     {
       "taskId": "t04-006-practice",
       "topicId": "t04-006",
       "phase": "practice",
       "draft": "course/drafts/t04-006/t04-006-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 91 externally verifiable claims and inventory items where applicable, including API behavior, generated query tradeoffs, context lifetime, provider/version constraints, examples and answers. Checked loading-strategy examples, query-count expectations, filtered include caveats and solution explanations.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
+              "section": "Include/ThenInclude, filtered include, fix-up and auto-inclusion",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
+              "section": "Entry-based explicit loading and related query aggregation",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
+              "section": "Proxy and ILazyLoader patterns, N+1 risks and context requirement",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, data duplication, buffering, roundtrips and consistency tradeoffs",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 include SQL optimizations (page release banner is stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release artifact",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked loading-strategy examples, query-count expectations, filtered include caveats and solution explanations."
     },
     {
       "taskId": "t04-006-interview",
       "topicId": "t04-006",
       "phase": "interview",
       "draft": "course/drafts/t04-006/t04-006-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 77,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 77 externally verifiable claims and inventory items where applicable, including API behavior, generated query tradeoffs, context lifetime, provider/version constraints, examples and answers. Checked eager vs explicit/lazy, N+1 vs split query, projection and tracking/fix-up interview answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
+              "section": "Include/ThenInclude, filtered include, fix-up and auto-inclusion",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
+              "section": "Entry-based explicit loading and related query aggregation",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
+              "section": "Proxy and ILazyLoader patterns, N+1 risks and context requirement",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+              "section": "Cartesian explosion, data duplication, buffering, roundtrips and consistency tradeoffs",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
+              "section": "EF Core 11 include SQL optimizations (page release banner is stale)",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            },
+            {
+              "url": "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+              "section": "Final EF Core 11 release artifact",
+              "verdict": "Checked against official Microsoft/dotnet documentation; version and loading behavior boundaries are recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/explicit",
         "https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy",
         "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
         "https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-11.0/whatsnew",
-        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
+        "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md",
+        "https://learn.microsoft.com/en-us/ef/core/querying/related-data/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked eager vs explicit/lazy, N+1 vs split query, projection and tracking/fix-up interview answers."
     },
     {
       "taskId": "t04-007-overview",
