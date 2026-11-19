@@ -13,45 +13,45 @@ Units attach dimensions to numeric values. Absolute units have defined conversio
 ### Font-relative lengths
 
 - `em` — Relative to the computed font size of the element for most properties; for `font-size` itself it is relative to the parent's computed font size.
-- `rem` — Relative to the root element's font size (with document-mode details); useful for scalable root-based spacing/type systems.
+- `rem` — Relative to the root element's font size; in the root element's own `font-size` declaration it is resolved against the initial font-size to avoid a self-reference. It is useful for root-based scales, but does not automatically make a design accessible or responsive.
 - `ex` — Relative to the font's x-height, with UA/font fallback behavior when unavailable.
 - `cap` — Relative to the font's capital-letter height.
 - `ch` — Relative to the advance measure of the “0” glyph in the relevant font; it is a rough character-width measure, not a guaranteed column count.
 - `ic` — Relative to the advance measure of the CJK water ideograph glyph in the relevant font.
-- `lh` — Relative to the computed line height of the element; on the `line-height` property itself it uses the special parent-based rule.
-- `rcap`, `rch`, `rex`, `ric` — Root-element equivalents of `cap`, `ch`, `ex`, and `ic`.
+- `lh` — Relative to the element's computed line height. In `line-height` and other font-affecting properties on that element, it instead resolves from the parent's computed metrics (or initial metrics when there is no parent), avoiding self-reference.
+- `rcap`, `rch`, `rex`, `ric` — Root-element font-metric equivalents of `cap`, `ch`, `ex`, and `ic`; they use the root element's font metrics rather than the current element's.
 - `rlh` — Root element's computed line-height-relative unit.
 
 ### Viewport-relative lengths
 
-Each viewport family has small (`s`), large (`l`), and dynamic (`d`) variants for width/height/inline/block/max/min dimensions. Dynamic units track changing browser UI, potentially causing repeated resizing during scroll; small units represent the small viewport and large units the large viewport.
+Viewport-relative units use the large viewport as the default (`vh`, `vw`, etc. are legacy spellings of the large variants). Small (`s`), large (`l`), and dynamic (`d`) families are available for width/height/inline/block/min/max dimensions. The small viewport assumes retractable browser UI is expanded; the large viewport assumes it is retracted; dynamic units can change as that UI expands or retracts, but the update cadence is user-agent-defined and can cause layout changes during scroll.
 
-- `vh`, `vw` — 1% of the large viewport height/width; `vmin`/`vmax` choose the smaller/larger dimension.
+- `vh`, `vw` — 1% of the large viewport height/width; `vmin`/`vmax` choose the smaller/larger of its physical width and height.
 - `vi`, `vb` — 1% of the large viewport's logical inline/block dimension, respecting writing mode.
-- `vmin`, `vmax` — 1% of the smaller/larger large-viewport dimension.
+- `vmin`, `vmax` — 1% of the smaller/larger large-viewport physical dimension; they correspond to `lvmin` and `lvmax`.
 - `svh`, `svw`, `svi`, `svb`, `svmin`, `svmax` — Small viewport height, width, inline, block, minimum, and maximum variants.
 - `lvh`, `lvw`, `lvi`, `lvb`, `lvmin`, `lvmax` — Large viewport variants.
-- `dvh`, `dvw`, `dvi`, `dvb`, `dvmin`, `dvmax` — Dynamic viewport variants that update with dynamic browser chrome; can affect layout while scrolling.
+- `dvh`, `dvw`, `dvi`, `dvb`, `dvmin`, `dvmax` — Dynamic viewport variants whose values are between corresponding small and large viewport sizes. They may update as browser UI changes, but do not assume a particular event-by-event update during scrolling.
 
 ### Container-query relative lengths
 
-These resolve against the relevant eligible query container; without one, fallback behavior uses the small viewport dimensions as specified.
+These resolve against the nearest eligible size query container for the relevant axis. If no eligible query container exists, the units fall back to the corresponding small viewport dimensions. Container units do not themselves create a query container; `container-type`/containment and the nearest-eligible-ancestor rules determine which box is used.
 
 - `cqw`, `cqh` — 1% of the query container's width or height.
 - `cqi`, `cqb` — 1% of its logical inline or block size.
-- `cqmin`, `cqmax` — 1% of its smaller or larger eligible dimension.
+- `cqmin`, `cqmax` — 1% of the smaller or larger of the query container's logical inline and block sizes; equivalently, the smaller/larger of `cqi` and `cqb`.
 
 ### Absolute lengths
 
 - `px` — CSS reference pixel, not necessarily one physical display pixel.
-- `in`, `cm`, `mm`, `Q`, `pt`, `pc` — Inch, centimeter, millimeter, quarter-millimeter, point, and pica. CSS defines fixed conversion ratios among these units; on screens they do not guarantee physical measurement.
+- `in`, `cm`, `mm`, `Q`, `pt`, `pc` — Inch, centimeter, millimeter, quarter-millimeter, point, and pica. CSS fixes their ratios (`1in = 96px`, `1in = 2.54cm`, `1Q = 1/40cm`, `1pt = 1/72in`, `1pc = 12pt`); on screens they do not guarantee physical measurement.
 
 ### Angle, time, frequency, resolution, and grid units
 
 - `deg`, `grad`, `rad`, `turn` — Degree, gradian, radian, and full-turn angle units.
 - `s`, `ms` — Seconds and milliseconds.
 - `Hz`, `kHz` — Cycles per second and kilohertz for frequency grammars.
-- `dpi`, `dpcm`, `dppx`, `x` — Dots per inch, dots per centimeter, dots per CSS pixel, and resolution multiplier; `x` is an alias of `dppx` in resolution contexts.
+- `dpi`, `dpcm`, `dppx`, `x` — Dots per inch, dots per centimeter, and dots per CSS pixel; `x` is an alias of `dppx` where the resolution grammar accepts it. Resolution is not the same as CSS-pixel size or the device's physical pixel dimensions.
 - `fr` — Fraction of leftover space in a grid track-sizing context after non-flexible contributions; it is not a length and is not a general width unit.
 
 ## Cross-item comparison
@@ -68,6 +68,8 @@ Use `rem` when a root-level scale is intentional and `em` when a component shoul
 ```
 
 For full-height mobile layouts, test browser chrome behavior and safe-area insets; viewport units do not by themselves account for notches or home indicators. Choose logical axes when the layout should follow writing mode.
+
+Primary definitions: [CSS Values and Units 4](https://drafts.csswg.org/css-values-4/) defines font, viewport, absolute, angle, time, frequency, and resolution units; [CSS Containment 3](https://drafts.csswg.org/css-contain-3/) defines container query length units and query-container selection; [CSS Grid Layout 2](https://drafts.csswg.org/css-grid-2/) defines `fr`; and [CSS Environment Variables 1](https://drafts.csswg.org/css-env-1/) defines environment values such as safe-area insets. These are living specifications; consult current browser compatibility data before relying on newer units.
 
 ## Common mistakes
 
