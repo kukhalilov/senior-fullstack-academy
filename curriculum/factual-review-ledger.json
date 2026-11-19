@@ -5,9 +5,9 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1341,
-    "pending": 1008,
-    "claimsChecked": 65267,
+    "reviewed": 1347,
+    "pending": 1002,
+    "claimsChecked": 65841,
     "claimsCorrected": 3045,
     "draftsMayBePromoted": false
   },
@@ -120784,120 +120784,312 @@
       "topicId": "t04-011",
       "phase": "overview",
       "draft": "course/drafts/t04-011/t04-011-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 52 externally verifiable claims and supplied inventory items, including provider semantics, test isolation, migration coverage, examples and answer keys. Reviewed test-fidelity mental model and scope of each test boundary.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "Testing overview and provider fidelity",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
+              "section": "Production database versus test-double tradeoffs; SQLite, InMemory, DbSet mocks and repository pattern",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
+              "section": "Database fixtures, isolation, transactions, migration and cleanup strategies",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+              "section": "SQLite in-memory connection lifetime, InMemory limitations, repository seams",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://dotnet.testcontainers.org/",
+              "section": "Containerized dependency lifecycle and readiness (conceptual; API surface excluded)",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
         "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
-        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database"
+        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+        "https://dotnet.testcontainers.org/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed test-fidelity mental model and scope of each test boundary."
     },
     {
       "taskId": "t04-011-concepts",
       "topicId": "t04-011",
       "phase": "concepts",
       "draft": "course/drafts/t04-011/t04-011-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 120,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 120 externally verifiable claims and supplied inventory items, including provider semantics, test isolation, migration coverage, examples and answer keys. Reviewed production-provider strategy, isolation, test-double fidelity, deterministic data, and lifecycle.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "Testing overview and provider fidelity",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
+              "section": "Production database versus test-double tradeoffs; SQLite, InMemory, DbSet mocks and repository pattern",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
+              "section": "Database fixtures, isolation, transactions, migration and cleanup strategies",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+              "section": "SQLite in-memory connection lifetime, InMemory limitations, repository seams",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://dotnet.testcontainers.org/",
+              "section": "Containerized dependency lifecycle and readiness (conceptual; API surface excluded)",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
         "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
-        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database"
+        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+        "https://dotnet.testcontainers.org/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed production-provider strategy, isolation, test-double fidelity, deterministic data, and lifecycle."
     },
     {
       "taskId": "t04-011-reference-real-database-testing",
       "topicId": "t04-011",
       "phase": "reference",
       "draft": "course/drafts/t04-011/t04-011-reference-real-database-testing.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 112,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 112 externally verifiable claims and supplied inventory items, including provider semantics, test isolation, migration coverage, examples and answer keys. Checked all 19 inventory items covering test fixtures, lifecycle, migration, transaction, concurrency, credentials, and parallelism.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "Testing overview and provider fidelity",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
+              "section": "Production database versus test-double tradeoffs; SQLite, InMemory, DbSet mocks and repository pattern",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
+              "section": "Database fixtures, isolation, transactions, migration and cleanup strategies",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+              "section": "SQLite in-memory connection lifetime, InMemory limitations, repository seams",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://dotnet.testcontainers.org/",
+              "section": "Containerized dependency lifecycle and readiness (conceptual; API surface excluded)",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
         "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
-        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database"
+        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+        "https://dotnet.testcontainers.org/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 19 inventory items covering test fixtures, lifecycle, migration, transaction, concurrency, credentials, and parallelism."
     },
     {
       "taskId": "t04-011-reference-test-doubles-and-provider-differences",
       "topicId": "t04-011",
       "phase": "reference",
       "draft": "course/drafts/t04-011/t04-011-reference-test-doubles-and-provider-differences.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 113,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 113 externally verifiable claims and supplied inventory items, including provider semantics, test isolation, migration coverage, examples and answer keys. Checked all 19 inventory items covering SQLite, EF InMemory, DbSet mocks, repository stubs, and divergence.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "Testing overview and provider fidelity",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
+              "section": "Production database versus test-double tradeoffs; SQLite, InMemory, DbSet mocks and repository pattern",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
+              "section": "Database fixtures, isolation, transactions, migration and cleanup strategies",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+              "section": "SQLite in-memory connection lifetime, InMemory limitations, repository seams",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://dotnet.testcontainers.org/",
+              "section": "Containerized dependency lifecycle and readiness (conceptual; API surface excluded)",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
         "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
-        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database"
+        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+        "https://dotnet.testcontainers.org/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 19 inventory items covering SQLite, EF InMemory, DbSet mocks, repository stubs, and divergence."
     },
     {
       "taskId": "t04-011-practice",
       "topicId": "t04-011",
       "phase": "practice",
       "draft": "course/drafts/t04-011/t04-011-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 91 externally verifiable claims and supplied inventory items, including provider semantics, test isolation, migration coverage, examples and answer keys. Reviewed scenarios, solutions, isolation designs, production-provider behavior, and migration testing.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "Testing overview and provider fidelity",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
+              "section": "Production database versus test-double tradeoffs; SQLite, InMemory, DbSet mocks and repository pattern",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
+              "section": "Database fixtures, isolation, transactions, migration and cleanup strategies",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+              "section": "SQLite in-memory connection lifetime, InMemory limitations, repository seams",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://dotnet.testcontainers.org/",
+              "section": "Containerized dependency lifecycle and readiness (conceptual; API surface excluded)",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
         "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
-        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database"
+        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+        "https://dotnet.testcontainers.org/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed scenarios, solutions, isolation designs, production-provider behavior, and migration testing."
     },
     {
       "taskId": "t04-011-interview",
       "topicId": "t04-011",
       "phase": "interview",
       "draft": "course/drafts/t04-011/t04-011-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 86,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 86 externally verifiable claims and supplied inventory items, including provider semantics, test isolation, migration coverage, examples and answer keys. Reviewed answers, follow-up scenarios, and test-strategy tradeoffs.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/",
+              "section": "Testing overview and provider fidelity",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
+              "section": "Production database versus test-double tradeoffs; SQLite, InMemory, DbSet mocks and repository pattern",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
+              "section": "Database fixtures, isolation, transactions, migration and cleanup strategies",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+              "section": "SQLite in-memory connection lifetime, InMemory limitations, repository seams",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            },
+            {
+              "url": "https://dotnet.testcontainers.org/",
+              "section": "Containerized dependency lifecycle and readiness (conceptual; API surface excluded)",
+              "verdict": "Checked against current official project documentation; limits and scope are stated in the lesson."
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/testing/",
         "https://learn.microsoft.com/en-us/ef/core/testing/choosing-a-testing-strategy",
         "https://learn.microsoft.com/en-us/ef/core/testing/testing-with-the-database",
-        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database"
+        "https://learn.microsoft.com/en-us/ef/core/testing/testing-without-the-database",
+        "https://dotnet.testcontainers.org/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed answers, follow-up scenarios, and test-strategy tradeoffs."
     },
     {
       "taskId": "t02-001-overview",
