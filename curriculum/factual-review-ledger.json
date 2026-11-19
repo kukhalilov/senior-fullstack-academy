@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1178,
-    "pending": 1171,
-    "claimsChecked": 50769,
-    "claimsCorrected": 2707,
+    "reviewed": 1179,
+    "pending": 1170,
+    "claimsChecked": 50803,
+    "claimsCorrected": 2709,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -104905,13 +104905,65 @@
       "topicId": "t03-002",
       "phase": "overview",
       "draft": "course/drafts/t03-002/t03-002-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "sources": [
+            {
+              "section": "Applicable SQL Server relational design, constraints, type semantics, and SQL Server 2025 feature availability",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
+              "verdict": "supported; related precision corrections are recorded in the lesson"
+            },
+            {
+              "section": "Applicable SQL Server relational design, constraints, type semantics, and SQL Server 2025 feature availability",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
+              "verdict": "supported; related precision corrections are recorded in the lesson"
+            },
+            {
+              "section": "Applicable SQL Server relational design, constraints, type semantics, and SQL Server 2025 feature availability",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-unique-indexes?view=sql-server-ver17",
+              "verdict": "supported; related precision corrections are recorded in the lesson"
+            },
+            {
+              "section": "Applicable SQL Server relational design, constraints, type semantics, and SQL Server 2025 feature availability",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17",
+              "verdict": "supported; related precision corrections are recorded in the lesson"
+            },
+            {
+              "section": "Applicable SQL Server relational design, constraints, type semantics, and SQL Server 2025 feature availability",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/datetimeoffset-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; related precision corrections are recorded in the lesson"
+            },
+            {
+              "section": "Applicable SQL Server relational design, constraints, type semantics, and SQL Server 2025 feature availability",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/char-and-varchar-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; related precision corrections are recorded in the lesson"
+            },
+            {
+              "section": "Applicable SQL Server relational design, constraints, type semantics, and SQL Server 2025 feature availability",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type?view=sql-server-ver17",
+              "verdict": "supported; related precision corrections are recorded in the lesson"
+            },
+            {
+              "section": "Applicable SQL Server relational design, constraints, type semantics, and SQL Server 2025 feature availability",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-functions-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; related precision corrections are recorded in the lesson"
+            },
+            {
+              "section": "Applicable SQL Server relational design, constraints, type semantics, and SQL Server 2025 feature availability",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server?view=sql-server-ver17",
+              "verdict": "supported; related precision corrections are recorded in the lesson"
+            }
+          ],
+          "verdict": "All assigned claims supported after two clarity corrections; no unresolved material gaps.",
+          "claims": "Enumerated 34 verifiable assertions covering relations, keys, composite tenant references, normalization tradeoffs, NULL logic, constraints, typing, date/time semantics, and SQL Server 2025 JSON/vector scope."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -104946,9 +104998,10 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description"
+        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Enumerated and checked the overview’s relational-model, identity, tenant-boundary, normalization, nullability, constraint, type, migration, and SQL Server 2025 availability claims against current Microsoft documentation. Clarified CHECK/UNKNOWN with NOT NULL, the filtered unique-index choice for optional unique values, the separate named-zone requirement for future civil-time rules, and the composite tenant foreign-key construction. Remaining claims are supported and no assigned-scope omissions remain."
     },
     {
       "taskId": "t03-002-concepts",
@@ -104996,7 +105049,8 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description"
+        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -105046,7 +105100,8 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description"
+        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -105096,7 +105151,8 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description"
+        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -105146,7 +105202,8 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description"
+        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -105196,7 +105253,8 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description"
+        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -105246,7 +105304,8 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description"
+        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -105296,7 +105355,8 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description"
+        "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
