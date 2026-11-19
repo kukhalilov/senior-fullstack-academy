@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson covers exactly the three assigned properties: `container`, `container-name`, and `container-type`. Container queries are specified across CSS Conditional Rules Levels 3–5. Level 3/4 define the established size and style query model; the current Level 5 Editor’s Draft (10 November 2026 in the version checked) adds `scroll-state` to `container-type` and defines scroll-state queries. Treat that addition as evolving draft behavior and check browser support independently.
+This lesson covers exactly the three assigned properties: `container`, `container-name`, and `container-type`. The container-query model was first developed in CSS Containment Level 3 and is now maintained in the current CSS Conditional Rules Level 5 Editor’s Draft; CSS Conditional Rules Level 3 itself covers conditional processing and `@supports`, not container queries. The Level 5 draft dated 10 November 2026 adds `scroll-state` to `container-type` and defines scroll-state queries. Treat that addition as evolving draft behavior and check browser support independently. A draft’s detailed grammar is useful for learning the proposal, but does not by itself establish interoperable browser support.
 
 # How this group fits the mental model
 
@@ -92,5 +92,6 @@ For a scroll-state feature from the Level 5 draft, declare a scroll-state contai
 # Sources
 
 - [CSS Conditional Rules Module Level 5, current Editor’s Draft](https://drafts.csswg.org/css-conditional-5/) — §§5.1–5.4 and 6.3: current property grammars, containment effects, named-container selection, shorthand reset behavior, and scroll-state query support.
-- [CSS Conditional Rules Module Level 3](https://www.w3.org/TR/css-conditional-3/) — foundational conditional processing and size-query model.
+- [CSS Containment Module Level 3, published Working Draft](https://www.w3.org/TR/css-contain-3/) — the published draft that defined the earlier container-query model; subsequent work moved to Conditional Rules Level 5.
+- [CSS Conditional Rules Module Level 3](https://www.w3.org/TR/css-conditional-3/) — foundational conditional processing and `@supports`; it is not the source of the container-query model.
 - [CSS Containment Module Level 3](https://drafts.csswg.org/css-contain-3/) — containment effects and intrinsic-size implications.
