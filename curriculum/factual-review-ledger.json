@@ -5,9 +5,9 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1192,
-    "pending": 1157,
-    "claimsChecked": 51382,
+    "reviewed": 1193,
+    "pending": 1156,
+    "claimsChecked": 51407,
     "claimsCorrected": 2739,
     "draftsMayBePromoted": false
   },
@@ -106307,24 +106307,50 @@
       "topicId": "t03-003",
       "phase": "practice",
       "draft": "course/drafts/t03-003/t03-003-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 25,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17",
+          "section": "TOP WITH TIES, PERCENT rounding, and select ordering",
+          "verdict": "worked example and answer key supported"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
+          "section": "Predicate truth values, NOT IN/NULL reasoning, and alias binding",
+          "verdict": "exercise solutions supported"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
+          "section": "Page offset/fetch validity, unique ordering and static/dynamic paging assumptions",
+          "verdict": "supported"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
+          "section": "REGEXP_LIKE version, compatibility level, flags and collation semantics",
+          "verdict": "supported"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
+          "section": "Null-safe predicate in change-detection exercise",
+          "verdict": "supported"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/some-any-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/exists-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/operator-precedence-transact-sql?view=sql-server-ver17",
@@ -106332,7 +106358,7 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all worked SQL and solution reasoning for the assigned SELECT/filter/order/pagination practice. Verified TOP WITH TIES boundary semantics, NULL exclusion under <> and three-valued predicates, NOT EXISTS versus nullable NOT IN, alias scope and derived-table boundaries, uniqueness and OFFSET page arithmetic, regex version/flag/collation limits, TOP PERCENT ceiling behavior, and data-change caveats. Exercise coverage exercises the topic concepts without unsupported syntax or missing inventory claims."
     },
     {
       "taskId": "t03-003-interview",
