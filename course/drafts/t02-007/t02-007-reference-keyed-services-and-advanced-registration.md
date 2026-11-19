@@ -25,6 +25,11 @@ Use a specific key for one service and AnyKey only for its fallback/enumeration 
 - `IKeyedServiceProvider` — Provider capability for keyed service resolution.
 - `IKeyedServiceProvider.GetKeyedService` — Optional keyed provider lookup that may return null.
 - `IKeyedServiceProvider.GetRequiredKeyedService` — Required keyed provider lookup.
+- `IServiceProviderIsKeyedService` — Capability interface, derived from `IServiceProviderIsService`, for probing whether a provider can supply a given service type/key pair.
+- `IServiceProviderIsKeyedService.IsKeyedService(Type,Object)` — Returns whether the provider can supply the requested keyed service; this is a capability check, not a substitute for handling resolution/activation failures.
+- `TryAddKeyedSingleton` — Adds a keyed singleton default only when the service/key registration is not already present; useful for library defaults that consumers may override.
+- `TryAddKeyedScoped` — Adds a keyed scoped default only when the service/key registration is not already present.
+- `TryAddKeyedTransient` — Adds a keyed transient default only when the service/key registration is not already present.
 - `FromKeyedServicesAttribute` — Parameter attribute selecting a keyed dependency during constructor activation.
 - `FromKeyedServicesAttribute.Key` — The key the parameter should resolve; null with inherited lookup can request the parent activation key.
 - `FromKeyedServicesAttribute.LookupMode` — Controls keyed lookup mode, including whether the key is inherited from the parent keyed activation.
@@ -77,6 +82,12 @@ Use a specific key for one service and AnyKey only for its fallback/enumeration 
 - `GetRequiredKeyedService<T>(IServiceProvider, Object)` — Generic required keyed lookup; throws if the service type/key pair cannot be resolved.
 - `GetKeyedServices(IServiceProvider, Type, Object)` — Runtime-type plural keyed lookup returning the registered service set for the supplied key.
 - `GetKeyedServices<T>(IServiceProvider, Object)` — Generic plural keyed lookup returning the registered service set for the supplied key.
+- `TryAddKeyedSingleton(IServiceCollection, Type, Object, implementation forms)` — Non-generic keyed singleton registration family, with implementation-type, factory, and instance forms as exposed by the overloads.
+- `TryAddKeyedScoped(IServiceCollection, Type, Object, implementation forms)` — Non-generic keyed scoped registration family, with implementation-type and factory forms as exposed by the overloads.
+- `TryAddKeyedTransient(IServiceCollection, Type, Object, implementation forms)` — Non-generic keyed transient registration family, with implementation-type and factory forms as exposed by the overloads.
+- `TryAddKeyedSingleton<TService>(IServiceCollection, Object, implementation forms)` — Generic keyed singleton overload family, including implementation-type, factory, and instance forms.
+- `TryAddKeyedScoped<TService>(IServiceCollection, Object, implementation forms)` — Generic keyed scoped overload family, including implementation-type and factory forms.
+- `TryAddKeyedTransient<TService>(IServiceCollection, Object, implementation forms)` — Generic keyed transient overload family, including implementation-type and factory forms.
 - `FromKeyedServicesAttribute()` — Default attribute constructor sets LookupMode to InheritKey, so nested activation can use the parent service key.
 - `FromKeyedServicesAttribute(Object)` — Attribute constructor that selects a specific service key for this parameter.
 
@@ -112,5 +123,7 @@ Do not use different string instances with inconsistent spelling/casing as accid
 [Keyed services](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection)
 [Keyed registration overloads](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions)
 [Keyed resolution overloads](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceproviderkeyedserviceextensions)
+[TryAdd keyed registration overloads](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.extensions.servicecollectiondescriptorextensions?view=net-11.0)
+[IServiceProviderIsKeyedService](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iserviceprovideriskeyedservice?view=net-11.0)
 [FromKeyedServicesAttribute](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.fromkeyedservicesattribute)
 [.NET 10 AnyKey change](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/getkeyedservice-anykey)

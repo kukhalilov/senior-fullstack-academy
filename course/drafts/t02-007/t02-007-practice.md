@@ -52,7 +52,7 @@ A singleton is injected into endpoints and its mutable `Dictionary` is updated b
 3. The root provider owns captured disposable instances until it is disposed. Create a bounded scope or create a caller-owned object outside the container's tracked graph.
 4. AnyKey is special. Use the requested concrete key to invoke a fallback; use plural lookup for enumeration.
 5. Cleanup order is reverse capture order. .NET 11 attempts all disposals and aggregates multiple failures.
-6. Type/factory registrations are container-created. Supplied instances are already constructed and remain externally owned.
+6. The container constructs type registrations and tracks factory results for disposal. Supplied instances are already constructed and remain externally owned.
 7. Safe concurrent resolution says nothing about simultaneous mutation of one returned object.
 
 ## Complete solutions
@@ -104,7 +104,7 @@ The provider attempts cleanup in reverse capture order. On .NET 11 it continues 
 
 ### Solution 6
 
-With `AddSingleton<TService>(instance)`, application code created the object before registration and remains responsible for disposing it. With a service-type registration, the container creates the implementation and disposes it at provider shutdown. A factory registration is also container-created for ownership purposes when the container tracks the produced service; keep the factory synchronous and return a fresh object appropriate to singleton lifetime. Do not return an externally owned singleton from a factory unless ownership is deliberately coordinated.
+With `AddSingleton<TService>(instance)`, application code created the object before registration and remains responsible for disposing it. With a service-type registration, the container creates the implementation and disposes it at provider shutdown. A factory result is tracked/disposed by the container even if the factory did not itself allocate the object; keep the factory synchronous and return an object whose ownership is being transferred to the container. Do not return an externally owned singleton from a factory unless ownership is deliberately coordinated.
 
 ### Solution 7
 

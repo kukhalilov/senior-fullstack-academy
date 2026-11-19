@@ -38,6 +38,8 @@ The container disposes the disposable services it creates when their owning scop
 
 If code supplies an existing instance registration, it generally retains disposal responsibility because the container did not create that instance. Disposable transient services resolved from the root are captured until root shutdown and can accumulate; use an owned factory pattern for short-lived disposable objects or resolve them within a short-lived scope. For async cleanup, use async scope/provider disposal when services implement `IAsyncDisposable`.
 
+If a captured service implements `IAsyncDisposable` but not `IDisposable`, synchronous provider or scope disposal throws `InvalidOperationException`; use asynchronous disposal (`DisposeAsync` or `await using`) so cleanup runs to completion. [DI disposal guidance](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection/guidelines)
+
 In .NET 11, the built-in provider attempts cleanup for all captured services in reverse capture order even if one disposal throws. One failure is rethrown; multiple failures become `AggregateException`. Disposal implementations should normally avoid throwing, and error handling must not assume the first failure prevents remaining cleanup. [.NET 11 disposal behavior](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/dependency-injection-disposal-exceptions)
 
 ### Concurrency and service design
@@ -49,6 +51,8 @@ Do not run async work in constructors or registration factories. Resolve synchro
 ### Keyed services
 
 A keyed registration adds a service key dimension to the service type. Keys are objects whose equality behavior determines matching. `[FromKeyedServices]` selects a keyed dependency for a constructor parameter; `[ServiceKey]` injects the key used to resolve a keyed service. `KeyedService.AnyKey` has special fallback and enumeration semantics, not ordinary equality semantics. In .NET 10+, single-service lookup with `AnyKey` throws, while plural lookup enumerates services registered under specific keys. Distinguish a keyed implementation choice from named options: one chooses an implementation; the other selects configuration for a service. [.NET keyed services](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection) [.NET 10 behavior](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/getkeyedservice-anykey)
+
+When a library wants to register a keyed default without overriding an application's prior registration for that same service/key, use the `TryAddKeyedSingleton`, `TryAddKeyedScoped`, or `TryAddKeyedTransient` family. A provider may also expose `IServiceProviderIsKeyedService.IsKeyedService(type, key)` for capability checks; checking availability does not guarantee later activation will succeed if construction itself fails. [Keyed registration API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.extensions.servicecollectiondescriptorextensions?view=net-11.0) [Keyed provider probe](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iserviceprovideriskeyedservice?view=net-11.0)
 
 ## Mechanisms and relationships
 

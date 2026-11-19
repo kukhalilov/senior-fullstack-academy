@@ -6,7 +6,7 @@ A service registration describes the service type, creation path, lifetime, and 
 
 ## How this group fits the mental model
 
-Think of registration as a recipe, not a constructed object. Type/factory registrations let the container construct and track services; a supplied instance stays externally owned. Factories are synchronous composition code, and a second provider splits singleton identity and cleanup.
+Think of registration as a recipe, not a constructed object. For type registrations, the container constructs and tracks the service; a factory result is also tracked and disposed by the container. An instance supplied through an instance-registration overload stays externally owned. Factories are synchronous composition code, and a second provider splits singleton identity and cleanup.
 
 ## Supplied names explained
 
@@ -73,6 +73,7 @@ Think of registration as a recipe, not a constructed object. Type/factory regist
 - `AddDbContext` — Registers EF Core context services, commonly scoped to a unit of work/request.
 - `AddHostedService` — Registers an IHostedService implementation as a hosted, application-lifetime service; create scopes inside long-running work when scoped dependencies are needed.
 - `Registering an implementation instance disposal responsibility` — The code that creates/supplies an instance should dispose it; instance registration does not transfer ownership to the container.
+- `Factory result disposal ownership` — A factory's returned service is tracked and disposed by the container even when the factory obtained the object elsewhere; do not return an object with a separate owner.
 - `TryAddEnumerable duplicate implementation handling` — Deduplication is by service/implementation registration identity, enabling library registration modules to coexist.
 
 ## Cross-item comparison

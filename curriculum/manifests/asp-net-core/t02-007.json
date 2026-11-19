@@ -79,6 +79,7 @@
         "AddDbContext",
         "AddHostedService",
         "Registering an implementation instance disposal responsibility",
+        "Factory result disposal ownership",
         "TryAddEnumerable duplicate implementation handling"
       ]
     },
@@ -165,6 +166,8 @@
         "IKeyedServiceProvider",
         "IKeyedServiceProvider.GetKeyedService",
         "IKeyedServiceProvider.GetRequiredKeyedService",
+        "IServiceProviderIsKeyedService",
+        "IServiceProviderIsKeyedService.IsKeyedService(Type,Object)",
         "FromKeyedServicesAttribute",
         "FromKeyedServicesAttribute.Key",
         "FromKeyedServicesAttribute.LookupMode",
@@ -211,6 +214,15 @@
         "AddKeyedTransient<TService,TImplementation>(IServiceCollection, Object)",
         "AddKeyedTransient<TService>(IServiceCollection, Object, Func<IServiceProvider,Object,TService>)",
         "AddKeyedTransient<TService>(IServiceCollection, Object)",
+        "TryAddKeyedSingleton",
+        "TryAddKeyedScoped",
+        "TryAddKeyedTransient",
+        "TryAddKeyedSingleton(IServiceCollection, Type, Object, implementation forms)",
+        "TryAddKeyedScoped(IServiceCollection, Type, Object, implementation forms)",
+        "TryAddKeyedTransient(IServiceCollection, Type, Object, implementation forms)",
+        "TryAddKeyedSingleton<TService>(IServiceCollection, Object, implementation forms)",
+        "TryAddKeyedScoped<TService>(IServiceCollection, Object, implementation forms)",
+        "TryAddKeyedTransient<TService>(IServiceCollection, Object, implementation forms)",
         "GetKeyedService(IServiceProvider, Type, Object)",
         "GetKeyedService<T>(IServiceProvider, Object)",
         "GetRequiredKeyedService(IServiceProvider, Type, Object)",
@@ -237,6 +249,7 @@
         "IServiceProvider.DisposeAsync",
         "ServiceProvider.Dispose",
         "ServiceProvider.DisposeAsync",
+        "Synchronous disposal of async-only service throws InvalidOperationException",
         "AsyncServiceScope.DisposeAsync",
         "Reverse capture-order disposal",
         "Multiple disposal exceptions",
@@ -324,11 +337,23 @@
     "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/dependency-injection-disposal-exceptions",
     "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions",
     "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceproviderkeyedserviceextensions",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.extensions.servicecollectiondescriptorextensions?view=net-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iserviceprovideriskeyedservice?view=net-11.0",
     "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/getkeyedservice-anykey"
   ],
   "versionNotes": [
     {
-      "edition": ".NET 11 GA checked 2026-11-14",
+      "edition": ".NET 8 GA checked 2026-11-20",
+      "items": [
+        "Keyed dependency injection was introduced, including IKeyedServiceProvider, FromKeyedServicesAttribute, ServiceKeyAttribute, and keyed IServiceCollection registration APIs."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8/runtime",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-8.0"
+      ]
+    },
+    {
+      "edition": ".NET 11 GA checked 2026-11-20",
       "items": [
         "The built-in DI container in .NET 11 attempts to dispose every captured disposable service even if one disposal throws; multiple failures are aggregated in AggregateException. Keyed services remain part of the built-in container surface, and .NET 10 changed GetKeyedService(KeyedService.AnyKey) to throw because AnyKey is not a key for resolving one service."
       ],
@@ -343,8 +368,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn .NET dependency injection, service registration, guidelines, API reference, and .NET 11 compatibility documentation",
-    "edition": ".NET 11 GA checked 2026-11-16",
-    "checkedAt": "2026-11-16",
+    "edition": ".NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection",
       "https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection/service-registration",
@@ -356,7 +381,10 @@
       "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/dependency-injection-disposal-exceptions",
       "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/getkeyedservice-anykey",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions",
-      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceproviderkeyedserviceextensions"
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceproviderkeyedserviceextensions",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.extensions.servicecollectiondescriptorextensions?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iserviceprovideriskeyedservice?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8/runtime"
     ]
   },
   "scopeExclusions": [

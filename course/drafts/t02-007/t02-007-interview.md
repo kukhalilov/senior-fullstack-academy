@@ -13,10 +13,11 @@
 9. Who disposes container-created services, supplied instance registrations, and transient disposables resolved from root?
 10. What changed in .NET 11 scope/provider disposal, and how should multiple failures be handled?
 11. What does DI's thread-safe resolution guarantee, and what does it not guarantee?
+12. When should a library use `TryAddKeyed...`, and what does `IServiceProviderIsKeyedService` tell you?
 
 ## Concise interview answers
 
-1. A descriptor maps a service type to an implementation type, factory, or existing instance with a lifetime and optional key. Type/factory objects are created by the container; an existing supplied instance remains externally owned.
+1. A descriptor maps a service type to an implementation type, factory, or existing instance with a lifetime and optional key. The container constructs type registrations and tracks factory results for disposal; an instance supplied through an instance-registration overload remains externally owned.
 2. Transient creates per resolution, scoped reuses within a scope, and singleton reuses for one provider. Their captured object graphs may live longer than registration labels suggest, and disposal follows the owning scope/provider.
 3. A captive dependency is a shorter-lived service retained by a longer-lived owner. A singleton worker should inject `IServiceScopeFactory` and create a scope per operation.
 4. Singular resolution chooses the last matching registration; `IEnumerable<T>` gets all matches in registration order.
@@ -27,6 +28,7 @@
 9. The container disposes instances it creates at scope/provider end. The creator owns prebuilt instance registrations. Disposable transients resolved from root are captured until root shutdown.
 10. .NET 11 attempts all captured disposals in reverse capture order even after a failure; multiple failures become `AggregateException`. Inspect `InnerExceptions` and do not rely on an early failure to stop cleanup.
 11. The built provider/scope can be resolved concurrently. Returned service objects must implement their own synchronization or immutable-state design.
+12. Use `TryAddKeyedSingleton`, `TryAddKeyedScoped`, or `TryAddKeyedTransient` when supplying a default that should not replace an application's existing keyed registration. `IServiceProviderIsKeyedService.IsKeyedService(type, key)` probes whether that provider advertises the keyed service; it does not guarantee that constructing the service will succeed.
 
 ## Deep follow-up answers
 

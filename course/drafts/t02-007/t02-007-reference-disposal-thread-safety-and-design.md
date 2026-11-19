@@ -13,6 +13,7 @@ The container tracks objects it creates. Scopes/providers are cleanup owners; ca
 - `IDisposable service cleanup` — Container invokes synchronous cleanup for container-created instances at the owning boundary.
 - `IAsyncDisposable service cleanup` — Use DisposeAsync/async scopes to await asynchronous resource release.
 - `Container-owned service disposal` — The container owns disposal for objects it constructs and captures.
+- `Factory result disposal ownership` — A factory's returned service is tracked and disposed by the container even when the factory obtained the object elsewhere; do not return an object with a separate owner.
 - `Externally-owned instance disposal` — The code supplying an already-created instance generally remains responsible for cleanup.
 - `Transient disposable capture` — Disposable transient results are retained by the resolving scope/provider so the container can dispose them later.
 - `Disposable transient in root scope` — Root resolution can retain each disposable transient until application shutdown, causing unbounded growth.
@@ -23,6 +24,7 @@ The container tracks objects it creates. Scopes/providers are cleanup owners; ca
 - `ServiceProvider.Dispose` — Built-in root provider synchronous cleanup; in .NET 11 it attempts every captured service after failures.
 - `ServiceProvider.DisposeAsync` — Built-in root provider async cleanup; in .NET 11 it attempts every captured service after failures.
 - `AsyncServiceScope.DisposeAsync` — Asynchronously disposes the services captured by that scope.
+- `Synchronous disposal of async-only service throws InvalidOperationException` — Calling synchronous provider/scope disposal when a captured service implements `IAsyncDisposable` but not `IDisposable` throws; use `DisposeAsync`/`await using` so async cleanup is awaited.
 - `Reverse capture-order disposal` — Cleanup runs in reverse order that disposable services were captured/resolved.
 - `Multiple disposal exceptions` — In .NET 11, all captured disposables are attempted; multiple failures are combined in AggregateException.
 - `AggregateException during provider disposal` — .NET 11 reports multiple disposal failures together; inspect InnerExceptions and do not assume cleanup stopped at the first.
@@ -54,7 +56,9 @@ The container tracks objects it creates. Scopes/providers are cleanup owners; ca
 
 ## Cross-item comparison
 
-Type/factory-created objects are container-owned; supplied instances remain externally owned. Sync scope disposal invokes synchronous cleanup; async scope disposal awaits async cleanup. Singleton and root instances survive to provider shutdown. Resolution safety is not object safety. Since .NET 11, failures do not stop remaining disposal attempts; a single failure is rethrown and multiple failures aggregate.
+The container owns and tracks services constructed from implementation types and results returned by registration factories; an object supplied through an instance-registration overload remains externally owned. A factory result is treated as container-owned even if the factory returns an object it obtained elsewhere, so avoid returning an object with another owner. Sync scope disposal invokes synchronous cleanup; async scope disposal awaits async cleanup. Singleton and root instances survive to provider shutdown. Resolution safety is not object safety. Since .NET 11, failures do not stop remaining disposal attempts; a single failure is rethrown and multiple failures aggregate.
+
+Prefer async disposal when any captured service requires it. The built-in provider cannot synchronously dispose an async-only service; attempting sync disposal throws rather than silently skipping its asynchronous cleanup.
 
 ## Examples
 
