@@ -22,11 +22,20 @@ An `AbortController` is a cancellation source; its `signal` is passed to operati
 - `AbortSignal.abort()` — Static factory returning an already-aborted signal with optional reason.
 - `AbortSignal.timeout()` — Static factory returning a signal that aborts after the requested duration with a timeout reason. Timing is controlled by browser lifecycle/active-time rules; do not use it as a precise real-time clock.
 - `AbortSignal.any()` — Static factory that aborts when any provided signal aborts, adopting the first abort reason.
+- `AbortSignal.onabort` — Event-handler property for the signal's `abort` event; ordinary `addEventListener("abort", ...)` is also available through EventTarget.
+- abort event — Fired when a signal transitions to aborted; listeners can react once, while `aborted`/`reason` remain the durable state to inspect for late subscribers.
+- MutationObserver() constructor — Creates an observer with a callback receiving `(records, observer)` when queued records are delivered.
+- `MutationCallback` — Callback contract for the records array and observer instance.
 - `MutationObserver` — Observer that asynchronously reports selected subtree, child-list, attribute, and character-data mutations.
 - `MutationObserver.observe()` — Starts observing a target with options. At least one of `childList`, `attributes`, or `characterData` must be enabled; `subtree` extends observation to descendants.
 - `MutationObserver.disconnect()` — Stops future observation and discards queued, undelivered records. Call `takeRecords()` first if those pending records matter.
 - `MutationObserver.takeRecords()` — Returns and clears currently queued MutationRecords without waiting for callback delivery.
 - `MutationRecord` — Record describing one mutation kind, target, added/removed nodes, and optional previous/old values.
+- `MutationRecord.type` and `MutationRecord.target` — Mutation kind (`attributes`, `characterData`, or `childList`) and the affected node.
+- `MutationRecord.addedNodes` and `MutationRecord.removedNodes` — NodeList snapshots identifying inserted or removed nodes for child-list records.
+- `MutationRecord.previousSibling` and `MutationRecord.nextSibling` — Sibling context around a child-list mutation, or null where not applicable.
+- `MutationRecord.attributeName` and `MutationRecord.attributeNamespace` — Changed attribute's local name/namespace for attribute records; otherwise null.
+- `MutationRecord.oldValue` — Previous attribute or character-data value only when its matching old-value option was enabled; otherwise null.
 - `MutationObserverInit.attributes` — Observes attribute changes. It is implied true when `attributeFilter` or `attributeOldValue` is provided, unless explicitly false (which can cause a TypeError).
 - `MutationObserverInit.attributeFilter` — Limits observed attributes by name; use it to avoid irrelevant callbacks. It implies attributes observation unless explicitly disabled.
 - `MutationObserverInit.attributeOldValue` — Requests previous attribute value in records; implies attributes observation unless explicitly disabled.
@@ -40,6 +49,8 @@ An `AbortController` is a cancellation source; its `signal` is passed to operati
 To watch added/removed children, use `{ childList: true }`. To watch descendants, add `subtree: true`. To watch selected attributes, provide `attributes: true` and `attributeFilter`; `attributeFilter` also implies attributes when not explicitly false. To capture prior values, set the matching `attributeOldValue` or `characterDataOldValue`. Incompatible combinations, such as explicitly disabling `attributes` while requesting attribute old values, throw `TypeError`.
 
 Records are delivered asynchronously after mutations, typically at a microtask checkpoint. Several synchronous changes can be batched. Do not expect a record for every high-level user action; records describe DOM mutations. Attribute values can change and nodes can move again before the callback runs, so use the records for mutation facts, then inspect current DOM if you need the present state.
+
+An observer can register against more than one target. Re-observing the same target updates that observer's registration options; `disconnect()` removes its registrations and queued records, while `takeRecords()` lets code retrieve queued records first. A callback is delivered after the mutation-observer microtask is queued, and mutations made inside the callback can queue a later delivery.
 
 # Cancellation patterns
 
