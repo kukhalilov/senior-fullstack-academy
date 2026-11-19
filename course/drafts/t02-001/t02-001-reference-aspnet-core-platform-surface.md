@@ -21,7 +21,7 @@ This inventory maps the pieces around one HTTP request: framework and host compo
 - `Kestrel` — default cross-platform ASP.NET Core HTTP server. It can listen directly as an edge server or receive forwarded traffic from a reverse proxy.
 - `HTTP.sys server` — Windows-only HTTP server based on the Windows HTTP Server API/kernel driver; it exposes capabilities such as port sharing or kernel-mode authentication that may matter for specific deployments.
 - `IIS in-process hosting` — application runs in the IIS worker process using the IIS HTTP Server implementation; it avoids a loopback proxy hop and relies on IIS/WAS process management.
-- `IIS out-of-process hosting` — IIS/ANCM proxies requests to a separate ASP.NET Core process running Kestrel. This adds a process boundary and permits multiple apps in an app pool.
+- `IIS out-of-process hosting` — IIS/ANCM proxies requests to a separate ASP.NET Core process running Kestrel. This adds a process boundary; isolate applications with separate app pools as recommended by Microsoft. In-process hosting requires a separate app pool per app.
 - `ASP.NET Core Module (ANCM)` — native IIS module that integrates IIS with ASP.NET Core, forwards requests to the chosen hosting model, and manages app startup/restart as configured.
 - `HTTP request pipeline` — ordered middleware chain that processes each request and may continue, alter, short-circuit, or handle it before endpoint execution.
 - `Middleware` — component that receives `HttpContext` and a next delegate, enabling cross-cutting request/response behavior such as diagnostics or security.
