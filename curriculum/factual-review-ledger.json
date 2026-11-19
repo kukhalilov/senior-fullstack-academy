@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1149,
-    "pending": 1200,
-    "claimsChecked": 48847,
-    "claimsCorrected": 2446,
+    "reviewed": 1150,
+    "pending": 1199,
+    "claimsChecked": 48974,
+    "claimsCorrected": 2467,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -94374,13 +94374,85 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-transitions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 127,
+      "claimsCorrected": 21,
+      "evidence": [
+        {
+          "claims": "Enumerated 127 factual claim units: 36 formal fields (six properties × grammar/default/applicability/inheritance, plus computed-value and animation metadata), 25 grammar/value facts (all transition property/duration/delay/easing/behavior/shorthand forms, valid timing ranges, the Level 2 shorthand extension, and easing keywords/functions), 24 style-change/list/reversal rules (before/after values, transitionability, zero and negative times, repeated/truncated lists, shorthand expansion, duplicate property resolution, retargeting and cancellation), 18 discrete/entry/exit and animation-model facts (`allow-discrete`, midpoint switching, special `display` flips, `@starting-style`, inertness, transitions vs. keyframe animations), and 24 event/cascade/status/accessibility/example claims (event lifecycle and fields, transition-origin precedence, draft/support dating, reduced motion, custom properties, and scope boundaries). Corrected 21 major omissions and unsafe generalizations from the short generated reference, especially absent list-matching and negative-delay rules, discrete transitions, starting styles, event cancellation, transition cascade precedence, draft-level status, and the semantics of fading `display` changes.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/css-transitions-1/",
+              "section": "8 January 2026 Working Draft, §§2–6: six Level 1 property definitions, shorthand parsing, list matching, start/reversal, cascade, events and accessibility considerations",
+              "verdict": "Current published Level 1 document checked; explicitly identified as Working Draft rather than described as a Recommendation."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-transitions-1/",
+              "section": "8 October 2026 Working Draft / Editor’s Draft §§2–6 and property index",
+              "verdict": "Current CSSWG text cross-checked for current definitions and event lifecycle; work-in-progress status preserved."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-transitions-2/",
+              "section": "4 February 2026 Working Draft §§2–6: Level 2 discrete behavior, shorthand expansion, starting styles, event/DOM additions",
+              "verdict": "Published Working Draft verified; draft-only features were not treated as universal support."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-transitions-2/",
+              "section": "22 April 2026 Editor’s Draft §§2.1–3.3: allow-discrete, 50% discrete flip, shorthand extension, @starting-style",
+              "verdict": "Current work-in-progress source used for the Level 2 additions and their exact semantics."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-easing-1/",
+              "section": "CSS Easing Level 1 §§2.1–2.3: cubic Bézier and step easing syntax, x-control bounds, step positions and constraints",
+              "verdict": "Primary published source checked for the complete Level 1 easing forms."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-easing-2/",
+              "section": "23 February 2026 Editor’s Draft §2.1: linear() control-point syntax and canonicalization",
+              "verdict": "Work-in-progress source; linear() is explicitly separated from the Level 1 grammar and accompanied by a support caveat."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-display-4/",
+              "section": "§2.9 Animating and Interpolating display",
+              "verdict": "Primary source checked for display’s discrete animation behavior, special none entry/exit flipping, and inertness when its underlying value is none."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-cascade-5/",
+              "section": "§6.1 cascade sorting order and transition origin",
+              "verdict": "Confirms active transition declarations precede all important origins in cascade precedence."
+            },
+            {
+              "url": "https://drafts.csswg.org/mediaqueries-5/",
+              "section": "prefers-reduced-motion media feature",
+              "verdict": "Supports the reduced-motion query used in the example; the recommendation to reduce movement is author guidance."
+            },
+            {
+              "url": "https://drafts.css-houdini.org/css-properties-values-api-1/",
+              "section": "Registered custom-property syntax and typed values",
+              "verdict": "Cross-checks the distinction between registered typed custom properties and unregistered discrete values."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-behavior",
+              "section": "Current support banner, syntax, formal definition, and discrete-value behavior",
+              "verdict": "Confirms current Limited availability / not Baseline status and current author-facing description."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-timing-function",
+              "section": "Formal syntax and browser compatibility",
+              "verdict": "Cross-checks the easing-function property surface and the need to check function-level compatibility."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition",
+              "section": "Shorthand syntax and formal property list",
+              "verdict": "Cross-checks shorthand author documentation; the two time tokens and Level 2 behavior value were checked against the CSSWG specs."
+            }
+          ],
+          "verdict": "The rewritten reference covers all six frozen inventory names and their full value surfaces, with Level 1 current document status and Level 2/Easing 2 draft additions clearly distinguished. All material behavior claims are supported by current CSSWG/W3C, WHATWG/MDN, and API-spec sources as applicable."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -94737,9 +94809,17 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-transitions-1/",
+        "https://drafts.csswg.org/css-transitions-2/",
+        "https://www.w3.org/TR/css-transitions-1/",
+        "https://www.w3.org/TR/css-transitions-2/",
+        "https://drafts.csswg.org/css-easing-2/",
+        "https://drafts.csswg.org/css-display-4/",
+        "https://drafts.csswg.org/css-cascade-5/",
+        "https://drafts.csswg.org/mediaqueries-5/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the six transition properties against the current Level 1 and Level 2 CSSWG text, CSS Easing Levels 1 and 2, CSS Display, CSS Cascade, Media Queries, registered custom properties, and current MDN support pages. Replaced the shallow inventory with complete property metadata, grammar, list matching, transition timing/start/reversal rules, discrete-property behavior, starting styles, events, cascade, accessibility, examples, and version/support distinctions. Validators rerun."
     },
     {
       "taskId": "t07-018-reference-css-view-transitions",
