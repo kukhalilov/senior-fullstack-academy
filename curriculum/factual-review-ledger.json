@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1083,
-    "pending": 1264,
-    "claimsChecked": 42408,
-    "claimsCorrected": 1785,
+    "reviewed": 1084,
+    "pending": 1263,
+    "claimsChecked": 42474,
+    "claimsCorrected": 1799,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -72500,13 +72500,54 @@
       "topicId": "t07-016",
       "phase": "reference",
       "draft": "course/drafts/t07-016/t07-016-reference-standard-at-rule-descriptors.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 66,
+      "claimsCorrected": 14,
+      "evidence": [
+        {
+          "claims": "Checked every counter-style, font-face, font-feature-values, palette, page, registered-property, and view-transition descriptor for parent context, syntax/value behavior, cascade or matching effects, invalid-value handling, examples, and maturity.",
+          "sources": [
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules",
+              "section": "Relevant descriptor definition, grammar, processing behavior, or status",
+              "verdict": "supported by the referenced current specification/reference; corrections and missing coverage recorded in the lesson"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-counter-styles-3/",
+              "section": "Relevant descriptor definition, grammar, processing behavior, or status",
+              "verdict": "supported by the referenced current specification/reference; corrections and missing coverage recorded in the lesson"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-fonts-4/",
+              "section": "Relevant descriptor definition, grammar, processing behavior, or status",
+              "verdict": "supported by the referenced current specification/reference; corrections and missing coverage recorded in the lesson"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-page-3/",
+              "section": "Relevant descriptor definition, grammar, processing behavior, or status",
+              "verdict": "supported by the referenced current specification/reference; corrections and missing coverage recorded in the lesson"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-properties-values-api-1/",
+              "section": "Relevant descriptor definition, grammar, processing behavior, or status",
+              "verdict": "supported by the referenced current specification/reference; corrections and missing coverage recorded in the lesson"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-view-transitions-2/",
+              "section": "Relevant descriptor definition, grammar, processing behavior, or status",
+              "verdict": "supported by the referenced current specification/reference; corrections and missing coverage recorded in the lesson"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "Relevant descriptor definition, grammar, processing behavior, or status",
+              "verdict": "supported by the referenced current specification/reference; corrections and missing coverage recorded in the lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference",
@@ -72568,7 +72609,7 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/%40function",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/%40position-try"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every parent/descriptor pair in the controlled inventory, syntax and values, examples, maturity, behavior and caveats against the current CSS references and module specifications. Expanded coverage for omitted @font-face font-stretch and the newer @font-feature-values font-display descriptor; corrected counter padding/range nuances, distinction between matching descriptors and variation settings, page-orientation output behavior and page-margin-safety, and cross-document view-transition rules. No unresolved omissions remain within the expanded descriptor inventory."
     },
     {
       "taskId": "t07-016-reference-box-model-properties",
