@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-Cascade ordering follows [CSS Cascading and Inheritance Level 6](https://www.w3.org/TR/css-cascade-6/); selector matching and specificity follow [Selectors Level 4](https://www.w3.org/TR/selectors-4/). Practical value resolution is summarized in [MDN property value processing](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Property_value_processing). The exact source inventory for names is in the [CSS manifest snapshot](https://www.w3.org/TR/css-2026/).
+Cascade ordering and `@scope` follow [CSS Cascading and Inheritance Level 6](https://drafts.csswg.org/css-cascade-6/); cascade layers and the `revert-rule` keyword are defined in [Level 5](https://drafts.csswg.org/css-cascade-5/), while selector matching and specificity follow [Selectors Level 4](https://www.w3.org/TR/selectors-4/). Practical value resolution is summarized in [MDN property value processing](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Property_value_processing). The exact source inventory for names is in the [CSS manifest snapshot](https://www.w3.org/TR/css-2026/).
 
 ## How this group fits the mental model
 
@@ -12,17 +12,17 @@ For each element/property pair, CSS first identifies declarations that are synta
 
 ### Cascade origins, importance, and layers
 
-- **Cascade origin** — The source category of a declaration: user-agent, user, author, animations, and transitions, with element-attached declarations and encapsulation contexts also ordered by the cascade model.
+- **Cascade origin** — The source category of a declaration: user-agent, user, author, animation, or transition. Element-attached declarations (such as `style="…"`) and encapsulation contexts such as shadow trees receive separate precedence treatment within the cascade; they are not additional origins.
 - **User-agent origin** — Browser default styles and internal presentation rules.
 - **User origin** — User-provided styles, including accessibility/personal preference styles where applicable.
 - **Author origin** — Styles provided by the document/application, such as linked, embedded, inline, or component stylesheets.
-- **Transition origin** — Temporary interpolated values produced while a transition is active; transitions have very high cascade precedence during that interval.
+- **Transition origin** — Temporary interpolated values produced while a transition is active; transition declarations outrank every other origin, including important declarations, during that interval.
 - **Importance** — The priority distinction between normal and important declarations; `!important` changes cascade ordering and should be used deliberately.
 - **`!important`** — Annotation on a declaration that gives it important status within its origin/context ordering. Important user and user-agent rules can outrank author-important rules; active transitions have higher precedence.
-- **Cascade layer** — An ordered bucket within an origin that organizes declarations; normal and important layer order run in opposite directions.
-- **Unlayered style rules** — Rules outside explicit layers; for normal declarations in the same origin they outrank explicit layers, while important ordering treats implicit/unlayered placement according to the reversed cascade-layer rules.
-- **Cascade order** — The complete ordered decision process: relevance, origin/importance and context, layer order, specificity, scoping proximity, then source order, with transitions and other cascade origins placed by the specification.
-- **Specificity** — Selector weight compared after earlier cascade criteria; pseudo-class/function weighting follows the selector's defined rule, not visual complexity.
+- **Cascade layer** — An ordered bucket within an origin and encapsulation context. Later layers win among normal declarations; earlier layers win among important declarations, reversing the layer order.
+- **Unlayered style rules** — Rules outside explicit layers. Within an origin/context, unlayered normal declarations outrank all layered normal declarations; unlayered important declarations have the lowest precedence among that origin's important layers.
+- **Cascade order** — First filter for relevance, then compare origin and importance, encapsulation context, element-attached versus rule-mapped declarations, layer, specificity, scope proximity, and order of appearance. Origin precedence from highest to lowest is transitions; important user-agent; important user; important author; animations; normal author; normal user; normal user-agent. Criteria that do not apply to a comparison are skipped.
+- **Specificity** — Selector weight compared only after prior cascade criteria. Selector functions have defined special rules: for example, `:where()` contributes zero, while `:is()`, `:not()`, and `:has()` use the specificity of their most specific argument; visual complexity is not the rule.
 - **Scoping proximity** — For otherwise tied declarations in scope, preference for the declaration whose scope root is closer to the matched element; it is considered after specificity and before order of appearance.
 - **Inheritance** — Value transfer from parent to child for properties that inherit by default or are explicitly told to inherit; it is not the same as cascade conflict resolution on the child.
 
@@ -31,7 +31,7 @@ For each element/property pair, CSS first identifies declarations that are synta
 - **Declared value** — The value written in a declaration that is syntactically valid for the property; multiple declarations may exist.
 - **Cascaded value** — The value selected after cascade conflict resolution, or the absence of a winning declaration.
 - **Specified value** — The value after applying cascade and defaulting rules, including inheritance or initial values where needed.
-- **Computed value** — The specified value processed as far as possible without layout-dependent information, resolving many relative values, variables, and inheritance dependencies.
+- **Computed value** — The specified value processed according to the property's computed-value definition, generally resolving relative values as far as possible without layout. Defaulting and inheritance determine specified values first; the computed value is what is transferred from parent to child during inheritance. Custom-property substitution happens at computed-value time and can make a declaration invalid at that stage.
 - **Used value** — The computed value resolved for layout/rendering, including context-dependent dimensions and constraints.
 - **Actual value** — The used value after implementation/device limitations or approximations, such as pixel rounding or available rendering capability.
 
@@ -42,7 +42,7 @@ For each element/property pair, CSS first identifies declarations that are synta
 - **CSS-wide keyword unset (`unset`)** — Acts as `inherit` for inherited properties and `initial` for non-inherited properties.
 - **CSS-wide keyword revert (`revert`)** — Rolls the value back to the prior cascade origin (or user-agent/default behavior as applicable), not merely to the preceding declaration.
 - **CSS-wide keyword revert-layer (`revert-layer`)** — Rolls the value back to the previous cascade layer within the same origin/context, allowing a lower-priority layer's value to apply.
-- **CSS-wide keyword revert-rule (`revert-rule`)** — Rolls back as if the current matching style rule were absent, allowing the cascade to choose from remaining rules. It is newer and not broadly implemented; it differs from `revert-layer`, which removes a layer's declarations, and `revert`, which rolls back an origin.
+- **CSS-wide keyword revert-rule (`revert-rule`)** — Rolls back as if the current matching style rule were absent, allowing the cascade to choose from remaining declarations. It is defined in CSS Cascade 5 and is supported in recent browser releases; older target versions may need a fallback. In the animation origin it behaves like `revert-layer`. It differs from `revert-layer`, which rolls back a layer, and `revert`, which rolls back an origin.
 - **Shorthand property** — A property that sets several longhand components together; omitted subproperties may reset to their initial values, and shorthand expansion can clear earlier longhand configuration.
 - **Longhand property** — An individual property component that can be set independently, though a later shorthand may reset it.
 - **Logical property** — Expresses a dimension or side relative to inline/block axes and writing mode, such as inline size or block-start margin.
@@ -52,7 +52,7 @@ For each element/property pair, CSS first identifies declarations that are synta
 
 ## Cross-item comparison
 
-Cascade order chooses a declaration; value processing resolves what that declaration means. Inheritance supplies a child's default only when appropriate; it does not beat a declaration that wins on the child. `initial` selects the property's initial value, `inherit` copies the parent, and `unset` chooses between them based on the property's inheritance behavior. `revert` returns to a prior origin; `revert-layer` returns to a lower layer; `revert-rule` acts as if the current style rule were absent. A shorthand can reset omitted longhands. Logical dimensions adapt to writing modes; physical width/height do not. `content-box` and `border-box` differ only in how the declared dimensions account for padding and border; margin is always outside.
+Cascade order chooses a declaration; value processing resolves what that declaration means. Inheritance supplies a specified value only when defaulting requires it; it does not beat a declaration that wins on the child. `initial` selects the property's initial value, `inherit` copies the parent's computed value, and `unset` chooses between them based on the property's inheritance behavior. `revert` returns to an earlier origin; `revert-layer` rolls back the current layer; `revert-rule` acts as if the current style rule were absent. These are different rollback scopes. A shorthand can reset omitted longhands. Logical dimensions adapt to writing modes; physical width/height do not. `content-box` and `border-box` differ only in how the declared dimensions account for padding and border; margin is always outside.
 
 ## Examples
 
@@ -87,3 +87,5 @@ The unlayered normal color wins over the layered normal color. The `revert-layer
 3. **What is the main difference between `revert` and `revert-layer`?** Origin-level rollback versus rollback to a lower layer in the cascade.
 4. **Does `border-box` include margin?** No; it includes content, padding, and border.
 5. **What order follows specificity for scoped rules?** Scoping proximity, then source order when prior criteria tie.
+
+Primary references: [CSS Cascade 5](https://drafts.csswg.org/css-cascade-5/) defines cascade layers and all six CSS-wide reset/rollback keywords; [CSS Cascade 6](https://drafts.csswg.org/css-cascade-6/) defines current cascade sorting and `@scope`; [Selectors 4](https://www.w3.org/TR/selectors-4/) defines selector specificity; [CSS Box Sizing 3](https://drafts.csswg.org/css-sizing-3/) defines `box-sizing`; and [CSS Variables 1](https://drafts.csswg.org/css-variables-1/) defines custom-property substitution and invalid-at-computed-value-time behavior.
