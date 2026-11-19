@@ -61,6 +61,28 @@ For each member, ask: is it per-request state, untrusted metadata, a body consum
 - `ReadFromJsonAsync(HttpRequest, Type, JsonSerializerOptions, CancellationToken)` — Consumes and deserializes the JSON request body. JsonSerializerOptions overloads configure runtime serialization; JsonTypeInfo/JsonSerializerContext overloads provide metadata-oriented/AOT paths. Pass cancellation and do not assume the body can be read again.
 - `ReadFromJsonAsync(HttpRequest, Type, JsonSerializerContext, CancellationToken)` — Consumes and deserializes the JSON request body. JsonSerializerOptions overloads configure runtime serialization; JsonTypeInfo/JsonSerializerContext overloads provide metadata-oriented/AOT paths. Pass cancellation and do not assume the body can be read again.
 
+## Additional overloads and limits
+
+The overload families below share the same lifecycle rules: pass cancellation, consume the body only once unless buffering was enabled before the first read, and select `JsonSerializerOptions` or generated `JsonTypeInfo` intentionally. `EnableBuffering` offers defaults, a memory-threshold overload, a total-buffer-limit overload, and an overload accepting both; the threshold controls when buffering spills from memory to disk, while the limit caps total buffered bytes. Larger temporary files use `ASPNETCORE_TEMP` when set and otherwise the current user’s temp directory; the request-owned files are deleted when the request ends. `FileBufferingReadStream.TempFileName` reports the disk file path when one exists; it is not a setting for choosing the directory. `ReadFormAsync` is asynchronous and accepts cancellation. `FormOptions` defaults are framework limits, not recommended upload targets: configure the relevant property to the endpoint’s expected workload and align upstream request-size limits. [EnableBuffering overloads](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httprequestrewindextensions.enablebuffering?view=aspnetcore-11.0) [FileBufferingReadStream](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.webutilities.filebufferingreadstream?view=aspnetcore-11.0)
+
+### Exact API names
+
+- `HttpRequest.ReadFormAsync(CancellationToken)`
+- `HttpRequestJsonExtensions.ReadFromJsonAsync overload family`
+- `EnableBuffering(HttpRequest)`
+- `EnableBuffering(HttpRequest, int)`
+- `EnableBuffering(HttpRequest, long)`
+- `EnableBuffering(HttpRequest, int, long)`
+- `FileBufferingReadStream.TempFileName`
+- `FormOptions.DefaultMultipartBodyLengthLimit`
+- `FormOptions.DefaultMemoryBufferThreshold`
+- `FormOptions.DefaultKeyLengthLimit`
+- `FormOptions.DefaultValueCountLimit`
+- `FormOptions.DefaultValueLengthLimit`
+- `FormOptions.DefaultMultipartHeadersCountLimit`
+- `FormOptions.DefaultMultipartHeadersLengthLimit`
+- `FormOptions.DefaultMultipartBoundaryLengthLimit`
+
 ## Cross-item comparison
 
 Compare only the supplied names here. Stream properties offer sequential access; pipe properties offer segmented buffers and explicit cursors. Buffered form binding is convenient for bounded files; multipart streaming handles large input with greater application responsibility. Response callbacks surround the commit point, while body writes/flushes may cause it. File result types differ by byte source (content, path, virtual path, or stream) and share authorization/range/metadata decisions.

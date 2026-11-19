@@ -108,6 +108,23 @@ For each member, ask: is it per-request state, untrusted metadata, a body consum
 - `SendFileAsync(HttpResponse, string, long, long?, CancellationToken)` — Sends a path/file segment through the response feature, often using server optimizations. Specify offset/count only when intended and honor cancellation.
 - `Clear(HttpResponse)` — Extension that resets the response while it is still mutable; it cannot undo already committed bytes.
 
+## Additional response APIs and cookie policy
+
+The state-taking callback overloads avoid closure capture but preserve the same reverse-registration order and response-start constraints. `CookieBuilder.SecurePolicy` and `CookieSecurePolicy` apply where a `CookieBuilder` is used; an individual `CookieOptions` instead exposes the `Secure` Boolean. The ASP.NET Core 11 `CookieOptions` reference API does not expose a `Partitioned` property. [CookieOptions API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.cookieoptions?view=aspnetcore-11.0) [CookieBuilder.SecurePolicy](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.securepolicy?view=aspnetcore-11.0)
+
+Trailer helpers require protocol/server support and must be used in the proper order: declare trailer names before response start, then append values after body output as supported. The `SendFileAsync` overload family accepts either `IFileInfo` or a path, optional offset/count, and cancellation; paths must be trusted and the caller must respect response lifetime.
+
+### Exact API names
+
+- `HttpResponse.OnStarting(Func<object,Task>, object) overload state behavior`
+- `HttpResponse.OnCompleted(Func<object,Task>, object) overload state behavior`
+- `CookieBuilder.SecurePolicy`
+- `CookieSecurePolicy`
+- `HttpResponse.SupportsTrailers(HttpResponse)`
+- `HttpResponse.DeclareTrailer(HttpResponse, string)`
+- `HttpResponse.AppendTrailer(HttpResponse, string, StringValues)`
+- `HttpResponse.SendFileAsync overload family`
+
 ## Cross-item comparison
 
 Compare only the supplied names here. Stream properties offer sequential access; pipe properties offer segmented buffers and explicit cursors. Buffered form binding is convenient for bounded files; multipart streaming handles large input with greater application responsibility. Response callbacks surround the commit point, while body writes/flushes may cause it. File result types differ by byte source (content, path, virtual path, or stream) and share authorization/range/metadata decisions.
