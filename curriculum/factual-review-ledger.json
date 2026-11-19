@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1176,
-    "pending": 1173,
-    "claimsChecked": 50644,
-    "claimsCorrected": 2698,
+    "reviewed": 1178,
+    "pending": 1171,
+    "claimsChecked": 50769,
+    "claimsCorrected": 2707,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -104755,13 +104755,34 @@
       "topicId": "t03-001",
       "phase": "practice",
       "draft": "course/drafts/t03-001/t03-001-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 67,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Checked 67 claim units across all scenarios, model/transaction tradeoffs, uniqueness races, replica read-your-writes, managed-service compatibility, benchmark boundaries, RPO/RTO tests, and version-channel interpretation. Corrected the stale PostgreSQL 19 RC2 premise to GA and clarified that a majority-acknowledged MongoDB write may not yet be applied on every secondary; a causal session with majority read/write concerns is required for the documented cross-secondary read-your-writes guarantee.",
+          "sources": [
+            "https://www.postgresql.org/docs/19/",
+            "https://www.postgresql.org/docs/19/release-19.html",
+            "https://www.postgresql.org/about/news/postgresql-19-released-3449/",
+            "https://www.postgresql.org/support/versioning/",
+            "https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html",
+            "https://www.mongodb.com/docs/manual/release-notes/9.0/",
+            "https://www.mongodb.com/docs/manual/core/causal-consistency-read-write-concerns/",
+            "https://www.mongodb.com/docs/manual/reference/read-concern/",
+            "https://www.mongodb.com/docs/manual/reference/write-concern/",
+            "https://www.mongodb.com/docs/manual/core/transactions/",
+            "https://www.mongodb.com/docs/manual/core/write-operations-atomicity/",
+            "https://docs.aws.amazon.com/documentdb/latest/developerguide/what-is.html",
+            "https://www.mongodb.com/docs/manual/data-modeling/",
+            "https://www.mongodb.com/docs/atlas/"
+          ],
+          "verdict": "verified; stale release state corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17",
@@ -104796,22 +104817,47 @@
         "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
         "https://www.postgresql.org/docs/18/transaction-iso.html",
-        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html"
+        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html",
+        "https://www.postgresql.org/docs/19/",
+        "https://www.postgresql.org/docs/19/release-19.html",
+        "https://www.postgresql.org/about/news/postgresql-19-released-3449/",
+        "https://www.mongodb.com/docs/manual/core/causal-consistency-read-write-concerns/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual question/answer fact audit against current database manuals, release notes, and service documentation."
     },
     {
       "taskId": "t03-001-interview",
       "topicId": "t03-001",
       "phase": "interview",
       "draft": "course/drafts/t03-001/t03-001-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Checked 58 claim units in model-selection answers, transaction and replica semantics, partitioning/sharding, backup distinctions, fair benchmarking, and current release-channel discussion. Updated the PostgreSQL status to 19.0 GA (2026-11-19), retained 18.7 as the current 18.x minor, and distinguished MySQL LTS/Innovation and MongoDB patch numbering. Verified the referenced service and consistency caveats.",
+          "sources": [
+            "https://www.postgresql.org/docs/19/",
+            "https://www.postgresql.org/docs/19/release-19.html",
+            "https://www.postgresql.org/about/news/postgresql-19-released-3449/",
+            "https://www.postgresql.org/support/versioning/",
+            "https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html",
+            "https://www.mongodb.com/docs/manual/release-notes/9.0/",
+            "https://www.mongodb.com/docs/manual/core/causal-consistency-read-write-concerns/",
+            "https://www.mongodb.com/docs/manual/reference/read-concern/",
+            "https://www.mongodb.com/docs/manual/reference/write-concern/",
+            "https://www.mongodb.com/docs/manual/core/transactions/",
+            "https://www.mongodb.com/docs/manual/core/write-operations-atomicity/",
+            "https://docs.aws.amazon.com/documentdb/latest/developerguide/what-is.html",
+            "https://www.mongodb.com/docs/manual/data-modeling/",
+            "https://www.mongodb.com/docs/atlas/"
+          ],
+          "verdict": "verified; stale release state corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17",
@@ -104846,9 +104892,13 @@
         "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html",
         "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17",
         "https://www.postgresql.org/docs/18/transaction-iso.html",
-        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html"
+        "https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html",
+        "https://www.postgresql.org/docs/19/",
+        "https://www.postgresql.org/docs/19/release-19.html",
+        "https://www.postgresql.org/about/news/postgresql-19-released-3449/",
+        "https://www.mongodb.com/docs/manual/core/causal-consistency-read-write-concerns/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual question/answer fact audit against current database manuals, release notes, and service documentation."
     },
     {
       "taskId": "t03-002-overview",

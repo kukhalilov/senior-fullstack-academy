@@ -24,7 +24,7 @@
 7. Providers limit versions, extensions, commands, privileges, and maintenance/control surface while automating selected operations.
 8. Replicas improve availability/read scale but can carry mistakes and lag; independent backups support retained-point recovery.
 9. Use realistic data and query mix, concurrency, durability, cache state, versions, tail percentiles, throughput, failures, and full setup disclosure.
-10. PostgreSQL 18.7 is stable and 19 RC2 prerelease; MySQL 9.7.4 LTS and 26.10 Innovation are separate tracks; MongoDB 9.0.8 is a stable-line patch.
+10. PostgreSQL 19.0 became GA on 2026-11-19 and 18.7 is the latest 18.x maintenance release; MySQL 9.7.4 LTS and 26.10 Innovation are separate tracks; MongoDB 9.0.8 is a patch in the 9.0 major line. Recheck current provider rollout and support before choosing.
 
 # Deep follow-up answers
 
@@ -60,10 +60,10 @@ Score 0–2: (0) preference or slogan; (1) names a product capability but misses
 
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17)
-- [Official documentation](https://www.postgresql.org/docs/18/)
+- [Official documentation](https://www.postgresql.org/docs/19/)
 - [Official documentation](https://www.postgresql.org/support/versioning/)
-- [Official documentation](https://www.postgresql.org/docs/18/release-18-7.html)
-- [Official documentation](https://www.postgresql.org/about/news/postgresql-187-1712-1616-1520-1425-and-19-rc-2-released-3442/)
+- [Official documentation](https://www.postgresql.org/docs/19/release-19.html)
+- [Official documentation](https://www.postgresql.org/about/news/postgresql-19-released-3449/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/relnotes/mysql/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html)
@@ -87,8 +87,8 @@ Score 0–2: (0) preference or slogan; (1) names a product capability but misses
 - [Official documentation](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?view=azuresql)
 - [Official documentation](https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview?view=azuresql)
 - [Official documentation](https://www.mongodb.com/docs/manual/data-modeling/concepts/embedding-vs-references/)
-- [Official documentation](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [Official documentation](https://www.postgresql.org/docs/19/ddl-constraints.html)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17)
-- [Official documentation](https://www.postgresql.org/docs/18/transaction-iso.html)
+- [Official documentation](https://www.postgresql.org/docs/19/transaction-iso.html)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-isolation-levels.html)
