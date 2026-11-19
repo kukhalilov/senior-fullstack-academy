@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1320,
-    "pending": 1029,
-    "claimsChecked": 63143,
-    "claimsCorrected": 3031,
+    "reviewed": 1327,
+    "pending": 1022,
+    "claimsChecked": 63917,
+    "claimsCorrected": 3044,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -119433,140 +119433,329 @@
       "topicId": "t04-008",
       "phase": "overview",
       "draft": "course/drafts/t04-008/t04-008-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 48 externally verifiable claims and exact inventory items where applicable, including API semantics, provider behavior, failure cases, and retry safety. Reviewed the transaction/retry/concurrency mental model and distinction between transient failures, stale state and unknown commit outcomes.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
+              "section": "Default transaction, AutoTransactionBehavior, savepoints/MARS and shared-context transaction support",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
+              "section": "Provider retry strategies, whole-transaction replay, commit uncertainty and idempotency",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic conflict predicate, DbUpdateConcurrencyException and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific retry and transaction support boundaries",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
         "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
         "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+        "https://learn.microsoft.com/en-us/ef/core/providers/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed the transaction/retry/concurrency mental model and distinction between transient failures, stale state and unknown commit outcomes."
     },
     {
       "taskId": "t04-008-concepts",
       "topicId": "t04-008",
       "phase": "concepts",
       "draft": "course/drafts/t04-008/t04-008-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 92,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 92 externally verifiable claims and exact inventory items where applicable, including API semantics, provider behavior, failure cases, and retry safety. Verified SaveChanges transaction defaults, MARS/savepoint interaction, retry replay boundaries, unknown commit and concurrency resolution.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
+              "section": "Default transaction, AutoTransactionBehavior, savepoints/MARS and shared-context transaction support",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
+              "section": "Provider retry strategies, whole-transaction replay, commit uncertainty and idempotency",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic conflict predicate, DbUpdateConcurrencyException and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific retry and transaction support boundaries",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
         "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
         "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+        "https://learn.microsoft.com/en-us/ef/core/providers/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Verified SaveChanges transaction defaults, MARS/savepoint interaction, retry replay boundaries, unknown commit and concurrency resolution."
     },
     {
       "taskId": "t04-008-reference-transactions-and-savepoints",
       "topicId": "t04-008",
       "phase": "reference",
       "draft": "course/drafts/t04-008/t04-008-reference-transactions-and-savepoints.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 174,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 174 externally verifiable claims and exact inventory items where applicable, including API semantics, provider behavior, failure cases, and retry safety. Checked all 31 assigned transaction/savepoint items, AutoTransactionBehavior, ambient/shared transactions, provider caveats, lifetimes and MARS.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
+              "section": "Default transaction, AutoTransactionBehavior, savepoints/MARS and shared-context transaction support",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
+              "section": "Provider retry strategies, whole-transaction replay, commit uncertainty and idempotency",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic conflict predicate, DbUpdateConcurrencyException and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific retry and transaction support boundaries",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
         "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
         "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+        "https://learn.microsoft.com/en-us/ef/core/providers/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 31 assigned transaction/savepoint items, AutoTransactionBehavior, ambient/shared transactions, provider caveats, lifetimes and MARS."
     },
     {
       "taskId": "t04-008-reference-execution-strategies-and-retry",
       "topicId": "t04-008",
       "phase": "reference",
       "draft": "course/drafts/t04-008/t04-008-reference-execution-strategies-and-retry.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 162,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 162 externally verifiable claims and exact inventory items where applicable, including API semantics, provider behavior, failure cases, and retry safety. Checked all 22 retry items, execution strategy behavior, transient classification, delegate replay, verification callbacks and idempotency.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
+              "section": "Default transaction, AutoTransactionBehavior, savepoints/MARS and shared-context transaction support",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
+              "section": "Provider retry strategies, whole-transaction replay, commit uncertainty and idempotency",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic conflict predicate, DbUpdateConcurrencyException and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific retry and transaction support boundaries",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
         "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
         "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+        "https://learn.microsoft.com/en-us/ef/core/providers/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 22 retry items, execution strategy behavior, transient classification, delegate replay, verification callbacks and idempotency."
     },
     {
       "taskId": "t04-008-reference-concurrency-conflicts-and-resolution",
       "topicId": "t04-008",
       "phase": "reference",
       "draft": "course/drafts/t04-008/t04-008-reference-concurrency-conflicts-and-resolution.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 123,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 123 externally verifiable claims and exact inventory items where applicable, including API semantics, provider behavior, failure cases, and retry safety. Checked all 15 conflict-resolution items, token predicates, store/client/merge strategies, refresh and retry semantics.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
+              "section": "Default transaction, AutoTransactionBehavior, savepoints/MARS and shared-context transaction support",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
+              "section": "Provider retry strategies, whole-transaction replay, commit uncertainty and idempotency",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic conflict predicate, DbUpdateConcurrencyException and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific retry and transaction support boundaries",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
         "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
         "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+        "https://learn.microsoft.com/en-us/ef/core/providers/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 15 conflict-resolution items, token predicates, store/client/merge strategies, refresh and retry semantics."
     },
     {
       "taskId": "t04-008-practice",
       "topicId": "t04-008",
       "phase": "practice",
       "draft": "course/drafts/t04-008/t04-008-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 94,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 94 externally verifiable claims and exact inventory items where applicable, including API semantics, provider behavior, failure cases, and retry safety. Checked transaction/savepoint flow, retries, unknown commit, stable operation IDs and concurrency exercises and solutions.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
+              "section": "Default transaction, AutoTransactionBehavior, savepoints/MARS and shared-context transaction support",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
+              "section": "Provider retry strategies, whole-transaction replay, commit uncertainty and idempotency",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic conflict predicate, DbUpdateConcurrencyException and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific retry and transaction support boundaries",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
         "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
         "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+        "https://learn.microsoft.com/en-us/ef/core/providers/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked transaction/savepoint flow, retries, unknown commit, stable operation IDs and concurrency exercises and solutions."
     },
     {
       "taskId": "t04-008-interview",
       "topicId": "t04-008",
       "phase": "interview",
       "draft": "course/drafts/t04-008/t04-008-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 81,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 81 externally verifiable claims and exact inventory items where applicable, including API semantics, provider behavior, failure cases, and retry safety. Checked explanations contrasting retryable transient failures, concurrency conflicts, transaction scopes and unknown commit outcomes.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
+              "section": "Default transaction, AutoTransactionBehavior, savepoints/MARS and shared-context transaction support",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
+              "section": "Provider retry strategies, whole-transaction replay, commit uncertainty and idempotency",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+              "section": "Optimistic conflict predicate, DbUpdateConcurrencyException and conflict resolution",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+              "section": "Provider-specific retry and transaction support boundaries",
+              "verdict": "Checked against current Microsoft EF Core/provider documentation; database/provider conditions are explicit"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/ef/core/saving/transactions",
         "https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency",
         "https://learn.microsoft.com/en-us/ef/core/saving/concurrency",
+        "https://learn.microsoft.com/en-us/ef/core/providers/",
         "https://github.com/dotnet/core/blob/main/release-notes/11.0/11.0.0/efcore.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked explanations contrasting retryable transient failures, concurrency conflicts, transaction scopes and unknown commit outcomes."
     },
     {
       "taskId": "t04-009-overview",
