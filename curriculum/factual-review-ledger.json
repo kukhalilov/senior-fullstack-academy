@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1132,
-    "pending": 1217,
-    "claimsChecked": 46653,
-    "claimsCorrected": 2209,
+    "reviewed": 1133,
+    "pending": 1216,
+    "claimsChecked": 46771,
+    "claimsCorrected": 2218,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -88747,13 +88747,57 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-generated-content.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 118,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": "Verified the content and quotes property metadata, grammar, initial values, inheritance, applicability, computed behavior, animation, and CSS-wide keyword statement. Distinguished CSS 2.1 baseline rules from the 2026 editor draft, including normal/none behavior by box context, content replacement versus content lists, image-only list interpretation, and the unresolved bikeshed-this token.",
+          "sources": [
+            "https://drafts.csswg.org/css-content-3/",
+            "https://www.w3.org/TR/CSS2/generate.html"
+          ],
+          "verdict": "verified against cited specifications; unsupported baseline wording corrected"
+        },
+        {
+          "claims": "Verified established generated strings, images, attr() legacy string behavior, counters delegated to CSS Lists, quote tokens, white-space behavior of generated strings, pseudo-element render-tree role, and non-mutation/non-reparsing of the DOM. Cross-checked pseudo-element concepts and image-value cross-module scope.",
+          "sources": [
+            "https://www.w3.org/TR/CSS2/generate.html",
+            "https://drafts.csswg.org/css-pseudo-4/",
+            "https://drafts.csswg.org/css-lists-3/",
+            "https://drafts.csswg.org/css-values-5/",
+            "https://drafts.csswg.org/css-images-4/"
+          ],
+          "verdict": "verified; scope and module boundaries clarified"
+        },
+        {
+          "claims": "Checked quotes value set, initial auto and inherited status in the current draft, locale-sensitive selection, custom opening/closing pairs and deeper-level fallback, none behavior, flattened-tree quote-depth calculation, underflow handling, and no-open/no-close depth changes. Compared the historical CSS 2.1 initial value and grammar.",
+          "sources": [
+            "https://drafts.csswg.org/css-content-3/",
+            "https://www.w3.org/TR/CSS2/generate.html"
+          ],
+          "verdict": "verified; version distinction and quote-depth details corrected"
+        },
+        {
+          "claims": "Checked each named Content Level 3 proposal covered in the lesson: contents, slash alternative text, symbolic glyphs, leader(), target-counter(), target-counters(), target-text(), string-set, string(), and content(). Verified their grammar descriptions and marked implementation/proposal status from the spec’s explicit rough-draft warning; confirmed counters in alternative text are at-risk.",
+          "sources": [
+            "https://drafts.csswg.org/css-content-3/"
+          ],
+          "verdict": "verified; proposal status and at-risk qualification explicit"
+        },
+        {
+          "claims": "Verified q semantics, citation attribute, user-agent inserted punctuation and rule against duplicate punctuation, optional use, and inappropriateness for sarcasm or word naming. Reviewed examples and guidance to keep essential text in semantic HTML and not describe generated CSS as a DOM mutation API.",
+          "sources": [
+            "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-q-element",
+            "https://drafts.csswg.org/css-content-3/",
+            "https://www.w3.org/TR/CSS2/generate.html"
+          ],
+          "verdict": "verified; examples and practical guidance consistent with cited standards"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -89112,7 +89156,7 @@
         "https://drafts.csswg.org/css-color-hdr-1/",
         "https://drafts.csswg.org/css-color-adjust/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and assigned-inventory audit against CSSWG specifications and the HTML Living Standard checked 2026-11-19. The current CSS Generated Content Level 3 document explicitly identifies itself as a very rough draft not ready for implementation; proposal status and CSS 2.1 baseline are kept distinct. Nine inaccurate, underspecified, or misleading statements were corrected or replaced."
     },
     {
       "taskId": "t07-018-reference-css-lists-and-counters",
