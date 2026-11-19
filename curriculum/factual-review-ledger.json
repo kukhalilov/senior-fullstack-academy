@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1139,
-    "pending": 1210,
-    "claimsChecked": 47795,
-    "claimsCorrected": 2300,
+    "reviewed": 1140,
+    "pending": 1209,
+    "claimsChecked": 47862,
+    "claimsCorrected": 2307,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -83316,13 +83316,60 @@
       "topicId": "t07-018",
       "phase": "overview",
       "draft": "course/drafts/t07-018/t07-018-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 67,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 67 factual claims in the orientation lesson: CSS declaration and value roles; cascade versus source-order misconceptions; origins/importance, layers, specificity, scoping and order; inheritance and value-processing stages; box applicability; layout versus paint behavior; writing-mode logical axes; transform effects on normal flow/stacking; responsive image sizing; user preference handling; draft maturity versus browser support; scope promises and example correctness. Seven meaningful omissions or oversimplifications in the prior orientation were corrected, including the cascade priority sequence, computed-versus-used values, and separating the replaced-image sizing case from CSS backgrounds.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-cascade-5/",
+              "section": "§§4–6: declared/cascaded/specified/computed/used/actual values; cascade sorting, origins, importance, layers, specificity, scoping proximity, and order",
+              "verdict": "supported; draft status labeled as work in progress"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-values-4/",
+              "section": "Common value processing and value-stage definitions",
+              "verdict": "supported; computed, used, and actual values are distinguished"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-writing-modes-4/",
+              "section": "Logical inline/block axes and writing-mode/direction context",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-transforms-1/",
+              "section": "Transform rendering model and relationship to layout boxes and stacking contexts",
+              "verdict": "supported; visual displacement is distinguished from normal-flow sizing"
+            },
+            {
+              "url": "https://drafts.csswg.org/mediaqueries-5/",
+              "section": "Reduced-motion user preference media feature; current document status",
+              "verdict": "supported; preference accommodation is presented as a practical check, not a universal outcome"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "Snapshot purpose and specification-maturity context",
+              "verdict": "supported; maturity is distinguished from browser support"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
+              "section": "Inventory navigation and topic coverage boundary",
+              "verdict": "used for name coverage only, not as evidence of runtime support"
+            },
+            {
+              "url": "https://www.w3.org/Style/CSS/all-properties.en.html",
+              "section": "W3C property index and scope cross-check",
+              "verdict": "used for property index scope only"
+            }
+          ],
+          "verdict": "All factual assertions in this introductory lesson were checked against primary CSS specifications and the stated inventory boundary; seven omissions and overgeneralizations were corrected. No unresolved factual issues remain within this orientation lesson."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -83679,9 +83726,13 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-cascade-5/",
+        "https://drafts.csswg.org/css-values-4/",
+        "https://drafts.csswg.org/css-writing-modes-4/",
+        "https://drafts.csswg.org/mediaqueries-5/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual scope and factual audit against primary CSS module drafts and the project inventory. The lesson remains an orientation, distinguishes the specification from browser support, and points to detailed reference lessons for exact property grammar."
     },
     {
       "taskId": "t07-018-concepts",
