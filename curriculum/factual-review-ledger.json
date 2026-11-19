@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1076,
-    "pending": 1271,
-    "claimsChecked": 42104,
-    "claimsCorrected": 1723,
+    "reviewed": 1077,
+    "pending": 1270,
+    "claimsChecked": 42140,
+    "claimsCorrected": 1730,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -71334,13 +71334,104 @@
       "topicId": "t07-016",
       "phase": "reference",
       "draft": "course/drafts/t07-016/t07-016-reference-experimental-pseudo-classes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 36,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Checked the assigned experimental index entries, scope statements, comparisons, progressive-enhancement guidance, example, pitfalls, and answer keys against current editor drafts and MDN compatibility/status notes.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/selectors-5/",
+              "section": "Selectors Level 5 draft: :blank, :current, and :local-link definitions and status",
+              "verdict": "supported; clarified specification maturity and functional form"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-overflow-5/",
+              "section": "CSS Overflow Level 5 draft: active scroll markers and :target-current/:target-before/:target-after",
+              "verdict": "corrected matching targets and clarified adjacent inventory"
+            }
+          ]
+        },
+        {
+          "claims": "Clarified the two distinct :blank uses: form-control value matching versus blank page boxes under @page; recorded the form selector's at-risk status and lack of browser support.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/css-page-3/",
+              "section": "Paged-media @page :blank selector",
+              "verdict": "cross-checked separate page context"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Ablank",
+              "section": "Experimental form-control selector, at-risk note, and current browser support",
+              "verdict": "corrected scope and support statements"
+            }
+          ]
+        },
+        {
+          "claims": "Expanded :local-link to include the draft :local-link(n) syntax, origin/path-depth semantics, fragment treatment, and security limitations; added the functional form to the manifest inventory.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/selectors-5/",
+              "section": "Selectors Level 5 local-link pseudo-class and local-link(n) URL matching",
+              "verdict": "expanded exact inventory and semantics"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Alocal-link",
+              "section": "Current experimental label and support status",
+              "verdict": "cross-checked"
+            }
+          ]
+        },
+        {
+          "claims": "Corrected the :target-within replacement so it includes both the target and ancestors containing a target; explained removal from Selectors and use of a composite selector.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/selectors-4/",
+              "section": "Target pseudo-class notes and removal of :target-within",
+              "verdict": "corrected replacement from :has(:target) to :is(:target, :has(:target))"
+            }
+          ]
+        },
+        {
+          "claims": "Clarified :target-current can match generated scroll markers and elements designated as scroll markers; distinguished it from URL-fragment :target and pointed to the separate :target-before/:target-after inventory.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-overflow-5/",
+              "section": "Scroll marker definition and before/current/after ordering",
+              "verdict": "corrected too-narrow generated-pseudo-element description"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Atarget-current",
+              "section": "Limited availability and eligible marker elements",
+              "verdict": "supported"
+            }
+          ]
+        },
+        {
+          "claims": "Clarified that :xr-overlay matches the WebXR DOM overlay element for the immersive session and is not a generic XR scene element; corrected progressive-enhancement guidance and the :blank example to target textarea and state the limits of selector() feature queries.",
+          "sources": [
+            {
+              "url": "https://immersive-web.github.io/dom-overlays/",
+              "section": "WebXR DOM Overlays selector definition",
+              "verdict": "corrected scope"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Axr-overlay",
+              "section": "Limited availability and DOM overlay details",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Ablank",
+              "section": "Feature availability and form-only semantics",
+              "verdict": "corrected example"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference",
@@ -71372,9 +71463,17 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Attribute_selectors",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Column_combinator",
         "https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute",
-        "https://drafts.csswg.org/cssom/#dom-css-escape"
+        "https://drafts.csswg.org/cssom/#dom-css-escape",
+        "https://drafts.csswg.org/selectors-5/",
+        "https://drafts.csswg.org/css-overflow-5/",
+        "https://www.w3.org/TR/css-page-3/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Ablank",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Atarget-current",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Atarget-within",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3Axr-overlay",
+        "https://immersive-web.github.io/dom-overlays/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every assigned experimental pseudo-class claim against current CSS editor drafts, the WebXR specification, paged media, and MDN. Corrected the :blank example so the selector targets a textarea and documented that selector() feature queries test parsing rather than interoperable matching; distinguished its form and @page uses and recorded no browser support for the form selector. Added the draft :local-link(n) syntax and exact origin/path-depth behavior to the lesson and controlled manifest inventory. Corrected :target-current matching to include authored scroll markers. Fixed the :target-within replacement to include both the target itself and ancestors (:is(:target, :has(:target))). Clarified :xr-overlay target and support scope. No unresolved issues remain within this lesson inventory."
     },
     {
       "taskId": "t07-016-reference-standard-pseudo-elements",
