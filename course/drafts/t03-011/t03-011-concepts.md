@@ -16,9 +16,9 @@ Dynamic SQL has a separate parse/compile scope. sp_executesql accepts Unicode ba
 
 A normal view stores a query definition, not rows. It has no inherent order and can be expanded into the caller query. An indexed view is different: its result is stored via a unique clustered index and synchronously maintained. Schema binding, determinism/precision, two-part names, required SET options, and write amplification make it a physical-design choice.
 
-Functions are constrained query components. Inline TVFs expose one relational SELECT; MSTVFs populate a table variable; scalar UDFs return one value. SQL Server 2019+ scalar UDF inlining at compatibility 150+ can transform eligible definitions, but eligibility does not guarantee inlining. MSTVF interleaved execution can improve estimates on eligible compilation paths without making the body inline.
+Functions are constrained query components. Inline TVFs expose one relational SELECT; MSTVFs populate a table variable; scalar UDFs return one value. Function determinism means the same inputs and same database state yield the same result. SQL Server 2019+ scalar UDF inlining at compatibility 150+ can transform eligible definitions, but eligibility does not guarantee inlining. MSTVF interleaved execution can improve estimates on eligible compilation paths without making the body inline.
 
-Triggers fire once per statement, not once per row. inserted/deleted are sets: INSERT supplies new rows, DELETE supplies old rows, UPDATE supplies both images. UPDATE(column) reports target-list use, not changed values. Trigger execution shares the caller transaction; failures, rollback, recursion, and hidden latency affect the initiating statement.
+Triggers fire once per statement, not once per row, and can fire even when no rows match. inserted/deleted are sets: INSERT supplies new rows, DELETE supplies old rows, UPDATE supplies both images. UPDATE(column) reports target-list use, not changed values. Trigger execution shares the caller transaction; failures, rollback, recursion, and hidden latency affect the initiating statement.
 
 # Mechanisms and relationships
 

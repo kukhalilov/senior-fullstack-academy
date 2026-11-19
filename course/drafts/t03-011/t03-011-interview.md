@@ -24,7 +24,7 @@
 7. Both contain all affected rows: deleted before image, inserted after image.
 8. One invocation per statement in caller transaction; trigger writes/errors participate in that transaction.
 9. UPDATE(column) detects target-list mention; compare pseudo-table values to detect change.
-10. Static references can follow ownership chaining; dynamic batches are separately compiled and often check caller permissions.
+10. Static ownership chaining does not cover dynamic SQL. The caller needs permissions unless the module deliberately supplies an `EXECUTE AS` context or signed permissions; those mechanisms do not make unsafe SQL construction safe.
 
 # Deep follow-up answers
 

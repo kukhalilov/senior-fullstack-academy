@@ -19,6 +19,7 @@
         "CREATE PROCEDURE",
         "ALTER PROCEDURE",
         "CREATE OR ALTER PROCEDURE",
+        "Stored procedure parameter maximum 2,100",
         "EXECUTE (Transact-SQL)",
         "EXECUTE procedure",
         "Procedure parameter",
@@ -67,6 +68,8 @@
         "CREATE VIEW",
         "ALTER VIEW",
         "CREATE OR ALTER VIEW",
+        "VIEW_METADATA view attribute",
+        "WITH ENCRYPTION view attribute",
         "View definition",
         "Schema-bound view",
         "Indexed view",
@@ -74,8 +77,15 @@
         "Inline table-valued function",
         "Multi-statement table-valued function",
         "Scalar user-defined function",
+        "User-defined function parameter maximum 2,100",
         "CREATE FUNCTION",
-        "Deterministic function property",
+        "CREATE OR ALTER FUNCTION",
+        "Natively compiled scalar user-defined function",
+        "RETURNS NULL ON NULL INPUT function option",
+        "Function EXECUTE AS clause",
+        "Function WITH ENCRYPTION clause",
+        "CALLED ON NULL INPUT function option",
+        "Deterministic function property uses same database state",
         "SCHEMABINDING",
         "Function side-effect restriction",
         "Function inlining",
@@ -91,6 +101,7 @@
         "Indexed view required SET options",
         "Indexed view determinism and precision",
         "Indexed view DML maintenance cost",
+        "NOEXPAND indexed view hint and edition boundary",
         "Inline TVF relational expansion",
         "MSTVF return table variable",
         "MSTVF interleaved execution",
@@ -120,9 +131,18 @@
         "CREATE TRIGGER",
         "ALTER TRIGGER",
         "CREATE OR ALTER TRIGGER",
+        "CREATE TRIGGER batch boundary",
+        "Trigger EXECUTE AS clause",
+        "Trigger WITH ENCRYPTION clause",
+        "Memory-optimized table trigger native compilation requirements",
+        "DML triggers cannot be defined on temporary tables",
+        "INSTEAD OF trigger cannot coexist with view WITH CHECK OPTION",
         "inserted logical table",
         "deleted logical table",
         "Statement-level trigger firing",
+        "DML trigger fires even when zero rows are affected",
+        "ROWCOUNT_BIG early exit for no-op trigger statements",
+        "Trigger result sets deprecated and disallowed for LOGON",
         "Multirow trigger correctness",
         "UPDATE(column)",
         "COLUMNS_UPDATED",
@@ -155,7 +175,8 @@
         "Trigger pseudo tables lack ordinary indexes/statistics",
         "INSTEAD OF trigger one per action",
         "DDL trigger database and server scope",
-        "AFTER trigger versus INSTEAD OF timing"
+        "AFTER trigger versus INSTEAD OF timing",
+        "AFTER trigger cannot be defined on a view"
       ]
     }
   ],
@@ -188,6 +209,7 @@
     "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-function-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-trigger-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/views/create-views?view=sql-server-ver17",
@@ -201,6 +223,18 @@
     "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17"
   ],
   "versionNotes": [
+    {
+      "edition": "CREATE OR ALTER module syntax",
+      "items": [
+        "CREATE OR ALTER PROCEDURE, VIEW, FUNCTION, and TRIGGER are supported in SQL Server starting with SQL Server 2016 SP1; check the target service/platform before assuming identical support."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-function-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-trigger-transact-sql?view=sql-server-ver17"
+      ]
+    },
     {
       "edition": "SQL Server 2019+ behavior in SQL Server 2025",
       "items": [
@@ -218,14 +252,15 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft SQL Server 2025 module and trigger documentation",
-    "edition": "SQL Server 2025 (17.x), checked 2026-11-16",
-    "checkedAt": "2026-11-16",
+    "edition": "SQL Server 2025 (17.x), checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-function-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-trigger-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/views/create-views?view=sql-server-ver17",

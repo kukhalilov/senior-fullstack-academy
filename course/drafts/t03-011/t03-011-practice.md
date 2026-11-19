@@ -40,7 +40,7 @@ A validated sort identifier is selected from an allow-list and quoted; values re
 6. inserted can contain many rows and has no defined order; scalar assignment picks an unspecified row. Use set-based joins/inserts.
 7. It proves the statement targeted the column, even when value stays equal. Compare inserted/deleted values with correct NULL semantics.
 8. Trigger runs in caller transaction; external email cannot roll back. Write an outbox row transactionally and deliver after commit.
-9. Dynamic SQL is separately compiled and generally checks caller permissions rather than static ownership chaining. Use least-privilege signing or intentional context.
+9. Ownership chaining does not apply to dynamic SQL. Unless the module intentionally supplies an `EXECUTE AS` context or certificate-signed permissions, dynamic statements require permissions from the executing caller. Use the narrowest safe context and never treat it as protection from injection.
 10. Eligible optimization can use observed MSTVF row count at compile time; it does not inline the function body or supply full output statistics.
 
 # Tests and edge cases

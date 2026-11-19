@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1246,
-    "pending": 1103,
-    "claimsChecked": 54530,
-    "claimsCorrected": 2871,
+    "reviewed": 1253,
+    "pending": 1096,
+    "claimsChecked": 55139,
+    "claimsCorrected": 2891,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -112470,13 +112470,49 @@
       "topicId": "t03-011",
       "phase": "overview",
       "draft": "course/drafts/t03-011/t03-011-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 54,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 54 externally verifiable statements, including assigned manifest items, platform/version boundaries, examples, exercises and answers. Reviewed the mental model, module comparison, dynamic sort example, boundaries, use cases and tradeoffs. Confirmed the distinctions among command, relational composition, scalar/table functions, transactional triggers, and runtime SQL construction.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Procedure syntax, parameters/limits, execution context, batch rules, recompilation and deferred name resolution",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "View attributes, schema binding, metadata refresh, CHECK OPTION, ordering and updatability",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Function forms/options, limits, determinism, native compilation, null-input attributes and restrictions",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-function-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Trigger syntax/options, zero-row execution, pseudo-tables, ordering, recursion, rollback, scopes and platform boundaries",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-trigger-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Unicode dynamic batch, typed parameters, scope, plan reuse and result sets",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Dynamic SQL injection, parameterization, identifier quoting and truncation",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17",
@@ -112493,22 +112529,64 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/create-dml-triggers-to-handle-multiple-rows-of-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed the mental model, module comparison, dynamic sort example, boundaries, use cases and tradeoffs. Confirmed the distinctions among command, relational composition, scalar/table functions, transactional triggers, and runtime SQL construction."
     },
     {
       "taskId": "t03-011-concepts",
       "topicId": "t03-011",
       "phase": "concepts",
       "draft": "course/drafts/t03-011/t03-011-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 78,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 78 externally verifiable statements, including assigned manifest items, platform/version boundaries, examples, exercises and answers. Checked module contracts, parameter/result channels, dynamic SQL construction and authorization, indexed-view behavior, UDF version boundaries, trigger set semantics, examples and knowledge checks. Corrected deterministic-function wording to include unchanged database state and added zero-row trigger behavior.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Procedure syntax, parameters/limits, execution context, batch rules, recompilation and deferred name resolution",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Unicode dynamic batch, typed parameters, scope, plan reuse and result sets",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Dynamic-query ownership-chain boundary, module execution context and permissions",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "All indexed-view prerequisites, supported definition syntax/types, maintenance and NOEXPAND edition boundary",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/views/create-indexed-views?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Function forms/options, limits, determinism, native compilation, null-input attributes and restrictions",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-function-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Scalar UDF inlining compatibility, eligibility, actual plan evidence and disable scopes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/scalar-udf-inlining?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Trigger syntax/options, zero-row execution, pseudo-tables, ordering, recursion, rollback, scopes and platform boundaries",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-trigger-transact-sql?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17",
@@ -112525,22 +112603,54 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/create-dml-triggers-to-handle-multiple-rows-of-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked module contracts, parameter/result channels, dynamic SQL construction and authorization, indexed-view behavior, UDF version boundaries, trigger set semantics, examples and knowledge checks. Corrected deterministic-function wording to include unchanged database state and added zero-row trigger behavior."
     },
     {
       "taskId": "t03-011-reference-procedures-parameters-and-dynamic-sql",
       "topicId": "t03-011",
       "phase": "reference",
       "draft": "course/drafts/t03-011/t03-011-reference-procedures-parameters-and-dynamic-sql.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 96,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 96 externally verifiable statements, including assigned manifest items, platform/version boundaries, examples, exercises and answers. Reviewed every procedure/dynamic-SQL inventory term and its examples. Verified the 2,100-parameter limit, TVP and output semantics, batch/return/recompile rules, sp_executesql Unicode/parameter scope, QUOTENAME boundary, truncation risk and permission context; clarified that ownership chaining does not cover dynamic SQL but explicit impersonation/signing can provide scoped permissions.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Procedure syntax, parameters/limits, execution context, batch rules, recompilation and deferred name resolution",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "EXECUTE invocation, result/parameter behavior and execution-context permission checking",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Unicode dynamic batch, typed parameters, scope, plan reuse and result sets",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Dynamic SQL injection, parameterization, identifier quoting and truncation",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Dynamic-query ownership-chain boundary, module execution context and permissions",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17",
@@ -112557,22 +112667,54 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/create-dml-triggers-to-handle-multiple-rows-of-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed every procedure/dynamic-SQL inventory term and its examples. Verified the 2,100-parameter limit, TVP and output semantics, batch/return/recompile rules, sp_executesql Unicode/parameter scope, QUOTENAME boundary, truncation risk and permission context; clarified that ownership chaining does not cover dynamic SQL but explicit impersonation/signing can provide scoped permissions."
     },
     {
       "taskId": "t03-011-reference-views-and-functions",
       "topicId": "t03-011",
       "phase": "reference",
       "draft": "course/drafts/t03-011/t03-011-reference-views-and-functions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 123,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 123 externally verifiable statements, including assigned manifest items, platform/version boundaries, examples, exercises and answers. Checked all view/UDF inventory terms, attributes, version boundaries, optimizer claims and examples. Added VIEW_METADATA/ENCRYPTION, CREATE OR ALTER and native function options, parameter limits, null-input semantics, NOEXPAND edition behavior, corrected determinism, and replaced an incomplete indexed-view exclusion note with the full current syntax/type checklist.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "View attributes, schema binding, metadata refresh, CHECK OPTION, ordering and updatability",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "All indexed-view prerequisites, supported definition syntax/types, maintenance and NOEXPAND edition boundary",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/views/create-indexed-views?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Function forms/options, limits, determinism, native compilation, null-input attributes and restrictions",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-function-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "UDF types, side-effect restrictions, errors and execution characteristics",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/user-defined-functions?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Scalar UDF inlining compatibility, eligibility, actual plan evidence and disable scopes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/scalar-udf-inlining?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17",
@@ -112589,22 +112731,54 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/create-dml-triggers-to-handle-multiple-rows-of-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all view/UDF inventory terms, attributes, version boundaries, optimizer claims and examples. Added VIEW_METADATA/ENCRYPTION, CREATE OR ALTER and native function options, parameter limits, null-input semantics, NOEXPAND edition behavior, corrected determinism, and replaced an incomplete indexed-view exclusion note with the full current syntax/type checklist."
     },
     {
       "taskId": "t03-011-reference-triggers-and-change-side-effects",
       "topicId": "t03-011",
       "phase": "reference",
       "draft": "course/drafts/t03-011/t03-011-reference-triggers-and-change-side-effects.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 120,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 120 externally verifiable statements, including assigned manifest items, platform/version boundaries, examples, exercises and answers. Checked all trigger forms, event/scope behavior, pseudo-tables, multirow semantics, order, recursion, rollback and operational hazards. Added EXECUTE AS/ENCRYPTION and memory-optimized requirements, temporary-table and INSTEAD OF/CHECK OPTION boundaries, batch boundary, zero-row ROWCOUNT_BIG early exit, and trigger-result/LOGON restrictions.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Trigger syntax/options, zero-row execution, pseudo-tables, ordering, recursion, rollback, scopes and platform boundaries",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-trigger-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "DML trigger transaction, constraint ordering, AFTER/INSTEAD OF and statement behavior",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Multirow set-based trigger correctness and examples",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/create-dml-triggers-to-handle-multiple-rows-of-data?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "inserted/deleted row images, UPDATE/COLUMNS_UPDATED and pseudo-table statistics/indexes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "DDL trigger scope, events, EVENTDATA and temporary-object boundaries",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17",
@@ -112621,22 +112795,64 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/create-dml-triggers-to-handle-multiple-rows-of-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all trigger forms, event/scope behavior, pseudo-tables, multirow semantics, order, recursion, rollback and operational hazards. Added EXECUTE AS/ENCRYPTION and memory-optimized requirements, temporary-table and INSTEAD OF/CHECK OPTION boundaries, batch boundary, zero-row ROWCOUNT_BIG early exit, and trigger-result/LOGON restrictions."
     },
     {
       "taskId": "t03-011-practice",
       "topicId": "t03-011",
       "phase": "practice",
       "draft": "course/drafts/t03-011/t03-011-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 73,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 73 externally verifiable statements, including assigned manifest items, platform/version boundaries, examples, exercises and answers. Checked every exercise, hint, answer and edge-case test against the current behavior. Corrected dynamic SQL authorization advice to distinguish ownership chaining from deliberate module impersonation/signing and retained injection safeguards; expanded trigger and indexed-view edge coverage.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Unicode dynamic batch, typed parameters, scope, plan reuse and result sets",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Dynamic SQL injection, parameterization, identifier quoting and truncation",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Dynamic-query ownership-chain boundary, module execution context and permissions",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "All indexed-view prerequisites, supported definition syntax/types, maintenance and NOEXPAND edition boundary",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/views/create-indexed-views?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Function forms/options, limits, determinism, native compilation, null-input attributes and restrictions",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-function-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Trigger syntax/options, zero-row execution, pseudo-tables, ordering, recursion, rollback, scopes and platform boundaries",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-trigger-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "inserted/deleted row images, UPDATE/COLUMNS_UPDATED and pseudo-table statistics/indexes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17",
@@ -112653,22 +112869,64 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/create-dml-triggers-to-handle-multiple-rows-of-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked every exercise, hint, answer and edge-case test against the current behavior. Corrected dynamic SQL authorization advice to distinguish ownership chaining from deliberate module impersonation/signing and retained injection safeguards; expanded trigger and indexed-view edge coverage."
     },
     {
       "taskId": "t03-011-interview",
       "topicId": "t03-011",
       "phase": "interview",
       "draft": "course/drafts/t03-011/t03-011-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 65,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 65 externally verifiable statements, including assigned manifest items, platform/version boundaries, examples, exercises and answers. Checked interview answers, follow-ups, scenario, tradeoffs and weak-answer rubric. Clarified dynamic SQL execution context, indexed-view NOEXPAND scope, UDF eligibility, and trigger set/transaction behavior.",
+          "sources": [
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Procedure syntax, parameters/limits, execution context, batch rules, recompilation and deferred name resolution",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Unicode dynamic batch, typed parameters, scope, plan reuse and result sets",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Dynamic-query ownership-chain boundary, module execution context and permissions",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "All indexed-view prerequisites, supported definition syntax/types, maintenance and NOEXPAND edition boundary",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/views/create-indexed-views?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Scalar UDF inlining compatibility, eligibility, actual plan evidence and disable scopes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/scalar-udf-inlining?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "Trigger syntax/options, zero-row execution, pseudo-tables, ordering, recursion, rollback, scopes and platform boundaries",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-trigger-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "verdict": "supported; corrections or missing scope recorded in lesson and manifest",
+              "section": "inserted/deleted row images, UPDATE/COLUMNS_UPDATED and pseudo-table statistics/indexes",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-view-transact-sql?view=sql-server-ver17",
@@ -112685,9 +112943,10 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/create-dml-triggers-to-handle-multiple-rows-of-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/ddl-triggers?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/execute-as-clause-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked interview answers, follow-ups, scenario, tradeoffs and weak-answer rubric. Clarified dynamic SQL execution context, indexed-view NOEXPAND scope, UDF eligibility, and trigger set/transaction behavior."
     },
     {
       "taskId": "t03-012-overview",
