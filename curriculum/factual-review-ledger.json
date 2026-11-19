@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1198,
-    "pending": 1151,
-    "claimsChecked": 51529,
-    "claimsCorrected": 2740,
+    "reviewed": 1199,
+    "pending": 1150,
+    "claimsChecked": 51553,
+    "claimsCorrected": 2741,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -106642,26 +106642,60 @@
       "topicId": "t03-004",
       "phase": "reference",
       "draft": "course/drafts/t03-004/t03-004-reference-subqueries-and-existence.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 24,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "section": "Subquery scalar/cardinality rules, nesting, correlation scope, and decorrelation equivalence",
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/subqueries?view=sql-server-ver17"
+        },
+        {
+          "section": "EXISTS, IN/NOT IN, ANY/SOME and ALL search condition semantics",
+          "verdict": "supported except contradictory ALL empty-set statement, flagged in lesson",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "Dedicated ALL quantified comparison definition",
+          "verdict": "dedicated definition aligns with universal interpretation; direct engine result recorded",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "ANY/SOME equivalence and empty-set behavior",
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/some-any-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "EXISTS is based on whether subquery returns rows",
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/exists-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "SQL Server 2025 RTM 17.0.1155.3 quantified comparison over empty set",
+          "verdict": "directly executed SELECT CASE WHEN 1 = ALL (SELECT CONVERT(int,1) WHERE 1=0) THEN TRUE ELSE FALSE END; result TRUE",
+          "url": "local SQL Server 2025 RTM verification"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/subqueries?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/some-any-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/exists-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-except-and-intersect-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/recursive-common-table-expression-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/subqueries?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-join?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/table-value-constructor-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-using-pivot-and-unpivot?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 21 assigned subquery items and surrounding examples for scalar cardinality, correlation, EXISTS/IN/NOT IN and NULL behavior, ANY/SOME/ALL, derived tables, nesting, and decorrelation. Corrected the ALL-empty-set claim to record direct SQL Server 2025 RTM TRUE behavior and the contradictory Microsoft Learn search-condition wording; the same discrepancy is documented in the SQL Server predicates reference. No assigned item is missing."
     },
     {
       "taskId": "t03-004-reference-common-table-expressions",

@@ -24,7 +24,7 @@ A subquery can contribute one scalar value, a set of values, a table-shaped sour
 | `NULL in NOT IN result` | If the inner result has NULL and no equal value, three-valued logic can make NOT IN UNKNOWN. The outer WHERE discards UNKNOWN, which can make a query unexpectedly return no unmatched rows. |
 | `ANY quantified comparison` | ANY is TRUE when the comparison is TRUE for at least one subquery value; SOME is its synonym. An empty set yields FALSE, while unresolved NULL comparisons can yield UNKNOWN if no comparison is TRUE. |
 | `SOME quantified comparison` | SOME is a synonym for ANY in quantified subquery comparisons. It requires one qualifying comparison, not every comparison; an empty set yields FALSE. |
-| `ALL quantified comparison` | ALL is TRUE only when the comparison is TRUE for every returned value. For an empty result, this universal condition is true; NULL comparisons can produce UNKNOWN when no comparison is false. |
+| `ALL quantified comparison` | ALL is TRUE only when the comparison is TRUE for every returned value. SQL Server 2025 RTM evaluates ALL over an empty subquery as TRUE; NULL comparisons can produce UNKNOWN when no comparison is false. Microsoft Learn's general search-condition page currently says FALSE for that empty-set case, conflicting with the dedicated ALL definition and the engine result; verify on the exact target build if this edge case matters. |
 | `Subquery in SELECT list` | A subquery in a select expression must provide a scalar result for each output row. Correlated scalar subqueries can be useful for a single related value, but a join or APPLY may express multirow relationships more clearly. |
 | `Subquery in WHERE` | A WHERE subquery commonly supplies membership, quantified comparison, or existence logic. Choose the operator based on whether the requirement is scalar comparison, set membership, or merely the existence of a matching row. |
 | `Subquery in FROM` | A subquery in FROM is a derived table and must have an alias. Its columns become inputs to the outer query; it is not inherently materialized. |
@@ -98,6 +98,7 @@ The query returns each qualifying customer once even if that customer has many o
 - [Microsoft Learn: recursive](https://learn.microsoft.com/en-us/sql/t-sql/queries/recursive-common-table-expression-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn: subqueries](https://learn.microsoft.com/en-us/sql/relational-databases/performance/subqueries?view=sql-server-ver17)
 - [Microsoft Learn: search](https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17)
+- [Microsoft Learn: ALL](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn: hints](https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-join?view=sql-server-ver17)
 - [Microsoft Learn: tableValues](https://learn.microsoft.com/en-us/sql/t-sql/queries/table-value-constructor-transact-sql?view=sql-server-ver17)
 - [Microsoft Learn: pivot](https://learn.microsoft.com/en-us/sql/t-sql/queries/from-using-pivot-and-unpivot?view=sql-server-ver17)
