@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1070,
-    "pending": 1277,
-    "claimsChecked": 41884,
-    "claimsCorrected": 1699,
+    "reviewed": 1071,
+    "pending": 1276,
+    "claimsChecked": 41923,
+    "claimsCorrected": 1701,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -70669,13 +70669,50 @@
       "topicId": "t07-015",
       "phase": "practice",
       "draft": "course/drafts/t07-015/t07-015-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "Event delegation, bubbling, closest matching and default-action handling",
+          "source": "https://dom.spec.whatwg.org/#concept-event-dispatch",
+          "section": "Dispatching events / event path",
+          "verdict": "verified; delegated click handling correctly filters descendants and leaves unrelated defaults alone"
+        },
+        {
+          "claim": "AbortController cleanup and fetch cancellation example",
+          "source": "https://dom.spec.whatwg.org/#interface-abortcontroller",
+          "section": "3.1–3.3 Aborting ongoing activities",
+          "verdict": "verified; clarified cancellation does not roll back server work or guarantee downstream cancellation"
+        },
+        {
+          "claim": "ResizeObserver selection, delivery feedback, and cleanup",
+          "source": "https://www.w3.org/TR/resize-observer/",
+          "section": "2.1–2.3 and processing model",
+          "verdict": "verified; example addresses element-size rather than tree/intersection changes and avoids repeated writes"
+        },
+        {
+          "claim": "Element.setHTML safe insertion and textContent fallback",
+          "source": "https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#html-sanitization",
+          "section": "8.6 HTML sanitization",
+          "verdict": "verified; plain-text fallback avoids HTML parsing; rich-text fallback calls for a reviewed sanitizer"
+        },
+        {
+          "claim": "Storage event delivery, blocked storage access, and validation",
+          "source": "https://html.spec.whatwg.org/multipage/webstorage.html#the-storage-event",
+          "section": "12.2.1, 12.2.3–12.2.4",
+          "verdict": "corrected; event handler now guards access to localStorage and validates event.newValue without rereading a potentially unavailable store"
+        },
+        {
+          "claim": "Progressive Navigation API interception and promise lifecycle",
+          "source": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#the-navigation-api",
+          "section": "7.2.6",
+          "verdict": "corrected; narrowed interception to owned /app/ routes and preserved native behavior for other links; documented settled-versus-pending promise cases in reference lesson"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://dom.spec.whatwg.org/",
         "https://html.spec.whatwg.org/multipage/",
@@ -70750,9 +70787,15 @@
         "https://w3c.github.io/IntersectionObserver/",
         "https://www.w3.org/TR/resize-observer/",
         "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/trackVisibility",
-        "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/scrollMargin"
+        "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/scrollMargin",
+        "https://dom.spec.whatwg.org/#concept-event-dispatch",
+        "https://dom.spec.whatwg.org/#interface-abortcontroller",
+        "https://dom.spec.whatwg.org/#interface-event",
+        "https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#html-sanitization",
+        "https://html.spec.whatwg.org/multipage/webstorage.html#the-storage-event",
+        "https://html.spec.whatwg.org/multipage/nav-history-apis.html#the-navigation-api"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Claim-by-claim review of exercise premises, hints, solutions, expected outcomes, and edge cases against current DOM, HTML, Resize Observer, Intersection Observer, and MDN Sanitizer references. Hardened storage event example against blocked storage access and stale rereads, and narrowed navigation interception to application-owned routes. No unresolved factual issues."
     },
     {
       "taskId": "t07-015-interview",

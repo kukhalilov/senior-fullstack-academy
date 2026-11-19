@@ -166,9 +166,13 @@ function saveView(value) {
 }
 
 window.addEventListener("storage", event => {
-  if (event.storageArea === localStorage && event.key === "view") {
-    applyView(readView());
+  if (event.key !== "view") return;
+  try {
+    if (event.storageArea !== window.localStorage) return;
+  } catch {
+    return; // Storage may be blocked in this document.
   }
+  applyView(allowed.has(event.newValue) ? event.newValue : "comfortable");
 });
 ```
 
@@ -181,7 +185,7 @@ if ("navigation" in window) {
   navigation.addEventListener("navigate", event => {
     if (!event.canIntercept || event.downloadRequest !== null) return;
     const destination = new URL(event.destination.url);
-    if (destination.origin !== location.origin) return;
+    if (destination.origin !== location.origin || !destination.pathname.startsWith("/app/")) return;
 
     event.intercept({
       handler: async () => renderRoute(destination)
