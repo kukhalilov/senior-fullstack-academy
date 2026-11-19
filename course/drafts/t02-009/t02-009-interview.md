@@ -16,6 +16,7 @@ Sources: Microsoft's [logging overview](https://learn.microsoft.com/en-us/dotnet
 10. How do you prevent secrets and log injection?
 11. Compare filtering and sampling.
 12. Is console logging durable?
+13. What changed for generated logging methods in .NET 11?
 
 ## Concise interview answers
 
@@ -25,18 +26,19 @@ Sources: Microsoft's [logging overview](https://learn.microsoft.com/en-us/dotnet
 4. Select by operational meaning; keep IDs/names stable and use exceptions for actual failures.
 5. It parses templates at compile time and reduces boxing/allocations with typed methods.
 6. It is a cached-delegate high-performance approach, especially in older code; generated methods are preferred for current new high-volume logging.
-7. Provider/category specificity and last matching rule determine the effective rule; inspect the actual provider alias and options.
+7. The factory selects provider-name/alias matches first, then the longest matching category prefix, then the last among equally specific rules; `MinLevel` is the fallback. Inspect the actual alias and options.
 8. It removes registered logging providers, so add replacements deliberately.
 9. A scope attaches state during a bounded operation if the provider captures scopes; Activity carries trace context and is complementary.
 10. Classify/redact at source, avoid broad object capture, sanitize untrusted data, and keep credentials/request bodies out of logs.
 11. Filtering disables matching categories/levels deterministically; sampling retains a subset according to policy.
 12. No. Console writes stdout; a platform collector or durable backend must persist it.
+13. Generic methods are supported with standard constraints, primarily to keep typed values unboxed; the `allows ref struct` anti-constraint is unsupported.
 
 ## Deep follow-up answers
 
 ### Why might a log statement execute but be absent?
 
-The logger may be filtered for its level/category/provider; provider may not be registered or may fail; scopes may not be captured; a collector/exporter may drop it; or the destination may query a different category/schema. Trace the whole path before changing the call site.
+The logger may be filtered for its level/category/provider; provider may not be registered or may fail; scopes may not be captured; a collector/exporter may drop it; or the destination may query a different category/schema. Trace the whole path before changing the call site. For built-in rule selection, provider name/alias is considered first, then longest category prefix, then last rule among ties; `MinLevel` is the fallback.
 
 ### How should exception logging be organized?
 

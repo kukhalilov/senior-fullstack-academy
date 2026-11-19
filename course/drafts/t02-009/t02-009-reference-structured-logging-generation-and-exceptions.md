@@ -1,6 +1,6 @@
 # Microsoft.Extensions.Logging levels providers filters scopes and source generation — Reference: Message templates, structured state, source-generated logging, and exceptions
 
-Sources: Microsoft's [high-performance logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/high-performance-logging), [logging overview](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/), and [`LoggerMessageAttribute` API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggermessageattribute).
+Sources: Microsoft's [high-performance logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/high-performance-logging), [logging source generation](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/source-generation), [.NET 11 library changes](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries), [`LoggerMessageAttribute` API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggermessageattribute), and [`LogPropertiesAttribute` API/package](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.logpropertiesattribute?view=net-11.0).
 
 ## Scope and version
 
@@ -14,11 +14,11 @@ The `ILogger.Log<TState>` state/formatter carries structured data and a display 
 
 ## Source generation
 
-The source-generated logging method is declared as a static or instance partial method with `LoggerMessageAttribute`; the generator supplies its implementation. The attribute includes event ID/name, level, message, and optional skip-enabled-check behavior. Methods need supported return/parameter shapes; analyzer diagnostics identify constraints and placeholder mismatches. Static methods receive the logger explicitly; instance methods can use an injected field/parameter pattern supported by the generator. Review generated signatures and diagnostics on the target SDK/package version.
+The source-generated logging method is declared as a static or instance partial method with `LoggerMessageAttribute`; the generator supplies its implementation. The attribute includes event ID/name, level, message, and optional skip-enabled-check behavior. Methods return `void`; parameter shapes and modifiers have constraints, and analyzer diagnostics identify unsupported signatures and placeholder mismatches. Static methods receive the logger explicitly; instance methods can use a logger field or supported primary-constructor parameter. In .NET 11, generic logging methods are supported, including standard generic constraints, but the C# 13 `allows ref struct` anti-constraint is not. `SkipEnabledCheck` suppresses the generated `IsEnabled` guard; only use it when the caller/provider path and argument costs make that safe. Review generated signatures and diagnostics with the target SDK/package version.
 
-Generated methods preserve typed parameters and stable event metadata while avoiding runtime template parsing, boxing, and avoidable allocations. Logger extension methods are simpler and remain correct; high-performance source generation is most valuable when event volume or allocation pressure justifies ceremony. `LoggerMessage.Define<T1>` and its scope counterpart provide manual high-performance alternatives.
+Generated methods preserve typed parameters and stable event metadata while avoiding runtime template parsing, boxing, and avoidable allocations. .NET 11 generic methods are useful when values should retain their concrete type rather than be boxed. Logger extension methods are simpler and remain correct; high-performance source generation is most valuable when event volume or allocation pressure justifies ceremony. `LoggerMessage.Define<T1>` and its scope counterpart provide manual high-performance alternatives; `Define` supports at most six typed parameters, while source generation supports more.
 
-`LogPropertiesAttribute` expands selected object properties into event fields. `Transitive` controls recursive property inclusion; `SkipNullProperties` omits null members; `OmitReferenceName` affects field-name prefixing. `LogPropertyIgnoreAttribute` excludes a property. Property expansion changes schema and can increase payload/cardinality or disclose secrets. Prefer small event-specific values over serializing broad domain entities; use exclusions/allowlists and inspect actual provider output.
+`LogPropertiesAttribute` from the separately versioned `Microsoft.Extensions.Telemetry.Abstractions` package marks a logging parameter/property whose public properties are emitted as tags; it is not part of `Microsoft.Extensions.Logging.Abstractions` alone. `Transitive` controls traversal into complex properties; `SkipNullProperties` omits null properties; `OmitReferenceName` controls whether the parameter/property name prefixes generated tag names. `LogPropertyIgnoreAttribute` excludes a property from expansion. These telemetry enrichment APIs require corresponding package/source-generation support. Property expansion changes schema and can increase payload/cardinality or disclose secrets. Prefer small event-specific values over serializing broad domain entities; use exclusions/allowlists and inspect actual provider output.
 
 ## Exception practice
 
@@ -78,10 +78,14 @@ The full inventory below preserves each template/state/generator attribute, obje
 - `Static partial logging method`
 - `Instance partial logging method`
 - `Generated logging method constraints`
+- `.NET 11 generic LoggerMessage methods`
+- `LoggerMessage generic method constraints`
+- `LoggerMessage allows ref struct anti-constraint unsupported`
 - `Generated logging diagnostics`
 - `LoggerMessage.Define<T1>`
 - `LoggerMessage.DefineScope<T1>`
 - `LogPropertiesAttribute`
+- `Microsoft.Extensions.Telemetry.Abstractions package requirement for LogPropertiesAttribute`
 - `LogPropertyIgnoreAttribute`
 - `LogPropertiesAttribute.Transitive`
 - `LogPropertiesAttribute.SkipNullProperties`

@@ -16,9 +16,9 @@ Console provider formatters include `SimpleConsoleFormatter`, `SystemdConsoleFor
 
 ## Filtering and rule selection
 
-`LoggerFilterRule` includes provider name, category prefix, and level. `LoggerFilterOptions.Rules` stores rules; `.MinLevel` is the default threshold; `.CaptureScopes`, `.CaptureMessageTemplates`, and `.CaptureMessageProperties` govern data capture at the factory/filter layer where supported. Configuration and code can both add rules. A provider-specific rule can override general settings; category prefix specificity and last matching rule selection determine the effective rule. Avoid assuming one global minimum level controls every provider.
+`LoggerFilterRule` includes provider name/alias, category prefix, minimum level, and optionally a filter delegate. `LoggerFilterOptions.Rules` stores rules; `.MinLevel` is used if no rule matches; `.CaptureScopes` controls scope capture. Configuration and code can both add rules. For each provider, selection first prefers matching provider name/alias rules; if none match, rules without a provider name are considered. Among those, the longest matching category prefix wins; if several rules remain, the last one wins. If none remain, `MinLevel` applies. EventLog has a documented default of Warning and does not inherit the ordinary non-provider default. Avoid assuming one global minimum level controls every provider.
 
-`Filter delegate` rules can inspect provider/category/level; `ILoggerFactory` evaluates filters before passing the event to providers. `Provider-specific options` configure formatting and provider behavior separately from filtering. `Logging configuration reload` can update configuration-backed rules when providers/options support change tokens; confirm reload behavior in the host. A missing message may indicate level/category filtering, provider absence/failure, no scope capture, or collector behavior—not that the call site was skipped.
+`Filter delegate` rules can inspect provider/category/level; the factory resolves a rule for each provider/category logger and filters before providers handle the event. `Provider-specific options` configure formatting and provider behavior separately from filtering. `Logging configuration reload` can update configuration-backed rules when providers/options support change tokens; confirm reload behavior in the host. A missing message may indicate level/category filtering, provider absence/failure, no scope capture, or collector behavior—not that the call site was skipped.
 
 ## Durable destination boundary
 
@@ -48,7 +48,7 @@ Clearing providers without adding production diagnostics; assuming EventLog is c
 ## Knowledge checks with answers
 
 1. **What does `ClearProviders` remove?** Registered providers currently in the logging builder.
-2. **How are overlapping rules selected?** Provider/category specificity and last matching rule order determine the effective rule.
+2. **How are overlapping rules selected?** Match provider name/alias first (falling back to provider-agnostic rules only when none match), choose the longest matching category prefix, then take the last rule among ties. `MinLevel` is the fallback when no rules match.
 3. **Does JSON console provide durable storage?** No; it formats standard output.
 4. **Which provider is Windows-specific?** EventLog.
 
@@ -98,8 +98,8 @@ The inventory below includes every declared logging builder/provider/formatter/c
 - `LoggerFilterOptions.Rules`
 - `LoggerFilterOptions.MinLevel`
 - `LoggerFilterOptions.CaptureScopes`
-- `LoggerFilterOptions.CaptureMessageTemplates`
-- `LoggerFilterOptions.CaptureMessageProperties`
+
+
 - `Provider-specific filtering`
 - `Category prefix filtering`
 - `Most-specific category rule selection`

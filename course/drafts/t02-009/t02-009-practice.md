@@ -1,6 +1,6 @@
 # Microsoft.Extensions.Logging levels providers filters scopes and source generation — Exercises and worked solutions
 
-Sources: Microsoft's [logging overview](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/), [providers](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/providers), and [high-performance logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/high-performance-logging).
+Sources: Microsoft's [logging overview](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/), [providers](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/providers), [high-performance logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/high-performance-logging), and [.NET 11 library changes](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries).
 
 ## Goals
 
@@ -28,7 +28,7 @@ A cache miss falls back to the database successfully; a payment attempt is decli
 
 Default is Information, `Microsoft` is Warning, and a provider-specific `Microsoft.Hosting` rule is Debug. What happens for `Microsoft.Hosting.Lifetime` Information?
 
-**Solution:** The most specific matching category rule for that provider is considered; a Debug threshold enables Information. Confirm provider alias and last matching rule behavior in effective options because another later rule may supersede it.
+**Solution:** First select rules for the provider (or provider-agnostic rules if none target it), then choose the longest category prefix. If multiple rules remain at that specificity, the last one wins. A Debug threshold enables Information. A later less-specific rule does not override a more-specific category rule.
 
 ### 4. Avoid eager work
 
@@ -59,6 +59,12 @@ A generated logger uses `[LogProperties]` on a user object containing email, tok
 The team assumes JSON console logs remain searchable for 90 days.
 
 **Solution:** JSON is only a formatter. Confirm the runtime/container/platform collector ships stdout to a durable backend with configured retention and access control. If it does not, configure an appropriate provider/export path and verify delivery/failure behavior.
+
+### 9. Use a generic generated event
+
+On .NET 11, write a generated diagnostic for a packet code whose concrete enum type should stay strongly typed. Which signatures are supported, and what generic constraint is not?
+
+**Solution:** Use a `partial` `void` method with `[LoggerMessage]` and a generic type parameter constrained to a supported type, such as `where TCode : struct, Enum`. Generic generated methods are supported in .NET 11; the C# 13 `allows ref struct` anti-constraint is not. Confirm the target SDK and logging generator package, and keep ordinary type constraints explicit.
 
 ## Progressive hints
 

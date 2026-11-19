@@ -38,4 +38,4 @@ Reference lessons explain abstractions/levels/event IDs, templates/source genera
 
 ## Version notes
 
-Logging abstractions, provider packages, and generators can have independent package versions. Check the package used by the application. LoggerMessage source generation is the current built-in high-performance pattern; `LoggerMessage.Define` remains supported for legacy scenarios, and `ILogger` extension methods remain valid for straightforward cases.
+Logging abstractions, provider packages, and generators can have independent package versions. Check the package used by the application. .NET 11 adds generic `LoggerMessage` source-generated methods; the `allows ref struct` anti-constraint is unsupported. `LoggerMessage.Define` remains supported for manual high-performance patterns, and `ILogger` extension methods remain valid for straightforward cases. Property-expansion/redaction APIs may require separately versioned telemetry packages.

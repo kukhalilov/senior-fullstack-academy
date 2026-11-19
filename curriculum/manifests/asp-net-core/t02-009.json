@@ -9,7 +9,7 @@
     "Logging records an event with a category, severity, event identity, message template, values, and optional exception. A provider decides where an enabled event goes; filtering decides which events reach each provider.",
     "Structured message templates preserve named values for querying. Interpolated strings usually format eagerly and discard this structured shape. For hot paths, LoggerMessage source generation reduces repeated parsing and allocations while preserving event meaning.",
     "A logging scope attaches shared context to a bounded operation and is visible only through providers that support scopes. It is correlation context, not a transaction, security boundary, or replacement for trace context.",
-    "Provider/category filters select the most specific matching rule. Environment configuration and code both affect logging, so diagnose the effective provider and rule instead of assuming that a missing event means its call site did not run."
+    "Provider/category filters select one rule per provider and category using provider name/alias, longest matching category prefix, and last rule among ties; the minimum level is the fallback. Environment configuration and code both affect logging, so diagnose the effective provider and rule instead of assuming that a missing event means its call site did not run."
   ],
   "inventory": [
     {
@@ -72,9 +72,13 @@
         "Instance partial logging method",
         "Generated logging method constraints",
         "Generated logging diagnostics",
+        ".NET 11 generic LoggerMessage methods",
+        "LoggerMessage generic method constraints",
+        "LoggerMessage allows ref struct anti-constraint unsupported",
         "LoggerMessage.Define<T1>",
         "LoggerMessage.DefineScope<T1>",
         "LogPropertiesAttribute",
+        "Microsoft.Extensions.Telemetry.Abstractions package requirement for LogPropertiesAttribute",
         "LogPropertyIgnoreAttribute",
         "LogPropertiesAttribute.Transitive",
         "LogPropertiesAttribute.SkipNullProperties",
@@ -128,8 +132,6 @@
         "LoggerFilterOptions.Rules",
         "LoggerFilterOptions.MinLevel",
         "LoggerFilterOptions.CaptureScopes",
-        "LoggerFilterOptions.CaptureMessageTemplates",
-        "LoggerFilterOptions.CaptureMessageProperties",
         "Provider-specific filtering",
         "Category prefix filtering",
         "Most-specific category rule selection",
@@ -220,21 +222,27 @@
   ],
   "versionNotes": [
     {
-      "edition": ".NET 11 GA checked 2026-11-14",
+      "edition": ".NET 11 GA checked 2026-11-20",
       "items": [
         "Use the .NET 11 documentation and package reference as the current baseline. Logging abstractions, provider packages, and source-generator surfaces can ship on independent package versions; explain the package version being used rather than assuming every app targets the runtime's bundled copy.",
-        "LoggerMessage source generation is the current high-performance built-in pattern; traditional ILogger extension methods remain valid and simpler for low-volume code. .NET 11 release notes do not introduce a replacement for the established ILogger event model."
+        "LoggerMessage source generation is the current high-performance built-in pattern; traditional ILogger extension methods remain valid and simpler for low-volume code. .NET 11 adds generic source-generated logging methods; the C# 13 allows ref struct anti-constraint remains unsupported."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/",
-        "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/high-performance-logging"
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/high-performance-logging",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/source-generation",
+        "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.logpropertiesattribute?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerfilteroptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/console-log-formatter",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/providers"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn .NET logging abstractions, provider, high-performance logging, API reference, and OpenTelemetry integration documentation",
-    "edition": ".NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": ".NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/",
       "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/providers",
@@ -242,7 +250,12 @@
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.iloggingbuilder",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggermessageattribute",
-      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel"
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel",
+      "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/source-generation",
+      "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.logpropertiesattribute?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerfilteroptions?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/console-log-formatter"
     ]
   },
   "scopeExclusions": [
