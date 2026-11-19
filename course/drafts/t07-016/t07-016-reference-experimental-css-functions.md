@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-These names are the experimental subset in the pinned [MDN CSS functions data](https://github.com/mdn/data/blob/1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27/css/functions.json). Several relate to evolving anchor positioning, sizing, scroll/view timelines, generated content, and legacy image reuse. Verify grammar and support in the relevant specifications and target browser matrix.
+These names are the experimental subset in the pinned [MDN CSS functions data](https://github.com/mdn/data/blob/1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27/css/functions.json), plus `param()` because current MDN labels it experimental and the linked-parameters specification is still a First Public Working Draft. Several functions relate to evolving anchor positioning, sizing, scroll/view timelines, generated content, linked resources, and legacy image reuse. Verify grammar and support in the relevant specifications and target browser matrix.
 
 ## How this group fits the mental model
 
@@ -23,7 +23,7 @@ Experimental functions produce typed values that participate in layout, timeline
 
 ## Cross-item comparison
 
-`anchor()` and `anchor-size()` read geometric data from an anchor relationship; `calc-size()` combines intrinsic sizing with arithmetic. `scroll()` and `view()` refer to distinct scroll-driven timelines: one tracks scroll-container progress, the other an element's view/visibility progress. `target-counter()`, `target-counters()`, and `target-text()` support generated cross-references, especially paged media, rather than scripting queries. `element()` reuses rendered element imagery and carries implementation limitations; `leader()` fills typographic space in paged output.
+`anchor()` and `anchor-size()` read geometric data from an anchor relationship; `calc-size()` combines intrinsic sizing with arithmetic. `scroll()` and `view()` refer to distinct scroll-driven timelines: one tracks scroll-container progress, the other an element's view/visibility progress. `target-counter()`, `target-counters()`, and `target-text()` support generated cross-references, especially paged media, rather than scripting queries. `param()` passes values to linked resources; it does not read arbitrary parameters from fonts or the current document. `element()` reuses rendered element imagery and carries implementation limitations; `leader()` fills typographic space in paged output.
 
 ## Examples
 
@@ -54,6 +54,11 @@ These examples are schematic; support, valid contexts, and exact grammar must be
 - Treating target functions as DOM accessors or exposing sensitive page text.
 - Depending on `element()` or paged-media functions in interactive UI without a fallback.
 - Assuming experimental status means standardized semantics and interoperable support are settled.
+- Treating `param()` as a font function or as a mechanism for arbitrary DOM/resource access.
+
+## Sources and maturity
+
+- The [CSS Linked Parameters Level 1 First Public Working Draft](https://drafts.csswg.org/css-link-params-1/) defines `param()` use with `link-parameters`, URL fragment directives, and URL modifiers; it is work in progress. Current [MDN `param()` documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/param) marks the feature experimental and describes browser compatibility limits.
 
 ## Knowledge checks with answers
 
