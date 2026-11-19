@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1154,
-    "pending": 1195,
-    "claimsChecked": 49407,
-    "claimsCorrected": 2525,
+    "reviewed": 1155,
+    "pending": 1194,
+    "claimsChecked": 49438,
+    "claimsCorrected": 2530,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -96515,13 +96515,55 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-experimental-css-basic-user-interface.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Enumerated all verifiable statements covering the exact two-value grammar and global keywords, initial/inheritance/applicability/computed/animation metadata, fixed/content intrinsic sizing rules, HTML input types and file-name behavior, placeholder/caret minimum sizing, HTML sizing attributes, textarea inline/block growth and limits, select dropdown/listbox behavior, maxlength and CSS min/max/fixed-size interaction, accessibility and support maturity.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-forms-1/",
+              "section": "§7.1 field-sizing property: grammar, initial value, applicability, intrinsic sizing semantics, fixed/content behavior",
+              "verdict": "Supported against current Editor’s Draft dated 8 October 2026; explicitly treated as work in progress."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-forms-1/",
+              "section": "Latest published CSS Form Control Styling Level 1 FPWD (25 March 2025)",
+              "verdict": "Confirmed publication status and older snapshot; the current Editor’s Draft contains the field-sizing definition."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/field-sizing",
+              "section": "Formal syntax/definition, affected input types, textarea/select/file behavior, size-attribute and min/max interactions, compatibility",
+              "verdict": "Supported; Baseline 2026 status is explicitly qualified and exact support delegated to compatibility data."
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/forms.html",
+              "section": "Host language form controls and size, rows, cols, multiple, maxlength semantics",
+              "verdict": "Supports distinction between HTML preferred-size/content constraints and the CSS sizing behavior."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/min-width",
+              "section": "Minimum inline-size constraints",
+              "verdict": "Supports recommendation to bound content-driven growth with minimum size."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/max-width",
+              "section": "Maximum inline-size constraints",
+              "verdict": "Supports recommendation to cap content-driven growth."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/resize",
+              "section": "User-operated resize affordance",
+              "verdict": "Supports comparison with `field-sizing` as distinct automatic content sizing."
+            }
+          ],
+          "corrections": "Replaced a shallow one-row index with a feature-complete explanation of fixed/content modes, applicable control classes, attribute interactions, intrinsic size behavior, constraints, accessibility, and browser maturity. Corrected the misleading topic association: field-sizing is specified by CSS Form Control Styling Level 1; “Basic User Interface” here is a curricular grouping label. Added details commonly omitted by summaries, including caret-width collapse, placeholder sizing, file names, textarea axis growth, select/listbox expansion, maxlength, and limitations of fixed CSS dimensions."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -96878,9 +96920,14 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-forms-1/",
+        "https://www.w3.org/TR/css-forms-1/",
+        "https://html.spec.whatwg.org/multipage/forms.html",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/min-width",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/max-width"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and scope audit completed against the current CSSWG Form Control Styling draft, its latest published W3C FPWD, current MDN detail/compatibility data, and the HTML standard. The source clarifies the curriculum’s Basic UI grouping versus the property’s specification home. All value branches, metadata, affected HTML controls, attribute interactions, size constraints, examples, accessibility cautions, and support caveats are covered. Draft remains in draft state pending overall curriculum audit."
     },
     {
       "taskId": "t07-018-reference-experimental-css-fonts",
