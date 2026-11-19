@@ -1,118 +1,157 @@
-<!-- GENERATED DRAFT: automated shape and editorial checks passed; independent factual verification is not implied. -->
-
 # CSS properties typography colors backgrounds surfaces effects motion and specialized features — Reference: CSS Backgrounds and Borders properties
 
-# Scope and version
+## Scope and version
 
-This reference explains all 61 supplied names in **CSS Backgrounds and Borders properties**. Property names and short descriptions were captured for offline use from the linked property references on 2026-11-16. 43 supplied names have an MDN Baseline label, 18 are marked Limited availability, and 1 is explicitly marked Experimental in the 2026-11-16 capture. Each row preserves the individual status; an absent Baseline label does not by itself prove absence of every implementation. The CSS Snapshot 2026 describes specification stability rather than browser adoption. [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
+This lesson covers all 61 names supplied for the CSS Backgrounds and Borders reference inventory. It separates the established Level 3 model from newer Level 4 editor-draft material; draft status and browser support are separate questions.
 
-# How this group fits the mental model
+## How this group fits the mental model
 
-Backgrounds paint one or more layers behind an element’s content; border properties control edges, radii, images, and shadows. Shorthand order and layer alignment matter, and backgrounds can be attached to the border, padding, or content box. Each property definition still has its own value grammar, applicability, inheritance, computed-value rules, and browser support. Read the name together with its linked reference; do not infer a full grammar from the name alone.
+Think of an element as a box with a painted interior and an edge. Its background can be a stack of image layers plus one color. The border is drawn around the box and can be a simple line, a sliced image, or (in a newer draft) a custom shape. Rounded corners affect the border edge and related painting. Shadows extend the visual silhouette but do not reserve layout space.
 
-# Supplied names explained
+This mental model answers most practical questions: **background properties decide what is painted behind content and where; border properties decide how the edge is drawn; radius/shape properties change the contour; shadow adds paint around that contour.** These properties do not replace layout, intrinsic content, or accessible foreground imagery. If an image communicates essential information, put it in the document (for example, an `img`) rather than only in CSS.
 
-| Exact inventory name | Meaning |
-| --- | --- |
-| `background` | The background CSS shorthand property sets all background style properties at once, such as color, image, origin, size, and repeat method. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background) |
-| `background-attachment` | The background-attachment CSS property sets whether a background image's position is fixed within the viewport, or scrolls with its containing block. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-attachment) |
-| `background-clip` | The background-clip CSS property sets whether an element's background extends underneath its border box, padding box, or content box. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-clip) |
-| `background-color` | The background-color CSS property sets the background color of an element. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-color) |
-| `background-image` | The background-image CSS property sets one or more background images on an element. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-image) |
-| `background-origin` | The background-origin CSS property sets the background's origin: from the border start, inside the border, or inside the padding. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-origin) |
-| `background-position` | The background-position CSS property sets the initial position for each background image. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-position) |
-| `background-position-x` | The background-position-x CSS property sets the initial horizontal position for each background image. The position is relative to the position layer set by background-origin. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-position-x) |
-| `background-position-y` | The background-position-y CSS property sets the initial vertical position for each background image. The position is relative to the position layer set by background-origin. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-position-y) |
-| `background-repeat` | The background-repeat CSS shorthand property sets how background images are repeated. A background image can be repeated along the horizontal and vertical axes, or not repeated at all. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-repeat) |
-| `background-size` | The background-size CSS property sets the size of the element's background image. The image can be left to its natural size, stretched, or constrained to fit the available space. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-size) |
-| `border` | The border CSS shorthand property sets an element's border. It sets the values of border-width, border-style, and border-color. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border) |
-| `border-bottom` | The border-bottom CSS shorthand property sets an element's bottom border. It sets the values of border-bottom-width, border-bottom-style and border-bottom-color. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-bottom) |
-| `border-bottom-color` | The border-bottom-color CSS property sets the color of an element's bottom border. It can also be set with the shorthand CSS properties border-color or border-bottom. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-bottom-color) |
-| `border-bottom-left-radius` | The border-bottom-left-radius CSS property rounds the bottom-left corner of an element by specifying the radius (or the radius of the semi-major and semi-minor axes) of the ellipse defining the curvature of the corner. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-bottom-left-radius) |
-| `border-bottom-right-radius` | The border-bottom-right-radius CSS property rounds the bottom-right corner of an element by specifying the radius (or the radius of the semi-major and semi-minor axes) of the ellipse defining the curvature of the corner. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-bottom-right-radius) |
-| `border-bottom-style` | The border-bottom-style CSS property sets the line style of an element's bottom border. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-bottom-style) |
-| `border-bottom-width` | The border-bottom-width CSS property sets the width of the bottom border of an element. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-bottom-width) |
-| `border-color` | The border-color CSS shorthand property sets the color of an element's border. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-color) |
-| `border-image` | The border-image CSS shorthand property draws an image around a given element. It replaces the element's regular border. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-image) |
-| `border-image-outset` | The border-image-outset CSS property sets the distance by which an element's border image is set out from its border box. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-image-outset) |
-| `border-image-repeat` | The border-image-repeat CSS property defines how the images for the sides and the middle part of the border image are scaled and tiled. The middle region can be displayed by using the keyword "fill" in the border-image-slice property. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-image-repeat) |
-| `border-image-slice` | The border-image-slice CSS property divides the image specified by border-image-source into regions. These regions form the components of an element's border image. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-image-slice) |
-| `border-image-source` | The border-image-source CSS property sets the source image used to create an element's border image. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-image-source) |
-| `border-image-width` | The border-image-width CSS property sets the width of an element's border image. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-image-width) |
-| `border-left` | The border-left CSS shorthand property sets all the properties of an element's left border. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-left) |
-| `border-left-color` | The border-left-color CSS property sets the color of an element's left border. It can also be set with the shorthand CSS properties border-color or border-left. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-left-color) |
-| `border-left-style` | The border-left-style CSS property sets the line style of an element's left border. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-left-style) |
-| `border-left-width` | The border-left-width CSS property sets the width of the left border of an element. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-left-width) |
-| `border-radius` | The border-radius CSS shorthand property rounds the corners of an element's outer border edge. You can set a single radius to make circular corners, or two radii to make elliptical corners. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-radius) |
-| `border-right` | The border-right CSS shorthand property sets all the properties of an element's right border. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-right) |
-| `border-right-color` | The border-right-color CSS property sets the color of an element's right border. It can also be set with the shorthand CSS properties border-color or border-right. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-right-color) |
-| `border-right-style` | The border-right-style CSS property sets the line style of an element's right border. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-right-style) |
-| `border-right-width` | The border-right-width CSS property sets the width of the right border of an element. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-right-width) |
-| `border-shape` | The border-shape CSS property defines an element's border shape using <basic-shape> values. **Support snapshot:** Limited availability; MDN marks the feature experimental. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-shape) |
-| `border-style` | The border-style CSS shorthand property sets the line style for all four sides of an element's border. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-style) |
-| `border-top` | The border-top CSS shorthand property sets all the properties of an element's top border. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-top) |
-| `border-top-color` | The border-top-color CSS property sets the color of an element's top border. It can also be set with the shorthand CSS properties border-color or border-top. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-top-color) |
-| `border-top-left-radius` | The border-top-left-radius CSS property rounds the top-left corner of an element by specifying the radius (or the radius of the semi-major and semi-minor axes) of the ellipse defining the curvature of the corner. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-top-left-radius) |
-| `border-top-right-radius` | The border-top-right-radius CSS property rounds the top-right corner of an element by specifying the radius (or the radius of the semi-major and semi-minor axes) of the ellipse defining the curvature of the corner. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-top-right-radius) |
-| `border-top-style` | The border-top-style CSS property sets the line style of an element's top border. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-top-style) |
-| `border-top-width` | The border-top-width CSS property sets the width of the top border of an element. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-top-width) |
-| `border-width` | The border-width CSS shorthand property sets the width of an element's border. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-width) |
-| `box-shadow` | The box-shadow CSS property adds shadow effects around an element's frame. You can set multiple effects separated by commas. A box shadow is described by X and Y offsets relative to the element, blur and spread radius, and color. **Support snapshot:** Baseline. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-shadow) |
-| `corner-block-end-shape` | The corner-block-end-shape CSS property specifies the shape of both the corners on a box's block-end edge, within their border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-block-end-shape) |
-| `corner-block-start-shape` | The corner-block-start-shape CSS property specifies the shape of both the corners on a box's block-start edge, within their border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-block-start-shape) |
-| `corner-bottom-left-shape` | The corner-bottom-left-shape CSS property specifies the shape of a box's bottom-left corner, within its border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-bottom-left-shape) |
-| `corner-bottom-right-shape` | The corner-bottom-right-shape CSS property specifies the shape of a box's bottom-right corner, within its border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-bottom-right-shape) |
-| `corner-bottom-shape` | The corner-bottom-shape CSS property specifies the shape of both the corners on a box's bottom edge, within their border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-bottom-shape) |
-| `corner-end-end-shape` | The corner-end-end-shape CSS property specifies the shape of a box's block-end and inline-end corner, within its border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-end-end-shape) |
-| `corner-end-start-shape` | The corner-end-start-shape CSS property specifies the shape of a box's block-end and inline-start corner, within its border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-end-start-shape) |
-| `corner-inline-end-shape` | The corner-inline-end-shape CSS property specifies the shape of both the corners on a box's inline-end edge, within their border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-inline-end-shape) |
-| `corner-inline-start-shape` | The corner-inline-start-shape CSS property specifies the shape of both the corners on a box's inline-start edge, within their border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-inline-start-shape) |
-| `corner-left-shape` | The corner-left-shape CSS property specifies the shape of both the corners on a box's left-hand edge, within their border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-left-shape) |
-| `corner-right-shape` | The corner-right-shape CSS property specifies the shape of both the corners on a box's right-hand edge, within their border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-right-shape) |
-| `corner-shape` | The corner-shape CSS shorthand property specifies the shape of a box's corners, within the area specified by its border-radius property value. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-shape) |
-| `corner-start-end-shape` | The corner-start-end-shape CSS property specifies the shape of a box's block-start and inline-end corner, within its border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-start-end-shape) |
-| `corner-start-start-shape` | The corner-start-start-shape CSS property specifies the shape of a box's block-start and inline-start corner, within its border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-start-start-shape) |
-| `corner-top-left-shape` | The corner-top-left-shape CSS property specifies the shape of a box's top-left corner, within its border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-top-left-shape) |
-| `corner-top-right-shape` | The corner-top-right-shape CSS property specifies the shape of a box's top-right corner, within its border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-top-right-shape) |
-| `corner-top-shape` | The corner-top-shape CSS property specifies the shape of both the corners on a box's top edge, within their border-radius area. **Support snapshot:** Limited availability. [MDN/spec reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/corner-top-shape) |
+### Standards status
 
-# Cross-item comparison
+The established background layer model and most classic border behavior are specified in [CSS Backgrounds and Borders Level 3](https://drafts.csswg.org/css-backgrounds-3/). The 2026 [CSS Borders and Box Decorations Level 4 editor’s draft](https://drafts.csswg.org/css-borders-4/) defines newer corner-shape and border-shape features, among other extensions. The editor’s draft is work in progress; a name in a property index is not evidence of broad browser support or a finalized Recommendation. Check target-browser compatibility before using draft features. The [CSS Snapshot 2026](https://www.w3.org/TR/css-2026/) describes the state of CSS specifications, not a guarantee that every browser implements each feature.
 
-Each comma-separated background layer has its own image, position, size, repeat, origin, clip, and attachment; the first image is painted closest to the user. Border image properties slice, size, repeat, and place a source image around the border area. Shadows do not affect layout geometry.
+The frozen inventory here contains 61 names. The CSS Backgrounds Level 4 draft additionally develops `background-repeat-x`, `background-repeat-y`, `background-repeat-block`, `background-repeat-inline`, `background-position-inline`, `background-position-block`, and `background-tbd` (a background-layer shorthand that omits the color). It extends `background-clip` with `text` and `border-area`; when both are specified, the draft paints within their union. These additions are not among the 61 names and remain draft material; consult [that specification](https://drafts.csswg.org/css-backgrounds-4/) and support data separately. Do not mistake experimental/draft additions for the stable Level 3 baseline.
 
-| Item | How to interpret it |
-| --- | --- |
-| `background` | See its individual linked definition above; apply its property-specific value grammar and context. |
-| `background-attachment` | See its individual linked definition above; apply its property-specific value grammar and context. |
+The CSS Borders Level 4 draft also describes additions outside this frozen list: logical and physical border-radius/corner shorthands (including `corner`, `corner-block`, `corner-inline`, `corner-top`, `corner-right`, `corner-bottom`, `corner-left`, and per-corner shorthands); `border-limit` and side-specific `border-*-clip` partial-border controls; `box-shadow-*` longhands; and one-dimensional image values for border colors. These are draft extensions, not implicit parts of the 61-name inventory. The two Level 4 families explicitly inventoried here are `corner-*-shape` and `border-shape`.
 
-# Examples
+## Supplied names explained
 
-Layer a decorative image above a solid color so unsupported or failed image loading still leaves a usable background.
+The supplied names are covered below by behavior family. The explicit inventory checklist is: `background`, `background-attachment`, `background-clip`, `background-color`, `background-image`, `background-origin`, `background-position`, `background-position-x`, `background-position-y`, `background-repeat`, `background-size`; `border`, `border-bottom`, `border-bottom-color`, `border-bottom-left-radius`, `border-bottom-right-radius`, `border-bottom-style`, `border-bottom-width`, `border-color`, `border-image`, `border-image-outset`, `border-image-repeat`, `border-image-slice`, `border-image-source`, `border-image-width`, `border-left`, `border-left-color`, `border-left-style`, `border-left-width`, `border-radius`, `border-right`, `border-right-color`, `border-right-style`, `border-right-width`, `border-shape`, `border-style`, `border-top`, `border-top-color`, `border-top-left-radius`, `border-top-right-radius`, `border-top-style`, `border-top-width`, `border-width`; `box-shadow`; `corner-block-end-shape`, `corner-block-start-shape`, `corner-bottom-left-shape`, `corner-bottom-right-shape`, `corner-bottom-shape`, `corner-end-end-shape`, `corner-end-start-shape`, `corner-inline-end-shape`, `corner-inline-start-shape`, `corner-left-shape`, `corner-right-shape`, `corner-shape`, `corner-start-end-shape`, `corner-start-start-shape`, `corner-top-left-shape`, `corner-top-right-shape`, and `corner-top-shape`.
+
+### Backgrounds: a stack of layers
+
+### Painting order and shorthand rules
+
+Comma-separated background values describe layers. The **first image listed is painted on top**, the next below it, and so on. The background color is painted beneath all image layers and is not itself a repeatable layer. If an image is `none`, fails to load, or has transparent pixels, lower layers and ultimately the color can show through. Backgrounds are behind the element’s content and border; they do not add dimensions to the box.
+
+The `background` shorthand combines `background-color`, `background-image`, `background-position`, `background-size`, `background-repeat`, `background-origin`, `background-clip`, and `background-attachment`. A slash separates position from size (`center / cover`). Each shorthand layer first resets its omitted layer longhands to their initial values, then applies the values written. The final layer may include the color. Consequently, a later `background: ...` declaration can erase a `background-size` or attachment set earlier. Longhands with fewer comma-separated values repeat their list to cover the image layers; surplus values do not create additional images. This list matching is why a multi-layer rule should be read by index, not as independent global settings.
 
 ```css
-.hero { background: url("hero.webp") center / cover no-repeat, #243044; border-radius: 1rem; }
+.card {
+  background:
+    url("grain.png") repeat,
+    linear-gradient(135deg, #172554, #0f766e) center / cover no-repeat,
+    #102030;
+}
 ```
 
-The example is a starting point for reasoning, not a support guarantee. Inspect the computed style and test the rendered result in the browsers and writing modes relevant to the project.
+Here the texture is the topmost layer and repeats; the gradient lies below it; the color is the fallback below both. The image order is the reverse of the usual “back-to-front” mental shorthand.
 
-# Common mistakes
+#### The 11 background names
 
-- Forgetting shorthand resets omitted longhands.
-- Assuming backgrounds enlarge the box or replace the background color.
-- Using `background-size: cover` without considering crop/content focal points.
-- Treating shadows as borders for hit testing or layout.
-- Assuming a property listed by an index is a stable or interoperable standard.
-- Treating a shorthand, alias, vendor extension, or draft property as interchangeable with its neighboring names.
-- Skipping value grammar, inheritance, cascade, and applicable-box details in the linked definition.
+| Property | What it controls and what to watch |
+| --- | --- |
+| `background` | Shorthand for color and image-layer longhands. Omitted pieces reset; `/` introduces size after position. |
+| `background-image` | A comma-separated list of `<image>` values or `none`; gradients are images too. The first listed image is topmost. An image is decorative paint, not semantic replacement for content. |
+| `background-color` | One color, initially transparent, painted beneath all image layers. It is the reliable fallback when images are absent, transparent, or unavailable. |
+| `background-attachment` | Per-layer `scroll` (background is fixed relative to the element’s box and does not move with its scrollable contents), `fixed` (positioned relative to the viewport, subject to transforms and other containing-block effects), or `local` (moves with the element’s scrollable contents). `fixed` has special/limited behavior in some environments, including print and mobile; test it. |
+| `background-origin` | Chooses the positioning area: `border-box`, `padding-box` (initial), or `content-box`. It determines the box against which position and size are resolved. |
+| `background-clip` | Chooses the painting area: `border-box` (initial), `padding-box`, or `content-box`. It does not change the image’s positioning area. Draft Level 4 adds further values; verify support before using them. |
+| `background-position` | Sets each layer’s initial position in its positioning area. One/two-value forms set horizontal/vertical position; edge-offset forms can anchor from right/bottom. Percentages position the corresponding point of the image at the same percentage of the available leftover space: `100%` means the image’s right edge aligns with the area’s right edge, not “move it 100% of its own width.” Negative lengths and percentages are useful and valid. |
+| `background-position-x` | Horizontal component of the position list, including horizontal keywords/offset forms and lengths/percentages. Its comma-separated list pairs by layer with other background longhands. |
+| `background-position-y` | Vertical component, with the same layer-list behavior. It is not a separate positioning area. |
+| `background-size` | Per-layer `auto`, one/two lengths or percentages, `cover`, or `contain`. `cover` preserves aspect ratio while fully covering the positioning area (cropping may occur); `contain` preserves it while fitting the whole image (empty space may remain). A one-value size sets width and leaves height `auto`. Percentages resolve against the positioning area. Intrinsic dimensions/ratio affect `auto` sizing; gradients have no intrinsic size. |
+| `background-repeat` | Per-layer repeat mode: `repeat`, `no-repeat`, `space`, `round`, or axis combinations; `repeat-x` and `repeat-y` are shorthand keywords for axis behavior. `space` distributes whole tiles with gaps; `round` adjusts tile size so an integral number fits. Repetition is based on the positioning area and image size, not the visible crop alone. |
 
-# Knowledge checks with answers
+`background-origin` and `background-clip` answer different questions: **where is the image positioned/sized?** versus **where is it allowed to paint?** Changing one does not imply changing the other. A common pattern is `background-origin: border-box` with `background-clip: padding-box`, which positions relative to the outer box but hides paint under the border.
 
-1. **Which exact names are representative of this group?** `background`, `background-attachment`, `background-clip`. Consult each linked row for its specific behavior.
-2. **Does inclusion in this inventory prove support?** No; check the linked reference and target browser support data.
-3. **What should be checked before using one of these properties?** Its grammar, applicability, inheritance, status, interactions, and fallback needs.
+### Borders: line, side, and shorthand behavior
 
-# Sources
+#### Core family (30 names)
 
-- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
-- [MDN CSS property index](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
-- [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
+`border` sets all four sides’ width, style, and color, and also resets the `border-image` family. Side shorthands `border-top`, `border-right`, `border-bottom`, and `border-left` set those three components for one physical side. The order of components is flexible because width, style, and color have distinguishable grammars. Any omitted component resets to its initial value; in particular, `border: 1px solid` resets a previously specified border color to `currentColor` and clears a previously set border image. Put `border` before `border-image` when both are used.
+
+The matching `border-width`, `border-style`, and `border-color` shorthands accept one to four values using the standard top/right/bottom/left expansion: one = all sides; two = vertical/horizontal; three = top/horizontal/bottom; four = clockwise from top. Their side longhands (`border-top-width`, `border-right-width`, `border-bottom-width`, `border-left-width`; likewise `*-style` and `*-color`) address a single physical side.
+
+Widths accept nonnegative lengths or `thin`, `medium`, `thick`; the keyword pixel mapping is implementation-defined, so do not use it for precise geometry. Style values include `none`, `hidden`, `solid`, `dotted`, `dashed`, `double`, `groove`, `ridge`, `inset`, and `outset`. `none` and `hidden` have zero used border width; `hidden` additionally participates in table border conflict resolution as a suppressor. Color defaults to `currentColor`, the element’s current text color, and can be any valid CSS color. A border style of `none` is why setting only `border-width` commonly appears to do nothing.
+
+Classic border properties apply to boxes, but specifications contain applicability exceptions for ruby-related boxes. Physical side names remain top/right/bottom/left regardless of writing mode. Logical border properties are a separate family and should be used when the design means block/inline start/end rather than physical directions.
+
+#### Rounded corners (5 names)
+
+`border-radius` sets top-left, top-right, bottom-right, and bottom-left radii in that order, with the same one-to-four expansion pattern. A slash separates horizontal radii from vertical radii, creating elliptical corners: `border-radius: 24px 8px / 12px 4px`. The four corner longhands (`border-top-left-radius`, `border-top-right-radius`, `border-bottom-right-radius`, `border-bottom-left-radius`) accept one or two nonnegative length/percentage radii. Percentages refer to the corresponding dimensions of the border box (horizontal radius to width, vertical to height).
+
+When requested radii would overlap along an edge, the browser scales them down proportionally until they fit; it does not let adjacent radii cross. Radius changes affect the border contour and interact with background clipping, outlines, shadows, and overflow clipping. `border-radius` does not turn an image into a circle unless the box geometry and clipping make that result; circular avatars generally need a square box and `border-radius: 50%` plus suitable image fitting.
+
+### Border images: slice a source into edge pieces
+
+The six names are `border-image`, `border-image-source`, `border-image-slice`, `border-image-width`, `border-image-outset`, and `border-image-repeat`. Imagine cutting a source image with four lines into a 3×3 grid. The corner pieces map to corners, edge pieces stretch or tile along sides, and the center is discarded unless `fill` is included in `border-image-slice`.
+
+- `border-image-source` is an image or `none`; gradients can be used. If no usable image is available, the ordinary border remains the fallback.
+- `border-image-slice` takes one to four numbers or percentages, expanded like other four-side values, and optional `fill`. Numbers are source-image units; percentages are relative to the source image dimensions. The slices define the nine regions; they do not directly set the rendered border thickness.
+- `border-image-width` sets the rendered image-edge widths using lengths, percentages, numbers (multipliers of the corresponding border width), or `auto` (derived from slice values). It does not change the layout border widths.
+- `border-image-outset` extends the painted border image beyond the border box. It accepts lengths or numbers multiplied by border width; it does not enlarge the layout box.
+- `border-image-repeat` controls side and center treatment with `stretch`, `repeat`, `round`, or `space` (horizontal/vertical can differ). `round` scales tiles to fit an integer count; `space` distributes gaps.
+- `border-image` is the shorthand for these components. Slash syntax separates slice, width, and outset. Omitted values reset to their initial values, so shorthand use can clear prior longhands.
+
+When a border image is available and applies, it replaces ordinary border-style rendering; when its source is `none` or cannot be displayed, ordinary border styles are used. Keep a visible `border-style`/color fallback so a failed image does not leave an essential edge invisible. Border-image geometry affects painting, not the CSS box dimensions.
+
+### Shadows and newer corner/border shapes
+
+`box-shadow` accepts `none` or a comma-separated list of shadows. Each shadow has horizontal and vertical offsets, optional blur radius, optional spread radius, optional color, and optional `inset`. Blur cannot be negative; spread can be negative. The first listed shadow is painted on top. An inset shadow is drawn inside the box; an outer shadow follows the border contour. Shadows do not affect layout or hit testing, and can be clipped by ancestor overflow. If a shadow seems missing, inspect ancestor clipping and stacking/painting context before changing its geometry. The Level 4 draft decomposes this shorthand into additional `box-shadow-*` longhands; those are outside this frozen inventory.
+
+The inventory’s newer names are `corner-shape`, its 16 physical/logical edge and corner longhands, and `border-shape`. In the current Level 4 draft, `corner-shape` accepts one to four shape values (initial `round`), expanded to the corners like a four-side shorthand. Shape values use a superellipse family: `round` is the ordinary rounded corner; `squircle`, `scoop`, `bevel`, `notch`, and `square` are named choices, with `superellipse(<number>)` for controlled interpolation. A corner shape modifies the curve inside the area defined by `border-radius`; zero radius still gives no corner area to reshape. Physical (`corner-top-left-shape`, `corner-top-right-shape`, `corner-bottom-left-shape`, `corner-bottom-right-shape`) and logical (`corner-start-start-shape`, `corner-start-end-shape`, `corner-end-start-shape`, `corner-end-end-shape`) names target one corner; edge shorthands target both corners on an edge. Their physical/logical mapping follows writing mode and direction. The inventory also includes `corner-top-shape`, `corner-bottom-shape`, `corner-left-shape`, `corner-right-shape`, `corner-inline-start-shape`, `corner-inline-end-shape`, `corner-block-start-shape`, and `corner-block-end-shape` for those paired corners. The exact draft syntax and support can change.
+
+`border-shape` is more experimental: the draft gives it `none` or one/two `<basic-shape>` values, optionally paired with a geometry box. It can define a stroked border path or inner/outer shapes for a filled border region. This is not just a fancier radius: it changes the border contour, with defined interactions for shadows and clipping and draft-specific layout details. Do not assume ordinary border/radius behavior or broad browser support. Consult the corner-shaping and border-shaping sections in [CSS Borders and Box Decorations Level 4](https://drafts.csswg.org/css-borders-4/).
+
+The 16 shape longhands present here are exactly: `corner-top-left-shape`, `corner-top-right-shape`, `corner-bottom-right-shape`, `corner-bottom-left-shape`; `corner-start-start-shape`, `corner-start-end-shape`, `corner-end-start-shape`, `corner-end-end-shape`; `corner-top-shape`, `corner-right-shape`, `corner-bottom-shape`, `corner-left-shape`; `corner-inline-start-shape`, `corner-inline-end-shape`, `corner-block-start-shape`, and `corner-block-end-shape`. The two remaining inventory names in this shape family are the `corner-shape` shorthand and `border-shape`.
+
+## Cross-item comparison
+
+| Need | Prefer | Why / limitation |
+| --- | --- | --- |
+| Decorative texture or gradient behind content | `background-image` (often via `background`) | Layered paint; no semantic image alternative or intrinsic layout size. |
+| Solid fallback behind image layers | `background-color` | Painted underneath every image layer. |
+| Position an image relative to padding/content/border area | `background-origin` plus `background-position`/`background-size` | Origin selects the positioning area; clip selects the painting area. |
+| Draw an edge that affects box geometry | `border` and side/component longhands | Border width participates in the box model according to `box-sizing`; style must be visible. |
+| Rounded rectangular corners | `border-radius` | Well-established; radii are reduced when they would overlap. |
+| Image texture around the edge | `border-image-*` | Nine-slice painting; does not set layout size. |
+| Soft/decorative halo | `box-shadow` | Paint only; no layout space and may be clipped by ancestors. |
+| Non-round corner curves or arbitrary edge contour | `corner-shape` / `border-shape` | Level 4 draft; compatibility and syntax maturity require checking. |
+
+## Examples
+
+The examples above illustrate image-layer order and background shorthand; these families work together but remain independent controls. A background shorthand can reset its own layers, while border, radius, image-border, and shadow declarations affect edge painting. Use the right-hand columns in the comparison table to choose which mechanism controls the visible behavior.
+
+## Common mistakes
+
+1. **Expecting `background-size` to size the element.** It sizes the background image, not the box.
+2. **Reversing layer priority.** The first listed image is closest to the viewer.
+3. **Confusing origin and clip.** Positioning area and painting area are independent controls.
+4. **Using a shorthand without noticing resets.** `background` and `border-image` reset omitted components; `border` also resets the entire `border-image` effect.
+5. **Thinking `background-position: 100%` means shift by one image width.** It aligns the image’s far edge with the area’s far edge.
+6. **Setting width but no border style.** Initial style is `none`, so no visible border is painted.
+7. **Expecting border images or shadows to reserve room.** They paint outside/over the box; layout size is not increased.
+8. **Treating Baseline or an index entry as a promise for every browser.** Check the actual engines and versions used by the product, especially for Level 4 shapes.
+
+## Worked checks
+
+**Why does the background show through a rounded corner?** With the initial `background-clip: border-box`, background paint may extend under a transparent border. Set `background-clip: padding-box` when paint must stop at the padding edge; remember this is separate from the radius that shapes the contour.
+
+**Why did a gradient disappear after adding a color?** A later `background: #fff` shorthand resets `background-image` to `none`. Use `background-color: #fff` if only the color should change.
+
+**How do you create an image with a centered crop?** Give the box explicit dimensions, then use `background-image`, `background-position: center`, `background-size: cover`, and an appropriate fallback color. This preserves image ratio while allowing crop; choose an `<img>` with `object-fit: cover` when the image is meaningful content.
+
+**How do you separate a decorative glow from the border?** Use `box-shadow`, optionally multiple layers. It will not affect layout; test whether any ancestor clips it.
+
+**How can a border-image center tile?** Include `fill` in `border-image-slice` to paint the center, then configure `border-image-repeat`. Without `fill`, the center is not painted.
+
+## Knowledge checks with answers
+
+1. In `background: url(a), url(b), black`, which image is topmost? **`a`; first layer is on top.**
+2. Which property chooses the image positioning box and which chooses where it paints? **`background-origin` chooses positioning; `background-clip` chooses painting.**
+3. Why can `border-width: 4px` render no border? **The initial border style is `none`; specify a visible style.**
+4. What does `border-image-width` change? **Image-edge painting width, not the layout border width.**
+5. Do shadows reserve space? **No; they are paint and can be clipped by ancestors.**
+6. What should you verify before relying on `corner-shape` or `border-shape`? **Current specification syntax and target-browser implementation, because these are Level 4 draft features.**
+
+## Source map
+
+- [CSS Backgrounds and Borders Level 3](https://drafts.csswg.org/css-backgrounds-3/): background painting order, layer model and longhands; border-image; radius and shadow behavior.
+- [CSS Backgrounds Level 4](https://drafts.csswg.org/css-backgrounds-4/): draft additions beyond this frozen inventory, including extra position/repeat longhands and clip values.
+- [CSS Borders and Box Decorations Level 4](https://drafts.csswg.org/css-borders-4/): current draft syntax for corner-shape and border-shape and their rendering interactions.
+- [CSS Snapshot 2026](https://www.w3.org/TR/css-2026/): status overview; it does not establish browser support.

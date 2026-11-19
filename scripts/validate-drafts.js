@@ -54,7 +54,7 @@ for (const file of files) {
   }
   if ((text.match(/^\s*```/gm) ?? []).length % 2 !== 0) errors.push(`${file}: code fence is not closed`);
   if (/^\s*emits:\s*/im.test(text)) errors.push(`${file}: output annotation "emits:" appears as an editorial placeholder`);
-  if (/\b(?:TODO|TBD|FIXME|Lorem ipsum)\b/i.test(text)) errors.push(`${file}: unfinished placeholder text remains`);
+  if (/\b(?:TODO|FIXME|Lorem ipsum)\b|(?<!background-)\bTBD\b/i.test(text)) errors.push(`${file}: unfinished placeholder text remains`);
   if (phase === 'reference') {
     const group = manifest.inventory.find(item => item.id === task.inventoryGroup);
     if (!group) errors.push(`${file}: assigned inventory group "${task.inventoryGroup}" is missing`);
