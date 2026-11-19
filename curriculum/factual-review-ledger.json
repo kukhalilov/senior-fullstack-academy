@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1142,
-    "pending": 1207,
-    "claimsChecked": 48035,
-    "claimsCorrected": 2331,
+    "reviewed": 1143,
+    "pending": 1206,
+    "claimsChecked": 48171,
+    "claimsCorrected": 2347,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -87780,13 +87780,60 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-compositing-and-blending.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 136,
+      "claimsCorrected": 16,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 136 factual claim units across all three properties and the complete blend-value inventory: distinction between blending and alpha compositing; full 16 Level 1 blend-mode names and their practical color behavior; Level 2 plus-lighter extension and draft status; property initial values, applicability, inheritance, and stacking-context effects; backdrop calculation and paint order; background-layer list ordering, repetition, shorthand reset, and isolation from content behind the element; mix-blend-mode interaction with the containing stacking context; isolation auto/isolate behavior and inherited/group boundaries; opacity interactions; exclusion of unrelated Canvas Porter–Duff values; examples, accessibility/contrast implications, and cautions. Sixteen major gaps or misleading simplifications in the generated draft were corrected.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/compositing-1/",
+              "section": "Current Level 1 Editor’s Draft dated 8 October 2026; §§3.2–3.4 property behavior, 10.1–10.3 blend-mode formulas and group isolation",
+              "verdict": "supported; complete Level 1 blend-mode set and group model checked directly"
+            },
+            {
+              "url": "https://drafts.csswg.org/compositing-2/",
+              "section": "Current Level 2 Editor’s Draft dated 13 December 2025; mix-blend-mode grammar including plus-lighter, plus-lighter compositing operation, and background-blend-mode longhand list behavior",
+              "verdict": "supported; draft-only extension and status are called out"
+            },
+            {
+              "url": "https://www.w3.org/TR/compositing-1/",
+              "section": "Published 2024 Candidate Recommendation Draft; property definitions and blend/isolation semantics cross-checked against current draft",
+              "verdict": "supported; publication maturity distinguished from current editor text"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-backgrounds/",
+              "section": "Background-image layer ordering and background shorthand interaction",
+              "verdict": "supported; background list and shorthand effects checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-blend-mode",
+              "section": "Property syntax and compatibility cross-check",
+              "verdict": "consistent with primary property definition"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/isolation",
+              "section": "Property syntax and compatibility cross-check",
+              "verdict": "consistent with primary property definition"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/mix-blend-mode",
+              "section": "Blend-mode values and compatibility cross-check",
+              "verdict": "primary Level 1 and Level 2 drafts used to distinguish standard and draft-only values"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "Snapshot role and specification maturity context",
+              "verdict": "supported; no browser support claim inferred from status"
+            }
+          ],
+          "verdict": "All claims within the three-property inventory and all current draft value additions were checked against primary specifications; sixteen omissions and overgeneralizations were corrected. No unresolved factual issues remain within the assigned property scope."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -88143,9 +88190,13 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/compositing-1/",
+        "https://drafts.csswg.org/compositing-2/",
+        "https://www.w3.org/TR/compositing-1/",
+        "https://drafts.csswg.org/css-backgrounds/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual property and complete blend-value audit against current Compositing and Blending Level 1/2 drafts and Backgrounds Level 3. The three properties’ scopes are distinguished, and plus-lighter is explicitly labeled as a Level 2 draft extension."
     },
     {
       "taskId": "t07-018-reference-css-masking",
