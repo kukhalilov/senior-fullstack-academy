@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1140,
-    "pending": 1209,
-    "claimsChecked": 47862,
-    "claimsCorrected": 2307,
+    "reviewed": 1141,
+    "pending": 1208,
+    "claimsChecked": 47953,
+    "claimsCorrected": 2318,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -83739,13 +83739,85 @@
       "topicId": "t07-018",
       "phase": "concepts",
       "draft": "course/drafts/t07-018/t07-018-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 11,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 91 factual claims in the CSS concepts lesson: cascaded/specified/computed/used value stages; cascade priority including cascade layers and reversed important-layer order; inheritance and CSS-wide keywords; custom-property substitution; shorthand reset behavior; distinct background, animation, transition, and font list models; logical axes; transform versus normal flow and overflow/stacking effects; painting/compositing distinctions; generated content and semantic/accessibility limits; specification maturity versus support; reduced-motion preference-query framing; version/module history; examples and scope. Eleven material inaccuracies or omissions were corrected, including list-matching generalization, late-stage var() fallback ambiguity, transform overflow/stacking side effects, and the limits of claiming compositing properties share one behavior.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-cascade-5/",
+              "section": "§§4–6: cascaded/defaulted/specified/computed/used/actual values, layer ordering, importance, specificity, scoping proximity, and order",
+              "verdict": "supported; important-layer reversal and cascade order are qualified"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-values-4/",
+              "section": "Common value syntax and value-processing stages",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-backgrounds/",
+              "section": "Background layer lists and longhand list matching",
+              "verdict": "supported; distinct from animation and transition list algorithms"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-animations/",
+              "section": "Animation shorthand records and differing animation longhand list lengths",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-transitions/",
+              "section": "Transition property list matching and repetition/truncation rules",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-writing-modes-4/",
+              "section": "Logical inline and block axes",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-transforms/",
+              "section": "Rendering model, stacking context, containing block, overflow, and normal-flow relationship",
+              "verdict": "supported; transform effects beyond reflow are named explicitly"
+            },
+            {
+              "url": "https://www.w3.org/TR/compositing-1/",
+              "section": "Compositing and blending model",
+              "verdict": "supported; kept separate from filters and masks"
+            },
+            {
+              "url": "https://www.w3.org/TR/filter-effects-1/",
+              "section": "Filter effects and rendering model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-masking-1/",
+              "section": "Masking and clipping model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://drafts.csswg.org/mediaqueries-5/",
+              "section": "Media query mechanism and user-preference features; Working Draft status",
+              "verdict": "supported; no claim that a single query eliminates every motion source"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-color-adjust/",
+              "section": "Forced-colors/user-agent color adjustment context",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "Snapshot role and status context",
+              "verdict": "supported; not used as a browser compatibility source"
+            }
+          ],
+          "verdict": "All claims within this concepts lesson were checked against the relevant primary CSS modules. Eleven errors, list-model conflations, and important omissions were corrected; no unresolved factual issue remains within the lesson’s stated scope."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -84102,9 +84174,18 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-cascade-5/",
+        "https://drafts.csswg.org/css-values-4/",
+        "https://drafts.csswg.org/css-writing-modes-4/",
+        "https://drafts.csswg.org/css-backgrounds/",
+        "https://drafts.csswg.org/css-animations/",
+        "https://drafts.csswg.org/css-transitions/",
+        "https://drafts.csswg.org/css-transforms/",
+        "https://www.w3.org/TR/compositing-1/",
+        "https://drafts.csswg.org/mediaqueries-5/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim audit against the relevant primary CSS modules and property inventory. List-matching rules are stated per family; cascade precedence, computed-value invalidation, transform side effects, and user-preference guidance are bounded to the normative sources."
     },
     {
       "taskId": "t07-018-reference-css-custom-properties-for-cascading-variables",
