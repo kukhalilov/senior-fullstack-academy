@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1077,
-    "pending": 1270,
-    "claimsChecked": 42140,
-    "claimsCorrected": 1730,
+    "reviewed": 1078,
+    "pending": 1269,
+    "claimsChecked": 42188,
+    "claimsCorrected": 1737,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -71480,13 +71480,109 @@
       "topicId": "t07-016",
       "phase": "reference",
       "draft": "course/drafts/t07-016/t07-016-reference-standard-pseudo-elements.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 48,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked every assigned pseudo-element, example, comparison, support statement, common mistake, and answer against current CSS specifications, WebVTT, and MDN.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-pseudo-4/",
+              "section": "Generated, typographic, highlight, backdrop, marker, details, and view-transition pseudo-element behavior; allowed-property and fragment semantics",
+              "verdict": "supported; corrections recorded below"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Pseudo-elements",
+              "section": "Current complete MDN pseudo-element index and taxonomy",
+              "verdict": "cross-checked assigned inventory and adjacent experimental/current-index coverage"
+            },
+            {
+              "url": "https://www.w3.org/TR/webvtt1/",
+              "section": "WebVTT cue pseudo-elements and cue styling",
+              "verdict": "supported"
+            }
+          ]
+        },
+        {
+          "claims": "Corrected customizable select pseudo-element scope: ::checkmark is inside the selected option, not native checkbox/radio UI; ::picker(select), ::picker-icon, and ::checkmark require customizable select support and the base-select appearance opt-in.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-forms-1/",
+              "section": "CSS Form Control Styling pseudo-elements and customizable select opt-in",
+              "verdict": "corrected scope and opt-in requirements"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3A%3Acheckmark",
+              "section": "::checkmark target, generated content, and accessibility behavior",
+              "verdict": "corrected"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3A%3Apicker",
+              "section": "::picker(select) target and base-select requirement",
+              "verdict": "corrected"
+            }
+          ]
+        },
+        {
+          "claims": "Corrected ::target-text to mean the highlight range selected by text-fragment navigation, not an element named by an ordinary #id URL fragment; clarified text-fragment support dependence.",
+          "sources": [
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Fragment/Text_fragments",
+              "section": "Text fragments and CSS ::target-text styling",
+              "verdict": "corrected distinction"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-pseudo-4/",
+              "section": "Highlight pseudo-element definitions",
+              "verdict": "cross-checked"
+            }
+          ]
+        },
+        {
+          "claims": "Clarified WebVTT ::cue and ::cue(selector) internal-node matching, selector grammar and restricted property support; clarified ::highlight(name) requires registered range collections through the Custom Highlight API.",
+          "sources": [
+            {
+              "url": "https://www.w3.org/TR/webvtt1/",
+              "section": "Cue selector grammar and permitted CSS properties",
+              "verdict": "expanded and corrected scope"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-pseudo-4/",
+              "section": "Custom highlight pseudo-element and highlight inheritance model",
+              "verdict": "supported"
+            }
+          ]
+        },
+        {
+          "claims": "Clarified ::first-letter typography and qualifying layout context, ::first-line reflow dependence, ::marker limitations, selection/highlight inheritance, and shadow part/slotted exposure limits.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-pseudo-4/",
+              "section": "Typographic, marker, highlight and generated-content pseudo-elements",
+              "verdict": "supported; clarified details"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-shadow-parts/",
+              "section": "::part and ::slotted shadow-boundary rules",
+              "verdict": "cross-checked"
+            }
+          ]
+        },
+        {
+          "claims": "Checked view-transition pseudo-element tree, old/new snapshots, accessibility/reduced-motion cautions, and noted the newly introduced Level 2 group-children pseudo-element for addition in the adjacent current-index inventory.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-view-transitions-2/",
+              "section": "View transition pseudo-element tree, group and image-pair definitions, Level 2 additions",
+              "verdict": "supported; identified current-index inventory omission for the next assigned lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference",
@@ -71518,9 +71614,18 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Attribute_selectors",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Column_combinator",
         "https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute",
-        "https://drafts.csswg.org/cssom/#dom-css-escape"
+        "https://drafts.csswg.org/cssom/#dom-css-escape",
+        "https://drafts.csswg.org/css-pseudo-4/",
+        "https://drafts.csswg.org/css-forms-1/",
+        "https://www.w3.org/TR/webvtt1/",
+        "https://drafts.csswg.org/css-shadow-parts/",
+        "https://drafts.csswg.org/css-view-transitions-2/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Pseudo-elements",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3A%3Acheckmark",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/%3A%3Apicker",
+        "https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Fragment/Text_fragments"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited the complete pinned pseudo-element inventory and the lesson claims against current CSS Pseudo-Elements, CSS Forms, WebVTT, CSS Shadow, View Transitions, and MDN references. Corrected the selected-option-only scope of ::checkmark, the base-select opt-in for picker pseudo-elements, ::cue() internal cue-node grammar/property restrictions, ::target-text text-fragment semantics, and Custom Highlight API registration. Clarified typography, marker/highlight restrictions, shadow exposure, and transition snapshots. Identified ::view-transition-group-children() as a Level 2 addition and assigned it to the immediately following current-index/draft reference audit. No unresolved factual omissions remain within this lesson inventory."
     },
     {
       "taskId": "t07-016-reference-experimental-pseudo-elements",
