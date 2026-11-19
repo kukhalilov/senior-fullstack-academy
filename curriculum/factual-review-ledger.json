@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1141,
-    "pending": 1208,
-    "claimsChecked": 47953,
-    "claimsCorrected": 2318,
+    "reviewed": 1142,
+    "pending": 1207,
+    "claimsChecked": 48035,
+    "claimsCorrected": 2331,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -85783,13 +85783,50 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-cascading-and-inheritance.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 82,
+      "claimsCorrected": 13,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 82 factual claim units for the sole supplied property `all`: exact CSS-wide-keyword-only grammar; shorthand expansion; reset scope and exclusions; behavior of initial/inherit/unset/revert/revert-layer; the current Editor’s Draft’s revert-rule addition and its rule-level rollback semantics; draft versus published snapshot status; origin/layer rollback nuances; defaults such as the UA `display` value; custom-property registration exclusion; direction and unicode-bidi exceptions; host-language direction context; cascade interactions, examples, accessibility cautions, and the stated limits of the reset. Thirteen factual omissions or overgeneralizations in the generated draft were corrected.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-cascade-5/",
+              "section": "§3.2 `all`; §§4–7 value processing, origins, defaulting and cascade rollback; §7.3.6 `revert-rule`; Changes since the 2022 Candidate Recommendation Snapshot",
+              "verdict": "supported; editor’s draft changes are labeled work in progress"
+            },
+            {
+              "url": "https://www.w3.org/TR/2022/CR-css-cascade-5-20220113/",
+              "section": "Published Candidate Recommendation Snapshot and prior keyword grammar",
+              "verdict": "supported; explicitly distinguished from the later Editor’s Draft addition"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-variables-1/",
+              "section": "Custom-property model and exclusion from `all` reset",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-writing-modes-3/",
+              "section": "`direction` and `unicode-bidi` context and markup relationship",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "Snapshot role and specification-maturity context",
+              "verdict": "supported; no browser support claim inferred from standards status"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/all",
+              "section": "Property overview and compatibility cross-check",
+              "verdict": "consistent; cascade keyword details verified from primary specification"
+            }
+          ],
+          "verdict": "All factual assertions for `all` were checked against the current CSS Cascade Editor’s Draft, the published snapshot, and related primary sources. Thirteen misleading simplifications and omissions were corrected; no unresolved issues remain within the assigned property scope."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -86146,9 +86183,12 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-cascade-5/",
+        "https://www.w3.org/TR/2022/CR-css-cascade-5-20220113/",
+        "https://www.w3.org/TR/css-writing-modes-3/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual audit against CSS Cascade Level 5 Editor’s Draft and published Candidate Recommendation Snapshot, with related custom-property and Writing Modes checks. The new draft-only revert-rule keyword is separated from older published and established keyword behavior."
     },
     {
       "taskId": "t07-018-reference-css-animations",
