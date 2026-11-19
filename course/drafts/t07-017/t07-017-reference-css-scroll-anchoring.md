@@ -2,56 +2,61 @@
 
 # Scope and version
 
-This lesson explains all 1 supplied properties in **CSS Scroll Anchoring properties** and no additional inventory names. MDN descriptions and support labels were captured on 2026-11-16. 1 names have an MDN Baseline label, 0 have Limited availability, and 0 are explicitly marked Experimental in the 2026-11-16 capture. These labels can overlap; the row for every name preserves its own status. A missing Baseline label is not proof that no browser implements it. Support can change after this capture. The CSS Snapshot 2026 reports specification maturity rather than browser adoption. [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
+This lesson covers the single supplied property `overflow-anchor`. Scroll Anchoring Level 1 has a published Working Draft and a newer Editor’s Draft (30 September 2026 in the version checked). The feature aims to reduce disruptive viewport movement when layout changes above the visible content; draft details and browser support should be checked separately. The property is an opt-out control, not a general layout-shift prevention system.
 
 # How this group fits the mental model
 
-Scroll anchoring attempts to keep the user’s apparent reading position stable when content above the viewport changes size. Authors may opt out in a subtree when the browser’s selected anchor causes a harmful jump, but should first fix avoidable layout shifts. The overview and concepts lessons explain the surrounding layout model; this catalog now ties every supplied name to its role. A short MDN description is not a complete grammar. Follow the linked specification/reference for exact values, applicability, inheritance, computed-value rules, and browser-specific support before using an unfamiliar value.
+Imagine reading halfway down a page when an image above the text finishes loading. If the page’s scroll offset stayed fixed, the paragraph you were reading could jump downward. Scroll anchoring can select a visible descendant as an anchor and adjust the scroll offset to keep that content in approximately the same place. Authors should reserve space for late content first; opt out only where the browser’s chosen anchor causes a demonstrated problem.
 
 # Supplied names explained
 
-| Exact supplied property | Meaning in this model |
+| Exact supplied property | Grammar and effect |
 | --- | --- |
-| `overflow-anchor` | The overflow-anchor CSS property provides a way to opt out of the browser's scroll anchoring behavior, which adjusts scroll position to minimize content shifts. **MDN support snapshot:** Baseline 2026. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-anchor) |
+| `overflow-anchor` | `auto \| none`; initial `auto`; applies to all elements; not inherited; computed value is the specified keyword; discrete animation. `auto` leaves the element potentially eligible for anchor selection for scrolling boxes created by it or an ancestor. `none` makes the element and descendants in that anchoring context ineligible. A nested scroll container establishes its own scrolling box and can anchor again unless it also opts out. |
+
+The browser chooses the anchor; authors do not nominate a specific node through this property. The draft’s selection rules prioritize certain nodes, including editable focused content and find-in-page matches, then examine visible descendants. Anchoring is suppressed in situations where adjustments would conflict with other scroll behavior. In particular, if the scroll container is snapped to an element, anchoring adjustments are limited to those allowed by scroll snap re-snapping.
 
 # Cross-item comparison
 
-This group contains only `overflow-anchor`, so no within-group name comparison applies. `overflow-anchor: none` opts an element out of anchor selection; `auto` leaves normal anchoring behavior available. It does not reserve image dimensions, prevent every shift, or control scroll snapping.
+`overflow-anchor: none` affects anchor eligibility; it does not freeze layout, prevent image/font loading shifts, or disable scrolling and scroll snapping. Prevent predictable shifts by supplying image dimensions/aspect ratios, reserving ad/embed space, and avoiding late insertion above the reading position. Use a narrow opt-out only for a component whose own anchoring behavior is known to be harmful.
 
 # Examples
 
-Reserve image and ad space to prevent layout shift. Only if a specific virtualized region produces a demonstrated bad anchor adjustment should you narrowly opt it out.
-
 ```css
-.unstable-virtualized-region { overflow-anchor: none; }
+/* First reserve space for content whose size is known. */
+.article-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+/* Narrow opt-out for a virtualized region after confirming it causes bad jumps. */
+.virtualized-log {
+  overflow-anchor: none;
+}
 ```
 
-The example illustrates a layout choice; adapt it to actual content and test target browsers, zoom, writing modes, keyboard use, and narrow containers.
+The declaration does not mean all descendants can later re-enable anchoring. The spec says `none` excludes the subtree from the relevant ancestor’s anchor candidate selection; nested scroll containers may independently anchor their own scrolling boxes.
 
 # Common mistakes
 
-- Disabling anchoring globally to conceal missing size reservations.
-- Assuming the browser will select a particular descendant as the anchor.
-- Confusing scroll anchoring with scroll snapping or smooth scrolling.
-- Ignoring browser-specific support and interactions.
-- Inferring a property’s full value grammar from its name or the brief definition alone.
-- Assuming MDN support labels prove support in every browser version or embedded webview.
-- Confusing the CSS Working Group draft status with a browser implementation guarantee.
+- Disabling anchoring globally to conceal missing reserved dimensions or late layout shifts.
+- Expecting to choose which descendant becomes the anchor; selection is a user-agent algorithm.
+- Treating `overflow-anchor: none` as inherited CSS; the property is not inherited, but its exclusion effect applies to the subtree for relevant ancestor scrollers.
+- Assuming descendants can set `auto` to opt back into an ancestor scroller’s excluded subtree; the draft says that is not possible (nested scroll containers have their own anchoring context).
+- Confusing scroll anchoring with scroll snapping or `scroll-behavior`.
+- Assuming anchor adjustments can violate a snap position; when snapped, adjustments are constrained by re-snapping rules.
+- Treating the Editor’s Draft as a browser-support guarantee.
 
 # Knowledge checks with answers
 
-1. **Which exact names are represented here?** `overflow-anchor`. Each has an individual definition and support link above.
-2. **What should be checked beyond this concise description?** Full grammar, applicable boxes, inheritance, computed behavior, interactions, and the target browser compatibility data.
-3. **What is the MDN status label’s date?** The local reference capture is dated 2026-11-16; consult current compatibility data for future production decisions.
+1. **What problem does scroll anchoring try to reduce?** A visible reading position jumping when layout changes elsewhere in the scrollable content.
+2. **What does `overflow-anchor: none` do?** It excludes the element and relevant descendants from anchor selection for ancestor-created scrolling boxes.
+3. **Can a descendant’s `auto` restore its eligibility for an ancestor scroller?** No; the draft says an excluded subtree cannot turn anchoring back on for that ancestor. A nested scroll container may anchor its own scrolling box.
+4. **What should be tried before opting out?** Reserve dimensions/space for late-loading content and fix avoidable layout shifts.
+5. **How does scroll snapping constrain anchoring?** If a container is snapped, anchoring adjustments are limited to positions allowed by re-snapping.
 
 # Sources
 
-- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
-- [MDN CSS property reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
-- [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
-- [CSS Flexible Box Layout Level 2 draft](https://drafts.csswg.org/css-flexbox-2/)
-- [CSS Overflow Level 4 draft](https://drafts.csswg.org/css-overflow-4/)
-- [CSS Overflow Level 5 draft](https://drafts.csswg.org/css-overflow-5/)
-- [CSS Scroll Snap Level 2 draft](https://drafts.csswg.org/css-scroll-snap-2/)
-- [CSS Display Level 4 draft](https://drafts.csswg.org/css-display-4/)
-- [CSS Anchor Positioning Level 1 draft](https://drafts.csswg.org/css-anchor-position-1/)
+- [CSS Scroll Anchoring Module Level 1, current Editor’s Draft](https://drafts.csswg.org/css-scroll-anchoring/) — anchor selection, priority candidates, suppression, snap interaction, and `overflow-anchor` grammar/effect; work in progress.
+- [CSS Scroll Anchoring Module Level 1, published Working Draft](https://www.w3.org/TR/css-scroll-anchoring-1/) — published draft baseline and status.
+- [CSS Scroll Snap Module Level 1](https://www.w3.org/TR/css-scroll-snap-1/) — re-snapping behavior that constrains anchoring in snapped containers.

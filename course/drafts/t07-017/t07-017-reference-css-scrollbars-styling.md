@@ -2,57 +2,64 @@
 
 # Scope and version
 
-This lesson explains all 2 supplied properties in **CSS Scrollbars Styling properties** and no additional inventory names. MDN descriptions and support labels were captured on 2026-11-16. 2 names have an MDN Baseline label, 0 have Limited availability, and 0 are explicitly marked Experimental in the 2026-11-16 capture. These labels can overlap; the row for every name preserves its own status. A missing Baseline label is not proof that no browser implements it. Support can change after this capture. The CSS Snapshot 2026 reports specification maturity rather than browser adoption. [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
+This lesson covers the two supplied properties, `scrollbar-color` and `scrollbar-width`, from CSS Scrollbars Styling Level 1, a Candidate Recommendation Snapshot. The module deliberately controls only scrollbar color and approximate width; platform scrollbar structure and pixel-perfect styling remain outside its scope. Browser, operating-system, forced-color, and overlay-scrollbar behavior can affect the result.
 
 # How this group fits the mental model
 
-Scrollbar styling changes the scrollbar’s color and approximate thickness while the browser and platform retain control of much of its appearance. Scrollbars remain user-navigation affordances and can be overlaid or reserved depending on platform settings. The overview and concepts lessons explain the surrounding layout model; this catalog now ties every supplied name to its role. A short MDN description is not a complete grammar. Follow the linked specification/reference for exact values, applicability, inheritance, computed-value rules, and browser-specific support before using an unfamiliar value.
+Scrollbars communicate that content can be navigated and where the viewport sits within it. These properties let a page make a limited visual adjustment while leaving control of much of the native UI to the browser and operating system. They do not create scrolling or reserve/remove layout space; those behaviors are defined by overflow and platform scrollbar mode.
 
 # Supplied names explained
 
-| Exact supplied property | Meaning in this model |
+| Exact supplied property | Full behavior |
 | --- | --- |
-| `scrollbar-color` | The scrollbar-color CSS property sets the color of the scrollbar track and thumb. **MDN support snapshot:** Baseline 2025. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scrollbar-color) |
-| `scrollbar-width` | The scrollbar-width property allows the author to set the desired thickness of an element's scrollbars when they are shown. **MDN support snapshot:** Baseline 2024. [MDN/spec](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scrollbar-width) |
+| `scrollbar-color` | Grammar: `auto \| <color>{2}`. Initial `auto`; applies to scroll containers; inherited. With two colors, the first colors the thumb and the second the track. `auto` leaves selection to the user agent, which should respect platform conventions and may consider `color-scheme`. A UA may ignore a supplied color if the platform scrollbar cannot be customized. A value set on the root element applies to the viewport; unlike `overflow`, a value on `body` is not propagated to the viewport. |
+| `scrollbar-width` | Grammar: `auto \| thin \| none`. Initial `auto`; applies to scroll containers; not inherited. `auto` uses the default width (which users or the OS may customize); `thin` requests a thinner scrollbar without specifying a pixel size; `none` hides the scrollbar UI but leaves the element scrollable. Root-element values apply to the viewport; `body` values do not propagate. |
+
+Both properties accept CSS-wide keywords. The exact scrollbar shape, internal parts, animation, and platform layout are intentionally unspecified. Classic scrollbars may consume layout space while overlay scrollbars may appear above content; these two properties do not choose that platform mode.
 
 # Cross-item comparison
 
-`scrollbar-color` selects thumb and track colors; `scrollbar-width` offers standardized sizing keywords rather than arbitrary dimensions. Older pseudo-element styling mechanisms are outside this inventory and have different engine-specific behavior.
+`scrollbar-color` changes thumb/track color; `scrollbar-width` requests one of three standardized width modes rather than a numeric length. Neither offers fine styling of buttons, corners, track pieces, or exact dimensions. Browser-specific scrollbar pseudo-elements may expose more detail in particular engines, but are outside this standards-based inventory and do not provide a portable substitute.
+
+`scrollbar-width: none` is not equivalent to disabling scrolling: touch, wheel, keyboard, or script may still scroll the content. Hiding the visible control can make scrollability undiscoverable, so prefer visible scrollbars and adequate interaction targets unless a separate, clear, accessible control exists.
 
 # Examples
 
-Use a contrasting thumb and track and avoid `thin` if it makes pointer targeting difficult. Preserve keyboard and touch scrolling and test high-contrast/forced-color environments.
-
 ```css
-.results { scrollbar-color: #536dfe #e8eaf6; scrollbar-width: auto; }
+.results {
+  scrollbar-color: #536dfe #e8eaf6; /* thumb, then track */
+  scrollbar-width: auto;
+}
+
+/* A compact rail may request thin scrollbars, without an exact pixel width. */
+.compact-rail {
+  overflow: auto;
+  scrollbar-width: thin;
+}
 ```
 
-The example illustrates a layout choice; adapt it to actual content and test target browsers, zoom, writing modes, keyboard use, and narrow containers.
+Check contrast against the actual background, and test with keyboard, touch, zoom, high-contrast/forced-color settings, and the target operating systems. The user agent may prioritize user settings or ignore custom colors.
 
 # Common mistakes
 
-- Assuming custom scrollbar colors render identically on every OS.
-- Removing scrollbar visibility cues or reducing target size without a reason.
-- Relying on color alone to indicate scroll position.
-- Expecting these standardized properties to style every platform scrollbar detail.
-- Inferring a property’s full value grammar from its name or the brief definition alone.
-- Assuming MDN support labels prove support in every browser version or embedded webview.
-- Confusing the CSS Working Group draft status with a browser implementation guarantee.
+- Reversing the color order: the first color is the thumb, the second the track.
+- Expecting a numeric width such as `8px`; the standard grammar only has `auto`, `thin`, and `none`.
+- Assuming `thin` has the same physical size on every platform.
+- Assuming `none` disables scrolling; it hides scrollbar UI only.
+- Setting these on `body` and expecting the viewport scrollbar to inherit/receive them; the spec specifically does not propagate these values from `body`.
+- Removing scrollbar cues without another discoverable way to navigate overflow content.
+- Assuming standards-based properties style every scrollbar part or override OS accessibility settings.
 
 # Knowledge checks with answers
 
-1. **Which exact names are represented here?** `scrollbar-color`, `scrollbar-width`. Each has an individual definition and support link above.
-2. **What should be checked beyond this concise description?** Full grammar, applicable boxes, inheritance, computed behavior, interactions, and the target browser compatibility data.
-3. **What is the MDN status label’s date?** The local reference capture is dated 2026-11-16; consult current compatibility data for future production decisions.
+1. **In `scrollbar-color: red blue`, what is red?** The thumb; blue is the track.
+2. **Can `scrollbar-width` take `12px`?** No. Its standard values are `auto`, `thin`, and `none`.
+3. **Does `scrollbar-width: none` prevent scrolling?** No. It hides the scrollbar UI but leaves scrolling possible.
+4. **Which element’s value is propagated to the viewport?** The root element’s value; a value on `body` is not propagated by this specification.
+5. **Why might a declared scrollbar color not appear exactly?** Native structures differ and a user agent may ignore colors it cannot apply or may honor platform/user presentation.
 
 # Sources
 
-- [W3C CSS Snapshot 2026](https://www.w3.org/TR/css-2026/)
-- [MDN CSS property reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties)
-- [W3C CSS property index](https://www.w3.org/Style/CSS/all-properties.en.html)
-- [CSS Flexible Box Layout Level 2 draft](https://drafts.csswg.org/css-flexbox-2/)
-- [CSS Overflow Level 4 draft](https://drafts.csswg.org/css-overflow-4/)
-- [CSS Overflow Level 5 draft](https://drafts.csswg.org/css-overflow-5/)
-- [CSS Scroll Snap Level 2 draft](https://drafts.csswg.org/css-scroll-snap-2/)
-- [CSS Display Level 4 draft](https://drafts.csswg.org/css-display-4/)
-- [CSS Anchor Positioning Level 1 draft](https://drafts.csswg.org/css-anchor-position-1/)
+- [CSS Scrollbars Styling Module Level 1](https://www.w3.org/TR/css-scrollbars-1/) — §§1–3 and accessibility appendix: scope, grammar, inheritance, root/body viewport behavior, platform limits, and usability cautions.
+- [CSS Overflow Module Level 3](https://www.w3.org/TR/css-overflow-3/) — scroll-container and scrollbar layout context.
+- [CSS Color Adjustment Module Level 1](https://www.w3.org/TR/css-color-adjust-1/) — `color-scheme` context referenced by scrollbar color behavior.
