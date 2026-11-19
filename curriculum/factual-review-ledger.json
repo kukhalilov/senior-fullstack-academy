@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1267,
-    "pending": 1082,
-    "claimsChecked": 56991,
-    "claimsCorrected": 2924,
+    "reviewed": 1274,
+    "pending": 1075,
+    "claimsChecked": 57960,
+    "claimsCorrected": 2944,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -114969,44 +114969,162 @@
       "topicId": "t03-014",
       "phase": "overview",
       "draft": "course/drafts/t03-014/t03-014-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 63,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 63 externally verifiable claims, including supplied manifest items where applicable, SQL syntax/options, operational scenarios, example answers, and edition/version boundaries. Checked the recovery mental model, RPO/RTO walkthrough, HA-vs-restore distinction, schema coexistence, temporal limits, and SQL Server 2025 changes.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
+              "section": "Backup scopes and backup types",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
+              "section": "Recovery-model logging and restore capabilities",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
+              "section": "Restore sequences and recovery states",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
+              "section": "Full/differential/log restore order",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
+              "section": "Point-in-time restore targets and BULK_LOGGED restriction",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
+              "section": "VERIFYONLY scope and limitations",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
+              "section": "Backup encryption and external key custody",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
+              "section": "Differential base behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
+              "section": "Copy-only bookkeeping effects",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
+              "section": "Compression algorithms, options and tradeoffs",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Availability mode synchronization and commit acknowledgment",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Automatic/planned/forced failover prerequisites and data-loss behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
+              "section": "Listener and client connectivity behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
+              "section": "FCI instance-level failover boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
+              "section": "CDC change rows and capture behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
+              "section": "Change Tracking changed-row contract and CDC comparison",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
+              "section": "SQL Server 2025 release status for change event streaming",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
+              "section": "Temporal table behavior and system period columns",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
+              "section": "FOR SYSTEM_TIME query semantics",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
+              "section": "Temporal history retention options",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-overview?view=sql-server-ver17",
+              "section": "Ledger and tamper-evidence boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
+              "section": "Database snapshot storage dependency and restore limitation",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
+              "section": "DBCC CHECKDB consistency checks and repair risks",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
+              "section": "Online index operation edition/version restrictions",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+              "section": "Compatibility level after engine upgrade",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
@@ -115014,53 +115132,184 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked the recovery mental model, RPO/RTO walkthrough, HA-vs-restore distinction, schema coexistence, temporal limits, and SQL Server 2025 changes."
     },
     {
       "taskId": "t03-014-concepts",
       "topicId": "t03-014",
       "phase": "concepts",
       "draft": "course/drafts/t03-014/t03-014-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 110,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 110 externally verifiable claims, including supplied manifest items where applicable, SQL syntax/options, operational scenarios, example answers, and edition/version boundaries. Verified restore-chain sequence, recovery forks and log coverage, key custody, HA/failover prerequisites, CDC/CT distinctions, migration strategy, and temporal semantics.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
+              "section": "Backup scopes and backup types",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
+              "section": "Recovery-model logging and restore capabilities",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
+              "section": "Restore sequences and recovery states",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
+              "section": "Full/differential/log restore order",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
+              "section": "Point-in-time restore targets and BULK_LOGGED restriction",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
+              "section": "VERIFYONLY scope and limitations",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
+              "section": "Backup encryption and external key custody",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
+              "section": "Differential base behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
+              "section": "Copy-only bookkeeping effects",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
+              "section": "Compression algorithms, options and tradeoffs",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Availability mode synchronization and commit acknowledgment",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Automatic/planned/forced failover prerequisites and data-loss behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
+              "section": "Listener and client connectivity behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
+              "section": "FCI instance-level failover boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
+              "section": "CDC change rows and capture behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
+              "section": "Change Tracking changed-row contract and CDC comparison",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
+              "section": "SQL Server 2025 release status for change event streaming",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
+              "section": "Temporal table behavior and system period columns",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
+              "section": "FOR SYSTEM_TIME query semantics",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
+              "section": "Temporal history retention options",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-overview?view=sql-server-ver17",
+              "section": "Ledger and tamper-evidence boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
+              "section": "Database snapshot storage dependency and restore limitation",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
+              "section": "DBCC CHECKDB consistency checks and repair risks",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
+              "section": "Online index operation edition/version restrictions",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+              "section": "Compatibility level after engine upgrade",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
@@ -115068,53 +115317,184 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Verified restore-chain sequence, recovery forks and log coverage, key custody, HA/failover prerequisites, CDC/CT distinctions, migration strategy, and temporal semantics."
     },
     {
       "taskId": "t03-014-reference-backup-restore-and-recovery",
       "topicId": "t03-014",
       "phase": "reference",
       "draft": "course/drafts/t03-014/t03-014-reference-backup-restore-and-recovery.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 258,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 258 externally verifiable claims, including supplied manifest items where applicable, SQL syntax/options, operational scenarios, example answers, and edition/version boundaries. Checked all 46 assigned backup/recovery items, backup types/options, differential/log chain behavior, restore states, point-in-time limits, validation and encryption keys.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
+              "section": "Backup scopes and backup types",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
+              "section": "Recovery-model logging and restore capabilities",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
+              "section": "Restore sequences and recovery states",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
+              "section": "Full/differential/log restore order",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
+              "section": "Point-in-time restore targets and BULK_LOGGED restriction",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
+              "section": "VERIFYONLY scope and limitations",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
+              "section": "Backup encryption and external key custody",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
+              "section": "Differential base behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
+              "section": "Copy-only bookkeeping effects",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
+              "section": "Compression algorithms, options and tradeoffs",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Availability mode synchronization and commit acknowledgment",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Automatic/planned/forced failover prerequisites and data-loss behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
+              "section": "Listener and client connectivity behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
+              "section": "FCI instance-level failover boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
+              "section": "CDC change rows and capture behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
+              "section": "Change Tracking changed-row contract and CDC comparison",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
+              "section": "SQL Server 2025 release status for change event streaming",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
+              "section": "Temporal table behavior and system period columns",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
+              "section": "FOR SYSTEM_TIME query semantics",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
+              "section": "Temporal history retention options",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-overview?view=sql-server-ver17",
+              "section": "Ledger and tamper-evidence boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
+              "section": "Database snapshot storage dependency and restore limitation",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
+              "section": "DBCC CHECKDB consistency checks and repair risks",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
+              "section": "Online index operation edition/version restrictions",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+              "section": "Compatibility level after engine upgrade",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
@@ -115122,53 +115502,184 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 46 assigned backup/recovery items, backup types/options, differential/log chain behavior, restore states, point-in-time limits, validation and encryption keys."
     },
     {
       "taskId": "t03-014-reference-availability-and-replication",
       "topicId": "t03-014",
       "phase": "reference",
       "draft": "course/drafts/t03-014/t03-014-reference-availability-and-replication.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 213,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 213 externally verifiable claims, including supplied manifest items where applicable, SQL syntax/options, operational scenarios, example answers, and edition/version boundaries. Checked all 34 assigned availability/change-movement items, synchronous/asynchronous semantics, failover modes, listener, FCI, log shipping, replication, CDC/CT, quorum and SQL Server 2025 preview status.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
+              "section": "Backup scopes and backup types",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
+              "section": "Recovery-model logging and restore capabilities",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
+              "section": "Restore sequences and recovery states",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
+              "section": "Full/differential/log restore order",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
+              "section": "Point-in-time restore targets and BULK_LOGGED restriction",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
+              "section": "VERIFYONLY scope and limitations",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
+              "section": "Backup encryption and external key custody",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
+              "section": "Differential base behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
+              "section": "Copy-only bookkeeping effects",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
+              "section": "Compression algorithms, options and tradeoffs",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Availability mode synchronization and commit acknowledgment",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Automatic/planned/forced failover prerequisites and data-loss behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
+              "section": "Listener and client connectivity behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
+              "section": "FCI instance-level failover boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
+              "section": "CDC change rows and capture behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
+              "section": "Change Tracking changed-row contract and CDC comparison",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
+              "section": "SQL Server 2025 release status for change event streaming",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
+              "section": "Temporal table behavior and system period columns",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
+              "section": "FOR SYSTEM_TIME query semantics",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
+              "section": "Temporal history retention options",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-overview?view=sql-server-ver17",
+              "section": "Ledger and tamper-evidence boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
+              "section": "Database snapshot storage dependency and restore limitation",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
+              "section": "DBCC CHECKDB consistency checks and repair risks",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
+              "section": "Online index operation edition/version restrictions",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+              "section": "Compatibility level after engine upgrade",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
@@ -115176,53 +115687,184 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 34 assigned availability/change-movement items, synchronous/asynchronous semantics, failover modes, listener, FCI, log shipping, replication, CDC/CT, quorum and SQL Server 2025 preview status."
     },
     {
       "taskId": "t03-014-reference-schema-evolution-and-temporal-history",
       "topicId": "t03-014",
       "phase": "reference",
       "draft": "course/drafts/t03-014/t03-014-reference-schema-evolution-and-temporal-history.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 149,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 149 externally verifiable claims, including supplied manifest items where applicable, SQL syntax/options, operational scenarios, example answers, and edition/version boundaries. Checked all 23 inventory entries for migration/compatibility, temporal queries and retention, snapshots, CHECKDB, emergency repair, rehearsal and compatibility-level boundaries.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
+              "section": "Backup scopes and backup types",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
+              "section": "Recovery-model logging and restore capabilities",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
+              "section": "Restore sequences and recovery states",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
+              "section": "Full/differential/log restore order",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
+              "section": "Point-in-time restore targets and BULK_LOGGED restriction",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
+              "section": "VERIFYONLY scope and limitations",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
+              "section": "Backup encryption and external key custody",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
+              "section": "Differential base behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
+              "section": "Copy-only bookkeeping effects",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
+              "section": "Compression algorithms, options and tradeoffs",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Availability mode synchronization and commit acknowledgment",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Automatic/planned/forced failover prerequisites and data-loss behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
+              "section": "Listener and client connectivity behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
+              "section": "FCI instance-level failover boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
+              "section": "CDC change rows and capture behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
+              "section": "Change Tracking changed-row contract and CDC comparison",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
+              "section": "SQL Server 2025 release status for change event streaming",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
+              "section": "Temporal table behavior and system period columns",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
+              "section": "FOR SYSTEM_TIME query semantics",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
+              "section": "Temporal history retention options",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-overview?view=sql-server-ver17",
+              "section": "Ledger and tamper-evidence boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
+              "section": "Database snapshot storage dependency and restore limitation",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
+              "section": "DBCC CHECKDB consistency checks and repair risks",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
+              "section": "Online index operation edition/version restrictions",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+              "section": "Compatibility level after engine upgrade",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
@@ -115230,53 +115872,184 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all 23 inventory entries for migration/compatibility, temporal queries and retention, snapshots, CHECKDB, emergency repair, rehearsal and compatibility-level boundaries."
     },
     {
       "taskId": "t03-014-practice",
       "topicId": "t03-014",
       "phase": "practice",
       "draft": "course/drafts/t03-014/t03-014-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 94,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 94 externally verifiable claims, including supplied manifest items where applicable, SQL syntax/options, operational scenarios, example answers, and edition/version boundaries. Checked restore chain and point-in-time exercise, missing key response, replica loss scenarios, migration order, and solutions.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
+              "section": "Backup scopes and backup types",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
+              "section": "Recovery-model logging and restore capabilities",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
+              "section": "Restore sequences and recovery states",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
+              "section": "Full/differential/log restore order",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
+              "section": "Point-in-time restore targets and BULK_LOGGED restriction",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
+              "section": "VERIFYONLY scope and limitations",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
+              "section": "Backup encryption and external key custody",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
+              "section": "Differential base behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
+              "section": "Copy-only bookkeeping effects",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
+              "section": "Compression algorithms, options and tradeoffs",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Availability mode synchronization and commit acknowledgment",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Automatic/planned/forced failover prerequisites and data-loss behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
+              "section": "Listener and client connectivity behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
+              "section": "FCI instance-level failover boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
+              "section": "CDC change rows and capture behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
+              "section": "Change Tracking changed-row contract and CDC comparison",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
+              "section": "SQL Server 2025 release status for change event streaming",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
+              "section": "Temporal table behavior and system period columns",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
+              "section": "FOR SYSTEM_TIME query semantics",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
+              "section": "Temporal history retention options",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-overview?view=sql-server-ver17",
+              "section": "Ledger and tamper-evidence boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
+              "section": "Database snapshot storage dependency and restore limitation",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
+              "section": "DBCC CHECKDB consistency checks and repair risks",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
+              "section": "Online index operation edition/version restrictions",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+              "section": "Compatibility level after engine upgrade",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
@@ -115284,53 +116057,184 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked restore chain and point-in-time exercise, missing key response, replica loss scenarios, migration order, and solutions."
     },
     {
       "taskId": "t03-014-interview",
       "topicId": "t03-014",
       "phase": "interview",
       "draft": "course/drafts/t03-014/t03-014-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 82,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked 82 externally verifiable claims, including supplied manifest items where applicable, SQL syntax/options, operational scenarios, example answers, and edition/version boundaries. Checked RPO/RTO, recovery models, VERIFYONLY, failover, CDC/CT, temporal and safe migration interview answers.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
+              "section": "Backup scopes and backup types",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
+              "section": "Recovery-model logging and restore capabilities",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
+              "section": "Restore sequences and recovery states",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
+              "section": "Full/differential/log restore order",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
+              "section": "Point-in-time restore targets and BULK_LOGGED restriction",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
+              "section": "VERIFYONLY scope and limitations",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
+              "section": "Backup encryption and external key custody",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
+              "section": "Differential base behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
+              "section": "Copy-only bookkeeping effects",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
+              "section": "Compression algorithms, options and tradeoffs",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Availability mode synchronization and commit acknowledgment",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
+              "section": "Automatic/planned/forced failover prerequisites and data-loss behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
+              "section": "Listener and client connectivity behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
+              "section": "FCI instance-level failover boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
+              "section": "CDC change rows and capture behavior",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
+              "section": "Change Tracking changed-row contract and CDC comparison",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
+              "section": "SQL Server 2025 release status for change event streaming",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
+              "section": "Temporal table behavior and system period columns",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
+              "section": "FOR SYSTEM_TIME query semantics",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
+              "section": "Temporal history retention options",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/ledger/ledger-overview?view=sql-server-ver17",
+              "section": "Ledger and tamper-evidence boundary",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
+              "section": "Database snapshot storage dependency and restore limitation",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
+              "section": "DBCC CHECKDB consistency checks and repair risks",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
+              "section": "Online index operation edition/version restrictions",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+              "section": "Compatibility level after engine upgrade",
+              "verdict": "Checked against current Microsoft primary documentation; conditions and limitations are captured in the reviewed lesson"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/complete-database-restores-full-recovery-model?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-verifyonly-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-encryption?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/differential-backups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-compression-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/availability-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/failover-and-failover-modes-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/always-on-failover-cluster-instances-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-tracking-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/sql-server-2025-release-notes?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/query-data?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/manage-retention-of-historical-data-in-system-versioned-temporal-tables?view=sql-server-ver17",
@@ -115338,9 +116242,22 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/databases/database-snapshots-sql-server?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-checkdb-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/perform-index-operations-online?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-arguments-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/view-or-change-the-recovery-model-of-a-database-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/enable-or-disable-backup-checksums-during-backup-or-restore-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/log-shipping/about-log-shipping-sql-server?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/replication/replication?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked RPO/RTO, recovery models, VERIFYONLY, failover, CDC/CT, temporal and safe migration interview answers."
     },
     {
       "taskId": "t04-001-overview",
