@@ -328,9 +328,15 @@
     },
     {
       "id": "experimental-css-anchor-positioning",
-      "title": "CSS Anchor Positioning properties",
+      "title": "CSS Anchor Positioning properties, functions, and APIs",
       "items": [
+        "@position-try",
+        "CSSPositionTryDescriptors",
+        "CSSPositionTryRule",
         "anchor-name",
+        "anchor()",
+        "anchor-center",
+        "anchor-size()",
         "anchor-scope",
         "position-anchor",
         "position-area",
@@ -461,7 +467,7 @@
   ],
   "sourceSnapshot": {
     "authority": "W3C CSS Snapshot 2026, W3C CSS property index, MDN property summaries and status captured for this lesson set, and the cited current CSS Working Group drafts for emerging layout features",
-    "edition": "MDN data commit 1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27; property descriptions captured 2026-11-16; CSS Snapshot 2026 and cited current drafts checked 2026-11-16; overview scope/count, layout mental model, and status framing rechecked 2026-11-19; layout concepts, containment/query distinctions, and fragmentation/multicol coverage checked against current drafts 2026-11-19; CSS Display properties, latest reading-order values, grid-lanes draft values, and visibility force-hidden checked 2026-11-19; CSS Box Alignment Level 3 and CSS Gaps Level 1 behavior, values, shorthand grammar, and context-specific effects checked 2026-11-19; CSS Flexbox Level 1 sizing algorithm, shorthand defaults, automatic minimum sizing, and Level 2 balance/flex-line-count draft semantics checked 2026-11-19; CSS Grid Levels 1 and 2 track/placement/shorthand/subgrid behavior plus current Level 3 grid-lanes draft checked 2026-11-19; current Positioned Layout Levels 3 and 4 containing blocks, offsets, sticky/fixed behavior, stacking, floats/clear, and logical inset mappings checked 2026-11-19; expanded CSS Overflow Level 4 inventory with ten current overflow-clip-margin longhands and draft block-ellipsis/continue properties verified 2026-11-19; Overflow Levels 3–5 current scroll/clipping, clamp, marker-group, axis-lock, and scrollbar behavior audited; ten new Level 4 clip-margin longhands and block-ellipsis/continue inventory entries added 2026-11-19; Scroll Snap Level 2 initial-target semantics, snap events/SnapEvent API and superseded :snapped proposal cross-checked with Conditional Level 5 snapped scroll-state query 2026-11-19; CSS Containment Level 2 current Editor’s Draft checked 2026-11-19 for inline-size containment, content-visibility animation, updated state event name, relevance conditions and accessibility details; Level 3 placeholder status checked 2026-11-19",
+    "edition": "MDN data commit 1c90fd0b8d52e93950c5d0ea3e25dad5cd64cc27; property descriptions captured 2026-11-16; CSS Snapshot 2026 and cited current drafts checked 2026-11-16; overview scope/count, layout mental model, and status framing rechecked 2026-11-19; layout concepts, containment/query distinctions, and fragmentation/multicol coverage checked against current drafts 2026-11-19; CSS Display properties, latest reading-order values, grid-lanes draft values, and visibility force-hidden checked 2026-11-19; CSS Box Alignment Level 3 and CSS Gaps Level 1 behavior, values, shorthand grammar, and context-specific effects checked 2026-11-19; CSS Flexbox Level 1 sizing algorithm, shorthand defaults, automatic minimum sizing, and Level 2 balance/flex-line-count draft semantics checked 2026-11-19; CSS Grid Levels 1 and 2 track/placement/shorthand/subgrid behavior plus current Level 3 grid-lanes draft checked 2026-11-19; current Positioned Layout Levels 3 and 4 containing blocks, offsets, sticky/fixed behavior, stacking, floats/clear, and logical inset mappings checked 2026-11-19; expanded CSS Overflow Level 4 inventory with ten current overflow-clip-margin longhands and draft block-ellipsis/continue properties verified 2026-11-19; Overflow Levels 3–5 current scroll/clipping, clamp, marker-group, axis-lock, and scrollbar behavior audited; ten new Level 4 clip-margin longhands and block-ellipsis/continue inventory entries added 2026-11-19; Scroll Snap Level 2 initial-target semantics, snap events/SnapEvent API and superseded :snapped proposal cross-checked with Conditional Level 5 snapped scroll-state query 2026-11-19; CSS Containment Level 2 current Editor’s Draft checked 2026-11-19 for inline-size containment, content-visibility animation, updated state event name, relevance conditions and accessibility details; Level 3 placeholder status checked 2026-11-19; CSS Anchor Positioning Level 1 W3C Working Draft 2026-03-27 and Editor’s Draft 2026-09-06 rechecked 2026-11-19, adding anchor()/anchor-size(), anchor-center, @position-try/CSSOM interfaces and current visibility-check spellings",
     "checkedAt": "2026-11-19",
     "urls": [
       "https://www.w3.org/TR/css-2026/",
@@ -474,6 +480,7 @@
       "https://drafts.csswg.org/css-scroll-snap-2/",
       "https://drafts.csswg.org/css-display-4/",
       "https://drafts.csswg.org/css-anchor-position-1/",
+      "https://www.w3.org/TR/css-anchor-position-1/",
       "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/display",
       "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/order",
       "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/reading-flow",
@@ -683,6 +690,7 @@
       "https://www.w3.org/TR/css-contain-2/",
       "https://drafts.csswg.org/css-contain-2/",
       "https://www.w3.org/TR/css-sizing-4/",
+      "https://www.w3.org/TR/cssom-1/",
       "https://developer.mozilla.org/en-US/docs/Web/CSS/position",
       "https://developer.mozilla.org/en-US/docs/Web/CSS/z-index",
       "https://developer.mozilla.org/en-US/docs/Web/CSS/float",
