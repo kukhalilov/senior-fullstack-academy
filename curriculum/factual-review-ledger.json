@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1133,
-    "pending": 1216,
-    "claimsChecked": 46771,
-    "claimsCorrected": 2218,
+    "reviewed": 1134,
+    "pending": 1215,
+    "claimsChecked": 46917,
+    "claimsCorrected": 2230,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -89163,13 +89163,51 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-css-lists-and-counters.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 146,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "Checked the complete assigned inventory of seven properties. Verified each property’s current CSS Lists Level 3 value grammar, initial value, inheritance, applicability, animation metadata, shorthand expansion and omitted-component reset behavior; corrected the generated summary’s missing grammar and false baseline/support shortcut.",
+          "sources": [
+            "https://drafts.csswg.org/css-lists-3/"
+          ],
+          "verdict": "verified against current CSSWG draft; reference inventory and property metadata completed"
+        },
+        {
+          "claims": "Verified list-item and marker generation, ::marker precedence, list-style-image invalid-image fallback and sizing, list-style-type image/type selection, inside/outside placement, list-style shorthand || grammar and none disambiguation, and the marker property allowlist caveat.",
+          "sources": [
+            "https://drafts.csswg.org/css-lists-3/",
+            "https://drafts.csswg.org/css-counter-styles-3/"
+          ],
+          "verdict": "verified; marker interactions and shorthand edge cases added"
+        },
+        {
+          "claims": "Verified counter creation and processing order, signed/default integer values, reversed() counters and layout-calculated implicit starts, counter-set and increment missing-counter behavior, duplicate-name processing, cascading declaration replacement, self-nesting and scope, counter() versus counters(), omitted style default, implicit list-item counter behavior, and non-box counter effects.",
+          "sources": [
+            "https://drafts.csswg.org/css-lists-3/"
+          ],
+          "verdict": "verified; counter lifecycle, scoping, and edge cases expanded"
+        },
+        {
+          "claims": "Checked the named predefined counter-style inventory across numeric, alphabetic, symbolic, fixed, and complex categories; checked the separate role of custom @counter-style, symbols(), fallback and ready-made multilingual style rules. Kept counter-style syntax out of the seven-property inventory while explaining its dependency for <counter-style> values.",
+          "sources": [
+            "https://drafts.csswg.org/css-counter-styles-3/"
+          ],
+          "verdict": "verified against the current Counter Styles specification"
+        },
+        {
+          "claims": "Verified semantic distinction and native numbering controls for ordered HTML lists, and reviewed both CSS examples for valid semantics and consistency with the counter rules. Confirmed CSS presentation counters do not themselves create HTML list semantics.",
+          "sources": [
+            "https://html.spec.whatwg.org/multipage/grouping-content.html#the-ol-element",
+            "https://drafts.csswg.org/css-lists-3/"
+          ],
+          "verdict": "verified; semantic HTML guidance and examples corrected"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
