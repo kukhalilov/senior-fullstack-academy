@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1097,
-    "pending": 1250,
-    "claimsChecked": 43477,
-    "claimsCorrected": 1955,
+    "reviewed": 1098,
+    "pending": 1249,
+    "claimsChecked": 43581,
+    "claimsCorrected": 1972,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -75264,7 +75264,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -75546,7 +75551,11 @@
         "https://drafts.csswg.org/css-conditional-5/",
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -75806,7 +75815,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -75815,13 +75829,69 @@
       "topicId": "t07-017",
       "phase": "reference",
       "draft": "course/drafts/t07-017/t07-017-reference-css-box-alignment.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 104,
+      "claimsCorrected": 17,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked all 12 assigned property names, their roles, axes, formatting-context applicability, shorthand grammar/defaulting, context-sensitive normal/stretch behavior, alignment keyword families, gaps and percentage semantics, free-space distribution, flex single-line behavior, flex main-axis exclusions, table spacing distinction, fragmentation behavior, current anchor-center grammar qualification, and compatibility framing. Replaced oversimplified copied descriptions with a practical layout model and verified examples/knowledge checks against CSS Align 3, CSS Gaps 1, Flexbox 1, Grid 2, Multicol 1, and current MDN references. Refreshed support framing: property-level Baseline does not imply every newer value/context is supported.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-align-3/",
+              "section": "property definitions, applicability, axes, shorthand grammar, values, free-space distribution, overflow alignment",
+              "verdict": "current Editor’s Draft checked; work-in-progress status stated"
+            },
+            {
+              "url": "https://drafts.csswg.org/css-gaps-1/",
+              "section": "gap grammar, applicability, normal values, percentages, enlargement by alignment, fragmentation and table distinction",
+              "verdict": "current Editor’s Draft checked; work-in-progress status stated"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-flexbox-1/",
+              "section": "main/cross axes, flex item and line alignment",
+              "verdict": "published specification checked"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-grid-2/",
+              "section": "grid item and track alignment",
+              "verdict": "published specification checked"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-multicol-1/",
+              "section": "multicol column alignment and gutters",
+              "verdict": "published specification checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/place-self",
+              "section": "live syntax, Baseline label, constituent properties, values including anchor-center and applicability",
+              "verdict": "Baseline property; individual value/context support qualified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap",
+              "section": "syntax, compatibility overview, layout contexts",
+              "verdict": "Baseline property; full compatibility table remains browser-specific"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/align-content",
+              "section": "property reference and compatibility link",
+              "verdict": "checked"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/justify-content",
+              "section": "property reference and compatibility link",
+              "verdict": "checked"
+            },
+            {
+              "url": "https://www.w3.org/TR/css-2026/",
+              "section": "published specification maturity context",
+              "verdict": "checked; not used as browser-support evidence"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -76025,7 +76095,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76244,7 +76319,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76463,7 +76543,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76682,7 +76767,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -76901,7 +76991,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77120,7 +77215,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77339,7 +77439,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77558,7 +77663,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77777,7 +77887,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -77996,7 +78111,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78215,7 +78335,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78434,7 +78559,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78653,7 +78783,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -78872,7 +79007,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79091,7 +79231,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79310,7 +79455,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79529,7 +79679,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79748,7 +79903,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -79967,7 +80127,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -80186,7 +80351,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -80405,7 +80575,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -80624,7 +80799,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -80843,7 +81023,12 @@
         "https://drafts.csswg.org/css-multicol-2/",
         "https://drafts.csswg.org/css-break-3/",
         "https://drafts.csswg.org/css-conditional-5/",
-        "https://drafts.csswg.org/css-grid-3/"
+        "https://drafts.csswg.org/css-grid-3/",
+        "https://drafts.csswg.org/css-gaps-1/",
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-2/",
+        "https://www.w3.org/TR/css-multicol-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_alignment"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
