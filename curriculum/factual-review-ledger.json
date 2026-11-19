@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1156,
-    "pending": 1193,
-    "claimsChecked": 49474,
-    "claimsCorrected": 2534,
+    "reviewed": 1157,
+    "pending": 1192,
+    "claimsChecked": 49509,
+    "claimsCorrected": 2540,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -97345,13 +97345,60 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-experimental-css-images.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Enumerated claims about image-resolution value grammar/order, initial/inherited/applies/computed/animation metadata, image-format density fallback, snap alignment, raster versus vector effect, content/decorative image coverage, image-set interaction and current browser support; and object-view-box grammar/functions, metadata, replaced-element/natural-size conditions, shape coordinates/rounding, intrinsic size/aspect-ratio effects, object-fit/object-position composition, animation, invalid cases, support and fallbacks.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-images-4/",
+              "section": "§6.1 image-resolution: grammar, metadata, preferred resolution, from-image fallback, snap and vector-image limitation",
+              "verdict": "Supported against current Editor’s Draft; explicitly records the draft’s unresolved image-set() natural-resolution interaction."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-images-4/",
+              "section": "Latest published CSS Images Level 4 Working Draft dated 30 September 2025",
+              "verdict": "Confirms publication status; current detailed image-resolution guidance cross-checked with Editor’s Draft and MDN."
+            },
+            {
+              "url": "https://drafts.csswg.org/css-images-5/",
+              "section": "§3.1 object-view-box: grammar, metadata, reference box, view-box dimensions/aspect ratio, object-fit/object-position interaction",
+              "verdict": "Supported against current Editor’s Draft dated 23 October 2026; explicitly labeled work in progress. Verified no published Level 5 /TR document exists."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-images-3/",
+              "section": "Image values, image metadata, intrinsic dimensions and published CRD status",
+              "verdict": "Supports source context and identifies latest published Level 3 snapshot as a CRD, not a final Recommendation."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/image-resolution",
+              "section": "Values, formal definition, syntax, support table",
+              "verdict": "Confirms experimental status and current report of no browser support; corroborates from-image fallback, snap, inheritance and vector-image behavior."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/object-view-box",
+              "section": "Syntax, values, formal definition, intrinsic sizing, examples, specification mapping, compatibility",
+              "verdict": "Corroborates function forms and limited availability; defines behavior for replaced elements without natural dimensions."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/object-fit",
+              "section": "Replaced content fitting behavior",
+              "verdict": "Supports distinction between source subview and fitting into an allocated box."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/object-position",
+              "section": "Replaced content positioning behavior",
+              "verdict": "Supports distinction and composition with the selected view box."
+            }
+          ],
+          "corrections": "Replaced the shallow index with a complete, model-first reference. Corrected maturity and support messaging: image-resolution is currently unsupported in browsers; object-view-box is defined in a Level 5 Editor’s Draft with no published Level 5 document. Added full grammar for resolution/snap and rectangular view functions, intrinsic-size and fitting interactions, data-format limitations, image-set caveat, and practical alternatives/fallbacks."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -97708,9 +97755,14 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-images-4/",
+        "https://www.w3.org/TR/css-images-4/",
+        "https://drafts.csswg.org/css-images-5/",
+        "https://drafts.csswg.org/css-images-3/",
+        "https://www.w3.org/TR/css-images-3/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited against current CSSWG Images Level 4/5 drafts, published W3C snapshots, and current MDN compatibility/semantics. Verified the claims that no browsers currently support image-resolution and that object-view-box remains a draft with limited availability. All inventoried grammar branches, behavior, interactions, pitfalls, and fallback comparisons are covered. Draft remains in draft state pending overall curriculum audit."
     },
     {
       "taskId": "t07-018-reference-experimental-css-inline",
