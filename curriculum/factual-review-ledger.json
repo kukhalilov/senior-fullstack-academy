@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1180,
-    "pending": 1169,
-    "claimsChecked": 50855,
-    "claimsCorrected": 2712,
+    "reviewed": 1181,
+    "pending": 1168,
+    "claimsChecked": 50923,
+    "claimsCorrected": 2714,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -104999,7 +104999,9 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17",
+        "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html",
+        "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf"
       ],
       "reviewNote": "Enumerated and checked the overview’s relational-model, identity, tenant-boundary, normalization, nullability, constraint, type, migration, and SQL Server 2025 availability claims against current Microsoft documentation. Clarified CHECK/UNKNOWN with NOT NULL, the filtered unique-index choice for optional unique values, the separate named-zone requirement for future civil-time rules, and the composite tenant foreign-key construction. Remaining claims are supported and no assigned-scope omissions remain."
     },
@@ -105132,7 +105134,9 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17",
+        "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html",
+        "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf"
       ],
       "reviewNote": "Enumerated and verified the lesson’s relational identity, dependency, normal-form, NULL, constraint trust, type, collation, temporal, migration, JSON, and vector claims against Microsoft primary documentation. Replaced imprecise 2NF/3NF wording with candidate-key-based conditions and clarified lossless/dependency-preserving decomposition; added SQL Server 2025 vector GA versus VECTOR_SEARCH/index preview status. No unresolved assigned-scope omissions remain."
     },
@@ -105141,13 +105145,65 @@
       "topicId": "t03-002",
       "phase": "reference",
       "draft": "course/drafts/t03-002/t03-002-reference-relational-facts-keys-and-normalization.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 68,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "verdict": "Supported after two precision corrections; no assigned inventory term is omitted.",
+          "sources": [
+            {
+              "section": "Applicable official platform behavior or academic formal definition of keys, dependencies, normal forms, decomposition, and temporal history",
+              "verdict": "supported; disputed shorthand definitions are corrected in the lesson",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17"
+            },
+            {
+              "section": "Applicable official platform behavior or academic formal definition of keys, dependencies, normal forms, decomposition, and temporal history",
+              "verdict": "supported; disputed shorthand definitions are corrected in the lesson",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17"
+            },
+            {
+              "section": "Applicable official platform behavior or academic formal definition of keys, dependencies, normal forms, decomposition, and temporal history",
+              "verdict": "supported; disputed shorthand definitions are corrected in the lesson",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-table-constraint-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "section": "Applicable official platform behavior or academic formal definition of keys, dependencies, normal forms, decomposition, and temporal history",
+              "verdict": "supported; disputed shorthand definitions are corrected in the lesson",
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver17"
+            },
+            {
+              "section": "Applicable official platform behavior or academic formal definition of keys, dependencies, normal forms, decomposition, and temporal history",
+              "verdict": "supported; disputed shorthand definitions are corrected in the lesson",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17"
+            },
+            {
+              "section": "Applicable official platform behavior or academic formal definition of keys, dependencies, normal forms, decomposition, and temporal history",
+              "verdict": "supported; disputed shorthand definitions are corrected in the lesson",
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-sequence-transact-sql?view=sql-server-ver17"
+            },
+            {
+              "section": "Applicable official platform behavior or academic formal definition of keys, dependencies, normal forms, decomposition, and temporal history",
+              "verdict": "supported; disputed shorthand definitions are corrected in the lesson",
+              "url": "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description"
+            },
+            {
+              "section": "Applicable official platform behavior or academic formal definition of keys, dependencies, normal forms, decomposition, and temporal history",
+              "verdict": "supported; disputed shorthand definitions are corrected in the lesson",
+              "url": "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html"
+            },
+            {
+              "section": "Applicable official platform behavior or academic formal definition of keys, dependencies, normal forms, decomposition, and temporal history",
+              "verdict": "supported; disputed shorthand definitions are corrected in the lesson",
+              "url": "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf"
+            }
+          ],
+          "claims": "Enumerated 68 claims for the full assigned vocabulary: relations and keys, relationships, functional/multivalued/join dependencies, 1NF–6NF and DKNF, decomposition, temporal and soft-delete modeling, and identifier generation."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/primary-and-foreign-key-constraints?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints?view=sql-server-ver17",
@@ -105183,9 +105239,11 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17",
+        "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html",
+        "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Enumerated the complete supplied relational-design vocabulary and checked SQL Server enforcement, identifier behavior, dependency definitions, normal-form conditions, decomposition properties, temporal modeling, and IDENTITY/SEQUENCE claims. Replaced informal 2NF/3NF descriptions with precise candidate-key/prime-attribute definitions and added current university source material for lossless/dependency-preserving decomposition and higher normal forms. No unresolved assigned-scope omissions remain."
     },
     {
       "taskId": "t03-002-reference-constraints-and-null-semantics",
@@ -105234,7 +105292,9 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17",
+        "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html",
+        "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -105285,7 +105345,9 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17",
+        "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html",
+        "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -105336,7 +105398,9 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17",
+        "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html",
+        "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -105387,7 +105451,9 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17",
+        "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html",
+        "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },
@@ -105438,7 +105504,9 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes?view=sql-server-ver17",
+        "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html",
+        "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf"
       ],
       "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
     },

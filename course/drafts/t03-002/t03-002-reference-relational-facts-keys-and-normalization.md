@@ -52,9 +52,9 @@ The table below is a design toolkit, not a sequence of independent vocabulary ca
 
 - `First normal form (1NF)` — A practical 1NF design uses columns with values from declared domains and avoids repeating groups or comma-packed multi-valued fields. It does not itself guarantee good keys or eliminate all anomalies.
 
-- `Second normal form (2NF)` — A relation is in 2NF when it is in 1NF and every non-key attribute depends on the whole of every candidate key, not a proper subset. This is chiefly relevant to composite keys.
+- `Second normal form (2NF)` — A relation is in 2NF when it is in 1NF and no non-prime attribute depends on a proper subset of any candidate key. A prime attribute belongs to at least one candidate key; stating the condition this way avoids incorrectly treating alternate candidate keys as irrelevant. This is chiefly relevant to composite keys.
 
-- `Third normal form (3NF)` — A relation is in 3NF when it is in 2NF and non-key facts do not depend transitively on candidate keys; formally, each nontrivial FD X→A has X a superkey or A prime.
+- `Third normal form (3NF)` — For every nontrivial functional dependency `X → A`, `X` is a superkey or `A` is prime (belongs to some candidate key). This formal condition captures the usual removal of transitive non-prime facts and includes the 2NF condition.
 
 - `Boyce-Codd normal form (BCNF)` — BCNF requires every nontrivial functional dependency determinant to be a superkey. It is stricter than 3NF and decompositions may trade dependency preservation for stronger redundancy control.
 
@@ -96,7 +96,7 @@ The table below is a design toolkit, not a sequence of independent vocabulary ca
 
 - `Multivalued dependency` — X↠Y states that, for a given X, the set of Y values is independent of the remaining attributes. Independent multi-valued facts stored together create combinatorial duplication.
 
-- `Fourth normal form (4NF)` — A relation is in 4NF when every nontrivial multivalued dependency has a superkey determinant. It separates independent multi-valued facts that ordinary FD-based 3NF/BCNF can miss.
+- `Fourth normal form (4NF)` — A relation is in 4NF when every nontrivial multivalued dependency has a superkey determinant. It separates independent multi-valued facts that ordinary FD-based 3NF/BCNF can miss. [Formal normal-form and decomposition notes](https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html)
 
 - `Join dependency` — A join dependency says a relation is exactly reconstructible by joining several projections. It generalizes multivalued dependency and motivates the rare, higher-order 5NF decomposition.
 
@@ -104,7 +104,7 @@ The table below is a design toolkit, not a sequence of independent vocabulary ca
 
 - `Surrogate identifier generation with IDENTITY and SEQUENCE` — IDENTITY generates values as rows are inserted into one table; SEQUENCE is a separately defined object that can allocate values to multiple consumers. Both can have gaps and neither guarantees commit order or business chronology. [IDENTITY](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17) [SEQUENCE](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-sequence-transact-sql?view=sql-server-ver17)
 
-- `Sixth normal form (6NF)` — A relation is in 6NF when it has no nontrivial join dependencies; equivalently, it cannot be further losslessly decomposed except into trivial projections. It is mainly useful in specialized temporal designs and can greatly increase relation count.
+- `Sixth normal form (6NF)` — A relation is in 6NF when it has no nontrivial join dependencies; equivalently, it cannot be further losslessly decomposed except into trivial projections. It is mainly useful in specialized temporal designs and can greatly increase relation count. The higher normal forms are specialized theoretical tools; the definitions are useful even when an application does not need to decompose to them. [Higher normal-form definitions](https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf)
 
 - `Domain-key normal form (DKNF)` — DKNF is an ideal in which every constraint follows solely from domain constraints and key constraints. It is useful as a design goal but is not always achievable without awkward schemas or procedural enforcement.
 
@@ -169,3 +169,5 @@ Consider a `Course`, a `Student`, and an `Enrollment`. A candidate key may be an
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property?view=sql-server-ver17)
 - [Microsoft Learn](https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description)
+- [Rensselaer Polytechnic Institute — Normalization](https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html)
+- [Boston University — Normal Forms](https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf)
