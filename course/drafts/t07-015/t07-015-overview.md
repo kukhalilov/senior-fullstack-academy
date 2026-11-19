@@ -6,7 +6,7 @@
 
 The browser DOM is the live object model for a document. JavaScript uses it to inspect and change structure, respond to events, observe asynchronous changes, persist small origin-scoped state, and participate in navigation. This topic connects APIs that are often taught separately but interact in real applications.
 
-The coverage follows the WHATWG DOM and HTML Living Standards checked 2026-11-16, with particular attention to the HTML Sanitizer API and the newly Baseline 2026 Navigation API. “In the standard” does not always mean “works in every browser you support”: the Sanitizer API is still limited availability, so feature-detect and retain a safe fallback. See [WHATWG DOM](https://dom.spec.whatwg.org/), [WHATWG HTML dynamic markup insertion](https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html), and [WHATWG navigation/history](https://html.spec.whatwg.org/multipage/nav-history-apis.html).
+The coverage follows the WHATWG DOM and HTML Living Standards checked 2026-11-19, with particular attention to the HTML Sanitizer API and the Navigation API, which MDN marks Baseline 2026 (newly available since January 2026). Baseline describes support in current browser versions, not every older or embedded browser: the Sanitizer API remains limited availability, so feature-detect and retain a safe fallback. See [WHATWG DOM](https://dom.spec.whatwg.org/), [WHATWG HTML dynamic markup insertion](https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html), and [WHATWG navigation/history](https://html.spec.whatwg.org/multipage/nav-history-apis.html).
 
 # Plain-language mental model
 

@@ -58,7 +58,7 @@ Choose observers by question: MutationObserver asks “what DOM changed?”, Int
 
 # Security model for markup
 
-Plain text should normally enter through `textContent` or node creation. HTML parsing sinks interpret input as markup. The current HTML Living Standard provides a family of context-aware sanitizer methods: safe methods remove script-capable/unsafe markup even if a custom allow configuration mentions it; unsafe-suffixed methods require an explicitly understood policy and, by default, do not sanitize dangerous content. The Sanitizer API is not Baseline across all major browsers as checked 2026-11-16.
+Plain text should normally enter through `textContent` or node creation. HTML parsing sinks interpret input as markup. The current HTML Living Standard provides a family of context-aware sanitizer methods: safe methods are intended not to generate script-executing markup; unsafe-suffixed methods filter according to a supplied configuration but do not provide the same default XSS guarantee. As checked 2026-11-19, MDN marks the Sanitizer API as limited availability, so feature-detect and provide a safe fallback.
 
 The default sanitizer is narrower than the safe baseline and also removes comments and `data-*` attributes. Custom allowlists need careful review. Sanitization does not automatically prevent DOM clobbering, application script gadgets, server-side XSS, or future unsafe reparsing. If sanitized DOM is serialized to a string, treat that string as untrusted and sanitize again at its insertion context.
 

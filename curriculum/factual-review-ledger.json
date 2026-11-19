@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1062,
-    "pending": 1285,
-    "claimsChecked": 41354,
-    "claimsCorrected": 1654,
+    "reviewed": 1064,
+    "pending": 1283,
+    "claimsChecked": 41487,
+    "claimsCorrected": 1657,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -69035,13 +69035,59 @@
       "topicId": "t07-015",
       "phase": "overview",
       "draft": "course/drafts/t07-015/t07-015-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 54,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "DOM-as-tree mental model, synchronous tree changes vs rendering, safe text/markup distinction, event and observer roles, Web Storage and history/navigation descriptions, security/lifecycle caveats, curriculum map and practice example",
+          "sources": [
+            {
+              "url": "https://dom.spec.whatwg.org/",
+              "section": "DOM concepts, nodes, events, mutation observers",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html",
+              "section": "DOM parsing/serialization and Sanitizer API",
+              "verdict": "verified; browser-support caveat retained"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/nav-history-apis.html",
+              "section": "Navigation API and session history",
+              "verdict": "verified; corrected standards snapshot date"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API",
+              "section": "Availability and concepts",
+              "verdict": "verified; Baseline 2026 since January 2026 as of review date"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API",
+              "section": "Availability and safe/unsafe insertion methods",
+              "verdict": "verified; limited availability retained"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API",
+              "section": "Web Storage API overview",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver",
+              "section": "API purpose and interface",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver",
+              "section": "API purpose and interface",
+              "verdict": "verified"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://dom.spec.whatwg.org/",
         "https://html.spec.whatwg.org/multipage/",
@@ -69111,20 +69157,66 @@
         "https://w3c.github.io/pointerlock/",
         "https://fullscreen.spec.whatwg.org/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim audit complete. Updated the standards check date and clarified that Baseline 2026 means current browser versions, not older or embedded browsers. No unresolved factual or scope issues remain."
     },
     {
       "taskId": "t07-015-concepts",
       "topicId": "t07-015",
       "phase": "concepts",
       "draft": "course/drafts/t07-015/t07-015-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 79,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "DOM node identity and mutation vs rendering, event flow/trust/default actions, collection liveness, mutation/abort/resize/intersection observers, Web Storage scope and events, classic History, Navigation API entry model/interception/result promises, Sanitizer API guarantees and caveats, lifecycle/security examples and checks",
+          "sources": [
+            {
+              "url": "https://dom.spec.whatwg.org/",
+              "section": "Nodes, events, AbortSignal, MutationObserver",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/nav-history-apis.html",
+              "section": "Navigation API, NavigationResult, History API, session history",
+              "verdict": "verified; same-origin and promise behavior checked"
+            },
+            {
+              "url": "https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html",
+              "section": "Sanitizer API safe/unsafe methods and security considerations",
+              "verdict": "verified; wording narrowed to spec guarantee"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API",
+              "section": "Availability and safe/unsafe method overview",
+              "verdict": "verified; replaced stale availability statement"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API",
+              "section": "Baseline and API concepts",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API",
+              "section": "Web Storage API",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver",
+              "section": "Interface properties/methods and async intersection model",
+              "verdict": "verified"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver",
+              "section": "Resize observation overview",
+              "verdict": "verified"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://dom.spec.whatwg.org/",
         "https://html.spec.whatwg.org/multipage/",
@@ -69194,7 +69286,7 @@
         "https://w3c.github.io/pointerlock/",
         "https://fullscreen.spec.whatwg.org/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim audit complete. Corrected the Sanitizer API availability date and narrowed safe/unsafe semantics to the current standard wording. Verified NavigationResult promise behavior, history-state distinctions, observer roles, and security/lifecycle caveats. No unresolved factual or scope issues remain."
     },
     {
       "taskId": "t07-015-reference-tree-traversal-and-live-collections",
