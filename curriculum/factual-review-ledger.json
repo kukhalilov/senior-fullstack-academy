@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2347,
-    "reviewed": 1079,
-    "pending": 1268,
-    "claimsChecked": 42245,
-    "claimsCorrected": 1748,
+    "reviewed": 1080,
+    "pending": 1267,
+    "claimsChecked": 42274,
+    "claimsCorrected": 1750,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -71792,13 +71792,50 @@
       "topicId": "t07-016",
       "phase": "reference",
       "draft": "course/drafts/t07-016/t07-016-reference-current-index-pseudo-classes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 29,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claim": "The lesson said :heading() accepts An+B; draft grammar instead takes a comma-separated list of integer heading levels, and both forms have class specificity.",
+          "source": "https://drafts.csswg.org/selectors-5/#heading-pseudo",
+          "section": "§8 Heading Structures",
+          "verdict": "corrected"
+        },
+        {
+          "claim": ":heading matches host-language heading-level semantics; a type selector and semantic heading level can differ.",
+          "source": "https://drafts.csswg.org/selectors-5/#heading-pseudo",
+          "section": "§8, note and examples",
+          "verdict": "verified"
+        },
+        {
+          "claim": ":interest-source/:interest-target represent currently interested source and its linked target; an attribute alone is insufficient.",
+          "source": "https://drafts.csswg.org/selectors-5/#interest-pseudos",
+          "section": "§4.1 Interest Pseudo-classes",
+          "verdict": "verified"
+        },
+        {
+          "claim": ":target-before/:target-after match markers before/after active marker in same group in flat-tree order.",
+          "source": "https://drafts.csswg.org/css-overflow-5/#selecting-scroll-markers",
+          "section": "§3.1.7",
+          "verdict": "verified"
+        },
+        {
+          "claim": "Selectors Level 5 and CSS Overflow Level 5 URLs are work-in-progress Editor’s Drafts and should not be presented as finalized or as proof of implementation support.",
+          "source": "https://drafts.csswg.org/selectors-5/; https://drafts.csswg.org/css-overflow-5/",
+          "section": "Status of this document",
+          "verdict": "clarified"
+        },
+        {
+          "claim": "The six selectors appear in the current MDN pseudo-class reference; index appearance alone is not a browser support guarantee.",
+          "source": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes",
+          "section": "Elemental, user action, and alphabetical index sections",
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference",
@@ -71830,9 +71867,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Attribute_selectors",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Column_combinator",
         "https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute",
-        "https://drafts.csswg.org/cssom/#dom-css-escape"
+        "https://drafts.csswg.org/cssom/#dom-css-escape",
+        "https://drafts.csswg.org/selectors-5/",
+        "https://drafts.csswg.org/css-overflow-5/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all explanatory and example claims against the current MDN index and CSSWG editor drafts. Corrected :heading() from an invalid An+B description to the draft integer-list grammar; clarified draft maturity, host-language heading semantics, interest state matching, marker-group scoping and parser-support limits. Checked the supplied inventory and added normative sources. No known unresolved factual omissions remain within this lesson scope."
     },
     {
       "taskId": "t07-016-reference-current-index-pseudo-elements",
