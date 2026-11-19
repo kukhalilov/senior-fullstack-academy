@@ -2,7 +2,7 @@
 
 # Scope and version
 
-Engine facts and release channels are pinned to the source snapshot checked 2026-11-16. Managed-service version/feature availability varies by provider and offering; verify the exact target. The list below contains only the supplied names.
+Engine facts and release channels are pinned to the source snapshot checked 2026-11-20. Managed-service version/feature availability varies by provider and offering; verify the exact target. The list below contains only the supplied names.
 
 # How this group fits the mental model
 
@@ -14,7 +14,7 @@ Model and query surface determine how facts are represented and how an applicati
 
 - `SQL Server 2025 (17.x)` — Microsoft’s current SQL Server major engine line in this snapshot. T-SQL, edition, platform, and compatibility-level boundaries matter; preview features such as vector indexes are not the same status as stable features. [SQL Server 2025](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17)
 
-- `PostgreSQL 18` — PostgreSQL’s supported stable major line in this comparison; the current minor is 18.7. PostgreSQL 19 RC2 is prerelease on the check date and should not be selected as a stable production line without explicitly accepting prerelease status. [Version policy](https://www.postgresql.org/support/versioning/)
+- `PostgreSQL 19` — PostgreSQL 19.0 became generally available on 2026-11-19 and is the current major line; PostgreSQL 18.7 is the current 18.x minor. PostgreSQL 19 adds features including concurrent REPACK, logical replication of sequence values, and standby read-your-writes with WAIT FOR LSN. [Version policy](https://www.postgresql.org/support/versioning/) [PostgreSQL 19 release notes](https://www.postgresql.org/docs/19/release-19.html)
 
 - `MySQL 9.7 LTS` — MySQL’s current Long-Term Support release series in this snapshot (9.7.4). LTS denotes a longer-lived release track, not feature identity with SQL Server or PostgreSQL. [Oracle release](https://blogs.oracle.com/mysql/mysql-october-2026-ga-releases-now-available)
 
@@ -74,13 +74,13 @@ Model and query surface determine how facts are represented and how an applicati
 
 - `Compound index` — Index over multiple ordered keys; key order determines which prefixes and sort/filter patterns are efficiently supported.
 
-- `Partial index` — Index containing only rows/documents satisfying a predicate. PostgreSQL and MongoDB support partial-index concepts with differing syntax and planner implication rules.
+- `Partial index` — Index containing only rows/documents satisfying a predicate. PostgreSQL and MongoDB support partial-index concepts with differing syntax and planner implication rules; SQL Server offers the related filtered-index feature. Do not assume identical predicate implication, uniqueness, or planner eligibility.
 
 - `Expression index` — Index on a computed expression or function result. Expression determinism, collation, type, and query-expression matching are engine-specific.
 
 - `Full-text index` — Specialized linguistic/text-search index rather than a general B-tree replacement; tokenization, stemming, ranking, and feature availability differ.
 
-- `JSON path index` — Index support for JSON/document paths; SQL Server, PostgreSQL, MySQL, and MongoDB expose distinct native or computed-index mechanisms and tradeoffs.
+- `JSON path index` — Indexing a JSON path is engine-specific, not one portable index type. SQL Server 2025 has a generally available native JSON type and JSON index for JSON columns; older SQL Server patterns include indexed computed columns. PostgreSQL jsonb supports GIN operator classes and targeted expression indexes. MySQL JSON values are indexed through generated/functional columns or InnoDB multi-valued indexes for arrays, not by indexing the JSON column as an ordinary scalar key. MongoDB can index nested fields and arrays with ordinary or multikey indexes; wildcard indexes help with unknown field names but are not a substitute for workload-specific indexes. Check supported predicates, type/collation rules, and query-plan matching. [SQL Server JSON indexes](https://learn.microsoft.com/en-us/sql/relational-databases/json/index-json-data?view=sql-server-ver17) [PostgreSQL jsonb indexing](https://www.postgresql.org/docs/19/datatype-json.html) [MySQL JSON](https://dev.mysql.com/doc/refman/9.7/en/json.html) [MongoDB multikey indexes](https://www.mongodb.com/docs/manual/core/indexes/index-types/index-multikey/)
 
 - `Index selectivity` — How strongly an index key distinguishes rows for a predicate; it affects planner usefulness but must be interpreted with distribution, correlations, and workload.
 
@@ -126,12 +126,15 @@ These are decision sketches, not benchmark results or guarantees. Check the targ
 # Sources
 
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17)
+- [Official documentation](https://learn.microsoft.com/en-us/sql/relational-databases/json/index-json-data?view=sql-server-ver17)
 - [Official documentation](https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2025?view=sql-server-ver17)
-- [Official documentation](https://www.postgresql.org/docs/18/)
+- [Official documentation](https://www.postgresql.org/docs/19/)
+- [Official documentation](https://www.postgresql.org/docs/19/release-19.html)
+- [Official documentation](https://www.postgresql.org/docs/19/datatype-json.html)
+- [Official documentation](https://www.postgresql.org/about/news/postgresql-19-released-3449/)
 - [Official documentation](https://www.postgresql.org/support/versioning/)
-- [Official documentation](https://www.postgresql.org/docs/18/release-18-7.html)
-- [Official documentation](https://www.postgresql.org/about/news/postgresql-187-1712-1616-1520-1425-and-19-rc-2-released-3442/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/)
+- [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/json.html)
 - [Official documentation](https://dev.mysql.com/doc/relnotes/mysql/9.7/en/)
 - [Official documentation](https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html)
 - [Official documentation](https://blogs.oracle.com/mysql/mysql-october-2026-ga-releases-now-available)
@@ -145,6 +148,8 @@ These are decision sketches, not benchmark results or guarantees. Check the targ
 - [Official documentation](https://www.mongodb.com/docs/manual/reference/read-concern/)
 - [Official documentation](https://www.mongodb.com/docs/manual/reference/write-concern/)
 - [Official documentation](https://www.mongodb.com/docs/manual/indexes/)
+- [Official documentation](https://www.mongodb.com/docs/manual/core/indexes/index-types/index-multikey/)
+- [Official documentation](https://www.mongodb.com/docs/manual/core/indexes/index-types/index-wildcard/)
 - [Official documentation](https://www.mongodb.com/docs/manual/sharding/)
 - [Official documentation](https://www.mongodb.com/docs/atlas/)
 - [Official documentation](https://docs.aws.amazon.com/documentdb/latest/developerguide/what-is.html)
