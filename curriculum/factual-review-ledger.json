@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1186,
-    "pending": 1163,
-    "claimsChecked": 51203,
-    "claimsCorrected": 2730,
+    "reviewed": 1187,
+    "pending": 1162,
+    "claimsChecked": 51225,
+    "claimsCorrected": 2736,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -105952,24 +105952,45 @@
       "topicId": "t03-003",
       "phase": "overview",
       "draft": "course/drafts/t03-003/t03-003-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 22,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "verdict": "supported; overview wording retained and Fabric-only syntax boundary confirmed",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
+          "section": "SELECT logical binding order, alias visibility, logical versus physical execution; SQL Server/Fabric QUALIFY boundary"
+        },
+        {
+          "verdict": "supported after adding six omitted overview details; current documentation checked 2026-11-20",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
+          "section": "ORDER BY support, NULL ordering, alias rules, DISTINCT/set-operation restrictions, inner query ordering, OFFSET/FETCH syntax and version, nonnegative counts, stable paging requirements"
+        },
+        {
+          "verdict": "supported; added concise WITH TIES behavior and the arbitrary order among boundary ties",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17",
+          "section": "TOP order predictability, WITH TIES, parentheses compatibility, and SET ROWCOUNT comparison"
+        },
+        {
+          "verdict": "supported; narrowed wording to the documented indexable anchored pattern forms",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
+          "section": "REGEXP_LIKE compatibility level 170, collation independence, and constrained SARGable anchored patterns"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/logical-operators-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/some-any-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/exists-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/functions/regexp-like-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/operator-precedence-transact-sql?view=sql-server-ver17",
@@ -105977,7 +105998,7 @@
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/all-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Enumerated and checked 22 factual assertions and the overview scope against current Microsoft SQL Server 2025 documentation. Added the bounded REGEXP_LIKE SARGability rule, SQL Server NULL sort position, exact OFFSET/FETCH version/count/synonym semantics, TOP WITH TIES behavior, alias and set-operation ORDER BY restrictions, and the conditions Microsoft specifies for stable paging. No assigned-scope omissions remain in the overview; detailed feature enumeration remains assigned to the four reference lessons."
     },
     {
       "taskId": "t03-003-concepts",
