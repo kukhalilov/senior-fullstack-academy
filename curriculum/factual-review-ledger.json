@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1160,
-    "pending": 1189,
-    "claimsChecked": 49620,
-    "claimsCorrected": 2547,
+    "reviewed": 1161,
+    "pending": 1188,
+    "claimsChecked": 49659,
+    "claimsCorrected": 2551,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -99027,13 +99027,50 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-experimental-css-box-model.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claim": "Current ED date/status, grammar, initial value, applicability, inheritance, computed value and animation type.",
+          "sources": [
+            "https://drafts.csswg.org/css-box-4/#margin-trim-property"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "Current ED block-container edge behavior, collapsed descendant margin treatment, inline/float exclusions and distinction from margin-break.",
+          "sources": [
+            "https://drafts.csswg.org/css-box-4/#margin-trim-property"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "Published 2024 WD broader syntax, flex/grid applicability/behavior, logical inline values and older first-letter applicability.",
+          "sources": [
+            "https://www.w3.org/TR/css-box-4/#margin-trim-property"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "MDN reports Limited availability/Experimental and retains the broader earlier syntax; browser implementations require version-specific verification.",
+          "sources": [
+            "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-trim"
+          ],
+          "verdict": "verified"
+        },
+        {
+          "claim": "Block-axis logical mapping and relevant block/container terminology.",
+          "sources": [
+            "https://drafts.csswg.org/css-box-4/",
+            "https://www.w3.org/TR/css-display-3/"
+          ],
+          "verdict": "verified"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -99390,9 +99427,12 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://drafts.csswg.org/css-box-4/",
+        "https://www.w3.org/TR/css-box-4/",
+        "https://www.w3.org/TR/css-display-3/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually checked 39 factual claims against the 2026-08-06 CSS Box Model Level 4 Editor’s Draft, the 2024-08-04 published Working Draft, MDN, and CSS Display terminology. Replaced the shallow index text with exact current grammar/metadata and detailed block-container behavior. Explicitly audited the consequential version divergence: latest ED narrows the earlier inline/flex/grid grammar and applicability; MDN retains the older broader design. Corrected four omissions/overstatements concerning edge-specific child margins, collapsed descendant margins, float/inline limits, and changed feature scope. No unresolved lesson issues."
     },
     {
       "taskId": "t07-018-reference-experimental-mathml",
