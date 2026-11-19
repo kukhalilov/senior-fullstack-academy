@@ -5,9 +5,9 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1195,
-    "pending": 1154,
-    "claimsChecked": 51439,
+    "reviewed": 1196,
+    "pending": 1153,
+    "claimsChecked": 51471,
     "claimsCorrected": 2739,
     "draftsMayBePromoted": false
   },
@@ -106485,26 +106485,62 @@
       "topicId": "t03-004",
       "phase": "concepts",
       "draft": "course/drafts/t03-004/t03-004-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 32,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql?view=sql-server-ver17",
+          "section": "Join types, APPLY correlation, row preservation, pivot/unpivot shape"
+        },
+        {
+          "verdict": "supported; COUNT-zero and SUM-NULL behavior also checked on SQL Server 2025 RTM",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-using-pivot-and-unpivot?view=sql-server-ver17",
+          "section": "PIVOT aggregation, implicit grouping, empty categories, UNPIVOT NULL/collation behavior"
+        },
+        {
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
+          "section": "UNION duplicate and type-resolution behavior"
+        },
+        {
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-except-and-intersect-transact-sql?view=sql-server-ver17",
+          "section": "INTERSECT/EXCEPT distinct semantics, NULL comparison, and precedence"
+        },
+        {
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/subqueries?view=sql-server-ver17",
+          "section": "Scalar, correlated, and existence subqueries"
+        },
+        {
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver17",
+          "section": "CTE scope and nonmaterialization"
+        },
+        {
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/recursive-common-table-expression-transact-sql?view=sql-server-ver17",
+          "section": "Recursive CTE restrictions, iteration and MAXRECURSION"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-using-pivot-and-unpivot?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-except-and-intersect-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/recursive-common-table-expression-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/subqueries?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/recursive-common-table-expression-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-join?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/table-value-constructor-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-using-pivot-and-unpivot?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/table-value-constructor-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Enumerated and verified 32 factual assertions across join grain and outer-join predicate placement, APPLY row preservation, PIVOT/UNPIVOT grouping/null/collation behavior, set-operator alignment/duplicates/NULL/type precedence, scalar and correlated subqueries, CTE scope/materialization, and recursive CTE iteration/types/termination/MAXRECURSION. Confirmed PIVOT COUNT returns 0 for an empty listed category while SUM returns NULL using SQL Server 2025. No factual corrections or assigned-scope omissions found."
     },
     {
       "taskId": "t03-004-reference-join-forms-and-row-preservation",
