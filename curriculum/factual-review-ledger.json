@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1153,
-    "pending": 1196,
-    "claimsChecked": 49370,
-    "claimsCorrected": 2522,
+    "reviewed": 1154,
+    "pending": 1195,
+    "claimsChecked": 49407,
+    "claimsCorrected": 2525,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -96098,13 +96098,55 @@
       "topicId": "t07-018",
       "phase": "reference",
       "draft": "course/drafts/t07-018/t07-018-reference-experimental-css-animations.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 37,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Enumerated all externally verifiable claims for animation-timeline syntax and metadata, auto/none/named/scroll()/view() behavior, scroller and axis selection, view insets, named lookup failure, comma-list matching, shorthand resetting and shorthand timeline syntax, duration/range interactions, browser support caveats, accessibility/reduced-motion guidance, and examples.",
+          "sources": [
+            {
+              "url": "https://drafts.csswg.org/css-animations-2/",
+              "section": "§4.11 animation-timeline and §4.12 animation shorthand; draft dated 18 August 2026",
+              "verdict": "Supported. The current Editor’s Draft explicitly includes <single-animation-timeline> in the shorthand grammar. It is work in progress."
+            },
+            {
+              "url": "https://drafts.csswg.org/scroll-animations-1/",
+              "section": "§2.2.1 scroll() notation; §3.3.1 view() notation; §4.2 named timeline scoping and lookup; Appendix A ranges",
+              "verdict": "Supported against current Editor’s Draft; features labeled as evolving where relevant."
+            },
+            {
+              "url": "https://www.w3.org/TR/css-animations-2/",
+              "section": "Published CSS Animations Level 2 Working Draft",
+              "verdict": "Identified as the latest published draft, older than the Editor’s Draft; lesson distinguishes publication status."
+            },
+            {
+              "url": "https://www.w3.org/TR/scroll-animations-1/",
+              "section": "Published Scroll-driven Animations Working Draft",
+              "verdict": "Provides published-version comparison; current details are cross-checked against the Editor’s Draft."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-timeline",
+              "section": "Formal syntax, values, formal definition, shorthand caveat, compatibility",
+              "verdict": "Values and property metadata corroborate. Its reset-only shorthand prose conflicts with the current CSS Animations Level 2 Editor’s Draft."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation",
+              "section": "Constituent properties, formal syntax, shorthand reset behavior, compatibility",
+              "verdict": "Confirms animation-timeline as a constituent and that omitted shorthand components reset; compatibility caveat supports recommending a separate declaration."
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations/Timelines",
+              "section": "Named and anonymous scroll/view timeline usage",
+              "verdict": "Practical usage corroborates the examples and model."
+            }
+          ],
+          "corrections": "Replaced shallow boilerplate with a model-first, feature-complete reference. Corrected the shorthand account to represent the current Level 2 Editor’s Draft while explicitly documenting MDN’s conflicting reset-only prose; recommended a separate animation-timeline declaration after animation for robust implementation compatibility. Clarified absent named timelines do not fall back to auto and included list matching, inactive timeline cases, timeline functions, accessibility and reduced-motion considerations."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-19",
       "sourceUrls": [
         "https://www.w3.org/TR/css-2026/",
         "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties",
@@ -96461,9 +96503,12 @@
         "https://drafts.csswg.org/css-color-4/",
         "https://drafts.csswg.org/css-color-5/",
         "https://drafts.csswg.org/css-color-hdr-1/",
-        "https://drafts.csswg.org/css-color-adjust/"
+        "https://drafts.csswg.org/css-color-adjust/",
+        "https://www.w3.org/TR/css-animations-2/",
+        "https://www.w3.org/TR/scroll-animations-1/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations/Timelines"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited all supplied claims and feature coverage against current CSSWG Editor’s Drafts, published W3C drafts, and MDN. The shorthand documentation inconsistency is recorded explicitly; lesson follows current draft syntax while giving the broadly robust declaration order. Replaced generated index with a model-first lesson; all inventoried animation-timeline syntax branches, metadata, interactions, pitfalls, and checks are covered. Draft remains in draft state pending overall curriculum audit."
     },
     {
       "taskId": "t07-018-reference-experimental-css-basic-user-interface",
