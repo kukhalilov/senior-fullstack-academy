@@ -73,25 +73,37 @@ Clustered versus nonclustered is about where table rows live; heap versus cluste
 
 # Examples
 
-Use the examples in the overview and concepts with your own representative query and data distribution. A DDL statement creating an index proves only that the structure exists; compare actual row counts, reads, writes, and plan alternatives before retaining it.
+```sql
+CREATE NONCLUSTERED INDEX IX_Order_Status_CreatedAt
+ON dbo.Orders (Status, CreatedAt DESC)
+INCLUDE (OrderId, CustomerId, Total);
+
+SELECT OrderId, CustomerId, Total, CreatedAt
+FROM dbo.Orders
+WHERE Status = @status
+  AND CreatedAt >= @fromDate
+ORDER BY CreatedAt DESC;
+```
+
+`Status` equality and the `CreatedAt` range/order match the key prefix; included columns can cover projected values but do not provide ordering. Compare this index against a filtered alternative when the workload targets a stable subset, and measure read improvement against write/storage cost.
 
 # Common mistakes
 
-- Adding every suggested missing index independently.
-- Treating key order as irrelevant or placing all columns in INCLUDE.
-- Dropping an index because counters are zero shortly after restart.
-- Rebuilding every index on an arbitrary schedule.
-- Assuming online means no locks or resource impact.
-- Applying rowstore fragmentation advice to columnstore or memory-optimized indexes.
-- Treating SQL Server 2025 vector preview as a stable cross-platform feature.
+- Expecting a nonleading composite key to seek efficiently without another usable prefix.
+- Putting an ordering/search column in INCLUDE and expecting it to establish key order.
+- Making the clustered key wide without accounting for its row-locator copies in nonclustered indexes.
+- Assuming a scan or lookup is always inferior to a seek; qualifying row count changes the cost.
+- Setting a low fill factor globally without measuring page splits and read/page-density impact.
+- Assuming ONLINE means no schema locks, blockers, log, or resource cost.
+- Applying B+ tree assumptions to heaps, columnstore, XML/spatial/full-text, or memory-optimized indexes.
 
 # Knowledge checks with answers
 
-1. **What is the first experiment before adding a key?** Measure representative query shape, selectivity, reads, writes, and actual estimates.
-2. **How do you distinguish rowstore from columnstore?** Rowstore B+ tree entries are row-oriented; columnstore stores compressed per-column segments grouped into rowgroups.
-3. **What does a filtered index save?** It can avoid storing rows outside its predicate, reducing size and maintenance if queries imply the filter.
-4. **What does rebuild do to index stats?** Recreating the index refreshes its statistics as a side effect.
-5. **What does the usage DMV miss?** Full lifetime history and some specialized index types, including spatial and memory-optimized usage.
+1. **What row locator does a nonclustered index use on a heap?** A RID; on a clustered table it uses the clustered key (including hidden uniquifier details when relevant).
+2. **What does INCLUDE add?** Leaf-level coverage values, not seek keys or ordering.
+3. **Why does clustered-key width matter beyond the clustered index itself?** Nonclustered indexes carry the clustered row locator, so width multiplies storage and I/O.
+4. **When can a scan beat a seek plus lookup?** When many qualifying rows make repeated lookups cost more than scanning a broader structure.
+5. **What do FILLFACTOR and PAD_INDEX control?** Requested free space at build/rebuild on leaf pages and, with PAD_INDEX, intermediate pages; they are not dynamically maintained.
 
 # Sources
 

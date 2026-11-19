@@ -26,6 +26,8 @@ REORGANIZE incrementally works on leaf pages and does not update statistics. REB
 
 Specialized indexes solve different access problems: columnstore compresses column segments and supports analytics; memory-optimized hash and ordered indexes have distinct equality/range needs; XML, spatial, full-text, JSON, and vector features each expose domain-specific search behavior and limitations. Their costs and support boundaries cannot be inferred from a normal rowstore B+ tree.
 
+SQL Server 2025 also adds persisted statistics for readable secondary replicas: temporary statistics auto-created for secondary workloads can be persisted to the primary and synchronized across replicas. This is distinct from ordinary permanent stats, depends on the readable-secondary temporary-statistics configuration, and can leave temporary and permanent versions coexisting until recompilation or restart. Inspect `sys.stats.is_temporary` and replica-origin metadata when diagnosing a read-only replica estimate.
+
 # Worked examples
 
 ```sql
@@ -50,6 +52,7 @@ For a general query such as `WHERE CustomerId=@id AND CreatedAt >= @start ORDER 
 - A DMV with zero reads since restart does not establish that a critical index is unused.
 - A missing-index suggestion ignores write cost and can duplicate an existing index.
 - Preview vector indexing is not GA in SQL Server 2025.
+- Secondary temporary statistics are not immediately removed just because a persisted copy reaches the primary.
 
 # Knowledge checks with answers
 
@@ -59,6 +62,7 @@ For a general query such as `WHERE CustomerId=@id AND CreatedAt >= @start ORDER 
 4. **Does reorganize refresh statistics?** No. Rebuild recreates index stats; standalone UPDATE STATISTICS is a separate operation.
 5. **Can zero DMV seeks justify dropping an index?** No; the counter lifetime and workload coverage are limited, and constraints/rare queries matter.
 6. **What is the SQL Server 2025 vector-index status?** Preview; requires PREVIEW_FEATURES, subject to current release documentation.
+7. **What is persisted from a readable secondary in SQL Server 2025?** Auto-created temporary statistics can be persisted to the primary and synchronized to replicas; the local temporary copy can remain until recompilation/restart.
 
 # Sources
 
@@ -91,6 +95,10 @@ See the [index architecture/design guide](https://learn.microsoft.com/en-us/sql/
 - https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-show-statistics-transact-sql?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-transact-sql?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17

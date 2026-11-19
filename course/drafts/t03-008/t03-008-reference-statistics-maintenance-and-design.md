@@ -14,7 +14,7 @@ This is one bounded slice of the full index lifecycle: the exact supplied names 
 | --- | --- |
 | `Index statistics` | Statistics summarize key distribution for the optimizer and are created for indexes. They influence cardinality estimates, not data correctness; stale or unrepresentative stats can cause poor plans even when the index structure is healthy. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver17)) |
 | `Histogram` | A statistics histogram describes distribution for only the first statistics key column, with at most 200 steps. It is sampled or full-scan data and cannot represent arbitrary correlations among several columns. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver17)) |
-| `Density vector` | Statistics density values summarize distinctness for key prefixes and help estimate equality combinations. They complement the first-column histogram but are not a multi-dimensional histogram or guarantee of accurate correlation estimates. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17)) |
+| `Density vector` | Statistics density values summarize distinctness for key prefixes and help estimate equality combinations. They complement the first-column histogram but are not a multi-dimensional histogram or guarantee of accurate correlation estimates. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver17)) |
 | `Auto-created statistics` | With AUTO_CREATE_STATISTICS ON, the optimizer can create single-column statistics for predicate columns when useful. These statistics do not automatically solve cross-column correlation and are visible through sys.stats (often with _WA names). ([source](https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver17)) |
 | `Filtered statistics` | Statistics created with a WHERE predicate describe a relevant subset and can improve estimates when query predicates match that subset. They are separate from an index and may be useful even without a filtered index. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver17)) |
 | `Statistics update threshold` | SQL Server marks statistics stale based on modifications and table cardinality; the threshold varies by engine version and compatibility level. Do not hardcode a single “20 percent” rule for current large tables. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver17)) |
@@ -32,6 +32,18 @@ This is one bounded slice of the full index lifecycle: the exact supplied names 
 | `Index operational statistics` | Lower-level access, lock, and latch counters by partition, available through operational DMVs. They help diagnose contention or maintenance patterns but are snapshots/counters, not direct proof that a proposed index fixes a workload. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver17)) |
 | `sys.dm_db_index_operational_stats` | A function returning partition-level row/page access, locking, latching, and allocation activity for indexes. Counters can reset as metadata ages/reloads; permission and version details matter, so correlate with sampling window and workload. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-index-operational-stats-transact-sql?view=sql-server-ver17)) |
 | `Missing-index DMV recommendation boundary` | Optimizer missing-index requests are transient, incomplete suggestions generated during optimization. They do not account for all existing/overlapping indexes, write costs, included-column limits, or workload priorities; consolidate and test before deployment. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17)) |
+| `sys.dm_db_missing_index_details` | Supplies the table, equality/inequality key columns, and proposed include columns for each request; join through `sys.dm_db_missing_index_groups` to its group and `sys.dm_db_missing_index_group_stats` for observed estimate counters. Details reset at engine restart and collection is capped at 600 rows/groups. On SQL Server 2022+, server-level access requires `VIEW SERVER PERFORMANCE STATE`. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-details-transact-sql?view=sql-server-ver17)) |
+| `sys.dm_db_missing_index_groups` | Maps an `index_handle` to its `index_group_handle`; each group contains one missing index request. It is a join bridge, not a list of interchangeable alternatives. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-groups-transact-sql?view=sql-server-ver17)) |
+| `sys.dm_db_missing_index_group_stats` | Reports seek/scan counts, last use, estimated query cost, and estimated impact for a group. Counters are runtime estimates, updated on query execution and reset on engine restart; they do not measure realized savings from creating an index. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-group-stats-transact-sql?view=sql-server-ver17)) |
+| `sys.dm_db_missing_index_columns` | Function that returns equality, inequality, or included-column details for a specified `index_handle`; use it when inspecting one candidate rather than treating a DMV-generated DDL string as deployment-ready. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-columns-transact-sql?view=sql-server-ver17)) |
+| `Missing-index 600-group collection limit` | Missing-index recommendations are collected only up to 600 requests/groups, and details/counters are in-memory and reset on database engine restart. Persist snapshots if needed for trend analysis; a low count is not proof no index opportunity exists. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17)) |
+| `Missing-index estimates before query execution` | Suggestions are estimated during optimization before the query runs; they are not validated against execution results. The feature omits filtered and unique-index recommendations, does not order proposed key columns, and can suggest overlapping indexes. Validate plans and workload effects. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17)) |
+| `Missing-index suggestions omit filtered and unique indexes` | The feature suggests disk-based nonclustered rowstore indexes, but does not recommend filtered or unique indexes; it also does not cost the write/storage impact of large INCLUDE lists. Evaluate those designs separately against constraints and workload. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17)) |
+| `sys.dm_db_index_physical_stats` | Table-valued function reporting size and physical organization by index level/partition/allocation unit. It replaces `DBCC SHOWCONTIG` and excludes memory-optimized index structures; broad scans can be costly, so scope the database/object/index and select an appropriate mode. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17)) |
+| `LIMITED physical-stats scan mode` | Fastest physical-stats mode; scans the fewest pages and for rowstore indexes examines non-leaf B-tree pages. Use for lower-cost screening, recognizing that limited mode does not provide the same leaf-level detail as DETAILED. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17)) |
+| `SAMPLED physical-stats scan mode` | Samples approximately one percent of pages for larger objects; smaller objects can use a detailed scan. It is a compromise between LIMITED and DETAILED and can miss localized conditions. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17)) |
+| `DETAILED physical-stats scan mode` | Scans all pages and gives the most detailed physical information, at higher I/O and execution cost. Avoid broad, frequent runs without a maintenance or diagnostic reason. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17)) |
+| `Readable-secondary REDO blocking risk from physical-stats scan` | Calling `sys.dm_db_index_physical_stats` on an availability-group readable secondary can take an IS lock that blocks a REDO thread needing an X lock on the same object. Consider scope and timing carefully on busy secondaries. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17)) |
 | `Index write amplification` | Each extra index may need maintenance for a row change, adding log volume, CPU, I/O, locks/latches, and storage. An index that speeds reads can lower write throughput and increase backup/cache footprint. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17)) |
 | `Over-indexing` | Redundant, unused, or overly wide indexes duplicate storage and write work, slow schema changes, and compete for cache. Before dropping one, examine overlap, constraints, filtered predicates, rare critical queries, resets, and a complete usage period. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17)) |
 | `SARGable predicate` | A predicate is search-argument-friendly when the optimizer can use an index key to seek a bounded range. Wrapping the indexed column in a function or forcing incompatible conversions can prevent a seek; preserve semantics and verify the actual plan. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17)) |
@@ -52,10 +64,14 @@ This is one bounded slice of the full index lifecycle: the exact supplied names 
 | `sys.stats` | Catalog view with one row per statistics object, including index and column statistics. Join with sys.stats_columns and object metadata to map keys; permissions limit visible metadata. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-transact-sql?view=sql-server-ver17)) |
 | `sys.stats_columns` | Maps statistics objects to their ordered columns, allowing you to see which is the histogram-leading column and the statistic key sequence. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql?view=sql-server-ver17)) |
 | `sys.dm_db_stats_properties` | Returns last update, row count, sample size, modification counter, and related properties for one statistics object in the current database. It is point-in-time evidence, not an automatic rule for update. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-stats-properties-transact-sql?view=sql-server-ver17)) |
-| `sys.dm_db_incremental_stats_properties` | Returns per-partition properties for incremental statistics. Use it to target affected partitions while respecting incremental-statistics eligibility and partition lifecycle. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17)) |
-| `STATS_DATE` | Returns the date the specified statistics object was last updated, or NULL where metadata is absent/not visible. Pair it with modification counts and distribution evidence; age alone is not proof of staleness. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17)) |
+| `sys.dm_db_incremental_stats_properties` | Returns per-partition row counts, sample counts, update time, and leading-column modification counts for eligible incremental statistics. It returns an empty rowset when the object/stats do not match an eligible visible incremental-statistics object. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-incremental-stats-properties-transact-sql?view=sql-server-ver17)) |
+| `STATS_DATE` | Returns the date the specified statistics object was last updated, or NULL when a statistics blob was not created or is unavailable. Pair it with modification counts and distribution evidence; age alone is not proof of staleness. ([source](https://learn.microsoft.com/en-us/sql/t-sql/functions/stats-date-transact-sql?view=sql-server-ver17)) |
 | `UPDATE STATISTICS index and table scopes` | UPDATE STATISTICS can refresh a named statistics object, all stats on an index, or table statistics using documented syntax. Scope and sampling clauses affect cost and plan recompilation. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/update-statistics-transact-sql?view=sql-server-ver17)) |
-| `Statistics persisted for readable secondaries` | SQL Server 2025 can persist statistics created/updated on readable secondary replicas so read workloads can retain their stats. This is a release-specific behavior; follow the feature documentation for replica role and permissions. ([source](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17)) |
+| `Statistics persisted for readable secondaries` | In SQL Server 2025, temporary statistics auto-created on a readable secondary can be persisted to the primary and synchronized to replicas through Query Store infrastructure. Temporary secondary statistics may coexist until recompilation/restart; `sys.stats` records origin/role metadata. This depends on auto-create statistics and the readable-secondary temporary-statistics configurations. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17)) |
+| `READABLE_SECONDARY_TEMPORARY_STATS_AUTO_CREATE` | Database-scoped configuration that enables automatic creation of temporary statistics for readable-secondary queries; the SQL Server 2025 persistence feature uses this configuration, enabled by default with auto-create statistics in the documented default setup. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17)) |
+| `READABLE_SECONDARY_TEMPORARY_STATS_AUTO_UPDATE` | Database-scoped configuration controlling temporary-statistics updates on readable secondary replicas. Check its state together with AUTO_CREATE_STATISTICS when diagnosing the SQL Server 2025 secondary-statistics behavior. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17)) |
+| `sys.stats replica_role_id replica_role_desc replica_name` | SQL Server 2025 adds these `sys.stats` columns to identify the replica role and originating replica associated with persisted statistics. Temporary statistics are separately identified by `is_temporary`; metadata helps compare the statistics lifecycle across replicas. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17)) |
+| `persisted_stats_operation Extended Event` | Operational Extended Event reports enqueued, dequeued, processed, and failed persistence operations, useful when secondary-created stats are not reaching the primary. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17)) |
 | `SQL Server 2025 full-text component version 2 migration` | SQL Server 2025 removes version 1 word-breaker, stemmer, and filter binaries from the installation. Migrate/rebuild indexes to version 2; new tokenization can change search matches, so test application search behavior as well as successful population. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17)) |
 | `FULLTEXT_INDEX_VERSION configuration` | Database-scoped configuration controlling the full-text component version used for index creation/rebuild. SQL Server 2025 defaults new indexes to version 2; retaining version 1 requires legacy binaries and is a compatibility workaround, not the forward path. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17)) |
 | `sys.fulltext_indexes.index_version` | The catalog column identifies whether a full-text index uses version 1 or 2 components. After an in-place SQL Server 2025 upgrade, inventory version 1 indexes and plan migration because searches/populations can fail when legacy binaries are absent. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17)) |
@@ -71,25 +87,55 @@ Statistics estimate data shape; usage DMVs measure a limited counter interval; o
 
 # Examples
 
-Use the examples in the overview and concepts with your own representative query and data distribution. A DDL statement creating an index proves only that the structure exists; compare actual row counts, reads, writes, and plan alternatives before retaining it.
+```sql
+CREATE STATISTICS st_Orders_Status_CreatedAt
+    ON dbo.Orders (Status, CreatedAt)
+    WITH FULLSCAN;
+
+SELECT s.name, s.auto_created, s.has_filter,
+       p.last_updated, p.rows, p.rows_sampled, p.modification_counter
+FROM sys.stats AS s
+OUTER APPLY sys.dm_db_stats_properties(s.object_id, s.stats_id) AS p
+WHERE s.object_id = OBJECT_ID(N'dbo.Orders');
+
+-- Inspect a scoped rowstore index before deciding whether maintenance is justified.
+SELECT index_type_desc, avg_fragmentation_in_percent, avg_page_space_used_in_percent,
+       page_count, alloc_unit_type_desc
+FROM sys.dm_db_index_physical_stats(DB_ID(), OBJECT_ID(N'dbo.Orders'), NULL, NULL, 'LIMITED')
+WHERE index_id > 0;
+
+-- Candidate index recommendations are hypotheses; preserve snapshots before restart if needed.
+SELECT TOP (20) migs.user_seeks, migs.user_scans, migs.avg_user_impact,
+       mid.statement, mid.equality_columns, mid.inequality_columns, mid.included_columns
+FROM sys.dm_db_missing_index_group_stats AS migs
+JOIN sys.dm_db_missing_index_groups AS mig ON mig.index_group_handle = migs.group_handle
+JOIN sys.dm_db_missing_index_details AS mid ON mid.index_handle = mig.index_handle
+ORDER BY migs.avg_total_user_cost * migs.avg_user_impact * (migs.user_seeks + migs.user_scans) DESC;
+
+UPDATE STATISTICS dbo.Orders st_Orders_Status_CreatedAt WITH RESAMPLE;
+```
+
+Use FULLSCAN only when its estimate benefit justifies the read cost. After changing statistics, compare estimated and actual rows and plan behavior. On partitioned incremental statistics, inspect partition properties with `sys.dm_db_incremental_stats_properties`; on readable secondaries, also inspect `sys.stats.is_temporary` and SQL Server 2025 replica-origin columns.
 
 # Common mistakes
 
-- Adding every suggested missing index independently.
-- Treating key order as irrelevant or placing all columns in INCLUDE.
-- Dropping an index because counters are zero shortly after restart.
-- Rebuilding every index on an arbitrary schedule.
-- Assuming online means no locks or resource impact.
-- Applying rowstore fragmentation advice to columnstore or memory-optimized indexes.
-- Treating SQL Server 2025 vector preview as a stable cross-platform feature.
+- Treating stale-looking statistics solely by age rather than modifications, sample, skew, and plan estimates.
+- Assuming a rebuild refreshes every table statistic; it refreshes statistics associated with that index.
+- Assuming reorganize refreshes statistics; it does not.
+- Rebuilding every index on a calendar or universal fragmentation percentage.
+- Dropping indexes because usage counters reset at startup or omit some index types.
+- Treating secondary temporary statistics as permanent or assuming they are immediately removed after persistence.
+- Applying rowstore maintenance assumptions to columnstore or memory-optimized structures.
 
 # Knowledge checks with answers
 
-1. **What is the first experiment before adding a key?** Measure representative query shape, selectivity, reads, writes, and actual estimates.
-2. **How do you distinguish rowstore from columnstore?** Rowstore B+ tree entries are row-oriented; columnstore stores compressed per-column segments grouped into rowgroups.
-3. **What does a filtered index save?** It can avoid storing rows outside its predicate, reducing size and maintenance if queries imply the filter.
-4. **What does rebuild do to index stats?** Recreating the index refreshes its statistics as a side effect.
-5. **What does the usage DMV miss?** Full lifetime history and some specialized index types, including spatial and memory-optimized usage.
+1. **What does the histogram describe?** Up to 200 steps for the first statistics key column; it is not a joint multi-column distribution.
+2. **Does REORGANIZE update statistics?** No. Rebuild refreshes its index statistics; manually created column statistics still need their own update policy.
+3. **Why can zero usage counters mislead?** They reset and cover only observed time, while some index types are omitted.
+4. **What can SQL Server 2025 persist from a readable secondary?** Auto-created temporary statistics can be persisted to the primary and synchronized; secondary temporary copies can remain until recompile/restart.
+5. **Which function shows per-partition statistics properties?** `sys.dm_db_incremental_stats_properties`, for eligible incremental statistics.
+6. **What is the missing-index DMV set and its main caveat?** `sys.dm_db_missing_index_details`, `sys.dm_db_missing_index_groups`, and `sys.dm_db_missing_index_group_stats` (plus `sys.dm_db_missing_index_columns` for one handle); recommendations are pre-execution estimates, capped at 600, transient, and omit filtered/unique indexes.
+7. **Which `sys.dm_db_index_physical_stats` mode is least expensive?** `LIMITED`; use `SAMPLED` or `DETAILED` when their additional evidence is justified, and beware REDO blocking risk on readable AG secondaries.
 
 # Sources
 
@@ -123,3 +169,12 @@ Use the examples in the overview and concepts with your own representative query
 - https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-incremental-stats-properties-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/t-sql/functions/stats-date-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-details-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-groups-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-group-stats-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-columns-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17

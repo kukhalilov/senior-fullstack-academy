@@ -36,7 +36,7 @@ This is one bounded slice of the full index lifecycle: the exact supplied names 
 | `CREATE JSON INDEX` | Creates a native JSON path index for a json column in SQL Server 2025 and supported Azure/Fabric platforms. It is distinct from computed-column B+ tree indexes over textual JSON. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
 | `JSON index FOR path list` | The optional FOR clause limits indexing to SQL/JSON paths. Paths can include up to 128 levels and must not overlap; changing paths requires recreating the index. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
 | `OPTIMIZE_FOR_ARRAY_SEARCH` | CREATE JSON INDEX option that enables optimizations for array searches. It defaults OFF; enable only for matching JSON array workloads and validate supported predicates. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
-| `JSON index clustering-key requirement` | A table needs a clustering key before a JSON index can be created; documented limits apply to clustered-key column count and size. This is a creation prerequisite, not a requirement that the JSON property be part of that key. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
+| `JSON index clustering-key requirement` | A table must have a clustered primary key before a JSON index can be created; the key is limited to 31 columns and under 128 bytes. This is a creation prerequisite, not a requirement that the JSON property be part of that key. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
 | `JSON index nonoverlapping path requirement` | A JSON index path list cannot contain overlapping paths such as `$.a` and `$.a.b`, because the broader path recursively covers the child. The statement rejects overlapping definitions. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
 | `JSON index online and hint limitations` | SQL Server 2025 JSON index create/alter is offline, can take Sch-M and block table users, and JSON indexes are not supported in index hints. Plan the maintenance window and query normally so the optimizer can select it. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
 | `JSON index count limits` | SQL Server supports up to 249 JSON indexes per table but at most one JSON index per json column. A JSON index cannot target computed json columns or json columns in views/table variables/memory-optimized tables. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
@@ -52,7 +52,8 @@ This is one bounded slice of the full index lifecycle: the exact supplied names 
 | `ALLOW_PAGE_LOCKS JSON index option` | Controls whether page locks are permitted for JSON index access; ON is the default. Turning it OFF changes lock choices and can affect operations. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
 | `MAXDOP JSON index option` | The CREATE JSON INDEX syntax accepts MAXDOP, but current SQL Server documentation states the operation always uses one processor even when another value is specified. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
 | `DATA_COMPRESSION JSON index limitation` | The CREATE JSON INDEX syntax lists DATA_COMPRESSION, but its limitations section currently says data compression is unsupported. Treat this as a documentation conflict and do not rely on compression until the target build documentation resolves it. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
-| `JSON index supported predicate forms` | The documented optimizer support includes JSON_PATH_EXISTS equality and JSON_VALUE equality; JSON_CONTAINS can use the index. Current docs mark JSON_VALUE LIKE and IS [NOT] NULL forms unsupported, so keep predicates within the listed forms. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
+| `JSON index supported predicate forms` | JSON_PATH_EXISTS supports equality; JSON_VALUE supports equality, while JSON_VALUE with RETURNING typed values also documents IN and BETWEEN range examples. JSON_CONTAINS can use the index. JSON_VALUE LIKE and IS [NOT] NULL forms are currently unsupported. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
+| `JSON_VALUE RETURNING range predicates` | On a native json column, `JSON_VALUE(... RETURNING int)` or another supported type lets documented JSON-index queries use range forms such as IN and BETWEEN. Keep the SQL/JSON path and return type compatible with the indexed query expression; verify the actual plan on the target build. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
 | `JSON index clustered primary-key size limits` | The table must have a clustered primary key. Its key is limited to 31 columns and under 128 bytes for JSON-index eligibility; this is stricter than ordinary rowstore key limits. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17)) |
 | `Vector index latest version DML behavior` | The latest vector-index format (version 3 in current docs) supports INSERT, UPDATE, DELETE, and MERGE with automatic maintenance; earlier formats make the table read-only unless ALLOW_STALE_VECTOR_INDEX is enabled. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17)) |
 | `Vector index iterative filtering` | Version 3 applies supported WHERE predicates during vector search rather than only after candidate retrieval. The optimizer can use vector and traditional B-tree indexes together; filter selectivity affects recall and plan choice. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17)) |
@@ -72,6 +73,9 @@ This is one bounded slice of the full index lifecycle: the exact supplied names 
 | `Vector index duplicate embedding quality risk` | A high proportion of duplicate vectors can crowd nearest-neighbor results with repeats, reducing useful diversity while consuming index resources. Deduplicate or assess the data before indexing. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17)) |
 | `Vector index MAXDOP option` | CREATE VECTOR INDEX accepts MAXDOP to cap parallel build work; 0 follows configured limits and system workload, while edition support constrains parallel operations. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17)) |
 | `Vector index filegroup placement` | CREATE VECTOR INDEX can place its index on a filegroup or the default filegroup. Plan capacity, backup, and I/O placement with the base table and workload. ([source](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17)) |
+| `sys.vector_indexes` | One catalog row per vector index, inheriting `sys.indexes` columns and exposing index type, distance metric, and build parameters. Its build_parameters column is documented for internal use; catalog metadata visibility follows permissions. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17)) |
+| `sys.json_indexes` | One catalog row per JSON index, inheriting `sys.indexes` metadata and exposing whether array-search optimization is enabled. Use it after deployment to verify the index and its array option exist. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17)) |
+| `sys.json_index_paths` | Catalog view with the SQL/JSON paths configured for each JSON index; when CREATE JSON INDEX omits FOR paths, it reports the root path. Verify deployed path coverage using object_id/index_id and path. ([source](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-index-paths-transact-sql?view=sql-server-ver17)) |
 
 # Cross-item comparison
 
@@ -79,25 +83,43 @@ A filtered rowstore index narrows a row subset; columnstore changes storage to c
 
 # Examples
 
-Use the examples in the overview and concepts with your own representative query and data distribution. A DDL statement creating an index proves only that the structure exists; compare actual row counts, reads, writes, and plan alternatives before retaining it.
+```sql
+-- Native JSON index (SQL Server 2025); table needs a clustered primary key.
+CREATE TABLE dbo.CustomerDocument
+(
+    CustomerDocumentId int NOT NULL CONSTRAINT PK_CustomerDocument PRIMARY KEY CLUSTERED,
+    Payload json NOT NULL
+);
+CREATE JSON INDEX IX_CustomerDocument_Payload
+    ON dbo.CustomerDocument (Payload)
+    FOR ('$.contact', '$.preferences')
+    WITH (OPTIMIZE_FOR_ARRAY_SEARCH = ON);
+
+-- SQL Server 2025 vector index is preview and needs >=100 non-NULL vectors.
+CREATE VECTOR INDEX IX_Embedding_Vector
+    ON dbo.Embedding (VectorValue)
+    WITH (METRIC = 'cosine', TYPE = 'DiskANN');
+```
+
+JSON index creation is offline in SQL Server 2025; validate its path coverage and supported query forms. Vector index availability is platform-specific; after deployment inspect `sys.vector_indexes` and `sys.dm_db_vector_indexes`, and test iterative filters and recall against exact kNN for representative data.
 
 # Common mistakes
 
-- Adding every suggested missing index independently.
-- Treating key order as irrelevant or placing all columns in INCLUDE.
-- Dropping an index because counters are zero shortly after restart.
-- Rebuilding every index on an arbitrary schedule.
-- Assuming online means no locks or resource impact.
-- Applying rowstore fragmentation advice to columnstore or memory-optimized indexes.
-- Treating SQL Server 2025 vector preview as a stable cross-platform feature.
+- Assuming every JSON predicate can use a JSON index; supported forms are limited.
+- Assuming JSON indexes support ONLINE or data compression in SQL Server 2025.
+- Forgetting the clustered primary key and key-size prerequisites for JSON indexes.
+- Creating a vector index before at least 100 non-NULL vector rows exist.
+- Using vector-index V2-era `TOP_N` syntax with a latest version 3 index.
+- Treating SQL Server 2025 vector preview as equivalent to GA Azure service availability.
+- Assuming DacPac deployment always creates a vector index after loading too few rows.
 
 # Knowledge checks with answers
 
-1. **What is the first experiment before adding a key?** Measure representative query shape, selectivity, reads, writes, and actual estimates.
-2. **How do you distinguish rowstore from columnstore?** Rowstore B+ tree entries are row-oriented; columnstore stores compressed per-column segments grouped into rowgroups.
-3. **What does a filtered index save?** It can avoid storing rows outside its predicate, reducing size and maintenance if queries imply the filter.
-4. **What does rebuild do to index stats?** Recreating the index refreshes its statistics as a side effect.
-5. **What does the usage DMV miss?** Full lifetime history and some specialized index types, including spatial and memory-optimized usage.
+1. **What prerequisite does CREATE JSON INDEX have?** A clustered primary key within the JSON-specific 31-column/128-byte limits.
+2. **Can SQL Server 2025 build a JSON index ONLINE?** No; create/rebuild/drop are offline and take a schema-modification lock.
+3. **What changes with vector index version 3?** DML and iterative filtering are supported; use SELECT TOP (N) WITH APPROXIMATE rather than VECTOR_SEARCH TOP_N.
+4. **Why can a vector index be missing after a successful schema-only deployment?** DacPac may skip creation when fewer than 100 non-NULL vectors are present; verify `sys.vector_indexes` after loading data.
+5. **When should a vector index be rebuilt after embedding changes?** After substantial replacement/model changes when recall/ranking degrades, rather than merely because background maintenance is nonzero.
 
 # Sources
 
@@ -117,6 +139,10 @@ Use the examples in the overview and concepts with your own representative query
 - https://learn.microsoft.com/en-us/sql/relational-databases/spatial/spatial-indexes-overview?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-search?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/relational-databases/views/create-indexed-views?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-index-paths-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/t-sql/statements/create-statistics-transact-sql?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/t-sql/statements/update-statistics-transact-sql?view=sql-server-ver17

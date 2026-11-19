@@ -21,6 +21,9 @@ Given a frequent query filtering a selective status, ranging by date, and return
 9. A missing-index suggestion overlaps three existing indexes. Describe a safe consolidation process.
 10. Decide whether to rebuild an index with high fragmentation but high page density and a seek-heavy workload. What evidence matters?
 11. A SQL Server 2022 database with full-text indexes is upgraded in-place to SQL Server 2025. Explain the likely version 1 failure and a safe migration plan.
+12. A readable secondary has poor estimates for a query using an auto-created statistic. Explain SQL Server 2025 persisted-statistics behavior and how to inspect temporary/origin metadata.
+13. A JSON index deployment runs successfully but the query still scans. Check prerequisites, indexed paths, supported predicate operators, and the catalog verification view.
+14. A vector index exists but has a growing maintenance backlog and low recall after switching embedding models. Identify the monitoring view and separate transient catch-up from a rebuild-worthy distribution change.
 
 # Progressive hints
 
@@ -43,6 +46,9 @@ Given a frequent query filtering a selective status, ranging by date, and return
 9. Group query shapes and existing key prefixes; compare exact key order, filters, includes, uniqueness, constraints, read/write frequency, plans, and storage. Test one consolidated candidate in a representative environment, then monitor; don't blindly merge indexes whose predicates or uniqueness differ.
 10. High fragmentation alone does not require rebuild. Page density, range-scan I/O, workload latency, storage, cache, logging, maintenance window, and measured before/after result decide; seek-heavy access may be insensitive to physical page order.
 11. Inventory `sys.fulltext_indexes.index_version = 1`; SQL Server 2025 removes version 1 binaries so queries/populations can fail. Verify `FULLTEXT_INDEX_VERSION = 2`, rebuild catalogs or drop/recreate indexes in a controlled order, monitor population, and regression-test changed tokenization/search results ([migration guidance](https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17)).
+12. SQL Server 2025 can persist auto-created temporary statistics from readable secondaries to the primary and synchronize them across replicas. They use Query Store for readable secondaries infrastructure; temporary copies can coexist until recompilation/restart. Check `sys.stats.is_temporary`, `replica_role_id`, `replica_role_desc`, and `replica_name`, plus AUTO_CREATE_STATISTICS and the readable-secondary temporary-statistics settings.
+13. Verify the table has a clustered primary key meeting the JSON-specific key size/column limits, the JSON index paths cover the expression, the query uses a documented supported JSON predicate, and the native JSON column/table type is supported. Inspect `sys.json_indexes`; remember SQL Server 2025 JSON index operations are offline and hints are unsupported.
+14. Use `sys.dm_db_vector_indexes` to inspect background-maintenance health and `sys.vector_indexes` to verify index metadata/version. A temporary nonzero catch-up value is expected after DML. A near-total embedding/model replacement can change the index’s data distribution and degrade recall; validate with representative queries and rebuild after bulk replacement when measurements support it.
 
 # Tests and edge cases
 
@@ -91,3 +97,7 @@ Check relevant official references: [CREATE INDEX](https://learn.microsoft.com/e
 - https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17

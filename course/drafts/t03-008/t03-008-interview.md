@@ -16,6 +16,8 @@
 12. JSON index versus computed-column index in SQL Server 2025?
 13. What is the status of vector index in SQL Server 2025?
 14. What changed in vector index format version 3, and how do you migrate an older index?
+15. How do SQL Server 2025 persisted statistics for readable secondaries work, and which metadata distinguishes temporary and persisted copies?
+16. Why can a JSON index or vector index be absent or unused even when its DDL was deployed?
 
 # Concise interview answers
 
@@ -33,6 +35,8 @@
 12. Native JSON columns can use SQL Server 2025 GA JSON indexes; text JSON can use computed-column B+ tree indexes for selected properties.
 13. Preview on SQL Server 2025, requiring PREVIEW_FEATURES; cloud products can have different status.
 14. Version 3 is the latest structure used by newly created indexes. It adds DML maintenance, iterative filtering, and optimizer choice between approximate search and kNN. Older formats require drop and recreate; inspect `sys.vector_indexes.build_parameters`, plan for the interval without approximate-index search, and change queries from old `VECTOR_SEARCH TOP_N` usage to `SELECT TOP (N) WITH APPROXIMATE` where applicable. Also plan the 100-row non-NULL minimum, DACPAC omission/verification, unsupported partitioning and replication, and rebuild after bulk embedding replacement.
+15. Auto-created temporary statistics from readable-secondary workloads can be persisted to the primary and synchronized to replicas through the Query Store for readable secondaries infrastructure. A temporary secondary copy can remain until recompilation/restart. Inspect `sys.stats.is_temporary` and SQL Server 2025 `replica_role_id`, `replica_role_desc`, and `replica_name`; verify auto-create and secondary temporary-statistics configurations.
+16. A JSON index requires a clustered primary key with JSON-specific limits, an indexed JSON path that matches a supported predicate, and offline maintenance; query hints are unsupported. A vector index requires at least 100 non-NULL vector rows, is preview on SQL Server 2025, and may be skipped by schema-only DACPAC publish; inspect `sys.json_indexes` or `sys.vector_indexes` after deployment and check query compatibility/optimizer choice.
 
 # Deep follow-up answers
 
@@ -66,6 +70,8 @@ Use a narrow rowstore tree for selective ordered access, columnstore for analyti
 - “INCLUDE columns have no cost.”
 - “Online means no blocking.”
 - “SQL Server 2025 vector indexes are GA.”
+- “All statistics created on a readable secondary instantly replace its temporary statistics.”
+- “A successfully published DACPAC guarantees a vector index exists.”
 
 # Self-check rubric
 
@@ -105,3 +111,6 @@ Key references: [CREATE INDEX](https://learn.microsoft.com/en-us/sql/t-sql/state
 - https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17
 - https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17
+- https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17

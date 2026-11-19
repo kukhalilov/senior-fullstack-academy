@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1225,
-    "pending": 1124,
-    "claimsChecked": 52777,
-    "claimsCorrected": 2771,
+    "reviewed": 1232,
+    "pending": 1117,
+    "claimsChecked": 53360,
+    "claimsCorrected": 2799,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -110816,13 +110816,49 @@
       "topicId": "t03-008",
       "phase": "overview",
       "draft": "course/drafts/t03-008/t03-008-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "Official SQL Server index architecture, design, maintenance, statistics, and usage guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 JSON index syntax, availability, usage and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 vector index syntax, preview status, version and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Readable-secondary temporary and persisted statistics behavior and metadata"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Missing-index collection limits, recommendation limitations and validation guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Physical-stats scan modes and readable-secondary REDO locking warning"
+            }
+          ],
+          "claims": "Audited the index lifecycle mental model, version boundaries, decision guidance, performance claims, and scope alignment. Verified SQL Server 2025 JSON/vector/full-text and persisted-secondary-statistics boundaries."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes?view=sql-server-ver17",
@@ -110858,22 +110894,71 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-incremental-stats-properties-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/stats-date-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-index-paths-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-details-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-groups-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-group-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the index lifecycle mental model, version boundaries, decision guidance, performance claims, and scope alignment. Verified SQL Server 2025 JSON/vector/full-text and persisted-secondary-statistics boundaries."
     },
     {
       "taskId": "t03-008-concepts",
       "topicId": "t03-008",
       "phase": "concepts",
       "draft": "course/drafts/t03-008/t03-008-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 57,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "Official SQL Server index architecture, design, maintenance, statistics, and usage guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 JSON index syntax, availability, usage and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 vector index syntax, preview status, version and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Readable-secondary temporary and persisted statistics behavior and metadata"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Missing-index collection limits, recommendation limitations and validation guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Physical-stats scan modes and readable-secondary REDO locking warning"
+            }
+          ],
+          "claims": "Checked statistics/index interactions, rebuild versus reorganize, maintenance tradeoffs, plan-estimate language, versioned behavior, misconceptions, and knowledge checks. Added persisted readable-secondary statistics caveats."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes?view=sql-server-ver17",
@@ -110909,22 +110994,71 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-incremental-stats-properties-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/stats-date-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-index-paths-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-details-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-groups-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-group-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked statistics/index interactions, rebuild versus reorganize, maintenance tradeoffs, plan-estimate language, versioned behavior, misconceptions, and knowledge checks. Added persisted readable-secondary statistics caveats."
     },
     {
       "taskId": "t03-008-reference-rowstore-index-structures",
       "topicId": "t03-008",
       "phase": "reference",
       "draft": "course/drafts/t03-008/t03-008-reference-rowstore-index-structures.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 84,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "Official SQL Server index architecture, design, maintenance, statistics, and usage guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 JSON index syntax, availability, usage and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 vector index syntax, preview status, version and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Readable-secondary temporary and persisted statistics behavior and metadata"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Missing-index collection limits, recommendation limitations and validation guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Physical-stats scan modes and readable-secondary REDO locking warning"
+            }
+          ],
+          "claims": "Reviewed all assigned rowstore structures/options and examples. Replaced copied generic examples/checks with a runnable covering-index design; verified B+ tree, locator, key width, fill, online/resumable boundaries, and operation costs."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes?view=sql-server-ver17",
@@ -110960,22 +111094,71 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-incremental-stats-properties-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/stats-date-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-index-paths-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-details-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-groups-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-group-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all assigned rowstore structures/options and examples. Replaced copied generic examples/checks with a runnable covering-index design; verified B+ tree, locator, key width, fill, online/resumable boundaries, and operation costs."
     },
     {
       "taskId": "t03-008-reference-specialized-and-filtered-indexes",
       "topicId": "t03-008",
       "phase": "reference",
       "draft": "course/drafts/t03-008/t03-008-reference-specialized-and-filtered-indexes.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 122,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "Official SQL Server index architecture, design, maintenance, statistics, and usage guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 JSON index syntax, availability, usage and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 vector index syntax, preview status, version and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Readable-secondary temporary and persisted statistics behavior and metadata"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Missing-index collection limits, recommendation limitations and validation guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Physical-stats scan modes and readable-secondary REDO locking warning"
+            }
+          ],
+          "claims": "Audited specialized index families and every SQL Server 2025 JSON/vector claim. Added catalog/DMV APIs, exact JSON predicate and deployment constraints, vector preview/version/deployment/maintenance boundaries; corrected sample and checks."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes?view=sql-server-ver17",
@@ -111011,22 +111194,71 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-incremental-stats-properties-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/stats-date-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-index-paths-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-details-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-groups-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-group-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited specialized index families and every SQL Server 2025 JSON/vector claim. Added catalog/DMV APIs, exact JSON predicate and deployment constraints, vector preview/version/deployment/maintenance boundaries; corrected sample and checks."
     },
     {
       "taskId": "t03-008-reference-statistics-maintenance-and-design",
       "topicId": "t03-008",
       "phase": "reference",
       "draft": "course/drafts/t03-008/t03-008-reference-statistics-maintenance-and-design.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 117,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "Official SQL Server index architecture, design, maintenance, statistics, and usage guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 JSON index syntax, availability, usage and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 vector index syntax, preview status, version and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Readable-secondary temporary and persisted statistics behavior and metadata"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Missing-index collection limits, recommendation limitations and validation guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Physical-stats scan modes and readable-secondary REDO locking warning"
+            }
+          ],
+          "claims": "Reviewed every assigned statistics, maintenance, and diagnostic item, SQL samples, and checks. Corrected density-vector attribution; added persisted secondary stats, exact missing-index DMV set and limitations, and physical-stats modes/REDO risk."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes?view=sql-server-ver17",
@@ -111062,22 +111294,71 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-incremental-stats-properties-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/stats-date-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-index-paths-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-details-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-groups-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-group-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed every assigned statistics, maintenance, and diagnostic item, SQL samples, and checks. Corrected density-vector attribution; added persisted secondary stats, exact missing-index DMV set and limitations, and physical-stats modes/REDO risk."
     },
     {
       "taskId": "t03-008-practice",
       "topicId": "t03-008",
       "phase": "practice",
       "draft": "course/drafts/t03-008/t03-008-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 88,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "Official SQL Server index architecture, design, maintenance, statistics, and usage guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 JSON index syntax, availability, usage and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 vector index syntax, preview status, version and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Readable-secondary temporary and persisted statistics behavior and metadata"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Missing-index collection limits, recommendation limitations and validation guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Physical-stats scan modes and readable-secondary REDO locking warning"
+            }
+          ],
+          "claims": "Checked all exercise prompts and solutions against the assigned inventory and official syntax/behavior. Added readable-secondary stats, JSON index deployment, vector monitoring, missing-index candidate validation, and scoped physical-stats diagnostic scenarios."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes?view=sql-server-ver17",
@@ -111113,22 +111394,71 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-incremental-stats-properties-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/stats-date-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-index-paths-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-details-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-groups-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-group-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all exercise prompts and solutions against the assigned inventory and official syntax/behavior. Added readable-secondary stats, JSON index deployment, vector monitoring, missing-index candidate validation, and scoped physical-stats diagnostic scenarios."
     },
     {
       "taskId": "t03-008-interview",
       "topicId": "t03-008",
       "phase": "interview",
       "draft": "course/drafts/t03-008/t03-008-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 73,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "Official SQL Server index architecture, design, maintenance, statistics, and usage guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-json-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 JSON index syntax, availability, usage and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-vector-index-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; corrections and omissions recorded in lesson and note",
+              "section": "SQL Server 2025 vector index syntax, preview status, version and limitations"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Readable-secondary temporary and persisted statistics behavior and metadata"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Missing-index collection limits, recommendation limitations and validation guidance"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17",
+              "verdict": "supported; additions recorded in lesson and note",
+              "section": "Physical-stats scan modes and readable-secondary REDO locking warning"
+            }
+          ],
+          "claims": "Checked interview prompts, answer reasoning, scenarios, terminology, and current product boundaries. Added persisted secondary-statistics and JSON/vector/index recommendation diagnostic questions."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes?view=sql-server-ver17",
@@ -111164,9 +111494,22 @@
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17"
+        "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-incremental-stats-properties-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/functions/stats-date-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-index-paths-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-details-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-groups-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-group-stats-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-columns-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked interview prompts, answer reasoning, scenarios, terminology, and current product boundaries. Added persisted secondary-statistics and JSON/vector/index recommendation diagnostic questions."
     },
     {
       "taskId": "t03-009-overview",

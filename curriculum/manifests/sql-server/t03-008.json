@@ -135,7 +135,11 @@
         "Vector index full-replacement rebuild guidance",
         "Vector index duplicate embedding quality risk",
         "Vector index MAXDOP option",
-        "Vector index filegroup placement"
+        "Vector index filegroup placement",
+        "sys.vector_indexes",
+        "sys.json_indexes",
+        "sys.json_index_paths",
+        "JSON_VALUE RETURNING range predicates"
       ]
     },
     {
@@ -162,6 +166,18 @@
         "Index operational statistics",
         "sys.dm_db_index_operational_stats",
         "Missing-index DMV recommendation boundary",
+        "sys.dm_db_missing_index_details",
+        "sys.dm_db_missing_index_groups",
+        "sys.dm_db_missing_index_group_stats",
+        "sys.dm_db_missing_index_columns",
+        "Missing-index 600-group collection limit",
+        "Missing-index estimates before query execution",
+        "Missing-index suggestions omit filtered and unique indexes",
+        "sys.dm_db_index_physical_stats",
+        "LIMITED physical-stats scan mode",
+        "SAMPLED physical-stats scan mode",
+        "DETAILED physical-stats scan mode",
+        "Readable-secondary REDO blocking risk from physical-stats scan",
         "Index write amplification",
         "Over-indexing",
         "SARGable predicate",
@@ -186,6 +202,10 @@
         "STATS_DATE",
         "UPDATE STATISTICS index and table scopes",
         "Statistics persisted for readable secondaries",
+        "READABLE_SECONDARY_TEMPORARY_STATS_AUTO_CREATE",
+        "READABLE_SECONDARY_TEMPORARY_STATS_AUTO_UPDATE",
+        "sys.stats replica_role_id replica_role_desc replica_name",
+        "persisted_stats_operation Extended Event",
         "SQL Server 2025 full-text component version 2 migration",
         "FULLTEXT_INDEX_VERSION configuration",
         "sys.fulltext_indexes.index_version",
@@ -263,7 +283,14 @@
     "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql?view=sql-server-ver17",
     "https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17",
-    "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17"
+    "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-incremental-stats-properties-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/t-sql/functions/stats-date-transact-sql?view=sql-server-ver17",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-index-paths-transact-sql?view=sql-server-ver17"
   ],
   "versionNotes": [
     {
@@ -288,8 +315,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft SQL Server 2025 Database Engine index, JSON/vector, and statistics documentation",
-    "edition": "SQL Server 2025 (17.x) index semantics, sources checked 2026-11-16",
-    "checkedAt": "2026-11-16",
+    "edition": "SQL Server 2025 (17.x) index semantics, sources checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes?view=sql-server-ver17",
@@ -325,7 +352,20 @@
       "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-stats-columns-transact-sql?view=sql-server-ver17",
       "https://learn.microsoft.com/en-us/sql/database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025?view=sql-server-ver17",
-      "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17"
+      "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-index-version-upgrade?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-vector-indexes-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-indexes-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-vector-indexes-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/persisted-stats-secondary-replicas?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-incremental-stats-properties-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/functions/stats-date-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-json-index-paths-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-details-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-groups-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-group-stats-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-objects/sys-dm-db-missing-index-columns-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/tune-nonclustered-missing-index-suggestions?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-index-physical-stats-transact-sql?view=sql-server-ver17"
     ]
   },
   "scopeExclusions": [
@@ -346,6 +386,8 @@
     "SQL Server 2025 vector index and VECTOR_SEARCH are preview features on SQL Server, gated by PREVIEW_FEATURES. Latest version 3 indexes support DML and iterative filtering; earlier versions have different read-only/post-filter limits.",
     "SQL Server 2025 removes full-text version 1 components from its installation. Existing version 1 full-text queries and populations can fail after in-place upgrade; migrate indexes and validate new tokenization.",
     "Online and resumable index support varies by operation, index kind, product version, and edition. RESUMABLE requires ONLINE; inspect operation-specific limits before deployment.",
-    "Indexes add storage and DML maintenance, logging, and cache pressure. A missing-index DMV suggestion is a hypothesis to test against workload and existing indexes, not a deployment plan."
+    "Indexes add storage and DML maintenance, logging, and cache pressure. A missing-index DMV suggestion is a hypothesis to test against workload and existing indexes, not a deployment plan.",
+    "Missing-index DMVs are optimization-time estimates, omit filtered and unique-index designs, have no key-column ordering guidance, are transient across restarts, and are capped at 600 groups; validate and consolidate proposals.",
+    "sys.dm_db_index_physical_stats offers LIMITED, SAMPLED, and DETAILED scan modes; a scan on an availability-group readable secondary can block REDO through an IS lock."
   ]
 }
