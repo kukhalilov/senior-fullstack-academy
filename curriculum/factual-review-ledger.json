@@ -5,9 +5,9 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1201,
-    "pending": 1148,
-    "claimsChecked": 51612,
+    "reviewed": 1202,
+    "pending": 1147,
+    "claimsChecked": 51638,
     "claimsCorrected": 2743,
     "draftsMayBePromoted": false
   },
@@ -106798,26 +106798,52 @@
       "topicId": "t03-004",
       "phase": "interview",
       "draft": "course/drafts/t03-004/t03-004-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "section": "JOIN/APPLY outer row preservation and cardinality",
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "UNION versus UNION ALL duplicate behavior",
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "Scalar subquery cardinality and correlated subquery concepts",
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/relational-databases/performance/subqueries?view=sql-server-ver17"
+        },
+        {
+          "section": "CTE scope, nonmaterialization and recursive rules",
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver17"
+        },
+        {
+          "section": "MAXRECURSION range/default, termination and recursion error",
+          "verdict": "supported",
+          "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/recursive-common-table-expression-transact-sql?view=sql-server-ver17"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-union-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-except-and-intersect-transact-sql?view=sql-server-ver17",
-        "https://learn.microsoft.com/en-us/sql/t-sql/queries/recursive-common-table-expression-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/relational-databases/performance/subqueries?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/queries/recursive-common-table-expression-transact-sql?view=sql-server-ver17",
+        "https://learn.microsoft.com/en-us/sql/t-sql/language-elements/set-operators-except-and-intersect-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-join?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/table-value-constructor-transact-sql?view=sql-server-ver17",
         "https://learn.microsoft.com/en-us/sql/t-sql/queries/from-using-pivot-and-unpivot?view=sql-server-ver17"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked all concise/deep interview statements, tradeoffs, five scenarios, weak-answer list, and rubric against SQL Server references. Verified join preservation/cardinality, set operators, NULL traps, scalar subquery errors, CTE scope/materialization, recursive CTE components, and MAXRECURSION semantics. No factual corrections or omissions found; the MAXRECURSION scenario correctly separates increasing the cap from cycle prevention."
     },
     {
       "taskId": "t03-005-overview",
