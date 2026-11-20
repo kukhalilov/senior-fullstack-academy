@@ -28,6 +28,10 @@
         "Fast hash SHA-256 unsuitable alone for password storage",
         "Constant-time verifier comparison",
         "Password length policy",
+        "Password length policy under NIST SP 800-63B Rev. 4",
+        "Unicode password handling (code points and NFC normalization)",
+        "Composition rules and periodic password changes under NIST SP 800-63B Rev. 4",
+        "Full-password verification without truncation",
         "Common-password blocklist",
         "Password manager support",
         "Credential stuffing",
@@ -56,6 +60,7 @@
         "WebAuthn",
         "FIDO2",
         "Passkey",
+        "Web Authentication Level 3 (W3C Recommendation, 2026)",
         "Platform authenticator",
         "Roaming authenticator",
         "Relying-party ID (RP ID)",
@@ -119,17 +124,27 @@
       "sourceUrls": [
         "https://pages.nist.gov/800-63-4/sp800-63b.html"
       ]
+    },
+    {
+      "edition": "Web Authentication Level 3 (W3C Recommendation, 2026)",
+      "items": [
+        "WebAuthn Level 3 became a W3C Recommendation on 2026-08-25, succeeding Level 2. This is the specification status; browser/platform support and passkey synchronization behavior vary by implementation."
+      ],
+      "sourceUrls": [
+        "https://www.w3.org/TR/webauthn-3/"
+      ]
     }
   ],
   "sourceSnapshot": {
     "authority": "OWASP Password Storage, MFA, Authentication Cheat Sheets and NIST SP 800-63B Revision 4",
-    "edition": "OWASP current guidance; NIST SP 800-63B Rev. 4 checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "OWASP current guidance; NIST SP 800-63B Rev. 4 (2025); WebAuthn Level 3 W3C Recommendation (2026)",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
       "https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html",
       "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
       "https://pages.nist.gov/800-63-4/sp800-63b.html"
+      ,"https://www.w3.org/TR/webauthn-3/"
     ]
   },
   "scopeExclusions": [

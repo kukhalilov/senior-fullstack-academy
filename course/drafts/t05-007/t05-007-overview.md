@@ -25,3 +25,6 @@ Use purpose-built password hashing, not raw SHA-256 or encryption. A stronger wo
 
 ## What later lessons cover
 The concepts lesson builds password and authenticator lifecycles. Two reference lessons cover password storage and MFA/recovery inventories. Practice and interview lessons apply the controls to compromise and recovery scenarios.
+
+## Current standards notes
+NIST SP 800-63B Rev. 4 provides specific password guidance in its scope: minimum 15 characters for single-factor passwords, at least 8 when the password is only used as part of MFA, and support for a maximum length of at least 64 characters. It also addresses blocklists, Unicode normalization, full-password verification, composition rules, and periodic changes. These details are introduced in the reference lesson and must not be generalized as universal law. WebAuthn Level 3 became a W3C Recommendation on 2026-08-25; platform support and passkey synchronization behavior still vary. [NIST](https://pages.nist.gov/800-63-4/sp800-63b.html) · [W3C WebAuthn Level 3](https://www.w3.org/TR/webauthn-3/)

@@ -23,6 +23,8 @@
 - A user changes their password after suspected compromise. Which sessions or refresh credentials need revocation, and how is the user notified?
 - A compliance team cites NIST AAL2. Explain why requirements must be interpreted within SP 800-63B's assurance context rather than generalized to every application.
 - A service wants SMS because it is easy to use. Explain its limitations and how to offer stronger choices without excluding users who need recovery.
+- A team requires 12-character passwords with mixed uppercase, digits, and symbols and forces changes every 90 days. What would you review against current NIST guidance, and what is its scope?
+- A product manager asks whether WebAuthn Level 3 means every user can now use every new passkey feature. Explain standards status versus implementation support.
 
 ## Tradeoffs and alternatives
 Argon2id is memory-hard and a strong option where supported; scrypt, bcrypt, or PBKDF2 may fit compatibility or validated-module requirements with appropriate parameters. A higher cost strengthens offline resistance but consumes login resources. TOTP is broadly supported but phishable; origin-bound public-key credentials resist phishing but require device and recovery planning. NIST SP 800-63B Rev. 4 assigns controls by assurance level; see [the current publication](https://pages.nist.gov/800-63-4/sp800-63b.html).
@@ -35,3 +37,8 @@ Argon2id is memory-hard and a strong option where supported; scrypt, bcrypt, or 
 
 ## Self-check rubric
 You can distinguish hash, salt, pepper, and encryption; explain authenticator factors and phishing resistance; describe reset and MFA replacement protections; and balance abuse throttling with denial-of-service and account-enumeration risks.
+
+## Additional scenario answers
+For a system following NIST SP 800-63B Rev. 4, a single-factor password minimum is 15 characters; a password used only as part of MFA may have a minimum of 8; the verifier SHOULD permit at least 64 characters. NIST prohibits composition rules and periodic changes absent evidence of compromise. For Unicode, it says count code points and SHOULD normalize to NFC before hashing. These details are requirements or recommendations in NIST's covered digital-identity framework, not automatically universal law. [NIST §3.1.1](https://pages.nist.gov/800-63-4/sp800-63b.html).
+
+WebAuthn Level 3 became a W3C Recommendation on 2026-08-25 and succeeds Level 2. That is the specification's standards status, not a promise that all deployed browsers, operating systems, authenticators, or passkey providers implement every feature. Design capability detection and fallback based on supported behavior, while keeping server-side challenge, origin, RP ID, and signature verification authoritative. [W3C WebAuthn Level 3](https://www.w3.org/TR/webauthn-3/).

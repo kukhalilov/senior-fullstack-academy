@@ -27,13 +27,19 @@
         "Access-Control-Request-Method",
         "Access-Control-Request-Headers",
         "Preflight request",
+        "Preflight request excludes credentials",
         "OPTIONS preflight response",
         "CORS simple request",
         "CORS safelisted method",
+        "CORS safelisted methods (GET, HEAD, POST)",
         "CORS safelisted request header",
+        "CORS safelisted request header names and value constraints",
+        "Safelisted Content-Type media types",
         "CORS safelisted response header",
+        "CORS safelisted response-header names",
         "Credentialed CORS request",
         "Wildcard origin and credentials incompatibility",
+        "Credential mode and wildcard semantics for allow headers/methods/exposed headers",
         "Vary: Origin",
         "CORS network error",
         "CORS response-sharing check",
@@ -73,11 +79,30 @@
     "https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-11.0",
     "https://wicg.github.io/private-network-access/"
   ],
-  "versionNotes": [],
+  "versionNotes": [
+    {
+      "edition": "WHATWG Fetch Living Standard checked 2026-11-20",
+      "items": [
+        "The Fetch Standard is a living standard; CORS safelists, preflight processing, credential behavior, redirect handling, and cache rules must be checked against the current text rather than treated as a frozen API snapshot."
+      ],
+      "sourceUrls": [
+        "https://fetch.spec.whatwg.org/"
+      ]
+    },
+    {
+      "edition": "Private Network Access Draft Community Group Report (2024-09-26)",
+      "items": [
+        "The linked PNA text remains a Draft Community Group Report and explicitly is not a W3C Standard or Standards Track document. Do not present proposed PNA behavior as universal deployed browser behavior."
+      ],
+      "sourceUrls": [
+        "https://wicg.github.io/private-network-access/"
+      ]
+    }
+  ],
   "sourceSnapshot": {
     "authority": "WHATWG Fetch Standard, MDN Web Docs, and Microsoft ASP.NET Core 11 CORS documentation",
-    "edition": "Fetch CORS protocol and ASP.NET Core 11 docs checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "WHATWG Fetch Living Standard (updated 2026-11-14); ASP.NET Core 11 docs; PNA Draft CG Report (2024)",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://fetch.spec.whatwg.org/",
       "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS",

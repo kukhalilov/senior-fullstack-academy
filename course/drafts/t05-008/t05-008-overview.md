@@ -25,3 +25,6 @@ Allow only trusted origins needed by the browser application. Normalize and comp
 
 ## What later lessons cover
 The next lesson traces the CORS protocol and credential policy. The assigned names reference explains request/response headers, preflight caching, redirects, and draft PNA boundaries.
+
+## Current protocol details
+The current Fetch Living Standard defines the method safelist as `GET`, `HEAD`, and `POST`; header safelisting also depends on value and format limits. A preflight uses `OPTIONS` and never carries credentials, even when the actual request will. The standard was last updated 2026-11-14 when checked for this course. The linked Private Network Access document remains a 2024 Draft Community Group Report, not a W3C Standard. [Fetch](https://fetch.spec.whatwg.org/) · [PNA status](https://wicg.github.io/private-network-access/)
