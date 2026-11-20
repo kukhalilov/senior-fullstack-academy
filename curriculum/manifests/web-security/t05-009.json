@@ -36,11 +36,21 @@
         "IDataProtectionProvider",
         "IDataProtector.Protect",
         "IDataProtector.Unprotect",
+        "IDataProtectionProvider.CreateProtector",
+        "DataProtectionCommonExtensions.Protect(string)",
+        "DataProtectionCommonExtensions.Unprotect(string)",
+        "CreateProtector purpose-chain overloads (IEnumerable<string> and params string[])",
+        "ISpanDataProtector (.NET 11)",
+        "ISpanDataProtector.Protect<TWriter>",
+        "ISpanDataProtector.Unprotect<TWriter>",
         "Purpose chain",
         "Purpose isolation",
         "Application discriminator",
         "Cryptographic payload format",
-        "ITimeLimitedDataProtector"
+        "ITimeLimitedDataProtector",
+        "ITimeLimitedDataProtector.Protect overloads (byte[]/string, DateTimeOffset/TimeSpan)",
+        "ITimeLimitedDataProtector.Unprotect overloads and expiration output",
+        "IDataProtector.ToTimeLimitedDataProtector"
       ]
     },
     {
@@ -51,20 +61,41 @@
         "Key lifetime",
         "Key activation date",
         "Key expiration date",
+        "Default Data Protection key lifetime (90 days; minimum configurable lifetime 7 days)",
+        "Default key activation delay (2 days) and rolling",
         "Key revocation",
+        "IKeyManager.GetAllKeys",
+        "IKeyManager.CreateNewKey",
+        "IKeyManager.RevokeKey",
+        "IKeyManager.RevokeAllKeys",
+        "IKeyManager.GetCacheExpirationToken",
+        "Key-ring cache refresh and cross-replica revocation delay",
+        "Key immutability after persistence",
         "Key-ring persistence",
         "PersistKeysToFileSystem",
         "PersistKeysToDbContext",
         "PersistKeysToAzureBlobStorage",
+        "PersistKeysToRedis",
+        "PersistKeysToRegistry (Windows)",
         "ProtectKeysWithCertificate",
+        "ProtectKeysWithAzureKeyVault",
+        "UnprotectKeysWithAnyCertificate",
+        "ProtectKeysWith* key-encryption extension family",
         "ProtectKeysWithDpapi",
         "ProtectKeysWithDpapiNG",
         "SetApplicationName",
+        "SetDefaultKeyLifetime",
         "DisableAutomaticKeyGeneration",
+        "AddDataProtection returning IDataProtectionBuilder",
+        "IDataProtectionBuilder.UseCryptographicAlgorithms",
+        "IDataProtectionBuilder extension and provider package boundaries",
         "Key encryption at rest",
         "Shared key ring across replicas",
         "Container ephemeral filesystem risk",
         "Secret manager",
+        "ASP.NET Core Secret Manager and user-secrets development-only boundary",
+        "dotnet user-secrets init, set, list, remove, clear",
+        "UserSecretsId and AddUserSecrets",
         "Environment-variable secret injection",
         "Cloud secret manager",
         "Secret rotation",
@@ -107,15 +138,32 @@
     "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
     "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
   ],
-  "versionNotes": [],
+  "versionNotes": [
+    {
+      "edition": ".NET 11 / ASP.NET Core 11 (released 2026-11-10)",
+      "items": [
+        ".NET 11 is the latest release as of the 2026-11-20 source check (STS; .NET 10 remains LTS). ASP.NET Core 11 adds the optimized ISpanDataProtector span/buffer-writer surface, while IDataProtector's byte-array API and string extension methods remain available. Do not use prerelease API pages as evidence for features absent from the .NET 11 stable contract."
+      ],
+      "sourceUrls": [
+        "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector"
+      ]
+    }
+  ],
   "sourceSnapshot": {
     "authority": "Microsoft ASP.NET Core 11 Data Protection and OWASP Secrets Management documentation",
-    "edition": "ASP.NET Core 11 Data Protection checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "ASP.NET Core 11 Data Protection and .NET 11 API surface checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
       "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+      "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core",
       "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
     ]
   },

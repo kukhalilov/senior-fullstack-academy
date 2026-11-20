@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1564,
-    "pending": 785,
-    "claimsChecked": 84408,
-    "claimsCorrected": 3573,
+    "reviewed": 1570,
+    "pending": 779,
+    "claimsChecked": 84657,
+    "claimsCorrected": 3575,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1956,6 +1956,28 @@
         "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "Data protection, cryptographic purpose isolation, key lifecycle, and secret management (t05-009; all six lessons)",
+      "status": "full claim and frozen-inventory audit complete; draft states retained",
+      "findings": [
+        "Reviewed all six lessons and every inventory item against current ASP.NET Core 11/.NET 11 official docs and OWASP guidance. Added omitted APIs and provider names including ISpanDataProtector, time-limited APIs, IKeyManager, Redis/registry/Key Vault, certificate rollover, builder configuration, and Secret Manager commands.",
+        "Clarified 90-day default lifetime, seven-day minimum, two-day activation, rolling, persisted-key immutability, process-local cache refresh, revocation versus destructive deletion, explicit at-rest protection, Key Vault versus repository roles, and unencrypted development-only User Secrets. Checked examples, exercises, interview answers, and current .NET 11 notes; no unresolved in-scope gaps remain. Lessons remain drafts."
+      ],
+      "sources": [
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+        "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core"
       ]
     }
   ],
@@ -135219,120 +135241,528 @@
       "topicId": "t05-009",
       "phase": "overview",
       "draft": "course/drafts/t05-009/t05-009-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 22,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
+              "section": "Data Protection design and purpose isolation",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
+              "section": "Configuration builder and application identity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
+              "section": "Key lifecycle, revocation, rolling, cache and IKeyManager",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+              "section": "Persisted key immutability",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+              "section": "Persistence providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+              "section": "At-rest encryption providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+              "section": "Time-limited protector APIs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+              "section": "Stable .NET 11 span API signatures",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+              "section": "User-secrets development boundary",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+              "section": "Secret lifecycle guidance",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core",
+              "section": ".NET release and support policy",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+        "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Verified the protection mental model, framework boundaries, key rotation and replica behavior, and secret-store distinction. Added current key defaults, cache propagation, persistence at-rest warning, and development-only user-secrets boundary."
     },
     {
       "taskId": "t05-009-concepts",
       "topicId": "t05-009",
       "phase": "concepts",
       "draft": "course/drafts/t05-009/t05-009-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 37,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
+              "section": "Data Protection design and purpose isolation",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
+              "section": "Configuration builder and application identity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
+              "section": "Key lifecycle, revocation, rolling, cache and IKeyManager",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+              "section": "Persisted key immutability",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+              "section": "Persistence providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+              "section": "At-rest encryption providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+              "section": "Time-limited protector APIs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+              "section": "Stable .NET 11 span API signatures",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+              "section": "User-secrets development boundary",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+              "section": "Secret lifecycle guidance",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core",
+              "section": ".NET release and support policy",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+        "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked claims, examples, and knowledge checks. Clarified 90-day lifetime and two-day activation, local cache revocation behavior, destructive deletion, explicit repository encryption, and user-secrets warning."
     },
     {
       "taskId": "t05-009-reference-protection-primitives-and-purpose",
       "topicId": "t05-009",
       "phase": "reference",
       "draft": "course/drafts/t05-009/t05-009-reference-protection-primitives-and-purpose.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 57,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
+              "section": "Data Protection design and purpose isolation",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
+              "section": "Configuration builder and application identity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
+              "section": "Key lifecycle, revocation, rolling, cache and IKeyManager",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+              "section": "Persisted key immutability",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+              "section": "Persistence providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+              "section": "At-rest encryption providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+              "section": "Time-limited protector APIs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+              "section": "Stable .NET 11 span API signatures",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+              "section": "User-secrets development boundary",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+              "section": "Secret lifecycle guidance",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core",
+              "section": ".NET release and support policy",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+        "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked each inventory name and explanation, including purpose-chain overloads, string extensions, time-limited overloads, and stable .NET 11 span APIs. Added omitted names and verified examples."
     },
     {
       "taskId": "t05-009-reference-key-ring-and-secret-lifecycle",
       "topicId": "t05-009",
       "phase": "reference",
       "draft": "course/drafts/t05-009/t05-009-reference-key-ring-and-secret-lifecycle.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 78,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
+              "section": "Data Protection design and purpose isolation",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
+              "section": "Configuration builder and application identity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
+              "section": "Key lifecycle, revocation, rolling, cache and IKeyManager",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+              "section": "Persisted key immutability",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+              "section": "Persistence providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+              "section": "At-rest encryption providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+              "section": "Time-limited protector APIs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+              "section": "Stable .NET 11 span API signatures",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+              "section": "User-secrets development boundary",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+              "section": "Secret lifecycle guidance",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core",
+              "section": ".NET release and support policy",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+        "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked inventory and provider boundaries. Added IKeyManager, Redis/registry/Key Vault, certificate rollover, builder, user-secrets commands, defaults, immutability, and cache refresh. Distinguished persistence from at-rest encryption and revocation from deletion."
     },
     {
       "taskId": "t05-009-practice",
       "topicId": "t05-009",
       "phase": "practice",
       "draft": "course/drafts/t05-009/t05-009-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 24,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
+              "section": "Data Protection design and purpose isolation",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
+              "section": "Configuration builder and application identity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
+              "section": "Key lifecycle, revocation, rolling, cache and IKeyManager",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+              "section": "Persisted key immutability",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+              "section": "Persistence providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+              "section": "At-rest encryption providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+              "section": "Time-limited protector APIs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+              "section": "Stable .NET 11 span API signatures",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+              "section": "User-secrets development boundary",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+              "section": "Secret lifecycle guidance",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core",
+              "section": ".NET release and support policy",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+        "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Verified scenarios, solutions, expected behavior, and edge cases against framework lifecycle and OWASP guidance. Solutions account for cache propagation, explicit at-rest protection, retention, trust, and issuer-side revocation."
     },
     {
       "taskId": "t05-009-interview",
       "topicId": "t05-009",
       "phase": "interview",
       "draft": "course/drafts/t05-009/t05-009-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
+              "section": "Data Protection design and purpose isolation",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
+              "section": "Configuration builder and application identity",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
+              "section": "Key lifecycle, revocation, rolling, cache and IKeyManager",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+              "section": "Persisted key immutability",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+              "section": "Persistence providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+              "section": "At-rest encryption providers",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+              "section": "Time-limited protector APIs",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+              "section": "Stable .NET 11 span API signatures",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+              "section": "User-secrets development boundary",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+              "section": "Secret lifecycle guidance",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core",
+              "section": ".NET release and support policy",
+              "verdict": "supported"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-management?view=aspnetcore-11.0",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-immutability?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-encryption-at-rest?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/consumer-apis/limited-lifetime-payloads?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.ispandataprotector",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+        "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Verified core/deep/scenario answers and tradeoffs. Distinguished rotation, revocation, deletion, replica cache refresh, and secret managers from the Data Protection key ring."
     },
     {
       "taskId": "t05-010-overview",
