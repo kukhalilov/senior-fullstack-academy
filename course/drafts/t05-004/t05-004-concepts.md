@@ -20,6 +20,10 @@ State, nonce, redirect URI, issuer, audience, and PKCE defend different boundari
 
 Discovery metadata and JWKS endpoints automate configuration and key retrieval, but their issuer and origin must be trusted and validated. Automatically discovering endpoints from arbitrary user-controlled identifiers can become an SSRF or impersonation path. The OpenID Foundation's [Discovery specification](https://openid.net/specs/openid-connect-discovery-1_0.html) defines metadata retrieval and validation.
 
+Public browser clients must use PKCE under RFC 10017 (August 2026); native apps must use an external user agent and PKCE under RFC 8252 and RFC 9700. For code verifiers, RFC 7636 specifies 43–128 unreserved characters, recommends 32 cryptographically random octets encoded as 43 base64url characters, and requires S256 when the client supports it.
+
+When multiple authorization servers are possible, RFC 9700 requires a mix-up defense: use the authorization-response `iss` parameter (RFC 9207), another validated issuer value such as an OIDC ID token `iss`, or distinct redirect URIs. Do not treat arbitrary discovery URLs as trusted input. OIDC subjects are scoped to an issuer and can be pairwise per client; UserInfo `sub` must match the ID token `sub`.
+
 ## Worked examples
 **Code interception:** a malicious app captures a redirect code from a native app. Without PKCE, it may redeem the code. With PKCE, it lacks the verifier. Exact redirect URI and state remain necessary.
 

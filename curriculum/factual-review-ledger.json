@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1534,
-    "pending": 815,
-    "claimsChecked": 83153,
-    "claimsCorrected": 3499,
+    "reviewed": 1540,
+    "pending": 809,
+    "claimsChecked": 83506,
+    "claimsCorrected": 3546,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1901,6 +1901,24 @@
       ],
       "findings": [
         "Reviewed all six lessons and reconciled all 54 manifest inventory items. Checked current OWASP session controls and browser cookie behavior; updated localStorage/sessionStorage advice to the current credential-exposure recommendation, distinguished Secure/HttpOnly/SameSite, and verified session rotation, server-side expiration/revocation, and verifier-hash limits. Checked JWT compact representations, signed versus encrypted content, registered claim semantics (generic registered claims are optional; profiles impose required claims), algorithm/key validation, issuer/audience/type separation, `kid` trust boundary, nested tokens, and revocation limits against RFC 7519/8725. Updated OAuth refresh-token language to RFC 9700 public-client MUST sender-constrain or rotate, with server state required for rotation-based replay detection; verified DPoP and mTLS references. Examples, exercises and interview answers were reconciled. No unresolved material error or manifest omission remains; lessons stay in draft."
+      ]
+    },
+    {
+      "scope": "OAuth 2.0, OIDC, PKCE, browser/native clients, and token recipients (t05-004; all six lesson units)",
+      "status": "full claim and frozen-inventory audit complete; draft states retained",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://www.rfc-editor.org/rfc/rfc10017.html",
+        "https://www.rfc-editor.org/rfc/rfc7636.html",
+        "https://openid.net/specs/openid-connect-core-1_0-18.html",
+        "https://www.rfc-editor.org/rfc/rfc9207.html",
+        "https://www.rfc-editor.org/rfc/rfc8252.html",
+        "https://openid.net/specs/openid-connect-discovery-1_0.html",
+        "https://www.rfc-editor.org/rfc/rfc8414.html",
+        "https://www.rfc-editor.org/rfc/rfc7519.html"
+      ],
+      "findings": [
+        "Reviewed all six lessons and reconciled all 53 manifest items. Updated checked source snapshot to include RFC 10017 (August 2026) browser-based-app guidance; verified RFC 9700 BCP and exact normative strengths, PKCE verifier/S256 requirements, issuer parameter/mix-up defense, exact redirects and permitted native loopback port behavior against RFCs 9207/8252/7636. Checked OIDC ID-token issuer/audience/nonce rules, issuer-scoped and potentially pairwise `sub`, UserInfo access-token use and subject matching, discovery/JWKS trust, access-token audience, and explicit treatment of OAuth 2.1 as not finalized. Corrected cases where `state` was implied mandatory despite PKCE CSRF protection and where nonce might be mistaken for public-client code interception protection. All reference inventory terms, examples, exercises, and interview guidance reconciled; no unresolved issue remains, and drafts remain drafts."
       ]
     }
   ],
@@ -133601,120 +133619,386 @@
       "topicId": "t05-004",
       "phase": "overview",
       "draft": "course/drafts/t05-004/t05-004-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 51,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "All conceptual distinctions, OAuth/OIDC flow steps, public/browser/native client statements, state/nonce/PKCE/issuer/audience behavior, redirects/discovery, examples, and practice knowledge checks.",
+          "sources": [
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+              "section": "§§2.1–2.4, 4.1, 4.4, 4.11, 4.14: PKCE, CSRF/mix-up, redirect handling, implicit/ROPC deprecation, refresh-token controls",
+              "verdict": "supported; normative versus recommended language corrected"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc10017.html",
+              "section": "Browser-based OAuth application architectures and public-client PKCE requirements (August 2026)",
+              "verdict": "supported; current browser-specific guidance added"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc7636.html",
+              "section": "§4: verifier length/entropy and S256 derivation",
+              "verdict": "supported; exact verifier bounds and S256 requirement included"
+            },
+            {
+              "url": "https://openid.net/specs/openid-connect-core-1_0-18.html",
+              "section": "OIDC ID token audience/issuer/nonce validation, UserInfo subject matching",
+              "verdict": "supported; OIDC transaction and token-recipient claims verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9207.html",
+              "section": "Authorization response issuer parameter and client validation",
+              "verdict": "supported; precise conditional use added"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc8252.html",
+              "section": "Native-app external user-agent, PKCE, loopback redirect ports",
+              "verdict": "supported; native app guidance verified"
+            }
+          ],
+          "verdict": "All enumerated claims and manifest scope verified against current primary IETF/OpenID specifications; corrections are summarized in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://datatracker.ietf.org/doc/html/rfc9700",
         "https://datatracker.ietf.org/doc/html/rfc7636",
         "https://openid.net/specs/openid-connect-core-1_0.html",
-        "https://openid.net/specs/openid-connect-discovery-1_0.html"
+        "https://openid.net/specs/openid-connect-discovery-1_0.html",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://www.rfc-editor.org/rfc/rfc10017.html",
+        "https://www.rfc-editor.org/rfc/rfc7636.html",
+        "https://openid.net/specs/openid-connect-core-1_0-18.html",
+        "https://www.rfc-editor.org/rfc/rfc9207.html",
+        "https://www.rfc-editor.org/rfc/rfc8252.html",
+        "https://www.rfc-editor.org/rfc/rfc6749.html",
+        "https://www.rfc-editor.org/rfc/rfc8414.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-004-concepts",
       "topicId": "t05-004",
       "phase": "concepts",
       "draft": "course/drafts/t05-004/t05-004-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 51,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "All conceptual distinctions, OAuth/OIDC flow steps, public/browser/native client statements, state/nonce/PKCE/issuer/audience behavior, redirects/discovery, examples, and practice knowledge checks.",
+          "sources": [
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+              "section": "§§2.1–2.4, 4.1, 4.4, 4.11, 4.14: PKCE, CSRF/mix-up, redirect handling, implicit/ROPC deprecation, refresh-token controls",
+              "verdict": "supported; normative versus recommended language corrected"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc10017.html",
+              "section": "Browser-based OAuth application architectures and public-client PKCE requirements (August 2026)",
+              "verdict": "supported; current browser-specific guidance added"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc7636.html",
+              "section": "§4: verifier length/entropy and S256 derivation",
+              "verdict": "supported; exact verifier bounds and S256 requirement included"
+            },
+            {
+              "url": "https://openid.net/specs/openid-connect-core-1_0-18.html",
+              "section": "OIDC ID token audience/issuer/nonce validation, UserInfo subject matching",
+              "verdict": "supported; OIDC transaction and token-recipient claims verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9207.html",
+              "section": "Authorization response issuer parameter and client validation",
+              "verdict": "supported; precise conditional use added"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc8252.html",
+              "section": "Native-app external user-agent, PKCE, loopback redirect ports",
+              "verdict": "supported; native app guidance verified"
+            }
+          ],
+          "verdict": "All enumerated claims and manifest scope verified against current primary IETF/OpenID specifications; corrections are summarized in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://datatracker.ietf.org/doc/html/rfc9700",
         "https://datatracker.ietf.org/doc/html/rfc7636",
         "https://openid.net/specs/openid-connect-core-1_0.html",
-        "https://openid.net/specs/openid-connect-discovery-1_0.html"
+        "https://openid.net/specs/openid-connect-discovery-1_0.html",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://www.rfc-editor.org/rfc/rfc10017.html",
+        "https://www.rfc-editor.org/rfc/rfc7636.html",
+        "https://openid.net/specs/openid-connect-core-1_0-18.html",
+        "https://www.rfc-editor.org/rfc/rfc9207.html",
+        "https://www.rfc-editor.org/rfc/rfc8252.html",
+        "https://www.rfc-editor.org/rfc/rfc6749.html",
+        "https://www.rfc-editor.org/rfc/rfc8414.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-004-reference-actors-and-protocol-artifacts",
       "topicId": "t05-004",
       "phase": "reference",
       "draft": "course/drafts/t05-004/t05-004-reference-actors-and-protocol-artifacts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 62,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "All 26 actor/artifact inventory entries and their definitions/comparisons/examples, including UserInfo, discovery, JWKS, client types, tokens, scopes, subjects, and metadata trust.",
+          "sources": [
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+              "section": "OAuth actors, access-token audience, client types and security best practices",
+              "verdict": "supported; token purpose and client boundaries checked"
+            },
+            {
+              "url": "https://openid.net/specs/openid-connect-core-1_0-18.html",
+              "section": "OIDC OP/RP, ID token audience, issuer-scoped subject, UserInfo HTTPS and subject match",
+              "verdict": "supported; subject/global identity caveat corrected"
+            },
+            {
+              "url": "https://openid.net/specs/openid-connect-discovery-1_0.html",
+              "section": "Discovery metadata fields and JWKS URI",
+              "verdict": "supported; trusted issuer/origin requirement confirmed"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc8414.html",
+              "section": "OAuth authorization server metadata issuer/endpoints",
+              "verdict": "supported; metadata trust boundary checked"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc7519.html",
+              "section": "JWT claims framing for ID-token descriptions",
+              "verdict": "supported; referenced where relevant"
+            }
+          ],
+          "verdict": "All enumerated claims and manifest scope verified against current primary IETF/OpenID specifications; corrections are summarized in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://datatracker.ietf.org/doc/html/rfc9700",
         "https://datatracker.ietf.org/doc/html/rfc7636",
         "https://openid.net/specs/openid-connect-core-1_0.html",
-        "https://openid.net/specs/openid-connect-discovery-1_0.html"
+        "https://openid.net/specs/openid-connect-discovery-1_0.html",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://openid.net/specs/openid-connect-core-1_0-18.html",
+        "https://www.rfc-editor.org/rfc/rfc8414.html",
+        "https://www.rfc-editor.org/rfc/rfc7519.html",
+        "https://www.rfc-editor.org/rfc/rfc10017.html",
+        "https://www.rfc-editor.org/rfc/rfc6749.html",
+        "https://www.rfc-editor.org/rfc/rfc7636.html",
+        "https://www.rfc-editor.org/rfc/rfc8252.html",
+        "https://www.rfc-editor.org/rfc/rfc9207.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-004-reference-flows-and-security",
       "topicId": "t05-004",
       "phase": "reference",
       "draft": "course/drafts/t05-004/t05-004-reference-flows-and-security.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 83,
+      "claimsCorrected": 15,
+      "evidence": [
+        {
+          "claims": "All 27 assigned flow/security entries, RFC normative language, public/confidential clients, PKCE mechanics, response issuer, mix-up, redirects, browser/native patterns, legacy grant status, token binding, and comparisons.",
+          "sources": [
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+              "section": "OAuth BCP normative text for PKCE, state/nonce CSRF, mix-up defenses, exact redirects, implicit and password grants, refresh tokens",
+              "verdict": "supported; fixed any overbroad statements and cited 2025 BCP"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc7636.html",
+              "section": "Verifier 43–128 chars, random generation, S256 mechanics",
+              "verdict": "supported; concrete requirements added"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9207.html",
+              "section": "Authorization response `iss` semantics and validation",
+              "verdict": "supported; conditional wording corrected"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc8252.html",
+              "section": "External user agent, loopback IP redirect port handling and app redirects",
+              "verdict": "supported; native guidance reconciled"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc10017.html",
+              "section": "Browser-based application public-client and PKCE requirements as of Aug 2026",
+              "verdict": "supported; current standard added to scope and lessons"
+            },
+            {
+              "url": "https://openid.net/specs/openid-connect-core-1_0-18.html",
+              "section": "Nonce and ID-token validation responsibilities",
+              "verdict": "supported; corrected distinction between nonce and code theft"
+            }
+          ],
+          "verdict": "All enumerated claims and manifest scope verified against current primary IETF/OpenID specifications; corrections are summarized in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://datatracker.ietf.org/doc/html/rfc9700",
         "https://datatracker.ietf.org/doc/html/rfc7636",
         "https://openid.net/specs/openid-connect-core-1_0.html",
-        "https://openid.net/specs/openid-connect-discovery-1_0.html"
+        "https://openid.net/specs/openid-connect-discovery-1_0.html",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://www.rfc-editor.org/rfc/rfc7636.html",
+        "https://www.rfc-editor.org/rfc/rfc9207.html",
+        "https://www.rfc-editor.org/rfc/rfc8252.html",
+        "https://www.rfc-editor.org/rfc/rfc10017.html",
+        "https://openid.net/specs/openid-connect-core-1_0-18.html",
+        "https://www.rfc-editor.org/rfc/rfc6749.html",
+        "https://www.rfc-editor.org/rfc/rfc8414.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-004-practice",
       "topicId": "t05-004",
       "phase": "practice",
       "draft": "course/drafts/t05-004/t05-004-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 53,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "All exercises/answers, interview responses, token recipient and state/nonce/issuer scenarios, audience/scope and client classification, current version status, and tradeoffs.",
+          "sources": [
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+              "section": "Authorization code, redirects, public clients, mix-up, legacy grants",
+              "verdict": "supported; response/security scenarios verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc10017.html",
+              "section": "Current browser client BCP architecture and PKCE",
+              "verdict": "supported; recent guidance added to interview"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9207.html",
+              "section": "Authorization response issuer mismatch",
+              "verdict": "supported; practice scenario added"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc7636.html",
+              "section": "PKCE code interception mechanics",
+              "verdict": "supported; code verifier claims checked"
+            },
+            {
+              "url": "https://openid.net/specs/openid-connect-core-1_0-18.html",
+              "section": "ID-token audience and UserInfo subject checks",
+              "verdict": "supported; practice answer refined"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc8252.html",
+              "section": "Native-app redirect and external user agent",
+              "verdict": "supported; client flow scenarios checked"
+            }
+          ],
+          "verdict": "All enumerated claims and manifest scope verified against current primary IETF/OpenID specifications; corrections are summarized in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://datatracker.ietf.org/doc/html/rfc9700",
         "https://datatracker.ietf.org/doc/html/rfc7636",
         "https://openid.net/specs/openid-connect-core-1_0.html",
-        "https://openid.net/specs/openid-connect-discovery-1_0.html"
+        "https://openid.net/specs/openid-connect-discovery-1_0.html",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://www.rfc-editor.org/rfc/rfc10017.html",
+        "https://www.rfc-editor.org/rfc/rfc9207.html",
+        "https://www.rfc-editor.org/rfc/rfc7636.html",
+        "https://openid.net/specs/openid-connect-core-1_0-18.html",
+        "https://www.rfc-editor.org/rfc/rfc8252.html",
+        "https://www.rfc-editor.org/rfc/rfc6749.html",
+        "https://www.rfc-editor.org/rfc/rfc8414.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-004-interview",
       "topicId": "t05-004",
       "phase": "interview",
       "draft": "course/drafts/t05-004/t05-004-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 53,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "All exercises/answers, interview responses, token recipient and state/nonce/issuer scenarios, audience/scope and client classification, current version status, and tradeoffs.",
+          "sources": [
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+              "section": "Authorization code, redirects, public clients, mix-up, legacy grants",
+              "verdict": "supported; response/security scenarios verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc10017.html",
+              "section": "Current browser client BCP architecture and PKCE",
+              "verdict": "supported; recent guidance added to interview"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9207.html",
+              "section": "Authorization response issuer mismatch",
+              "verdict": "supported; practice scenario added"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc7636.html",
+              "section": "PKCE code interception mechanics",
+              "verdict": "supported; code verifier claims checked"
+            },
+            {
+              "url": "https://openid.net/specs/openid-connect-core-1_0-18.html",
+              "section": "ID-token audience and UserInfo subject checks",
+              "verdict": "supported; practice answer refined"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc8252.html",
+              "section": "Native-app redirect and external user agent",
+              "verdict": "supported; client flow scenarios checked"
+            }
+          ],
+          "verdict": "All enumerated claims and manifest scope verified against current primary IETF/OpenID specifications; corrections are summarized in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://datatracker.ietf.org/doc/html/rfc9700",
         "https://datatracker.ietf.org/doc/html/rfc7636",
         "https://openid.net/specs/openid-connect-core-1_0.html",
-        "https://openid.net/specs/openid-connect-discovery-1_0.html"
+        "https://openid.net/specs/openid-connect-discovery-1_0.html",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://www.rfc-editor.org/rfc/rfc10017.html",
+        "https://www.rfc-editor.org/rfc/rfc9207.html",
+        "https://www.rfc-editor.org/rfc/rfc7636.html",
+        "https://openid.net/specs/openid-connect-core-1_0-18.html",
+        "https://www.rfc-editor.org/rfc/rfc8252.html",
+        "https://www.rfc-editor.org/rfc/rfc6749.html",
+        "https://www.rfc-editor.org/rfc/rfc8414.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-005-overview",

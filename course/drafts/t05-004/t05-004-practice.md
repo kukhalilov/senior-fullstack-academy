@@ -14,6 +14,7 @@ A native app receives an authorization code through its redirect. Another app in
 3. The client validates a returned `state` only for presence, not equality to the stored request value. What is missing?
 4. An authorization server uses exact redirects, but the client callback has `/redirect?next=` open redirect behavior. Explain the risk.
 5. A client requests `admin.read admin.write profile` for a read-only page. What principle applies?
+6. The authorization response contains an unexpected `iss` value. What should the client do?
 
 ## Progressive hints
 1. Who can inspect browser code? 2. Who is the intended ID-token recipient? 3. Correlation requires matching transaction values. 4. A code can be forwarded after reaching a trusted endpoint. 5. Limit delegated authority.
@@ -24,6 +25,7 @@ A native app receives an authorization code through its redirect. Another app in
 3. Compare the returned state with the unpredictable value stored for the initiating transaction, then consume it. Presence alone does not bind the response.
 4. The authorization server may return the code to the registered callback, which then redirects it to an attacker-controlled destination. Remove the open redirect or allow only a strict set of destinations and avoid forwarding credentials.
 5. Least-privilege scope: request only the read scope and any profile data needed. OAuth scope semantics are defined by the issuer/resource; broader grants increase exposure. See [RFC 9700](https://datatracker.ietf.org/doc/html/rfc9700).
+6. Reject the authorization response and do not exchange the code. Under RFC 9207, when the issuer parameter is present and supported, the client compares it to the expected issuer; RFC 9700 requires a mix-up defense when the client interacts with multiple authorization servers.
 
 ## Tests and edge cases
 - Wrong issuer response: reject before token exchange or acceptance according to the flow's issuer binding.

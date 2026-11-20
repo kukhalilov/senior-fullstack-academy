@@ -23,5 +23,9 @@ A native app creates a random verifier and derives an S256 challenge. It opens t
 ## When to use it and tradeoffs
 Use Authorization Code with PKCE for public browser and native clients; do not embed a client secret in code distributed to users. Keep redirect URIs exact and tokens out of front-channel URLs. Request narrow scopes and the intended audience. Avoid legacy front-channel token delivery patterns; the current [OAuth Security BCP RFC 9700](https://datatracker.ietf.org/doc/html/rfc9700) consolidates security recommendations and deprecates insecure modes. OAuth 2.1 should not be presented as a finalized standard without checking its standards status.
 
+For native apps, RFC 8252 requires using an external user agent, typically the system browser; public clients use PKCE and registered redirect mechanisms such as loopback IP or app-claimed HTTPS links. For browser-delivered apps, RFC 10017 (August 2026) requires public clients to use PKCE and explains the distinct security tradeoffs of browser-only, token-mediating, and backend-for-frontend architectures. These details do not change the OAuth versus OIDC distinction.
+
+A decoded ID token is not enough: the relying party checks its issuer, its own client ID in `aud`, expiration and signature, and the transaction nonce when one was sent. OIDC `sub` is issuer-scoped and may be pairwise, not a global account key. The UserInfo endpoint is called with an access token, and its `sub` must match the ID token subject before claims are combined.
+
 ## What later lessons cover
 The next lesson maps actors and protocol artifacts. A reference lesson walks the code/PKCE flow and security boundaries. Other topics cover token validation/storage and provider-specific SDK configuration.
