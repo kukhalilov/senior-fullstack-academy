@@ -38,7 +38,7 @@ HTTP request → routing/authentication/CORS → cache eligibility and key
   └─ OutputCache middleware: server policy, variation, tags, store
 ```
 
-Freshness is controlled with expiration, explicit removal, tags, or versioned keys. Stampedes happen when many callers miss together and all perform the expensive load; request coalescing or locking can reduce duplicate work, but does not make the origin unlimited or guarantee a distributed lock. Invalidation and freshness need separate thought: setting a short expiration bounds possible staleness, while an invalidation signal can make an entry unusable sooner.
+Freshness is controlled with expiration, explicit removal, tags, or versioned keys. Stampedes happen when many callers miss together and all perform the expensive load; request coalescing or locking can reduce duplicate work, but does not make the origin unlimited or guarantee a distributed lock. Invalidation and freshness need separate thought: setting a short expiration bounds possible staleness, while an invalidation signal can make an entry unusable sooner. With HybridCache, a key/tag invalidation reaches the current server's local tier and the distributed secondary, but not other servers' independent local copies; their local entries can remain usable until local expiration or local invalidation.
 
 ## End-to-end walkthrough
 

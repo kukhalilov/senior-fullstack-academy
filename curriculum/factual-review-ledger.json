@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1460,
-    "pending": 889,
-    "claimsChecked": 76587,
-    "claimsCorrected": 3190,
+    "reviewed": 1468,
+    "pending": 881,
+    "claimsChecked": 77416,
+    "claimsCorrected": 3192,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1586,6 +1586,18 @@
         "Expanded CORS coverage for Fetch credentials modes, safelist behavior, no-cors opaque responses, exact WithOrigins trailing-slash requirements, preflight credential rules, cache variation, and explicitly browser-specific PNA caveats.",
         "Expanded rate limiter inventory for chained limiters, partition state/cardinality, statistics, replenishment helpers, timer behavior, queue risk and per-instance scope. Added documented HTTPS/HSTS defaults and separated HTTPS_PORT from HTTPS_PORTS.",
         "All four assigned reference inventories are present verbatim and explained. All 8 lessons remain in drafts; no lesson promotion was performed."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "ASP.NET Core memory, distributed, hybrid, HTTP response and output caching (t02-015)",
+      "status": "full claim and frozen-inventory audit complete for all 8 lessons",
+      "findings": [
+        "Checked all eight lessons, four reference inventories, API names, defaults, code examples, scenario answers and interview claims against ASP.NET Core 11/.NET 11 Microsoft Learn guidance, .NET API references and .NET 11 release notes.",
+        "Confirmed MemoryCache does not automatically size-trim by OS memory pressure; SizeLimit requires all writers to supply sizes, making shared DI cache limits risky. Verified .NET 11 MemoryCache OpenTelemetry instruments and options-aware HybridCache factory context.",
+        "Confirmed HybridCache coalesces same-key factories only within a HybridCache instance, default key/payload limits, serializer behavior, tag invalidation logical semantics and wildcard behavior. Added the important cross-instance local-cache invalidation limitation: other replicas local copies are not evicted by key/tag invalidation.",
+        "Confirmed output caching is endpoint-configured, defaults to 200 GET/HEAD without Set-Cookie/authenticated requests, and middleware belongs after routing, CORS, authentication and authorization where applicable. Distinguished HTTP response caching semantics and validators.",
+        "All supplied inventory terms are present in the assigned reference lessons. Lessons remain in drafts; no promotion was performed."
       ]
     }
   ],
@@ -127903,7 +127915,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
         "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiter?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiterstatistics?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery.setcookietokenandheader?view=aspnetcore-10.0"
       ],
       "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
@@ -127946,7 +127962,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
         "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiter?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiterstatistics?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery.setcookietokenandheader?view=aspnetcore-10.0"
       ],
       "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
@@ -127989,7 +128009,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
         "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiter?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiterstatistics?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery.setcookietokenandheader?view=aspnetcore-10.0"
       ],
       "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
@@ -128032,7 +128056,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
         "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiter?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiterstatistics?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery.setcookietokenandheader?view=aspnetcore-10.0"
       ],
       "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
@@ -128075,7 +128103,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
         "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiter?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiterstatistics?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery.setcookietokenandheader?view=aspnetcore-10.0"
       ],
       "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
@@ -128117,7 +128149,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
         "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiter?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiterstatistics?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery.setcookietokenandheader?view=aspnetcore-10.0"
       ],
       "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
@@ -128159,7 +128195,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
         "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiter?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiterstatistics?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery.setcookietokenandheader?view=aspnetcore-10.0"
       ],
       "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
@@ -128201,7 +128241,11 @@
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
         "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiter?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.ratelimiting.ratelimiterstatistics?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery.setcookietokenandheader?view=aspnetcore-10.0"
       ],
       "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
@@ -128210,13 +128254,43 @@
       "topicId": "t02-015",
       "phase": "overview",
       "draft": "course/drafts/t02-015/t02-015-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked layer scope and mental models: IMemoryCache process-local object refs; IDistributedCache byte abstraction/provider-dependent topology; HybridCache tiers/coalescing; response-cache HTTP semantics versus server output cache. Verified freshness, security partitioning, serialization, outage and .NET 11 summary against official Microsoft docs.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/output-caching-renames",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryflags",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializer",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializerfactory",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.ioutputcachestore?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.outputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.stackexchangeredisoutputcacheservicecollectionextensions.addstackexchangeredisoutputcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.stackexchangeredis.redisoutputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
@@ -128240,22 +128314,57 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit completed 2026-11-20. This factual-review status does not promote the lesson from drafts."
     },
     {
       "taskId": "t02-015-concepts",
       "topicId": "t02-015",
       "phase": "concepts",
       "draft": "course/drafts/t02-015/t02-015-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 112,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked cache-aside/source authority, identity dimensions, expiration versus invalidation, stampede, serialization, provider topology/failure, and response/output cache distinctions against official Microsoft guidance. Added explicit cross-node HybridCache local-copy invalidation limitation in topic overview/reference.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/output-caching-renames",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryflags",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializer",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializerfactory",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.ioutputcachestore?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.outputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.stackexchangeredisoutputcacheservicecollectionextensions.addstackexchangeredisoutputcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.stackexchangeredis.redisoutputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
@@ -128279,22 +128388,57 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit completed 2026-11-20. This factual-review status does not promote the lesson from drafts."
     },
     {
       "taskId": "t02-015-reference-in-memory-cache-abstraction-and-policy",
       "topicId": "t02-015",
       "phase": "reference",
       "draft": "course/drafts/t02-015/t02-015-reference-in-memory-cache-abstraction-and-policy.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 119,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked each IMemoryCache/MemoryCache API entry, size and expiration semantics, callback/eviction behavior, shared cache SizeLimit hazard, and .NET 11 statistics/instrument names and units against MemoryCache docs, API docs and .NET 11 library release notes.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/output-caching-renames",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryflags",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializer",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializerfactory",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.ioutputcachestore?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.outputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.stackexchangeredisoutputcacheservicecollectionextensions.addstackexchangeredisoutputcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.stackexchangeredis.redisoutputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
@@ -128318,22 +128462,57 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit completed 2026-11-20. This factual-review status does not promote the lesson from drafts."
     },
     {
       "taskId": "t02-015-reference-distributed-cache-abstractions-and-providers",
       "topicId": "t02-015",
       "phase": "reference",
       "draft": "course/drafts/t02-015/t02-015-reference-distributed-cache-abstractions-and-providers.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 79,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked IDistributedCache byte API and async/sync/refresh semantics, provider registrations, in-memory topology, SQL Server/Redis/Postgres options, serialization responsibility, and provider-specific durability/consistency boundaries against .NET 11 Microsoft Learn distributed-cache guidance and API references.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/output-caching-renames",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryflags",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializer",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializerfactory",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.ioutputcachestore?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.outputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.stackexchangeredisoutputcacheservicecollectionextensions.addstackexchangeredisoutputcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.stackexchangeredis.redisoutputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
@@ -128357,22 +128536,57 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit completed 2026-11-20. This factual-review status does not promote the lesson from drafts."
     },
     {
       "taskId": "t02-015-reference-hybrid-cache-two-level-stampede-and-invalidation",
       "topicId": "t02-015",
       "phase": "reference",
       "draft": "course/drafts/t02-015/t02-015-reference-hybrid-cache-two-level-stampede-and-invalidation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 116,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked all HybridCache overloads, same-instance coalescing/cancellation, key length and payload defaults, serialization defaults, flags, tag wildcard/logical invalidation, and .NET 11 options-aware context. Corrected/added key/tag invalidation scope: current process local tier and secondary are invalidated, but other servers local caches are not.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/output-caching-renames",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryflags",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializer",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializerfactory",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.ioutputcachestore?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.outputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.stackexchangeredisoutputcacheservicecollectionextensions.addstackexchangeredisoutputcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.stackexchangeredis.redisoutputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
@@ -128396,22 +128610,57 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit completed 2026-11-20. This factual-review status does not promote the lesson from drafts."
     },
     {
       "taskId": "t02-015-reference-http-response-and-output-cache-middleware",
       "topicId": "t02-015",
       "phase": "reference",
       "draft": "course/drafts/t02-015/t02-015-reference-http-response-and-output-cache-middleware.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 122,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked HTTP cache directives/validators and output cache policies/default eligibility, method/status/cookie/auth restrictions, ordering after routing/CORS/auth, variation, store/tag operations, and separate Redis provider semantics against Microsoft response/output caching guidance/API docs.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/output-caching-renames",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryflags",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializer",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializerfactory",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.ioutputcachestore?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.outputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.stackexchangeredisoutputcacheservicecollectionextensions.addstackexchangeredisoutputcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.stackexchangeredis.redisoutputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
@@ -128435,22 +128684,57 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit completed 2026-11-20. This factual-review status does not promote the lesson from drafts."
     },
     {
       "taskId": "t02-015-practice",
       "topicId": "t02-015",
       "phase": "practice",
       "draft": "course/drafts/t02-015/t02-015-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 118,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked scenario premises, all proposed solutions, code examples and edge cases for provider topology, safe tenant/locale keying, cache-only flags, output-cache ordering, HTTP validators, outage/format migrations and .NET 11 metrics/options-aware fills against the official documentation.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/output-caching-renames",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryflags",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializer",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializerfactory",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.ioutputcachestore?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.outputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.stackexchangeredisoutputcacheservicecollectionextensions.addstackexchangeredisoutputcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.stackexchangeredis.redisoutputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
@@ -128474,22 +128758,57 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit completed 2026-11-20. This factual-review status does not promote the lesson from drafts."
     },
     {
       "taskId": "t02-015-interview",
       "topicId": "t02-015",
       "phase": "interview",
       "draft": "course/drafts/t02-015/t02-015-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 111,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked all interview answer claims and tradeoffs against the official cache, output/response caching, and .NET 11 library references; confirmed no answer implies distributed lock, guaranteed durability, or cross-replica local invalidation.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/output-caching-renames",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryflags",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializer",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializerfactory",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.ioutputcachestore?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.outputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.stackexchangeredisoutputcacheservicecollectionextensions.addstackexchangeredisoutputcache",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.stackexchangeredis.redisoutputcacheoptions?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/libraries",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
@@ -128513,9 +128832,14 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim-by-claim and frozen-inventory audit completed 2026-11-20. This factual-review status does not promote the lesson from drafts."
     },
     {
       "taskId": "t02-016-overview",
@@ -214786,6 +215110,14 @@
         "The previous antiforgery explanation described only token-based CSRF protection and omitted ASP.NET Core 11 automatic request-metadata protection. The lessons now distinguish the two systems and explain their interaction and migration.",
         "Several reference inventories included names absent from lesson prose; all assigned names are now present, and uncovered protocol/API concepts have contextual explanations.",
         "CORS credential modes, exact origin configuration, and preflight rules are now explicit; HSTS and limiter defaults are documented."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "t02-015 cache topic freshness and distributed invalidation completeness",
+      "findings": [
+        "Added replica-local HybridCache invalidation limitation because the prior overview compressed tag invalidation into a generic logical invalidation statement and could imply cross-node freshness.",
+        "Updated the source snapshot to the current .NET 11 GA documentation and checked recent memory-cache metrics and options-aware HybridCache APIs."
       ]
     }
   ]

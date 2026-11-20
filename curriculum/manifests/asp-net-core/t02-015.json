@@ -101,9 +101,9 @@
         "Cache serialization not provided by IMemoryCache",
         "Per-process cache scope",
         "IMemoryCache is not a distributed cache",
-        "CacheExtensions.GetOrCreateAsync<TItem>"
-        ,"CacheExtensions.GetOrCreateAsync<TItem>(IMemoryCache, Object, Func<ICacheEntry, Task<TItem>>)"
-        ,"CacheExtensions.GetOrCreateAsync<TItem>(IMemoryCache, Object, Func<ICacheEntry, Task<TItem>>, MemoryCacheEntryOptions)"
+        "CacheExtensions.GetOrCreateAsync<TItem>",
+        "CacheExtensions.GetOrCreateAsync<TItem>(IMemoryCache, Object, Func<ICacheEntry, Task<TItem>>)",
+        "CacheExtensions.GetOrCreateAsync<TItem>(IMemoryCache, Object, Func<ICacheEntry, Task<TItem>>, MemoryCacheEntryOptions)"
       ]
     },
     {
@@ -240,7 +240,8 @@
         "HybridCache cache miss factory exception behavior",
         "Hybrid cache secondary outage behavior",
         "HybridCacheEntryFlags.None",
-        "HybridCacheEntryFlags.DisableLocalCache"
+        "HybridCacheEntryFlags.DisableLocalCache",
+        "HybridCache key/tag invalidation does not evict other servers local primary cache"
       ]
     },
     {
@@ -399,14 +400,15 @@
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-16",
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
       "items": [
         "HybridCache is the current high-level API for combining local and optional distributed caching, serialization, tag invalidation, and stampede protection. Its package and secondary provider versions are independently versioned; verify exact provider availability for the target framework.",
         "Output caching remains distinct from HTTP response caching: output policies are server-controlled and can invalidate tags, while response caching follows HTTP request and response cache directives.",
         "Output-cache policy API names changed when output caching was introduced in .NET 7: AllowLocking became SetLocking and VaryByRouteValue/VaryByQuery/VaryByHeader became SetVaryByRouteValue/SetVaryByQuery/SetVaryByHeader. Teach the current names and mention the older names only as migration context.",
         "The official Microsoft.AspNetCore.OutputCaching.StackExchangeRedis provider is distinct from AddStackExchangeRedisCache for IDistributedCache. Output caching needs atomic store operations for tag invalidation and should use its dedicated Redis provider or a custom IOutputCacheStore.",
         ".NET 11 adds built-in OpenTelemetry-compatible MemoryCache instruments when TrackStatistics is enabled, plus an IMeterFactory constructor overload for per-instance meters; hit/miss uses dotnet.cache.request.result (earlier preview builds used dotnet.cache.request.type).",
-        ".NET 11 adds options-aware HybridCache GetOrCreateAsync factories receiving a mutable HybridCacheEntryContext, allowing the factory to adjust effective expiration, flags, and local size after loading the value."
+        ".NET 11 adds options-aware HybridCache GetOrCreateAsync factories receiving a mutable HybridCacheEntryContext, allowing the factory to adjust effective expiration, flags, and local size after loading the value.",
+        "HybridCache key/tag invalidation reaches the current process local tier and configured secondary, but other instances local copies are unaffected and can remain stale until their own expiry/invalidation."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid",
@@ -419,14 +421,31 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
-        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryflags",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializer",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.hybridcachebuilderextensions.addserializerfactory",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.ioutputcachestore?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.outputcaching.outputcacheoptions?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware?view=aspnetcore-10.0"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core memory, distributed, hybrid, response, output cache guidance, and API reference",
-    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-16",
-    "checkedAt": "2026-11-16",
+    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview",
       "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory",
@@ -450,7 +469,12 @@
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.memory.memorycachestatistics?view=net-11.0",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcache?view=net-11.0",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentrycontext?view=net-11.0",
-      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0"
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions?view=net-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/middleware?view=aspnetcore-10.0"
     ]
   },
   "scopeExclusions": [

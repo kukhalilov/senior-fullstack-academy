@@ -90,6 +90,10 @@ A local hit avoids remote I/O. A secondary hit can hydrate the local tier; a mis
 
 Local and distributed read/write flags control distinct actions; `DisableDistributedCache` is a composite convenience. `DisableUnderlyingData` suppresses the origin factory on a miss, so a cache-only lookup can return no result. `Expiration` and `LocalCacheExpiration` govern distinct tiers. A per-type serializer registration is targeted; a factory scales across types. Key removal targets one key; tag removal groups entries logically.
 
+### Invalidation across multiple application instances
+
+HybridCache key/tag invalidation does not evict other servers local primary cache. Key or tag invalidation updates the current server's local primary and the configured secondary store. It does **not** invalidate the local in-memory copies held by other application instances. Those instances can continue serving their local value until its local expiration or another local invalidation. A shared secondary cache therefore does not by itself make HybridCache local tiers immediately coherent. Keep local lifetimes short enough for the tolerated stale window, use versioned keys when immediate namespace change is needed, or choose an architecture with explicit cross-node invalidation if the business requirement needs it. [Hybrid cache guidance](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/hybrid)
+
 ## Examples
 
 A typed fill should keep its key and origin query aligned, including tenant identity when data differs by tenant.
