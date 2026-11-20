@@ -8,12 +8,12 @@
 3. Why does resource authorization often require imperative checks?
 
 ## Concise interview answers
-1. A named mapping of handler and options that determines how a credential is processed and how authenticate/challenge/forbid operations behave. See [Microsoft authentication overview](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0).
+1. A named mapping of handler and options that determines how a credential is processed and how authenticate/challenge/forbid operations behave. See [Microsoft authentication overview](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0) and [API endpoint behavior](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0).
 2. DefaultPolicy is used for authorization metadata such as bare `[Authorize]`; FallbackPolicy is used for endpoints with no authorization metadata when configured. They are not interchangeable.
 3. Endpoint attributes are evaluated before the endpoint loads the resource, so an ownership or tenant decision needs the actual object. Load it, then call the authorization service. See [resource-based authorization](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0).
 
 ## Deep follow-up answers
-**Why separate cookie and bearer schemes?** Cookies are automatically sent by browsers and commonly challenge with redirects; bearer tokens are explicitly presented and commonly challenge with API statuses. Explicit scheme selection prevents response and identity confusion.
+**Why separate cookie and bearer schemes?** Cookies are automatically sent by browsers; cookie challenge behavior depends on endpoint type and framework version. Since ASP.NET Core 10, recognized API endpoints using cookies return 401/403, while web pages commonly redirect. Bearer handlers validate explicitly presented tokens and produce bearer challenges. Explicit scheme selection prevents response and identity confusion.
 
 **What is the OIDC handler's role?** It performs a remote redirect/callback protocol interaction and can sign the resulting principal into a local scheme. A JWT bearer handler validates a token already presented to an endpoint; it does not conduct browser sign-in.
 

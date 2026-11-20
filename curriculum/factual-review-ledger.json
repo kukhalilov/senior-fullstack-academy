@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1540,
-    "pending": 809,
-    "claimsChecked": 83506,
-    "claimsCorrected": 3546,
+    "reviewed": 1546,
+    "pending": 803,
+    "claimsChecked": 83713,
+    "claimsCorrected": 3570,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1919,6 +1919,24 @@
       ],
       "findings": [
         "Reviewed all six lessons and reconciled all 53 manifest items. Updated checked source snapshot to include RFC 10017 (August 2026) browser-based-app guidance; verified RFC 9700 BCP and exact normative strengths, PKCE verifier/S256 requirements, issuer parameter/mix-up defense, exact redirects and permitted native loopback port behavior against RFCs 9207/8252/7636. Checked OIDC ID-token issuer/audience/nonce rules, issuer-scoped and potentially pairwise `sub`, UserInfo access-token use and subject matching, discovery/JWKS trust, access-token audience, and explicit treatment of OAuth 2.1 as not finalized. Corrected cases where `state` was implied mandatory despite PKCE CSRF protection and where nonce might be mistaken for public-client code interception protection. All reference inventory terms, examples, exercises, and interview guidance reconciled; no unresolved issue remains, and drafts remain drafts."
+      ]
+    },
+    {
+      "scope": "ASP.NET Core authentication handlers, identity, policies, and resource authorization (t05-005; all six lesson units)",
+      "status": "full claim and frozen-inventory audit complete; draft states retained",
+      "sources": [
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/default-authentication-scheme?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://www.rfc-editor.org/rfc/rfc9110.html"
+      ],
+      "findings": [
+        "Reviewed all six lessons and all 66 assigned inventory names (36 scheme/handler/ticket items and 30 authorization/resource items). Checked current ASP.NET Core 11 model, .NET 7 single-scheme auto-default, and .NET 10 cookie API endpoint behavior; fixed broad cookie redirect statements and cited endpoint-metadata detection. Verified middleware auto-insertion/order, default/fallback/role/explicit policy selection, combined-policy requirements, same-requirement alternatives, explicit Fail semantics, AllowAnonymous behavior, resource authorization timing/type, and RFC 9110 401 challenge requirement. Reconciled explanations, examples, exercises, and interview claims; no unresolved in-scope factual error or manifest omission remains. Lessons remain in draft."
       ]
     }
   ],
@@ -134005,132 +134023,347 @@
       "topicId": "t05-005",
       "phase": "overview",
       "draft": "course/drafts/t05-005/t05-005-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 26,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": "Checked the request pipeline and mental model: registration versus endpoint protection, named scheme/handler/options, principal population, authorization timing, challenge versus forbid, and resource loading. Corrected the version-sensitive cookie/API summary: recognized API endpoint metadata in ASP.NET Core 10 changes cookie challenge/forbid to 401/403; the behavior is not Accept-header negotiation. Reconciled the orientation and comparisons with the assigned topic scope.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/default-authentication-scheme?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://www.rfc-editor.org/rfc/rfc9110.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every externally verifiable statement and all frozen-manifest inventory assigned to this lesson against the cited primary sources. Corrected version and policy edge cases; no unresolved factual or in-scope omission remains. Lesson remains in drafts."
     },
     {
       "taskId": "t05-005-concepts",
       "topicId": "t05-005",
       "phase": "concepts",
       "draft": "course/drafts/t05-005/t05-005-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "Checked scheme selection, cookie/bearer/OIDC roles, middleware ordering and WebApplication automatic insertion, ASP.NET Core 7 single-scheme default, policy selection, requirement conjunction and same-requirement handler alternatives, explicit Fail veto, AllowAnonymous behavior, fallback/static-file boundary, and resource checks after load. Corrected API-cookie detection wording and added middleware/version distinctions.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/default-authentication-scheme?view=aspnetcore-10.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/default-authentication-scheme?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://www.rfc-editor.org/rfc/rfc9110.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every externally verifiable statement and all frozen-manifest inventory assigned to this lesson against the cited primary sources. Corrected version and policy edge cases; no unresolved factual or in-scope omission remains. Lesson remains in drafts."
     },
     {
       "taskId": "t05-005-reference-schemes-and-handlers",
       "topicId": "t05-005",
       "phase": "reference",
       "draft": "course/drafts/t05-005/t05-005-reference-schemes-and-handlers.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 52,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Reconciled all 36 assigned handler/scheme/ticket inventory names. Checked default scheme resolution, cookie events and ticket behavior, ASP.NET Core 10 known API endpoint challenge/forbid behavior, bearer validation versus remote OIDC, sign-in scheme and callback responsibilities, ticket-store tradeoffs, and sign-out/revocation distinctions. Corrected blanket redirect phrasing and added .NET 7 default-scheme and .NET 10 endpoint-metadata citations.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/default-authentication-scheme?view=aspnetcore-10.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/default-authentication-scheme?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://www.rfc-editor.org/rfc/rfc9110.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every externally verifiable statement and all frozen-manifest inventory assigned to this lesson against the cited primary sources. Corrected version and policy edge cases; no unresolved factual or in-scope omission remains. Lesson remains in drafts."
     },
     {
       "taskId": "t05-005-reference-authorization-and-resource-checks",
       "topicId": "t05-005",
       "phase": "reference",
       "draft": "course/drafts/t05-005/t05-005-reference-authorization-and-resource-checks.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 44,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Reconciled all 30 assigned authorization/resource inventory names. Checked DefaultPolicy versus FallbackPolicy, metadata combination including role and explicit-policy cases, all-requirements AND versus multiple same-requirement handler alternatives, Fail/Succeed semantics, AllowAnonymous with authentication, resource type variation by invocation, imperative checks after loading, middleware ordering, static-file limits, and HTTP challenge/forbid semantics. Corrected handler/resource/context wording and added metadata-composition details; RFC 9110 requires WWW-Authenticate on an HTTP 401.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+        "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/default-authentication-scheme?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every externally verifiable statement and all frozen-manifest inventory assigned to this lesson against the cited primary sources. Corrected version and policy edge cases; no unresolved factual or in-scope omission remains. Lesson remains in drafts."
     },
     {
       "taskId": "t05-005-practice",
       "topicId": "t05-005",
       "phase": "practice",
       "draft": "course/drafts/t05-005/t05-005-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 27,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Checked every exercise, hint, answer, and edge-case scenario. Corrected the mistaken implication that every cookie-protected API receives a redirect: recognized API endpoints on ASP.NET Core 10+ return 401/403, while other cookie endpoints may redirect; bearer challenge is specific to selecting bearer. Confirmed ID-token recipient versus API access-token purpose, resource authorization timing, and fallback/default distinction.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+        "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/default-authentication-scheme?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every externally verifiable statement and all frozen-manifest inventory assigned to this lesson against the cited primary sources. Corrected version and policy edge cases; no unresolved factual or in-scope omission remains. Lesson remains in drafts."
     },
     {
       "taskId": "t05-005-interview",
       "topicId": "t05-005",
       "phase": "interview",
       "draft": "course/drafts/t05-005/t05-005-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 24,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "Checked all concise answers, follow-ups, scenarios, tradeoffs, weak answers, and rubric. Narrowed cookie-versus-bearer response comparison to endpoint/version-specific behavior and recorded ASP.NET Core 10 API metadata behavior; confirmed OIDC remote sign-in versus bearer validation, policy distinction, resource loading, and fail-closed tenant/object checks.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-11.0",
+              "section": "Relevant authentication scheme, authorization policy, middleware, cookie API endpoint, resource authorization, or HTTP semantics behavior",
+              "verdict": "supported; applicable wording corrected and scope/edge cases recorded"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0"
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/7/default-authentication-scheme?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://www.rfc-editor.org/rfc/rfc9110.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manually audited every externally verifiable statement and all frozen-manifest inventory assigned to this lesson against the cited primary sources. Corrected version and policy edge cases; no unresolved factual or in-scope omission remains. Lesson remains in drafts."
     },
     {
       "taskId": "t05-006-overview",

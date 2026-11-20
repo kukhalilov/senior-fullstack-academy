@@ -6,7 +6,7 @@
 Diagnose scheme selection and middleware order, choose policy behavior, and place resource checks where the data is available.
 
 ## Worked example
-A single application uses cookie sign-in for web pages and bearer tokens for an API. If the API uses the cookie challenge scheme by accident, an unauthenticated client may receive an HTML login redirect instead of an API challenge. Associate endpoints with the intended scheme and challenge behavior. Microsoft describes schemes in [authentication overview](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0).
+A single application uses cookie sign-in for web pages and bearer tokens for an API. If the API uses the cookie challenge scheme by accident, an unauthenticated client may receive cookie challenge behavior rather than a bearer challenge. Since ASP.NET Core 10, recognized API endpoints using cookies return 401/403 instead of redirects; ordinary web pages commonly redirect. Associate endpoints with the intended scheme and challenge behavior. See [API endpoint behavior](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/api-endpoint-auth?view=aspnetcore-10.0). Microsoft describes schemes in [authentication overview](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0).
 
 ## Exercises
 1. `AddAuthentication().AddCookie()` is configured, but all routes are assumed protected. What is missing?
@@ -27,7 +27,7 @@ A single application uses cookie sign-in for web pages and bearer tokens for an 
 
 ## Tests and edge cases
 - Browser unauthenticated request: cookie challenge behavior is deliberate.
-- API unauthenticated request: bearer challenge behavior is deliberate and not an HTML redirect.
+- API unauthenticated request: verify the selected scheme. Bearer authentication issues a bearer challenge; cookie authentication on ASP.NET Core 10+ recognized API endpoints returns 401/403, while non-API browser endpoints commonly redirect.
 - Authenticated but unauthorized request: forbid behavior is distinct from challenge.
 - Unannotated endpoint under configured fallback: requires authenticated principal.
 - Endpoint with `[AllowAnonymous]`: explicitly public despite broader policy configuration.
