@@ -2,13 +2,13 @@
 
 ## Problem and purpose
 
-Web security controls solve different threats. Cross-Origin Resource Sharing (CORS) controls whether a browser lets one origin read a cross-origin response. Antiforgery protects cookie-authenticated state changes from hostile sites. Rate limiting caps request consumption. HTTPS protects data in transit; HSTS tells a browser to keep using HTTPS. Security headers ask browsers to apply additional restrictions. Treating any one of these as “the security middleware” leaves gaps.
+Web security controls solve different threats. Cross-Origin Resource Sharing (CORS) controls whether a browser lets one origin read a cross-origin response. Antiforgery protects cookie-authenticated state changes through token validation and, in ASP.NET Core 11, automatic browser request-metadata checks for form-processing endpoints. Rate limiting caps request consumption. HTTPS protects data in transit; HSTS tells a browser to keep using HTTPS. Security headers ask browsers to apply additional restrictions. Treating any one of these as “the security middleware” leaves gaps.
 
 This topic covers the trust boundaries and pipeline behavior for each control so you can compose them without confusing their purposes. [CORS](https://learn.microsoft.com/en-us/aspnet/core/security/cors) [Antiforgery](https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0) [Rate limiting](https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit)
 
 ## Plain-language mental model
 
-Think of a web application as a venue with several controls. CORS is a **browser's response-reading rule**: it decides whether JavaScript running on another origin may see the response. It does not stop that request from being sent and does not identify the caller. Antiforgery is a **proof that a cookie-backed state change came through an expected app interaction**. Rate limiting is a **capacity gate** that controls how many or how many simultaneous operations can proceed. HTTPS is the **protected delivery channel**; HSTS is the browser's **remembered preference for that channel**. Security headers are **browser instructions** that restrict selected behaviors.
+Think of a web application as a venue with several controls. CORS is a **browser's response-reading rule**: it decides whether JavaScript running on another origin may see the response. It does not stop that request from being sent and does not identify the caller. Antiforgery uses a **paired request token** in classic flows and, in ASP.NET Core 11, an **automatic browser-context check** for form-processing endpoints; neither grants user permissions. Rate limiting is a **capacity gate** that controls how many or how many simultaneous operations can proceed. HTTPS is the **protected delivery channel**; HSTS is the browser's **remembered preference for that channel**. Security headers are **browser instructions** that restrict selected behaviors.
 
 The controls should be layered: the server authenticates and authorizes the caller; antiforgery protects ambient-cookie mutations; CORS limits browser cross-origin access; rate limiting slows abuse and protects capacity; TLS protects transport; and headers constrain browser interpretation. None replaces server-side authorization or input validation. [CORS](https://learn.microsoft.com/en-us/aspnet/core/security/cors) [Antiforgery](https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0)
 
@@ -17,7 +17,7 @@ The controls should be layered: the server authenticates and authorizes the call
 | Control | Protects against | Does not do |
 |---|---|---|
 | CORS | Browser JavaScript reading responses from an origin not allowed by the server | Authentication, authorization, or a general firewall against scripts/clients |
-| Antiforgery token validation | A hostile site causing a victim browser to submit cookie-authenticated state changes | Authorization of the user or protection of bearer-token APIs that do not use ambient credentials |
+| CSRF defenses (token pair and ASP.NET Core 11 request-metadata checks) | A hostile site causing a victim browser to submit cookie-authenticated state changes | Authorization of the user or protection of bearer-token APIs that do not use ambient credentials |
 | Rate limiter | Excess request volume or concurrent work within its configured scope | Distributed/global fairness unless designed across instances; correctness or authorization |
 | HTTPS redirection | Continued use of HTTP by redirecting to HTTPS | HSTS memory or encryption on a proxy-to-app hop |
 | HSTS | Future browser requests to a host over HTTP after the policy is learned | Redirecting the initial HTTP request or protecting non-browser callers |
@@ -47,7 +47,7 @@ Suppose a browser app at `https://portal.example` sends a state-changing request
 
 1. The browser may send a preflight `OPTIONS` request if the method/headers require it. CORS evaluates the exact origin and requested method/headers and returns the required policy headers.
 2. The browser sends the actual request with credentials only if the client and server both opt into credentialed CORS and the server uses a specific allowed origin. Wildcard origin plus credentials is invalid/unsafe.
-3. Because the browser attaches a cookie automatically, the server validates an antiforgery request token paired with its antiforgery cookie before performing the state change.
+3. ASP.NET Core 11's default request-metadata CSRF protection records whether the browser submission comes from an allowed context, and the form-processing endpoint enforces a denied verdict. If the app also uses token-based antiforgery, it validates the request token paired with its cookie before the state change.
 4. A rate limiter admits or rejects the request according to the configured algorithm and partition. If rejected, the app returns the configured rejection response (commonly 429).
 5. Authentication, authorization, model validation, and domain rules still determine whether the operation is allowed.
 6. HTTPS protects the browser-to-edge connection. If TLS terminates at a reverse proxy, trusted forwarded scheme information must be applied before app middleware decides whether the request is secure. The browser may later enforce HSTS for the host.

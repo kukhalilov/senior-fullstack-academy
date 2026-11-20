@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-19",
+  "generatedAt": "2026-11-20",
   "purpose": "Track manual, claim-by-claim factual review. Shape validation and automated model review do not count as factual verification.",
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1452,
-    "pending": 897,
-    "claimsChecked": 75509,
-    "claimsCorrected": 3183,
+    "reviewed": 1460,
+    "pending": 889,
+    "claimsChecked": 76587,
+    "claimsCorrected": 3190,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1574,6 +1574,18 @@
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionsCollection",
         "https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement"
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "ASP.NET Core CORS, antiforgery, rate limiting, HTTPS/HSTS and security headers (t02-014)",
+      "status": "full claim and frozen-inventory audit complete for all 8 lessons",
+      "findings": [
+        "Reviewed all eight lessons, examples, exercises, solutions and interview answers against ASP.NET Core 11 guidance, API references, migration notes, middleware guidance and MDN browser behavior.",
+        "Added ASP.NET Core 11 automatic CSRF protection, its Sec-Fetch-Site/Origin evaluation, deferred form-consumer enforcement, custom ICsrfProtection extension, opt-out behavior and coexistence with paired token antiforgery. Corrected the implication that UseAntiforgery itself short-circuits invalid requests.",
+        "Expanded CORS coverage for Fetch credentials modes, safelist behavior, no-cors opaque responses, exact WithOrigins trailing-slash requirements, preflight credential rules, cache variation, and explicitly browser-specific PNA caveats.",
+        "Expanded rate limiter inventory for chained limiters, partition state/cardinality, statistics, replenishment helpers, timer behavior, queue risk and per-instance scope. Added documented HTTPS/HSTS defaults and separated HTTPS_PORT from HTTPS_PORTS.",
+        "All four assigned reference inventories are present verbatim and explained. All 8 lessons remain in drafts; no lesson promotion was performed."
       ]
     }
   ],
@@ -127858,13 +127870,28 @@
       "topicId": "t02-014",
       "phase": "overview",
       "draft": "course/drafts/t02-014/t02-014-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 55,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Reviewed orientation, examples, exercises, answers, and interview statements against the primary sources listed for this lesson; confirmed conceptual distinctions, pipeline behavior, and advice match documented behavior.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
         "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
@@ -127873,22 +127900,41 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+        "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
     {
       "taskId": "t02-014-concepts",
       "topicId": "t02-014",
       "phase": "concepts",
       "draft": "course/drafts/t02-014/t02-014-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Reviewed orientation, examples, exercises, answers, and interview statements against the primary sources listed for this lesson; confirmed conceptual distinctions, pipeline behavior, and advice match documented behavior.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+            "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
         "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
@@ -127897,22 +127943,41 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+        "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
     {
       "taskId": "t02-014-reference-cors-origins-policies-and-preflight",
       "topicId": "t02-014",
       "phase": "reference",
       "draft": "course/drafts/t02-014/t02-014-reference-cors-origins-policies-and-preflight.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 183,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked policy registration/builders, endpoint and middleware ordering, static-file/caching placement, exact origin matching and no-trailing-slash requirement, wildcard/credentials restrictions, safelisted methods/headers/media types, OPTIONS preflight and credentials mode, response-header exposure, Vary: Origin, wildcard subdomain matching, CORS non-authorization boundary, and current Fetch/browser semantics against Microsoft CORS docs, API reference, and MDN Fetch/CORS guide. PNA entries are explicitly labeled evolving/browser-specific, not ASP.NET Core APIs.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
         "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
@@ -127921,22 +127986,41 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+        "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
     {
       "taskId": "t02-014-reference-antiforgery-tokens-and-validation",
       "topicId": "t02-014",
       "phase": "reference",
       "draft": "course/drafts/t02-014/t02-014-reference-antiforgery-tokens-and-validation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 209,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked ASP.NET Core 11 automatic CSRF registration and decision order, Sec-Fetch-Site/Origin fallback, CORS credentialed-origin interaction, deferred enforcement, opt-outs/custom ICsrfProtection, .NET 10-to-11 static SSR change, token service/filter/middleware APIs, form helper behavior, token middleware non-short-circuit behavior, method-override bypass warning, additional-data provider, Data Protection farm requirement, and cookie settings against current ASP.NET Core 11 guidance, migration docs, and API reference.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+            "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
         "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
@@ -127945,22 +128029,41 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+        "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
     {
       "taskId": "t02-014-reference-rate-limiting-algorithms-and-policies",
       "topicId": "t02-014",
       "phase": "reference",
       "draft": "course/drafts/t02-014/t02-014-reference-rate-limiting-algorithms-and-policies.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 183,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Checked built-in algorithms/options, endpoints and middleware order, global versus named policy composition, partition caching/cardinality, queue behavior, RetryAfter metadata, per-instance state, chained lease semantics, helper timer behavior, and System.Threading.RateLimiting surfaces against current Microsoft docs and API reference.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
         "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
@@ -127969,22 +128072,40 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
     {
       "taskId": "t02-014-reference-https-hsts-and-browser-security-headers",
       "topicId": "t02-014",
       "phase": "reference",
       "draft": "course/drafts/t02-014/t02-014-reference-https-hsts-and-browser-security-headers.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 129,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Checked redirect/HSTS distinctions, 307/defaults, HSTS 30-day default and opt-in flags, HTTPS_PORT versus HTTPS_PORTS, proxy scheme behavior, HSTS preload constraints, browser security header definitions and CSP report/enforcement claims against Microsoft HTTPS guidance and MDN CSP documentation.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
         "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
@@ -127993,22 +128114,40 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+        "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
     {
       "taskId": "t02-014-practice",
       "topicId": "t02-014",
       "phase": "practice",
       "draft": "course/drafts/t02-014/t02-014-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 140,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Reviewed orientation, examples, exercises, answers, and interview statements against the primary sources listed for this lesson; confirmed conceptual distinctions, pipeline behavior, and advice match documented behavior.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
         "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
@@ -128017,22 +128156,40 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+        "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
     {
       "taskId": "t02-014-interview",
       "topicId": "t02-014",
       "phase": "interview",
       "draft": "course/drafts/t02-014/t02-014-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 88,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Reviewed orientation, examples, exercises, answers, and interview statements against the primary sources listed for this lesson; confirmed conceptual distinctions, pipeline behavior, and advice match documented behavior.",
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit",
+            "https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
+            "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+          ],
+          "verdict": "supported after corrections and inventory completion"
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
         "https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0",
@@ -128041,9 +128198,12 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgery",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptions",
-        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+        "https://learn.microsoft.com/en-us/aspnet/core/migration/100-to-110?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and manifest inventory audit completed 2026-11-20. Corrections and additions are described in auditFindings. Lesson remains in drafts; review status is a factual-audit record only."
     },
     {
       "taskId": "t02-015-overview",
@@ -214617,6 +214777,15 @@
         "Audited all eight lessons against the four frozen inventories, current ASP.NET Core 10/11 OpenAPI and error-handling docs, the Asp.Versioning 10.2 release and NuGet package pages, OpenAPI 3.2.1, RFCs 9110/8288/9457/10008/9745/8594/6585, and current IETF Idempotency-Key draft -08. Reviewed the API references, overview/concepts, every example, practice solution, interview answer and stated exclusion.",
         "Expanded Asp.Versioning coverage for 10.2 ApiVersionRange interval semantics, VisibleInApiVersionAttribute, IAnnotation<TKey,TValue>, built-in selector choices, and default-enabled analyzers; recorded current package-family version differences. Expanded Problem Details coverage for ProblemDetailsContext, typed result/metadata APIs, writer behavior and handler 404/diagnostics options. Corrected IProblemDetailsService.WriteAsync: it throws InvalidOperationException when no writer handles the context; TryWriteAsync is the fallback-aware API. Documented current default-writer Accept media types.",
         "Confirmed RFC 10008 is final and added the mandatory body-aware QUERY cache-key behavior. Confirmed Idempotency-Key remains an active Internet-Draft, not a published RFC, and documented revision -08/current structured-field shape. No unresolved factual or frozen-inventory gaps remain; all eight lessons remain drafts."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "t02-014 security controls topic completeness and .NET 11 accuracy",
+      "findings": [
+        "The previous antiforgery explanation described only token-based CSRF protection and omitted ASP.NET Core 11 automatic request-metadata protection. The lessons now distinguish the two systems and explain their interaction and migration.",
+        "Several reference inventories included names absent from lesson prose; all assigned names are now present, and uncovered protocol/API concepts have contextual explanations.",
+        "CORS credential modes, exact origin configuration, and preflight rules are now explicit; HSTS and limiter defaults are documented."
       ]
     }
   ]

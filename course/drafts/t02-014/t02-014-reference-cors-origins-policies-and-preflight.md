@@ -22,6 +22,8 @@ The browser sends an `Origin` and, for preflight, the requested method/headers. 
 | `CorsPolicy` | Immutable policy describing origins, methods, headers, exposed response headers, credentials, and preflight cache duration. |
 | `CorsPolicyBuilder` | Fluent builder that accumulates CORS permissions and creates a policy. |
 | `CorsPolicyBuilder.WithOrigins` | Adds specific allowed origins. Origin matching includes scheme, host, and port; do not include path components. |
+| `WithOrigins exact origin matching and trailing slash normalization` | A configured URL must not end in `/`; ASP.NET Core documents that the trailing slash causes the origin comparison to fail and omits CORS headers. |
+| `WithOrigins` trailing slash rule | Microsoft documents that configured origin URLs must not end in `/`; a trailing slash causes exact comparison to fail and no CORS header to be emitted. |
 | `CorsPolicyBuilder.AllowAnyOrigin` | Allows any requesting origin. This is broad and unsafe for credentialed browser requests; use only when public cross-origin response access is truly intended. |
 | `CorsPolicyBuilder.WithMethods` | Allows selected HTTP methods for cross-origin requests. Use the smallest method set required by the client. |
 | `CorsPolicyBuilder.AllowAnyMethod` | Allows any method within the browser CORS contract. Broad method access still does not authorize a server operation, but expands cross-origin reach. |
@@ -70,8 +72,19 @@ The browser sends an `Origin` and, for preflight, the requested method/headers. 
 |---|---|
 | `Same-origin tuple scheme host port` | Browser origin identity is the tuple of scheme, host, and effective port. A path difference does not create a different origin; a scheme or port change does. |
 | `Cross-origin browser request` | Browser request from a page whose origin differs from the target origin. The browser applies same-origin/CORS response-access rules. |
-| `CORS simple request` | Request shape that can be sent without preflight under CORS safelist rules. The browser may send it even if it later withholds the response from JavaScript. |
-| `CORS preflight OPTIONS request` | Browser-generated permission check carrying the intended method and headers. The actual request is sent only if the preflight response permits it. |
+| `Origin header and serialized origin value` | `Origin` identifies the initiating origin (scheme, host, port, no path) and can also be `null`. Treat it as untrusted input and compare against an allowlist. |
+| `Fetch credentials mode same-origin omit include` | Fetch's `credentials` option has `omit`, `same-origin` (the default), and `include`. Cross-origin credentials require `include` plus compatible server CORS response and remain subject to cookie SameSite/privacy rules. |
+| `Origin request header` | Identifies the origin initiating a CORS request; its serialized value has scheme/host/port and no path, and may be the special value `null`. Treat it as untrusted input and compare against an explicit allowlist. |
+| `Fetch credentials mode` | Fetch uses `omit`, `same-origin` (default), or `include`. Cross-origin cookies/HTTP authentication require the client credentials mode and a compatible server CORS response; cookie SameSite and browser privacy rules independently affect whether cookies are sent. |
+| `XMLHttpRequest.withCredentials` | Enables credentials on cross-origin XHR when true. It does not bypass server CORS permission or browser cookie policy. |
+| `CORS simple request` | Legacy name for a request that meets the safelist conditions and can be sent without preflight. Typical constraints include GET/HEAD/POST, safelisted author headers, and restricted Content-Type media types; a simple request can still mutate server state even if its response is hidden. |
+| `CORS-safelisted methods GET HEAD POST` | These three methods can qualify for a no-preflight request when the other safelist requirements are satisfied; this is not permission to mutate state without CSRF protection. |
+| `CORS does not stop simple request side effects` | A safelisted cross-origin request may be sent and processed before the browser blocks response access. Protect unsafe cookie-authenticated actions independently. |
+| `CORS-safelisted request headers and Content-Type media types` | Fetch defines the request-header safelist and value restrictions. Common header names include Accept, Accept-Language, Content-Language, Content-Type, and Range, but not every value qualifies; Content-Type's common safelisted media types are form-urlencoded, multipart/form-data, and text/plain. |
+| `CORS-safelisted response headers` | JavaScript can read a limited set by default, including Cache-Control, Content-Language, Content-Length, Content-Type, Expires, Last-Modified, and Pragma under Fetch's current list; use `WithExposedHeaders` for other response headers. |
+| `Fetch credentials mode no-cors` | Produces an opaque response that calling JavaScript cannot inspect; it is not a workaround for reading a blocked API response and severely restricts request behavior. |
+| `Opaque response and fetch mode no-cors limitations` | `no-cors` yields an opaque, unreadable response and restricts methods/headers; it does not enable JavaScript to read a blocked resource. |
+| `CORS preflight OPTIONS request` | Browser-generated permission check carrying the intended method and author headers. Per Fetch, a preflight itself is sent without credentials; its response must still allow credentials for a subsequent credentialed actual request. The actual request is sent only if the preflight succeeds. |
 | `Access-Control-Allow-Origin` | Response header naming the permitted requesting origin, or `*` only for non-credentialed broad access. Never reflect arbitrary input as a trusted origin. |
 | `Access-Control-Allow-Credentials` | Response header indicating credentials may be included for the allowed origin. It must be paired with an explicit allowed origin, not `*`. |
 | `Access-Control-Allow-Methods` | Response header listing methods allowed for the cross-origin request/preflight. It does not grant application authorization. |
@@ -85,6 +98,18 @@ The browser sends an `Origin` and, for preflight, the requested method/headers. 
 | `UseCors before UseResponseCaching` | CORS should run before response caching so cached responses retain correct CORS headers and origin variation. Configure cache variation as required. |
 | `Static-file CORS middleware order` | Static files served before CORS middleware do not receive CORS headers from that middleware. Place CORS before static-file serving only when cross-origin assets need it. |
 | `RequireCors preflight handling limitation` | Endpoint-level `RequireCors` metadata alone does not provide the same automatic preflight handling as the CORS middleware. Use `UseCors` in middleware for reliable preflight processing. |
+| `Automatic CORS preflight handling` | ASP.NET Core handles preflight when CORS middleware is applied globally or a supported `[EnableCors]` policy applies. With endpoint routing, `RequireCors` selects metadata for middleware; it is not a replacement for `UseCors`. |
+| `Automatic OPTIONS preflight when CORS middleware or supported attribute policy is applied` | ASP.NET Core CORS middleware automatically responds to applicable browser preflight requests. Endpoint metadata must be evaluated by the middleware in the configured pipeline. |
+| `CORS preflight does not include credentials in the ordinary Fetch model` | Fetch sends the OPTIONS preflight without credentials. For a credentialed actual request, the preflight response still needs valid explicit-origin and credentials permission. |
+| `Credentialed response requires client credentials mode and server AllowCredentials` | Both sides opt in: the client uses Fetch `credentials: "include"` or XHR `withCredentials=true`, and the server allows credentials for the explicit origin. Cookies can still be withheld by browser cookie rules. |
+| `Access-Control-Allow-Origin wildcard for noncredentialed access` | `*` allows any origin only for requests without credentials mode; a credentialed response must name one allowed origin. |
+| `Vary Origin and intermediary cache behavior` | If the server selects a response header based on `Origin`, shared caches must vary on `Origin` to avoid serving one origin's policy-bearing response to another. |
+| `Private Network Access preflight and browser support caveat` | Browser requests from public to more-private network address spaces have evolving PNA-related preflight behavior. Treat browser support as version-specific and never use it as authorization. |
+| `Access-Control-Request-Private-Network and Access-Control-Allow-Private-Network browser protocol caveat` | These fields appear in some PNA implementations/proposals; confirm current browser requirements before use because this is evolving and not a general ASP.NET Core policy API. |
+| `Access-Control-Request-Private-Network` | A browser-protocol header used in Private Network Access preflight proposals/implementations. Support and requirements are evolving and browser-dependent; do not rely on it as an authorization boundary. |
+| `Access-Control-Allow-Private-Network` | Response field associated with Private Network Access preflight behavior in some browser implementations. Verify current browser and standards status before configuring; it is not a general ASP.NET Core policy feature. |
+| `AllowAnyOrigin` and `AllowCredentials` | ASP.NET Core rejects/returns an invalid response for this combination. Bypassing it with `SetIsOriginAllowed(_ => true)` is equally unsafe. |
+| `Credentialed CORS wildcard method/header/exposed header nuance` | The CORS protocol's wildcard semantics for methods, request headers, and exposed headers are also restricted when credentials mode is true. Prefer explicit lists rather than assuming the origin wildcard is the only issue. |
 | `Do not combine endpoint CORS attributes and policies without understanding policy combination` | Multiple CORS metadata sources can make effective permissions hard to infer. Prefer one clear configuration style per endpoint group and test preflight/actual responses. |
 
 ## Cross-item comparison
@@ -116,7 +141,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-This is a policy-registration/pipeline snippet; the browser app must also opt into credentials. The exact origin is explicit, and unsafe cookie-authenticated methods still require antiforgery validation. [CORS guidance](https://learn.microsoft.com/en-us/aspnet/core/security/cors)
+This is a policy-registration/pipeline snippet; the browser app must also opt into credentials (`credentials: "include"` in Fetch). The configured origin has no trailing slash. Cookie eligibility also depends on cookie attributes and browser policy. Unsafe cookie-authenticated methods still require the applicable CSRF defense. [CORS guidance](https://learn.microsoft.com/en-us/aspnet/core/security/cors)
 
 ### Inspect a preflight
 
@@ -130,7 +155,9 @@ A browser may send `OPTIONS` with `Origin`, `Access-Control-Request-Method`, and
 - Forgetting `Vary: Origin` when a cache stores origin-dependent CORS responses.
 - Placing `UseCors` after authorization, preventing CORS headers on short-circuited responses.
 - Relying only on `RequireCors` metadata for automatic `OPTIONS` preflight processing.
-- Applying CORS after static-file middleware even though those files need cross-origin response headers.
+- Assuming static files need CORS when same-origin only; place CORS before static-file middleware only when cross-origin asset retrieval requires it.
+- Configuring `WithOrigins("https://portal.example.com/")` with a trailing slash; the exact comparison then fails.
+- Assuming `credentials: "include"` forces cookies to be sent despite SameSite/third-party-cookie restrictions.
 - Combining middleware policies and endpoint attributes without checking the effective policy.
 - Using wildcard subdomains across hosts that serve untrusted user content.
 
@@ -146,3 +173,4 @@ A browser may send `OPTIONS` with `Origin`, `Access-Control-Request-Method`, and
 
 - [Enable Cross-Origin Requests (CORS) in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/cors)
 - [CorsPolicyBuilder API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.cors.infrastructure.corspolicybuilder)
+- [MDN CORS guide](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS)

@@ -14,19 +14,19 @@
 ## Concise interview answers
 
 1. CORS is a browser-enforced response-sharing protocol for cross-origin JavaScript. It is not authentication, authorization, or a firewall against non-browser clients.
-2. A browser can attach cookies automatically to a cross-site form/request even when the attacker cannot read the response. A valid request token is needed to prove expected app context for unsafe cookie-backed operations.
+2. CORS may allow a simple request to reach the server while hiding its response. Classic token antiforgery checks a paired request/cookie token; ASP.NET Core 11 also automatically checks Fetch Metadata/Origin for form-processing endpoints. The correct defense depends on the endpoint and compatibility requirements.
 3. Fixed window counts in rigid intervals; sliding window recycles segmented history to smooth boundaries; token bucket replenishes a bounded burst allowance; concurrency limiter caps active requests only.
 4. The key must be trustworthy, stable, bounded in cardinality, and available when the limiter runs. IP keys depend on known trusted proxies; user keys require authentication before evaluation.
 5. HTTPS redirection responds to the current HTTP request with an HTTPS redirect. HSTS is learned over HTTPS and tells a browser to use HTTPS for later requests.
 6. The proxy terminates TLS and forwards HTTP, so the backend thinks the request is insecure and redirects again. Process trusted forwarded scheme headers before redirect middleware or let the proxy own the behavior.
-7. No. It registers services. MVC/Razor Pages commonly validate with filters; Minimal APIs and Blazor need `UseAntiforgery` where endpoint metadata requires it.
+7. No. `AddAntiforgery` registers token services; MVC/Razor Pages commonly validate through filters, while Minimal APIs/Blazor need `UseAntiforgery` for token validation where metadata requires it. ASP.NET Core 11 also adds a separate automatic request-metadata CSRF layer by default.
 8. Start with report-only, inventory legitimate resources, inspect violations, refine policy, test all flows, then enforce. Treat reports as untrusted and potentially sensitive.
 
 ## Deep follow-up answers
 
 ### Why does CORS not replace antiforgery?
 
-CORS determines whether a browser exposes a response to a script. A simple request may still be sent; state can change even when the attacker cannot read the response. Antiforgery validates a request token paired with the browser's antiforgery cookie before performing a state change. Authentication and authorization remain separate. [CORS guidance](https://learn.microsoft.com/en-us/aspnet/core/security/cors) [Antiforgery guidance](https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0)
+CORS determines whether a browser exposes a response to a script. A simple request may still be sent; state can change even when the attacker cannot read the response. Token antiforgery validates a request token paired with the browser's antiforgery cookie. ASP.NET Core 11 also checks `Sec-Fetch-Site`/`Origin` by default and lets form consumers enforce the verdict. Authentication and authorization remain separate. [CORS guidance](https://learn.microsoft.com/en-us/aspnet/core/security/cors) [Antiforgery guidance](https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0)
 
 ### Why is a per-user limiter placed after authentication?
 

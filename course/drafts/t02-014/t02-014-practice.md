@@ -59,19 +59,19 @@ A team wants to deploy `default-src 'self'` immediately to a web app that uses a
 
 ## Progressive hints
 
-1. If the request carries an ambient cookie and changes state, the server needs a request token even when the attacker cannot read the response.
+1. Check whether a classic paired token is required for the chosen compatibility/threat model, and remember ASP.NET Core 11 also checks browser request metadata for form-processing endpoints.
 2. Credentialed CORS needs a specific origin. Do not convert any arbitrary Origin header into an allowed value.
 3. Fixed/sliding/token algorithms constrain time-based volume; concurrency caps in-flight operations. Tenant partitioning requires a trustworthy, stable tenant key.
 4. The backend thinks the request is HTTP because it does not trust/process the proxy's scheme information. Do not trust forwarded headers from every client.
 5. Browsers do not reliably follow preflight redirects. Serve HTTPS directly/redirect at the edge before the browser performs cross-origin calls.
-6. `AddAntiforgery` registers services. Minimal API/Blazor endpoint metadata requires `UseAntiforgery`; MVC/Razor Pages use antiforgery filters.
+6. Separate ASP.NET Core 11's default request-metadata CSRF protection from token antiforgery. `AddAntiforgery` registers token services; `UseAntiforgery` runs token validation, and its validation result must be enforced before mutation.
 7. Observe first with report-only, then tune/test the policy. CSP reports can contain sensitive URLs and attacker-controlled fields.
 
 ## Complete solutions
 
 ### Solution 1: add antiforgery validation
 
-The missing control is antiforgery token validation on the state-changing cookie-authenticated operation. The browser may send the cookie with a simple form request; CORS primarily controls whether the attacker's JavaScript can read a response. The server must reject the request unless it includes the valid request token paired with the antiforgery cookie. Authentication and authorization still run independently.
+The missing control is CSRF protection on the state-changing cookie-authenticated operation. The browser may send the cookie with a simple form request; CORS primarily controls whether the attacker's JavaScript can read a response. ASP.NET Core 11's automatic request-metadata middleware normally rejects an untrusted cross-site form submission when the form consumer enforces its verdict. Token-based validation is a separate defense and may also be required for legacy-browser support, supplemental token data, or a compliance requirement. Authentication and authorization still run independently. [ASP.NET Core 11 guidance](https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0)
 
 ### Solution 2: use an explicit trusted origin list
 
@@ -98,7 +98,7 @@ Preflight `OPTIONS` requests can fail when the browser encounters a redirect; br
 
 ### Solution 6: add the required validation integration
 
-For Minimal APIs, register services and add `UseAntiforgery` to the pipeline. Mark the relevant endpoint as requiring antiforgery validation, issue a request token through a trusted form/response, and send it with the unsafe request. Confirm the endpoint's HTTP method/metadata causes validation before application code executes.
+For ASP.NET Core 11 Minimal APIs that bind form data, the framework adds automatic CSRF metadata protection and the form consumer enforces an untrusted-origin verdict. If using classic token validation as well, register token services and add `UseAntiforgery`; issue/send the paired token and ensure the form consumer or explicit endpoint code enforces an invalid token before state changes. The middleware only records its token validation result. Plain JSON endpoints do not automatically bind forms and do not gain the same metadata by default.
 
 MVC/Razor Pages commonly use `ValidateAntiForgeryToken` or `AutoValidateAntiforgeryToken` filters; they do not require the antiforgery middleware for that filter behavior. Both styles still need request token generation/transport and separate authorization. [Antiforgery guidance](https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0)
 
@@ -113,7 +113,8 @@ Reports can include URLs, query values, document locations, and attacker-control
 - A simple cross-origin request can reach the server while its response is hidden from the calling script.
 - Credentialed CORS succeeds only for the exact configured origin; wildcard-plus-credentials configuration is rejected/unsafe.
 - Preflight allows only configured methods and headers; actual endpoint authorization remains effective.
-- Cookie-backed POST without a request token fails, while the same-origin form/header token succeeds.
+- ASP.NET Core 11 cross-origin form submission from an untrusted browser origin is rejected by the form consumer; a trusted credentialed CORS origin is accepted by the automatic CSRF verdict.
+- Token-based cookie-backed POST without a request token is rejected by a filter/form consumer or explicit validation path, while the same-origin form/header token succeeds.
 - Bearer-token API endpoints do not accidentally rely on browser CORS as their access control.
 - Minimal API antiforgery endpoint fails when middleware or required endpoint metadata is absent/misconfigured.
 - A user/tenant limiter does not collapse all authenticated callers into one anonymous partition.

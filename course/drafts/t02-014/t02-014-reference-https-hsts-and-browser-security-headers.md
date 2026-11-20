@@ -19,13 +19,17 @@ HTTPS redirection reacts to an HTTP request by redirecting it. HSTS is learned f
 | `HttpsRedirectionOptions` | Settings for redirect target port and response status. |
 | `HttpsRedirectionOptions.HttpsPort` | HTTPS port used to construct the redirect target when it cannot be inferred from hosting configuration. Configure for the public-facing topology, not blindly for an internal backend port. |
 | `HttpsRedirectionOptions.RedirectStatusCode` | HTTP status used for the redirect. Choose behavior consistent with the app/proxy and clients; permanent redirects may be cached. |
+| `HttpsRedirectionOptions.RedirectStatusCode` default | Defaults to 307 Temporary Redirect, preserving the request method. Permanent redirects should be deliberate because clients and intermediaries can cache them. |
 | `HttpsRedirectionMiddleware` | Middleware implementation that redirects requests it considers insecure. It relies on the request scheme and HTTPS-port configuration. |
 | `AddHsts` | Registers/configures HSTS options. The framework template commonly enables HSTS outside development. |
 | `UseHsts` | Adds the Strict-Transport-Security header to eligible HTTPS responses so supporting browsers remember HTTPS policy. It does not redirect the current HTTP request. |
 | `HstsOptions` | Configuration for HSTS duration, subdomain coverage, preload declaration, and exclusions. |
 | `HstsOptions.MaxAge` | Duration browsers should remember the HSTS policy. A long value makes mistakes harder to roll back quickly. |
+| `HstsOptions.MaxAge` default | ASP.NET Core's documented default is 30 days. For a new production rollout, begin with a short duration and lengthen it after HTTPS is proven reliable. |
 | `HstsOptions.IncludeSubDomains` | Asks browsers to apply HSTS to subdomains. Enable only when every covered subdomain is ready for HTTPS and certificate management. |
+| `HstsOptions.IncludeSubDomains` default | Defaults to false; opt in only when every covered subdomain is ready. |
 | `HstsOptions.Preload` | Adds the preload directive indicating intent to be considered for browser preload lists. Setting it does not automatically submit or guarantee inclusion. |
+| `HstsOptions.Preload` default | Defaults to false. The directive is a browser preload-list convention rather than part of RFC 6797, and inclusion requires separate submission/criteria. |
 | `HstsOptions.ExcludedHosts` | Hostnames excluded from the generated HSTS policy. Use narrowly; an exclusion can leave a host without the expected browser upgrade behavior. |
 | `HstsMiddleware` | Middleware that emits the HSTS response header on HTTPS responses when configured. |
 | `Strict-Transport-Security response header` | Header carrying HSTS `max-age` and optional subdomain/preload directives. Browsers ignore it over insecure HTTP. |
@@ -33,6 +37,7 @@ HTTPS redirection reacts to an HTTP request by redirecting it. HSTS is learned f
 | `HTTPS redirect versus HSTS` | Redirect is an immediate server/proxy response to an HTTP request; HSTS is a browser's stored rule for future requests. They are complementary but not interchangeable. |
 | `HTTPS_PORT configuration key` | Configuration key ASP.NET Core can use to determine the HTTPS redirect port in hosting environments. Ensure it refers to the externally reachable HTTPS port. |
 | `ASPNETCORE_HTTPS_PORT environment variable` | Environment-variable form of HTTPS-port configuration used by ASP.NET Core hosting. Configure it when automatic port discovery is unavailable. |
+| `HTTPS_PORT versus HTTPS_PORTS` | `HTTPS_PORT`/`ASPNETCORE_HTTPS_PORT` configures HTTPS redirection middleware. `HTTPS_PORTS`/`ASPNETCORE_HTTPS_PORTS` configures Kestrel/HTTP.sys listen endpoints; they are not interchangeable. |
 | `Forwarded scheme behind trusted proxy` | The app may need a trusted forwarded-protocol header to know the browser used HTTPS at the proxy. Accept forwarded headers only from known proxies/networks. |
 | `HTTPS termination at reverse proxy` | TLS is decrypted at the edge and the backend connection may be HTTP. The proxy-to-app hop also needs appropriate network protection when it crosses an untrusted boundary. |
 | `HSTS only over HTTPS response` | Browsers ignore HSTS headers received over HTTP. The first secure response establishes the policy for later navigation. |
@@ -55,6 +60,7 @@ HTTPS redirection reacts to an HTTP request by redirecting it. HSTS is learned f
 | `Cross-Origin-Embedder-Policy response header` | Controls whether a document may load cross-origin resources without appropriate cross-origin permission. It is commonly needed with compatible opener policy for cross-origin isolation. |
 | `Cache-Control no-store for sensitive responses` | Requests that caches not store a response, useful for sensitive account pages/tokens. It is not encryption or a substitute for correct cache configuration. |
 | `Security headers middleware` | Application middleware or proxy configuration that consistently emits response security headers. Avoid conflicting duplicate values from multiple layers. |
+| `AntiforgeryOptions.SuppressXFrameOptionsHeader` interaction | Antiforgery can emit `X-Frame-Options: SAMEORIGIN` unless suppressed. If the app has a different embedding policy, configure CSP `frame-ancestors` and avoid conflicting frame headers. |
 | `CSP nonce-based script policy` | Uses a fresh unpredictable per-response nonce in CSP and on explicitly authorized script tags. Never reuse a nonce across responses or derive it from user input. |
 | `CSP report-to reporting configuration` | Configures CSP violation reporting through the Reporting API endpoint/group mechanism. Reports may contain sensitive URLs and attacker-controlled fields; secure and sanitize the collector. |
 | `CSP report-uri deprecated directive` | Legacy CSP reporting directive retained by browsers for compatibility but superseded by Reporting API mechanisms. Do not make it the only future reporting path without checking browser support. |

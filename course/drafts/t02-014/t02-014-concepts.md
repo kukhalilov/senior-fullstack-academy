@@ -18,11 +18,11 @@ Therefore CORS is not authentication, authorization, or a firewall. A command-li
 
 ### Antiforgery proves intent for ambient credentials
 
-Browsers automatically attach cookies for matching sites. A hostile site can cause a victim's browser to submit a request with those cookies even when it cannot read the response. Antiforgery uses a request token paired with an antiforgery cookie (a synchronizer/double-submit style defense in ASP.NET Core's protected implementation). The server checks that the request carries a valid token associated with the browser/session before performing an unsafe state change.
+Browsers automatically attach cookies for matching sites. A hostile site can cause a victim's browser to submit a request with those cookies even when it cannot read the response. Classic token-based antiforgery pairs a request token with a protected antiforgery cookie. ASP.NET Core 11 also enables automatic CSRF protection in `WebApplication.CreateBuilder` apps: it inspects `Sec-Fetch-Site` and `Origin` and records a verdict without issuing or validating tokens. Form-processing endpoints enforce a denied verdict; a plain JSON endpoint does not automatically receive this form metadata. Both defenses can coexist.
 
-Antiforgery does not prove that the user is authorized to update an object; it only mitigates cross-site request forgery. Keep authorization and domain checks. `SameSite` cookie restrictions help but are not a universal replacement for token validation, particularly with cross-site login, browser behavior, and multi-origin architectures.
+Neither a CSRF token nor a request-metadata verdict proves that the user is authorized to update an object. Keep authorization and domain checks. `SameSite` cookie restrictions help but are not a universal replacement for the app's CSRF strategy, particularly with cross-site login, browser behavior, and multi-origin architectures.
 
-ASP.NET Core's antiforgery services can be registered by `AddAntiforgery` or higher-level framework registrations, but **service registration is not middleware insertion**. MVC and Razor Pages commonly validate through filters. Blazor and Minimal APIs require `UseAntiforgery` in the pipeline when endpoint metadata requires validation. In recent ASP.NET Core, the middleware belongs after authentication/authorization and before endpoints according to the documented pipeline. [Antiforgery guidance](https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0)
+Token-based antiforgery services can be registered by `AddAntiforgery` or higher-level framework registrations, but **service registration is not token middleware insertion**. MVC and Razor Pages commonly validate through filters. Blazor and Minimal APIs require `UseAntiforgery` to run token validation where metadata requires it. The token middleware records validation on `IAntiforgeryValidationFeature`; it does not itself short-circuit an invalid request, so the framework filter/form consumer or explicit application code must enforce rejection before mutation. In ASP.NET Core 11, automatic metadata CSRF protection is a separate default middleware and form consumers enforce its verdict. [Antiforgery guidance](https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery?view=aspnetcore-11.0)
 
 ### Rate limiting matches an algorithm to a resource
 
@@ -72,7 +72,8 @@ The edge proxy accepts HTTPS and forwards HTTP to the app. If the app does not p
 - **“CORS protects the API from curl.”** Non-browser clients are not constrained by browser CORS rules.
 - **“CORS prevents CSRF.”** CORS response-sharing rules and antiforgery intent tokens address different problems.
 - **“The wildcard origin is fine with cookies.”** Credentialed CORS must name an allowed origin; wildcard credentials is invalid/unsafe.
-- **“AddAntiforgery adds middleware.”** It registers services only. Minimal APIs/Blazor need explicit middleware when required; MVC/Razor Pages use filters.
+- **“AddAntiforgery adds token middleware.”** It registers services only. Minimal APIs/Blazor need explicit `UseAntiforgery` for token validation; ASP.NET Core 11 has a separate automatic request-metadata CSRF layer.
+- **“UseAntiforgery blocks an invalid Minimal API request automatically.”** Token middleware records a result; a framework consumer/filter or explicit code must enforce rejection before a state change.
 - **“A concurrency limiter is a requests-per-minute limit.”** It caps concurrent operations only.
 - **“Partitioning by request IP is automatically trustworthy.”** Proxy trust and forwarded-header configuration determine the observed client IP.
 - **“An in-process rate limit protects a multi-replica fleet globally.”** Each process commonly maintains separate counters.

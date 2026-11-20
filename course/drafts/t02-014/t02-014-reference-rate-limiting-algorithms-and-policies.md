@@ -18,8 +18,10 @@ A limiter decides whether a request can acquire a permit before it consumes the 
 | `UseRateLimiter` | Adds middleware that acquires permits and rejects requests when limits are exceeded. |
 | `RateLimiterOptions` | Configuration for global limiting, named policies, rejection status/callback, and limiter instances. |
 | `RateLimiterOptions.GlobalLimiter` | Limiter applied globally before endpoint-specific policy handling. It cannot assume endpoint metadata or authenticated user state exists unless the pipeline/order makes it available. |
+| `GlobalLimiter plus named policy` | A configured global limiter and selected endpoint limiter can both run for a request. Design quotas with their composition and shared resource costs in mind. |
 | `RateLimiterOptions.RejectionStatusCode` | HTTP status used when a request is rejected, commonly 429. Use a response contract clients can interpret safely. |
 | `RateLimiterOptions.OnRejected` | Callback invoked when a limiter rejects a request. It can add a retry hint/response body; avoid returning internal quota keys or sensitive diagnostics. |
+| `RateLimiterOptions.OnRejected cancellation token` | Rejection callback receives a cancellation token for response writing; pass it to asynchronous operations and keep the callback fast. |
 | `RateLimiterOptions.AddPolicy` | Registers a named limiter policy for endpoint metadata to select. |
 | `RateLimiterOptions.AddFixedWindowLimiter` | Registers a fixed-window policy with a permit limit and window duration. It is simple but allows bursts on opposite sides of a boundary. |
 | `RateLimiterOptions.AddSlidingWindowLimiter` | Registers a segmented sliding-window policy that smooths boundary behavior by recycling expired segment permits. |
@@ -27,6 +29,7 @@ A limiter decides whether a request can acquire a permit before it consumes the 
 | `RateLimiterOptions.AddConcurrencyLimiter` | Registers a limiter that caps simultaneous in-flight requests. It does not cap request count per minute/day. |
 | `RateLimiterOptions.AddNoLimiter` | Registers a named policy that does not restrict permits. Use for explicit exceptions, not as a fallback for unknown policy names. |
 | `RateLimiterOptions.AddPolicy<TPartitionKey>` | Registers a partitioned named policy that selects a limiter based on a key computed from the request. Keep keys trusted and cardinality bounded. |
+| `RateLimiterOptions.AddChainedLimiter` | Registers a named chained limiter where one request must acquire a lease from every configured limiter. The order matters because time-based permits already consumed by an earlier limiter aren't rolled back when a later limiter rejects. |
 | `FixedWindowRateLimiterOptions` | Options for permit limit, window, queue, and replenishment behavior of a fixed-window limiter. |
 | `SlidingWindowRateLimiterOptions` | Adds segment-count configuration to a time-window limiter and controls queue/replenishment behavior. |
 | `TokenBucketRateLimiterOptions` | Controls bucket capacity, replenishment tokens/period, replenishment period, auto-replenishment, and queue. |
@@ -36,6 +39,7 @@ A limiter decides whether a request can acquire a permit before it consumes the 
 | `RateLimitPartition.GetTokenBucketLimiter` | Gets/caches a token-bucket limiter for a partition key. |
 | `RateLimitPartition.GetConcurrencyLimiter` | Gets/caches a concurrency limiter for a partition key. |
 | `RateLimitPartition.GetNoLimiter` | Gets a no-op limiter partition. Use only for an intentional policy exception after authentication/authorization still protect the endpoint. |
+| `RateLimitPartition` key caching | The partition helper caches limiter instances by partition key. Unbounded attacker-controlled unique keys can grow limiter state and create a memory denial-of-service risk. |
 
 ### Leases, rejection, and endpoint metadata
 
@@ -49,7 +53,21 @@ A limiter decides whether a request can acquire a permit before it consumes the 
 | `OnRejectedContext.HttpContext` | Current HTTP context in the rejection callback, used to set status, headers, and response body. |
 | `OnRejectedContext.Lease` | Rejected rate-limit lease, which may include retry metadata. |
 | `OnRejectedContext.Lease.TryGetMetadata` | Reads metadata from the rejected lease to produce a client retry hint when available. |
+| `Retry-After formatting` | Translate `MetadataName.RetryAfter` only when the rejected lease provides it. Avoid promising a precise retry time otherwise. |
 | `RateLimiterOptionsExtensions` | Extension methods that simplify registering built-in policies with `RateLimiterOptions`. |
+| `RateLimiterOptionsExtensions.AddFixedWindowLimiter` | Extension overloads for named fixed-window policies. |
+| `RateLimiterOptionsExtensions.AddSlidingWindowLimiter` | Extension overloads for named sliding-window policies. |
+| `RateLimiterOptionsExtensions.AddTokenBucketLimiter` | Extension overloads for named token-bucket policies. |
+| `RateLimiterOptionsExtensions.AddConcurrencyLimiter` | Extension overloads for named concurrency policies. |
+| `RateLimiterOptionsExtensions.AddPolicy<TPartitionKey>` | Registers a partitioned named policy. Partition factory overloads compute a limiter for the selected key/request. |
+| `RateLimiterOptionsExtensions.AddChainedLimiter` | Registers sequential limiters for a named policy. A rejected later limiter disposes earlier leases, but time-based permits are not refunded. |
+| `PartitionedRateLimiter.CreateChained` | Chains partitioned limiters, commonly for multiple global limits applied to every request. Every limiter must admit the request. |
+| `RateLimiter.CreateChained` | Chains ordinary limiters for a scoped/named policy. Follow the documented component-limiter lifetime/disposal contract. |
+| `ReplenishingRateLimiter.IsAutoReplenishing` | Indicates whether a replenishing limiter manages its own replenishment or expects explicit calls. |
+| `ReplenishingRateLimiter.TryReplenish` | Manually triggers replenishment when auto-replenishment is disabled. Framework helper registrations may coordinate replenishment with shared timers. |
+| `RateLimiter.GetStatistics` | Returns an optional snapshot of limiter statistics; implementations may return null when statistics are unavailable. |
+| `RateLimiterStatistics` | Snapshot including available permits, queued count, and total successful/failed leases when supported. Use as telemetry, not as a transactional quota check. |
+| `RateLimiter.Dispose` | Releases resources owned by a limiter; dispose custom limiter instances according to ownership/lifetime rules. |
 | `RequireRateLimiting` | Endpoint convention to apply a named rate-limit policy. |
 | `DisableRateLimiting` | Endpoint convention to bypass a limiter where an intentional exception is required. Do not let it bypass authentication or authorization. |
 | `EnableRateLimitingAttribute` | MVC endpoint metadata to select a named rate-limit policy. |
@@ -73,7 +91,7 @@ A limiter decides whether a request can acquire a permit before it consumes the 
 | `Window` | Duration of a fixed/sliding limiter period. It defines the count interval, not a universal SLA. |
 | `SegmentsPerWindow` | Number of subwindows used by a sliding-window limiter. More segments make recycling smoother but increase bookkeeping. |
 | `TokensPerPeriod` | Number of tokens replenished per token-bucket replenishment period. Together with capacity, it controls burst and sustained rates. |
-| `AutoReplenishment` | Controls whether a limiter manages its own replenishment timer. Framework helpers may coordinate replenishment; verify the selected registration surface before changing it. |
+| `AutoReplenishment` | Controls whether a replenishing limiter manages its own timer or expects explicit replenishment. ASP.NET Core's `AddTokenBucketLimiter` and `RateLimitPartition.GetTokenBucketLimiter` helpers set it false and use one shared timer; direct limiter construction may create per-instance timers. |
 | `QueueLimit` | Maximum queued waiter count. Large queues can convert rejection into long delays and memory pressure. |
 | `QueueLimit zero rejects instead of queueing` | A zero queue limit means excess requests are rejected immediately rather than waiting for a permit. |
 
@@ -88,8 +106,33 @@ A limiter decides whether a request can acquire a permit before it consumes the 
 | `Partition by client IP trust boundary` | Partitions using remote IP. Behind proxies, trust only configured forwarding sources; otherwise the IP can be spoofed or collapse all clients to the proxy address. |
 | `Per-process limiter versus distributed limiter` | Built-in limiter state normally belongs to one process. With N replicas, aggregate capacity can be roughly N times the local allowance unless a coordinated distributed limiter or edge policy is used. |
 | `Rate limiting after routing endpoint policy metadata` | Endpoint metadata must be selected by routing before middleware can apply endpoint-specific policy. |
-| `UseRateLimiter after UseRouting for endpoint-specific policies` | Place the middleware after routing when policies come from endpoint metadata. If partitioning by authenticated user, also ensure authentication runs before the limiter evaluates the user key. |
+| `UseRateLimiter before routing for global-only limiter` | When only a global limiter is used, middleware can run before routing. Endpoint-specific policies require it after routing has selected endpoint metadata. |
+| `UseRateLimiter after UseRouting for endpoint-specific policies` | Place the middleware after routing when policies come from endpoint metadata. For partitions keyed by authenticated user, ensure authentication has populated the principal before the limiter evaluates that key. |
 | `Rate limiting is not a substitute for upstream DDoS protection` | App middleware consumes resources to inspect each request and typically has limited scope. Use edge/network protections for volumetric attacks and design resource quotas separately. |
+
+### Remaining named API and protocol entries
+
+The manifest names below are included explicitly. Their behavior and surrounding tradeoffs are explained in the relevant sections above; use the linked official references to follow overloads and target-framework differences.
+
+| Supplied name | Coverage note |
+|---|---|
+| `RateLimiterOptionsExtensions.AddPolicy<TPartitionKey> partition factory overloads` | Partition factory overloads select limiter state from a computed request key; keep keys trusted and bounded. |
+| `RateLimiterStatistics.CurrentAvailablePermits` | Snapshot count of permits currently available from that limiter; it may become stale immediately and is not a reservation. |
+| `RateLimiterStatistics.CurrentQueuedCount` | Snapshot count of permits currently waiting in that limiter's queue. |
+| `RateLimiterStatistics.TotalSuccessfulLeases` | Cumulative count of successful leases returned by that limiter instance. |
+| `RateLimiterStatistics.TotalFailedLeases` | Cumulative count of failed leases returned by that limiter instance. |
+| `RateLimiter.AcquireAsync` | Base API that asynchronously waits for requested permits or for acquisition to become impossible; honors cancellation. |
+| `RateLimiter.AttemptAcquire` | Base API that makes a synchronous, immediate attempt to acquire permits without waiting. |
+| `RateLimiterOptions.OnRejected lease metadata and Retry-After formatting` | Read RetryAfter metadata if supplied and format a matching HTTP header; do not invent a delay if absent. |
+| `RateLimiterOptionsExtensions.AddConcurrencyLimiter overloads` | Registers a named concurrency policy with active permit and queue limits. |
+| `RateLimiterOptionsExtensions.AddFixedWindowLimiter overloads` | Registers a named fixed-window policy with permit count and window duration. |
+| `RateLimiterOptionsExtensions.AddSlidingWindowLimiter overloads` | Registers a named segmented sliding-window policy. |
+| `RateLimiterOptionsExtensions.AddTokenBucketLimiter overloads` | Registers a named token-bucket policy with capacity and replenishment settings. |
+| `Unbounded partition key cardinality can exhaust limiter memory` | Each unique key may create cached limiter state; attacker-controlled cardinality can cause memory exhaustion. |
+| `RateLimitPartition caches limiter instances by partition key` | The partition helper reuses limiter instances for keys, preserving separate counters but retaining state. |
+| `Chained limiter permit consumption and ordering tradeoff` | Every chained limiter must admit; an earlier time-based permit is not refunded if a later limiter rejects. |
+| `Built-in AddTokenBucketLimiter shared replenishment timer behavior` | Framework helper registrations disable per-limiter auto timer and coordinate replenishment through a shared timer. |
+| `Queueing increases latency and memory pressure` | Queued requests retain state and wait; large queues increase memory and tail latency instead of adding service capacity. |
 
 ## Cross-item comparison
 
@@ -144,7 +187,10 @@ In an `OnRejected` callback, inspect `MetadataName.RetryAfter` from the lease if
 - Trusting forwarded client IP headers from arbitrary sources.
 - Assuming per-process quotas apply globally across replicas.
 - Using a large queue to hide overload and increasing tail latency/memory pressure.
-- Applying a global limiter without understanding its position relative to endpoint-specific policies.
+- Applying a global limiter without understanding its composition with endpoint-specific policies.
+- Assuming `AddTokenBucketLimiter` creates a timer per partition; helper registrations coordinate replenishment.
+- Building an unbounded number of partition keys from user-controlled values and exhausting cached limiter state.
+- Assuming chained time-based leases are refunded when a later limiter rejects; consumed permits are not restored.
 - Adding expensive database work in `OnRejected` and defeating load shedding.
 - Treating a 429 policy as an upstream DDoS defense.
 - Disabling a limiter on an endpoint that performs expensive work without a measured reason.
