@@ -16,7 +16,7 @@ An instrumentation library emits framework or application signals; a provider su
 |---|---|
 | `OpenTelemetry .NET SDK package family` | NuGet packages implementing the OpenTelemetry API, SDK, integrations, and exporters. Select only the required packages and keep compatible versions. |
 | `OpenTelemetry.Extensions.Hosting package` | Integrates provider lifecycle with .NET hosting and exposes dependency-injection registration helpers. |
-| `OpenTelemetry.Instrumentation.AspNetCore package` | Instrumentation library for ASP.NET Core requests and middleware. In .NET 11, built-ins already emit required server HTTP signals, so assess overlap before adding it. |
+| `OpenTelemetry.Instrumentation.AspNetCore package` | Instrumentation library for ASP.NET Core requests and middleware. In .NET 11, built-ins already emit required server HTTP signals. Current package versions can detect framework tags and skip adding the same tags; verify target versions and retain the package when its additional features are needed. |
 | `OpenTelemetry.Instrumentation.Http package` | Instruments outgoing `HttpClient` operations. Register only if outbound HTTP spans/metrics are needed and not already produced by another instrumentation layer. |
 | `OpenTelemetry.Instrumentation.Runtime package` | Adds runtime/process measurements such as GC, thread-pool, and allocation metrics, depending on package version. It is not a replacement for app-specific measurements. |
 | `OpenTelemetry.Exporter.OpenTelemetryProtocol package` | Exports supported OpenTelemetry signals through OTLP using configured protocol/endpoint. |
@@ -63,7 +63,7 @@ An instrumentation library emits framework or application signals; a provider su
 | `TraceIdRatioBasedSampler` | Samples root traces according to a configured probability based on trace ID. It is not a guaranteed exact percentage per short interval. |
 | `AlwaysOnSampler` | Records every eligible trace. Simple for development but can be expensive and expose more data in production. |
 | `AlwaysOffSampler` | Drops trace recording. Use only when traces are intentionally disabled; metrics/logs remain separate signals. |
-| `ASP.NET Core instrumentation AddAspNetCoreInstrumentation` | Registers ASP.NET Core instrumentation and options such as filtering/enrichment. In .NET 11, check for overlap with built-in HTTP metrics/activities before use. |
+| `ASP.NET Core instrumentation AddAspNetCoreInstrumentation` | Registers ASP.NET Core instrumentation and options such as filtering/enrichment. In .NET 11, built-in HTTP metrics are primary; current tracing package versions can detect built-in tags and skip duplicates. Check the exact runtime/package combination before deciding whether the package's additional features are needed. |
 | `HTTP client instrumentation AddHttpClientInstrumentation` | Registers outbound `HttpClient` instrumentation and supports request filtering/enrichment. Avoid recording sensitive URLs, headers, or bodies. |
 | `Runtime instrumentation AddRuntimeInstrumentation` | Adds runtime metric collection. Select meters/instruments and export budgets deliberately; metric names and supported set can change by package version. |
 | `ASP.NET Core request filter and enrichment options` | Filters or enriches inbound server telemetry. Filtering can reduce noise; enrichment must remain low-cardinality and privacy-safe. |
@@ -85,7 +85,7 @@ An instrumentation library emits framework or application signals; a provider su
 | `Sampling tradeoffs and tail-sampling collector boundary` | Head sampling is cheap at the service but decides before outcome; tail sampling can use complete trace outcome at a Collector but needs buffering, routing, and trace assembly. |
 | `Trace baggage and PII security risk` | Baggage propagates broadly and may be copied into telemetry. Allowlist and bound it; never put credentials, tokens, or personal data in it by default. |
 | `Metric label cardinality cost` | Every unique dimension set can create a time series, increasing memory/storage/query cost. Use bounded dimensions and metric views to drop unsafe attributes. |
-| `Avoid duplicate ASP.NET Core instrumentation in .NET 11` | Built-in .NET 11 HTTP meters and activities already provide required semantic-convention signals. Do not enable a second overlapping source without checking duplicate spans/measurements and its extra feature value. |
+| `Avoid duplicate ASP.NET Core instrumentation in .NET 11` | Built-in .NET 11 HTTP meters and activities provide required semantic-convention signals. The current instrumentation package can detect built-in tags and skip re-adding them, but behavior depends on package/runtime versions and other package features may still be useful. Verify actual emitted spans and measurements rather than assuming duplication or assuming no overlap. |
 | `Avoid recording secrets and request body data in telemetry` | Request/response bodies, cookies, authorization headers, query values, exception text, and user-controlled values may contain secrets/PII. Collect only explicitly justified, redacted data. |
 | `Telemetry exporter failure and application availability tradeoff` | Exporter latency or outage should generally degrade telemetry delivery, not business requests. Use bounded queues, timeouts, retry budgets, and operational alerts for dropped data. |
 
@@ -115,7 +115,7 @@ builder.Services.AddOpenTelemetry()
         .AddOtlpExporter());
 ```
 
-This is a structural example: install the hosting, SDK, and OTLP exporter packages compatible with the target runtime; configure OTLP endpoint/protocol/credentials; and verify the .NET 11 built-in HTTP instrumentation does not overlap with an instrumentation package. Ten percent root sampling is only illustrative and should follow service goals and retention cost. [OpenTelemetry .NET getting started](https://opentelemetry.io/docs/languages/dotnet/)
+This is a structural example: install the hosting, SDK, and OTLP exporter packages compatible with the target runtime; configure OTLP endpoint/protocol/credentials; and verify the .NET 11 built-in HTTP instrumentation and instrumentation package cooperate as expected. Current package versions can skip adding tags already supplied by the framework. Ten percent root sampling is only illustrative and should follow service goals and retention cost. [OpenTelemetry .NET getting started](https://opentelemetry.io/docs/languages/dotnet/) [ASP.NET Core .NET 11 migration guidance](https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/http-activity-otel-semconv)
 
 ### Limit sensitive metric attributes with a view
 
@@ -135,7 +135,7 @@ Configure the app's OTLP endpoint to a trusted Collector. The Collector can rece
 - Retrying telemetry indefinitely or with unbounded memory.
 - Sampling children independently and breaking parent/trace coherence.
 - Assuming tail sampling works when spans for one trace are spread across independent Collectors.
-- Enabling built-in .NET 11 server signals and overlapping instrumentation without reviewing emitted spans/attributes.
+- Assuming every ASP.NET Core instrumentation package version either duplicates or automatically suppresses all built-in telemetry; verify the deployed combination and emitted signals.
 - Exporting secrets in logs, URLs, baggage, tags, or health details.
 - Blocking host shutdown on an exporter beyond the deployment termination grace period.
 

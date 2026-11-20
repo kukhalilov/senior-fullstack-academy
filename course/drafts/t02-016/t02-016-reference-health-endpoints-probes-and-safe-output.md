@@ -45,6 +45,7 @@ The check service computes a report; an endpoint applies a predicate, maps repor
 | `Startup probe` | Gives an initializing process a bounded window before liveness/readiness checks take effect. Configure its deadline to match worst-case startup. |
 | `Readiness versus liveness failure policy` | Readiness usually removes an instance from service; liveness typically restarts a container. A failure should trigger the action that can plausibly recover the fault. |
 | `Kubernetes HTTP probe integration` | Kubernetes HTTP probes treat configured response codes and timing thresholds as platform policy. Startup probes can delay liveness/readiness; failure thresholds and periods define detection latency. |
+| `Kubernetes gRPC probe integration` | Kubernetes can issue gRPC health probes using the standard health-check protocol. Configure the gRPC health service and probe service name consistently; this is separate from HTTP status-code probing. |
 | `Dependency checks in readiness versus liveness` | A required dependency may affect readiness if the app cannot serve useful traffic without it. It rarely belongs in liveness when restarting cannot repair the dependency. |
 | `Health endpoint caching and no-store headers` | Probe responses should reflect current execution and generally include cache-prevention headers. Verify intermediary caches do not serve stale status. |
 | `Health response detail exposure and information disclosure` | Detailed report names, internal hosts, exception text, versions, and dependency topology can aid attackers. Use a minimal external response and a separate secured diagnostic surface if needed. |
@@ -66,6 +67,18 @@ The check service computes a report; an endpoint applies a predicate, maps repor
 | `HealthReportEntry.Tags` | Registration tags copied to the report entry and useful for internal rendering/filtering. |
 | `HealthCheckServiceExtensions.CheckHealthAsync overloads` | Convenience methods invoke selected checks and return a report, optionally with a predicate or cancellation token. |
 | `AspNetCore.Diagnostics.HealthChecks is a community package, not the built-in framework package` | The popular ecosystem package adds provider checks, UI, publishers, and integrations. It is independently maintained; confirm package version/support and do not teach its APIs as built-in ASP.NET Core. |
+| `Grpc.AspNetCore.HealthChecks package` | Official gRPC ASP.NET Core integration package that exposes registered .NET health checks through the standard gRPC health-checking protocol. It is a package integration, not the HTTP health endpoint middleware. This integration was introduced in .NET 7. |
+| `AddGrpcHealthChecks` | Registers the gRPC health-check service and connects it to the .NET health-check registrations. |
+| `MapGrpcHealthChecksService` | Maps the health service endpoint into the gRPC server. Apply appropriate endpoint authorization/access controls because health state can reveal sensitive service information. |
+| `GrpcHealthChecksOptions.Services.MapService` | Maps a gRPC service name to a predicate selecting .NET health-check registrations, commonly by tag. Configure a deliberate default service mapping and named service groups. |
+| `gRPC Health.Check method` | Unary protocol method that checks current health immediately and returns the corresponding service status; an unknown service name returns `NOT_FOUND`. |
+| `gRPC Check unknown service returns NOT_FOUND while Watch reports Unknown` | The standard service methods differ for an unrecognized service name: unary `Check` returns `NOT_FOUND`, while streaming `Watch` reports `Unknown`. Do not treat the responses as interchangeable. |
+| `gRPC Health.Watch method` | Streaming protocol method that reports status changes using periodically published health reports. Its timing follows the registered `IHealthCheckPublisher` schedule, so publisher configuration controls freshness. |
+| `gRPC health status mapping from HealthReport` | No health results maps to `Unknown`; any `HealthStatus.Unhealthy` maps to `NotServing`; otherwise the service reports `Serving`, so `Degraded` is treated as serving by this integration's default mapping. |
+| `gRPC Check executes health checks immediately` | A `Check` request performs a current health-check execution rather than waiting for the publisher's cached report; budget its latency and dependency load. |
+| `gRPC Watch uses periodic IHealthCheckPublisher results` | `Watch` relies on publisher-driven report refreshes, including the configured startup delay and period; it is not an independent per-message probe loop. |
+| `gRPC health endpoint access control` | Protect or deliberately expose the gRPC health service. If the app's fallback authorization policy blocks probes, configure the intended policy explicitly; anonymous health status can still leak operational information. |
+| `gRPC health checks in ASP.NET Core introduced in .NET 7` | The separate `Grpc.AspNetCore.HealthChecks` package integration was added in ASP.NET Core 7; it uses the standard protocol and the .NET health-check abstractions. |
 
 ## Cross-item comparison
 
@@ -76,6 +89,8 @@ The check service computes a report; an endpoint applies a predicate, maps repor
 | `Readiness probe` | Traffic admission | May reflect required dependencies and reduce available capacity |
 | `Liveness probe` | Process recovery | Should avoid remote dependency failures that restart healthy processes |
 | `Startup probe` | Slow/variable initialization | Defers other probe actions within a configured startup budget |
+| `Grpc.AspNetCore.HealthChecks` | gRPC clients and gRPC-native probe endpoints | Standard gRPC `Check`/`Watch` protocol; status aggregation and publisher freshness differ from a per-request HTTP probe |
+| `MapHealthChecks` HTTP endpoint | HTTP-capable load balancers/orchestrators | Request executes selected checks immediately and returns configured HTTP status/body |
 
 ## Examples
 
@@ -146,3 +161,5 @@ This shape omits descriptions, exceptions, and data. If the endpoint is internet
 
 - [Health checks in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks)
 - [Health check endpoint options API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.diagnostics.healthchecks.healthcheckoptions)
+- [gRPC health checks in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0)
+- [Kubernetes liveness, readiness, and startup probes](https://kubernetes.io/docs/concepts/workloads/pods/probes/)

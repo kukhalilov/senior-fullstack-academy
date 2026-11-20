@@ -44,11 +44,15 @@ After upgrading to .NET 11, trace volume nearly doubles. The app subscribes to t
 
 The service wants to retain all error traces but sample only 5% of successful requests. Compare a root `TraceIdRatioBasedSampler` under `ParentBasedSampler` with Collector tail sampling. State what infrastructure tail sampling requires and what it costs.
 
-### Exercise 6: Exporter outage
+### Exercise 6: Health metrics are missing from a scrape
+
+The team has registered health checks and sees `/health/ready` responses, but its pull-based metrics scraper has no health-check counters. Name the built-in publisher and instruments, explain why the scraper does not see them, and propose a compatible push-based collection path or an alternate instrumentation design.
+
+### Exercise 7: Exporter outage
 
 An OTLP endpoint becomes unavailable for 40 minutes. The app has unbounded retry buffering and blocks host shutdown waiting for all telemetry to export. Identify the operational failure modes and propose bounded behavior.
 
-### Exercise 7: Health data leak
+### Exercise 8: Health data leak
 
 A public endpoint returns each entry's exception, description, tags, and data dictionary as JSON. Give a safe projection and explain what a trusted internal diagnostics consumer can receive that the public probe should not.
 
@@ -59,8 +63,9 @@ A public endpoint returns each entry's exception, description, tags, and data di
 3. Think of distinct tag combinations as separately stored time series. Keep only dimensions with a bounded domain and operational value.
 4. Compare exported activity names, source/instrumentation scope, and trace IDs before and after disabling one producer at a time in staging.
 5. A head sampler decides before the request outcome is known. Tail sampling needs complete traces at a decision point.
-6. Bound queue size, retry time, and flush/shutdown deadlines. Decide whether telemetry loss or user request failure is the acceptable failure mode.
-7. Public probe consumers need a minimal traffic/recovery signal, not stack traces and dependency topology.
+6. The .NET telemetry health-check publisher is registered with `AddTelemetryHealthCheckPublisher`; it emits `dotnet.health_check.reports` and `dotnet.health_check.unhealthy_checks`. Those built-in health-check metrics are push-only, so a pull scraper won't see them. Select a push-capable path or define a separate metric design compatible with the collector.
+7. Bound queue size, retry time, and flush/shutdown deadlines. Decide whether telemetry loss or user request failure is the acceptable failure mode.
+8. Public probe consumers need a minimal traffic/recovery signal, not stack traces and dependency topology.
 
 ## Complete solutions
 
@@ -86,9 +91,13 @@ In a staging workload, inspect activity source/instrumentation scope, names, par
 
 ### Solution 6
 
-Unbounded buffering can exhaust memory/disk; indefinite retries can create a recovery burst; waiting during shutdown can exceed the container termination grace period and lose the process anyway. Use a bounded queue, finite retry/backoff and export timeout, drop/overflow policy, and metrics/alerts for dropped data. Keep business requests independent of export success. Attempt bounded `ForceFlush`/shutdown within the host stop budget, then exit.
+Register `builder.Services.AddTelemetryHealthCheckPublisher()` and subscribe/collect its published health metrics using a supported push-based metrics path. The instruments are `dotnet.health_check.reports` (report status) and `dotnet.health_check.unhealthy_checks` (degraded or unhealthy outcomes by check name and status). The built-in health-check metrics are not available through pull-based metrics collection. If the platform only scrapes, implement a separately designed scrape-compatible signal rather than assuming these publisher metrics will appear. [Built-in .NET extensions metrics](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics)
 
 ### Solution 7
+
+Unbounded buffering can exhaust memory/disk; indefinite retries can create a recovery burst; waiting during shutdown can exceed the container termination grace period and lose the process anyway. Use a bounded queue, finite retry/backoff and export timeout, drop/overflow policy, and metrics/alerts for dropped data. Keep business requests independent of export success. Attempt bounded `ForceFlush`/shutdown within the host stop budget, then exit.
+
+### Solution 8
 
 Return only an overall status, or an allowlisted name/status pair if the endpoint is authenticated/internal. Omit exception, description, arbitrary data, internal hostnames, connection details, and stack traces. A protected operator channel can expose sanitized per-check timing and controlled diagnostics with access checks, retention, and redaction. It should still avoid secrets and user content. Configure no-store behavior and verify intermediary caches.
 
@@ -116,5 +125,7 @@ Return only an overall status, or an allowlisted name/status pair if the endpoin
 - [Health checks in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks)
 - [ASP.NET Core HTTP metrics](https://learn.microsoft.com/en-us/aspnet/core/metrics/http)
 - [ASP.NET Core .NET 11 instrumentation change](https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/http-activity-otel-semconv)
+- [.NET extensions health-check metrics](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics)
+- [AddTelemetryHealthCheckPublisher API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addtelemetryhealthcheckpublisher?view=net-11.0-pp)
 - [.NET OpenTelemetry](https://opentelemetry.io/docs/languages/dotnet/)
 - [OTLP specification](https://opentelemetry.io/docs/specs/otlp/)

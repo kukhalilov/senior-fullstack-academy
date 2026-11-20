@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1468,
-    "pending": 881,
-    "claimsChecked": 77416,
-    "claimsCorrected": 3192,
+    "reviewed": 1476,
+    "pending": 873,
+    "claimsChecked": 78867,
+    "claimsCorrected": 3245,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1598,6 +1598,64 @@
         "Confirmed HybridCache coalesces same-key factories only within a HybridCache instance, default key/payload limits, serializer behavior, tag invalidation logical semantics and wildcard behavior. Added the important cross-instance local-cache invalidation limitation: other replicas local copies are not evicted by key/tag invalidation.",
         "Confirmed output caching is endpoint-configured, defaults to 200 GET/HEAD without Set-Cookie/authenticated requests, and middleware belongs after routing, CORS, authentication and authorization where applicable. Distinguished HTTP response caching semantics and validators.",
         "All supplied inventory terms are present in the assigned reference lessons. Lessons remain in drafts; no promotion was performed."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "ASP.NET Core health checks, diagnostics, metrics, tracing and OpenTelemetry (.NET / ASP.NET Core 11; t02-016)",
+      "status": "full claim and frozen-inventory audit complete for all 8 lessons",
+      "findings": [
+        "Reviewed all eight lesson files, examples, exercises and interview answers against current Microsoft Learn/API/source documentation, Kubernetes probe documentation, gRPC health protocol documentation and OpenTelemetry .NET documentation.",
+        "Added built-in push-only health metrics, individual ASP.NET Core instrument names, resource utilization health-check APIs and their thresholds/experimental fallback details, gRPC Health.Check/Watch integration, and .NET 11 synchronous Gauge<T>/InstrumentAdvice<T> API coverage. Clarified built-in ASP.NET Core 11 HTTP telemetry versus optional OpenTelemetry instrumentation package features.",
+        "All supplied inventory terms are present and explained in their assigned reference lessons. All 8 lessons remain in drafts; no unresolved factual or scope issues remain."
+      ],
+      "sources": [
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckregistration",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckserviceoptions",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.diagnostics.healthchecks.healthcheckoptions",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http",
+        "https://learn.microsoft.com/en-us/aspnet/core/log-mon/metrics/metrics?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/http-activity-otel-semconv",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-aspnetcore",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/metrics-instrumentation",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/available-counters",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
+        "https://opentelemetry.io/docs/languages/dotnet/",
+        "https://opentelemetry.io/docs/languages/dotnet/metrics/",
+        "https://opentelemetry.io/docs/languages/dotnet/traces/",
+        "https://opentelemetry.io/docs/specs/semconv/http/http-metrics/",
+        "https://opentelemetry.io/docs/specs/otlp/",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addtelemetryhealthcheckpublisher?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/diagnostics?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/blazor?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/security?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0",
+        "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addmanualhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addapplicationlifecyclehealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.resourceutilizationhealthcheckextensions.addresourceutilizationhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-resource-monitoring",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.imanualhealthcheck?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceutilizationhealthcheckoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceusagethresholds?view=net-11.0-pp",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUtilizationHealthCheckOptions.cs.html",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUsageThresholds.cs.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.kubernetesresourcequotaservicecollectionextensions.addkubernetesresourcemonitoring?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.creategauge?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.gauge-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.instrumentadvice-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.createhistogram?view=net-11.0-pp"
       ]
     }
   ],
@@ -128846,13 +128904,39 @@
       "topicId": "t02-016",
       "phase": "overview",
       "draft": "course/drafts/t02-016/t02-016-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 64,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": 21,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+            "https://kubernetes.io/docs/concepts/workloads/pods/probes/"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 21,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 22,
+          "sources": [
+            "https://opentelemetry.io/docs/languages/dotnet/",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/http-activity-otel-semconv"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
@@ -128876,22 +128960,79 @@
         "https://opentelemetry.io/docs/languages/dotnet/metrics/",
         "https://opentelemetry.io/docs/languages/dotnet/traces/",
         "https://opentelemetry.io/docs/specs/semconv/http/http-metrics/",
-        "https://opentelemetry.io/docs/specs/otlp/"
+        "https://opentelemetry.io/docs/specs/otlp/",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addtelemetryhealthcheckpublisher?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/diagnostics?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/blazor?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/security?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0",
+        "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addmanualhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addapplicationlifecyclehealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.resourceutilizationhealthcheckextensions.addresourceutilizationhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-resource-monitoring",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.imanualhealthcheck?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceutilizationhealthcheckoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceusagethresholds?view=net-11.0-pp",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUtilizationHealthCheckOptions.cs.html",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUsageThresholds.cs.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.kubernetesresourcequotaservicecollectionextensions.addkubernetesresourcemonitoring?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.creategauge?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.gauge-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.instrumentadvice-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.createhistogram?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited overview and topic coverage against official ASP.NET Core/.NET docs, Kubernetes probe docs and OpenTelemetry docs; added health metrics and clarified .NET 11 built-in instrumentation. No unresolved factual or inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-016-concepts",
       "topicId": "t02-016",
       "phase": "concepts",
       "draft": "course/drafts/t02-016/t02-016-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 142,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": 35,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckregistration"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 35,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/metrics-instrumentation"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 35,
+          "sources": [
+            "https://opentelemetry.io/docs/languages/dotnet/metrics/",
+            "https://opentelemetry.io/docs/languages/dotnet/traces/",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/http-activity-otel-semconv"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 37,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-resource-monitoring",
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-health-checks"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
@@ -128915,22 +129056,81 @@
         "https://opentelemetry.io/docs/languages/dotnet/metrics/",
         "https://opentelemetry.io/docs/languages/dotnet/traces/",
         "https://opentelemetry.io/docs/specs/semconv/http/http-metrics/",
-        "https://opentelemetry.io/docs/specs/otlp/"
+        "https://opentelemetry.io/docs/specs/otlp/",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addtelemetryhealthcheckpublisher?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/diagnostics?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/blazor?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/security?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0",
+        "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addmanualhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addapplicationlifecyclehealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.resourceutilizationhealthcheckextensions.addresourceutilizationhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-resource-monitoring",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.imanualhealthcheck?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceutilizationhealthcheckoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceusagethresholds?view=net-11.0-pp",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUtilizationHealthCheckOptions.cs.html",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUsageThresholds.cs.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.kubernetesresourcequotaservicecollectionextensions.addkubernetesresourcemonitoring?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.creategauge?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.gauge-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.instrumentadvice-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.createhistogram?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked concept explanations and comparisons, then filled omitted health metric, resource monitoring, gRPC health and current System.Diagnostics API concepts. No unresolved factual or inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-016-reference-health-check-contract-registration-and-execution",
       "topicId": "t02-016",
       "phase": "reference",
       "draft": "course/drafts/t02-016/t02-016-reference-health-check-contract-registration-and-execution.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 209,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": 52,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckserviceoptions",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckregistration"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 52,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-health-checks"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 52,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.imanualhealthcheck?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addmanualhealthcheck?view=net-11.0-pp",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addapplicationlifecyclehealthcheck?view=net-11.0-pp"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 53,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.resourceutilizationhealthcheckextensions.addresourceutilizationhealthcheck?view=net-11.0-pp",
+            "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUtilizationHealthCheckOptions.cs.html",
+            "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUsageThresholds.cs.html"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
@@ -128954,22 +129154,77 @@
         "https://opentelemetry.io/docs/languages/dotnet/metrics/",
         "https://opentelemetry.io/docs/languages/dotnet/traces/",
         "https://opentelemetry.io/docs/specs/semconv/http/http-metrics/",
-        "https://opentelemetry.io/docs/specs/otlp/"
+        "https://opentelemetry.io/docs/specs/otlp/",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addtelemetryhealthcheckpublisher?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/diagnostics?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/blazor?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/security?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0",
+        "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addmanualhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addapplicationlifecyclehealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.resourceutilizationhealthcheckextensions.addresourceutilizationhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-resource-monitoring",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.imanualhealthcheck?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceutilizationhealthcheckoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceusagethresholds?view=net-11.0-pp",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUtilizationHealthCheckOptions.cs.html",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUsageThresholds.cs.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.kubernetesresourcequotaservicecollectionextensions.addkubernetesresourcemonitoring?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.creategauge?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.gauge-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.instrumentadvice-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.createhistogram?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed health-check contract, registration, execution, concurrency/timeouts, publisher options and optional .NET 11 APIs; omitted manual/lifecycle/resource health surfaces were added. No unresolved factual or inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-016-reference-health-endpoints-probes-and-safe-output",
       "topicId": "t02-016",
       "phase": "reference",
       "draft": "course/drafts/t02-016/t02-016-reference-health-endpoints-probes-and-safe-output.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 151,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": 37,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.diagnostics.healthchecks.healthcheckoptions"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 37,
+          "sources": [
+            "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 37,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0",
+            "https://github.com/grpc/grpc/blob/master/doc/health-checking.md"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 40,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
@@ -128993,22 +129248,86 @@
         "https://opentelemetry.io/docs/languages/dotnet/metrics/",
         "https://opentelemetry.io/docs/languages/dotnet/traces/",
         "https://opentelemetry.io/docs/specs/semconv/http/http-metrics/",
-        "https://opentelemetry.io/docs/specs/otlp/"
+        "https://opentelemetry.io/docs/specs/otlp/",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addtelemetryhealthcheckpublisher?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/diagnostics?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/blazor?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/security?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0",
+        "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addmanualhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addapplicationlifecyclehealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.resourceutilizationhealthcheckextensions.addresourceutilizationhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-resource-monitoring",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.imanualhealthcheck?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceutilizationhealthcheckoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceusagethresholds?view=net-11.0-pp",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUtilizationHealthCheckOptions.cs.html",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUsageThresholds.cs.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.kubernetesresourcequotaservicecollectionextensions.addkubernetesresourcemonitoring?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.creategauge?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.gauge-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.instrumentadvice-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.createhistogram?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited HTTP endpoint mapping, safe output, caching, Kubernetes probes and gRPC Health protocol; added missing gRPC integration scope. No unresolved factual or inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-016-reference-diagnostics-logs-metrics-and-activities",
       "topicId": "t02-016",
       "phase": "reference",
       "draft": "course/drafts/t02-016/t02-016-reference-diagnostics-logs-metrics-and-activities.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 372,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": 93,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/metrics-instrumentation",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.creategauge?view=net-11.0-pp",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.gauge-1?view=net-11.0-pp",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.instrumentadvice-1?view=net-11.0-pp",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.createhistogram?view=net-11.0-pp"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 93,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/diagnostics?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/blazor?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/security?view=aspnetcore-10.0"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 93,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/http-activity-otel-semconv",
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 93,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics",
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
@@ -129032,22 +129351,79 @@
         "https://opentelemetry.io/docs/languages/dotnet/metrics/",
         "https://opentelemetry.io/docs/languages/dotnet/traces/",
         "https://opentelemetry.io/docs/specs/semconv/http/http-metrics/",
-        "https://opentelemetry.io/docs/specs/otlp/"
+        "https://opentelemetry.io/docs/specs/otlp/",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addtelemetryhealthcheckpublisher?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/diagnostics?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/blazor?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/security?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0",
+        "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addmanualhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addapplicationlifecyclehealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.resourceutilizationhealthcheckextensions.addresourceutilizationhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-resource-monitoring",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.imanualhealthcheck?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceutilizationhealthcheckoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceusagethresholds?view=net-11.0-pp",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUtilizationHealthCheckOptions.cs.html",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUsageThresholds.cs.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.kubernetesresourcequotaservicecollectionextensions.addkubernetesresourcemonitoring?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.creategauge?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.gauge-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.instrumentadvice-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.createhistogram?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked signal APIs, current ASP.NET Core metric catalog and diagnostic CLI tools against official docs. Added missing individual built-in instruments, Gauge<T>, InstrumentAdvice<T>, and corrected the optional instrumentation package explanation. No unresolved factual or inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-016-reference-opentelemetry-dotnet-hosting-collection-and-export",
       "topicId": "t02-016",
       "phase": "reference",
       "draft": "course/drafts/t02-016/t02-016-reference-opentelemetry-dotnet-hosting-collection-and-export.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 194,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": 48,
+          "sources": [
+            "https://opentelemetry.io/docs/languages/dotnet/",
+            "https://opentelemetry.io/docs/languages/dotnet/metrics/",
+            "https://opentelemetry.io/docs/languages/dotnet/traces/"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 48,
+          "sources": [
+            "https://opentelemetry.io/docs/languages/dotnet/metrics/",
+            "https://opentelemetry.io/docs/languages/dotnet/traces/"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 48,
+          "sources": [
+            "https://opentelemetry.io/docs/specs/otlp/",
+            "https://opentelemetry.io/docs/languages/dotnet/"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 50,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/http-activity-otel-semconv",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
@@ -129071,22 +129447,78 @@
         "https://opentelemetry.io/docs/languages/dotnet/metrics/",
         "https://opentelemetry.io/docs/languages/dotnet/traces/",
         "https://opentelemetry.io/docs/specs/semconv/http/http-metrics/",
-        "https://opentelemetry.io/docs/specs/otlp/"
+        "https://opentelemetry.io/docs/specs/otlp/",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addtelemetryhealthcheckpublisher?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/diagnostics?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/blazor?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/security?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0",
+        "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addmanualhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addapplicationlifecyclehealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.resourceutilizationhealthcheckextensions.addresourceutilizationhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-resource-monitoring",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.imanualhealthcheck?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceutilizationhealthcheckoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceusagethresholds?view=net-11.0-pp",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUtilizationHealthCheckOptions.cs.html",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUsageThresholds.cs.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.kubernetesresourcequotaservicecollectionextensions.addkubernetesresourcemonitoring?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.creategauge?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.gauge-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.instrumentadvice-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.createhistogram?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed OpenTelemetry .NET host registration, providers, instrumentation, sampling, resources, exporters and OTLP configuration; retained version-sensitive distinctions. No unresolved factual or inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-016-practice",
       "topicId": "t02-016",
       "phase": "practice",
       "draft": "course/drafts/t02-016/t02-016-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 169,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": 42,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+            "https://kubernetes.io/docs/concepts/workloads/pods/probes/"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 42,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/metrics-instrumentation"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 42,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-resource-monitoring"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 43,
+          "sources": [
+            "https://opentelemetry.io/docs/languages/dotnet/metrics/",
+            "https://opentelemetry.io/docs/languages/dotnet/traces/"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
@@ -129110,22 +129542,79 @@
         "https://opentelemetry.io/docs/languages/dotnet/metrics/",
         "https://opentelemetry.io/docs/languages/dotnet/traces/",
         "https://opentelemetry.io/docs/specs/semconv/http/http-metrics/",
-        "https://opentelemetry.io/docs/specs/otlp/"
+        "https://opentelemetry.io/docs/specs/otlp/",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addtelemetryhealthcheckpublisher?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/diagnostics?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/blazor?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/security?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0",
+        "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addmanualhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addapplicationlifecyclehealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.resourceutilizationhealthcheckextensions.addresourceutilizationhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-resource-monitoring",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.imanualhealthcheck?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceutilizationhealthcheckoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceusagethresholds?view=net-11.0-pp",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUtilizationHealthCheckOptions.cs.html",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUsageThresholds.cs.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.kubernetesresourcequotaservicecollectionextensions.addkubernetesresourcemonitoring?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.creategauge?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.gauge-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.instrumentadvice-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.createhistogram?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited all practice prompts and answer keys for technically sound decisions; added a health-metrics collection exercise and corrected API/instrument assumptions. No unresolved factual or inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-016-interview",
       "topicId": "t02-016",
       "phase": "interview",
       "draft": "course/drafts/t02-016/t02-016-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 150,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": 37,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+            "https://kubernetes.io/docs/concepts/workloads/pods/probes/"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 37,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 37,
+          "sources": [
+            "https://opentelemetry.io/docs/languages/dotnet/metrics/",
+            "https://opentelemetry.io/docs/languages/dotnet/traces/",
+            "https://opentelemetry.io/docs/specs/otlp/"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        },
+        {
+          "claims": 39,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/http-activity-otel-semconv",
+            "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0"
+          ],
+          "verdict": "Supported after source checks and inventory completion; corrections/omissions are recorded in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.healthcheckpublisheroptions",
@@ -129149,9 +129638,32 @@
         "https://opentelemetry.io/docs/languages/dotnet/metrics/",
         "https://opentelemetry.io/docs/languages/dotnet/traces/",
         "https://opentelemetry.io/docs/specs/semconv/http/http-metrics/",
-        "https://opentelemetry.io/docs/specs/otlp/"
+        "https://opentelemetry.io/docs/specs/otlp/",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-diagnostics",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addtelemetryhealthcheckpublisher?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/diagnostics?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/blazor?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/security?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/grpc/health-checks?view=aspnetcore-11.0",
+        "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addmanualhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.commonhealthchecksextensions.addapplicationlifecyclehealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.resourceutilizationhealthcheckextensions.addresourceutilizationhealthcheck?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-resource-monitoring",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.imanualhealthcheck?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceutilizationhealthcheckoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.diagnostics.healthchecks.resourceusagethresholds?view=net-11.0-pp",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUtilizationHealthCheckOptions.cs.html",
+        "https://source.dot.net/Microsoft.Extensions.Diagnostics.HealthChecks.ResourceUtilization/ResourceUsageThresholds.cs.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.kubernetesresourcequotaservicecollectionextensions.addkubernetesresourcemonitoring?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.creategauge?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.gauge-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.instrumentadvice-1?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.createhistogram?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed interview prompts and model answers against current runtime and protocol documentation; expanded answers where they previously omitted new telemetry and gRPC surfaces. No unresolved factual or inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-017-overview",
@@ -215118,6 +215630,13 @@
       "findings": [
         "Added replica-local HybridCache invalidation limitation because the prior overview compressed tag invalidation into a generic logical invalidation statement and could imply cross-node freshness.",
         "Updated the source snapshot to the current .NET 11 GA documentation and checked recent memory-cache metrics and options-aware HybridCache APIs."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "t02-016 health and observability content",
+      "findings": [
+        "Added built-in push-only health metrics, individual ASP.NET Core instrument names, resource utilization health-check APIs and their thresholds/experimental fallback details, gRPC Health.Check/Watch integration, and .NET 11 synchronous Gauge<T>/InstrumentAdvice<T> API coverage. Clarified built-in ASP.NET Core 11 HTTP telemetry versus optional OpenTelemetry instrumentation package features."
       ]
     }
   ]

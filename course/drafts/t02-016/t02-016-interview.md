@@ -12,6 +12,7 @@
 8. What changed for ASP.NET Core HTTP telemetry in .NET 11?
 9. What causes metric cardinality to grow, and how do you limit it?
 10. How should an app behave when its telemetry destination is unavailable?
+11. Which built-in .NET metrics report health-check outcomes, and what collection limitation applies?
 
 ## Concise interview answers
 
@@ -25,6 +26,7 @@
 8. .NET 11 built-in HTTP server metrics and request activities carry required semantic-convention data by default; direct subscription can replace overlapping server instrumentation.
 9. Every unique attribute combination may create a new time series. Prefer bounded route templates/status/method dimensions; omit user IDs, raw paths, request IDs, and sensitive values.
 10. Export with bounded retries/queues and timeouts; surface dropped telemetry operationally, but normally do not fail user requests or block shutdown indefinitely.
+11. `dotnet.health_check.reports` and `dotnet.health_check.unhealthy_checks` are enabled by registering `AddTelemetryHealthCheckPublisher`. The built-in health-check metrics are push-only, not pull-scrape metrics; check package availability for the target .NET version.
 
 ## Deep follow-up answers
 
