@@ -28,7 +28,7 @@ Configure the load balancer or reverse proxy for WebSocket upgrades, long-lived 
 
 ## Observability and capacity
 
-SignalR exposes built-in metrics for active connections and HTTP requests, along with logging and distributed tracing integrations. Track connection counts by transport and app instance, connection starts/stops, failed handshakes, reconnects, invocation/message volume, send failures, backplane latency/errors, and resource saturation. Correlate with CPU, memory, socket/file-descriptor usage, network egress, Redis metrics, and managed-service telemetry. Do not log tokens, full private payloads, or unredacted query strings.
+SignalR exposes built-in metrics through the `Microsoft.AspNetCore.Http.Connections` meter. In ASP.NET Core 11, `signalr.server.active_connections` is an `UpDownCounter` of active connections, and `signalr.server.connection.duration` is a `Histogram`; both carry `signalr.transport`, with closure status also on the duration metric. Register the meter with the metrics/OpenTelemetry pipeline to collect it. General HTTP request metrics are separate hosting instruments; they do not measure every SignalR hub invocation or application message. Track app-level invocation/message volume and outcomes explicitly where needed. Correlate these with failed handshakes, reconnects, send failures, backplane latency/errors, CPU, memory, socket/file-descriptor usage, network egress, Redis metrics, and managed-service telemetry. Do not log tokens, full private payloads, or unredacted query strings.
 
 Signals should lead to an operational response: sudden active-connection drops can indicate proxy timeout or service interruption; rising reconnects may point to network instability; increased per-connection send volume can expose fan-out amplification; Redis publish failures can make cross-node messages disappear while local sends still succeed. Alert on error rate and user-visible impact, not only raw connection count. Load-test realistic transport mix, payload sizes, group fan-out, reconnect storms, and node drains.
 
@@ -77,9 +77,18 @@ For Azure SignalR Service, configure the app server connection to the service an
 | SignalR scale-out with sticky sessions and Redis backplane | Affinity and cross-node message forwarding address separate needs. |
 | SignalR server affinity and reverse-proxy configuration | Aligns negotiation, transport, upgrades, timeouts, and node ownership. |
 | SignalR built-in active connection and request metrics | Operational signals for load, connection health, and transport activity. |
+| `Microsoft.AspNetCore.Http.Connections` meter | Built-in SignalR HTTP-connection metrics meter; register this meter with the metrics pipeline to collect its instruments. |
+| `signalr.server.active_connections` | ASP.NET Core 11 UpDownCounter for active SignalR connections, tagged with transport and connection status dimensions. |
+| `signalr.server.connection.duration` | ASP.NET Core 11 Histogram for SignalR connection duration, with transport and closure-status dimensions. |
+| HTTP request metrics versus SignalR hub invocation metrics | Hosting request metrics do not count every invocation/message on a long-lived WebSocket. Add application instrumentation for hub method volume and outcomes. |
+| Microsoft.AspNetCore.Http.Connections meter for SignalR metrics | The meter contains the built-in SignalR connection instruments; add its exact name to the collector's meter list. |
+| signalr.server.active_connections UpDownCounter | Measures the current number of active SignalR connections. |
+| signalr.server.connection.duration Histogram | Records SignalR connection duration. |
+| SignalR built-in metric transport and connection status dimensions | The metrics identify the transport, and the duration/active-connection instruments include connection closure status. |
+| HTTP request metrics do not count every SignalR hub invocation or message | HTTP hosting counters and histograms describe HTTP requests; instrument hub method calls/application messages separately. |
 | SignalR connection and message tracing | Correlates SignalR behavior with distributed diagnostics while avoiding private payloads. |
 | SignalR stateful reconnect does not provide durable message delivery | Bounded transient buffer/ack behavior cannot replace persistence. |
 
 ## Sources
 
-[Scale SignalR](https://learn.microsoft.com/en-us/aspnet/core/signalr/scale) · [Redis backplane](https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane) · [SignalR configuration](https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration)
+[Scale SignalR](https://learn.microsoft.com/en-us/aspnet/core/signalr/scale) · [Redis backplane](https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane) · [SignalR configuration](https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration) · [ASP.NET Core built-in HTTP metrics](https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0) · [ASP.NET Core metrics](https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0)

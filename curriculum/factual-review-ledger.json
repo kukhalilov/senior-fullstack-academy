@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1491,
-    "pending": 858,
-    "claimsChecked": 80715,
-    "claimsCorrected": 3331,
+    "reviewed": 1500,
+    "pending": 849,
+    "claimsChecked": 81342,
+    "claimsCorrected": 3379,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1723,6 +1723,34 @@
         "Audited all eight lessons, supplied inventory names, version statements, code samples, exercises/solutions, and interview answers against current .NET 8–11 Microsoft Learn API/runtime documentation and dotnet/runtime HostOptions source. Checked lifecycle ordering, cancellation and shutdown budgets, DI scopes, timer behavior, channel backpressure/drop semantics, and durability boundaries.",
         "Added current HostOptions defaults; PeriodicTimer(TimeSpan, TimeProvider), mutable Period and coalesced single-consumer tick semantics; ChannelReader completion/count/peek APIs and their concurrency caveats; bounded-channel TryWrite/drop callback behavior; one-shot Worker host shutdown guidance; and the Worker template server-GC default. Updated source snapshot to 2026-11-20.",
         "All frozen inventory terms are present and validated. Corrected omissions and clarified misleading implications; no unresolved factual or scope gaps remain. All eight lessons remain drafts pending the project-wide promotion process."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "ASP.NET Core SignalR transports, hub contracts, security, authentication refresh, scaling and observability (t02-019)",
+      "status": "full claim and frozen-inventory audit complete for all 9 lessons",
+      "sources": [
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+        "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext-1",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp"
+      ],
+      "findings": [
+        "Audited all nine lessons, supplied API inventories, version notes, code samples, practice solutions and interview answers against current Microsoft Learn ASP.NET Core 11 documentation, .NET 11 System.Text.Json union documentation, built-in metrics references and the SignalR Hub Protocol specification.",
+        "Expanded .NET 11 refresh coverage for the POST /refresh route, identity-check claim selection and issuer/value requirements, endpoint authorization/status cases, Windows identity limits, callback exceptions, and expiration caps. Added JsonUnionAttribute/TypeClassifier and structural classification for ambiguous union cases. Added SignalR metric names/types/dimensions and clarified that hosting HTTP request metrics do not count each hub invocation. Corrected the hub contract guidance: method-name overloading is unsupported; HubMethodNameAttribute supplies a deliberate client-facing name.",
+        "Rechecked transient hub lifetimes, authorization versus routing, transport negotiation/protocol, streaming/cancellation, stateful versus automatic reconnect, affinity/backplane distinctions, and delivery/durability boundaries. All inventory names are present and automated catalog/draft validators pass. No unresolved omissions or factual issues remain; all nine lessons remain drafts."
       ]
     }
   ],
@@ -130820,13 +130848,53 @@
       "topicId": "t02-019",
       "phase": "overview",
       "draft": "course/drafts/t02-019/t02-019-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 72,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": 20,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+            "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext-1"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 18,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 17,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 17,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
@@ -130842,22 +130910,86 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectionbuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnection",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+        "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed externally verifiable statements, APIs, version behavior, code examples, exercises/solutions and interview answers against current primary sources. Reconciled the frozen inventory and corrected omissions/overstatements. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-019-concepts",
       "topicId": "t02-019",
       "phase": "concepts",
       "draft": "course/drafts/t02-019/t02-019-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 104,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": 22,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+            "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext-1"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 24,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 20,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 18,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 20,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
@@ -130873,22 +131005,57 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectionbuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnection",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+        "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed externally verifiable statements, APIs, version behavior, code examples, exercises/solutions and interview answers against current primary sources. Reconciled the frozen inventory and corrected omissions/overstatements. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-019-reference-hub-contracts-contexts-and-message-routing",
       "topicId": "t02-019",
       "phase": "reference",
       "draft": "course/drafts/t02-019/t02-019-reference-hub-contracts-contexts-and-message-routing.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 66,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": 44,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+            "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext-1"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 22,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
@@ -130904,22 +131071,54 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectionbuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnection",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+        "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed externally verifiable statements, APIs, version behavior, code examples, exercises/solutions and interview answers against current primary sources. Reconciled the frozen inventory and corrected omissions/overstatements. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-019-reference-transports-protocols-streaming-and-connection-lifecycle",
       "topicId": "t02-019",
       "phase": "reference",
       "draft": "course/drafts/t02-019/t02-019-reference-transports-protocols-streaming-and-connection-lifecycle.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 66,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": 48,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 18,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
@@ -130935,22 +131134,54 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectionbuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnection",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0",
+        "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed externally verifiable statements, APIs, version behavior, code examples, exercises/solutions and interview answers against current primary sources. Reconciled the frozen inventory and corrected omissions/overstatements. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-019-reference-security-authentication-and-operational-limits",
       "topicId": "t02-019",
       "phase": "reference",
       "draft": "course/drafts/t02-019/t02-019-reference-security-authentication-and-operational-limits.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": 42,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 16,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+            "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext-1"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
@@ -130966,22 +131197,54 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectionbuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnection",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+        "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed externally verifiable statements, APIs, version behavior, code examples, exercises/solutions and interview answers against current primary sources. Reconciled the frozen inventory and corrected omissions/overstatements. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-019-reference-authentication-refresh-and-client-cancellation",
       "topicId": "t02-019",
       "phase": "reference",
       "draft": "course/drafts/t02-019/t02-019-reference-authentication-refresh-and-client-cancellation.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 60,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": 45,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 15,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
@@ -130997,22 +131260,55 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectionbuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnection",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0",
+        "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed externally verifiable statements, APIs, version behavior, code examples, exercises/solutions and interview answers against current primary sources. Reconciled the frozen inventory and corrected omissions/overstatements. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-019-reference-scale-out-affinity-and-observability",
       "topicId": "t02-019",
       "phase": "reference",
       "draft": "course/drafts/t02-019/t02-019-reference-scale-out-affinity-and-observability.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 55,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": 45,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 10,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
@@ -131028,22 +131324,84 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectionbuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnection",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp",
+        "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed externally verifiable statements, APIs, version behavior, code examples, exercises/solutions and interview answers against current primary sources. Reconciled the frozen inventory and corrected omissions/overstatements. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-019-practice",
       "topicId": "t02-019",
       "phase": "practice",
       "draft": "course/drafts/t02-019/t02-019-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 72,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": 16,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+            "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext-1"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 18,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 12,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 14,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 12,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
@@ -131059,22 +131417,87 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectionbuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnection",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+        "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed externally verifiable statements, APIs, version behavior, code examples, exercises/solutions and interview answers against current primary sources. Reconciled the frozen inventory and corrected omissions/overstatements. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-019-interview",
       "topicId": "t02-019",
       "phase": "interview",
       "draft": "course/drafts/t02-019/t02-019-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 74,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": 16,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+            "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext-1"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 15,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 16,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 14,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        },
+        {
+          "claims": 13,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0"
+          ],
+          "verdict": "Checked against current Microsoft Learn API/runtime docs or the SignalR Hub Protocol specification; corrections and frozen-inventory additions are recorded in the t02-019 audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
@@ -131090,9 +131513,25 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectionbuilder",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnection",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+        "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/diagnostics?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed externally verifiable statements, APIs, version behavior, code examples, exercises/solutions and interview answers against current primary sources. Reconciled the frozen inventory and corrected omissions/overstatements. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-020-overview",

@@ -31,7 +31,10 @@ The hub is the application-facing RPC layer over SignalR's logical connection. `
 | `HubCallerContext.ConnectionAborted` | Cancellation token signaled when the connection is aborted. Propagate it to connection-bound operations. |
 | `HubCallerContext.Abort` | Aborts the current connection. Use for an explicit protocol/security decision, not as normal business validation. |
 | `Hub method parameter binding and JSON serialization` | Hub arguments are serialized/deserialized according to the negotiated Hub Protocol. Validate untrusted values and keep protocol/client contract versions compatible. |
-| `Hub method overload and naming constraints` | Hub invocation names map to methods and serialized arguments; avoid ambiguous overloads and use explicit naming/contract conventions. |
+| `Hub method overload and naming constraints` | Hub method targets are resolved by name in the protocol; overloading a hub method name is unsupported. Use distinct method names or an explicit contract rather than relying on C# overload resolution. |
+| `Hub method overloads are not supported in ASP.NET Core SignalR` | The Hub Protocol target is a method name, not a CLR signature; two hub methods cannot safely expose the same invocation name. |
+| `HubMethodNameAttribute` | Maps a public hub method to a client-facing invocation name when the CLR method name should differ. |
+| `HubMethodNameAttribute.Name` | The explicit SignalR method name clients invoke; keep it stable when evolving client/server contracts. |
 | `Hub instances are transient and created per hub invocation` | SignalR creates hub instances for operations; fields do not persist across calls or represent one connection's durable state. |
 | `HubException error propagation and detailed error policy` | A deliberate `HubException` can return a controlled error; detailed unhandled exceptions are disabled by default because they can disclose sensitive server information. |
 
@@ -163,3 +166,4 @@ Do not disclose whether a protected order exists if that is sensitive. Recheck/r
 - [Use hubs in ASP.NET Core SignalR](https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs)
 - [SignalR configuration](https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration)
 - [SignalR authentication and authorization](https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz)
+- [SignalR Hub Protocol specification](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md)

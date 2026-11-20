@@ -105,6 +105,9 @@ Negotiation establishes a logical connection and transport choice. The transport
 | `Non-streaming hub invocation cancellation supported by .NET client only` | JavaScript/Java/Swift clients' ordinary invoke methods do not accept a cancellation token for this .NET 11 feature; streaming cancellation is separate. |
 | `SignalR cancellation differs from SendAsync one-way call` | `InvokeAsync` tracks an invocation ID and can send a cancellation message; `SendAsync` does not await the hub method and has no tracked result to cancel. |
 | `C# union types supported by SignalR JSON Hub Protocol in ASP.NET Core 11` | C# unions participate in JSON Hub Protocol serialization through `System.Text.Json`; this does not imply MessagePack support. |
+| `JsonUnionAttribute` and `JsonUnionTypeStructuralClassifier` | .NET 11 `System.Text.Json` tools for disambiguating union cases that could serialize to the same JSON shape. The classifier is relevant when a SignalR hub uses C# unions with the JSON protocol; it does not add union support to MessagePack. |
+| `JsonUnionAttribute.TypeClassifier` | Selects a union-case classifier for one C# union type; use it when default token-based classification cannot distinguish cases. |
+| `JSON union classifier for ambiguous SignalR union cases` | A classifier resolves deserialization where multiple union cases have the same JSON shape. `JsonUnionTypeStructuralClassifier` uses object structure; validate that its selected case matches your wire contract. |
 
 ## Cross-item comparison
 
@@ -173,3 +176,6 @@ The server receives cancellation only if it observes the token; the client task 
 - [SignalR .NET client](https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client)
 - [SignalR JavaScript client](https://learn.microsoft.com/en-us/aspnet/core/signalr/javascript-client)
 - [ASP.NET Core 11 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11)
+- [System.Text.Json union serialization](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types)
+- [JsonUnionAttribute API](https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp)
+- [JsonUnionTypeStructuralClassifier API](https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp)

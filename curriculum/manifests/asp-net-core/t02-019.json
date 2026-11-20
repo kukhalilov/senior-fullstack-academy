@@ -80,7 +80,10 @@
         "MapHub configureOptions callback Action<HttpConnectionDispatcherOptions>",
         "HttpConnectionDispatcherOptions.Transports",
         "HttpConnectionDispatcherOptions.AllowStatefulReconnects",
-        "HttpConnectionDispatcherOptions.CloseOnAuthenticationExpiration"
+        "HttpConnectionDispatcherOptions.CloseOnAuthenticationExpiration",
+        "HubMethodNameAttribute",
+        "HubMethodNameAttribute.Name",
+        "Hub method overloads are not supported in ASP.NET Core SignalR"
       ]
     },
     {
@@ -162,7 +165,11 @@
         "Client invocation task cancels before server method finishes",
         "Non-streaming hub invocation cancellation supported by .NET client only",
         "SignalR cancellation differs from SendAsync one-way call",
-        "C# union types supported by SignalR JSON Hub Protocol in ASP.NET Core 11"
+        "C# union types supported by SignalR JSON Hub Protocol in ASP.NET Core 11",
+        "JsonUnionAttribute",
+        "JsonUnionAttribute.TypeClassifier",
+        "JsonUnionTypeStructuralClassifier",
+        "JSON union classifier for ambiguous SignalR union cases"
       ]
     },
     {
@@ -233,7 +240,16 @@
         "Authentication refresh failure does not close the connection or automatically retry",
         "Authentication refresh /refresh route must pass through proxy and firewall configuration",
         "Hub.OnAuthenticationRefreshedAsync runs after the connection principal is replaced",
-        "In-flight hub invocations retain the principal captured when they began"
+        "In-flight hub invocations retain the principal captured when they began",
+        "POST /{hub-path}/refresh endpoint and connection id query parameter",
+        "Authentication refresh endpoint uses normal authentication and hub authorization metadata",
+        "Authentication refresh 400 403 and 404 outcomes",
+        "Built-in authentication refresh identity claim selection order: sub, NameIdentifier, Upn",
+        "Authentication refresh same identity claim value and issuer check",
+        "Authentication refresh identity-less principal comparison behavior",
+        "Windows identity unsupported by SignalR authentication refresh",
+        "OnAuthenticationRefresh callback exception propagates and preserves existing principal",
+        "AuthenticationRefreshContext.NewExpiration includes MaximumAuthenticationExpiration cap"
       ]
     },
     {
@@ -254,7 +270,12 @@
         "SignalR server affinity and reverse-proxy configuration",
         "SignalR built-in active connection and request metrics",
         "SignalR connection and message tracing",
-        "SignalR stateful reconnect does not provide durable message delivery"
+        "SignalR stateful reconnect does not provide durable message delivery",
+        "Microsoft.AspNetCore.Http.Connections meter for SignalR metrics",
+        "signalr.server.active_connections UpDownCounter",
+        "signalr.server.connection.duration Histogram",
+        "SignalR built-in metric transport and connection status dimensions",
+        "HTTP request metrics do not count every SignalR hub invocation or message"
       ]
     }
   ],
@@ -315,11 +336,20 @@
     "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz",
     "https://learn.microsoft.com/en-us/aspnet/core/signalr/scale",
     "https://learn.microsoft.com/en-us/aspnet/core/signalr/redis-backplane",
-    "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+    "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+    "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp",
+    "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0",
+    "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md"
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
       "items": [
         "Stateful reconnect is available starting in .NET 8 and remains opt-in on both server and client. It acknowledges and buffers a bounded amount of data to smooth short network interruptions; it does not make SignalR a durable delivery system.",
         "ASP.NET Core 11 adds active SignalR authentication refresh support for .NET and TypeScript clients. A refreshed principal updates claims and roles in place while preserving the SignalR user identifier and routing; existing in-flight hub invocations retain the principal they began with.",
@@ -327,21 +357,35 @@
         "Automatic reconnect remains opt-in for ASP.NET Core SignalR clients. It establishes a new connection after reconnect and does not replay messages; use stateful reconnect only for its bounded transient-disconnect behavior.",
         "ASP.NET Core 11 adds server-controlled authentication refresh for SignalR connections. The refresh request reauthenticates through the normal endpoint pipeline; the refreshed principal must map to the same SignalR user. An optional OnAuthenticationRefresh callback can reject additional changes but cannot approve a different user identity. Automatic refresh requires a reported token lifetime; failed refresh is surfaced to the client and does not itself close or retry the connection.",
         "ASP.NET Core 11 lets the .NET SignalR client cancel non-streaming InvokeAsync calls by sending a cancellation message. The hub method must declare and observe CancellationToken; cancellation is cooperative, the client task cancels before the server necessarily finishes, and older servers only canceled the local wait. This invocation-cancellation feature is .NET-client-only.",
-        "ASP.NET Core 11 supports C# union types through System.Text.Json in the SignalR JSON Hub Protocol. This does not imply support in the MessagePack protocol."
+        "ASP.NET Core 11 supports C# union types through System.Text.Json in the SignalR JSON Hub Protocol. This does not imply support in the MessagePack protocol.",
+        "The .NET 11 refresh endpoint is POST /{hub-path}/refresh, uses the connection token in the id query parameter, and runs normal authentication and hub authorization. It returns 403 for a rejected identity/callback, 404 for an unknown connection, and 400 for malformed/incompatible requests including protocol v0 or Windows identities. The built-in identity match selects the first sub, NameIdentifier, or Upn claim and compares value and issuer; callback exceptions propagate while preserving the old principal.",
+        ".NET 11 System.Text.Json union support includes JsonUnionAttribute.TypeClassifier and JsonUnionTypeStructuralClassifier for cases with ambiguous JSON shapes. SignalR union serialization requires the JSON Hub Protocol; MessagePack and Newtonsoft.Json do not support unions.",
+        "ASP.NET Core 11 includes signalr.server.active_connections among built-in HTTP metrics; check the versioned HTTP metrics page for its instrument definition and attributes.",
+        "ASP.NET Core 11 built-in SignalR metrics are emitted by the Microsoft.AspNetCore.Http.Connections meter. signalr.server.active_connections is an UpDownCounter and signalr.server.connection.duration is a Histogram; both expose transport and connection status dimensions. General HTTP request metrics do not count each hub invocation/message.",
+        "ASP.NET Core SignalR hub invocations address a target by method name; method overloading is not supported by the Hub Protocol. Use HubMethodNameAttribute to expose a deliberate client-facing method name."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz",
         "https://learn.microsoft.com/en-us/aspnet/core/signalr/version-differences",
         "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
-        "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client"
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/dotnet-client",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0",
+        "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core SignalR server hubs configuration clients security scale-out and .NET 11 release notes",
-    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs",
       "https://learn.microsoft.com/en-us/aspnet/core/signalr/configuration",
@@ -357,7 +401,16 @@
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnectionbuilder",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.hubconnection",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.huboptions",
-      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11"
+      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+      "https://learn.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/metrics/built-in?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/union-types",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonunionattribute?view=net-11.0-pp",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.jsonuniontypestructuralclassifier?view=net-11.0-pp",
+      "https://learn.microsoft.com/en-us/aspnet/core/metrics/http?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/metrics/overview?view=aspnetcore-11.0",
+      "https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md"
     ]
   },
   "scopeExclusions": [
