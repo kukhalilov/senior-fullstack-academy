@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1546,
-    "pending": 803,
-    "claimsChecked": 83713,
-    "claimsCorrected": 3570,
+    "reviewed": 1553,
+    "pending": 796,
+    "claimsChecked": 83983,
+    "claimsCorrected": 3571,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1937,6 +1937,25 @@
       ],
       "findings": [
         "Reviewed all six lessons and all 66 assigned inventory names (36 scheme/handler/ticket items and 30 authorization/resource items). Checked current ASP.NET Core 11 model, .NET 7 single-scheme auto-default, and .NET 10 cookie API endpoint behavior; fixed broad cookie redirect statements and cited endpoint-metadata detection. Verified middleware auto-insertion/order, default/fallback/role/explicit policy selection, combined-policy requirements, same-requirement alternatives, explicit Fail semantics, AllowAnonymous behavior, resource authorization timing/type, and RFC 9110 401 challenge requirement. Reconciled explanations, examples, exercises, and interview claims; no unresolved in-scope factual error or manifest omission remains. Lessons remain in draft."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "CSRF, XSS, CSP, injection, SSRF, redirects, request boundaries, and clickjacking (t05-006; all 7 lesson units)",
+      "status": "full claim and frozen-inventory audit complete; draft states retained",
+      "findings": [
+        "Checked all seven lesson units and all frozen inventory groups against current OWASP prevention guidance, W3C CSP3 Working Draft dated 2026-10-27, W3C Fetch Metadata Working Draft dated 2026-09-21, and the current WHATWG Fetch Standard. The inventory omitted Fetch Metadata request headers (including Sec-Fetch-Site/Mode/Dest), client-side CSRF and safe-method constraints; added these with a fallback caveat for absent headers. Added DoubleClickjacking and clarified that frame restrictions do not stop top-level double-click UI redress.",
+        "Corrected the conflated “DNS pinning/rebinding defense” term to distinguish DNS pinning bypass from binding address validation to the actual connection. Added IPv4-mapped IPv6, NAT64, and all-address/connection validation details. Rechecked CSRF token/origin/SameSite claims, output-encoding versus sanitization boundaries, CSP directive/reporting descriptions and draft status, redirect validation, CORS distinction, and SQL/command/other injection guidance. No unresolved in-scope factual or inventory gaps remain; lessons stay in drafts."
+      ],
+      "sources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+        "https://www.w3.org/TR/CSP3/",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+        "https://www.w3.org/TR/fetch-metadata/",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
       ]
     }
   ],
@@ -134370,13 +134389,44 @@
       "topicId": "t05-006",
       "phase": "overview",
       "draft": "course/drafts/t05-006/t05-006-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 24,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked externally verifiable statements, inventory terms, examples, exercises/solutions, edge cases, and version/status claims for this lesson against the cited current guidance/specifications.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+              "section": "Trust boundaries, CSRF/XSS distinction, CSP role/status, Fetch Metadata limits, SSRF destination validation, examples and scope.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+              "section": "Trust boundaries, CSRF/XSS distinction, CSP role/status, Fetch Metadata limits, SSRF destination validation, examples and scope.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://www.w3.org/TR/CSP3/",
+              "section": "Trust boundaries, CSRF/XSS distinction, CSP role/status, Fetch Metadata limits, SSRF destination validation, examples and scope.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+              "section": "Trust boundaries, CSRF/XSS distinction, CSP role/status, Fetch Metadata limits, SSRF destination validation, examples and scope.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://www.w3.org/TR/fetch-metadata/",
+              "section": "Trust boundaries, CSRF/XSS distinction, CSP role/status, Fetch Metadata limits, SSRF destination validation, examples and scope.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
@@ -134384,22 +134434,54 @@
         "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
+        "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html",
+        "https://www.w3.org/TR/fetch-metadata/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed against current OWASP guidance and applicable W3C/WHATWG sources. Corrected DNS resolution-to-connection wording and expanded omitted Fetch Metadata, client-side CSRF, NAT64, and DoubleClickjacking coverage. Draft state retained."
     },
     {
       "taskId": "t05-006-concepts",
       "topicId": "t05-006",
       "phase": "concepts",
       "draft": "course/drafts/t05-006/t05-006-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked externally verifiable statements, inventory terms, examples, exercises/solutions, edge cases, and version/status claims for this lesson against the cited current guidance/specifications.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+              "section": "Attack models, interpreter-specific defenses, Fetch Metadata/client-side CSRF, SSRF address/redirect handling, examples and knowledge checks.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+              "section": "Attack models, interpreter-specific defenses, Fetch Metadata/client-side CSRF, SSRF address/redirect handling, examples and knowledge checks.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
+              "section": "Attack models, interpreter-specific defenses, Fetch Metadata/client-side CSRF, SSRF address/redirect handling, examples and knowledge checks.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+              "section": "Attack models, interpreter-specific defenses, Fetch Metadata/client-side CSRF, SSRF address/redirect handling, examples and knowledge checks.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://www.w3.org/TR/fetch-metadata/",
+              "section": "Attack models, interpreter-specific defenses, Fetch Metadata/client-side CSRF, SSRF address/redirect handling, examples and knowledge checks.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
@@ -134407,22 +134489,54 @@
         "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
+        "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html",
+        "https://www.w3.org/TR/fetch-metadata/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed against current OWASP guidance and applicable W3C/WHATWG sources. Corrected DNS resolution-to-connection wording and expanded omitted Fetch Metadata, client-side CSRF, NAT64, and DoubleClickjacking coverage. Draft state retained."
     },
     {
       "taskId": "t05-006-reference-browser-injection-and-forgery",
       "topicId": "t05-006",
       "phase": "reference",
       "draft": "course/drafts/t05-006/t05-006-reference-browser-injection-and-forgery.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 69,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked externally verifiable statements, inventory terms, examples, exercises/solutions, edge cases, and version/status claims for this lesson against the cited current guidance/specifications.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+              "section": "CSRF token/origin/SameSite and Fetch Metadata sections; XSS context rules, Trusted Types/CSP directives; clickjacking framing controls and DoubleClickjacking.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+              "section": "CSRF token/origin/SameSite and Fetch Metadata sections; XSS context rules, Trusted Types/CSP directives; clickjacking framing controls and DoubleClickjacking.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://www.w3.org/TR/CSP3/",
+              "section": "CSRF token/origin/SameSite and Fetch Metadata sections; XSS context rules, Trusted Types/CSP directives; clickjacking framing controls and DoubleClickjacking.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://www.w3.org/TR/fetch-metadata/",
+              "section": "CSRF token/origin/SameSite and Fetch Metadata sections; XSS context rules, Trusted Types/CSP directives; clickjacking framing controls and DoubleClickjacking.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
+              "section": "CSRF token/origin/SameSite and Fetch Metadata sections; XSS context rules, Trusted Types/CSP directives; clickjacking framing controls and DoubleClickjacking.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
@@ -134430,22 +134544,39 @@
         "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
+        "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html",
+        "https://www.w3.org/TR/fetch-metadata/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed against current OWASP guidance and applicable W3C/WHATWG sources. Corrected DNS resolution-to-connection wording and expanded omitted Fetch Metadata, client-side CSRF, NAT64, and DoubleClickjacking coverage. Draft state retained."
     },
     {
       "taskId": "t05-006-reference-server-side-injection-and-ssrf",
       "topicId": "t05-006",
       "phase": "reference",
       "draft": "course/drafts/t05-006/t05-006-reference-server-side-injection-and-ssrf.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Enumerated and checked externally verifiable statements, inventory terms, examples, exercises/solutions, edge cases, and version/status claims for this lesson against the cited current guidance/specifications.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
+              "section": "Injection types and safe API guidance; SSRF allowlists, DNS behavior, redirects, address ranges including mapped IPv6/NAT64, and egress controls.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+              "section": "Injection types and safe API guidance; SSRF allowlists, DNS behavior, redirects, address ranges including mapped IPv6/NAT64, and egress controls.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
@@ -134455,20 +134586,51 @@
         "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed against current OWASP guidance and applicable W3C/WHATWG sources. Corrected DNS resolution-to-connection wording and expanded omitted Fetch Metadata, client-side CSRF, NAT64, and DoubleClickjacking coverage. Draft state retained."
     },
     {
       "taskId": "t05-006-reference-redirects-and-cross-boundary-controls",
       "topicId": "t05-006",
       "phase": "reference",
       "draft": "course/drafts/t05-006/t05-006-reference-redirects-and-cross-boundary-controls.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked externally verifiable statements, inventory terms, examples, exercises/solutions, edge cases, and version/status claims for this lesson against the cited current guidance/specifications.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html",
+              "section": "Redirect validation, Host trust, request-smuggling boundary, CSP reporting and rollout, CORS/CSRF separation, clickjacking/UI-redress limits.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
+              "section": "Redirect validation, Host trust, request-smuggling boundary, CSP reporting and rollout, CORS/CSRF separation, clickjacking/UI-redress limits.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+              "section": "Redirect validation, Host trust, request-smuggling boundary, CSP reporting and rollout, CORS/CSRF separation, clickjacking/UI-redress limits.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
+              "section": "Redirect validation, Host trust, request-smuggling boundary, CSP reporting and rollout, CORS/CSRF separation, clickjacking/UI-redress limits.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://www.w3.org/TR/CSP3/",
+              "section": "Redirect validation, Host trust, request-smuggling boundary, CSP reporting and rollout, CORS/CSRF separation, clickjacking/UI-redress limits.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
@@ -134478,20 +134640,51 @@
         "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed against current OWASP guidance and applicable W3C/WHATWG sources. Corrected DNS resolution-to-connection wording and expanded omitted Fetch Metadata, client-side CSRF, NAT64, and DoubleClickjacking coverage. Draft state retained."
     },
     {
       "taskId": "t05-006-practice",
       "topicId": "t05-006",
       "phase": "practice",
       "draft": "course/drafts/t05-006/t05-006-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 38,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked externally verifiable statements, inventory terms, examples, exercises/solutions, edge cases, and version/status claims for this lesson against the cited current guidance/specifications.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+              "section": "Each scenario, hint, solution, test case and edge-case assertion, including Fetch Metadata absence, DNS/NAT64, redirect chains and DoubleClickjacking.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+              "section": "Each scenario, hint, solution, test case and edge-case assertion, including Fetch Metadata absence, DNS/NAT64, redirect chains and DoubleClickjacking.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+              "section": "Each scenario, hint, solution, test case and edge-case assertion, including Fetch Metadata absence, DNS/NAT64, redirect chains and DoubleClickjacking.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html",
+              "section": "Each scenario, hint, solution, test case and edge-case assertion, including Fetch Metadata absence, DNS/NAT64, redirect chains and DoubleClickjacking.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
+              "section": "Each scenario, hint, solution, test case and edge-case assertion, including Fetch Metadata absence, DNS/NAT64, redirect chains and DoubleClickjacking.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
@@ -134501,20 +134694,56 @@
         "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed against current OWASP guidance and applicable W3C/WHATWG sources. Corrected DNS resolution-to-connection wording and expanded omitted Fetch Metadata, client-side CSRF, NAT64, and DoubleClickjacking coverage. Draft state retained."
     },
     {
       "taskId": "t05-006-interview",
       "topicId": "t05-006",
       "phase": "interview",
       "draft": "course/drafts/t05-006/t05-006-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": "Enumerated and checked externally verifiable statements, inventory terms, examples, exercises/solutions, edge cases, and version/status claims for this lesson against the cited current guidance/specifications.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+              "section": "Core and scenario answers, CSP status/limitations, token threat model, Fetch Metadata limitations, clickjacking and tradeoffs.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+              "section": "Core and scenario answers, CSP status/limitations, token threat model, Fetch Metadata limitations, clickjacking and tradeoffs.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+              "section": "Core and scenario answers, CSP status/limitations, token threat model, Fetch Metadata limitations, clickjacking and tradeoffs.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
+              "section": "Core and scenario answers, CSP status/limitations, token threat model, Fetch Metadata limitations, clickjacking and tradeoffs.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://www.w3.org/TR/CSP3/",
+              "section": "Core and scenario answers, CSP status/limitations, token threat model, Fetch Metadata limitations, clickjacking and tradeoffs.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            },
+            {
+              "url": "https://www.w3.org/TR/fetch-metadata/",
+              "section": "Core and scenario answers, CSP status/limitations, token threat model, Fetch Metadata limitations, clickjacking and tradeoffs.",
+              "verdict": "supported; corrections and scope additions are recorded in the audit finding"
+            }
+          ]
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
@@ -134522,9 +134751,10 @@
         "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
+        "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html",
+        "https://www.w3.org/TR/fetch-metadata/"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Manual claim and frozen-inventory audit completed against current OWASP guidance and applicable W3C/WHATWG sources. Corrected DNS resolution-to-connection wording and expanded omitted Fetch Metadata, client-side CSRF, NAT64, and DoubleClickjacking coverage. Draft state retained."
     },
     {
       "taskId": "t05-007-overview",

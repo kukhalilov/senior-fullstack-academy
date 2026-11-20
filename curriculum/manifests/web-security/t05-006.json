@@ -23,6 +23,12 @@
         "Origin header validation",
         "Referer header validation",
         "SameSite cookie attribute",
+        "Fetch Metadata request headers",
+        "Sec-Fetch-Site",
+        "Sec-Fetch-Mode",
+        "Sec-Fetch-Dest",
+        "Client-side CSRF",
+        "Safe HTTP methods and CSRF",
         "Cross-Site Scripting (XSS)",
         "Reflected XSS",
         "Stored XSS",
@@ -59,7 +65,10 @@
         "report-uri directive",
         "Clickjacking",
         "X-Frame-Options",
-        "frame-ancestors CSP directive"
+        "frame-ancestors CSP directive",
+        "CSP frame-ancestors response-header requirement",
+        "X-Frame-Options ALLOW-FROM",
+        "DoubleClickjacking"
       ]
     },
     {
@@ -77,13 +86,16 @@
         "Server-Side Request Forgery (SSRF)",
         "SSRF allowlist",
         "DNS rebinding",
-        "DNS pinning/rebinding defense",
+        "DNS pinning bypass",
+        "DNS resolution-to-connection binding",
         "Private and link-local address blocking",
         "Cloud metadata endpoint protection",
         "Redirect following in outbound HTTP clients",
         "Outbound network egress policy",
         "URL parser normalization",
         "IPv4-mapped IPv6 address",
+        "NAT64 address",
+        "All-address DNS validation",
         "Canonicalization before validation",
         "Deny-by-default outbound destination policy"
       ]
@@ -150,19 +162,25 @@
     {
       "edition": "W3C Content Security Policy Level 3 Working Draft, October 2026",
       "items": [
-        "CSP Level 3 is a Working Draft at this date, not a finalized Recommendation. Treat draft status explicitly; CSP is defense in depth, not the primary XSS prevention control."
+        "CSP Level 3 is a Working Draft at this date, not a finalized Recommendation. Treat draft status explicitly; CSP is defense in depth, not the primary XSS prevention control.",
+        "Fetch Metadata Request Headers is also a W3C Working Draft; use Sec-Fetch-* as request-context signals with an explicit fallback for clients/contexts that omit them.",
+        "The OWASP clickjacking guidance includes DoubleClickjacking, which framing headers do not mitigate because the target window is top-level."
       ],
       "sourceUrls": [
-        "https://www.w3.org/TR/CSP3/"
+        "https://www.w3.org/TR/CSP3/",
+        "https://www.w3.org/TR/fetch-metadata/",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html"
       ]
     }
   ],
   "sourceSnapshot": {
-    "authority": "OWASP prevention guidance and W3C Content Security Policy Level 3 Working Draft",
-    "edition": "OWASP current cheat sheets; CSP Level 3 Working Draft 2026-10-27; checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "authority": "OWASP prevention guidance, W3C Content Security Policy and Fetch Metadata Working Drafts, and WHATWG Fetch Standard",
+    "edition": "OWASP current cheat sheets; CSP3 Working Draft 2026-10-27; Fetch Metadata Working Draft 2026-09-21; WHATWG Fetch Living Standard checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "https://www.w3.org/TR/fetch-metadata/",
+      "https://fetch.spec.whatwg.org/",
       "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
       "https://www.w3.org/TR/CSP3/",
       "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",

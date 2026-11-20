@@ -19,6 +19,10 @@
 
 **How do you prevent clickjacking?** Use CSP `frame-ancestors` to define allowed framing origins and X-Frame-Options where legacy support is needed. Avoid relying on frame-busting JavaScript.
 
+**Can Fetch Metadata replace CSRF tokens?** It can reject many cross-site requests using `Sec-Fetch-Site`, but headers are not present in every client/context and do not stop client-side CSRF caused by vulnerable same-origin JavaScript. Keep an explicit fallback and use endpoint-specific policy.
+
+**Does `frame-ancestors` stop double-clickjacking?** No. It controls embedding; double-clickjacking targets a top-level interaction. Protect sensitive operations with server-side authorization and transaction-specific confirmation.
+
 ## Scenario questions
 - A fetch service allows an external hostname that resolves to a public IP but redirects to a private IP. Revalidate each hop and constrain network egress.
 - A rich-text field strips `<script>` but permits unsafe attributes/URLs. Use a maintained sanitizer with an explicit allowlist and test browser parsing behavior.

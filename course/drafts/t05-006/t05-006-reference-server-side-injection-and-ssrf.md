@@ -20,13 +20,16 @@ Injection happens when data changes the grammar or behavior of an interpreter. S
 - `Server-Side Request Forgery (SSRF)` — An attacker causes a server to make network requests to destinations the attacker selects or influences. This can expose internal services or cloud metadata.
 - `SSRF allowlist` — Policy enumerating permitted destination hosts/schemes/ports rather than trying to blacklist every bad spelling. Match canonical parsed host identity and enforce at connect time.
 - `DNS rebinding` — A hostname resolves to a permitted address during validation and a prohibited address later, exploiting resolution changes/time. Validate and constrain the actual connected address, not only an earlier lookup.
-- `DNS pinning/rebinding defense` — Binding validation to the resolution used for the actual connection, rechecking all returned addresses, and preventing a second unchecked resolution. Implementation details depend on the HTTP stack.
+- `DNS pinning bypass` — An attacker can exploit DNS resolution behavior so a hostname appears permitted during validation but resolves to a prohibited address when the connection is made. The defense must constrain the address actually used by the HTTP client, not merely perform a separate earlier lookup.
+- `DNS resolution-to-connection binding` — Ensure policy checks apply to the exact resolved address used for the outbound connection, accounting for the HTTP client's resolver, connection pooling, proxy configuration, and TLS hostname verification.
 - `Private and link-local address blocking` — Preventing requests to internal, loopback, link-local, and other prohibited address ranges. Define ranges for IPv4 and IPv6 and account for mapped forms and deployment-specific internal networks.
 - `Cloud metadata endpoint protection` — Blocking access to provider metadata services from request features and using network identity/metadata protections where available. Do not rely on one hard-coded hostname alone.
 - `Redirect following in outbound HTTP clients` — Automatic redirect behavior can move an allowed request to a prohibited destination. Disable redirects or validate each target and address before following.
 - `Outbound network egress policy` — Network-level restrictions on which destinations workloads may reach. This limits blast radius when application validation fails.
 - `URL parser normalization` — Parsing and normalizing scheme, host, port, path, and encoding according to a well-defined URL implementation. Security checks must use the same canonical representation as the actual client.
 - `IPv4-mapped IPv6 address` — IPv6 representation of an IPv4 address. Address checks must normalize/map it correctly so an IPv4 private destination cannot bypass IPv6 filters.
+- `NAT64 address` — An IPv6 address that a NAT64 gateway translates to IPv4. IPv4-only blocking can miss a prohibited destination represented through a NAT64 prefix; normalize or apply policy to the translated destination as well.
+- `All-address DNS validation` — Check every A and AAAA answer against the destination policy, and ensure the connector cannot later select an unchecked answer. Recheck on each new resolution/connection and after redirects.
 - `Canonicalization before validation` — Convert a value to the representation the consumer will use before applying policy. Validation before decoding/normalization can be bypassed by alternate spellings.
 - `Deny-by-default outbound destination policy` — Reject outbound destinations unless explicitly permitted. Combine with scheme/host/port constraints, address checks, redirect policy, and egress controls.
 
@@ -34,11 +37,13 @@ Injection happens when data changes the grammar or behavior of an interpreter. S
 Parameterized SQL separates query grammar from values; escaping-only SQL attempts to transform syntax and is easier to get wrong. An SSRF allowlist names intended destinations; arbitrary outbound URLs expose the server's network position. DNS checks must match the address actually connected, and redirect targets need the same policy. OWASP explains layered [SSRF controls](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html).
 
 ## Examples
-For a feature that fetches customer logos, accept only HTTPS URLs from approved domains. Parse with the same URL library used for the request, reject userinfo and unexpected ports/schemes, resolve and reject all prohibited IPv4/IPv6 results, connect using the checked address where possible, and reapply checks for every redirect. Limit egress so app instances cannot reach metadata or administrative networks. For SQL, pass a value parameter rather than concatenating it into command text.
+For a feature that fetches customer logos, accept only HTTPS URLs from approved domains. Parse with the same URL library used for the request, reject userinfo and unexpected ports/schemes, resolve and reject prohibited IPv4/IPv6 results (including mapped and NAT64 forms), and ensure the connector uses only an address that passed policy while preserving the intended TLS hostname. Disable redirects or reapply destination checks at every hop. Limit egress so app instances cannot reach metadata or administrative networks. For SQL, pass a value parameter rather than concatenating it into command text.
 
 ## Common mistakes
 - Validating a string with a regex before URL parsing.
 - Checking only the first DNS answer or ignoring IPv6.
+- Performing a DNS lookup for validation, then letting the HTTP client resolve the hostname independently.
+- Blocking IPv4 literals while overlooking IPv4-mapped IPv6 or NAT64 representations.
 - Following redirects without rechecking destination.
 - Blocking only `127.0.0.1` while permitting other private/internal addresses.
 - Assuming parameterization supports dynamic table/column names.

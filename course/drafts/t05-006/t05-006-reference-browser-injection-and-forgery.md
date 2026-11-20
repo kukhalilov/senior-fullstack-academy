@@ -17,6 +17,12 @@ The browser has rules for origin isolation, automatic credentials, parsing, and 
 - `Origin header validation` — Compare the browser-supplied Origin to the expected origin for sensitive requests. Handle absent/opaque origins deliberately and use as defense in depth with a token strategy.
 - `Referer header validation` — Check the referring URL's origin when Origin is absent or as an additional signal. Referrer policy/privacy can omit or reduce it, so missing data must have a deliberate fail/alternate policy.
 - `SameSite cookie attribute` — Browser control limiting cross-site cookie sending. It reduces CSRF exposure but does not replace tokens for every workflow and does not stop same-site attacks or XSS-driven actions.
+- `Fetch Metadata request headers` — Browser-supplied context headers, especially `Sec-Fetch-Site`, that let a server reject obviously cross-site unsafe requests. Treat them as defense in depth and retain an Origin/Referer or token fallback when headers are absent; the W3C specification is a Working Draft.
+- `Sec-Fetch-Site` — Describes the relationship between the request initiator and target (`cross-site`, `same-site`, `same-origin`, or `none`). A common policy rejects cross-site non-safe methods; do not assume header presence for every client or request context.
+- `Sec-Fetch-Mode` — Describes the request mode. It can refine a Fetch Metadata policy, but is not by itself proof that an action is user-authorized.
+- `Sec-Fetch-Dest` — Describes the request destination type and can refine resource-specific policy. Choose behavior based on the endpoint rather than treating a destination value as authentication.
+- `Client-side CSRF` — Vulnerable same-origin JavaScript turns attacker-controlled inputs (for example URL fragments, window name, or messages) into authenticated requests. CSRF tokens do not fix code that lets an attacker choose the endpoint or operation; constrain those inputs and map them to fixed operations.
+- `Safe HTTP methods and CSRF` — GET, HEAD, and OPTIONS should not cause state changes. If an application changes state on a nominally safe method, browser navigation or prefetch can trigger it and CSRF defenses become unreliable.
 - `Cross-Site Scripting (XSS)` — Injection that executes attacker-controlled script in a trusted origin. It can read accessible data and make authenticated requests; prevent unsafe interpretation at output sinks.
 - `Reflected XSS` — Untrusted request data is immediately included unsafely in a response and executes when a victim follows a crafted link.
 - `Stored XSS` — Untrusted data is persisted and later rendered unsafely to users, potentially at scale.
@@ -53,7 +59,11 @@ The browser has rules for origin isolation, automatic credentials, parsing, and 
 - `report-uri directive` — Legacy CSP reporting destination directive. It has compatibility and deprecation history; use current reporting behavior appropriate to supported browsers and don't depend on reports as enforcement.
 - `Clickjacking` — Tricking a user into activating a framed/overlaid interface control. Prevent unauthorized framing and design sensitive confirmations carefully.
 - `X-Frame-Options` — Legacy response header controlling framing with options such as DENY or SAMEORIGIN in supporting browsers. CSP `frame-ancestors` offers more expressive policy; sending both may help compatibility.
+- `X-Frame-Options ALLOW-FROM` — This historical value attempted to allow a named framing origin, but it is obsolete and unsupported by modern browsers. Use CSP `frame-ancestors` for an explicit allowlist; the legacy interoperable values are `DENY` and `SAMEORIGIN`.
 - `frame-ancestors CSP directive` — CSP directive controlling allowed parent origins for embedding. It is not inherited from `default-src`; set it explicitly when framing must be restricted.
+- `CSP frame-ancestors response-header requirement` — `frame-ancestors` is enforced from the HTTP response policy; a `<meta http-equiv>` element cannot provide this framing defense.
+- `X-Frame-Options ALLOW-FROM` — Obsolete and unsupported by modern browsers; use CSP `frame-ancestors` for specific allowed parents. The interoperable legacy values are `DENY` and `SAMEORIGIN`.
+- `DoubleClickjacking` — A UI-redress attack that can trick a user into activating a sensitive control during a double-click in a top-level window. Frame restrictions do not stop it; enforce sensitive actions server-side and require transaction-specific authorization where appropriate.
 
 ## Cross-item comparison
 CSRF abuses ambient credentials; XSS executes within the trusted origin and may bypass CSRF tokens available to script. Output encoding prevents data interpretation at a sink; CSP limits execution as a fallback barrier. Report-Only observes and reports but does not block; enforcing CSP blocks according to policy. `frame-ancestors` is more expressive than `X-Frame-Options`, while the older header can help legacy compatibility. Sources: [OWASP XSS](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html), [OWASP CSRF](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html), [OWASP Clickjacking](https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html).
@@ -68,6 +78,8 @@ For a user profile displayed as text, render it as text with the framework's con
 - Using CSP `unsafe-inline` and broad wildcard hosts while claiming strong XSS mitigation.
 - Forgetting that XSS can often issue requests with the user's session.
 - Assuming `default-src` controls `frame-ancestors`.
+- Treating `SameSite` as a framing control; same-site sibling origins can still frame a page, so restrict ancestors explicitly.
+- Assuming frame restrictions prevent every UI-redress attack, including double-click-based attacks.
 
 ## Knowledge checks with answers
 1. Does CSP replace context encoding? **No.** 2. Does Report-Only block? **No, it reports.** 3. Which directive controls who can frame a page? **`frame-ancestors`.**

@@ -18,6 +18,7 @@ Every redirect, forwarded request, and header-derived URL crosses a trust bounda
 - `Output encoding versus input validation` — Input validation enforces business constraints; output encoding prevents a value from becoming syntax in a particular output context. Use both where relevant; one does not replace the other.
 - `Defense-in-depth security header` — A response header adding a browser-enforced restriction such as CSP or framing policy. It reduces risk but cannot repair unsafe server logic or unsupported clients.
 - `CSP report-only rollout` — Deploying CSP in a non-enforcing reporting mode to discover violations before enforcement. Reports may be noisy or incomplete and do not block attacks.
+- `DoubleClickjacking` — A user-interface redress technique targeting a sensitive action in a top-level window during a double-click. `frame-ancestors` and `X-Frame-Options` address framing; they do not stop this separate interaction pattern. Use server-enforced transaction authorization for sensitive operations.
 - `Content injection` — Untrusted content inserted into an interpreted document or response. It can lead to XSS or altered behavior depending on context; use safe rendering and sanitization where rich content is intentional.
 - `Origin confusion` — Mistaking the security origin of a request due to untrusted or inconsistently parsed scheme/host/port information. Compare canonical origins and distrust spoofable forwarding headers.
 - `URL suffix allowlist flaw` — Checking that a hostname string ends with an allowed domain can accept attacker-controlled values such as `trusted.example.attacker.test`. Parse hostname and compare exact host or a dot-delimited subdomain boundary.
@@ -36,6 +37,7 @@ For a post-login destination, accept a route key such as `dashboard` and map it 
 - Using `endsWith` on raw host text.
 - Validating only the first redirect hop.
 - Trusting Host or forwarded-host headers from untrusted clients.
+- Treating `frame-ancestors` or SameSite as complete clickjacking/UI-redress protection.
 - Treating CORS as CSRF protection.
 - Relying on a security header while leaving unsafe HTML sinks.
 
