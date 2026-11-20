@@ -62,7 +62,6 @@ The browser has rules for origin isolation, automatic credentials, parsing, and 
 - `X-Frame-Options ALLOW-FROM` — This historical value attempted to allow a named framing origin, but it is obsolete and unsupported by modern browsers. Use CSP `frame-ancestors` for an explicit allowlist; the legacy interoperable values are `DENY` and `SAMEORIGIN`.
 - `frame-ancestors CSP directive` — CSP directive controlling allowed parent origins for embedding. It is not inherited from `default-src`; set it explicitly when framing must be restricted.
 - `CSP frame-ancestors response-header requirement` — `frame-ancestors` is enforced from the HTTP response policy; a `<meta http-equiv>` element cannot provide this framing defense.
-- `X-Frame-Options ALLOW-FROM` — Obsolete and unsupported by modern browsers; use CSP `frame-ancestors` for specific allowed parents. The interoperable legacy values are `DENY` and `SAMEORIGIN`.
 - `DoubleClickjacking` — A UI-redress attack that can trick a user into activating a sensitive control during a double-click in a top-level window. Frame restrictions do not stop it; enforce sensitive actions server-side and require transaction-specific authorization where appropriate.
 
 ## Cross-item comparison
