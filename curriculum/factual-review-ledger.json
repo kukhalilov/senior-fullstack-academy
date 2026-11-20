@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1500,
-    "pending": 849,
-    "claimsChecked": 81342,
-    "claimsCorrected": 3379,
+    "reviewed": 1508,
+    "pending": 841,
+    "claimsChecked": 81852,
+    "claimsCorrected": 3394,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1751,6 +1751,49 @@
         "Audited all nine lessons, supplied API inventories, version notes, code samples, practice solutions and interview answers against current Microsoft Learn ASP.NET Core 11 documentation, .NET 11 System.Text.Json union documentation, built-in metrics references and the SignalR Hub Protocol specification.",
         "Expanded .NET 11 refresh coverage for the POST /refresh route, identity-check claim selection and issuer/value requirements, endpoint authorization/status cases, Windows identity limits, callback exceptions, and expiration caps. Added JsonUnionAttribute/TypeClassifier and structural classification for ambiguous union cases. Added SignalR metric names/types/dimensions and clarified that hosting HTTP request metrics do not count each hub invocation. Corrected the hub contract guidance: method-name overloading is unsupported; HubMethodNameAttribute supplies a deliberate client-facing name.",
         "Rechecked transient hub lifetimes, authorization versus routing, transport negotiation/protocol, streaming/cancellation, stateful versus automatic reconnect, affinity/backplane distinctions, and delivery/durability boundaries. All inventory names are present and automated catalog/draft validators pass. No unresolved omissions or factual issues remain; all nine lessons remain drafts."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "Kestrel endpoints, TLS, forwarded headers, IIS hosting and ASP.NET Core 11 transport changes (t02-020)",
+      "status": "full claim and frozen-inventory audit complete for all 8 lessons",
+      "sources": [
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/8/forwarded-headers-unknown-proxies",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/10/ipnetwork-knownnetworks-obsolete",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheadersoptions",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.connections.httpconnectiondispatcheroptions",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http2limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http3limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderquicextensions.usequic?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.quic.quictransportoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.allowalternateschemes?view=aspnetcore-11.0"
+      ],
+      "findings": [
+        "Reviewed all eight lessons, claims, version statements, examples, practice scenarios and interview answers against current Microsoft Learn ASP.NET Core 11 docs and public API references; checked KestrelServerOptions endpoint/configuration APIs, HTTPS and connection limits, forwarded-header trust defaults, IIS hosting models, and HTTP/3/QUIC constraints.",
+        "Expanded the frozen Kestrel inventory for the public KestrelServerOptions surface: scheme/host validation, response-header compression, synchronous I/O, scheduling/services, configuration loader/reload overloads, encoding selectors, obsolete EnableAltSvc, endpoint overloads, socket handle/named pipe, localhost port-zero restriction, and systemd socket activation. Added security and operational explanations.",
+        "Corrected/clarified HTTP/3 certificate selector null context and unsupported/no-op HTTPS options, target-version defaults, IIS out-of-process request-body ownership, IIS in-process default, and the broad trust behavior of ASPNETCORE_FORWARDEDHEADERS_ENABLED. Added documented TLS certificate validation controls, general and HTTP/2/HTTP/3 limits, and QUIC option default snapshots.",
+        "All frozen names are covered, automated draft/catalog validators pass, and no unresolved factual or scope issues remain. All eight lessons remain drafts pending whole-curriculum completion."
       ]
     }
   ],
@@ -131538,13 +131581,27 @@
       "topicId": "t02-020",
       "phase": "overview",
       "draft": "course/drafts/t02-020/t02-020-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": 34,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked lesson claims, examples and answers against current Microsoft Learn/Kestrel API documentation for ASP.NET Core 11; the topic audit finding records corrections and inventory additions. No unresolved factual issues."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options",
@@ -131559,22 +131616,52 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheadersoptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.connections.httpconnectiondispatcheroptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http2limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http3limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderquicextensions.usequic?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.quic.quictransportoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.allowalternateschemes?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim against current official sources and reconciled the full frozen inventory; lesson remains in drafts."
     },
     {
       "taskId": "t02-020-concepts",
       "topicId": "t02-020",
       "phase": "concepts",
       "draft": "course/drafts/t02-020/t02-020-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 31,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": 31,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked lesson claims, examples and answers against current Microsoft Learn/Kestrel API documentation for ASP.NET Core 11; the topic audit finding records corrections and inventory additions. No unresolved factual issues."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options",
@@ -131589,22 +131676,51 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheadersoptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.connections.httpconnectiondispatcheroptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http2limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http3limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderquicextensions.usequic?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.quic.quictransportoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.allowalternateschemes?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim against current official sources and reconciled the full frozen inventory; lesson remains in drafts."
     },
     {
       "taskId": "t02-020-reference-kestrel-endpoints-https-and-limits",
       "topicId": "t02-020",
       "phase": "reference",
       "draft": "course/drafts/t02-020/t02-020-reference-kestrel-endpoints-https-and-limits.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 121,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": 121,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http2limits?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http3limits?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.quic.quictransportoptions?view=net-11.0-pp"
+          ],
+          "verdict": "Manually checked lesson claims, examples and answers against current Microsoft Learn/Kestrel API documentation for ASP.NET Core 11; the topic audit finding records corrections and inventory additions. No unresolved factual issues."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options",
@@ -131619,22 +131735,49 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheadersoptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.connections.httpconnectiondispatcheroptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http2limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http3limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.quic.quictransportoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderquicextensions.usequic?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.allowalternateschemes?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim against current official sources and reconciled the full frozen inventory; lesson remains in drafts."
     },
     {
       "taskId": "t02-020-reference-forwarded-headers-and-trusted-proxies",
       "topicId": "t02-020",
       "phase": "reference",
       "draft": "course/drafts/t02-020/t02-020-reference-forwarded-headers-and-trusted-proxies.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 77,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": 77,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/8/forwarded-headers-unknown-proxies",
+            "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/10/ipnetwork-knownnetworks-obsolete",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheadersoptions"
+          ],
+          "verdict": "Manually checked lesson claims, examples and answers against current Microsoft Learn/Kestrel API documentation for ASP.NET Core 11; the topic audit finding records corrections and inventory additions. No unresolved factual issues."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options",
@@ -131649,22 +131792,47 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheadersoptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.connections.httpconnectiondispatcheroptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http2limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http3limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderquicextensions.usequic?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.quic.quictransportoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.allowalternateschemes?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim against current official sources and reconciled the full frozen inventory; lesson remains in drafts."
     },
     {
       "taskId": "t02-020-reference-iis-aspnetcore-module-and-hosting-models",
       "topicId": "t02-020",
       "phase": "reference",
       "draft": "course/drafts/t02-020/t02-020-reference-iis-aspnetcore-module-and-hosting-models.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 61,
+      "claimsCorrected": 2,
+      "evidence": [
+        {
+          "claims": 61,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked lesson claims, examples and answers against current Microsoft Learn/Kestrel API documentation for ASP.NET Core 11; the topic audit finding records corrections and inventory additions. No unresolved factual issues."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options",
@@ -131679,22 +131847,47 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheadersoptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.connections.httpconnectiondispatcheroptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http2limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http3limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderquicextensions.usequic?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.quic.quictransportoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.allowalternateschemes?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim against current official sources and reconciled the full frozen inventory; lesson remains in drafts."
     },
     {
       "taskId": "t02-020-reference-kestrel-dotnet-11-http3-and-tls-updates",
       "topicId": "t02-020",
       "phase": "reference",
       "draft": "course/drafts/t02-020/t02-020-reference-kestrel-dotnet-11-http3-and-tls-updates.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 53,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": 53,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked lesson claims, examples and answers against current Microsoft Learn/Kestrel API documentation for ASP.NET Core 11; the topic audit finding records corrections and inventory additions. No unresolved factual issues."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options",
@@ -131709,22 +131902,52 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheadersoptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.connections.httpconnectiondispatcheroptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http2limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http3limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderquicextensions.usequic?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.quic.quictransportoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.allowalternateschemes?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim against current official sources and reconciled the full frozen inventory; lesson remains in drafts."
     },
     {
       "taskId": "t02-020-practice",
       "topicId": "t02-020",
       "phase": "practice",
       "draft": "course/drafts/t02-020/t02-020-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 68,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": 68,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked lesson claims, examples and answers against current Microsoft Learn/Kestrel API documentation for ASP.NET Core 11; the topic audit finding records corrections and inventory additions. No unresolved factual issues."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options",
@@ -131739,22 +131962,52 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheadersoptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.connections.httpconnectiondispatcheroptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http2limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http3limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderquicextensions.usequic?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.quic.quictransportoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.allowalternateschemes?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim against current official sources and reconciled the full frozen inventory; lesson remains in drafts."
     },
     {
       "taskId": "t02-020-interview",
       "topicId": "t02-020",
       "phase": "interview",
       "draft": "course/drafts/t02-020/t02-020-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 65,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": 65,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked lesson claims, examples and answers against current Microsoft Learn/Kestrel API documentation for ASP.NET Core 11; the topic audit finding records corrections and inventory additions. No unresolved factual issues."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options",
@@ -131769,9 +132022,25 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.httpoverrides.forwardedheadersoptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.connections.httpconnectiondispatcheroptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http2limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.http3limits?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderquicextensions.usequic?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.quic.quictransportoptions?view=net-11.0-pp",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.allowalternateschemes?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim against current official sources and reconciled the full frozen inventory; lesson remains in drafts."
     },
     {
       "taskId": "t02-021-overview",

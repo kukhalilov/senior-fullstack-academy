@@ -25,6 +25,25 @@ Kestrel is the socket-owning HTTP server when the application is hosted directly
 | `KestrelServerOptions.ConfigureEndpointDefaults` | Applies a configuration callback to endpoints added through `Listen`; use it for shared listener settings. |
 | `KestrelServerOptions.Limits` | Accesses Kestrel server limits; those protect server resources, not application-level business quotas. |
 | `KestrelServerOptions.AddServerHeader` | Controls emission of the `Server` response header. Hiding it reduces incidental disclosure but is not a security boundary. |
+| `KestrelServerOptions.AllowAlternateSchemes` | Defaults to `false`; controls HTTP/2 and HTTP/3 `:scheme` validation. Enable only behind a trusted proxy that requires it, and validate the resulting `HttpRequest.Scheme` before security-sensitive use. |
+| `KestrelServerOptions.AllowHostHeaderOverride` | Defaults to `false`; controls whether an absolute-form HTTP/1 request target can override a mismatching `Host` header. Keep the consistency check unless a known proxy setup requires otherwise. |
+| `KestrelServerOptions.AllowResponseHeaderCompression` | Controls dynamic compression of response headers. Review HPACK compression side-channel risks when secrets and attacker-controlled values can be reflected together. |
+| `KestrelServerOptions.AllowSynchronousIO` | Controls synchronous request/response I/O and defaults to disabled; enabling blocking I/O can cause thread-pool starvation. Prefer async APIs. |
+| `KestrelServerOptions.ApplicationSchedulingMode` | Selects how Kestrel schedules application callbacks. Treat this as an advanced runtime tuning option and verify the enum/runtime behavior before changing it. |
+| `KestrelServerOptions.ApplicationServices` | Makes the app service provider available to endpoint configuration callbacks; normally initialized by hosting integration. Avoid resolving scoped services during server startup callbacks. |
+| `KestrelServerOptions.ConfigurationLoader` | Holds the Kestrel endpoint configuration loader; default is `null` until configuration is loaded. |
+| `KestrelServerOptions.DisableStringReuse` | Controls whether materialized string values can be reused across requests. This is an allocation/performance behavior knob; change only with a measured reason and validate the target runtime semantics. |
+| `KestrelServerOptions.EnableAltSvc (obsolete)` | Obsolete compatibility property for emitting `Alt-Svc` for HTTP/3. Use current HTTP/3 endpoint configuration and automatic advertisement behavior instead of building new code around this obsolete switch. |
+| `KestrelServerOptions.RequestHeaderEncodingSelector` | Selects an encoding for a named request header; `null` uses the default UTF-8 encoding. Configure narrowly because non-UTF-8 header decoding can affect application interpretation. |
+| `KestrelServerOptions.ResponseHeaderEncodingSelector` | Selects an encoding for a response header or trailer; `null` uses the default ASCII encoding. Header values still need to obey protocol and security requirements. |
+| `KestrelServerOptions.Configure()` | Creates an endpoint configuration loader without immediately supplying a configuration section. |
+| `KestrelServerOptions.Configure(IConfiguration)` | Creates a loader from the Kestrel configuration section; use the overload with the reload flag when dynamic endpoint binding updates are required. |
+| `KestrelServerOptions.Configure(IConfiguration, Boolean)` | Creates a loader from the Kestrel configuration section and controls dynamic endpoint binding updates. Reloading/rebinding has operational constraints; validate changes before relying on hot updates. |
+| `KestrelServerOptions.Listen overloads for EndPoint IPAddress and IPEndPoint` | Bind supported endpoint representations, optionally with a per-endpoint callback. The callback is where protocol and HTTPS settings are attached. |
+| `KestrelServerOptions.ListenHandle` | Binds an existing socket handle/file descriptor; useful for socket activation and host integration, with ownership/lifetime managed according to the hosting contract. |
+| `KestrelServerOptions.ListenNamedPipe` | Binds a Windows named pipe, optionally with endpoint configuration; this is an OS-specific local transport, not a TCP listener. |
+| `KestrelServerOptions.ListenLocalhost dynamic port zero unsupported` | Dynamic port `0` is unsupported for localhost listeners; use an appropriate IP endpoint when an ephemeral port is needed. |
+| `KestrelServerOptions.UseSystemd extension` | Integrates Kestrel with systemd socket activation and supplied listening file descriptors; it is a hosting integration, not a portable listener API. |
 | `ListenOptions` | Per-endpoint options object used to choose protocols, TLS, and endpoint-level behavior. |
 
 ### HTTPS and certificates
@@ -34,12 +53,18 @@ Kestrel is the socket-owning HTTP server when the application is hosted directly
 | `ListenOptions.UseHttps` | Enables TLS on a listener and selects certificate/options. A plain HTTP listener does not become HTTPS merely because the app uses HTTPS redirection. |
 | `HttpsConnectionAdapterOptions` | HTTPS adapter configuration for certificate selection, client certificates, protocol versions, and authentication callbacks. |
 | `HttpsConnectionAdapterOptions.ServerCertificate` | Supplies the certificate used for TLS on that listener. Protect its private key and ensure its name matches the public host. |
+| `HttpsConnectionAdapterOptions.ServerCertificateChain` | Supplies the full certificate chain presented by the server; ensure it corresponds to the selected leaf certificate and deployment chain policy. |
 | `HttpsConnectionAdapterOptions.ServerCertificateSelector` | Selects a certificate dynamically from connection context, commonly for multiple hostnames; selection code must be safe and fast. |
+| `HttpsConnectionAdapterOptions.ServerCertificateSelector ConnectionContext is null for HTTP/3` | Don't dereference the context unconditionally in a selector shared by HTTP/2 and HTTP/3 listeners; handle its documented null case. |
 | `HttpsConnectionAdapterOptions.ClientCertificateMode` | Controls whether a client certificate is not requested, optional, or required for mutual TLS. It does not itself authorize a certificate identity. |
 | `ClientCertificateMode.NoCertificate` | Does not request a client certificate during TLS negotiation. |
 | `ClientCertificateMode.AllowCertificate` | Requests a client certificate but allows the connection without one; validate any supplied certificate if it matters. |
 | `ClientCertificateMode.RequireCertificate` | Requires the client to present a certificate; application validation and authorization still determine trust. |
 | `HttpsConnectionAdapterOptions.SslProtocols` | Restricts TLS protocol versions accepted by the listener. Prefer current platform-supported secure defaults unless policy requires a narrower set. |
+| `HttpsConnectionAdapterOptions.HandshakeTimeout` | Bounds how long TLS negotiation may take; the documented default is 10 seconds. Keep it aligned with network conditions without allowing slow handshakes to hold resources indefinitely. |
+| `HttpsConnectionAdapterOptions.CheckCertificateRevocation` | Controls whether certificate revocation is checked during TLS authentication; the documented default is false. Enabling revocation checks can add latency or fail when revocation responders are unavailable. |
+| `HttpsConnectionAdapterOptions.ClientCertificateValidation` | Adds custom validation for a presented client certificate. Preserve normal chain validation unless the application has a carefully designed alternative. |
+| `HttpsConnectionAdapterOptions.AllowAnyClientCertificate()` | Explicitly bypasses client-certificate validation; only suitable for isolated development/testing and never a safe production shortcut. |
 | `HttpsConnectionAdapterOptions.OnAuthenticate` | Callback to customize TLS authentication options for a connection; use carefully because it affects handshake security. |
 | `KestrelServerOptions.ConfigureHttpsDefaults` | Applies shared HTTPS settings to secure endpoints that do not override them. |
 | `Certificate loading from configuration and secret providers` | Loads certificate material from configured sources; production private keys belong in protected secret/certificate stores, not committed settings. |
@@ -57,6 +82,13 @@ Kestrel is the socket-owning HTTP server when the application is hosted directly
 | `KestrelServerLimits.RequestHeadersTimeout` | Limits time allowed to receive request headers, helping mitigate slow-header resource holding. |
 | `KestrelServerLimits.MinRequestBodyDataRate` | Minimum body data rate after a grace period; slow clients can be disconnected. Treat configured rates carefully for mobile/unreliable networks. |
 | `KestrelServerLimits.MinResponseDataRate` | Minimum response data rate after a grace period; affects slow response readers and large transfers. |
+| `KestrelServerLimits.MaxRequestBufferSize` | Maximum Kestrel request-buffer size; controls server-side buffering and is distinct from the total body-size limit. |
+| `KestrelServerLimits.MaxRequestHeaderCount` | Maximum number of request headers accepted; use it with total header-byte and request-line limits. |
+| `KestrelServerLimits.MaxRequestHeadersTotalSize` | Maximum combined request-header size in bytes; protects parsing/buffering resources. |
+| `KestrelServerLimits.MaxRequestLineSize` | Maximum request-line size, including method/target/version; oversized request lines are rejected before application middleware. |
+| `KestrelServerLimits.MaxResponseBufferSize` | Maximum buffered response data before writes apply backpressure; it is a flow-control boundary, not an overall response-size limit. |
+| `KestrelServerLimits.Http2` | Accesses limits specific to HTTP/2 connections, such as concurrent streams, frame/header sizes, flow-control windows, and keep-alive pings. |
+| `KestrelServerLimits.Http3` | Accesses HTTP/3-specific limits; the current `Http3Limits` surface includes maximum request-header field size. |
 | `IHttpMaxRequestBodySizeFeature` | Per-request feature for reading or setting the effective Kestrel request-body cap where supported. |
 | `IHttpMaxRequestBodySizeFeature.MaxRequestBodySize` | Gets or sets the body-size limit for the request before reading begins. |
 | `IHttpMaxRequestBodySizeFeature.IsReadOnly` | Indicates that request-body reading has started or the server cannot change the limit; configure early. |
@@ -65,6 +97,31 @@ Kestrel is the socket-owning HTTP server when the application is hosted directly
 | `Max request body size must be configured before reading starts` | Once body consumption begins, changing the Kestrel limit is too late and the feature becomes read-only. |
 | `Kestrel connection limits versus application concurrency limits` | Server limits bound sockets/connections; semaphores, queues, rate limiting, and worker pools bound application work. Use both as appropriate. |
 | `MaxConcurrentConnections does not include upgraded connections` | Configure the separate upgraded-connection limit for WebSockets and other upgraded protocols. |
+
+### Protocol-specific limits and defaults
+
+| Supplied name | Purpose and behavior |
+|---|---|
+| `Http2Limits.MaxStreamsPerConnection` | Limits concurrent HTTP/2 streams on one connection; the documented default is 100. |
+| `Http2Limits.HeaderTableSize` | Controls the HTTP/2 HPACK dynamic table size; documented default 4,096 bytes. Reducing it trades compression efficiency for a smaller compression-state surface. |
+| `Http2Limits.MaxFrameSize` | Sets the maximum HTTP/2 frame payload size; documented default 16,384 bytes and supported range 16 KiB–16 MiB. |
+| `Http2Limits.MaxRequestHeaderFieldSize` | Limits an individual HTTP/2 header field; documented default is 32,768 bytes. |
+| `Http2Limits.InitialConnectionWindowSize` | Sets the initial HTTP/2 connection-level flow-control window; documented default is 1 MiB. |
+| `Http2Limits.InitialStreamWindowSize` | Sets the initial HTTP/2 per-stream flow-control window; documented default is 768 KiB. |
+| `Http2Limits.KeepAlivePingDelay` | Configures HTTP/2 keep-alive ping cadence; the documented default is disabled (`TimeSpan.MaxValue`). |
+| `Http2Limits.KeepAlivePingTimeout` | Sets how long Kestrel waits for a ping response before closing; the documented default is 20 seconds. |
+| `Http3Limits.MaxRequestHeaderFieldSize` | Limits a single HTTP/3 request header field; the documented default is 32,768 bytes. Larger values consume more memory per connection/stream. |
+| IWebHostBuilder.UseQuic and QuicTransportOptions | This preview-marked API configures transport settings such as QUIC stream and buffer limits. |
+| `QuicTransportOptions.MaxBidirectionalStreamCount` | Maximum concurrent bidirectional QUIC streams per connection; documented default 100. |
+| `QuicTransportOptions.MaxUnidirectionalStreamCount` | Maximum inbound unidirectional QUIC streams per connection; documented default 10. |
+| `QuicTransportOptions.MaxReadBufferSize` | QUIC maximum read buffer; documented default 1 MiB. |
+| `QuicTransportOptions.MaxWriteBufferSize` | QUIC maximum write buffer; documented default 64 KiB. |
+| `QuicTransportOptions.Backlog` | Maximum pending QUIC connection queue length; documented default 512. |
+| `QuicTransportOptions.DefaultStreamErrorCode` | Default QUIC stream abort error code; use only when configuring lower-level transport behavior deliberately. |
+| `QuicTransportOptions.DefaultCloseErrorCode` | Default QUIC connection close error code when disposing an open connection. |
+| `KestrelServerLimits documented common defaults` | Current docs list 30,000,000-byte request body, 30-second request-header timeout, 130-second keep-alive timeout, null/unlimited connection caps, and finite header/buffer limits. Verify the exact target runtime and IIS/proxy interaction. |
+
+The current security/reference pages document these common Kestrel defaults: request body 30,000,000 bytes; request line 8,192 bytes; total headers 32,768 bytes; header count 100; request buffer 1 MiB; response buffer 64 KiB; request-header timeout 30 seconds; keep-alive timeout 130 seconds; request and response minimum data rates 240 bytes/second after a 5-second grace period; and both connection-count caps as unlimited (`null`). These values are snapshots, not universal deployment recommendations. In HTTP/2 and HTTP/3, separate protocol limits apply. In out-of-process IIS hosting, IIS owns the body-size limit and Kestrel's corresponding limit is disabled.
 
 ### HTTP protocol and endpoint configuration
 
@@ -134,4 +191,4 @@ This is a configuration shape, not a recommended universal capacity profile. Sup
 
 ## Sources
 
-[Kestrel](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel) · [Kestrel options](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options) · [HTTP/3](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3)
+[Kestrel](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0) · [Kestrel options](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/options?view=aspnetcore-11.0) · [Kestrel security considerations and limits](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0) · [KestrelServerLimits API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits?view=net-11.0) · [HTTPS options API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=net-11.0) · [HTTP/3](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0)

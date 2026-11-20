@@ -17,6 +17,7 @@ ANCM is the IIS integration boundary: it loads the in-process server or starts/m
 | `Microsoft.AspNetCore.Server.IIS package` | Provides the IIS in-process server implementation and integration. |
 | `Microsoft.AspNetCore.Server.IISIntegration package` | Provides IIS Integration support, including the out-of-process IIS integration boundary. |
 | `AspNetCoreHostingModel project property` | MSBuild property selecting `InProcess` or `OutOfProcess` hosting for publish output. |
+| `AspNetCoreHostingModel default is InProcess` | Current ASP.NET Core IIS hosting defaults to in-process when no hosting model is specified; inspect the published `web.config` and actual deployment rather than assuming a project file fully describes a later override. |
 | `AspNetCoreHostingModel InProcess` | Runs the app inside IIS worker process `w3wp.exe` using `IISHttpServer`; Kestrel is not used. |
 | `AspNetCoreHostingModel OutOfProcess` | Runs the app in a separate process using Kestrel; ANCM reverse-proxies requests from IIS. |
 | `IIS in-process hosting with IISHttpServer` | Uses IIS's ASP.NET Core server inside the IIS worker, avoiding a separate Kestrel process/hop. |
@@ -40,7 +41,8 @@ ANCM is the IIS integration boundary: it loads the in-process server or starts/m
 | `IIS integration versus Linux reverse-proxy hosting` | IIS Integration behavior is specific to IIS; Nginx/Apache deployments need explicit proxy and forwarded-header configuration. |
 | `IIS hosting bundle installation prerequisite` | The Hosting Bundle installs the ASP.NET Core Module and runtime components required by IIS deployment; install/update it on the server and restart IIS as directed. |
 | `IIS ANCM startup errors and stdout log security` | Startup status codes and temporary stdout logs help diagnose launch failures; logs must not be publicly served or left enabled indefinitely. |
-| `IIS and Kestrel request limits are separate layers` | In out-of-process hosting, IIS/ANCM and Kestrel may each reject a request; configure consistent but appropriately bounded values. |
+| `IIS and Kestrel request limits are separate layers` | IIS request filtering and application limits still apply. In out-of-process ANCM hosting, IIS owns the request-body limit and Kestrel's `MaxRequestBodySize` is disabled; don't assume the same body-size enforcement applies in both hosting models. |
+| `Out-of-process IIS disables Kestrel MaxRequestBodySize` | ANCM/IIS sets the request-body size limit for out-of-process hosting, so Kestrel's own request-body limit is disabled in that topology. Confirm IIS request filtering and any application-level cap. |
 | `Full IIS operations, application pools, and web.config troubleshooting are covered by infrastructure topic t09-003` | Scope boundary directing detailed IIS administration to the operations curriculum. |
 | `Kestrel operations, reverse-proxy products, load balancing, and TLS deployment are covered by infrastructure topic t09-004` | Scope boundary directing server/proxy deployment operations to the infrastructure curriculum. |
 
@@ -85,4 +87,4 @@ When the app fails to start, enable `stdoutLogEnabled` briefly and set `stdoutLo
 
 ## Sources
 
-[ANCM](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module) · [In-process hosting](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting)
+[ANCM](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0) · [In-process hosting](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting?view=aspnetcore-11.0)

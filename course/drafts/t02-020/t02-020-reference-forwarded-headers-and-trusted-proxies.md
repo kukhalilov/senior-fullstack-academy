@@ -40,7 +40,7 @@ The TCP peer that connects to Kestrel is normally the proxy, not the original br
 | `ForwardedHeadersDefaults.XForwardedPrefixHeaderName` | Conventional name `X-Forwarded-Prefix`. |
 | `IApplicationBuilder.UseForwardedHeaders` | Adds forwarded-header middleware to the classic application builder pipeline. |
 | `WebApplication.UseForwardedHeaders` | Adds the middleware to a modern `WebApplication` pipeline. |
-| `ASPNETCORE_FORWARDEDHEADERS_ENABLED` | Environment switch enabling a cloud-oriented forwarded-header setup; it does not configure a proxy allowlist and should not be mistaken for a complete trust policy. |
+| `ASPNETCORE_FORWARDEDHEADERS_ENABLED` | Environment switch enabling a cloud-oriented setup for forwarded client IP and scheme. In the documented compatibility behavior it clears known-proxy/network lists, so forwarded headers can be accepted from any peer; don't mistake it for a secure allowlist. |
 | `Known proxy IP allowlist` | Restricts which immediate peers can assert forwarding metadata. Use actual proxy addresses, not client subnets. |
 | `KnownIPNetworks allowlist using System.Net.IPNetwork CIDR` | Current way to trust a verified narrow proxy network, expressed as CIDR. |
 | `Forwarded headers are untrusted unless sent by a known proxy` | The core trust rule that prevents a remote client from spoofing its IP, scheme, or host via headers. |
@@ -54,6 +54,7 @@ The TCP peer that connects to Kestrel is normally the proxy, not the original br
 | `IPv4-mapped IPv6 proxy addresses` | A dual-mode socket may expose an IPv4 peer in IPv4-mapped IPv6 form; compare against the address form actually reported by the connection. |
 | `IIS integration configures forwarded headers automatically` | IIS Integration handles forwarded scheme/address/path information for IIS hosting; this is not automatically configured for arbitrary Linux proxies. |
 | `ASPNETCORE_FORWARDEDHEADERS_ENABLED does not configure a proxy allowlist` | The switch can enable processing without enumerating trusted peers; network isolation must still prevent spoofed requests. |
+| `ASPNETCORE_FORWARDEDHEADERS_ENABLED clears allowlists and enables X-Forwarded-For and Proto` | The documented switch clears `KnownProxies`/`KnownNetworks` and enables those two header types. Restrict network access to the app or configure explicit trusted proxies instead. |
 | `Forwarded headers security advisory and trust boundary` | Improper host/proxy trust can enable spoofed IP policy decisions, poisoned URLs, or authentication/redirect confusion. |
 | `Path base forwarding and PathBase request reconstruction` | `X-Forwarded-Prefix` can restore a public path prefix removed by a proxy. |
 | `Reverse proxy TLS offload and original scheme reconstruction` | Configure trusted `X-Forwarded-Proto` processing so downstream app code sees the client's original HTTPS scheme. |

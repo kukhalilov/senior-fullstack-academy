@@ -20,6 +20,8 @@ HTTP/3 uses QUIC streams and connection-level control frames; Kestrel can now be
 | `ASP.NET Core 11 RequestHeadersTimeout applies to HTTP/2 and HTTP/3 trailer headers` | Kestrel applies the request-header timeout to incomplete fragmented trailer HEADERS as well as initial headers, preventing a peer from leaving a header block unfinished indefinitely. |
 | `ASP.NET Core 11 ITlsConnectionFeature.TryGetChannelBindingBytes` | Retrieves TLS channel-binding bytes for a requested binding kind when the server and TLS connection expose them. Treat the bytes as connection-bound security material, not a reusable credential. |
 | `ASP.NET Core 11 ChannelBindingKind.Endpoint` | Requests the endpoint channel-binding type, derived from the TLS server endpoint certificate; use only in a protocol designed to validate channel binding. |
+| `HTTP/3 HttpsConnectionAdapterOptions.HandshakeTimeout and OnAuthenticate are no-op` | The HTTP/3 Kestrel endpoint does not honor these `HttpsConnectionAdapterOptions` values; don't depend on them for QUIC handshakes. |
+| `HTTP/3 UseHttps callback overloads throw` | The `UseHttps` overloads taking `ServerOptionsSelectionCallback` or `TlsHandshakeCallbackOptions` throw for HTTP/3. Check the current Kestrel HTTP/3 limitations before sharing endpoint TLS configuration. |
 
 ## Cross-item comparison
 
@@ -93,4 +95,4 @@ The ASP.NET Core 11 release example obtains `ITlsConnectionFeature` from the cur
 
 ## Sources
 
-[.NET 11 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11) · [Kestrel security considerations](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations)
+[.NET 11 release notes](https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0) · [Kestrel HTTP/3](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-11.0) · [Kestrel security considerations](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-11.0)
