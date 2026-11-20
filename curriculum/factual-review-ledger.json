@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1528,
-    "pending": 821,
-    "claimsChecked": 82827,
-    "claimsCorrected": 3461,
+    "reviewed": 1534,
+    "pending": 815,
+    "claimsChecked": 83153,
+    "claimsCorrected": 3499,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1883,6 +1883,24 @@
       ],
       "findings": [
         "Reviewed all six lessons and reconciled all 43 assigned inventory items. Corrected/expanded .NET ClaimsIdentity.IsAuthenticated semantics (a nonempty AuthenticationType is not validation), multi-identity ClaimsPrincipal and per-identity RoleClaimType behavior, claim properties/issuer trust, ASP.NET Core handler operations versus authentication/authorization, all-requirement policy composition, resource authorization after load, and the distinction between framework challenge/forbid and HTTP status. Verified RFC 9110 401 requires WWW-Authenticate and valid-but-insufficient credentials generally map to 403; bounded optional 404 concealment to RFC 9729. Checked examples, cache freshness, tenant/object/property boundaries, exercise answers, and interview guidance. No unresolved factual or assigned-inventory omissions remain; lessons stay in draft."
+      ]
+    },
+    {
+      "scope": "Browser cookies, server-side sessions, bearer tokens, and JWT lifecycle (t05-003; all six lesson units)",
+      "status": "full claim and frozen-inventory audit complete; draft states retained",
+      "sources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+        "https://datatracker.ietf.org/doc/html/rfc7519",
+        "https://datatracker.ietf.org/doc/html/rfc8725",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://www.rfc-editor.org/rfc/rfc6265.html",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+        "https://datatracker.ietf.org/doc/html/rfc6265bis",
+        "https://www.rfc-editor.org/rfc/rfc9449.html",
+        "https://www.rfc-editor.org/rfc/rfc8705.html"
+      ],
+      "findings": [
+        "Reviewed all six lessons and reconciled all 54 manifest inventory items. Checked current OWASP session controls and browser cookie behavior; updated localStorage/sessionStorage advice to the current credential-exposure recommendation, distinguished Secure/HttpOnly/SameSite, and verified session rotation, server-side expiration/revocation, and verifier-hash limits. Checked JWT compact representations, signed versus encrypted content, registered claim semantics (generic registered claims are optional; profiles impose required claims), algorithm/key validation, issuer/audience/type separation, `kid` trust boundary, nested tokens, and revocation limits against RFC 7519/8725. Updated OAuth refresh-token language to RFC 9700 public-client MUST sender-constrain or rotate, with server state required for rotation-based replay detection; verified DPoP and mTLS references. Examples, exercises and interview answers were reconciled. No unresolved material error or manifest omission remains; lessons stay in draft."
       ]
     }
   ],
@@ -133228,120 +133246,355 @@
       "topicId": "t05-003",
       "phase": "overview",
       "draft": "course/drafts/t05-003/t05-003-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "All conceptual, lifecycle, threat, comparison, example, and knowledge-check claims covering cookie versus session, bearer semantics, session fixation/hijacking/revocation, token purposes, JWT structure, validation dimensions, and statelessness/revocation tradeoffs.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+              "section": "Session lifecycle, cookie attributes, fixation/rotation, server-side expiration, storage risks",
+              "verdict": "supported; session rotation and current browser credential storage guidance reconciled"
+            },
+            {
+              "url": "https://datatracker.ietf.org/doc/html/rfc7519",
+              "section": "JWT structure, registered claims, signed/encrypted and nested representations",
+              "verdict": "supported; generic optional-claim nature clarified"
+            },
+            {
+              "url": "https://datatracker.ietf.org/doc/html/rfc8725",
+              "section": "JWT algorithm verification, key usage, issuer/audience/type separation, cross-JWT confusion",
+              "verdict": "supported; validation and substitution caveats verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+              "section": "§§2.2.1–2.2.2 and 4.14: sender constraints, public-client refresh-token replay protection and rotation",
+              "verdict": "supported; normative public-client requirement added"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards and official OWASP/browser guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
         "https://datatracker.ietf.org/doc/html/rfc7519",
         "https://datatracker.ietf.org/doc/html/rfc8725",
-        "https://datatracker.ietf.org/doc/html/rfc9700"
+        "https://datatracker.ietf.org/doc/html/rfc9700",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://datatracker.ietf.org/doc/html/rfc7515",
+        "https://datatracker.ietf.org/doc/html/rfc7516",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+        "https://www.rfc-editor.org/rfc/rfc6265.html",
+        "https://www.rfc-editor.org/rfc/rfc6265bis.html",
+        "https://www.rfc-editor.org/rfc/rfc8705.html",
+        "https://www.rfc-editor.org/rfc/rfc9449.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-003-concepts",
       "topicId": "t05-003",
       "phase": "concepts",
       "draft": "course/drafts/t05-003/t05-003-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": "All conceptual, lifecycle, threat, comparison, example, and knowledge-check claims covering cookie versus session, bearer semantics, session fixation/hijacking/revocation, token purposes, JWT structure, validation dimensions, and statelessness/revocation tradeoffs.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+              "section": "Session lifecycle, cookie attributes, fixation/rotation, server-side expiration, storage risks",
+              "verdict": "supported; session rotation and current browser credential storage guidance reconciled"
+            },
+            {
+              "url": "https://datatracker.ietf.org/doc/html/rfc7519",
+              "section": "JWT structure, registered claims, signed/encrypted and nested representations",
+              "verdict": "supported; generic optional-claim nature clarified"
+            },
+            {
+              "url": "https://datatracker.ietf.org/doc/html/rfc8725",
+              "section": "JWT algorithm verification, key usage, issuer/audience/type separation, cross-JWT confusion",
+              "verdict": "supported; validation and substitution caveats verified"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+              "section": "§§2.2.1–2.2.2 and 4.14: sender constraints, public-client refresh-token replay protection and rotation",
+              "verdict": "supported; normative public-client requirement added"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards and official OWASP/browser guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
         "https://datatracker.ietf.org/doc/html/rfc7519",
         "https://datatracker.ietf.org/doc/html/rfc8725",
-        "https://datatracker.ietf.org/doc/html/rfc9700"
+        "https://datatracker.ietf.org/doc/html/rfc9700",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://datatracker.ietf.org/doc/html/rfc7515",
+        "https://datatracker.ietf.org/doc/html/rfc7516",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+        "https://www.rfc-editor.org/rfc/rfc6265.html",
+        "https://www.rfc-editor.org/rfc/rfc6265bis.html",
+        "https://www.rfc-editor.org/rfc/rfc8705.html",
+        "https://www.rfc-editor.org/rfc/rfc9449.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-003-reference-cookies-and-server-sessions",
       "topicId": "t05-003",
       "phase": "reference",
       "draft": "course/drafts/t05-003/t05-003-reference-cookies-and-server-sessions.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 61,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": "All 24 assigned cookie/session inventory terms and related browser semantics, examples, comparisons, and security recommendations.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+              "section": "Session entropy, CSPRNG, server-enforced idle/absolute expiry, fixation rotation, logout revocation, verifier hashes, localStorage/sessionStorage guidance",
+              "verdict": "supported; credential storage guidance updated to current OWASP; thresholds cited as guidance not universal protocol rules"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc6265.html",
+              "section": "Set-Cookie/Cookie exchange, scope, Secure and HttpOnly behavior",
+              "verdict": "supported; transport and script controls distinguished"
+            },
+            {
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+              "section": "Current browser Set-Cookie attributes, SameSite behavior, Secure requirement for None, default variance",
+              "verdict": "supported; SameSite defaults appropriately caveated"
+            },
+            {
+              "url": "https://datatracker.ietf.org/doc/html/rfc6265bis",
+              "section": "Cookie prefixes and evolving cookie processing rules",
+              "verdict": "supported; prefix explanation tied to supporting user agents"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards and official OWASP/browser guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
         "https://datatracker.ietf.org/doc/html/rfc7519",
         "https://datatracker.ietf.org/doc/html/rfc8725",
-        "https://datatracker.ietf.org/doc/html/rfc9700"
+        "https://datatracker.ietf.org/doc/html/rfc9700",
+        "https://www.rfc-editor.org/rfc/rfc6265.html",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+        "https://datatracker.ietf.org/doc/html/rfc6265bis",
+        "https://datatracker.ietf.org/doc/html/rfc7515",
+        "https://datatracker.ietf.org/doc/html/rfc7516",
+        "https://www.rfc-editor.org/rfc/rfc6265bis.html",
+        "https://www.rfc-editor.org/rfc/rfc8705.html",
+        "https://www.rfc-editor.org/rfc/rfc9449.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-003-reference-bearer-tokens-and-jwt",
       "topicId": "t05-003",
       "phase": "reference",
       "draft": "course/drafts/t05-003/t05-003-reference-bearer-tokens-and-jwt.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 83,
+      "claimsCorrected": 12,
+      "evidence": [
+        {
+          "claims": "All 30 assigned bearer/access/refresh/ID token and JWT inventory terms; claim semantics, cryptographic validation, algorithm confusion, key selection, revocation, rotation, DPoP/mTLS sender constraints, examples and comparisons.",
+          "sources": [
+            {
+              "url": "https://datatracker.ietf.org/doc/html/rfc7519",
+              "section": "JWT/JWS/JWE compact claims representation; registered claims exp, nbf, iat, jti; nested forms",
+              "verdict": "supported; specified that registered claims are optional generically and profile requirements govern"
+            },
+            {
+              "url": "https://datatracker.ietf.org/doc/html/rfc8725",
+              "section": "Algorithm allowlisting, key-to-algorithm binding, issuer/audience/type validation, cross-JWT substitution",
+              "verdict": "supported; none and token type statements bounded by profile"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+              "section": "§§2.2 and 4.14: DPoP/mTLS sender constraints and public-client refresh-token replay protection",
+              "verdict": "supported; public OAuth client requirement made explicit"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9449.html",
+              "section": "OAuth DPoP proof-of-possession binding",
+              "verdict": "supported; DPoP description checked"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc8705.html",
+              "section": "Mutual-TLS-bound access token definition",
+              "verdict": "supported; mTLS description checked"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards and official OWASP/browser guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
         "https://datatracker.ietf.org/doc/html/rfc7519",
         "https://datatracker.ietf.org/doc/html/rfc8725",
-        "https://datatracker.ietf.org/doc/html/rfc9700"
+        "https://datatracker.ietf.org/doc/html/rfc9700",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://www.rfc-editor.org/rfc/rfc9449.html",
+        "https://www.rfc-editor.org/rfc/rfc8705.html",
+        "https://datatracker.ietf.org/doc/html/rfc7515",
+        "https://datatracker.ietf.org/doc/html/rfc7516",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+        "https://www.rfc-editor.org/rfc/rfc6265.html",
+        "https://www.rfc-editor.org/rfc/rfc6265bis.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-003-practice",
       "topicId": "t05-003",
       "phase": "practice",
       "draft": "course/drafts/t05-003/t05-003-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 49,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "All practice solutions, threat scenarios, JWT validation and revocation advice, cookie/browser storage tradeoffs, interview answers, and refresh-token rotation statements.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+              "section": "Logout, XSS exposure, HttpOnly limits, cookie transport and server revocation",
+              "verdict": "supported; current browser storage recommendation incorporated"
+            },
+            {
+              "url": "https://datatracker.ietf.org/doc/html/rfc7519",
+              "section": "JWT signed/encrypted structure and claims",
+              "verdict": "supported; checked against standard"
+            },
+            {
+              "url": "https://datatracker.ietf.org/doc/html/rfc8725",
+              "section": "JWT signature, audience/type, algorithm/key validation and confusion risks",
+              "verdict": "supported; checked against best-current-practice RFC"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+              "section": "Public-client refresh-token security and reuse detection",
+              "verdict": "supported; normative requirement incorporated"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9449.html",
+              "section": "DPoP sender constraint",
+              "verdict": "supported; comparison claims checked"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc8705.html",
+              "section": "Mutual TLS sender constraint",
+              "verdict": "supported; comparison claims checked"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards and official OWASP/browser guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
         "https://datatracker.ietf.org/doc/html/rfc7519",
         "https://datatracker.ietf.org/doc/html/rfc8725",
-        "https://datatracker.ietf.org/doc/html/rfc9700"
+        "https://datatracker.ietf.org/doc/html/rfc9700",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://www.rfc-editor.org/rfc/rfc9449.html",
+        "https://www.rfc-editor.org/rfc/rfc8705.html",
+        "https://datatracker.ietf.org/doc/html/rfc7515",
+        "https://datatracker.ietf.org/doc/html/rfc7516",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+        "https://www.rfc-editor.org/rfc/rfc6265.html",
+        "https://www.rfc-editor.org/rfc/rfc6265bis.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-003-interview",
       "topicId": "t05-003",
       "phase": "interview",
       "draft": "course/drafts/t05-003/t05-003-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 49,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "All practice solutions, threat scenarios, JWT validation and revocation advice, cookie/browser storage tradeoffs, interview answers, and refresh-token rotation statements.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+              "section": "Logout, XSS exposure, HttpOnly limits, cookie transport and server revocation",
+              "verdict": "supported; current browser storage recommendation incorporated"
+            },
+            {
+              "url": "https://datatracker.ietf.org/doc/html/rfc7519",
+              "section": "JWT signed/encrypted structure and claims",
+              "verdict": "supported; checked against standard"
+            },
+            {
+              "url": "https://datatracker.ietf.org/doc/html/rfc8725",
+              "section": "JWT signature, audience/type, algorithm/key validation and confusion risks",
+              "verdict": "supported; checked against best-current-practice RFC"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+              "section": "Public-client refresh-token security and reuse detection",
+              "verdict": "supported; normative requirement incorporated"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9449.html",
+              "section": "DPoP sender constraint",
+              "verdict": "supported; comparison claims checked"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc8705.html",
+              "section": "Mutual TLS sender constraint",
+              "verdict": "supported; comparison claims checked"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards and official OWASP/browser guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
         "https://datatracker.ietf.org/doc/html/rfc7519",
         "https://datatracker.ietf.org/doc/html/rfc8725",
-        "https://datatracker.ietf.org/doc/html/rfc9700"
+        "https://datatracker.ietf.org/doc/html/rfc9700",
+        "https://www.rfc-editor.org/rfc/rfc9700.html",
+        "https://www.rfc-editor.org/rfc/rfc9449.html",
+        "https://www.rfc-editor.org/rfc/rfc8705.html",
+        "https://datatracker.ietf.org/doc/html/rfc7515",
+        "https://datatracker.ietf.org/doc/html/rfc7516",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+        "https://www.rfc-editor.org/rfc/rfc6265.html",
+        "https://www.rfc-editor.org/rfc/rfc6265bis.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-004-overview",
