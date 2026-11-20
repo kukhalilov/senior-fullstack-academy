@@ -20,7 +20,7 @@ Declarative authorization attaches a rule to an endpoint or operation so it is v
 
 Default-deny means an operation remains inaccessible unless an explicit rule grants it. Least privilege limits both the set of allowed actions and the duration/freshness of the grant. Tenant isolation must be applied to data selection and authorization; checking a client-supplied tenant ID without binding it to the authenticated identity is unsafe. Function-level checks gate an operation; object-level checks gate a particular record; property-level checks govern fields in a returned or updated object.
 
-HTTP’s `401 Unauthorized` name is historically confusing: it indicates that the request lacks valid authentication credentials and a challenge is required by HTTP semantics. `403 Forbidden` means the server understood the request but refuses it; re-authentication is not necessarily a remedy. See [RFC 9110 sections 15.5.2 and 15.5.4](https://www.rfc-editor.org/rfc/rfc9110.html).
+HTTP’s `401 Unauthorized` name is historically confusing: it indicates that the request lacks valid authentication credentials, and a server sending 401 MUST include at least one applicable `WWW-Authenticate` challenge. Valid credentials that are insufficient are generally answered with `403 Forbidden`; that status means the server refuses the request, and re-authentication is not necessarily a remedy. See [RFC 9110 sections 11.6.1, 15.5.2, and 15.5.4](https://www.rfc-editor.org/rfc/rfc9110.html).
 
 ## Worked examples
 **Coarse rule:** any authenticated employee may view a public staff directory. An authenticated principal is sufficient.
@@ -35,7 +35,7 @@ HTTP’s `401 Unauthorized` name is historically confusing: it indicates that th
 - Random or unguessable object IDs do not replace access checks.
 - An authorization handler that fails to complete a requirement must not accidentally imply an allow; the overall policy must have an explicit successful decision.
 - UI filtering improves usability, not server security.
-- Challenge and forbid are framework decision outcomes; exact response behavior depends on scheme and endpoint configuration, while HTTP status semantics remain distinct.
+- Challenge and forbid are framework handler operations; response behavior depends on the scheme. An HTTP 401 response still requires `WWW-Authenticate`.
 
 ## Knowledge checks with answers
 1. A user can log in but cannot open invoice 42. **Authentication succeeded; resource authorization denied access.**

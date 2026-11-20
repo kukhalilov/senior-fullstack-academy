@@ -8,6 +8,8 @@ This reference explains the assigned identity/authentication terms without enter
 ## How this group fits the mental model
 Authentication transforms presented evidence into a server-recognized principal. The resulting identity and claims are inputs to later authorization. The type of evidence, the selected mechanism, and the assurance of the result are related but not interchangeable.
 
+In ASP.NET Core, an authentication scheme names both a handler and its options. The handler's authenticate operation can produce a successful ticket/principal, no result, or failure; challenge and forbid are separate handler operations. This distinction matters because a handler may successfully authenticate a caller who still fails authorization. See [Microsoft's authentication overview](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0).
+
 ## Supplied names explained
 - `Identity` — The represented subject, such as a user or service, in a security decision. An identity label is not proof; it must be connected to trusted authentication.
 - `Credential` — Evidence presented to establish identity, such as a secret or cryptographic proof. Protect it during collection, transmission, validation, recovery, and revocation.
@@ -18,10 +20,10 @@ Authentication transforms presented evidence into a server-recognized principal.
 - `Authentication ticket` — A framework-level representation associating a principal with authentication properties for a request or persistence mechanism. Its validity, lifetime, and protection depend on the surrounding implementation; this topic does not specify cookie/token mechanics.
 - `Authentication context` — The request-time context in which a scheme evaluates credentials and creates an outcome. It carries processing state, not a user-controlled grant.
 - `ClaimsPrincipal` — In .NET terminology, a container representing one or more identities used as the request principal. Applications must know which identity/scheme supplied relevant claims and avoid ambiguous selection.
-- `ClaimsIdentity` — In .NET terminology, a collection of claims associated with an authentication identity, including authentication-related metadata. A constructed identity is only as reliable as its issuer and validation pipeline.
-- `Claim` — A statement represented as a type/value pair and associated with an identity. Its semantics are application-defined; a claim named `admin` is not meaningful until the application defines who can issue it and what it grants.
+- `ClaimsIdentity` — A .NET identity described by claims, with metadata including authentication type, name-claim type, and role-claim type. `IsAuthenticated` is true when `AuthenticationType` is non-null and non-empty; setting that field on an arbitrary identity is not proof that credentials were actually validated. The authentication pipeline must establish trust before constructing/accepting the identity. See [ClaimsIdentity](https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity?view=net-11.0) and [IsAuthenticated](https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.isauthenticated?view=net-11.0).
+- `Claim` — In .NET, a statement about a subject by an issuer, represented with properties such as type, value, value type, subject, issuer, and original issuer. The type identifies the meaning of the value; claims are not self-authenticating. A claim named `admin` is not meaningful until the application defines who can issue it and what it grants. See [Claim](https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-11.0).
 - `Claim issuer` — The authority that asserts a claim. Authorization should distinguish trusted issuers and validate mapping rules instead of accepting same-named claims from arbitrary sources.
-- `Subject identifier` — A stable identifier for the authenticated subject within a defined issuer/realm. Do not assume usernames are immutable or globally unique; bind records to a stable, correctly scoped identifier.
+- `Subject identifier` — An identifier for the authenticated subject within a defined issuer/realm. Treat it as stable only within that issuer's documented contract; usernames may change or collide across issuers. Bind records to the correctly scoped subject key rather than a display name.
 - `Authentication assurance` — The confidence level associated with how an identity was verified, considering factor strength, process, and context. It should match action risk; “authenticated” is not one universal assurance level.
 - `Account recovery authentication` — Identity proof used to regain access after loss of a credential. Recovery is an alternate authentication path and can become the weakest path into an account; protect it with comparable risk controls and notifications.
 - `Re-authentication for sensitive action` — Requiring fresh identity proof before a high-impact action such as changing recovery details. It limits the impact of an unattended or stolen authenticated session but does not replace authorization.
@@ -29,6 +31,8 @@ Authentication transforms presented evidence into a server-recognized principal.
 
 ## Cross-item comparison
 `Credential` is evidence; `Identity` is the represented subject after validation. An `Authentication scheme` selects processing rules; an `Authentication handler` performs that processing. A `Claim issuer` explains where an assertion came from, while a `Subject identifier` says which subject it describes. Authentication assurance describes confidence; it is not a permission.
+
+`ClaimsPrincipal` can contain multiple `ClaimsIdentity` instances. Principal-level claim queries can aggregate across identities, while identity-specific inspection can matter when schemes differ. In .NET, `ClaimsPrincipal.IsInRole` checks each identity using that identity's configured `RoleClaimType`; do not assume every provider uses the same role-claim type or that a role in one identity is from the scheme expected by a policy. See [ClaimsPrincipal](https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal?view=net-11.0) and [RoleClaimType](https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.roleclaimtype?view=net-11.0).
 
 ## Examples
 An API request supplies a credential validated by a configured scheme. The handler creates an authenticated principal with a subject identifier and issuer-qualified claims. The authorization layer can then evaluate those facts. If two schemes can produce a principal, explicitly define which scheme is valid for the endpoint so a weaker or unintended identity source cannot silently satisfy the requirement.
@@ -38,6 +42,8 @@ For account recovery, do not allow an easily guessed personal fact to bypass the
 ## Common mistakes
 - Equating a claim's name with a trusted fact, without checking issuer and mapping.
 - Assuming every authenticated principal has equal assurance.
+- Treating `ClaimsIdentity.IsAuthenticated` as cryptographic validation; it reflects the presence of a nonempty authentication type, so only trusted authentication code should construct the accepted principal.
+- Assuming a role claim is recognized by `IsInRole` without checking the identity's `RoleClaimType` and scheme mapping.
 - Confusing a principal/ticket representation with a credential itself.
 - Letting account recovery bypass the security level of normal sign-in.
 - Requiring MFA and then assuming object-level authorization is no longer needed.

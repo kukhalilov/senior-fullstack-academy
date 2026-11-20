@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1522,
-    "pending": 827,
-    "claimsChecked": 82584,
-    "claimsCorrected": 3434,
+    "reviewed": 1528,
+    "pending": 821,
+    "claimsChecked": 82827,
+    "claimsCorrected": 3461,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1861,6 +1861,28 @@
         "Added ECH and its DNS HTTPS/SVCB bootstrap. Clarified that the ECH config source does not necessarily provide cryptographic provenance, DNS confidentiality/authentication are separate, mixed ECH/non-ECH records can allow downgrade, ECH rejection must not be reported as origin success or used for application data, and retry/error behavior is specified. Corrected wording that implied all ECH retry configurations were independently authenticated.",
         "Added current RFC 9525 service identity rules: typed SAN identifiers, no Common Name fallback, and complete left-most-label wildcard limit. Expanded OCSP stapling limitations; corrected HPKP as obsolete/removed from modern browser support; explained Secure/HttpOnly/SameSite as complementary controls. Clarified HSTS preload token does not itself enroll a domain.",
         "All 76 supplied inventory entries are covered and the full draft/catalog validators pass. No unresolved material factual or scope issues remain; all lessons remain drafts pending whole-curriculum completion."
+      ]
+    },
+    {
+      "scope": "Authentication, claims, roles, policies, and resource authorization (t05-002; all six lesson units)",
+      "status": "full claim and frozen-inventory audit complete; draft states retained",
+      "sources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+        "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.isauthenticated?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.roleclaimtype?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal.isinrole?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-10.0",
+        "https://www.rfc-editor.org/rfc/rfc9729.html"
+      ],
+      "findings": [
+        "Reviewed all six lessons and reconciled all 43 assigned inventory items. Corrected/expanded .NET ClaimsIdentity.IsAuthenticated semantics (a nonempty AuthenticationType is not validation), multi-identity ClaimsPrincipal and per-identity RoleClaimType behavior, claim properties/issuer trust, ASP.NET Core handler operations versus authentication/authorization, all-requirement policy composition, resource authorization after load, and the distinction between framework challenge/forbid and HTTP status. Verified RFC 9110 401 requires WWW-Authenticate and valid-but-insufficient credentials generally map to 403; bounded optional 404 concealment to RFC 9729. Checked examples, cache freshness, tenant/object/property boundaries, exercise answers, and interview guidance. No unresolved factual or assigned-inventory omissions remain; lessons stay in draft."
       ]
     }
   ],
@@ -132800,120 +132822,406 @@
       "topicId": "t05-002",
       "phase": "overview",
       "draft": "course/drafts/t05-002/t05-002-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Conceptual flow, definitions, scenario guidance, comparison, and response semantics including authentication versus authorization, claims/roles, server-side enforcement, default deny, least privilege, tenant/object/property checks, challenge/forbid, and HTTP 401/403.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
+              "section": "Authentication versus authorization, recovery/re-authentication, and authentication principles",
+              "verdict": "supported; distinction and scope confirmed"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+              "section": "Least privilege; deny by default; validate permission on every request; guessed object IDs; enforcement location",
+              "verdict": "supported; gaps strengthened in examples"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+              "section": "Authentication schemes/handlers, authenticate outcomes, principal construction, challenge versus forbid, cookie redirect and bearer 401/403 examples",
+              "verdict": "supported; framework operations clarified"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+              "section": "Policies and requirement evaluation, including all requirements needing success",
+              "verdict": "supported; policy composition made explicit"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+              "section": "§§11.6.1, 15.5.2, 15.5.4: WWW-Authenticate requirement, 401 and 403 semantics",
+              "verdict": "supported; mandatory 401 challenge header added"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards, official Microsoft documentation, and OWASP guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
-        "https://www.rfc-editor.org/rfc/rfc9110.html"
+        "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim.issuer?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.isauthenticated?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.roleclaimtype?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal.isinrole?view=net-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-002-concepts",
       "topicId": "t05-002",
       "phase": "concepts",
       "draft": "course/drafts/t05-002/t05-002-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 35,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": "Conceptual flow, definitions, scenario guidance, comparison, and response semantics including authentication versus authorization, claims/roles, server-side enforcement, default deny, least privilege, tenant/object/property checks, challenge/forbid, and HTTP 401/403.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
+              "section": "Authentication versus authorization, recovery/re-authentication, and authentication principles",
+              "verdict": "supported; distinction and scope confirmed"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+              "section": "Least privilege; deny by default; validate permission on every request; guessed object IDs; enforcement location",
+              "verdict": "supported; gaps strengthened in examples"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+              "section": "Authentication schemes/handlers, authenticate outcomes, principal construction, challenge versus forbid, cookie redirect and bearer 401/403 examples",
+              "verdict": "supported; framework operations clarified"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+              "section": "Policies and requirement evaluation, including all requirements needing success",
+              "verdict": "supported; policy composition made explicit"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+              "section": "§§11.6.1, 15.5.2, 15.5.4: WWW-Authenticate requirement, 401 and 403 semantics",
+              "verdict": "supported; mandatory 401 challenge header added"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards, official Microsoft documentation, and OWASP guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
-        "https://www.rfc-editor.org/rfc/rfc9110.html"
+        "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim.issuer?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.isauthenticated?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.roleclaimtype?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal.isinrole?view=net-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-002-reference-identity-and-authentication",
       "topicId": "t05-002",
       "phase": "reference",
       "draft": "course/drafts/t05-002/t05-002-reference-identity-and-authentication.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 42,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": "Every assigned identity/authentication inventory definition and comparison, .NET identity/principal/claim semantics, examples, assurance/recovery guidance, and scope boundaries.",
+          "sources": [
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-11.0",
+              "section": "Claim as issuer assertion; type/value/value-type properties",
+              "verdict": "supported; definition made API-accurate"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity?view=net-11.0",
+              "section": "ClaimsIdentity, claims, principal access, name and role claim type mappings",
+              "verdict": "supported; multiple-identity nuance added"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.isauthenticated?view=net-11.0",
+              "section": "IsAuthenticated reflects nonempty AuthenticationType",
+              "verdict": "supported; warned this is not evidence validation"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.roleclaimtype?view=net-11.0",
+              "section": "RoleClaimType definition and role checks",
+              "verdict": "supported; added mapping caveat"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal?view=net-11.0",
+              "section": "Multiple identities and aggregate claims",
+              "verdict": "supported; multiple identity behavior added"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal.isinrole?view=net-11.0",
+              "section": "IsInRole checks each identity using its RoleClaimType",
+              "verdict": "supported; mapping nuance added"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+              "section": "Scheme and handler roles; ticket/principal; authenticate/challenge/forbid operations",
+              "verdict": "supported; added to explanation"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
+              "section": "Account recovery, re-authentication, and authentication-factor boundary",
+              "verdict": "supported; principles verified"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards, official Microsoft documentation, and OWASP guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
-        "https://www.rfc-editor.org/rfc/rfc9110.html"
+        "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim.issuer?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.isauthenticated?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.roleclaimtype?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal.isinrole?view=net-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-002-reference-authorization-models",
       "topicId": "t05-002",
       "phase": "reference",
       "draft": "course/drafts/t05-002/t05-002-reference-authorization-models.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 53,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": "Every assigned authorization inventory definition, distinctions, .NET policy composition, authorization handler behavior, resource loading, HTTP mapping, tenant/object/property examples, cache invalidation, and interview-like checks.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+              "section": "Least privilege, default deny, every-request check, object/function-level access, lookup IDs and safe failure",
+              "verdict": "supported; all core guidance present"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+              "section": "Policy requirements, handler evaluation, all requirements must pass",
+              "verdict": "supported; exact AND requirement semantics added"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-10.0",
+              "section": "Declarative attributes execute before resource loading; imperative IAuthorizationService check after load",
+              "verdict": "supported; reference explains resource lifecycle"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.roleclaimtype?view=net-11.0",
+              "section": "Role mapping and role-based authorization behavior in .NET",
+              "verdict": "supported; role mapping detail added"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+              "section": "§§11.6.1, 15.5.2, 15.5.4: WWW-Authenticate, 401/403 semantics",
+              "verdict": "supported; 401 mandatory header corrected"
+            },
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9729.html",
+              "section": "§6.4: non-probeable resources may use 404-style concealed handling, with side-channel caveat",
+              "verdict": "supported; optional concealment note bounded"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards, official Microsoft documentation, and OWASP guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
-        "https://www.rfc-editor.org/rfc/rfc9110.html"
+        "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim.issuer?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.isauthenticated?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.roleclaimtype?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal.isinrole?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-10.0",
+        "https://www.rfc-editor.org/rfc/rfc9729.html"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-002-practice",
       "topicId": "t05-002",
       "phase": "practice",
       "draft": "course/drafts/t05-002/t05-002-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "All exercise questions/answers, scenarios, interview responses, cache and tenant recommendations, framework response behavior, role mappings, and policy/resource checks.",
+          "sources": [
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+              "section": "§§11.6.1, 15.5.2, 15.5.4: HTTP challenge and status behavior",
+              "verdict": "supported; answers distinguish framework outcome from wire response"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+              "section": "Challenge/forbid scheme behavior and API versus interactive examples",
+              "verdict": "supported; browser redirect caveat added"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+              "section": "Requirement evaluation and policy semantics",
+              "verdict": "supported; added interview/practice distinction"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-10.0",
+              "section": "Resource load ordering and imperative authorization",
+              "verdict": "supported; added to practice/interview"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal.isinrole?view=net-11.0",
+              "section": "Role mapping per ClaimsIdentity",
+              "verdict": "supported; added interview follow-up"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+              "section": "Per-request permission check and IDOR defenses",
+              "verdict": "supported; examples and scenarios confirmed"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards, official Microsoft documentation, and OWASP guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
-        "https://www.rfc-editor.org/rfc/rfc9110.html"
+        "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim.issuer?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.isauthenticated?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.roleclaimtype?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal.isinrole?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-002-interview",
       "topicId": "t05-002",
       "phase": "interview",
       "draft": "course/drafts/t05-002/t05-002-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": "All exercise questions/answers, scenarios, interview responses, cache and tenant recommendations, framework response behavior, role mappings, and policy/resource checks.",
+          "sources": [
+            {
+              "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+              "section": "§§11.6.1, 15.5.2, 15.5.4: HTTP challenge and status behavior",
+              "verdict": "supported; answers distinguish framework outcome from wire response"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+              "section": "Challenge/forbid scheme behavior and API versus interactive examples",
+              "verdict": "supported; browser redirect caveat added"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+              "section": "Requirement evaluation and policy semantics",
+              "verdict": "supported; added interview/practice distinction"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-10.0",
+              "section": "Resource load ordering and imperative authorization",
+              "verdict": "supported; added to practice/interview"
+            },
+            {
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal.isinrole?view=net-11.0",
+              "section": "Role mapping per ClaimsIdentity",
+              "verdict": "supported; added interview follow-up"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+              "section": "Per-request permission check and IDOR defenses",
+              "verdict": "supported; examples and scenarios confirmed"
+            }
+          ],
+          "verdict": "All enumerated factual claims and assigned scope reviewed against cited primary standards, official Microsoft documentation, and OWASP guidance; corrections are described in the topic audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
         "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
         "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction?view=aspnetcore-11.0",
-        "https://www.rfc-editor.org/rfc/rfc9110.html"
+        "https://www.rfc-editor.org/rfc/rfc9110.html",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claim.issuer?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.isauthenticated?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsidentity.roleclaimtype?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal.isinrole?view=net-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-10.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Full claim and frozen-inventory audit completed for this lesson. Draft status retained."
     },
     {
       "taskId": "t05-003-overview",

@@ -12,12 +12,16 @@
 2. Roles are often too coarse when decisions depend on tenant, object ownership, operation, current state, or individual properties. Use a policy and resource check with trusted server-side data.
 3. HTTP 401 signals missing/invalid authentication credentials and requires a challenge; 403 means the server refuses the request. The status names are easy to misread. See [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html).
 
+4. A .NET `ClaimsPrincipal` may contain several identities, and `IsInRole` interprets each through that identity's `RoleClaimType`. A role mapping or multiple authentication schemes can therefore change the result; identify the trusted scheme and claim mapping rather than inspecting an unqualified string. See [ClaimsPrincipal.IsInRole](https://learn.microsoft.com/en-us/dotnet/api/system.security.claims.claimsprincipal.isinrole?view=net-11.0).
+
 ## Deep follow-up answers
 **How do claims differ from roles?** A claim is an issuer-associated assertion about a subject. A role is a common membership claim/convention used for coarse grouping. Neither is inherently authoritative without trusted issuance, validation, and defined semantics.
 
 **How do you prevent IDOR-style access?** Authorize every operation against the loaded object. Constrain lookup to the authenticated subject's tenant where possible, check ownership or a specific grant, and avoid returning or mutating fields beyond the caller's permission. Random identifiers are not an access-control mechanism. OWASP recommends per-request checks and protection against guessed IDs in its [Authorization guidance](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
 
 **How do you handle stale permission state?** Define how roles/claims refresh, bound cached decision lifetime, and invalidate affected decisions when permissions or ownership change. Evaluate all inputs that affect the decision; stale allows are especially consequential.
+
+**In ASP.NET Core, what is the difference between a policy and an authorization handler?** A policy collects requirements; handlers evaluate requirements against the principal and optional resource. All requirements in one policy must succeed, but handlers are extensible and can be registered per requirement. Resource-specific authorization is often called imperatively after loading the target because endpoint attributes execute before that data is available. See Microsoft's [policy](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-11.0) and [resource-based authorization](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-11.0) guidance.
 
 ## Scenario questions
 - A manager can open an edit page but changes the URL to edit a different tenant's record. Explain which server checks are required.
