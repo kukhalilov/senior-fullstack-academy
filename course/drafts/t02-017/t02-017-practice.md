@@ -60,6 +60,14 @@ An endpoint downloads a 2 GB archive using `ResponseHeadersRead`. The code retur
 
 An outer logging handler logs one request, while a resilience handler retries four times. What should the logs/metrics distinguish? How can registration order affect whether the logging handler sees one operation or each attempt?
 
+### Exercise 9: keyed client lifetime
+
+A team calls `AddAsKeyed(ServiceLifetime.Transient)` for a named client and injects it into a singleton worker. A developer also stores the incoming tenant ID in a pooled `DelegatingHandler`. Identify the separate lifetime/scope problems and give a safe design for the worker and tenant metadata.
+
+### Exercise 10: headers arrive, body stalls
+
+A large download uses `HttpCompletionOption.ResponseHeadersRead`. The server sends headers quickly, then stalls while streaming a multi-gigabyte body. The developer expects `HttpClient.Timeout` and `MaxResponseContentBufferSize` to stop it. Explain why that assumption is wrong and provide a bounded read approach.
+
 ## Progressive hints
 
 1. Count the initial request at each layer, then multiply the maximum nested attempt counts.
@@ -70,6 +78,8 @@ An outer logging handler logs one request, while a resilience handler retries fo
 6. Factory handler scope is not the ASP.NET request scope. Put values on `HttpRequestMessage.Options` or use a per-request wrapper; do not retain them on a shared handler.
 7. A response owns its content stream. Keep it alive until the copy completes, then dispose it.
 8. Decide whether telemetry describes logical operations or individual attempts, then position instrumentation accordingly and avoid double counting.
+9. Keyed transient clients are disposable and can be retained by DI; singleton capture is longer than the handler rotation window. Handler scopes are not request scopes.
+10. `ResponseHeadersRead` returns after headers. Time and byte limits for later reads belong to the caller's streaming code.
 
 ## Complete solutions
 
@@ -107,6 +117,14 @@ Disposing the response disposes its content and underlying stream; the caller ma
 ### Solution 8
 
 Track logical operation count/latency separately from attempt count/status and retry-delay metrics. If logging wraps resilience, it may observe one logical call and final outcome; if it is inside the retry handler, it may see each attempt. Verify actual handler nesting with tests or diagnostics. Avoid logging secrets or counting every retry as an independent user operation.
+
+### Solution 9
+
+Transient keyed `HttpClient` instances are disposable and may be captured by DI for later disposal; resolving them repeatedly from a singleton can retain clients and handlers. Inject `IHttpClientFactory` into the singleton and create a named client for each worker operation, or use a deliberate singleton client with managed connection lifetime. Do not capture tenant data in the pooled handler: put it in a per-request header/options value or attach it in a per-request wrapper that executes within the caller's scope. The keyed client's DI scope does not change the factory handler's separate pooled scope.
+
+### Solution 10
+
+With `ResponseHeadersRead`, `HttpClient.Timeout` stops when the send returns headers. `MaxResponseContentBufferSize` constrains automatic buffering for `ResponseContentRead`, not the caller's subsequent streamed read. Use a linked `CancellationTokenSource` with a body-read deadline, enforce a byte limit while copying/reading, and dispose the response/stream on completion, failure, or cancellation.
 
 ## Tests and edge cases
 

@@ -12,6 +12,7 @@
 8. Why can a timeout on a payment POST leave an ambiguous result?
 9. When should code choose `ResponseHeadersRead`, and who owns the response stream?
 10. What problems arise when resilience is registered in both `ConfigureHttpClientDefaults` and a typed-client registration?
+11. How does keyed DI integrate with `IHttpClientFactory` in .NET 9+, and what lifetime pitfalls remain?
 
 ## Concise interview answers
 
@@ -25,6 +26,7 @@
 8. The server may commit the write and lose/delay the response. The caller's cancellation cannot roll back remote work, so reconcile with an operation ID or idempotency key.
 9. Use it to process large bodies incrementally after headers. Keep the `HttpResponseMessage` alive and dispose the response/stream after processing.
 10. Multiple resilience handlers can multiply retries and timeout layers, creating unexpected load and elapsed time. Inspect the final chain and register one deliberate standard handler or a custom pipeline.
+11. `AddAsKeyed()` exposes the named client by key (scoped by default), and `[FromKeyedServices]` injects it. The handler chain remains factory-pooled in a separate scope, so avoid transient disposable keyed clients, singleton capture beyond handler rotation, and per-request state in handler fields. Globally keyed defaults can also resolve an unknown name to an unconfigured client; validate keys.
 
 ## Deep follow-up answers
 
@@ -43,6 +45,10 @@ An outer total timeout can include the retry delays and all attempts. A per-atte
 ### How do handler scopes and handler order affect correctness?
 
 Factory handlers are pooled and created in their own DI scopes. Their dependencies are not the current ASP.NET request scope, and a pooled instance may process later calls from another request. Pass per-call data via the request message (for example typed `HttpRequestMessage.Options`) and avoid mutable handler fields. Handler order also determines whether authentication, logging, tracing, and resilience wrap the logical request or each attempt; test the actual nesting rather than inferring it from separate registration calls. [Factory troubleshooting](https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting)
+
+### What changed for factory clients in .NET 9?
+
+`IHttpClientFactory` gained opt-in keyed DI integration through `AddAsKeyed`, with scoped `HttpClient` registration by default. On supported platforms, the factory's default primary handler also changed to `SocketsHttpHandler` and aligns `PooledConnectionLifetime` with `HandlerLifetime`. Do not cast the default handler to `HttpClientHandler`. These changes do not make keyed-scoped handlers request-scoped: the underlying handler chain is still pooled separately. [Keyed DI](https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di) [Handler change](https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler)
 
 ## Scenario questions
 
@@ -73,6 +79,7 @@ A service returns a stream from inside a `using` block that disposes its respons
 ## Tradeoffs and alternatives
 
 - **Factory client versus long-lived client:** centralized named/typed configuration and handler rotation versus explicit handler/connection management. Both need a deliberate DNS/connection lifecycle.
+- **Named versus typed versus keyed client:** factory lookup by name, an application wrapper, or direct keyed DI injection. Keyed DI is current guidance to consider, but scoped/captive lifetime and handler-scope caveats remain.
 - **Retry versus hedging:** sequential recovery with added delay versus overlapping work with lower tail latency potential and higher concurrency cost.
 - **Breaker versus limiter:** respond to sustained failure versus cap load independent of health.
 - **`ResponseContentRead` versus `ResponseHeadersRead`:** convenient buffered body versus streaming and longer-lived connection/response ownership.
@@ -89,6 +96,7 @@ A service returns a stream from inside a `using` block that disposes its respons
 - “The limiter protects against outages.” It limits admission/concurrency; the breaker responds to failure signals.
 - “Hedging is just a quicker retry.” It creates concurrent duplicate work and may amplify load.
 - “Handler dependencies are scoped to the incoming request.” Factory handler scopes are separate and pooled.
+- “A keyed scoped client makes the handler request-scoped.” `AddAsKeyed` scopes the client object; the factory still pools handlers in their own scopes.
 - “The breaker opens after any one failure.” Its behavior depends on sampling, throughput, ratio, and configured thresholds.
 - “An idempotency header makes the request safe.” Only a server implementation with a documented durable deduplication contract provides that property.
 
@@ -113,3 +121,5 @@ A strong answer scores at least 13/16 and has no zero for retry safety, deadline
 - [Use IHttpClientFactory](https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory)
 - [IHttpClientFactory troubleshooting](https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting)
 - [HttpClient guidelines](https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines)
+- [Keyed DI support in IHttpClientFactory](https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di)
+- [HttpClientFactory .NET 9 handler change](https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler)

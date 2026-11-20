@@ -41,6 +41,8 @@
         "HttpResponseMessage.Dispose",
         "HttpCompletionOption.ResponseContentRead",
         "HttpCompletionOption.ResponseHeadersRead",
+        "ResponseHeadersRead HttpClient.Timeout only covers headers",
+        "ResponseHeadersRead MaxResponseContentBufferSize is not enforced during later body reads",
         "IHttpClientFactory",
         "IHttpClientFactory.CreateClient",
         "IHttpMessageHandlerFactory.CreateHandler",
@@ -50,6 +52,10 @@
         "IHttpClientBuilder.Services",
         "IHttpClientBuilder.ConfigureHttpClient",
         "IHttpClientBuilder.ConfigureHttpClientDefaults",
+        "IHttpClientBuilder.AddAsKeyed",
+        "IHttpClientBuilder.AddAsKeyed(ServiceLifetime)",
+        "IHttpClientBuilder.RemoveAsKeyed",
+        "IHttpClientBuilder.UseSocketsHttpHandler",
         "IHttpClientBuilder.SetHandlerLifetime",
         "IHttpClientBuilder.ConfigurePrimaryHttpMessageHandler",
         "IHttpClientBuilder.AddHttpMessageHandler",
@@ -67,6 +73,18 @@
         "HttpMessageHandlerBuilder.AdditionalHandlers",
         "HttpMessageHandlerBuilderFilter ordering",
         "HttpMessageHandlerLifetime and handler recycling",
+        "HttpClientFactory .NET 9 default SocketsHttpHandler and PooledConnectionLifetime alignment",
+        "HttpClientFactory default primary handler differs from HttpClientHandler on modern .NET",
+        "IHttpClientFactory keyed DI introduced in .NET 9",
+        "Keyed HttpClient registration lifetime defaults to Scoped",
+        "FromKeyedServicesAttribute for HttpClient injection",
+        "IServiceProvider.GetRequiredKeyedService<HttpClient>",
+        "Keyed HttpClient scoped lifetime does not scope the pooled handler chain",
+        "AddAsKeyed transient HttpClient disposal capture and memory leak risk",
+        "AddAsKeyed on a typed client keys the underlying named HttpClient only",
+        "Keyed HttpClient captive dependency and DNS rotation risk",
+        "IHttpClientBuilder.AddAsKeyed and RemoveAsKeyed precedence",
+        "ConfigureHttpClientDefaults AddAsKeyed AnyKey unknown-client caveat",
         "SocketsHttpHandler.PooledConnectionLifetime",
         "SocketsHttpHandler.PooledConnectionIdleTimeout",
         "SocketsHttpHandler.MaxConnectionsPerServer",
@@ -110,6 +128,8 @@
         "HttpContent.CopyToAsync",
         "JsonSerializerOptions in HTTP JSON extensions",
         "System.Net.Http.Json package and namespace",
+        "HttpClientJsonExtensions.GetFromJsonAsAsyncEnumerable<T>",
+        "GetFromJsonAsAsyncEnumerable streaming and cancellation",
         "CancellationToken propagation through SendAsync and content reads",
         "HttpRequestException",
         "HttpRequestException.StatusCode",
@@ -155,6 +175,8 @@
         "HttpRetryStrategyOptions.Delay",
         "HttpRetryStrategyOptions.BackoffType",
         "HttpRetryStrategyOptions.UseJitter",
+        "HttpRetryStrategyOptions.ShouldRetryAfterHeader",
+        "HttpRetryStrategyOptions.ShouldRetryAfterHeader default true",
         "HttpRetryStrategyOptions.ShouldHandle",
         "HttpRetryStrategyOptionsExtensions.DisableForUnsafeHttpMethods",
         "HttpRetryStrategyOptionsExtensions.DisableFor",
@@ -191,6 +213,13 @@
         "Timeout hierarchy across caller, HttpClient, resilience pipeline, and server",
         "CancellationToken as end-to-end deadline signal",
         "Retry-After response header and server backoff",
+        "Standard resilience handler default strategy order and option values",
+        "Standard resilience handler default concurrency limiter 1000 permits and zero queue",
+        "Standard resilience handler default total timeout 30 seconds",
+        "Standard resilience handler default retry three attempts exponential jitter two-second delay",
+        "Standard resilience handler default circuit breaker thresholds",
+        "Standard resilience handler default attempt timeout 10 seconds",
+        "Standard hedging handler default attempt count and delay",
         "Retry transient transport failures and selected status codes",
         "Do not retry non-idempotent operations without a safe replay contract",
         "Idempotent HTTP method semantics and application-level exceptions",
@@ -213,41 +242,102 @@
     }
   ],
   "comparisons": [
-    ["short-lived HttpClient from IHttpClientFactory", "long-lived HttpClient with SocketsHttpHandler.PooledConnectionLifetime"],
-    ["named client", "typed client", "generated client"],
-    ["HttpClient timeout", "attempt timeout", "total request timeout", "caller deadline"],
-    ["retry", "hedging", "circuit breaker", "concurrency limiter"],
-    ["ResponseContentRead", "ResponseHeadersRead"],
-    ["DelegatingHandler", "primary HttpMessageHandler"],
-    ["Microsoft.Extensions.Http.Resilience", "legacy Microsoft.Extensions.Http.Polly"],
-    ["transient HTTP failure", "permanent HTTP response", "caller cancellation"]
+    [
+      "short-lived HttpClient from IHttpClientFactory",
+      "long-lived HttpClient with SocketsHttpHandler.PooledConnectionLifetime"
+    ],
+    [
+      "named client",
+      "typed client",
+      "generated client"
+    ],
+    [
+      "HttpClient timeout",
+      "attempt timeout",
+      "total request timeout",
+      "caller deadline"
+    ],
+    [
+      "retry",
+      "hedging",
+      "circuit breaker",
+      "concurrency limiter"
+    ],
+    [
+      "ResponseContentRead",
+      "ResponseHeadersRead"
+    ],
+    [
+      "DelegatingHandler",
+      "primary HttpMessageHandler"
+    ],
+    [
+      "Microsoft.Extensions.Http.Resilience",
+      "legacy Microsoft.Extensions.Http.Polly"
+    ],
+    [
+      "transient HTTP failure",
+      "permanent HTTP response",
+      "caller cancellation"
+    ],
+    [
+      "named HttpClient via IHttpClientFactory",
+      "typed HttpClient client wrapper",
+      "keyed HttpClient via AddAsKeyed"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
     "https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience",
     "https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience?tabs=dotnet-cli",
     "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
-    "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting"
+    "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
+    "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+    "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
   ],
   "versionNotes": [
     {
-      "edition": ".NET 11 GA / Microsoft.Extensions.Http.Resilience package API checked 2026-11-14",
+      "edition": ".NET 11 GA / Microsoft.Extensions.Http.Resilience package API checked 2026-11-20",
       "items": [
         "Use Microsoft.Extensions.Http.Resilience with AddStandardResilienceHandler and AddStandardHedgingHandler for the current integrated setup. The resilience and Http extensions packages are separately versioned from the .NET runtime; pin and validate compatible package versions rather than assuming package version equals target framework version.",
         "The legacy Microsoft.Extensions.Http.Polly integration remains a distinct package and API surface. Teach AddPolicyHandler only as migration context when the target application still uses that package; don't mix old policy registration names into the current standard resilience API inventory.",
-        "IHttpClientFactory, typed and named clients, handler pooling, System.Net.Http.Json helpers, and SocketsHttpHandler lifetime controls remain current. The key DNS behavior is controlled by connection reuse and PooledConnectionLifetime, not by constructing a new HttpClient per request."
+        "IHttpClientFactory, typed and named clients, handler pooling, System.Net.Http.Json helpers, and SocketsHttpHandler lifetime controls remain current. The key DNS behavior is controlled by connection reuse and PooledConnectionLifetime, not by constructing a new HttpClient per request.",
+        "Since .NET 9, IHttpClientFactory supports keyed DI through AddAsKeyed; the keyed HttpClient defaults to scoped lifetime and still uses a separately scoped, factory-pooled handler chain. Current Microsoft documentation recommends considering keyed DI instead of typed clients, while the named and typed approaches remain supported.",
+        "Since .NET 9 Preview 6, the factory default primary handler on supported platforms is SocketsHttpHandler, and its PooledConnectionLifetime is initialized to match HandlerLifetime. Do not cast the default primary handler to HttpClientHandler; explicitly configure the handler type when required.",
+        "Current HTTP resilience documentation publishes standard handler defaults (limiter, total timeout, retry, breaker and attempt timeout) and separate hedging defaults. Treat these as package-version defaults rather than runtime guarantees and verify against resolved package documentation. HttpRetryStrategyOptions.ShouldRetryAfterHeader currently defaults to true.",
+        "When HttpCompletionOption.ResponseHeadersRead is selected, HttpClient.Timeout and MaxResponseContentBufferSize do not govern subsequent body consumption; the caller must enforce cancellation, duration and byte limits for streaming reads."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
-        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines"
+        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn .NET HttpClient factory, HTTP client guidance, System.Net.Http API reference, and HTTP resilience documentation",
-    "edition": ".NET 11 GA / Microsoft.Extensions.Http.Resilience current documented API checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": ".NET 11 GA / Microsoft.Extensions.Http.Resilience current documented API checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
       "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
@@ -259,7 +349,18 @@
       "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler",
       "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions",
       "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception",
-      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs"
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
+      "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+      "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
     ]
   },
   "scopeExclusions": [

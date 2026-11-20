@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1476,
-    "pending": 873,
-    "claimsChecked": 78867,
-    "claimsCorrected": 3245,
+    "reviewed": 1483,
+    "pending": 866,
+    "claimsChecked": 80123,
+    "claimsCorrected": 3294,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1656,6 +1656,40 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.gauge-1?view=net-11.0-pp",
         "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.instrumentadvice-1?view=net-11.0-pp",
         "https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.metrics.meter.createhistogram?view=net-11.0-pp"
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "HttpClient, IHttpClientFactory and HTTP resilience (.NET 11; t02-017)",
+      "status": "full claim and frozen-inventory audit complete for all 7 lessons",
+      "findings": [
+        "Reviewed all seven lessons, reference inventories, examples, exercise prompts/solutions and interview answers against current Microsoft Learn and .NET API references.",
+        "Added .NET 9 keyed HttpClient DI APIs and their lifetime/handler-scope/unknown-key risks; corrected factory primary-handler evolution and DNS lifetime explanation; documented ResponseHeadersRead timeout and buffer-limit behavior plus GetFromJsonAsAsyncEnumerable.",
+        "Added current Microsoft-documented standard and hedging handler defaults, ShouldRetryAfterHeader default, and explicit package/runtime version caveats. Supplied inventories are present and explained; all seven lessons remain drafts with no unresolved audit issues."
+      ],
+      "sources": [
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
+        "https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience",
+        "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.ihttpclientfactory",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.delegatinghandler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
       ]
     }
   ],
@@ -129670,13 +129704,38 @@
       "topicId": "t02-017",
       "phase": "overview",
       "draft": "course/drafts/t02-017/t02-017-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 90,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": 30,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 30,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 30,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
@@ -129688,22 +129747,66 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs"
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited the overview against current factory, networking and resilience documentation; corrected current handler/DNS framing and added keyed DI and package-version cautions. No unresolved factual or frozen-inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-017-concepts",
       "topicId": "t02-017",
       "phase": "concepts",
       "draft": "course/drafts/t02-017/t02-017-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 146,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": 36,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 36,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 36,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 38,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
@@ -129715,22 +129818,60 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs"
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked lifetime, handler-scope, retry-safety, timeout, streaming and instrumentation explanations; added keyed DI, .NET 9 defaults, current resilience values and streaming timeout semantics. No unresolved factual or frozen-inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-017-reference-httpclient-lifetime-and-factory-registration",
       "topicId": "t02-017",
       "phase": "reference",
       "draft": "course/drafts/t02-017/t02-017-reference-httpclient-lifetime-and-factory-registration.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 248,
+      "claimsCorrected": 10,
+      "evidence": [
+        {
+          "claims": 82,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
+            "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 82,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 84,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
@@ -129742,22 +129883,59 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs"
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed supplied HttpClient/factory/handler inventory; added .NET 9 keyed DI APIs, SocketsHttpHandler default change, keyed lifetime hazards, response streaming limits and current API defaults. No unresolved factual or frozen-inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-017-reference-delegating-handlers-serialization-and-response-processing",
       "topicId": "t02-017",
       "phase": "reference",
       "draft": "course/drafts/t02-017/t02-017-reference-delegating-handlers-serialization-and-response-processing.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 137,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": 45,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpcontentjsonextensions"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 45,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 47,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
@@ -129769,22 +129947,58 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs"
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked handler ordering, JSON/content APIs, response ownership, cancellation and error claims; added current async JSON array streaming API and ResponseHeadersRead limitations. No unresolved factual or frozen-inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-017-reference-timeouts-retries-and-resilience-pipelines",
       "topicId": "t02-017",
       "phase": "reference",
       "draft": "course/drafts/t02-017/t02-017-reference-timeouts-retries-and-resilience-pipelines.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 265,
+      "claimsCorrected": 9,
+      "evidence": [
+        {
+          "claims": 88,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 88,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience?tabs=dotnet-cli",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 89,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
+            "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
@@ -129796,22 +130010,58 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs"
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Audited current resilience package APIs, retry safety, strategy order, handler defaults and hedging; added exact current documented defaults and Retry-After behavior with package-version caveat. No unresolved factual or frozen-inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-017-practice",
       "topicId": "t02-017",
       "phase": "practice",
       "draft": "course/drafts/t02-017/t02-017-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 193,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": 64,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 64,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 65,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
@@ -129823,22 +130073,58 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs"
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed scenarios and complete solutions for retry arithmetic, response ownership, keyed DI lifetime/scope, and deadline/size control during streaming. No unresolved factual or frozen-inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-017-interview",
       "topicId": "t02-017",
       "phase": "interview",
       "draft": "course/drafts/t02-017/t02-017-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 177,
+      "claimsCorrected": 6,
+      "evidence": [
+        {
+          "claims": 59,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience",
+            "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 59,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        },
+        {
+          "claims": 59,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0"
+          ],
+          "verdict": "Supported after primary-source checks and inventory completion; corrections and newly added scope are recorded in the batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-troubleshooting",
@@ -129850,9 +130136,20 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception",
-        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs"
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory-keyed-di",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/networking/9.0/default-handler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.timeout?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.socketshttphandler.pooledconnectionlifetime?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.httpclientbuilderextensions.usesocketshandler",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Checked prompts and answers against current Microsoft guidance; added .NET 9 keyed DI/default handler changes and explained keyed scope and streaming pitfalls. No unresolved factual or frozen-inventory issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-018-overview",
@@ -215637,6 +215934,13 @@
       "scope": "t02-016 health and observability content",
       "findings": [
         "Added built-in push-only health metrics, individual ASP.NET Core instrument names, resource utilization health-check APIs and their thresholds/experimental fallback details, gRPC Health.Check/Watch integration, and .NET 11 synchronous Gauge<T>/InstrumentAdvice<T> API coverage. Clarified built-in ASP.NET Core 11 HTTP telemetry versus optional OpenTelemetry instrumentation package features."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "t02-017 HTTP client and resilience content",
+      "findings": [
+        "Added current keyed DI and .NET 9 SocketsHttpHandler changes; documented streaming response deadline/size handling and GetFromJsonAsAsyncEnumerable; supplied concrete resilience and hedging defaults with version caveats; expanded practice and interview coverage."
       ]
     }
   ]

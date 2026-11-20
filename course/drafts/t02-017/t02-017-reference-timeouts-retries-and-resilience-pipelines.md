@@ -35,6 +35,7 @@ The handler applies a bounded policy around one outbound operation. Think of the
 | `HttpRetryStrategyOptions.Delay` | Base delay between retry attempts. Ensure the total elapsed budget remains compatible with the caller deadline. |
 | `HttpRetryStrategyOptions.BackoffType` | Selects the delay growth pattern, such as constant or exponential. Exponential delays should remain bounded. |
 | `HttpRetryStrategyOptions.UseJitter` | Adds randomness to delays to reduce synchronized retry bursts from many clients. |
+| `HttpRetryStrategyOptions.ShouldRetryAfterHeader` | Uses a valid response `Retry-After` value to choose the delay when enabled; the current API default is `true`. The overall request timeout still bounds how long the operation can continue. |
 | `HttpRetryStrategyOptions.ShouldHandle` | Configures which result/exception outcomes the retry strategy considers retryable. Narrow this to failures that are plausibly transient and safe to repeat. |
 | `HttpRetryStrategyOptionsExtensions.DisableForUnsafeHttpMethods` | Excludes unsafe HTTP methods from retry handling. This is an important default correction because the documented standard retry behavior otherwise includes all methods. |
 | `HttpRetryStrategyOptionsExtensions.DisableFor` | Excludes the specified HTTP methods from retry handling. Use it to express the API's actual repeatability policy. |
@@ -51,6 +52,7 @@ The handler applies a bounded policy around one outbound operation. Think of the
 | `HttpRateLimiterStrategyOptions` | HTTP integration options for request admission/concurrency control. Understand queueing/rejection behavior and set a meaningful capacity. |
 | `HttpRateLimiterStrategyOptions.DefaultRateLimiterOptions` | Default limiter configuration object used by the HTTP options. Check the current package's defaults rather than assuming a fixed limit across versions. |
 | `HttpTimeoutStrategyOptions.Timeout` | Duration bound for the corresponding timeout strategy. The effect depends on its position in the pipeline. |
+| `HttpClient.Timeout` versus resilience timeout strategies | `HttpClient.Timeout` defaults to 100 seconds and competes with cancellation tokens and pipeline timeouts; the first applicable deadline ends local waiting. Avoid accidental overlapping limits. With `ResponseHeadersRead`, it stops timing when headers are returned, so body reads need their own cancellation/deadline. |
 | `IHttpClientBuilder.AddStandardHedgingHandler` | Adds the standard hedging pipeline, which can send parallel attempts. Use only when duplicates are safe and target endpoints can serve equivalent results. |
 | `IHttpClientBuilder.AddStandardHedgingHandler(Action<IRoutingStrategyBuilder>)` | Adds standard hedging and configures its endpoint routing strategy. Routing determines which endpoint receives an attempt. |
 | `IRoutingStrategyBuilder.ConfigureWeightedGroups` | Configures endpoint groups and their relative weights for routing. Weight is a selection policy, not a capacity guarantee. |
@@ -81,6 +83,34 @@ The handler applies a bounded policy around one outbound operation. Think of the
 | `Timeout hierarchy across caller, HttpClient, resilience pipeline, and server` | The effective local wait is bounded by the earliest applicable cancellation/deadline. The server may continue after the client gives up. Avoid competing unrelated timeout values. |
 | `CancellationToken as end-to-end deadline signal` | Pass the caller's token through send, body processing, and downstream application operations. Cancellation is cooperative and does not guarantee remote rollback. |
 | `Retry-After response header and server backoff` | A server can recommend when to retry after throttling/unavailability. Configure the applicable retry strategy to respect supported delay semantics and retain a bounded overall deadline. |
+| `Resilience package version and runtime version are independent` | `Microsoft.Extensions.Http.Resilience` and `Microsoft.Extensions.Resilience` ship as separately versioned packages. The following defaults describe the current Microsoft Learn page and can change across package versions; inspect the resolved package version during upgrades. |
+
+### Current documented standard handler defaults
+
+The standard handler nests these strategies in this order. Treat the values as current documentation defaults to verify against the package version actually deployed, not as universal SLO recommendations.
+
+| Order | Strategy | Current documented default |
+|---|---|---|
+| 1 | Concurrency limiter | 1,000 concurrent permits and queue length 0; this is not a requests-per-minute quota. |
+| 2 | Total request timeout | 30 seconds for the whole operation, including retries and delays. |
+| 3 | Retry | Three retries after the initial attempt, exponential backoff, jitter enabled, and a 2-second base delay. Retries apply to all HTTP methods by default. |
+| 4 | Circuit breaker | Failure ratio 10%, minimum throughput 100, sampling duration 30 seconds, and break duration 5 seconds. |
+| 5 | Attempt timeout | 10 seconds per attempt. |
+
+The retry and breaker handle HTTP 5xx, 408, 429, `HttpRequestException`, and `TimeoutRejectedException` by default in the documented standard pipeline. A total timeout may expire before all possible retries finish. Configure `DisableForUnsafeHttpMethods()` or an explicit method list when the operation contract does not make retries safe. [Current standard defaults](https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience)
+
+The standard hedging handler has separate defaults: a 30-second total timeout, one minimum and up to ten attempts, 2-second hedge delay, and per-endpoint concurrency limiter/breaker/10-second attempt timeout. It selects breaker pipelines by URL authority by default and initially targets the request URI unless endpoint groups are configured. Max attempts are constrained by the configured groups. Hedging is not a retry drop-in: it can send simultaneous duplicate requests, so verify operation safety and endpoint equivalence.
+
+| Supplied default name | Exact current documented behavior |
+|---|---|
+| `HttpRetryStrategyOptions.ShouldRetryAfterHeader default true` | Retry delay generation uses a valid `Retry-After` response header by default; the total pipeline deadline still bounds elapsed time. |
+| `Standard resilience handler default strategy order and option values` | The order is limiter → total timeout → retry → circuit breaker → attempt timeout, with the values summarized above. |
+| `Standard resilience handler default concurrency limiter 1000 permits and zero queue` | Up to 1,000 concurrent operations are permitted by default, with no queue; this limits simultaneous work rather than requests per unit of time. |
+| `Standard resilience handler default total timeout 30 seconds` | The documented default bounds the complete resilience operation, including its retries and delays, to 30 seconds. |
+| `Standard resilience handler default retry three attempts exponential jitter two-second delay` | The documented default allows three retries after the initial request, exponential backoff, jitter, and a 2-second base delay. |
+| `Standard resilience handler default circuit breaker thresholds` | The documented defaults are failure ratio 10%, minimum throughput 100, 30-second sampling window, and 5-second break duration. |
+| `Standard resilience handler default attempt timeout 10 seconds` | The documented per-attempt timeout is 10 seconds, separate from the 30-second total timeout. |
+| `Standard hedging handler default attempt count and delay` | Defaults are one minimum attempt, up to ten attempts and a 2-second hedge delay; endpoint groups constrain the effective maximum. |
 | `Retry transient transport failures and selected status codes` | Retry only selected transient outcomes such as appropriate 5xx, 408, 429, or transport failures. Permanent validation/auth failures generally need a different response. |
 | `Do not retry non-idempotent operations without a safe replay contract` | A lost response leaves outcome uncertain. Repeating a write can duplicate effects unless the service supports deduplication or the operation is otherwise safe. |
 | `Idempotent HTTP method semantics and application-level exceptions` | HTTP defines method semantics, but real endpoints can violate expectations or have secondary effects. Confirm the concrete API contract. |
@@ -151,6 +181,8 @@ If an outer layer makes up to four calls and each inner client call makes up to 
 - Assuming the default standard HTTP retry strategy only retries GET; it can retry unsafe methods too.
 - Treating `MaxRetryAttempts` as total attempts rather than retries after the first attempt.
 - Setting attempt timeout without a total timeout or caller deadline.
+- Assuming the documented standard resilience defaults are fixed across separately versioned package releases.
+- Treating the default concurrency limiter as a requests-per-time-period quota.
 - Retrying every exception/status indiscriminately, including permanent 4xx responses.
 - Retrying a write when a timeout leaves the remote outcome unknown and no deduplication contract exists.
 - Retrying a request with consumed, non-replayable content.
@@ -171,6 +203,8 @@ If an outer layer makes up to four calls and each inner client call makes up to 
 5. **What does a timeout tell you about a remote write?** Only that the local operation stopped waiting/cancelled; it does not tell whether the server committed.
 6. **Why can layering retries be dangerous?** Attempts multiply across layers, raising load and latency while making deadlines harder to reason about.
 7. **What differs between current resilience integration and legacy Polly HTTP integration?** They are separate packages/API surfaces; current standard APIs use `AddStandardResilienceHandler`/hedging registration, while legacy migration code may use `AddPolicyHandler`.
+8. **Does standard HTTP resilience honor `Retry-After`?** The current `HttpRetryStrategyOptions.ShouldRetryAfterHeader` default is true; the total operation deadline still caps overall waiting.
+9. **What are the documented standard handler's nested strategy order?** Concurrency limiter, total timeout, retry, circuit breaker, then per-attempt timeout. This ordering affects what each strategy observes.
 
 ## Sources
 
