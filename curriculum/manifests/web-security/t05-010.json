@@ -33,6 +33,12 @@
         "Denial of service",
         "Elevation of privilege",
         "STRIDE threat categories",
+        "PASTA (Process for Attack Simulation and Threat Analysis)",
+        "OCTAVE (Operationally Critical Threat, Asset, and Vulnerability Evaluation)",
+        "LINDDUN privacy threat modeling",
+        "VAST (Visual, Agile, and Simple Threat Modeling)",
+        "No universally accepted threat-modeling process",
+        "Threat-model technique selection by objective",
         "Attack tree",
         "Attack path",
         "Threat likelihood",
@@ -63,6 +69,13 @@
         "Input validation failure event",
         "Security log redaction",
         "Secret and token exclusion",
+        "Structured security logging",
+        "Log injection and CRLF sanitization",
+        "Log event when/where/who/what fields",
+        "Event timestamp versus logging timestamp",
+        "Untrusted log-event data validation",
+        "Logging-pipeline failure monitoring",
+        "Log disposal at end of retention",
         "Correlation identifier",
         "Clock synchronization",
         "Log integrity protection",
@@ -84,6 +97,10 @@
         "Credential rotation during response",
         "Vulnerability disclosure process",
         "NIST SP 800-61 Rev. 3",
+        "NIST CSF 2.0 Govern, Identify, Protect, Detect, Respond, Recover functions",
+        "NIST CSF 1.1 five functions to CSF 2.0 six-function change",
+        "NIST SP 800-61 Rev. 2 phase model versus Rev. 3 CSF lifecycle",
+        "NIST SP 800-92 Rev. 1 Initial Public Draft status",
         "Tabletop exercise"
       ]
     }
@@ -120,16 +137,36 @@
       "sourceUrls": [
         "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
       ]
+    },
+    {
+      "edition": "NIST Cybersecurity Framework 2.0 and SP 800-92 Rev. 1 status checked 2026-11-20",
+      "items": [
+        "CSF 2.0 has six connected Functions: Govern, Identify, Protect, Detect, Respond, and Recover. SP 800-92 Rev. 1 remains an Initial Public Draft as of the source check; the 2006 SP 800-92 is the final publication. Do not describe a draft as a final standard."
+      ],
+      "sourceUrls": [
+        "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+        "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+        "https://csrc.nist.gov/pubs/sp/800/92/final"
+      ]
     }
   ],
   "sourceSnapshot": {
     "authority": "OWASP threat modeling and logging guidance; NIST SP 800-61 Revision 3",
-    "edition": "NIST SP 800-61 Rev. 3 and current OWASP guidance checked 2026-11-15",
-    "checkedAt": "2026-11-15",
+    "edition": "NIST SP 800-61 Rev. 3, NIST CSF 2.0, NIST SP 800-92 Rev. 1 draft status, current OWASP guidance checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://owasp.org/www-community/Threat_Modeling",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+      "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+      "https://linddun.org/",
       "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
-      "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+      "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+      "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+      "https://www.nist.gov/cyberframework/csf-11-five-functions",
+      "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+      "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+      "https://csrc.nist.gov/pubs/sp/800/92/final",
+      "https://csrc.nist.gov/glossary/term/chain_of_custody"
     ]
   },
   "scopeExclusions": [

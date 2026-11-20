@@ -15,9 +15,11 @@
 ## Deep follow-up answers
 **How do you prioritize STRIDE findings?** STRIDE is a brainstorming taxonomy. Prioritize with scenario-specific likelihood, impact, exposure, existing controls, and business context. Record assumptions and risk treatment rather than assigning equal urgency.
 
+**Does one threat-modeling method cover every concern?** No. Choose by objective: STRIDE for technical design, attack trees for multi-step goals, LINDDUN for privacy harms, PASTA for application threats tied to business impact, OCTAVE for organization-wide critical-asset risk, and VAST for scaling application/operational modeling across teams. Methods can complement one another; record scope and gaps.
+
 **How do you keep logs useful but safe?** Define events based on response questions, use structured fields, minimize personal/sensitive data, redact secrets centrally, synchronize clocks, correlate across components, restrict access, protect integrity, and set a retention period. Test failure and debug paths.
 
-**What's current in incident-response guidance?** NIST SP 800-61 Rev. 3 was finalized April 2025, supersedes Rev. 2, and integrates response into CSF 2.0 risk management. It is guidance; legal notification duties still depend on jurisdiction and facts.
+**What's current in incident-response guidance?** NIST SP 800-61 Rev. 3 was finalized April 2025 and supersedes Rev. 2. It organizes response through CSF 2.0's six connected functions: Govern, Identify, Protect, Detect, Respond, and Recover. The familiar containment/eradication/recovery actions still apply but are not Rev. 3's formal four phases. CSF 2.0 adds Govern to the five functions in CSF 1.1. It is guidance; legal notification duties depend on jurisdiction and facts.
 
 ## Scenario questions
 - A cloud key is leaked: contain by revoking it, identify scope, preserve logs, rotate downstream credentials, eradicate unauthorized access, recover, and review leak controls.

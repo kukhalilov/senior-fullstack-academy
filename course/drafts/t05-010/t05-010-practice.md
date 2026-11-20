@@ -14,9 +14,11 @@ A worker exports data after receiving a queue message. Draw the API, queue, work
 3. An exposed database credential is found in a build log. Order the main response activities and name a common omission.
 4. STRIDE produces six threats; the team treats each as equal priority. What information is missing?
 5. A service stores logs forever “just in case.” What should determine a retention policy?
+6. A privacy-sensitive multi-tenant system needs both abuse analysis and organization-wide risk prioritization. Which threat-model perspectives could complement each other?
+7. A team presents “preparation, detection/analysis, containment/eradication/recovery, post-incident activity” as NIST Rev. 3's formal phases. What should be corrected?
 
 ## Progressive hints
-1. Bearer secrets can be replayed. 2. Features and architecture change attack surfaces. 3. Stop ongoing access before broad cleanup. 4. Threat categories are prompts, not risk scores. 5. Include purpose, policy, privacy, and investigative needs.
+1. Bearer secrets can be replayed. 2. Features and architecture change attack surfaces. 3. Stop ongoing access before broad cleanup. 4. Threat categories are prompts, not risk scores. 5. Include purpose, policy, privacy, and investigative needs. 6. Use different methods to answer different risk questions. 7. Compare Rev. 2's older phase model with Rev. 3's CSF 2.0 functions.
 
 ## Complete solutions
 1. Authorization headers may contain reusable bearer tokens. Redact the header at the logging boundary; record scheme, actor, request ID, target, and outcome as appropriate. Check logs, backups, and downstream sinks for existing exposure. OWASP lists secrets/tokens among data to exclude in its [Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).
@@ -24,6 +26,8 @@ A worker exports data after receiving a queue message. Draw the API, queue, work
 3. Triage scope and impact; contain by revoking/restricting the credential and relevant access; preserve logs/evidence; eradicate unauthorized access/persistence; rotate dependent credentials; recover and monitor; perform a post-incident review. A common omission is failing to revoke the credential at the database or leaving downstream copies valid. Use [NIST SP 800-61 Rev. 3](https://csrc.nist.gov/pubs/sp/800/61/r3/final) as current response guidance.
 4. Likelihood and impact in the system context, plus existing controls, exposure, actor capability, and business objectives. STRIDE does not assign priority automatically.
 5. Define retention from operational/security investigation needs, privacy/data minimization, policy, system constraints, and applicable requirements. Protect access and integrity and securely dispose of logs at end of retention.
+6. STRIDE can prompt technical abuse/security scenarios, LINDDUN adds privacy-specific harms, and OCTAVE can help prioritize organizational risk to critical assets. The methods are complementary; choose and scope them deliberately rather than claiming one is exhaustive.
+7. Rev. 2 used that four-phase model. Rev. 3 supersedes it and organizes incident response through CSF 2.0's Govern, Identify, Protect, Detect, Respond, and Recover functions; containment, eradication, and recovery remain useful actions within that broader model.
 
 ## Tests and edge cases
 - Logs never contain credentials in success, failure, exception, or debug paths.

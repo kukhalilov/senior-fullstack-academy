@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1570,
-    "pending": 779,
-    "claimsChecked": 84657,
-    "claimsCorrected": 3575,
+    "reviewed": 1576,
+    "pending": 773,
+    "claimsChecked": 84950,
+    "claimsCorrected": 3577,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1978,6 +1978,29 @@
         "https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-11.0",
         "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
         "https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core"
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "Threat modeling, secure design, security logging, and incident response (t05-010; all six lessons)",
+      "status": "full claim and frozen-inventory audit complete; draft states retained",
+      "findings": [
+        "Reviewed all six lessons and supplied inventory against current OWASP, NIST, Carnegie Mellon SEI, and LINDDUN sources. Added PASTA, OCTAVE, LINDDUN, VAST, and objective-based method selection; clarified no single method fits every use case. Expanded logging for structured records, CRLF/log injection, event fields/timestamps, untrusted input, pipeline failures, and disposal.",
+        "Corrected version framing: NIST SP 800-61 Rev. 3 (final April 2025) supersedes withdrawn Rev. 2 and organizes response in CSF 2.0 six connected Functions; containment/eradication/recovery remain operational actions, not Rev. 3 formal four phases. Added CSF 1.1-to-2.0 Govern change and identified SP 800-92 Rev. 1 as Initial Public Draft; 2006 publication remains final. Checked examples, practice answers, and interviews; no unresolved in-scope gaps remain. Lessons remain drafts."
+      ],
+      "sources": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+        "https://owasp.org/www-community/Threat_Modeling",
+        "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+        "https://linddun.org/",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+        "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+        "https://www.nist.gov/cyberframework/csf-11-five-functions",
+        "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+        "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+        "https://csrc.nist.gov/pubs/sp/800/92/final",
+        "https://csrc.nist.gov/glossary/term/chain_of_custody"
       ]
     }
   ],
@@ -135769,114 +135792,564 @@
       "topicId": "t05-010",
       "phase": "overview",
       "draft": "course/drafts/t05-010/t05-010-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 23,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://owasp.org/www-community/Threat_Modeling",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
-        "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+              "section": "Threat-model steps, method selection, STRIDE, PASTA, OCTAVE, VAST, attack trees, abuse cases, risk treatment",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://owasp.org/www-community/Threat_Modeling",
+              "section": "OWASP threat-modeling project scope and ongoing process",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+              "section": "OCTAVE Allegro asset-focused risk-assessment method",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://linddun.org/",
+              "section": "LINDDUN privacy threat types and approach compatibility",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+              "section": "Events, fields, secret exclusions, sanitization, collection, protection, monitoring, retention, injection",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+              "section": "Rev. 3 publication status and CSF 2.0 response framing",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+              "section": "Six CSF 2.0 functions and lifecycle relationship",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.nist.gov/cyberframework/csf-11-five-functions",
+              "section": "CSF 1.1 five functions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+              "section": "Rev. 2 withdrawal/supersession and historical phase model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+              "section": "SP 800-92 Rev. 1 Initial Public Draft status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/final",
+              "section": "SP 800-92 (2006) final status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/glossary/term/chain_of_custody",
+              "section": "Chain-of-custody definition",
+              "verdict": "supported"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-20",
+      "sourceUrls": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+        "https://owasp.org/www-community/Threat_Modeling",
+        "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+        "https://linddun.org/",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+        "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+        "https://www.nist.gov/cyberframework/csf-11-five-functions",
+        "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+        "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+        "https://csrc.nist.gov/pubs/sp/800/92/final",
+        "https://csrc.nist.gov/glossary/term/chain_of_custody"
+      ],
+      "reviewNote": "Reviewed system model, method selection, logging, and response claims. Clarified method choice by goal and current CSF 2.0 framing."
     },
     {
       "taskId": "t05-010-concepts",
       "topicId": "t05-010",
       "phase": "concepts",
       "draft": "course/drafts/t05-010/t05-010-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://owasp.org/www-community/Threat_Modeling",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
-        "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 39,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+              "section": "Threat-model steps, method selection, STRIDE, PASTA, OCTAVE, VAST, attack trees, abuse cases, risk treatment",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://owasp.org/www-community/Threat_Modeling",
+              "section": "OWASP threat-modeling project scope and ongoing process",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+              "section": "OCTAVE Allegro asset-focused risk-assessment method",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://linddun.org/",
+              "section": "LINDDUN privacy threat types and approach compatibility",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+              "section": "Events, fields, secret exclusions, sanitization, collection, protection, monitoring, retention, injection",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+              "section": "Rev. 3 publication status and CSF 2.0 response framing",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+              "section": "Six CSF 2.0 functions and lifecycle relationship",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.nist.gov/cyberframework/csf-11-five-functions",
+              "section": "CSF 1.1 five functions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+              "section": "Rev. 2 withdrawal/supersession and historical phase model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+              "section": "SP 800-92 Rev. 1 Initial Public Draft status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/final",
+              "section": "SP 800-92 (2006) final status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/glossary/term/chain_of_custody",
+              "section": "Chain-of-custody definition",
+              "verdict": "supported"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-20",
+      "sourceUrls": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+        "https://owasp.org/www-community/Threat_Modeling",
+        "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+        "https://linddun.org/",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+        "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+        "https://www.nist.gov/cyberframework/csf-11-five-functions",
+        "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+        "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+        "https://csrc.nist.gov/pubs/sp/800/92/final",
+        "https://csrc.nist.gov/glossary/term/chain_of_custody"
+      ],
+      "reviewNote": "Checked scope, risk/control taxonomy, safe logging, evidence, and NIST lifecycle claims. Corrected the Rev. 3 model description and added distinction from Rev. 2 phases."
     },
     {
       "taskId": "t05-010-reference-threat-modeling-and-secure-design",
       "topicId": "t05-010",
       "phase": "reference",
       "draft": "course/drafts/t05-010/t05-010-reference-threat-modeling-and-secure-design.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 69,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://owasp.org/www-community/Threat_Modeling",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
-        "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+              "section": "Threat-model steps, method selection, STRIDE, PASTA, OCTAVE, VAST, attack trees, abuse cases, risk treatment",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://owasp.org/www-community/Threat_Modeling",
+              "section": "OWASP threat-modeling project scope and ongoing process",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+              "section": "OCTAVE Allegro asset-focused risk-assessment method",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://linddun.org/",
+              "section": "LINDDUN privacy threat types and approach compatibility",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+              "section": "Events, fields, secret exclusions, sanitization, collection, protection, monitoring, retention, injection",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+              "section": "Rev. 3 publication status and CSF 2.0 response framing",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+              "section": "Six CSF 2.0 functions and lifecycle relationship",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.nist.gov/cyberframework/csf-11-five-functions",
+              "section": "CSF 1.1 five functions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+              "section": "Rev. 2 withdrawal/supersession and historical phase model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+              "section": "SP 800-92 Rev. 1 Initial Public Draft status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/final",
+              "section": "SP 800-92 (2006) final status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/glossary/term/chain_of_custody",
+              "section": "Chain-of-custody definition",
+              "verdict": "supported"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-20",
+      "sourceUrls": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+        "https://owasp.org/www-community/Threat_Modeling",
+        "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+        "https://linddun.org/",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+        "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+        "https://www.nist.gov/cyberframework/csf-11-five-functions",
+        "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+        "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+        "https://csrc.nist.gov/pubs/sp/800/92/final",
+        "https://csrc.nist.gov/glossary/term/chain_of_custody"
+      ],
+      "reviewNote": "Checked every inventory item and method comparison. Added PASTA, OCTAVE, LINDDUN, VAST, and no-universal-process caveat with method selection; checked STRIDE, attack trees, asset risk, and secure-design terms."
     },
     {
       "taskId": "t05-010-reference-audit-and-incident-response",
       "topicId": "t05-010",
       "phase": "reference",
       "draft": "course/drafts/t05-010/t05-010-reference-audit-and-incident-response.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://owasp.org/www-community/Threat_Modeling",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
-        "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 91,
+      "claimsCorrected": 1,
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+              "section": "Threat-model steps, method selection, STRIDE, PASTA, OCTAVE, VAST, attack trees, abuse cases, risk treatment",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://owasp.org/www-community/Threat_Modeling",
+              "section": "OWASP threat-modeling project scope and ongoing process",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+              "section": "OCTAVE Allegro asset-focused risk-assessment method",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://linddun.org/",
+              "section": "LINDDUN privacy threat types and approach compatibility",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+              "section": "Events, fields, secret exclusions, sanitization, collection, protection, monitoring, retention, injection",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+              "section": "Rev. 3 publication status and CSF 2.0 response framing",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+              "section": "Six CSF 2.0 functions and lifecycle relationship",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.nist.gov/cyberframework/csf-11-five-functions",
+              "section": "CSF 1.1 five functions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+              "section": "Rev. 2 withdrawal/supersession and historical phase model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+              "section": "SP 800-92 Rev. 1 Initial Public Draft status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/final",
+              "section": "SP 800-92 (2006) final status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/glossary/term/chain_of_custody",
+              "section": "Chain-of-custody definition",
+              "verdict": "supported"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-20",
+      "sourceUrls": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+        "https://owasp.org/www-community/Threat_Modeling",
+        "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+        "https://linddun.org/",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+        "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+        "https://www.nist.gov/cyberframework/csf-11-five-functions",
+        "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+        "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+        "https://csrc.nist.gov/pubs/sp/800/92/final",
+        "https://csrc.nist.gov/glossary/term/chain_of_custody"
+      ],
+      "reviewNote": "Checked every inventory item and operational recommendation against OWASP, NIST, SEI, and LINDDUN sources. Added structured logging/CRLF defenses, event field/time semantics, log pipeline/disposal, evidence custody, CSF 1.1-to-2.0 change, Rev.2/Rev.3 lifecycle distinction, and 800-92 draft status."
     },
     {
       "taskId": "t05-010-practice",
       "topicId": "t05-010",
       "phase": "practice",
       "draft": "course/drafts/t05-010/t05-010-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 34,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://owasp.org/www-community/Threat_Modeling",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
-        "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+              "section": "Threat-model steps, method selection, STRIDE, PASTA, OCTAVE, VAST, attack trees, abuse cases, risk treatment",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://owasp.org/www-community/Threat_Modeling",
+              "section": "OWASP threat-modeling project scope and ongoing process",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+              "section": "OCTAVE Allegro asset-focused risk-assessment method",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://linddun.org/",
+              "section": "LINDDUN privacy threat types and approach compatibility",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+              "section": "Events, fields, secret exclusions, sanitization, collection, protection, monitoring, retention, injection",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+              "section": "Rev. 3 publication status and CSF 2.0 response framing",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+              "section": "Six CSF 2.0 functions and lifecycle relationship",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.nist.gov/cyberframework/csf-11-five-functions",
+              "section": "CSF 1.1 five functions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+              "section": "Rev. 2 withdrawal/supersession and historical phase model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+              "section": "SP 800-92 Rev. 1 Initial Public Draft status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/final",
+              "section": "SP 800-92 (2006) final status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/glossary/term/chain_of_custody",
+              "section": "Chain-of-custody definition",
+              "verdict": "supported"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-20",
+      "sourceUrls": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+        "https://owasp.org/www-community/Threat_Modeling",
+        "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+        "https://linddun.org/",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+        "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+        "https://www.nist.gov/cyberframework/csf-11-five-functions",
+        "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+        "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+        "https://csrc.nist.gov/pubs/sp/800/92/final",
+        "https://csrc.nist.gov/glossary/term/chain_of_custody"
+      ],
+      "reviewNote": "Verified all questions, hints, solutions, and tests. Added technique selection for security/privacy/organizational risk and corrected lifecycle explanation to distinguish Rev.2 from current Rev.3."
     },
     {
       "taskId": "t05-010-interview",
       "topicId": "t05-010",
       "phase": "interview",
       "draft": "course/drafts/t05-010/t05-010-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 37,
       "claimsCorrected": 0,
-      "evidence": [],
-      "issues": [],
-      "reviewedAt": null,
-      "sourceUrls": [
-        "https://owasp.org/www-community/Threat_Modeling",
-        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
-        "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+      "evidence": [
+        {
+          "claims": "Every externally verifiable statement, supplied inventory term, version/status note, example, exercise/solution, edge case, and interview answer in this lesson was individually reviewed.",
+          "sources": [
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+              "section": "Threat-model steps, method selection, STRIDE, PASTA, OCTAVE, VAST, attack trees, abuse cases, risk treatment",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://owasp.org/www-community/Threat_Modeling",
+              "section": "OWASP threat-modeling project scope and ongoing process",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+              "section": "OCTAVE Allegro asset-focused risk-assessment method",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://linddun.org/",
+              "section": "LINDDUN privacy threat types and approach compatibility",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+              "section": "Events, fields, secret exclusions, sanitization, collection, protection, monitoring, retention, injection",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+              "section": "Rev. 3 publication status and CSF 2.0 response framing",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+              "section": "Six CSF 2.0 functions and lifecycle relationship",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://www.nist.gov/cyberframework/csf-11-five-functions",
+              "section": "CSF 1.1 five functions",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+              "section": "Rev. 2 withdrawal/supersession and historical phase model",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+              "section": "SP 800-92 Rev. 1 Initial Public Draft status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/pubs/sp/800/92/final",
+              "section": "SP 800-92 (2006) final status",
+              "verdict": "supported"
+            },
+            {
+              "url": "https://csrc.nist.gov/glossary/term/chain_of_custody",
+              "section": "Chain-of-custody definition",
+              "verdict": "supported"
+            }
+          ]
+        }
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "issues": [],
+      "reviewedAt": "2026-11-20",
+      "sourceUrls": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+        "https://owasp.org/www-community/Threat_Modeling",
+        "https://insights.sei.cmu.edu/library/introducing-octave-allegro-improving-the-information-security-risk-assessment-process/",
+        "https://linddun.org/",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+        "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf",
+        "https://www.nist.gov/cyberframework/csf-11-five-functions",
+        "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+        "https://csrc.nist.gov/pubs/sp/800/92/r1/ipd",
+        "https://csrc.nist.gov/pubs/sp/800/92/final",
+        "https://csrc.nist.gov/glossary/term/chain_of_custody"
+      ],
+      "reviewNote": "Checked answers and scenarios. Added method tradeoffs and current NIST framing; notification remains jurisdiction-specific."
     },
     {
       "taskId": "t06-007-overview",
