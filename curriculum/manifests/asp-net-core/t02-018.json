@@ -43,6 +43,11 @@
         "HostOptions.ServicesStartConcurrently",
         "HostOptions.ServicesStopConcurrently",
         "HostOptions.BackgroundServiceExceptionBehavior",
+        "HostOptions.StartupTimeout default InfiniteTimeSpan",
+        "HostOptions.ShutdownTimeout default 30 seconds",
+        "HostOptions.ServicesStartConcurrently default false",
+        "HostOptions.ServicesStopConcurrently default false",
+        "HostOptions.BackgroundServiceExceptionBehavior default StopHost",
         "BackgroundServiceExceptionBehavior.StopHost",
         "BackgroundServiceExceptionBehavior.Ignore",
         "Hosted service registration order",
@@ -79,8 +84,12 @@
         "BackgroundService registered as singleton",
         "Do not inject scoped dependencies directly into a hosted singleton",
         "PeriodicTimer",
+        "PeriodicTimer(TimeSpan, TimeProvider)",
+        "PeriodicTimer.Period",
         "PeriodicTimer.WaitForNextTickAsync",
         "PeriodicTimer.Dispose",
+        "PeriodicTimer single outstanding waiter and coalesced ticks",
+        "TimeProvider for deterministic timer control",
         "Task.Delay with CancellationToken",
         "CancellationToken.ThrowIfCancellationRequested",
         "CancellationToken cooperative cancellation",
@@ -123,6 +132,11 @@
         "ChannelReader<T>",
         "ChannelReader<T>.ReadAsync",
         "ChannelReader<T>.ReadAllAsync",
+        "ChannelReader<T>.Completion",
+        "ChannelReader<T>.CanCount",
+        "ChannelReader<T>.Count",
+        "ChannelReader<T>.CanPeek",
+        "ChannelReader<T>.TryPeek",
         "ChannelReader<T>.TryRead",
         "ChannelReader<T>.WaitToReadAsync",
         "ChannelWriter<T>",
@@ -176,6 +190,9 @@
         "Cron scheduling as a separate scheduler concern",
         "Quartz.NET and Hangfire as external job scheduler examples",
         "No durable or exactly-once scheduling guarantee from hosted services",
+        "One-shot Worker must call IHostApplicationLifetime.StopApplication after completion",
+        "One-shot job use Generic Host without Worker template",
+        "Worker Service template ServerGarbageCollection disabled by default",
         "Worker process graceful shutdown signals",
         "Container stop grace period versus HostOptions.ShutdownTimeout",
         "Windows Service integration via Microsoft.Extensions.Hosting.WindowsServices",
@@ -243,11 +260,19 @@
     "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
     "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
     "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
-    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded",
+    "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+    "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
+    "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+    "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector"
   ],
   "versionNotes": [
     {
-      "edition": ".NET 11 GA checked 2026-11-14",
+      "edition": ".NET 11 GA checked 2026-11-20",
       "items": [
         ".NET 10 changed BackgroundService so all of ExecuteAsync runs on a background thread. Synchronous code before the first await no longer blocks other services from starting; use StartAsync or IHostedLifecycleService when a specific startup phase is required.",
         ".NET 10 added HostOptions.ServicesStartConcurrently and ServicesStopConcurrently. The defaults preserve sequential startup and shutdown, so explicitly discuss dependency ordering before enabling concurrency.",
@@ -255,21 +280,32 @@
         "IHostedLifecycleService is available in .NET 8 and later and provides StartingAsync, StartedAsync, StoppingAsync, and StoppedAsync phases around IHostedService start and stop.",
         "Worker templates and hosted-service APIs are not a durable job scheduler. Package-specific schedulers, brokers, and Windows Service/systemd integrations have independent versions and must be presented as separate integrations.",
         "For HostApplicationBuilder, current Windows Service and systemd integrations can be registered through the services collection with AddWindowsService or AddSystemd where supported; older IHostBuilder flows use UseWindowsService or UseSystemd. These are separate packages and activate in their matching service environment.",
-        ".NET 6 added the Channel.CreateBounded overload with an itemDropped callback, allowing a bounded channel configured with a drop mode to observe each discarded item. UnboundedChannelOptions provides the same reader/writer/concurrency-continuation promises as other channel options; it does not add capacity or persistence."
+        ".NET 6 added the Channel.CreateBounded overload with an itemDropped callback, allowing a bounded channel configured with a drop mode to observe each discarded item. UnboundedChannelOptions provides the same reader/writer/concurrency-continuation promises as other channel options; it does not add capacity or persistence.",
+        ".NET 8 added PeriodicTimer(TimeSpan, TimeProvider) and the mutable Period property. PeriodicTimer permits one active WaitForNextTickAsync consumer; elapsed ticks coalesce instead of accumulating, and TimeProvider enables deterministic time control.",
+        "Current HostOptions defaults are StartupTimeout = InfiniteTimeSpan, ShutdownTimeout = 30 seconds, ServicesStartConcurrently = false, ServicesStopConcurrently = false, and BackgroundServiceExceptionBehavior = StopHost. Verify defaults against the targeted hosting package/runtime.",
+        "A one-shot BackgroundService should request host shutdown after its finite work completes; an ordinary Generic Host runner is often a clearer fit for a finite command. The Worker template does not enable server GC by default.",
+        "ChannelReader<T> exposes Completion, CanCount/Count, and CanPeek/TryPeek. Count is an instantaneous snapshot; TryPeek is not a reservation under concurrent consumption. With bounded drop modes, TryWrite may report success while an item is discarded; use the drop callback for loss accounting."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+        "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn .NET Worker Service, ASP.NET Core hosted services, Generic Host API and .NET compatibility documentation",
-    "edition": ".NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": ".NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
       "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
@@ -293,7 +329,14 @@
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
       "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
-      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded",
+      "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+      "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector"
     ]
   },
   "scopeExclusions": [

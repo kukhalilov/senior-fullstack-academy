@@ -44,6 +44,11 @@ A producer writes an item to `ChannelWriter<T>` and a worker reads it from `Chan
 | Supplied name | Meaning and use |
 |---|---|
 | ChannelReader<T> | Consumer-facing API for waiting for and retrieving items, plus observing completion. |
+| ChannelReader<T>.Completion | Task that completes when the reader can never receive more data; observe it to detect normal completion or completion with an error. |
+| ChannelReader<T>.CanCount | Indicates whether this reader supports the Count property. Check this capability before relying on the property. |
+| ChannelReader<T>.Count | Current number of buffered items when supported. It is only a momentary snapshot and must not be used as a concurrency-safe check-then-act admission policy. |
+| ChannelReader<T>.CanPeek | Indicates whether this reader supports non-consuming inspection through TryPeek. |
+| ChannelReader<T>.TryPeek | Reads the next available item without consuming it when supported; it can race with concurrent readers, so do not use it to reserve work. |
 | ChannelReader<T>.ReadAsync | Asynchronously reads one item, waiting if necessary; cancellation and channel completion affect the wait. |
 | ChannelReader<T>.ReadAllAsync | Exposes an async stream of available items until completion, optionally observing cancellation. Convenient for a `await foreach` consumer loop. |
 | ChannelReader<T>.TryRead | Attempts a nonblocking read and reports whether an item was obtained. It does not wait for future work. |
@@ -51,6 +56,7 @@ A producer writes an item to `ChannelWriter<T>` and a worker reads it from `Chan
 | ChannelWriter<T> | Producer-facing API for writing items and completing the channel. |
 | ChannelWriter<T>.WriteAsync | Asynchronously writes or applies the bounded full policy; under `Wait`, waits for space. Pass cancellation so shutdown/request cancellation can stop a blocked producer. |
 | ChannelWriter<T>.TryWrite | Attempts an immediate write. It returns false when it cannot accept the item, such as full under `Wait` or already completed; decide how the caller handles rejection. |
+| `TryWrite` with a drop full mode | A configured drop mode may handle the write and return true while discarding the incoming item or a buffered item. A true result does not prove that every item was retained; use the dropped-item callback and loss metrics when that matters. |
 | ChannelWriter<T>.WaitToWriteAsync | Waits until a write may succeed or channel completion is observed. A subsequent write still needs to be attempted because another writer may claim the slot. |
 | ChannelWriter<T>.Complete | Marks the writer complete, optionally with an error, so readers can finish after buffered items drain. Calling completion more than once can fail. |
 | ChannelWriter<T>.TryComplete | Attempts to mark completion and returns whether this call completed it. Useful when producer and shutdown paths race to finish the queue. |

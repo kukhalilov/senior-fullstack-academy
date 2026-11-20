@@ -22,6 +22,9 @@ The Worker template gives a process a Generic Host and a place to register hoste
 | HostApplicationBuilder.Build | Builds the configured builder into an `IHost` ready to run. Host services are started by the run/start operation, not merely by constructing registrations. |
 | IHostedService implementation without BackgroundService | Direct lifecycle implementation for finite startup/stop work or a custom task model. It must manage its own background task and ensure exceptions/cleanup are observed. |
 | BackgroundService polling loop versus event-driven channel reader | Polling asks periodically whether work exists; a channel reader waits for producer signals. Polling can add latency/load; a channel remains in-process and non-durable. |
+| One-shot Worker must call IHostApplicationLifetime.StopApplication after completion | A `BackgroundService` finishing its `ExecuteAsync` task does not by itself mean the host should exit. A finite Worker should request application shutdown after its one job completes, while still surfacing failures through the normal host policy. |
+| One-shot job use Generic Host without Worker template | For a finite command/job that should run once and then exit, build a Generic Host for DI, configuration, and logging, invoke an ordinary runner, then return. A perpetual Worker template is unnecessary unless hosted lifecycle behavior is useful. |
+| Worker Service template ServerGarbageCollection disabled by default | The Worker template does not enable server GC by default. Choose workstation/server GC deliberately from the deployment and measured workload; a worker process is not automatically configured for server GC. |
 
 ### Scheduling and deployment behavior
 
@@ -126,6 +129,8 @@ This requires the `Microsoft.Extensions.Hosting.WindowsServices` package and tar
 
 - [Worker services in .NET](https://learn.microsoft.com/en-us/dotnet/core/extensions/workers)
 - [Hosted services](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services)
+- [Generic Host overview](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host)
+- [Garbage collector runtime configuration](https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector)
 - [Windows Service hosting API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.windowsservices.windowsservicelifetimehostbuilderextensions.usewindowsservice)
 - [systemd hosting API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.systemdhostbuilderextensions.addsystemd)
 - [Generic Host](https://learn.microsoft.com/en-us/dotnet/core/extensions/workers)

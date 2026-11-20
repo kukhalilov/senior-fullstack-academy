@@ -41,12 +41,17 @@ The host owns process-level start/stop and invokes every registered hosted servi
 | `IServiceCollection.AddHostedService(Func<IServiceProvider,TService>)` | Factory registration overload for hosted service creation from the container. Check target package overloads and avoid registering the same worker multiple times accidentally. |
 | `IServiceCollection.Configure<HostOptions>` | Configures host-wide service lifecycle and timeout behavior through options. |
 | `HostOptions` | Holds host startup/shutdown timeouts, service concurrency flags, and background-service exception behavior. |
-| `HostOptions.StartupTimeout` | Bounds host startup. It should align with platform startup/readiness limits. |
-| `HostOptions.ShutdownTimeout` | Bounds graceful host shutdown waiting. A container orchestrator can impose a separate, shorter termination grace period. |
-| `HostOptions.ServicesStartConcurrently` | Allows hosted services to start concurrently. Default behavior is sequential; enabling concurrency means registration order no longer provides a dependency sequence. |
-| `HostOptions.ServicesStopConcurrently` | Allows hosted services to stop concurrently. Default behavior is sequential/reverse registration; concurrent stop requires independent shutdown logic. |
+| `HostOptions.StartupTimeout` | Bounds host startup; default is `Timeout.InfiniteTimeSpan` unless host configuration overrides it. Align it with platform startup/readiness limits. |
+| `HostOptions.ShutdownTimeout` | Bounds graceful host shutdown waiting; default is 30 seconds (5 seconds in .NET 5 and earlier). A container orchestrator can impose a separate, shorter termination grace period. |
+| `HostOptions.ServicesStartConcurrently` | Allows hosted services to start concurrently; default is `false` (sequential). Enabling concurrency means registration order no longer provides a dependency sequence. |
+| `HostOptions.ServicesStopConcurrently` | Allows hosted services to stop concurrently; default is `false` (sequential/reverse registration). Concurrent stop requires independent shutdown logic. |
 | `HostOptions.BackgroundServiceExceptionBehavior` | Chooses host response to an unhandled `BackgroundService` exception. It does not supply restart/retry logic. |
-| `BackgroundServiceExceptionBehavior.StopHost` | Stops the host when a background worker throws unhandled; in .NET 11 the awaited host run/stop task also fails. |
+| `BackgroundServiceExceptionBehavior.StopHost` | Default policy: stops the host when a background worker throws unhandled; in .NET 11 the awaited host run/stop task also fails. |
+| `HostOptions.StartupTimeout default InfiniteTimeSpan` | Unless overridden by host options configuration, startup has no host-level timeout. The deployment platform may impose its own startup/readiness limits. |
+| `HostOptions.ShutdownTimeout default 30 seconds` | Unless overridden, the host gives graceful shutdown 30 seconds; .NET 5 and earlier defaulted to 5 seconds. The external process manager may force termination sooner. |
+| `HostOptions.ServicesStartConcurrently default false` | Default startup is sequential, preserving registration order. |
+| `HostOptions.ServicesStopConcurrently default false` | Default shutdown is sequential, generally in reverse registration order. |
+| `HostOptions.BackgroundServiceExceptionBehavior default StopHost` | An unhandled worker exception stops the host unless the option is changed to `Ignore`; the host does not restart the failed service. |
 | `BackgroundServiceExceptionBehavior.Ignore` | Leaves the host running after a worker failure. The faulted worker is not restarted automatically, so monitor and recover explicitly. |
 
 ### Ordering, cancellation, and operational changes
@@ -135,6 +140,7 @@ public sealed class FatalWorkerMonitor(IHostApplicationLifetime lifetime)
 - [Generic Host](https://learn.microsoft.com/en-us/dotnet/core/extensions/workers)
 - [Hosted services](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services)
 - [HostOptions API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions)
+- [Current HostOptions source](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs)
 - [IHostedLifecycleService API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice)
 - [BackgroundService startup change in .NET 10](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task)
 - [BackgroundService failure propagation in .NET 11](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure)

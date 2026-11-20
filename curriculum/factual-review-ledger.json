@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1483,
-    "pending": 866,
-    "claimsChecked": 80123,
-    "claimsCorrected": 3294,
+    "reviewed": 1491,
+    "pending": 858,
+    "claimsChecked": 80715,
+    "claimsCorrected": 3331,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1690,6 +1690,39 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient.maxresponsecontentbuffersize?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.json.httpclientjsonextensions.getfromjsonasasyncenumerable?view=net-11.0",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.http.resilience.httpretrystrategyoptions.shouldretryafterheader?view=net-10.0-pp"
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "ASP.NET Core hosted services, background tasks, channels and scheduling (t02-018)",
+      "status": "full claim and frozen-inventory audit complete for all 8 lessons",
+      "sources": [
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
+        "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedservice",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/channels",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelwriter-1",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchannelfullmode",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
+        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/windows-service",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.systemdhostbuilderextensions.addsystemd"
+      ],
+      "findings": [
+        "Audited all eight lessons, supplied inventory names, version statements, code samples, exercises/solutions, and interview answers against current .NET 8–11 Microsoft Learn API/runtime documentation and dotnet/runtime HostOptions source. Checked lifecycle ordering, cancellation and shutdown budgets, DI scopes, timer behavior, channel backpressure/drop semantics, and durability boundaries.",
+        "Added current HostOptions defaults; PeriodicTimer(TimeSpan, TimeProvider), mutable Period and coalesced single-consumer tick semantics; ChannelReader completion/count/peek APIs and their concurrency caveats; bounded-channel TryWrite/drop callback behavior; one-shot Worker host shutdown guidance; and the Worker template server-GC default. Updated source snapshot to 2026-11-20.",
+        "All frozen inventory terms are present and validated. Corrected omissions and clarified misleading implications; no unresolved factual or scope gaps remain. All eight lessons remain drafts pending the project-wide promotion process."
       ]
     }
   ],
@@ -130156,13 +130189,45 @@
       "topicId": "t02-018",
       "phase": "overview",
       "draft": "course/drafts/t02-018/t02-018-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 63,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": 23,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
+            "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 21,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 19,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/channels",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelwriter-1",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchannelfullmode"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
@@ -130186,22 +130251,71 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+        "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync",
+        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all externally checkable claims, examples, exercises and answers against current primary documentation and reconciled the complete frozen inventory. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-018-concepts",
       "topicId": "t02-018",
       "phase": "concepts",
       "draft": "course/drafts/t02-018/t02-018-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 85,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": 26,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
+            "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 25,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 22,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/channels",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelwriter-1",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchannelfullmode"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 12,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
@@ -130225,22 +130339,50 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+        "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync",
+        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all externally checkable claims, examples, exercises and answers against current primary documentation and reconciled the complete frozen inventory. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-018-reference-hosted-service-lifecycle-and-host-options",
       "topicId": "t02-018",
       "phase": "reference",
       "draft": "course/drafts/t02-018/t02-018-reference-hosted-service-lifecycle-and-host-options.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 67,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": 30,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
+            "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 37,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
@@ -130264,22 +130406,60 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+        "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all externally checkable claims, examples, exercises and answers against current primary documentation and reconciled the complete frozen inventory. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-018-reference-backgroundservice-loops-scopes-and-graceful-stop",
       "topicId": "t02-018",
       "phase": "reference",
       "draft": "course/drafts/t02-018/t02-018-reference-backgroundservice-loops-scopes-and-graceful-stop.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 75,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": 31,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 26,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 18,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
+            "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
@@ -130303,22 +130483,51 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+        "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all externally checkable claims, examples, exercises and answers against current primary documentation and reconciled the complete frozen inventory. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-018-reference-queued-work-channels-backpressure-and-durability",
       "topicId": "t02-018",
       "phase": "reference",
       "draft": "course/drafts/t02-018/t02-018-reference-queued-work-channels-backpressure-and-durability.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 67,
+      "claimsCorrected": 8,
+      "evidence": [
+        {
+          "claims": 55,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/channels",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelwriter-1",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchannelfullmode"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 12,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
+            "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
@@ -130342,22 +130551,60 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+        "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync",
+        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all externally checkable claims, examples, exercises and answers against current primary documentation and reconciled the complete frozen inventory. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-018-reference-worker-service-template-scheduling-and-hosted-execution",
       "topicId": "t02-018",
       "phase": "reference",
       "draft": "course/drafts/t02-018/t02-018-reference-worker-service-template-scheduling-and-hosted-execution.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 73,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": 35,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
+            "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/windows-service",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.systemdhostbuilderextensions.addsystemd"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 18,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 20,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
+            "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
@@ -130381,22 +130628,71 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded",
+        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+        "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all externally checkable claims, examples, exercises and answers against current primary documentation and reconciled the complete frozen inventory. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-018-practice",
       "topicId": "t02-018",
       "phase": "practice",
       "draft": "course/drafts/t02-018/t02-018-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 82,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": 26,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/channels",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelwriter-1",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchannelfullmode"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 23,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 19,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
+            "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 14,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
+            "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/windows-service",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.systemdhostbuilderextensions.addsystemd"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
@@ -130420,22 +130716,71 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+        "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all externally checkable claims, examples, exercises and answers against current primary documentation and reconciled the complete frozen inventory. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-018-interview",
       "topicId": "t02-018",
       "phase": "interview",
       "draft": "course/drafts/t02-018/t02-018-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 80,
+      "claimsCorrected": 3,
+      "evidence": [
+        {
+          "claims": 27,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedservice",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task",
+            "https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/11/ihost-runasync-stopasync-throw-backgroundservice-failure"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 18,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/channels",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelwriter-1",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
+            "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchannelfullmode"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 18,
+          "sources": [
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
+            "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/windows-service",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.systemdhostbuilderextensions.addsystemd"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        },
+        {
+          "claims": 17,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
+            "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+            "https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostoptions",
+            "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs"
+          ],
+          "verdict": "Supported against the cited current official API, framework, and runtime documentation; corrections and additions are recorded in the t02-018 batch audit finding."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
         "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
@@ -130459,9 +130804,16 @@
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.boundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.unboundedchanneloptions",
         "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createbounded",
-        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded"
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channel.createunbounded",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.channels.channelreader-1?view=net-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/runtime-config/garbage-collector",
+        "https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host",
+        "https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/HostOptions.cs",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period",
+        "https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed all externally checkable claims, examples, exercises and answers against current primary documentation and reconciled the complete frozen inventory. No unresolved factual or scope issues; lesson remains in drafts."
     },
     {
       "taskId": "t02-019-overview",

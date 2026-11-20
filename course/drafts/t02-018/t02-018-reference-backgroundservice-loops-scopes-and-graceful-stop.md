@@ -50,8 +50,12 @@ This reference covers the supplied `BackgroundService`, DI-scope, timer, cancell
 | Supplied name | Meaning and use |
 |---|---|
 | `PeriodicTimer` | Async timer designed for one consumer waiting on ticks. It coalesces missed ticks rather than accumulating an unbounded number of callbacks. |
+| `PeriodicTimer(TimeSpan, TimeProvider)` | .NET 8+ constructor overload that uses the supplied clock/timer provider, enabling deterministic time control in tests and custom time environments. |
+| `PeriodicTimer.Period` | .NET 8+ property that gets or changes the period for future ticks; changing it does not alter ticks already produced or waiting to be consumed. |
 | `PeriodicTimer.WaitForNextTickAsync` | Waits asynchronously for a tick or cancellation; returns false when the timer is stopped. The single-consumer contract matters. |
 | `PeriodicTimer.Dispose` | Stops the timer and completes a pending wait. Dispose it when the loop ends. |
+| `PeriodicTimer single outstanding waiter and coalesced ticks` | Only one `WaitForNextTickAsync` may be active at once. If the worker is busy, multiple timer ticks collapse into one pending tick rather than queueing every elapsed interval. |
+| `TimeProvider for deterministic timer control` | `TimeProvider` abstracts time and timers. Supply a fake provider in tests to advance time without sleeping; keep fake-time testing utilities as a separate test dependency. |
 | `Task.Delay with CancellationToken` | Simple cancellable pause, often used for fixed-delay polling. Each next wait begins after current work completes. |
 | `CancellationToken.ThrowIfCancellationRequested` | Throws `OperationCanceledException` when cancellation was requested; useful at explicit boundaries in CPU-bound work. |
 | `CancellationToken cooperative cancellation` | Signals intent; operations must observe the token. It cannot forcibly stop arbitrary blocking code or roll back a remote side effect. |
@@ -146,5 +150,8 @@ This gives one item a local deadline while still observing host shutdown. If can
 - [Background tasks with hosted services](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services)
 - [BackgroundService API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.backgroundservice)
 - [PeriodicTimer API](https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer)
+- [PeriodicTimer constructor with TimeProvider](https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.-ctor)
+- [PeriodicTimer.Period API](https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.period)
+- [PeriodicTimer.WaitForNextTickAsync API](https://learn.microsoft.com/en-us/dotnet/api/system.threading.periodictimer.waitfornexttickasync)
 - [IHostedLifecycleService API](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostedlifecycleservice)
 - [BackgroundService .NET 10 change](https://learn.microsoft.com/en-us/dotnet/core/compatibility/extensions/10.0/backgroundservice-executeasync-task)
