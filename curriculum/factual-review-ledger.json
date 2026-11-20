@@ -5,10 +5,10 @@
   "status": "in-progress",
   "summary": {
     "lessons": 2349,
-    "reviewed": 1508,
-    "pending": 841,
-    "claimsChecked": 81852,
-    "claimsCorrected": 3394,
+    "reviewed": 1516,
+    "pending": 833,
+    "claimsChecked": 82304,
+    "claimsCorrected": 3410,
     "draftsMayBePromoted": false
   },
   "reviewRequirements": [
@@ -1794,6 +1794,43 @@
         "Expanded the frozen Kestrel inventory for the public KestrelServerOptions surface: scheme/host validation, response-header compression, synchronous I/O, scheduling/services, configuration loader/reload overloads, encoding selectors, obsolete EnableAltSvc, endpoint overloads, socket handle/named pipe, localhost port-zero restriction, and systemd socket activation. Added security and operational explanations.",
         "Corrected/clarified HTTP/3 certificate selector null context and unsupported/no-op HTTPS options, target-version defaults, IIS out-of-process request-body ownership, IIS in-process default, and the broad trust behavior of ASPNETCORE_FORWARDEDHEADERS_ENABLED. Added documented TLS certificate validation controls, general and HTTP/2/HTTP/3 limits, and QUIC option default snapshots.",
         "All frozen names are covered, automated draft/catalog validators pass, and no unresolved factual or scope issues remain. All eight lessons remain drafts pending whole-curriculum completion."
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "scope": "ASP.NET Core environments, production error handling, request performance and release readiness (t02-021)",
+      "status": "full claim and frozen-inventory audit complete for all 8 lessons",
+      "sources": [
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes",
+        "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish",
+        "https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.exceptionhandleroptions?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/10/exception-handler-diagnostics-suppressed?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-11.0"
+      ],
+      "findings": [
+        "Reviewed all eight lessons, claims, provider/version behavior, examples, practice answers and interview guidance against current Microsoft Learn ASP.NET Core 11 and .NET deployment/API documentation.",
+        "Added the current exception handling option surface including StatusCodeSelector, CreateScopeForErrors and SuppressDiagnosticsCallback; documented ASP.NET Core 10 default suppression of diagnostics for handled IExceptionHandler exceptions and the separate AddProblemDetails/IProblemDetailsService fallback behavior.",
+        "Expanded the performance inventory to include output caching APIs, default eligibility, cache-key variation and resource locking, storage/body limits, and differences from HTTP response caching.",
+        "Clarified readiness versus liveness, health endpoint information exposure, Native AOT trimming/platform constraints, ReadyToRun retained IL, and single-file as packaging independent of self-contained/AOT mode.",
+        "All frozen names are covered; validators pass and no unresolved factual or scope gaps remain. The eight lessons remain drafts pending the project-wide review."
       ]
     }
   ],
@@ -132047,13 +132084,24 @@
       "topicId": "t02-021",
       "phase": "overview",
       "draft": "course/drafts/t02-021/t02-021-overview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 30,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": 30,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked claims, examples, deployment guidance and answers against current Microsoft Learn and .NET deployment/API references. Corrections and omitted inventory items are recorded in the t02-021 batch finding; no unresolved issues remain."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration",
@@ -132065,22 +132113,41 @@
         "https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes",
         "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated",
-        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim and reconciled with the complete frozen inventory. Lesson remains in drafts."
     },
     {
       "taskId": "t02-021-concepts",
       "topicId": "t02-021",
       "phase": "concepts",
       "draft": "course/drafts/t02-021/t02-021-concepts.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 45,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": 45,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked claims, examples, deployment guidance and answers against current Microsoft Learn and .NET deployment/API references. Corrections and omitted inventory items are recorded in the t02-021 batch finding; no unresolved issues remain."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration",
@@ -132092,22 +132159,41 @@
         "https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes",
         "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated",
-        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim and reconciled with the complete frozen inventory. Lesson remains in drafts."
     },
     {
       "taskId": "t02-021-reference-environment-configuration-and-deployment-settings",
       "topicId": "t02-021",
       "phase": "reference",
       "draft": "course/drafts/t02-021/t02-021-reference-environment-configuration-and-deployment-settings.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 62,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": 62,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked claims, examples, deployment guidance and answers against current Microsoft Learn and .NET deployment/API references. Corrections and omitted inventory items are recorded in the t02-021 batch finding; no unresolved issues remain."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration",
@@ -132119,22 +132205,41 @@
         "https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes",
         "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated",
-        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim and reconciled with the complete frozen inventory. Lesson remains in drafts."
     },
     {
       "taskId": "t02-021-reference-production-error-handling-startup-and-troubleshooting",
       "topicId": "t02-021",
       "phase": "reference",
       "draft": "course/drafts/t02-021/t02-021-reference-production-error-handling-startup-and-troubleshooting.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 71,
+      "claimsCorrected": 5,
+      "evidence": [
+        {
+          "claims": 71,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked claims, examples, deployment guidance and answers against current Microsoft Learn and .NET deployment/API references. Corrections and omitted inventory items are recorded in the t02-021 batch finding; no unresolved issues remain."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration",
@@ -132146,22 +132251,41 @@
         "https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes",
         "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated",
-        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim and reconciled with the complete frozen inventory. Lesson remains in drafts."
     },
     {
       "taskId": "t02-021-reference-request-path-performance-and-capacity-practices",
       "topicId": "t02-021",
       "phase": "reference",
       "draft": "course/drafts/t02-021/t02-021-reference-request-path-performance-and-capacity-practices.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
+      "claimsCorrected": 7,
+      "evidence": [
+        {
+          "claims": 58,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked claims, examples, deployment guidance and answers against current Microsoft Learn and .NET deployment/API references. Corrections and omitted inventory items are recorded in the t02-021 batch finding; no unresolved issues remain."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration",
@@ -132173,22 +132297,41 @@
         "https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes",
         "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated",
-        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim and reconciled with the complete frozen inventory. Lesson remains in drafts."
     },
     {
       "taskId": "t02-021-reference-production-readiness-and-release-operations",
       "topicId": "t02-021",
       "phase": "reference",
       "draft": "course/drafts/t02-021/t02-021-reference-production-readiness-and-release-operations.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
-      "claimsCorrected": 0,
-      "evidence": [],
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 56,
+      "claimsCorrected": 4,
+      "evidence": [
+        {
+          "claims": 56,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked claims, examples, deployment guidance and answers against current Microsoft Learn and .NET deployment/API references. Corrections and omitted inventory items are recorded in the t02-021 batch finding; no unresolved issues remain."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration",
@@ -132200,22 +132343,41 @@
         "https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes",
         "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated",
-        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim and reconciled with the complete frozen inventory. Lesson remains in drafts."
     },
     {
       "taskId": "t02-021-practice",
       "topicId": "t02-021",
       "phase": "practice",
       "draft": "course/drafts/t02-021/t02-021-practice.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 72,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": 72,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked claims, examples, deployment guidance and answers against current Microsoft Learn and .NET deployment/API references. Corrections and omitted inventory items are recorded in the t02-021 batch finding; no unresolved issues remain."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration",
@@ -132227,22 +132389,41 @@
         "https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes",
         "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated",
-        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim and reconciled with the complete frozen inventory. Lesson remains in drafts."
     },
     {
       "taskId": "t02-021-interview",
       "topicId": "t02-021",
       "phase": "interview",
       "draft": "course/drafts/t02-021/t02-021-interview.md",
-      "status": "not-reviewed",
-      "claimInventory": "not-yet-extracted",
-      "claimsChecked": 0,
+      "status": "reviewed",
+      "claimInventory": "complete",
+      "claimsChecked": 58,
       "claimsCorrected": 0,
-      "evidence": [],
+      "evidence": [
+        {
+          "claims": 58,
+          "sources": [
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+            "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
+          ],
+          "verdict": "Manually checked claims, examples, deployment guidance and answers against current Microsoft Learn and .NET deployment/API references. Corrections and omitted inventory items are recorded in the t02-021 batch finding; no unresolved issues remain."
+        }
+      ],
       "issues": [],
-      "reviewedAt": null,
+      "reviewedAt": "2026-11-20",
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments",
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration",
@@ -132254,9 +132435,17 @@
         "https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes",
         "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish",
         "https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated",
-        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0"
       ],
-      "reviewNote": "A reviewer must enumerate factual claims in this lesson, verify each against primary sources, record claim-level evidence, correct errors or omissions, and rerun validation before marking reviewed."
+      "reviewNote": "Reviewed claim-by-claim and reconciled with the complete frozen inventory. Lesson remains in drafts."
     },
     {
       "taskId": "t05-001-overview",

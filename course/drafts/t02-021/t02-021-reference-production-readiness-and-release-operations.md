@@ -18,12 +18,17 @@ Build and test a known artifact, publish it for the intended runtime mode and ta
 | `Single-file deployment` | Bundles app files into one executable shape where supported; some native/runtime files may still extract or remain separate depending on settings. Test path and reflection assumptions. |
 | `ReadyToRun publishing option` | Adds ahead-of-time compiled code to reduce startup/JIT work in some scenarios, typically increasing size; measure on target architecture. |
 | `Native AOT publishing boundary for supported ASP.NET Core features` | Native AOT can improve startup/size for supported app shapes, but reflection/dynamic-loading and framework feature compatibility are constrained; verify feature support before choosing it. |
+| `Native AOT implies trimming and platform-specific native compilation` | Native AOT removes runtime JIT and requires trimming-compatible code; it cannot use runtime code generation or dynamic assembly loading and must target a supported OS/architecture. Review all publish warnings and feature support. |
+| `ReadyToRun retains IL and native code` | ReadyToRun reduces some JIT work while retaining IL and native code in a larger artifact; it is not Native AOT and supports a broader library shape. |
+| `Single-file is independent of self-contained and Native AOT modes` | Single-file describes packaging. It does not by itself bundle the shared runtime or remove trimming/AOT compatibility constraints. |
 | `Runtime identifier and platform-specific publish output` | Selects OS/architecture-specific native assets and runtime behavior; publish and test for the actual deployment target. |
 | `ASP.NET Core shared framework and installed runtime compatibility` | Framework-dependent apps need a compatible installed shared framework; patch level/roll-forward behavior must match policy. |
 | `Use the current supported ASP.NET Core release` | Keep to a supported release for security fixes and servicing; plan regular upgrades and compatibility testing. |
 | `Configuration supplied by deployment environment rather than source defaults` | Keep environment-specific values and credentials out of repository defaults; inject through deployment configuration and protected providers. |
 | `Environment-specific configuration validation before rollout` | Check required keys, formats, permissions, and dependency endpoints in the target environment before routing production traffic. |
 | `Health check endpoint integration with deployment readiness` | Let the deployment platform use readiness signals to decide whether an instance should receive traffic; keep readiness semantics distinct from liveness. |
+| `Readiness versus liveness health-check semantics` | Readiness answers whether an instance should receive traffic; liveness answers whether the process should be restarted. Avoid making temporary dependency outages fail liveness and trigger restart loops. |
+| `Health check endpoint output and access control` | Expose only the information the orchestrator needs and restrict detailed dependency output to trusted operators; health endpoints can disclose service topology. |
 | `Graceful shutdown and connection draining before termination` | Stop accepting new work, allow in-flight requests to complete within the orchestrator/host deadline, and drain connections safely. |
 | `Database expand-and-contract compatibility during rolling deployment` | Add compatible schema first, deploy code that supports both forms, migrate/backfill, then remove old schema after old instances are gone. |
 | `Application version and service identity in logs and telemetry` | Include stable service/version/deployment metadata to correlate errors and performance with the released artifact. |
@@ -73,3 +78,9 @@ For a framework-dependent Linux container, publish for the intended Linux RID or
 ## Sources
 
 [`dotnet publish`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish) · [Deployment modes](https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes) · [ANCM](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module)
+
+### Additional application release checks
+
+For Native AOT, inspect every publish analyzer warning and verify all framework/library features used by the app are supported. AOT implies trimming and native compilation, disallows runtime code generation and dynamic assembly loading, and produces platform/architecture-specific output. ReadyToRun is less restrictive and retains IL alongside native code; it reduces some JIT work but increases artifact size and still requires a compatible runtime unless combined with self-contained deployment. Single-file is a packaging choice and does not by itself mean self-contained or Native AOT.
+
+When adding health endpoints, separate readiness from liveness when initialization or dependencies can be temporarily unavailable. Readiness controls traffic admission; liveness should normally indicate whether restarting the process is appropriate. A failed dependency check on liveness can create restart loops. Protect detailed health output from public access and return only the status needed by the orchestrator.

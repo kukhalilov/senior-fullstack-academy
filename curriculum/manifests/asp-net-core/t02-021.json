@@ -79,12 +79,18 @@
         "ExceptionHandlerOptions.ExceptionHandlingPath",
         "ExceptionHandlerOptions.ExceptionHandler",
         "ExceptionHandlerOptions.AllowStatusCode404Response",
+        "ExceptionHandlerOptions.StatusCodeSelector",
+        "ExceptionHandlerOptions.CreateScopeForErrors",
+        "ExceptionHandlerOptions.SuppressDiagnosticsCallback",
+        "ASP.NET Core 10 handled exception diagnostics suppression default",
         "IExceptionHandler",
         "IExceptionHandler.TryHandleAsync",
         "IServiceCollection.AddExceptionHandler<TExceptionHandler>",
         "IExceptionHandler registration order",
         "IExceptionHandler singleton lifetime",
         "ExceptionHandlerMiddleware handler chain and fallback behavior",
+        "AddProblemDetails and IProblemDetailsService",
+        "SuppressDiagnosticsCallback does not suppress unhandled or post-response-start exceptions",
         "UseDeveloperExceptionPage",
         "DeveloperExceptionPageMiddleware",
         "Developer exception page is for Development only",
@@ -144,6 +150,13 @@
         "Response compression middleware and compressed payload tradeoffs",
         "Static file caching and content fingerprinting",
         "Cache frequently read data when bounded staleness is acceptable",
+        "Output caching middleware",
+        "OutputCacheAttribute and CacheOutput",
+        "OutputCachePolicyBuilder",
+        "OutputCache resource locking",
+        "OutputCache default eligibility",
+        "OutputCache size and body limits",
+        "Output caching versus response caching",
         "Cache personalized response data only with safe variation boundaries",
         "Database query projection and retrieving only required columns",
         "Reduce remote data-store round trips",
@@ -176,12 +189,17 @@
         "Single-file deployment",
         "ReadyToRun publishing option",
         "Native AOT publishing boundary for supported ASP.NET Core features",
+        "Native AOT implies trimming and platform-specific native compilation",
+        "ReadyToRun retains IL and native code",
+        "Single-file is independent of self-contained and Native AOT modes",
         "Runtime identifier and platform-specific publish output",
         "ASP.NET Core shared framework and installed runtime compatibility",
         "Use the current supported ASP.NET Core release",
         "Configuration supplied by deployment environment rather than source defaults",
         "Environment-specific configuration validation before rollout",
         "Health check endpoint integration with deployment readiness",
+        "Readiness versus liveness health-check semantics",
+        "Health check endpoint output and access control",
         "Graceful shutdown and connection draining before termination",
         "Database expand-and-contract compatibility during rolling deployment",
         "Application version and service identity in logs and telemetry",
@@ -251,11 +269,14 @@
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
+      "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
       "items": [
         "ASP.NET Core 10 marks the legacy WebHost hosting model obsolete; teach WebApplication and WebApplicationBuilder for current apps, and retain WebHost only for migration and older application maintenance.",
         "With WebApplication.CreateBuilder, DOTNET_ENVIRONMENT takes precedence over ASPNETCORE_ENVIRONMENT; legacy WebHost configuration uses the opposite precedence. Keep this as a concise migration detail because setting both can produce a surprising environment.",
-        "ASP.NET Core performance guidance remains workload-driven: avoid blocking calls, keep I/O asynchronous, measure hot paths, and validate optimizations under representative load. Do not present older version-specific throughput numbers as current guarantees."
+        "ASP.NET Core performance guidance remains workload-driven: avoid blocking calls, keep I/O asynchronous, measure hot paths, and validate optimizations under representative load. Do not present older version-specific throughput numbers as current guarantees.",
+        "ASP.NET Core 10 suppresses exception diagnostics by default when a registered IExceptionHandler reports the exception handled; ExceptionHandlerOptions.SuppressDiagnosticsCallback changes that policy. Include StatusCodeSelector and CreateScopeForErrors in the current exception-handler options inventory.",
+        "Output caching is server-controlled and distinct from HTTP response caching. Current default eligibility excludes non-200, non-GET/HEAD, cookie-setting, and authenticated responses; resource locking mitigates stampedes and configured size/body limits bound storage.",
+        "Readiness determines traffic admission and liveness restart decisions; avoid coupling temporary downstream outages to liveness. Native AOT implies trimming and target-specific native code; ReadyToRun retains IL and has a broader compatibility surface."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments",
@@ -266,8 +287,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core environments configuration error handling and performance best practices; .NET deployment documentation",
-    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-17",
+    "edition": "ASP.NET Core 11 / .NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration",
@@ -279,7 +300,12 @@
       "https://learn.microsoft.com/en-us/dotnet/core/deploying/deployment-modes",
       "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish",
       "https://learn.microsoft.com/en-us/dotnet/core/compatibility/aspnet-core/10/webhostbuilder-deprecated",
-      "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks"
+      "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks",
+      "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot"
     ]
   },
   "scopeExclusions": [

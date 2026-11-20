@@ -38,6 +38,13 @@ Each request consumes a share of finite CPU, threads, memory, sockets, database 
 | `Response compression middleware and compressed payload tradeoffs` | Compression can reduce network bytes at CPU cost; avoid compressing already-compressed or tiny content without workload evidence. |
 | `Static file caching and content fingerprinting` | Long cache lifetimes work best for versioned/fingerprinted assets so changed content gets a new URL. |
 | `Cache frequently read data when bounded staleness is acceptable` | Caching can reduce repeated I/O, but define expiration/invalidation and tolerate only an understood stale window. |
+| `Output caching middleware` | Server-controlled response caching with endpoint policies, variation, tags and invalidation; it differs from HTTP response caching, which follows client/proxy cache directives. |
+| `OutputCacheAttribute and CacheOutput` | Apply an output-cache policy to MVC or Minimal API endpoints; place output-cache middleware after routing and before endpoint execution according to current hosting guidance. |
+| `OutputCachePolicyBuilder` | Builds policies for status, methods, vary-by keys, tags, expiration and locking. Cache keys must include every response-varying dimension. |
+| `OutputCache resource locking` | Enabled by default to reduce cache stampedes for a cache key; disabling it allows concurrent regeneration and should be driven by workload evidence. |
+| `OutputCache default eligibility` | By default, only successful GET/HEAD responses without cookies and without authenticated requests are cached; custom policy changes can expand exposure and must preserve user isolation. |
+| `OutputCache size and body limits` | Default storage size limit is 100 MB and maximum cached response body is 64 MB in the documented current implementation; these are configurable runtime values, not capacity guarantees. |
+| `Output caching versus response caching` | Output caching is server-policy controlled and supports explicit invalidation/locking; response caching follows HTTP cache directives and may be bypassed by client request headers. |
 | `Cache personalized response data only with safe variation boundaries` | User-specific responses must vary/isolate correctly; shared-cache mistakes can leak one user's data to another. |
 | `Database query projection and retrieving only required columns` | Select only fields needed by the response, reducing database, network, materialization, and serialization work. |
 | `Reduce remote data-store round trips` | Combine/selectively batch operations where semantics allow; avoid over-fetching or large unbounded batches. |
