@@ -3,7 +3,7 @@
 # .NET platform vs runtime vs SDK vs framework and alternatives — Exercises and worked solutions
 
 ## Goals
-- Understand the boundaries and relationships between .NET platform components, runtimes, SDKs, frameworks, and comparable ecosystems; current release support was checked 2026-11-17.
+- Understand the boundaries and relationships between .NET platform components, runtimes, SDKs, frameworks, and comparable ecosystems; current release support was checked 2026-11-20.
 - Learn how source code compiles to Intermediate Language (IL) and executes on the Common Language Runtime (CLR).
 - Differentiate compile-time concepts (such as Target Framework Monikers and SDK versions) from runtime concepts (such as RIDs, Framework-Dependent vs. Self-Contained deployments, and roll-forward policies).
 - Apply architectural decision criteria when choosing .NET versus alternative platforms like Java, Node.js, Python, Go, and Rust.
@@ -13,7 +13,7 @@ Consider a developer troubleshooting why a newly built .NET console application 
 
 1. **Diagnosis**: The developer checks the environment using command-line diagnostic tools. Running `dotnet --info`, `dotnet --list-sdks`, and `dotnet --list-runtimes` reveals that the developer workstation contains the .NET SDK (which bundles developer tools, MSBuild, NuGet, and shared runtime layers), whereas the production server contains only a minimal execution runtime or lacks the required major version.
 2. **Build Configuration**: The project file (`.csproj`) defines a target framework using a Target Framework Moniker (TFM), such as `net11.0` (referencing the .NET 11 release support lifecycle).
-3. **Deployment Strategy**: 
+3. **Deployment Strategy**:
    - Under a **Framework-dependent deployment**, the production server must have a compatible shared runtime installed. Patch roll-forward is normally automatic; exact major/minor selection and runtime configuration matter.
    - Under a **Self-contained deployment**, the application bundles the selected runtime for a target platform (commonly specified with a RID), removing the need for a separate shared .NET runtime install. A compatible OS, architecture, native libraries, and other system dependencies are still required.
 
@@ -32,7 +32,7 @@ Consider a developer troubleshooting why a newly built .NET console application 
 ## Complete solutions
 1. **Tooling Inspection Solution**: `dotnet --list-sdks` lists installed SDK versions; `dotnet --list-runtimes` lists installed runtime versions for the invoked architecture. Having an SDK is evidence that build tooling is installed, but an actual build may still fail because of missing workloads, targeting packs, feeds, or project prerequisites.
 2. **Framework vs. Runtime Solution**: Setting `TargetFramework` to `net11.0` selects the API contract and target framework assets at build time. Runtime configuration controls runtime selection for framework-dependent execution. SDK roll-forward, configured through SDK resolution rules such as `global.json`, is a separate build-tool selection decision.
-3. **Deployment Selection Solution**: 
+3. **Deployment Selection Solution**:
    - **Framework-dependent deployment**: Often has less app-specific runtime payload, but relies on a compatible installed runtime that must be serviced on the host.
    - **Self-contained deployment**: Includes the runtime for a target platform and is usually larger; runtime servicing requires republishing the application. OS and native dependency requirements remain.
 4. **Platform Tradeoffs Solution**: .NET relies on a managed Common Language Runtime (CLR) with automatic garbage collection, dynamic Just-In-Time (JIT) compilation (or optional AOT), and a rich Base Class Library. Rust enforces memory safety at compile-time without a garbage collector and targets native binary execution. Python typically relies on interpreted or bytecode-evaluated execution with dynamic typing.

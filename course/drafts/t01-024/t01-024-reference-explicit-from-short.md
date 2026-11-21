@@ -5,7 +5,7 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers the explicit numeric conversions from the `short` type to other integral types in C# 15 / .NET 11. The information provided is based on the .NET 11 GA release and .NET 9 behavior, with data checked as of 2026-11-14.
+This lesson covers the explicit numeric conversions from the `short` type to other integral types in C# 15 / .NET 11. The information provided is based on the .NET 11 GA release and .NET 9 behavior, with data checked as of 2026-11-20.
 
 Source: [Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)
 

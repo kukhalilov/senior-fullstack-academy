@@ -24,7 +24,8 @@ xUnit.net identifies tests through attributes, supplies data for repeated cases,
 
 - `IClassFixture<TFixture>` — Creates a fixture shared by tests in one test class. Use for expensive immutable setup; do not store per-test mutable state there without isolation/reset.
 - `ICollectionFixture<TFixture>` — Shares a fixture across classes in the same test collection. This can amortize expensive setup but increases risk from shared state and collection-level serialization.
-- `ICollectionDefinition<TCollectionFixture>` — Defines a named test collection and its shared fixture configuration. Group tests only when they intentionally share the fixture or need a common parallelization boundary.
+- `CollectionDefinitionAttribute` (`[CollectionDefinition]`) — Marks a class that names/configures a test collection and declares its collection fixture types by implementing `ICollectionFixture<TFixture>`. It is an attribute/class convention, not a generic `ICollectionDefinition<T>` interface. Test classes join that scope with `[Collection("name")]`.
+- `AssemblyFixtureAttribute` (`[assembly: AssemblyFixture(typeof(TFixture))]`) — xUnit.net v3 feature for sharing one fixture instance across test classes in the assembly. It does not create the same collection-level parallelization boundary as collection fixtures, so the fixture must be safe for concurrent use or parallelism must be configured deliberately.
 - `IAsyncLifetime` — xUnit’s async setup/cleanup lifecycle contract for test classes or fixtures. It lets asynchronous resources initialize/dispose without blocking on `.Result` or `.Wait()`.
 - `IAsyncLifetime.InitializeAsync` — The asynchronous initialization hook of `IAsyncLifetime`. Allocate external or async resources here and fail setup clearly if they cannot be created.
 - `IAsyncLifetime.DisposeAsync` — The asynchronous cleanup hook of `IAsyncLifetime`. Release owned resources even after test failure and avoid leaving state for later tests.
@@ -55,6 +56,7 @@ xUnit.net identifies tests through attributes, supplies data for repeated cases,
 | `[MemberData]` / `[ClassData]` | Externalized rows | Structured or reusable datasets |
 | `IClassFixture<TFixture>` | Per class | Expensive class-local shared setup |
 | `ICollectionFixture<TFixture>` | Across collection | Expensive setup intentionally shared across classes |
+| `AssemblyFixtureAttribute` | Across assembly | Setup shared across all classes; fixture must account for parallel tests |
 
 Fixture sharing and test parallelism are related: collections define isolation/serialization boundaries, but shared mutable objects still require careful state ownership. For small test inputs, inline data is easier to inspect; for complex values, typed data sources provide structure.
 

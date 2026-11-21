@@ -33,3 +33,7 @@ Use these concepts when defining a new service, reviewing a scaling proposal, in
 ## What later lessons cover
 
 The concepts lesson develops the decision process and failure reasoning. Reference lessons explain each named item in bounded groups. Practice and interview lessons apply the ideas to realistic scenarios. Existing .NET, React, SQL, security, and operations tracks remain the place for framework-specific APIs and configuration.
+
+## Review status
+
+Reviewed 2026-11-21. Checked the orientation against the HLD Handbook technology index and the linked official database, messaging, RPC, query, and cloud documentation. The overview distinguishes product categories and source-of-truth data from rebuildable projections, and makes no ranking or complete-market-survey claim. The examples are illustrative system-design guidance rather than vendor guarantees. No material omission remains in the supplied overview scope.

@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson covers post-incident analysis and organizational learning using Google SRE’s current published book and workbook guidance, checked 2026-11-17. Blamelessness does not mean avoiding responsibility for improving systems; it means explaining behavior through context and system conditions rather than personal blame. [Google SRE postmortem culture](https://sre.google/sre-book/postmortem-culture/) [SRE Workbook postmortem culture](https://sre.google/workbook/postmortem-culture/)
+This lesson covers post-incident analysis and organizational learning using Google SRE’s current published book and workbook guidance, checked 2026-11-20. Blamelessness does not mean avoiding responsibility for improving systems; it means explaining behavior through context and system conditions rather than personal blame. [Google SRE postmortem culture](https://sre.google/sre-book/postmortem-culture/) [SRE Workbook postmortem culture](https://sre.google/workbook/postmortem-culture/)
 
 # How this group fits the mental model
 

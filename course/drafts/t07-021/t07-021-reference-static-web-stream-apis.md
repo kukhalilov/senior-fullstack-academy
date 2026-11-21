@@ -10,8 +10,10 @@ Static prerender is for a complete snapshot. It may return a stream object, but 
 
 ## Supplied names explained
 
-- `prerender` renders a React tree to static HTML in a Web `ReadableStream` and waits for suspended content. It returns a promise with a `prelude` stream and `postponed` state for supported resumption workflows. Options align with server rendering concerns such as bootstrap scripts, error handling, nonce, and identifier prefix. It does not offer progressive streaming during data loading.
-- `resumeAndPrerender` continues a tree previously postponed by `prerender`, producing the remaining static output as a Web stream. It is for completing that compatible static rendering workflow; it is not a general way to resume a live server stream or arbitrary React tree.
+- `prerender(reactNode, options?)` expects a full-document tree and returns a promise for `{prelude, postponed}`. It waits for all Suspense data unless aborted; `postponed` is opaque, JSON-serializable state for `resume` or `resumeAndPrerender`, and is `null` when complete. Options: `bootstrapScriptContent`, `bootstrapScripts`, `bootstrapModules`, `identifierPrefix`, `importMap`, `maxHeadersLength`, `namespaceURI`, `onBrowserBailout`, `onError`, `onHeaders`, `progressiveChunkSize`, `signal`. It does not accept `nonce`, because a nonce must be unique per request. This static generation API waits rather than progressively revealing pending content.
+- `resumeAndPrerender(reactNode, postponedState, options?)` continues the exact tree supplied to `prerender` or a previous resume, and returns `{prelude, postponed}`; if aborted it may be resumed again. Options are `signal`, `onBrowserBailout`, and `onError`. It does not accept `nonce`, bootstrap script options, or `identifierPrefix`; nonce is intentionally unavailable in prerendered output and bootstrap/prefix values belong to the initial matching prerender. It is not a continuation of a live streaming SSR response.
+
+Partial prerendering is an intentional workflow: a render may call React's `postpone()` mechanism, or a prerender may be aborted with `signal`, yielding serializable opaque `postponed` state. Persist that state with the matching application inputs/tree, then resume it using the corresponding API. When no work remains, `postponed` is `null`. It is state for React's renderer, not application data to inspect or edit.
 
 ## Cross-item comparison
 
@@ -37,6 +39,7 @@ The prerender promise resolves when static output is ready; handle errors and an
 - Expecting progressive chunks as Suspense content resolves.
 - Importing static APIs from `react-dom/server` rather than `react-dom/static`.
 - Using Web Stream methods in Node when the dedicated Node static API is recommended.
+- Trying to bake a per-request CSP nonce into static prerender output; React explicitly disallows nonce on this API because it cannot be safely reused.
 - Treating `resumeAndPrerender` as a stateless repeat render.
 - Forgetting static HTML itself does not attach browser interactivity.
 

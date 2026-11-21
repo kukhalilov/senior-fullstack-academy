@@ -45,7 +45,7 @@ Start with command construction and streams, then filesystem identity and permis
 
 ## Version and platform scope
 
-The references were checked against Bash 5.3, systemd 262.1, and Linux man-pages 6.19 on 2026-11-16. Those versions are upstream documentation baselines, not a claim that every distribution ships them. Check `bash --version`, `systemd --version`, and local manual pages before using a newer option. Debian-like, Fedora/RHEL-like, Alpine, and container environments differ in paths, packages, default firewall tools, logging, and service-manager availability.
+The references were checked against Bash 5.3, systemd 262.2, and Linux man-pages 6.19 on 2026-11-20. Those versions are upstream documentation baselines, not a claim that every distribution ships them. Check `bash --version`, `systemd --version`, and local manual pages before using a newer option. Debian-like, Fedora/RHEL-like, Alpine, and container environments differ in paths, packages, default firewall tools, logging, and service-manager availability.
 
 ## Readiness check
 

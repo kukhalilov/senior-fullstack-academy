@@ -1,10 +1,12 @@
 # AWS architecture identity networking compute and data services — Reference: Telemetry, audit, deployment automation, resilience, and cost governance
 
-Sources: [Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html), [AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html), [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html), [CloudFormation change sets](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html), [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html), and [AWS Cost Management](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/what-is-costmanagement.html).
+Sources: [Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html), [AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html), [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html), [CloudFormation change sets](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html), [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/framework.html), [AWS Well-Architected Cloud Foundations](https://docs.aws.amazon.com/wellarchitected/latest/framework/cloud-foundations.html), and [AWS Cost Management](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/what-is-costmanagement.html).
 
 ## Scope and version
 
 This reference explains all 68 supplied operational, observability, deployment, resilience, governance and cost terms. Exact service quotas, retention, feature availability and pricing vary by Region, account and configuration. Use these concepts to decide what evidence and control you need, then consult the live service guide for current settings.
+
+As of the November 16, 2026 framework update, AWS Well-Architected has two sections: **Cloud Foundations** for organization-wide capabilities and **Cloud Workloads** for the six workload pillars. Cloud Foundations covers multi-account environment, identity and access, central observability, inventory/resource management, security/compliance, cloud financial management, and networking/connectivity. These capabilities typically have shared platform ownership; workload teams still own service-specific architecture and operations.
 
 ## How this group fits the mental model
 
@@ -60,7 +62,7 @@ Operations converts a design into a system that can be changed and diagnosed saf
 ### Architecture quality and resilience
 
 - `AWS Well-Architected Tool` — Workload review and milestone tracking service using the Well-Architected question sets. It organizes analysis and improvement plans; completing questions does not certify a workload or replace evidence/tests.
-- `AWS Well-Architected Framework` — Guidance for evaluating architecture across six pillars and improving workload decisions. Treat it as a structured design/review guide, not a mandated single reference architecture.
+- `AWS Well-Architected Framework` — Guidance organized into Cloud Foundations and Cloud Workloads. Cloud Workloads retains six pillars; Cloud Foundations separately covers seven organization-level capabilities. Treat it as a structured design/review guide, not a mandated single reference architecture.
 - `Operational excellence pillar` — Ability to operate and evolve workloads safely through observability, automation, response and continuous learning. It includes preparation and improvement, not merely runbooks.
 - `Security pillar` — Protection of workloads and data through identity, detection, infrastructure protection, incident response and application security. Security is a property of the system and its process, not one firewall product.
 - `Reliability pillar` — Ability to recover from failures and meet workload demand. It includes foundations, change management, failure management and tested recovery; multi-AZ alone does not prove reliability.

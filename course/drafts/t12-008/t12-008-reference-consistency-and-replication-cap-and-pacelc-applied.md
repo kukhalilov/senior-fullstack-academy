@@ -60,4 +60,4 @@ For a specific request, write down:
 
 ## Scope and version
 
-The formal CAP definitions and impossibility result are from Gilbert and Lynch. PACELC's normal-operation latency/consistency distinction is from Abadi. The “CAP twelve years later” discussion helps avoid the oversimplified slogan; product-specific guarantees still require the primary product documentation. This lesson remains in draft pending full claim-by-claim audit and manifest omission check.
+The formal CAP definitions and impossibility result are from Gilbert and Lynch. PACELC's normal-operation latency/consistency distinction is from Abadi. The “CAP twelve years later” discussion helps avoid the oversimplified slogan; product-specific guarantees still require the primary product documentation.

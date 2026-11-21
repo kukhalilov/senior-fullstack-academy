@@ -1,8 +1,8 @@
-# React routing frameworks data loading server components and deployment — Reference: React Router 8.5 Framework and Data mode APIs
+# React routing frameworks data loading server components and deployment — Reference: React Router 8.5.2 Framework and Data mode APIs
 
 ## Scope and version
 
-This reference reflects React Router 8.5.1 docs checked 2026-11-16. Router factories/components/hooks are Data/Declarative APIs; route-module exports and `routes.ts` conventions belong to Framework Mode. Do not mix their setup contracts. [React Router modes](https://reactrouter.com/start/modes) [Changelog](https://reactrouter.com/changelog)
+This reference reflects React Router 8.5.2 docs checked 2026-11-20. Router factories/components/hooks are Data/Declarative APIs; route-module exports and `routes.ts` conventions belong to Framework Mode. Do not mix their setup contracts. [React Router modes](https://reactrouter.com/start/modes) [Changelog](https://reactrouter.com/changelog)
 
 ## How this group fits the mental model
 
@@ -39,6 +39,8 @@ React Router matches routes and provides UI primitives. Data Mode adds route-obj
 - `links export` in Framework Mode declares link descriptors such as stylesheets/preloads for document output.
 - `route config in routes.ts` declares the Framework Mode route graph, often with route/layout/index helpers and file references. It is not a universal requirement for Data or Declarative modes.
 - `Route-module .server and .client boundaries` are Framework Mode file conventions for server-only/client-only modules. The build can exclude the opposite-runtime module; importing across a boundary incorrectly can fail or expose code.
+- `React Router view-transition APIs deprecated in v8` refers to the router's `viewTransition` options/props and `useViewTransitionState()` integration. React Router 8.5 deprecated these in favor of React 19.3's `<ViewTransition>` component; the existing router APIs remain available during v8 but are planned for removal in v9. Do not set `useTransitions={false}` when adopting React's component, because it requires React transitions to be enabled. [React Router 8.5 changelog](https://reactrouter.com/changelog)
+- `React <ViewTransition> replacement in React 19.3` is React's component for applying view-transition classes to route content; a persistent router layout can wrap its `<Outlet>`. This is a React API and is separate from React Router's deprecated view-transition props/hooks. [React Router 8.5 changelog](https://reactrouter.com/changelog) [React ViewTransition](https://react.dev/reference/react/ViewTransition)
 
 ## Cross-item comparison
 

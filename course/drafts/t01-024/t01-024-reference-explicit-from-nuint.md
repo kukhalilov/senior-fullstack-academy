@@ -6,7 +6,7 @@
 
 ## Scope and version
 
-**Scope and Version:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)). Checked 2026-11-14.
+**Scope and Version:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)). Checked 2026-11-20.
 
 This reference lesson covers one bounded group of exact, pre-enumerated names: explicit numeric conversions originating from the native unsigned integer type (`nuint`).
 

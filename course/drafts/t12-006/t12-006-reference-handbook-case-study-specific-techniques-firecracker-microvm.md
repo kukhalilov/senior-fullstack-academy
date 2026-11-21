@@ -59,4 +59,4 @@ Before production, test guest escape assumptions, malformed device/API input, VM
 
 ## Review status
 
-Firecracker’s design and host/jailer/seccomp recommendations are checked against its official repository docs. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Firecracker’s design, host, jailer, and seccomp descriptions are checked against its official repository docs. The deployment example is an illustrative defense-in-depth pattern; its security depends on the complete host, guest, network, credential, and operational configuration.

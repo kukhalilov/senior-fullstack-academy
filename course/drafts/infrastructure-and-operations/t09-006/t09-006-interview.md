@@ -27,7 +27,7 @@ Sources: [Dockerfile reference](https://docs.docker.com/reference/dockerfile/), 
 21. Which Compose service attributes are platform-dependent, deprecated, or version-gated?
 22. How would you build and verify an amd64/arm64 release with attestations?
 23. What is the difference between Compose `pre_start`, `post_start`, and `pre_stop` hooks?
-24. What is new in Docker Engine 29.10 and Compose 5.7, and what is experimental/partial?
+24. What changed in Docker Engine 29.10 and Compose 5.8 jobs, and what is experimental or risky?
 
 ## Concise interview answers
 
@@ -66,6 +66,8 @@ Containers package processes while sharing the host kernel. Namespaces/cgroups a
 ### Compose semantics
 
 Compose Specification validity does not mean the local Engine implements each optional deploy feature. `depends_on` controls initial orchestration progression; healthchecks evaluate configured probes; `restart` handles process outcomes. `pre_start` init steps can gate start in recent Compose, but concurrent projects still require migration locks/idempotence. `post_start` timing relative to entrypoint is not guaranteed and pre-stop hooks do not run on every failure mode.
+
+Compose 5.8 adds manual and scheduled one-shot jobs. Scheduled jobs need Engine 29.10+ with its experimental jobs extension enabled; the daemon stores run records and evaluates schedules. A schedule uses five-field cron syntax, UTC by default (or an IANA `timezone`), `concurrency: forbid` skips overlapping firings by default, and `missed_fires: one` runs one catch-up after daemon downtime by default. Scheduled execution does not start or wait for job `depends_on` services. The jobs API uses gRPC on daemon listener addresses, and Docker authorization plugins do not authorize it. Keep it experimental and do not expose daemon listeners to untrusted clients.
 
 ### Supply-chain evidence
 

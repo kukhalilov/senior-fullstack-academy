@@ -7,21 +7,21 @@
 # C# Built-in Type Aliases: Other Built-in Types
 
 ## Scope and version
-This lesson covers the non-numeric built-in type keywords in C#. It is based on the **C# 15** specification running on **.NET 11 GA**, as of November 14, 2026. 
+This lesson covers the non-numeric built-in type keywords in C#. It is based on the **C# 15** specification running on **.NET 11 GA**, as of November 20, 2026.
 *Source: [Microsoft Learn C# Built-in Types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table)*
 
 ## How this group fits the mental model
-In C#, every variable has a type. While numeric types handle calculations, the "other" built-in types handle logic, text, and the fundamental structure of the .NET type system. These keywords act as aliases for underlying .NET types, providing a shorthand that makes code more readable while ensuring the compiler knows exactly how to store and process the data.
+In C#, every variable has a type. While numeric types handle calculations, the "other" built-in types handle logic, text, and the fundamental structure of the .NET type system. Some keywords alias .NET types, while `dynamic`, `delegate`, and `void` have distinct semantics; they are not all simple aliases.
 
 ## Supplied names explained
 
 *   **`bool`**: Represents a Boolean value, which can only be `true` or `false`. It is used for logical operations and conditional branching.
-*   **`char`**: Represents one 16-bit UTF-16 code unit; some Unicode scalar values require a surrogate pair. It is a value type.
-*   **`object`**: Alias for `System.Object`, the root base type in the unified type system. `ref struct` types cannot be boxed or assigned to `object`.
+*   **`char`**: Represents one 16-bit UTF-16 code unit, which may be only half of a surrogate pair and is not always a complete Unicode scalar or user-perceived character. It is a value type.
+*   **`object`**: Alias for `System.Object`, the root base type for ordinary types in C#; `ref struct` values are excluded from boxing and cannot be assigned to `object`.
 *   **`string`**: Alias for `System.String`, an immutable reference type representing a sequence of UTF-16 `char` values. Its `==` and `!=` operators compare contents.
 *   **`dynamic`**: An object-like source type for which operations are bound at runtime. It is represented as `object` in metadata; it does not turn off all compile-time checks.
 *   **`void`**: Represents absence of a type and is used for methods that return no value; it cannot be used for variables.
-*   **`delegate`**: A built-in reference-type keyword that declares custom delegate types deriving from `System.Delegate`; it isn't an alias for one specific .NET type. This keyword is missing from the manifest inventory.
+*   **`delegate`**: A built-in reference-type keyword that declares custom delegate types deriving from `System.Delegate`; it isn't an alias for one specific .NET type. This keyword is explicitly included in the manifest inventory.
 
 ## Cross-item comparison
 
@@ -38,7 +38,7 @@ bool isReady = true;
 char letter = 'A';
 
 // object: Can hold any type
-object data = 10; 
+object data = 10;
 data = "Hello";
 
 // string: Text sequence

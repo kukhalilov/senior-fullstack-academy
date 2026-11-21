@@ -4,7 +4,7 @@ Sources: [HLD Handbook](https://hld.handbook.academy/), [Geisberger et al., Cont
 
 ## Scope and version
 
-This lesson explains the classical contraction hierarchies (CH) preprocessing technique for exact shortest-path queries in weighted road networks and notes customizable variants. The speed and space results depend on graph structure, contraction order, weight model, and implementation; they are not universal complexity guarantees for every graph. Time-dependent traffic, turn restrictions, transit, and live closures require suitable extensions or alternative routing models.
+This lesson explains the classical contraction hierarchies (CH) preprocessing technique for exact shortest-path queries in weighted road networks with nonnegative edge weights and notes customizable variants. The speed and space results depend on graph structure, contraction order, weight model, and implementation; they are not universal complexity guarantees for every graph. Time-dependent traffic, turn restrictions, transit, and live closures require suitable extensions or alternative routing models.
 
 ## How this group fits the mental model
 
@@ -57,7 +57,3 @@ Before adoption, benchmark preprocessing duration, shortcut count/index size, p5
 2. **What is the main workload fit?** Many shortest-path queries over a relatively stable suitable road graph, where preprocessing and index costs are amortized.
 3. **Does exact CH output guarantee the fastest current drive?** No. It is exact for the encoded graph/weights; stale or incomplete traffic/constraint data can make the result operationally suboptimal.
 4. **How can you validate shortcut unpacking?** Check the expanded edge sequence exists in the base graph, respects direction/constraints, and sums to the reported path cost.
-
-## Review status
-
-The preprocessing, shortcut, and hierarchy concepts are checked against the original CH paper and later routing research. This lesson remains pending full claim-by-claim audit and manifest omission check.

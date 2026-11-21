@@ -4,7 +4,7 @@ Sources: [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/o
 
 ## Scope and version
 
-This lesson covers Azure observability, operational controls, deployment identity and cost governance at a service-concept level. Signal retention, regional support, pricing and product lifecycle change; use current documentation and your subscription's actual configuration. Current concepts were checked 2026-11-16.
+This lesson covers Azure observability, operational controls, deployment identity and cost governance at a service-concept level. Signal retention, regional support, pricing and product lifecycle change; use current documentation and your subscription's actual configuration. Current concepts were checked 2026-11-20.
 
 ## How this group fits the mental model
 

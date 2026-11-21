@@ -13,22 +13,450 @@
     "Operational evidence should support a repeatable investigation: detect impact, establish scope and timeline, inspect correlated signals, verify recovery, and capture follow-up actions. Dashboards without ownership, thresholds, or response procedures do not constitute monitoring."
   ],
   "inventory": [
-    {"id":"observability-and-telemetry","title":"System signals, instrumentation boundaries, and correlation context","items":["Observability","Monitoring","Telemetry","Instrumentation","Telemetry pipeline","Signal","Operational event","Structured event","Correlation identifier","Trace identifier","Span identifier","Trace context propagation","W3C Trace Context","traceparent","tracestate","Baggage","Resource attributes","Service identity","Environment identity","Instrumentation scope","Telemetry sampling","Head sampling","Tail sampling","Telemetry cardinality","Telemetry retention","Sensitive-data redaction","Signal correlation","Golden signals","RED method","USE method"]},
-    {"id":"logs","title":"Log records, severity, structure, context, and retention","items":["Log record","Log body","Log severity number","Log severity text","Log timestamp","Observed timestamp","Log TraceId field","Log SpanId field","TraceFlags log field","Log Resource field","Log InstrumentationScope field","Log Attributes field","Log EventName field","Structured logging","Unstructured logging","Semantic log attributes","Exception event","Application log","Audit log","Access log","Log correlation","Log sampling","Log aggregation","Log retention","Log rotation","Sensitive-field redaction","High-volume log cost","OpenTelemetry Logs data model","OpenTelemetry log bridge"]},
-    {"id":"metrics-and-prometheus","title":"Measurements, instruments, time series, PromQL, and storage behavior","items":["Metric","Measurement","Metric instrument","Counter","UpDownCounter","Gauge","Histogram","ExponentialHistogram","ObservableCounter","ObservableUpDownCounter","ObservableGauge","Meter","Metric name","Metric unit","Metric description","Metric type","Metric temporality","Metric aggregation","AggregationTemporality","Monotonic sum","Data point attributes","Data point flags","Time series","Prometheus dimensional data model","Prometheus sample","Prometheus label","Label cardinality","Counter rate","Gauge aggregation","Classic histogram","Native histogram","Histogram bucket","Histogram bucket boundary","Histogram quantile estimation","Exemplar","PromQL selector","PromQL range vector","PromQL instant vector","PromQL rate()","PromQL increase()","PromQL histogram_quantile()","PromQL aggregation operator","Prometheus scrape","Scrape interval","Scrape timeout","Target discovery","Target relabeling","Metric relabeling","Recording rule","Alerting rule","Prometheus staleness","Metric retention","OpenTelemetry Metrics data model"]},
-    {"id":"distributed-tracing","title":"Trace graphs, span lifecycle, sampling, and cross-service causality","items":["Distributed trace","Trace graph","Span","SpanContext","Span kind","Internal span","Server span","Client span","Producer span","Consumer span","Parent span ID","Root span","Span event","Span link","Span status","StatusCode","Status description","Span attribute","Span name","Span duration","Span IsRecording state","TraceState","Trace propagation","Context injection","Context extraction","W3C Trace Context propagator","B3 propagator","Trace sampling","Parent-based sampler","Trace ID ratio sampler","Tail-based sampling","Sampling decision","Trace completeness","Trace fragmentation","OpenTelemetry Tracing API","OpenTelemetry Tracing SDK","OpenTelemetry Protocol (OTLP)"]},
-    {"id":"opentelemetry-collector","title":"Collector components, configuration, pipelines, and delivery resilience","items":["OpenTelemetry Collector","Collector distribution","Core distribution","Contrib distribution","Collector Builder (ocb)","Receiver","Processor","Exporter","Connector","Extension","Receiver configuration","Processor ordering","Exporter queue","Service pipeline","Traces pipeline","Metrics pipeline","Logs pipeline","Pipeline fan-out","Pipeline connector","OTLP receiver","OTLP exporter","Batch processor","Memory limiter processor","Attributes processor","Transform processor","Filter processor","Resource processor","Tail sampling processor","Health Check extension","zPages extension","Collector gateway deployment","Collector agent deployment","Collector load balancing exporter","Collector persistent queue","Collector retry and back-pressure","Collector component stability level","Collector configuration validation"]},
-    {"id":"semantic-conventions-and-slos","title":"Shared telemetry names, service objectives, budgets, and actionable alerts","items":["OpenTelemetry Semantic Conventions","Semantic convention stability status","Telemetry schema URL","Semantic convention migration","HTTP semantic conventions","Database semantic conventions","RPC semantic conventions","Messaging semantic conventions","Resource semantic conventions","Exception semantic conventions","Service Level Indicator (SLI)","Service Level Objective (SLO)","Service Level Agreement (SLA)","Availability SLI","Latency SLI","Correctness SLI","Throughput SLI","Error budget","Error-budget policy","Burn rate","Multi-window multi-burn-rate alert","Symptom-based alert","Cause-based alert","Alert threshold","Alert pending duration","Alert grouping","Alert deduplication","Alert inhibition","Alert routing","Alert severity","Actionable alert","Alert fatigue","Prometheus Alertmanager","Prometheus silence","Prometheus inhibition rule","Prometheus notification receiver","Recording rule versus alerting rule"]},
-    {"id":"dashboards-profiling-and-incident-evidence","title":"Operational views, profile signals, alert response, and incident learning","items":["Operational dashboard","Dashboard variable","Dashboard panel","Dashboard time range","Dashboard annotation","Service overview dashboard","Dependency dashboard","Saturation dashboard","Continuous profiling","CPU profile","Heap profile","Allocation profile","Lock contention profile","OpenTelemetry Profiles signal status","Alert runbook","On-call escalation","Incident timeline","Incident severity","Impact assessment","Detection time","Time to acknowledge","Time to mitigate","Time to recover","Post-incident review","Blameless incident review","Monitoring coverage gap","Synthetic monitoring","Black-box monitoring","White-box monitoring","Telemetry loss during outage","Monitoring system self-observability"]}
+    {
+      "id": "observability-and-telemetry",
+      "title": "System signals, instrumentation boundaries, and correlation context",
+      "items": [
+        "Observability",
+        "Monitoring",
+        "Telemetry",
+        "Instrumentation",
+        "Telemetry pipeline",
+        "Signal",
+        "Operational event",
+        "Structured event",
+        "Correlation identifier",
+        "Trace identifier",
+        "Span identifier",
+        "Trace context propagation",
+        "W3C Trace Context",
+        "traceparent",
+        "tracestate",
+        "Baggage",
+        "Resource attributes",
+        "Service identity",
+        "Environment identity",
+        "Instrumentation scope",
+        "Telemetry sampling",
+        "Head sampling",
+        "Tail sampling",
+        "Telemetry cardinality",
+        "Telemetry retention",
+        "Sensitive-data redaction",
+        "Signal correlation",
+        "Golden signals",
+        "RED method",
+        "USE method"
+      ]
+    },
+    {
+      "id": "logs",
+      "title": "Log records, severity, structure, context, and retention",
+      "items": [
+        "Log record",
+        "Log body",
+        "Log severity number",
+        "Log severity text",
+        "Log timestamp",
+        "Observed timestamp",
+        "Log TraceId field",
+        "Log SpanId field",
+        "TraceFlags log field",
+        "Log Resource field",
+        "Log InstrumentationScope field",
+        "Log Attributes field",
+        "Log EventName field",
+        "Structured logging",
+        "Unstructured logging",
+        "Semantic log attributes",
+        "Exception event",
+        "Application log",
+        "Audit log",
+        "Access log",
+        "Log correlation",
+        "Log sampling",
+        "Log aggregation",
+        "Log retention",
+        "Log rotation",
+        "Sensitive-field redaction",
+        "High-volume log cost",
+        "OpenTelemetry Logs data model",
+        "OpenTelemetry log bridge"
+      ]
+    },
+    {
+      "id": "metrics-and-prometheus",
+      "title": "Measurements, instruments, time series, PromQL, and storage behavior",
+      "items": [
+        "Metric",
+        "Measurement",
+        "Metric instrument",
+        "Counter",
+        "UpDownCounter",
+        "Gauge",
+        "Histogram",
+        "ExponentialHistogram",
+        "ObservableCounter",
+        "ObservableUpDownCounter",
+        "ObservableGauge",
+        "Meter",
+        "Metric name",
+        "Metric unit",
+        "Metric description",
+        "Metric type",
+        "Metric temporality",
+        "Metric aggregation",
+        "AggregationTemporality",
+        "Monotonic sum",
+        "Data point attributes",
+        "Data point flags",
+        "Time series",
+        "Prometheus dimensional data model",
+        "Prometheus sample",
+        "Prometheus label",
+        "Label cardinality",
+        "Counter rate",
+        "Gauge aggregation",
+        "Classic histogram",
+        "Native histogram",
+        "Histogram bucket",
+        "Histogram bucket boundary",
+        "Histogram quantile estimation",
+        "Exemplar",
+        "PromQL selector",
+        "PromQL range vector",
+        "PromQL instant vector",
+        "PromQL rate()",
+        "PromQL increase()",
+        "PromQL histogram_quantile()",
+        "PromQL aggregation operator",
+        "Prometheus scrape",
+        "Scrape interval",
+        "Scrape timeout",
+        "Target discovery",
+        "Target relabeling",
+        "Metric relabeling",
+        "Recording rule",
+        "Alerting rule",
+        "Prometheus staleness",
+        "Metric retention",
+        "OpenTelemetry Metrics data model"
+      ]
+    },
+    {
+      "id": "distributed-tracing",
+      "title": "Trace graphs, span lifecycle, sampling, and cross-service causality",
+      "items": [
+        "Distributed trace",
+        "Trace graph",
+        "Span",
+        "SpanContext",
+        "Span kind",
+        "Internal span",
+        "Server span",
+        "Client span",
+        "Producer span",
+        "Consumer span",
+        "Parent span ID",
+        "Root span",
+        "Span event",
+        "Span link",
+        "Span status",
+        "StatusCode",
+        "Status description",
+        "Span attribute",
+        "Span name",
+        "Span duration",
+        "Span IsRecording state",
+        "TraceState",
+        "Trace propagation",
+        "Context injection",
+        "Context extraction",
+        "W3C Trace Context propagator",
+        "B3 propagator",
+        "Trace sampling",
+        "Parent-based sampler",
+        "Trace ID ratio sampler",
+        "Tail-based sampling",
+        "Sampling decision",
+        "Trace completeness",
+        "Trace fragmentation",
+        "OpenTelemetry Tracing API",
+        "OpenTelemetry Tracing SDK",
+        "OpenTelemetry Protocol (OTLP)"
+      ]
+    },
+    {
+      "id": "opentelemetry-collector",
+      "title": "Collector components, configuration, pipelines, and delivery resilience",
+      "items": [
+        "OpenTelemetry Collector",
+        "Collector distribution",
+        "Core distribution",
+        "Contrib distribution",
+        "Collector Builder (ocb)",
+        "Receiver",
+        "Processor",
+        "Exporter",
+        "Connector",
+        "Extension",
+        "Receiver configuration",
+        "Processor ordering",
+        "Exporter queue",
+        "Service pipeline",
+        "Traces pipeline",
+        "Metrics pipeline",
+        "Logs pipeline",
+        "Pipeline fan-out",
+        "Pipeline connector",
+        "OTLP receiver",
+        "OTLP exporter",
+        "Batch processor",
+        "Memory limiter processor",
+        "Attributes processor",
+        "Transform processor",
+        "Filter processor",
+        "Resource processor",
+        "Tail sampling processor",
+        "Health Check extension",
+        "zPages extension",
+        "Collector gateway deployment",
+        "Collector agent deployment",
+        "Collector load balancing exporter",
+        "Collector persistent queue",
+        "Collector retry and back-pressure",
+        "Collector component stability level",
+        "Collector configuration validation"
+      ]
+    },
+    {
+      "id": "semantic-conventions-and-slos",
+      "title": "Shared telemetry names, service objectives, budgets, and actionable alerts",
+      "items": [
+        "OpenTelemetry Semantic Conventions",
+        "Semantic convention stability status",
+        "Telemetry schema URL",
+        "Semantic convention migration",
+        "HTTP semantic conventions",
+        "Database semantic conventions",
+        "RPC semantic conventions",
+        "Messaging semantic conventions",
+        "Resource semantic conventions",
+        "Exception semantic conventions",
+        "Service Level Indicator (SLI)",
+        "Service Level Objective (SLO)",
+        "Service Level Agreement (SLA)",
+        "Availability SLI",
+        "Latency SLI",
+        "Correctness SLI",
+        "Throughput SLI",
+        "Error budget",
+        "Error-budget policy",
+        "Burn rate",
+        "Multi-window multi-burn-rate alert",
+        "Symptom-based alert",
+        "Cause-based alert",
+        "Alert threshold",
+        "Alert pending duration",
+        "Alert grouping",
+        "Alert deduplication",
+        "Alert inhibition",
+        "Alert routing",
+        "Alert severity",
+        "Actionable alert",
+        "Alert fatigue",
+        "Prometheus Alertmanager",
+        "Prometheus silence",
+        "Prometheus inhibition rule",
+        "Prometheus notification receiver",
+        "Recording rule versus alerting rule"
+      ]
+    },
+    {
+      "id": "dashboards-profiling-and-incident-evidence",
+      "title": "Operational views, profile signals, alert response, and incident learning",
+      "items": [
+        "Operational dashboard",
+        "Dashboard variable",
+        "Dashboard panel",
+        "Dashboard time range",
+        "Dashboard annotation",
+        "Service overview dashboard",
+        "Dependency dashboard",
+        "Saturation dashboard",
+        "Continuous profiling",
+        "CPU profile",
+        "Heap profile",
+        "Allocation profile",
+        "Lock contention profile",
+        "OpenTelemetry Profiles signal status",
+        "Alert runbook",
+        "On-call escalation",
+        "Incident timeline",
+        "Incident severity",
+        "Impact assessment",
+        "Detection time",
+        "Time to acknowledge",
+        "Time to mitigate",
+        "Time to recover",
+        "Post-incident review",
+        "Blameless incident review",
+        "Monitoring coverage gap",
+        "Synthetic monitoring",
+        "Black-box monitoring",
+        "White-box monitoring",
+        "Telemetry loss during outage",
+        "Monitoring system self-observability"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Logs","Metrics","Traces","Baggage"],["Counter","UpDownCounter","Gauge","Histogram"],["Classic histogram","Native histogram"],["Trace span event","Log record"],["Head sampling","Tail sampling"],["OpenTelemetry API","OpenTelemetry SDK","OTLP","OpenTelemetry Collector"],["Collector receiver","processor","exporter","connector","extension"],["Collector agent deployment","Collector gateway deployment"],["SLI","SLO","SLA"],["Error budget","Burn rate"],["Symptom-based alert","Cause-based alert"],["Black-box monitoring","White-box monitoring"],["Dashboard","Alert","Runbook"]],
-  "comparisonSources": ["https://opentelemetry.io/docs/concepts/signals/","https://opentelemetry.io/docs/concepts/signals/metrics/","https://opentelemetry.io/docs/specs/otel/","https://opentelemetry.io/docs/specs/semconv/","https://opentelemetry.io/docs/collector/configuration/","https://prometheus.io/docs/concepts/data_model/","https://prometheus.io/docs/concepts/metric_types/","https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/","https://prometheus.io/docs/alerting/latest/alertmanager/","https://sre.google/workbook/alerting-on-slos/"],
-  "versionNotes": [
-    {"edition":"OpenTelemetry Semantic Conventions 1.45.0, checked 2026-11-14","items":["Current semantic-convention documentation publishes version 1.45.0. Individual conventions have their own stability status; instrumentation may expose opt-in migrations such as OTEL_SEMCONV_STABILITY_OPT_IN rather than changing emitted names without a compatibility plan."],"sourceUrls":["https://opentelemetry.io/docs/specs/semconv/","https://opentelemetry.io/docs/specs/semconv/http/http-spans/"]},
-    {"edition":"Prometheus 3.x current documentation, checked 2026-11-14","items":["Prometheus 3.0 introduced UTF-8 metric and label name support while recommending conventional names for cross-tool compatibility. Current documentation includes native histograms and corresponding scrape configuration; distinguish native histograms from classic bucket series."],"sourceUrls":["https://prometheus.io/docs/concepts/data_model/","https://prometheus.io/docs/prometheus/latest/configuration/configuration/"]}
+  "comparisons": [
+    [
+      "Logs",
+      "Metrics",
+      "Traces",
+      "Baggage"
+    ],
+    [
+      "Counter",
+      "UpDownCounter",
+      "Gauge",
+      "Histogram"
+    ],
+    [
+      "Classic histogram",
+      "Native histogram"
+    ],
+    [
+      "Trace span event",
+      "Log record"
+    ],
+    [
+      "Head sampling",
+      "Tail sampling"
+    ],
+    [
+      "OpenTelemetry API",
+      "OpenTelemetry SDK",
+      "OTLP",
+      "OpenTelemetry Collector"
+    ],
+    [
+      "Collector receiver",
+      "processor",
+      "exporter",
+      "connector",
+      "extension"
+    ],
+    [
+      "Collector agent deployment",
+      "Collector gateway deployment"
+    ],
+    [
+      "SLI",
+      "SLO",
+      "SLA"
+    ],
+    [
+      "Error budget",
+      "Burn rate"
+    ],
+    [
+      "Symptom-based alert",
+      "Cause-based alert"
+    ],
+    [
+      "Black-box monitoring",
+      "White-box monitoring"
+    ],
+    [
+      "Dashboard",
+      "Alert",
+      "Runbook"
+    ]
   ],
-  "sourceSnapshot": {"authority":"OpenTelemetry specifications and official documentation, Prometheus documentation, and Google SRE Workbook","edition":"Current OpenTelemetry Semantic Conventions 1.45.0 and Prometheus 3.x/current docs checked 2026-11-14; signal maturity and component stability are explicitly differentiated","checkedAt":"2026-11-14","urls":["https://opentelemetry.io/docs/concepts/signals/","https://opentelemetry.io/docs/concepts/signals/profiles/","https://opentelemetry.io/docs/concepts/signals/logs/","https://opentelemetry.io/docs/concepts/signals/metrics/","https://opentelemetry.io/docs/concepts/signals/traces/","https://opentelemetry.io/docs/specs/otel/","https://opentelemetry.io/docs/specs/otel/trace/","https://opentelemetry.io/docs/specs/otel/metrics/","https://opentelemetry.io/docs/specs/otel/logs/","https://opentelemetry.io/docs/specs/semconv/","https://opentelemetry.io/docs/specs/semconv/http/http-spans/","https://opentelemetry.io/docs/collector/","https://opentelemetry.io/docs/collector/configuration/","https://opentelemetry.io/docs/collector/architecture/","https://prometheus.io/docs/concepts/data_model/","https://prometheus.io/docs/concepts/metric_types/","https://prometheus.io/docs/prometheus/latest/configuration/configuration/","https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/","https://prometheus.io/docs/alerting/latest/alertmanager/","https://sre.google/workbook/alerting-on-slos/"]},
-  "scopeExclusions": ["Vendor backend dashboards, query languages, and pricing are not universal; provider-specific operations belongs to t09-007","Application-specific .NET ILogger, OpenTelemetry SDK configuration, and auto-instrumentation APIs are covered in language/runtime tracks","Incident command and response procedures are operational practice; t09-009 covers execution while this inventory defines core telemetry and alert vocabulary","Security audit strategy and privacy regulation are in t07; telemetry redaction is included only as an instrumentation safeguard","Profiling is included as a related signal but exact vendor profiler APIs are excluded","The OpenTelemetry Collector registry contains hundreds of optional components; this source-bounded map names the core architecture and commonly used components, not every third-party distribution plugin"],
+  "comparisonSources": [
+    "https://opentelemetry.io/docs/concepts/signals/",
+    "https://opentelemetry.io/docs/concepts/signals/metrics/",
+    "https://opentelemetry.io/docs/specs/otel/",
+    "https://opentelemetry.io/docs/specs/semconv/",
+    "https://opentelemetry.io/docs/collector/configuration/",
+    "https://prometheus.io/docs/concepts/data_model/",
+    "https://prometheus.io/docs/concepts/metric_types/",
+    "https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/",
+    "https://prometheus.io/docs/alerting/latest/alertmanager/",
+    "https://sre.google/workbook/alerting-on-slos/"
+  ],
+  "versionNotes": [
+    {
+      "edition": "OpenTelemetry Semantic Conventions 1.45.0, checked 2026-11-20",
+      "items": [
+        "Current semantic-convention documentation publishes version 1.45.0. Individual conventions have their own stability status; instrumentation may expose opt-in migrations such as OTEL_SEMCONV_STABILITY_OPT_IN rather than changing emitted names without a compatibility plan."
+      ],
+      "sourceUrls": [
+        "https://opentelemetry.io/docs/specs/semconv/",
+        "https://opentelemetry.io/docs/specs/semconv/http/http-spans/"
+      ]
+    },
+    {
+      "edition": "Prometheus 3.16.0 current release and 3.x documentation, checked 2026-11-20",
+      "items": [
+        "Prometheus 3.0 introduced UTF-8 metric and label name support; conventional names remain more interoperable across tooling. As of 2026-11-20 the latest release is Prometheus 3.16.0 (released November 4, 2026); current docs describe native histograms alongside classic histograms. Pin the deployed version and check its release notes for behavior changes."
+      ],
+      "sourceUrls": [
+        "https://prometheus.io/docs/concepts/data_model/",
+        "https://prometheus.io/docs/prometheus/latest/configuration/configuration/",
+        "https://prometheus.io/download/"
+      ]
+    },
+    {
+      "edition": "OpenTelemetry specification 1.62.0, checked 2026-11-20",
+      "items": [
+        "The current specification documentation identifies version 1.62.0, distinct from Semantic Conventions 1.45.0. Signal and component stability is defined per API/spec/component; do not infer that every feature is stable from the umbrella version."
+      ],
+      "sourceUrls": [
+        "https://opentelemetry.io/docs/specs/otel/",
+        "https://opentelemetry.io/docs/specs/otel/versioning-and-stability/"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "OpenTelemetry specifications and official documentation, Prometheus documentation, and Google SRE Workbook",
+    "edition": "OpenTelemetry specification 1.62.0, Semantic Conventions 1.45.0, Prometheus 3.16.0/current documentation checked 2026-11-20; signal maturity and component stability are explicitly differentiated",
+    "checkedAt": "2026-11-20",
+    "urls": [
+      "https://opentelemetry.io/docs/concepts/signals/",
+      "https://opentelemetry.io/docs/concepts/signals/profiles/",
+      "https://opentelemetry.io/docs/concepts/signals/logs/",
+      "https://opentelemetry.io/docs/concepts/signals/metrics/",
+      "https://opentelemetry.io/docs/concepts/signals/traces/",
+      "https://opentelemetry.io/docs/specs/otel/",
+      "https://opentelemetry.io/docs/specs/otel/trace/",
+      "https://opentelemetry.io/docs/specs/otel/metrics/",
+      "https://opentelemetry.io/docs/specs/otel/logs/",
+      "https://opentelemetry.io/docs/specs/semconv/",
+      "https://opentelemetry.io/docs/specs/semconv/http/http-spans/",
+      "https://opentelemetry.io/docs/collector/",
+      "https://opentelemetry.io/docs/collector/configuration/",
+      "https://opentelemetry.io/docs/collector/architecture/",
+      "https://prometheus.io/docs/concepts/data_model/",
+      "https://prometheus.io/docs/concepts/metric_types/",
+      "https://prometheus.io/docs/prometheus/latest/configuration/configuration/",
+      "https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/",
+      "https://prometheus.io/docs/alerting/latest/alertmanager/",
+      "https://sre.google/workbook/alerting-on-slos/",
+      "https://prometheus.io/download/",
+      "https://opentelemetry.io/docs/specs/otel/versioning-and-stability/"
+    ]
+  },
+  "scopeExclusions": [
+    "Vendor backend dashboards, query languages, and pricing are not universal; provider-specific operations belongs to t09-007",
+    "Application-specific .NET ILogger, OpenTelemetry SDK configuration, and auto-instrumentation APIs are covered in language/runtime tracks",
+    "Incident command and response procedures are operational practice; t09-009 covers execution while this inventory defines core telemetry and alert vocabulary",
+    "Security audit strategy and privacy regulation are in t07; telemetry redaction is included only as an instrumentation safeguard",
+    "Profiling is included as a related signal but exact vendor profiler APIs are excluded",
+    "The OpenTelemetry Collector registry contains hundreds of optional components; this source-bounded map names the core architecture and commonly used components, not every third-party distribution plugin"
+  ],
   "generationAllowed": true
 }

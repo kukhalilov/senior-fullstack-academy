@@ -10,7 +10,7 @@ This lesson explains Cloudflare Workers as an edge compute platform and distingu
 
 When a request arrives, Cloudflare routes it to a Worker in its network. The Worker can inspect the request, perform computation close to the user, call bindings or remote services, and return or stream a response. This is useful for request routing, authentication gates, cache decisions, lightweight APIs, rendering, and adapting traffic between clients and origin systems.
 
-The important design split is between short request handling, durable background work, and coordinated state. A regular Worker handles events in an isolate with CPU and memory constraints. `ctx.waitUntil()` can extend promise work after the response or disconnect, but only for a bounded platform interval; it is not a queue or durable workflow guarantee. For durable asynchronous processing use a queue/workflow product with explicit retries and idempotent consumers. For one logical entity that needs serialized coordination and transactional state, a Durable Object can provide a uniquely addressed coordinator and attached strongly consistent storage. Workers KV serves a different use: globally distributed, cache-heavy reads where eventual consistency is acceptable.
+The important design split is between request handling, durable background work, and coordinated state. A regular Worker handles events in an isolate with CPU and memory constraints. For HTTP requests, wall time has no hard limit while the client remains connected, but CPU and other platform limits still apply. When the response completes or the client disconnects, `ctx.waitUntil()` can extend promise work for up to 30 seconds under current platform limits; this is a bounded best-effort continuation, not a queue or durable workflow guarantee. For durable asynchronous processing use a queue/workflow product with explicit retries and idempotent consumers. For one logical entity that needs serialized coordination and transactional state, a Durable Object can provide a uniquely addressed coordinator and attached strongly consistent storage. Workers KV serves a different use: globally distributed, cache-heavy reads where eventual consistency is acceptable. Check current limits before deployment because they are subject to change.
 
 Putting code at the edge does not make a dependent database or origin globally local. Every remote call still has network latency and failure modes. Design timeouts, bounded retries, fallbacks, cache policy, and observability around the complete path.
 
@@ -47,7 +47,7 @@ For a rarely changed feature flag read by many locations, KV can be a reasonable
 
 - Treating edge compute as zero-latency access to the application's central database.
 - Buffering an unbounded request or response body in memory rather than streaming within platform limits.
-- Using `waitUntil()` as a substitute for a durable queue when work must survive interruption and be retried or inspected.
+- Using `waitUntil()` as a substitute for a durable queue when work must survive interruption and be retried or inspected. Current docs allow up to 30 seconds after an HTTP response completes or the client disconnects; that window does not establish durable delivery.
 - Using KV as a strongly consistent lock, inventory counter, or security authority despite eventual consistency and caching.
 - Routing every entity through one Durable Object, creating a hot serialized bottleneck instead of partitioning by the coordination boundary.
 - Assuming a Worker isolate is a persistent process. In-memory state can disappear when an isolate is evicted or replaced; durable state belongs in a persistence product.
@@ -57,7 +57,7 @@ For a rarely changed feature flag read by many locations, KV can be a reasonable
 ## Knowledge checks with answers
 
 1. **Why might a Worker near the user still have a slow request?** Its origin, database, identity provider, or another dependency may be far away or slow. Edge placement reduces only some parts of the path.
-2. **Can `waitUntil()` safely process a job that must never be lost?** Not by itself. It extends background work for a bounded time but is not a durable queue; enqueue the work in a durable system and make the consumer idempotent.
+2. **Can `waitUntil()` safely process a job that must never be lost?** Not by itself. The current post-response extension is up to 30 seconds, but this is not durable delivery; enqueue the work in a durable system and make the consumer idempotent.
 3. **When should KV be avoided as the authority?** When the operation requires immediate globally consistent reads, atomic read-modify-write, strict uniqueness, or concurrency control that KV does not promise.
 4. **What does a Durable Object's identity buy you?** A stable, globally addressable coordination point for one logical entity, with attached persistent storage and serialized logic; it does not remove the need to partition load or design recovery.
 5. **What should be checked before moving a Node server to Workers?** Runtime compatibility, native module/OS assumptions, streaming behavior, request body handling, CPU/memory budgets, binding behavior, origin dependencies, and required background processing guarantees.

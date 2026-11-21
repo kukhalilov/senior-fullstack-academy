@@ -12,7 +12,7 @@ In a collaborative editor, users should be able to type locally without waiting 
 
 For a text sequence, represent an insertion as `(position, text)` and a deletion as `(position, length)` relative to a known document version. The server or peers maintain a common logical order of operations. When a remote edit arrives, the system transforms it against concurrent operations since its base version, then applies and broadcasts the transformed operation. The exact tie-breaking rule determines how simultaneous inserts appear.
 
-OT is not “merge text by diff” and not automatic semantic conflict resolution. A correct system must preserve applicable operations, causal order, convergence, and intended effects as defined by the editor. Different document models require different operations: rich text, objects, tables, and comments need more than insert/delete character offsets.
+OT is not “merge text by diff” and not automatic semantic conflict resolution. Historical research literature cites Google Wave and Google Docs as OT examples; do not infer the current internal implementation of a commercial product from an older paper. A correct system must preserve applicable operations, causal order, convergence, and intended effects as defined by the editor. Different document models require different operations: rich text, objects, tables, and comments need more than insert/delete character offsets.
 
 ## Supplied names explained
 

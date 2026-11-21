@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson explains the supplied log, trace, context, and profile names. The OpenTelemetry source snapshot is checked 2026-11-17. The Logs data model and core logging specification are stable, while language-level implementations differ. The Profiles protocol is in development/alpha; treat its interoperability and implementation maturity accordingly. HTTP semantic conventions evolve and may include stability differences by attribute or convention. [OpenTelemetry logs](https://opentelemetry.io/docs/concepts/signals/logs/) [Specification status](https://opentelemetry.io/docs/specs/status/) [Profiles](https://opentelemetry.io/docs/specs/otel/profiles/)
+This lesson explains the supplied log, trace, context, and profile names. The OpenTelemetry source snapshot is checked 2026-11-20. The Logs data model and core logging specification are stable, while language-level implementations differ. The Profiles protocol is in development/alpha; treat its interoperability and implementation maturity accordingly. HTTP semantic conventions evolve and may include stability differences by attribute or convention. [OpenTelemetry logs](https://opentelemetry.io/docs/concepts/signals/logs/) [Specification status](https://opentelemetry.io/docs/specs/status/) [Profiles](https://opentelemetry.io/docs/specs/otel/profiles/)
 
 # How this group fits the mental model
 

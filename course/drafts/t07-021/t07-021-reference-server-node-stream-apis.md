@@ -10,8 +10,8 @@ Node streams let a Node HTTP server pipe rendered HTML to the response as the sh
 
 ## Supplied names explained
 
-- `renderToPipeableStream` renders a React tree to a Node.js pipeable stream. It returns `pipe` and `abort` controls plus callbacks such as `onShellReady`, `onShellError`, and `onError`. A typical server waits for the shell callback, sets status/headers, then pipes to the response; if the shell fails before output, it can send a fallback response. Suspense boundaries allow later content to stream. The server must handle disconnects, abort, errors, script bootstrapping, and security nonces deliberately.
-- `resumeToPipeableStream` continues a React tree previously prepared by `prerenderToNodeStream`, producing a Node.js pipeable stream. It is not the normal entry point for each request and is not a generic continuation of a `renderToPipeableStream` result. Use only the matching prerender/resume lifecycle.
+- `renderToPipeableStream(reactNode, options?)` expects a full-document tree (usually including `<html>`) and returns `{pipe, abort}`. Options are `bootstrapScriptContent`, `bootstrapScripts`, `bootstrapModules`, `formState`, `identifierPrefix`, Canary-only `importMap`, `maxHeadersLength`, `namespaceURI`, `nonce`, `onAllReady`, `onBrowserBailout`, `onError`, `onHeaders`, `onShellReady`, `onShellError`, and `progressiveChunkSize`. `onShellReady` is the progressive-send point; `onAllReady` waits for all content, so piping there eliminates progressive loading. `onShellError` means no bytes were emitted and the shell-ready/all-ready callbacks will not fire. `onError` also fires for recoverable errors; preserve default logging if overriding it. The Node server owns HTTP status, headers, disconnect cancellation, and fallback behavior.
+- `resumeToPipeableStream(reactNode, postponedState, options?)` resumes the same document tree and opaque state produced by `prerenderToNodeStream`. It returns a promise resolving to `{pipe, abort}` after the shell is ready. Options are `nonce`, `onAllReady`, `onBrowserBailout`, `onError`, `onShellReady`, and `onShellError`. Bootstrap scripts/modules and `identifierPrefix` must be supplied during prerender, not during resume. It is not a continuation of an arbitrary `renderToPipeableStream` result.
 
 ## Cross-item comparison
 
@@ -44,7 +44,9 @@ This is an API shape example; real server code must also coordinate error status
 
 - Calling `pipe` before deciding shell response headers/status.
 - Treating `onError` after shell output as a chance to replace already-sent bytes.
-- Forgetting to abort render work when a client disconnects.
+- Assuming a shell error callback is followed by `onShellReady` or `onAllReady`; no bytes were emitted and those callbacks will not occur.
+- Piping in `onAllReady` when progressive delivery is wanted.
+- Passing bootstrap scripts or an identifier prefix only at resume time.
 - Using `resumeToPipeableStream` without `prerenderToNodeStream` output.
 - Confusing Node streams with Web `ReadableStream`.
 

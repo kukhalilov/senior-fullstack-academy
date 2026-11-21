@@ -58,4 +58,4 @@ An end-to-end pipeline versions feature schemas and model/index versions, refres
 
 ## Review status
 
-Recommendation pipeline distinctions are checked against Google ML documentation. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Reviewed 2026-11-21. Google ML documentation was checked for content-based versus collaborative retrieval, vector similarity, candidate generation, scoring, and re-ranking. The lesson correctly limits content-based recommendations by metadata quality, profile availability, and over-specialization; it describes diversity and freshness as downstream policy/ranking choices rather than guarantees of similarity search. No material factual corrections or missing core concepts were found.

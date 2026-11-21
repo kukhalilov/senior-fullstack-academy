@@ -5,7 +5,7 @@
 ## Scope and version
 
 * **Topic:** `nint` explicit numeric conversions in C#.
-* **Edition:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17. Source authority: Microsoft Learn [1].
+* **Edition:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-20. Source authority: Microsoft Learn [1].
 * **Status:** Automatically generated draft.
 * **Scope Boundary:** This reference lesson covers only the explicit numeric conversions originating from the native-sized signed integer type (`nint`) to the specific smaller or alternate integer/character types listed in the inventory. It excludes implicit conversions, conversions from other types to `nint`, and nonnumeric conversions.
 

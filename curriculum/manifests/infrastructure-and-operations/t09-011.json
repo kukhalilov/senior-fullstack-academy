@@ -377,9 +377,11 @@
       ]
     },
     {
-      "fact": "The ordinary Lambda Event Function timeout maximum is 900 seconds (15 minutes). Asynchronous and event source mapping invocations on Lambda Managed Instances can use up to 5,400 seconds (90 minutes), except Amazon MQ and Amazon DocumentDB event sources remain at 15 minutes; synchronous invocations and initialization remain subject to 15-minute limits. Do not generalize the 90-minute exception to all Lambda invocations or Web Functions.",
+      "fact": "As of the AWS announcement on 2026-11-19, on-demand Lambda Event Functions support up to 1,800 seconds (30 minutes) for synchronous, asynchronous, and event-source mapping invocations. On Lambda Managed Instances, synchronous invocations support 30 minutes and asynchronous/event-source mapping invocations support 5,400 seconds (90 minutes), except Amazon MQ and Amazon DocumentDB event source mappings remain at 15 minutes. Initialization remains limited to 10 seconds on-demand and 15 minutes on Managed Instances. Durable async executions can have a one-year total execution timeout, distinct from each invocation's function timeout. Do not generalize the 90-minute limit to all Lambda invocations or Web Functions.",
       "sourceUrls": [
         "https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html",
+        "https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html",
+        "https://aws.amazon.com/about-aws/whats-new/2026/11/aws-lambda-30-minute-ondemand-event-functions/",
         "https://docs.aws.amazon.com/lambda/latest/dg/lambda-managed-instances-best-practices.html"
       ]
     },
@@ -391,9 +393,16 @@
       ]
     },
     {
-      "fact": "AWS App Mesh reached full shutdown on 2026-09-30 and should not be recommended for new designs as a current managed service. The service is outside this lesson's supplied inventory; when discussing older architectures, identify its shutdown and direct learners to current AWS service guidance rather than inventing a one-for-one successor.",
+      "fact": "AWS App Mesh support ended and it reached full shutdown on 2026-09-30 and should not be recommended for new designs as a current managed service. The service is outside this lesson's supplied inventory; when discussing older architectures, identify its shutdown and direct learners to current AWS service guidance rather than inventing a one-for-one successor.",
       "sourceUrls": [
         "https://docs.aws.amazon.com/general/latest/gr/full_shutdown_services.html"
+      ]
+    },
+    {
+      "fact": "AWS Well-Architected Framework was updated 2026-11-16: six pillar whitepapers consolidated into one framework, a Cloud Foundations section added for organization-wide platform capabilities, and workload pillars retained in Cloud Workloads. Cloud Foundations has seven capability areas; it is not an additional workload pillar.",
+      "sourceUrls": [
+        "https://docs.aws.amazon.com/wellarchitected/latest/framework/framework.html",
+        "https://docs.aws.amazon.com/wellarchitected/latest/framework/cloud-foundations.html"
       ]
     }
   ],
@@ -473,10 +482,12 @@
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "AWS official service user guides and AWS Well-Architected Framework",
-    "edition": "Current AWS common application architecture services, DynamoDB global-table consistency modes, and Lambda lifecycle changes checked 2026-11-17; exact regional availability, service quotas, API revisions, and pricing vary",
-    "checkedAt": "2026-11-17",
+    "edition": "Current AWS common application architecture services, DynamoDB global-table consistency modes, Lambda lifecycle changes, and Well-Architected 2026-11-16 framework update checked 2026-11-20; exact regional availability, service quotas, API revisions, and pricing vary",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/framework.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/cloud-foundations.html",
       "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html",
       "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html",
       "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html",
@@ -598,7 +609,10 @@
       "https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html",
       "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html",
       "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html",
-      "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html"
+      "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_rcps.html",
+      "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html",
+      "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html",
+      "https://aws.amazon.com/about-aws/whats-new/2026/11/aws-lambda-30-minute-ondemand-event-functions/"
     ]
   },
   "scopeExclusions": [

@@ -5,7 +5,7 @@
 # Scope and version
 
 * **Topic:** Integer literal forms and notation in C#
-* **Edition/Scope:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn C# numeric literal reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types))
+* **Edition/Scope:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-20 ([Microsoft Learn C# numeric literal reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types))
 * **Automatic Generation Notice:** This is an automatically generated draft.
 
 ---
@@ -25,11 +25,12 @@ The notation choices—such as base prefixes, trailing suffixes, and grouping ch
 * **Decimal integer literal:** Standard base-10 integer notation written without a prefix (e.g., `42`). It is the most common way to represent everyday whole numbers in source code.
 * **Hexadecimal integer literal:** Base-16 integer notation designated by the prefix `0x` or `0X` (e.g., `0x2A`). It uses digits `0`–`9` and letters `a`–`f` (or `A`–`F`) and is frequently used for bitmasks, memory addresses, or byte-level manipulation.
 * **Binary integer literal:** Base-2 integer notation designated by the prefix `0b` or `0B` (e.g., `0b00101010`). It allows developers to specify exact bit patterns visually in code.
-* **Integer literal type selection:** The compiler rule that automatically assigns a type to an integer literal based on its value and whether a suffix is present, selecting the first type in a sequence that can accommodate the value (`int`, `uint`, `long`, `ulong`).
+* **Integer literal type selection:** The compiler rule that selects an integer literal type from its value, base, and suffix. With no suffix, the first fitting type among `int`, `uint`, `long`, and `ulong` is selected; `U` selects the first fitting `uint`/`ulong`, `L` the first fitting `long`/`ulong`, and combined `UL`/`LU` forms select `ulong`. Hexadecimal and binary literals are interpreted as nonnegative values, even when their high bit is set.
 * **Digit separator _:** The underscore character (`_`) placed between digits (e.g., `1_000_000`) to improve human readability. It is ignored entirely by the compiler during compilation and type selection.
 * **Unsigned suffix U or u:** A trailing modifier appended to an integer literal to force its type to be unsigned (`uint` or `ulong` depending on magnitude and other suffixes).
 * **Long suffix L or l:** A trailing modifier appended to an integer literal to force its type to be a 64-bit integer (`long` or `ulong`).
-* **Combined unsigned long suffix UL, Ul, uL, or ul:** `UL`, `Ul`, `uL`, `ul`, `LU`, `Lu`, `lU`, or `lu` select `ulong`. **Combined unsigned long suffix LU, Lu, lU, or lu** are alternate spellings for the same suffix.
+* **Combined unsigned long suffix UL, Ul, uL, or ul:** `UL`, `Ul`, `uL`, or `ul` are valid suffix spellings; they select `ulong`.
+* **Combined unsigned long suffix LU, Lu, lU, or lu:** `LU`, `Lu`, `lU`, or `lu` are the valid reversed-order spellings; they also select `ulong`.
 
 ---
 
@@ -55,10 +56,10 @@ int decimalValue = 1_000_000;         // Decimal integer literal with Digit sepa
 int hexValue = 0x000F_FFFF;           // Hexadecimal integer literal with Digit separator _
 int binaryValue = 0b1010_0011_1100;   // Binary integer literal with Digit separator _
 
-// 2. Suffixes and Integer literal type selection
+// 2. Suffixes and integer literal type selection
 var defaultInt = 42;                  // Fits in int by default
-var explicitUint = 42U;               // Unsigned suffix U or u selects uint (or ulong)
-var explicitLong = 42L;               // Long suffix L or l selects long
+var explicitUint = 42U;               // U selects uint when the value fits; otherwise ulong
+var explicitLong = 42L;               // L selects long when the value fits; otherwise ulong
 var explicitULong = 42UL;             // Combined unsigned long suffix UL forces ulong
 ```
 
@@ -68,7 +69,7 @@ var explicitULong = 42UL;             // Combined unsigned long suffix UL forces
 
 * **Using lowercase letter `l` for the long suffix:** While allowed, lowercase `l` can easily be mistaken for the number `1` in certain fonts or code editors. Prefer uppercase `L` for clarity.
 * **Placing digit separators incorrectly:** The `_` character cannot be placed at the very beginning or end of a literal, nor immediately adjacent to a prefix or suffix (e.g., `0x_123` or `123_U` are invalid syntax).
-* **Assuming suffixes change runtime behavior:** Suffixes dictate compile-time type selection and prevent or alter implicit narrowing rules, but they do not substitute for proper explicit conversions or overflow boundaries.
+* **Assuming every literal follows the same type-selection sequence:** The candidate types depend on suffix; `U` uses `uint` then `ulong`, `L` uses `long` then `ulong`, and combined forms use `ulong`. Hexadecimal and binary literal values are nonnegative even if the high bit is set. An unsuffixed decimal negative number is parsed as unary minus applied to a positive literal, which can make minimum-value boundary cases subtle.
 
 ---
 

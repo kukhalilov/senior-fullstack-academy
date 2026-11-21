@@ -13,7 +13,7 @@ Sources: [Redis cache-aside](https://redis.io/docs/latest/develop/use-cases/cach
 
 ## Prerequisites
 
-Understand key-value storage, network round trips, serialization, database source-of-truth ownership, and basic concurrency. Redis command behavior and available data types vary by server version and product; this curriculum follows Redis Open Source 8.8 documentation checked 2026-11-16.
+Understand key-value storage, network round trips, serialization, database source-of-truth ownership, and basic concurrency. Redis command behavior and available data types vary by server version and product; this curriculum follows Redis Open Source 8.10 GA documentation checked 2026-11-20; Redis 8.12-RC1 is a prerelease and is identified separately.
 
 ## Core concepts
 

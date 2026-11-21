@@ -1,37 +1,65 @@
 # system design technology landscape and selection — Reference: Workflow orchestration
 
-Sources: [HLD Handbook](https://hld.handbook.academy/technologies/), [reference 1](https://www.postgresql.org/docs/current/), [reference 2](https://kafka.apache.org/documentation/), [reference 3](https://grpc.io/about/), [reference 4](https://grpc.io/docs/what-is-grpc/core-concepts/), [reference 5](https://graphql.org/learn/), [reference 6](https://cloud.google.com/spanner), [reference 7](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html), [reference 8](https://vitess.io/docs/24.0/overview/whatisvitess/), [reference 9](https://docs.scylladb.com/manual/master/using-scylla/cassandra-compatibility.html).
+Sources: [HLD Handbook technology index](https://hld.handbook.academy/technologies/), [Temporal durable execution](https://docs.temporal.io/durable-execution), [Temporal retry policies](https://docs.temporal.io/encyclopedia/retry-policies), [Apache Airflow core concepts](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/index.html), [Airflow DAGs](https://airflow.apache.org/docs/apache-airflow/stable/concepts/dags.html), [Airflow tasks](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html), [Airflow scheduler](https://airflow.apache.org/docs/apache-airflow/stable/scheduler.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson compares Temporal and Apache Airflow as the named orchestration systems. Airflow is a rapidly evolving project; its current stable documentation is 3.4. Temporal docs are continuously updated. Use versioned documentation and deployment-specific capabilities when implementing.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Orchestration coordinates a multi-step process across time and failure boundaries. It records enough state to decide which step is next after a worker, process, or dependency fails. The workflow definition describes control flow; the orchestration system persists progress; workers perform activities/tasks; external systems still own their own data and side effects.
+
+The central question is duration and recovery model. Is this a business process that may wait hours or days for a person or external system and must resume from durable history? Or is it a scheduled data pipeline whose main job is to run a dependency graph for each interval/backfill? Both need idempotency, bounded retries, timeouts, observability, and a plan for failures that cannot be retried.
 
 ## Supplied names explained
 
-- `Temporal` — Durable workflow orchestration platform; evaluate long-running stateful workflows, retries, and operational model. Selection check: compare workload fit, consistency and durability needs, query/access pattern, latency, failure/recovery behavior, deployment and operational ownership, ecosystem, cost, and migration path. Validate exact current behavior against the product's own documentation.
-- `Airflow` — Workflow scheduler/orchestrator commonly used for data pipelines; compare scheduled DAG execution with event-driven long-running workflows. Selection check: compare workload fit, consistency and durability needs, query/access pattern, latency, failure/recovery behavior, deployment and operational ownership, ecosystem, cost, and migration path. Validate exact current behavior against the product's own documentation.
+- **Temporal** — A durable execution platform for application workflows. Workflow code defines orchestration logic; Temporal records workflow history and replays it to reconstruct workflow state after worker/process failure. Activities perform external side effects and can be retried according to policy. Workflow code must obey determinism constraints, and activities should be idempotent or otherwise designed for retries. Durable timers, signals, and long-running state make it suitable for business processes. Retry policies need bounds or deliberate handling: repeated transient retries do not fix permanent errors, and compensation may be needed after partial success.
+- **Apache Airflow** — A platform for authoring, scheduling, and monitoring directed acyclic graphs (DAGs), especially batch and data workflows. A DAG defines tasks, dependencies, schedule/data intervals, retries, and timeouts. The scheduler creates DAG runs and task instances; an executor and workers run tasks. Tasks are independent by default and should pass bounded metadata/results through supported mechanisms such as XCom when appropriate, rather than treating the scheduler as a general-purpose application state store. Airflow can orchestrate many kinds of work, but it is not a substitute for a durable per-customer application workflow engine in every case.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Question | Temporal | Airflow |
+|---|---|---|
+| Typical shape | Stateful application process lasting minutes to months; waits, signals, timers, retries | Scheduled DAG/run for batch, analytics, ML, or operational pipelines; dependencies and backfills |
+| Recovery model | Persisted event history and deterministic workflow replay | Persisted DAG/task instance state for each run and task attempt |
+| Code model | Workflow logic plus Activities for side effects | DAG/task definitions plus operators/sensors and execution environment |
+| Key caution | Replay determinism, activity idempotency, history growth, retry/compensation policy | Idempotent tasks, data intervals, scheduler/executor capacity, retries and backfill impact |
+
+There is overlap. Choose based on lifecycle, state, scheduling, and team needs rather than the product label alone.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+### Customer onboarding
+
+A user signs up, waits for identity verification, then provisions resources and sends a welcome notification. The process can wait for days and receive an external signal. Temporal models the durable process and timer; each provisioning/notification activity has a stable idempotency key, timeout, bounded retry policy, and compensation or manual-repair path.
+
+### Nightly analytics pipeline
+
+At each data interval, extract source data, validate it, transform it, and publish a report. Airflow models the dependency DAG, retries failed tasks, tracks each task instance, and supports backfills. Tasks must safely handle reruns, and a large backfill must be capacity-planned so it does not overwhelm production data stores.
+
+## Failure design
+
+- Separate orchestration state from business data and external effects.
+- Make task/activity effects idempotent where retries can repeat them.
+- Classify retryable versus permanent errors; use exponential backoff, jitter, caps, and deadlines where supported.
+- Set task/activity timeouts and cancellation behavior; distinguish a timed-out caller from a stopped remote side effect.
+- Define compensation or human intervention for partially completed workflows.
+- Monitor queue/worker saturation, schedule lag, retries, age of oldest work, and stuck executions.
+- Test worker restarts, duplicate delivery, dependency outage, deployment/version change, and recovery from long pauses.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Using a workflow engine as a distributed transaction manager for arbitrary external services.
+- Retrying non-idempotent side effects without deduplication or reconciliation.
+- Leaving retries effectively unbounded for permanent failures.
+- Putting large business payloads in orchestration history or metadata channels instead of durable domain storage.
+- Choosing Airflow solely because a process has steps, or Temporal solely because it is “reliable,” without checking process lifecycle and operating model.
+- Assuming a timeout cancels a remote side effect that may already have completed.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Why does Temporal replay workflow code?** It reconstructs workflow state from durable history after a worker restart; code that changes decisions nondeterministically can make replay unsafe.
+2. **What is a task instance in Airflow?** A specific task execution for a particular DAG run/data interval, with its own lifecycle state and attempt history.
+3. **When is Airflow a natural fit?** Scheduled dependency graphs such as data pipelines, especially when run history, retries, scheduling, and backfills are central.
+4. **Why are retries not sufficient for correctness?** They can repeat effects and cannot repair permanent errors; idempotency, classification, deadlines, compensation, and reconciliation are also needed.

@@ -1,10 +1,10 @@
 # system design foundations and infrastructure building blocks — Reference: Deno Deploy
 
-Sources: [Deno Deploy runtime](https://docs.deno.com/deploy/reference/runtime/), [Pricing and limitations](https://docs.deno.com/deploy/pricing_and_limits/), [Deployment options](https://docs.deno.com/runtime/deploy/), [Deploy changelog and product sunset notice](https://docs.deno.com/deploy/changelog/), [Deploy CLI](https://docs.deno.com/runtime/reference/cli/deploy/).
+Sources: [Deno Deploy runtime](https://docs.deno.com/deploy/reference/runtime/), [Pricing and limitations](https://docs.deno.com/deploy/pricing_and_limits/), [Deployment options](https://docs.deno.com/runtime/deploy/), [Deploy changelog and product sunset notice](https://docs.deno.com/deploy/changelog/), [Deno and Cloudflare announcement](https://deno.com/blog/cloudflare), [Deploy CLI](https://docs.deno.com/runtime/reference/cli/deploy/).
 
 ## Scope and version
 
-This lesson describes the current Deno Deploy product as documented on 2026-11-17 and distinguishes it from Deno Deploy Classic. The official changelog announces that Deno Deploy will be sunset in April 2027; Classic was shut down in July 2026. That lifecycle materially changes whether it is appropriate for a new long-lived system. Confirm the latest migration, support, and shutdown guidance before using or renewing a deployment. Deno the open-source runtime remains a separate technology from the managed hosting service.
+This lesson describes Deno Deploy as documented on 2026-11-20 and distinguishes it from Deno Deploy Classic. The current product will be sunset in April 2027; Classic was shut down in July 2026. A separate Deno/Cloudflare announcement says Deno will receive monthly runtime bug-fix and security releases for another year, after which the team plans to end its runtime development. Deno is to remain open source, so community development may continue. These are distinct lifecycle tracks: managed hosting shutdown, upstream team development ending, and the runtime source remaining available. Confirm current migration and support guidance before acting; the dates have direct migration consequences.
 
 ## How this group fits the mental model
 
@@ -12,11 +12,11 @@ Deno Deploy is a managed way to build and run Deno applications without operatin
 
 The larger system still needs explicit state and operations choices. A request handler can call a database or KV service, and each call adds its own latency, consistency behavior, credentials, limits, and failure modes. “Serverless” removes host management from the application team; it does not remove dependency management, data modeling, observability, cost control, security, or vendor lifecycle planning.
 
-For a new production system expected to live beyond April 2027, product sunset is a first-order architecture constraint. A team using the service should identify an exit target now, avoid unnecessary service-specific coupling, keep deployment configuration and runtime assumptions documented, and rehearse migration to another managed platform, containers, or a self-operated Deno deployment path.
+For a new production system expected to live beyond April 2027, the hosting sunset is a first-order architecture constraint. For a system that depends on future upstream Deno releases beyond the announced one-year support period, runtime maintenance is another constraint: plan to migrate, maintain a fork, or rely on a community continuation with an explicit security ownership model. Keep these decisions separate. A hosted app may migrate to Workers while retaining Deno-compatible code, but compatibility does not guarantee identical APIs, behavior, or support.
 
 ## Supplied names explained
 
-- `Deno Deploy` — Deno's managed serverless deployment platform for web applications. Its current runtime documentation describes a standard Deno runtime in a secure isolated Linux environment. The managed product's announced sunset means runtime capabilities should be evaluated separately from the longevity of the hosting service.
+- `Deno Deploy` — Deno's managed serverless deployment platform for web applications. Its current runtime documentation describes a standard Deno runtime in a secure isolated Linux environment. The service is scheduled to shut down in April 2027; this is separate from the Deno runtime's announced end of team-led development after another year of monthly fixes and security releases.
 
 ## Cross-item comparison
 
@@ -43,7 +43,7 @@ For a short-lived demo or a service already scheduled to migrate, Deno Deploy ma
 
 ## Common mistakes
 
-- Confusing Deno Deploy with the Deno runtime; the runtime can remain available while a managed hosting product changes or ends.
+- Confusing the managed Deno Deploy shutdown with the Deno runtime roadmap. Deploy is scheduled to end in April 2027; team-led Deno runtime development is scheduled to end after another year, while the source remains open and community continuation is possible.
 - Treating Deno Deploy Classic and the current Deno Deploy service as interchangeable. Classic's shutdown and the current product's announced sunset are distinct lifecycle events.
 - Starting a multi-year production system without accounting for the announced April 2027 sunset.
 - Treating current pricing, limits, runtimes, or regions as stable facts; check live official docs before implementation.
@@ -53,8 +53,8 @@ For a short-lived demo or a service already scheduled to migrate, Deno Deploy ma
 
 ## Knowledge checks with answers
 
-1. **What is the most important current product fact for a new long-lived deployment?** Deno's official changelog announces Deno Deploy will be sunset in April 2027, so the team needs a migration plan or a different hosting choice.
-2. **Does a managed product sunset mean the Deno runtime itself is ending?** No. The runtime and the managed hosting service are separate; confirm the lifecycle of each dependency independently.
+1. **What is the most important current product fact for a new long-lived deployment?** Deno Deploy is scheduled to shut down in April 2027, so the team needs a migration plan or a different hosting choice.
+2. **Does the Deploy shutdown settle the Deno runtime's future?** No. The runtime is separate, but Deno has announced another year of monthly bug-fix/security releases followed by an end to team-led runtime development. It will remain open source, and community continuation is possible; teams must decide who will maintain security and compatibility after that period.
 3. **What does serverless hosting remove from the team?** It reduces direct host-fleet operations. It does not remove responsibility for application behavior, state, security, reliability, observability, or cost.
 4. **How can an existing user reduce migration risk?** Inventory platform dependencies, keep state portable and backed up, test a destination deployment, and rehearse cutover before the sunset date.
 5. **What evidence should be used for current product limits?** The current official Deno Deploy runtime, pricing/limits, changelog, and migration documentation; old tutorials and Classic-era examples may be obsolete.

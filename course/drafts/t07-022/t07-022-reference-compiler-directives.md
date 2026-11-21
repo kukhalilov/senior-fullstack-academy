@@ -10,7 +10,7 @@ Project configuration determines general selection policy; a directive provides 
 
 ## Supplied names explained
 
-- "use memo" opts a function into compiler processing. In annotation mode it is the signal to compile that function. In infer mode it can override inference; a module-level directive opts module functions into compilation. Place it at the beginning of the function body (or top of the module where supported), before executable statements. It does not guarantee a particular optimization if code is unsupported.
+- "use memo" opts a function into compiler processing. In annotation mode it is the signal to compile that function. In infer mode it can override inference; in all mode all eligible functions are compiled and "use no memo" can still exclude one. A module-level directive opts module functions into compilation. Place it at the beginning of the function body (or top of the module where supported), before executable statements. It does not guarantee a particular optimization if code is unsupported.
 - "use no memo" excludes a function from compilation and overrides a module-level opt-in. Use it temporarily for debugging or incompatible code, document why, and remove it when the underlying issue is resolved. It is honored regardless of compilation mode. It does not disable React rendering or Hooks.
 
 ## Cross-item comparison

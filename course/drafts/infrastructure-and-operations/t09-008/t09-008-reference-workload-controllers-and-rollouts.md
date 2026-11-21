@@ -4,7 +4,7 @@ Sources: [Controllers](https://kubernetes.io/docs/concepts/architecture/controll
 
 ## Scope and version
 
-These built-in workload APIs create or maintain Pods for long-running replicas, per-node agents, or finite tasks. Feature maturity can vary by cluster version. Current upstream version checked 2026-11-16 is v1.37.1. StatefulSet `Recreate` strategy is Alpha in v1.37 and requires the relevant feature gate; do not copy it into production manifests without verifying the cluster.
+These built-in workload APIs create or maintain Pods for long-running replicas, per-node agents, or finite tasks. Feature maturity can vary by cluster version. Current upstream version checked 2026-11-20 is v1.37.1. StatefulSet `Recreate` strategy is Alpha in v1.37 and requires the relevant feature gate; do not copy it into production manifests without verifying the cluster.
 
 ## How this group fits the mental model
 

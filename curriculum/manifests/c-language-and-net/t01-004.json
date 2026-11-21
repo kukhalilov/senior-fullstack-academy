@@ -96,7 +96,7 @@
         "StructuralComparisons.StructuralComparer",
         "ITuple",
         "ValueTuple.Equals",
-        "ValueTuple equality operators",
+        "C# tuple equality operators",
         "Record synthesized equality",
         "Record equality contract",
         "EqualityContract property",
@@ -227,11 +227,12 @@
     "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/reference-types",
     "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/equality-comparisons",
     "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records",
-    "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1"
+    "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-tuples"
   ],
   "versionNotes": [
     {
-      "edition": "C# 15 / .NET 11 GA checked 2026-11-14",
+      "edition": "C# 15 / .NET 11 GA checked 2026-11-20",
       "items": [
         "C# 15 adds union types and closed class hierarchies, which build on type and pattern concepts; their syntax is included in the separate inheritance and pattern-matching scopes. C# 15 is the default language version for net11.0; Memory safety remains a preview feature."
       ],
@@ -253,8 +254,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn C# 15 language reference and .NET 11 API reference",
-    "edition": "C# 15 stable and .NET 11 GA checked 2026-11-14",
-    "checkedAt": "2026-11-14",
+    "edition": "C# 15 stable and .NET 11 GA checked 2026-11-20",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types",
       "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types",
@@ -266,7 +267,13 @@
       "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iequatable-1",
       "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1",
       "https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-15",
-      "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview"
+      "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/equality-operators",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.sequenceequal",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1.create",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-tuples"
     ]
   },
   "scopeExclusions": [
@@ -281,6 +288,7 @@
     "Value-type variables contain values and normal assignment copies values; reference-type variables contain object references and copying a reference can preserve aliasing. Neither rule promises a physical stack/heap location or says an object reference is a raw address.",
     "record struct is a value type; record class is a reference type.",
     "ReferenceEquals tests object identity for reference values and is not a physical address comparison. For double.NaN, the == operator yields false while Double.Equals(double.NaN) yields true.",
-    "Since C# 13, ref structs may implement interfaces but cannot be boxed or converted to an interface type; they must implement instance members and cannot use default interface implementations."
+    "Since C# 13, ref structs may implement interfaces but cannot be boxed or converted to an interface type; they must implement instance members and cannot use default interface implementations.",
+    "C# tuple equality operators are language syntax over tuple expressions; the underlying System.ValueTuple types provide Equals methods but do not declare == operators."
   ]
 }

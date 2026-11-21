@@ -4,7 +4,7 @@ Sources: [HLD Handbook](https://hld.handbook.academy/), [NGINX graceful reload](
 
 ## Scope and version
 
-This case study covers changing service configuration while preserving availability. “Hitless” is an operational goal, not a universal guarantee: a reload may preserve established connections but still change behavior, reject new connections, lose in-flight work, or fail to apply on some replicas. Product-specific details vary by version and operating system. The linked NGINX, Envoy, and Kubernetes documentation was checked on 2026-11-17.
+This case study covers changing service configuration while preserving availability. “Hitless” is an operational goal, not a universal guarantee: a reload may preserve established connections but still change behavior, reject new connections, lose in-flight work, or fail to apply on some replicas. Product-specific details vary by version and operating system. The linked NGINX, Envoy, and Kubernetes documentation was checked on 2026-11-21.
 
 Recent change: NGINX announced the Control API in version 1.31.5 (September 2026) for reading in-memory configuration and triggering reloads over HTTP. Existing signal-based graceful reload remains a separate control path. Keep API availability, security, and exact operations tied to the deployed NGINX version; do not expose an administrative reload endpoint publicly.
 
@@ -72,3 +72,7 @@ Out of 100 replicas, 96 report the new configuration; four remain old because th
 ## Practice
 
 Design a zero-downtime route and certificate update for a service with HTTP keep-alive, WebSockets, and 100 replicas. Specify candidate validation, activation, drain timeout, mixed-version compatibility, health gates, version reporting, admin-plane security, and rollback. Explain what happens if four instances cannot fetch the candidate and why “reload command returned success” is insufficient evidence.
+
+## Review status
+
+Reviewed 2026-11-21. NGINX documentation confirms syntax/resource validation, rollback to the previous configuration on apply failure, and graceful worker replacement; Envoy documents hot restart/drain while noting existing connections are not transferred; Kubernetes confirms mounted ConfigMap projection is eventual and environment-variable values do not update automatically. The dated NGINX 1.31.5 Control API note is verified against the official 2026 release announcement and is explicitly version-bound. No material omissions remain in the supplied topic scope.

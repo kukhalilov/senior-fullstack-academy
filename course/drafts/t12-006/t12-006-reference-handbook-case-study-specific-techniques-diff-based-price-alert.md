@@ -1,6 +1,6 @@
 # end-to-end system design case studies — Reference: Diff-based price alert
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [PostgreSQL range types](https://www.postgresql.org/docs/current/rangetypes.html), [RFC 3339: Date and Time on the Internet](https://www.rfc-editor.org/rfc/rfc3339.html), [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [PostgreSQL range types](https://www.postgresql.org/docs/current/rangetypes.html), [RFC 3339: Date and Time on the Internet](https://www.rfc-editor.org/rfc/rfc3339.html), [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html), [Transactional outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html).
 
 ## Scope and version
 
@@ -60,4 +60,4 @@ Keep invalid/unavailable observations out of price comparisons; track stale-data
 
 ## Review status
 
-The lesson frames implementation choices as policies and links official data/time representations for context. It remains pending full claim-by-claim and manifest omission audit.
+Reviewed 2026-11-21. PostgreSQL range documentation was checked for inclusive/exclusive price bands; RFC 3339 for timestamp representation; RFC 9110 for HTTP representation semantics; and the transactional outbox pattern for atomic event recording with at-least-once relay and consumer deduplication. The lesson explicitly separates observed price validity, normalization, baseline policy, threshold crossing, alert identity, and channel delivery. No material omissions remain in the supplied topic scope.

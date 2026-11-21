@@ -11,6 +11,8 @@ After this lesson, you should be able to turn a product goal into constraints, m
 Know HTTP request/response, relational transactions, async work, authentication versus authorization, and basic deployment. The existing programming, browser, database, security, and operations stages supply these foundations.
 
 ## Core concepts
+Performance is an end-to-end design quality. Define the user journey and workload before selecting a mechanism. Trace one slow operation from browser through edge, application, data store, and dependency; separate service time from queueing and record tail latency. Caches, replicas, batching, and asynchronous jobs can improve a measured constraint, but each changes freshness, cost, failure, or operational complexity. Do not add infrastructure because it is fashionable. The integrated performance engineering topic provides the browser/.NET/EF Core/SQL investigation and validation workflow.
+
 
 ### Requirements are executable design inputs
 

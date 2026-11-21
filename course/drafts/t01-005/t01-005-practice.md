@@ -45,18 +45,19 @@ public static class UserFormatter
 # Exercises
 1. **Value Type Null-Coalescing & Defaulting**: Write a method `int GetActiveTimeout(int? configuredTimeout)` that returns `configuredTimeout` if it has a value, or `30` as a default fallback using the null-coalescing operator (`??`).
 2. **Runtime Guard Integration**: Write a method `void ProcessText(string? input)` that uses `ArgumentException.ThrowIfNullOrWhiteSpace(input)` to validate the parameter before converting it to uppercase and printing it.
-3. **Try-Pattern with Nullable Output**: Implement a method `bool TryParseCoordinate(string? text, out double? result)` that returns `false` if `text` is null or whitespace or cannot be parsed via `double.TryParse`, and returns `true` with the parsed value stored in the `out` parameter.
+3. **Try-Pattern with Nullable Output**: Implement a method `bool TryParseCoordinate(string? text, out double? result)` that returns `false` if `text` is null or whitespace, cannot be parsed using invariant-culture floating-point syntax, or parses to NaN/infinity; otherwise return `true` with a finite parsed value. Any application-specific coordinate range check (for example latitude bounds) is a separate domain rule.
 
 # Progressive hints
 - **Hint for Exercise 1**: Think about how `??` evaluates the left-hand side if it is a `Nullable<T>`. It evaluates to the underlying `T` value when `HasValue` is true, or the right-hand operand when false.
 - **Hint for Exercise 2**: Check the available string guard methods in the supplied API inventory, specifically `ArgumentException.ThrowIfNullOrWhiteSpace(String, String?)` [https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace].
-- **Hint for Exercise 3**: Combine standard `double.TryParse` logic with a null check on the input string. Ensure the `out` parameter correctly uses `double?` to support failure states.
+- **Hint for Exercise 3**: Combine a null/whitespace check with `double.TryParse` using `NumberStyles.Float` and `CultureInfo.InvariantCulture`, then reject non-finite values with `double.IsFinite`. Ensure the `out` parameter is set on every return path.
 
 # Complete solutions
 ```csharp
 #nullable enable
 
 using System;
+using System.Globalization;
 
 public static class ExerciseSolutions
 {
@@ -82,7 +83,8 @@ public static class ExerciseSolutions
             return false;
         }
 
-        if (double.TryParse(text, out double parsedValue))
+        if (double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out double parsedValue)
+            && double.IsFinite(parsedValue))
         {
             result = parsedValue;
             return true;
@@ -96,6 +98,7 @@ public static class ExerciseSolutions
 
 # Tests and edge cases
 - **Value Type Edge Case**: Passing `new Nullable<int>()` (i.e., `null` for `int?`) to `GetActiveTimeout` correctly returns `30`.
+- **Coordinate edge cases**: This parser accepts finite numeric values in invariant culture but deliberately does not enforce latitude/longitude or another application-specific range. `NaN` and infinities are rejected.
 - **Reference Type Edge Case**: Passing an empty string or whitespace string to `ProcessText` triggers `ArgumentException` via `ArgumentException.ThrowIfNullOrWhiteSpace(String, String?)` [https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace].
 - **Analysis Caveat**: Remember that nullable reference type annotations are a compile-time static-flow-analysis system; they do not perform runtime checks by themselves unless paired with explicit guard clauses like `ArgumentNullException.ThrowIfNull(Object?, String?)` [https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull].
 

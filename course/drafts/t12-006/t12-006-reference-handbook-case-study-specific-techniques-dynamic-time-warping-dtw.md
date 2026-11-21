@@ -58,4 +58,4 @@ For a catalog with millions of reference sequences, do not run unconstrained DTW
 
 ## Review status
 
-Complexity and constraint effects are checked against the cited DTW research and time-series literature. This lesson remains pending complete claim-by-claim audit and manifest omission check.
+Complexity and constraint effects are checked against the cited DTW research and time-series literature. The `O(nm)` bound describes the classic unconstrained dynamic-programming formulation; constrained-window and pruning methods change work and can change the admissible optimum.

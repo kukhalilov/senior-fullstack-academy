@@ -60,4 +60,4 @@ Test concurrent insert/delete/format operations, duplicate and reordered message
 
 ## Review status
 
-CRDT convergence properties and rich-text intent caveats are checked against the cited research; JSON patch scope is linked for state-delta context. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Reviewed 2026-11-21. CRDT convergence assumptions and the distinction between convergence and user-intent preservation were checked against Shapiro et al. and Peritext; RFC 6902 was checked for JSON Patch's six operations and sequential application. The lesson distinguishes concurrency control from durable history, retention, authorization, and recovery. No material factual corrections or missing core concepts were found.

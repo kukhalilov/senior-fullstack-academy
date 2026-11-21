@@ -40,6 +40,6 @@ For a live catalog, resolve `shop.example`, establish a validated TLS connection
 
 ## Knowledge checks with answers
 
-1. **Why can packet loss delay multiple HTTP/2 streams on one connection?** They share TCP's ordered byte stream; later bytes wait behind missing earlier bytes.
-2. **What does HTTP/3 improve, and what does it not remove?** QUIC streams avoid transport-level blocking between independent streams, but share connection capacity and can still be limited by congestion or server resources.
-3. **When is SSE a reasonable fit over WebSocket?** When the server mainly pushes updates to the client and client actions can use ordinary HTTP requests.
+1. **Why can a TCP connection be reused?** To avoid repeated setup for eligible requests, subject to protocol, origin, and connection state.
+2. **What changes when HTTP/3 is negotiated?** HTTP runs over QUIC rather than TCP; transport setup and loss behavior differ.
+3. **What must TLS establish?** A protected channel and peer authentication according to certificate and hostname validation.

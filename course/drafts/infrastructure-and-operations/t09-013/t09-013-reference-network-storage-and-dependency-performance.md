@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson explains the supplied network, storage, database, cache, and dependency concepts. HTTP/3 is standardized over QUIC; actual client/server support depends on OS, runtime, TLS, proxy, and deployment. .NET diagnostics sources were checked 2026-11-17. [HTTP/3 RFC 9114](https://www.rfc-editor.org/rfc/rfc9114) [.NET diagnostics](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/) [SRE SLO workbook](https://sre.google/workbook/implementing-slos/)
+This lesson explains the supplied network, storage, database, cache, and dependency concepts. HTTP/3 is standardized over QUIC; actual client/server support depends on OS, runtime, TLS, proxy, and deployment. .NET diagnostics sources were checked 2026-11-20. [HTTP/3 RFC 9114](https://www.rfc-editor.org/rfc/rfc9114) [.NET diagnostics](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/) [SRE SLO workbook](https://sre.google/workbook/implementing-slos/)
 
 # How this group fits the mental model
 

@@ -1,6 +1,6 @@
 # end-to-end system design case studies — Reference: Ad-click event-time windows
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [Apache Flink event time and watermarks](https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/time/), [Apache Flink streaming analytics](https://nightlies.apache.org/flink/flink-docs-stable/docs/learn-flink/streaming_analytics/), [Apache Flink window allowed lateness](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/datastream/operators/windows/).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [Apache Flink event time and watermarks](https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/time/), [Apache Flink watermark generation and idle sources](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/datastream/event-time/generating_watermarks/), [Apache Flink streaming analytics](https://nightlies.apache.org/flink/flink-docs-stable/docs/learn-flink/streaming_analytics/), [Apache Flink window allowed lateness](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/datastream/operators/windows/).
 
 ## Scope and version
 
@@ -67,4 +67,4 @@ If sources are idle or one partition lags far behind, downstream event-time prog
 
 ## Review status
 
-The event-time, watermark, and lateness distinctions are checked against Apache Flink documentation. Exact API behavior must be verified for the deployed Flink version and window operator. This lesson remains pending complete claim-by-claim audit and manifest omission check.
+The event-time, watermark, idle-input, window-lateness, retained-state, and late-record behaviors are checked against Apache Flink documentation. Exact API behavior must be verified for the deployed Flink version and window operator; business finality and billing rules are application policies, not Flink guarantees.

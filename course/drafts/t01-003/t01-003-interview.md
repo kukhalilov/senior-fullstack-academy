@@ -17,8 +17,8 @@
 1. **Keywords and .NET types:** Most built-in type keywords alias .NET types; `int` and `System.Int32` name the same type. `dynamic` represents runtime binding and is encoded as `object`; `delegate` declares a new delegate type, and `void` denotes no return type.
 2. **Value vs. Reference:** Value-type variables contain values; reference-type variables contain references to objects. The language does not guarantee a stack location for values or define object references as physical memory addresses.
 3. **Numeric choice:** `float`/`double` are binary IEEE 754 formats; `decimal` uses finite-precision decimal scaling. Choose by range, precision, special values, domain rounding rules, and APIs, not a universal finance rule.
-4. **Native-sized Integers:** `nint` and `nuint` are native-sized integers. Their size is determined by the platform (32-bit or 64-bit). They were introduced in C# 9 to allow for efficient pointer-like arithmetic and interoperability with native APIs.
-5. **Object vs. Dynamic:** `object` is the base type for all types; you must cast it to use specific members. `dynamic` tells the compiler to bypass compile-time type checking and resolve members at runtime.
+4. **Native-sized Integers:** `nint` and `nuint` are native-sized integers with width based on the process architecture (32-bit or 64-bit). C# 9 added language support; use them when an API contract is native-sized, not as a safety guarantee for pointer arithmetic.
+5. **Object vs. Dynamic:** `object` is the base type for all types; you must cast it to use specific members. `dynamic` causes operations on that expression to be bound at runtime; it does not disable compile-time checks for all surrounding code.
 
 ## Deep follow-up answers
 *   **On memory safety:** Memory safety is not a property of this type list and the claim that it is preview-only is unsupported. Unsafe code, managed references, and ref safety are separate topics.
@@ -29,7 +29,7 @@
 *   **Scenario:** You are building a high-frequency trading application. Which numeric type do you choose for currency?
     *   *Reasoning:* `decimal`. It represents many decimal fractions exactly, unlike binary floating point, but arithmetic can still round. Use the type and rounding policy required by the domain.
 *   **Scenario:** You need to store a value that represents a memory address in a native C++ library. Which type is most appropriate?
-    *   *Reasoning:* `nint` or `nuint`. These are designed to match the size of the native pointer on the host architecture.
+    *   *Reasoning:* `nint` or `nuint`. These are whose width follows the process architecture on the host architecture.
 
 ## Tradeoffs and alternatives
 *   **`float` vs `double` vs `decimal`:**
@@ -42,12 +42,12 @@
 
 ## Common weak answers
 *   "I use `double` for everything because it's the default." (Weak because type choice should follow domain, range, precision, rounding, and API requirements).
-*   "I use `dynamic` because it's easier than casting." (Weak because it ignores the performance cost and the loss of compile-time error detection).
+*   "I use `dynamic` because it's easier than casting." (Weak because it defers operation binding to runtime and can shift failures from compile time to runtime; costs depend on use).
 *   "I don't know the difference between `int` and `Int32`." (Weak because it shows a lack of understanding of the language's relationship with the underlying .NET framework).
 
 ## Self-check rubric
 *   **Can you explain the built-in keyword set?** (Most keywords alias .NET types; `dynamic`, `delegate`, and `void` have distinct language semantics).
-*   **Can you distinguish value vs reference?** (Yes: Value = data, Reference = pointer).
+*   **Can you distinguish value vs reference?** (Yes: Value-type variable = type instance; reference-type variable = reference to an object (not specified as a physical pointer/address).).
 *   **Do you know when to use `decimal`?** (Yes: Financial/High precision).
 *   **Can you explain `nint`?** (Yes: Native-sized, platform-dependent, C# 9+).
 *   **Do you understand the risk of `dynamic`?** (Yes: Runtime errors vs compile-time safety).

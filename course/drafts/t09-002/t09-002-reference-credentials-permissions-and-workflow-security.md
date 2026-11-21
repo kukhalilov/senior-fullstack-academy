@@ -4,7 +4,7 @@ Sources: [Secure use](https://docs.github.com/en/actions/reference/security/secu
 
 ## Scope and version
 
-Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-14. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
+Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-20. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
 
 ## How this group fits the mental model
 
@@ -56,7 +56,6 @@ Secret masking can fail for transformed values. Pin executable dependencies, min
 
 ## Knowledge checks with answers
 
-1. **What decision does this inventory support?** Selecting a workflow boundary, artifact control, delivery signal, release strategy, or credential policy.
-2. **What evidence should be preserved?** Source revision, check results, artifact digest, deployment outcome, and provenance where available.
-3. **How do you reduce risk?** Declare inputs, restrict permissions, promote the same tested output, and define failure handling.
-
+1. **How should repository workflow token permissions be set?** Grant the minimum required per workflow/job and avoid broad write defaults.
+2. **Why are fork pull requests a special boundary?** They are untrusted code and generally lack access to repository secrets; privileged workflows must not execute their content unsafely.
+3. **What is a safe secret-handling rule?** Do not echo or persist secrets in logs, artifacts, caches, or untrusted job outputs.

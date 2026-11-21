@@ -14,23 +14,167 @@
     "DDD is a modeling toolkit, not a mandate to use microservices, rich object models, or every named pattern in every application."
   ],
   "inventory": [
-    {"id":"strategic-design","title":"Strategic domain modeling vocabulary and boundaries","items":["Domain","Core Domain","Subdomain","Core subdomain","Supporting subdomain","Generic subdomain","Ubiquitous language","Bounded Context","Context Map","Domain model","Model-Driven Design","Strategic design","Tactical design","Continuous Integration of a domain model"]},
-    {"id":"context-relationships","title":"Bounded-context relationships and integration vocabulary","items":["Shared Kernel","Customer-Supplier relationship","Customer-Supplier Teams","Conformist","Anti-Corruption Layer","Open Host Service","Published Language","Separate Ways","Partnership","Big Ball of Mud","Bounded-context translation","Context boundary"]},
-    {"id":"entities-and-value-objects","title":"Identity-based and value-based domain objects","items":["Entity","Entity identity","Entity lifecycle","Value Object","Value equality","Value-object immutability","Domain invariant","Rich domain model","Anemic domain model"]},
-    {"id":"aggregates-and-invariants","title":"Aggregate consistency boundaries","items":["Aggregate","Aggregate Root","Aggregate invariant","Transactional consistency boundary","Aggregate identity reference","Aggregate child entity","Aggregate size tradeoff","Eventual consistency between aggregates"]},
-    {"id":"domain-services-and-events","title":"Domain behavior coordination and meaningful change events","items":["Domain Service","Application Service","Domain Event","Integration Event","Domain event handler","Post-commit integration event publication","Domain logic","Use-case orchestration"]},
-    {"id":"domain-model-support-patterns","title":"Patterns that support a domain model","items":["Repository","Repository per Aggregate Root","Factory","Domain Factory","Domain Module","Specification pattern","Domain policy","Intention-Revealing Interface","Side-Effect-Free Function","Assertion","Standalone Class","Closure of Operations","Declarative Design","Domain-Specific Language","Supple Design"]}
+    {
+      "id": "strategic-design",
+      "title": "Strategic domain modeling vocabulary and boundaries",
+      "items": [
+        "Domain",
+        "Core Domain",
+        "Subdomain",
+        "Core subdomain",
+        "Supporting subdomain",
+        "Generic subdomain",
+        "Ubiquitous language",
+        "Bounded Context",
+        "Context Map",
+        "Domain model",
+        "Model-Driven Design",
+        "Strategic design",
+        "Tactical design",
+        "Continuous Integration of a domain model"
+      ]
+    },
+    {
+      "id": "context-relationships",
+      "title": "Bounded-context relationships and integration vocabulary",
+      "items": [
+        "Shared Kernel",
+        "Customer-Supplier relationship",
+        "Customer-Supplier Teams",
+        "Conformist",
+        "Anti-Corruption Layer",
+        "Open Host Service",
+        "Published Language",
+        "Separate Ways",
+        "Partnership",
+        "Big Ball of Mud",
+        "Bounded-context translation",
+        "Context boundary"
+      ]
+    },
+    {
+      "id": "entities-and-value-objects",
+      "title": "Identity-based and value-based domain objects",
+      "items": [
+        "Entity",
+        "Entity identity",
+        "Entity lifecycle",
+        "Value Object",
+        "Value equality",
+        "Value-object immutability",
+        "Domain invariant",
+        "Rich domain model",
+        "Anemic domain model"
+      ]
+    },
+    {
+      "id": "aggregates-and-invariants",
+      "title": "Aggregate consistency boundaries",
+      "items": [
+        "Aggregate",
+        "Aggregate Root",
+        "Aggregate invariant",
+        "Transactional consistency boundary",
+        "Aggregate identity reference",
+        "Aggregate child entity",
+        "Aggregate size tradeoff",
+        "Eventual consistency between aggregates"
+      ]
+    },
+    {
+      "id": "domain-services-and-events",
+      "title": "Domain behavior coordination and meaningful change events",
+      "items": [
+        "Domain Service",
+        "Application Service",
+        "Domain Event",
+        "Integration Event",
+        "Domain event handler",
+        "Post-commit integration event publication",
+        "Domain logic",
+        "Use-case orchestration"
+      ]
+    },
+    {
+      "id": "domain-model-support-patterns",
+      "title": "Patterns that support a domain model",
+      "items": [
+        "Repository",
+        "Repository per Aggregate Root",
+        "Factory",
+        "Domain Factory",
+        "Domain Module",
+        "Specification pattern",
+        "Domain policy",
+        "Intention-Revealing Interface",
+        "Side-Effect-Free Function",
+        "Assertion",
+        "Standalone Class",
+        "Closure of Operations",
+        "Declarative Design",
+        "Domain-Specific Language",
+        "Supple Design"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Entity","Value Object"],["Bounded Context","Microservice"],["Aggregate","Object graph"],["Aggregate consistency","Eventual consistency across aggregates"],["Domain Service","Application Service"],["Domain Event","Integration Event"],["Rich domain model","Anemic domain model"]],
-  "comparisonSources": ["https://www.domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.pdf","https://www.dddcommunity.org/resources/ddd_terms/","https://learn.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis","https://learn.microsoft.com/en-us/azure/architecture/microservices/model/tactical-domain-driven-design","https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model","https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/domain-events-design-implementation"],
+  "comparisons": [
+    [
+      "Entity",
+      "Value Object"
+    ],
+    [
+      "Bounded Context",
+      "Microservice"
+    ],
+    [
+      "Aggregate",
+      "Object graph"
+    ],
+    [
+      "Aggregate consistency",
+      "Eventual consistency across aggregates"
+    ],
+    [
+      "Domain Service",
+      "Application Service"
+    ],
+    [
+      "Domain Event",
+      "Integration Event"
+    ],
+    [
+      "Rich domain model",
+      "Anemic domain model"
+    ]
+  ],
+  "comparisonSources": [
+    "https://www.domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.pdf",
+    "https://www.dddcommunity.org/resources/ddd_terms/",
+    "https://learn.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis",
+    "https://learn.microsoft.com/en-us/azure/architecture/microservices/model/tactical-domain-driven-design",
+    "https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model",
+    "https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/domain-events-design-implementation"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
-    "authority":"Domain Language's DDD Reference by Eric Evans, DDD Community glossary, Microsoft Azure Architecture Center strategic/tactical DDD guidance, and Microsoft .NET domain-model/event design references",
-    "edition":"Timeless strategic and tactical DDD concepts; references checked 2026-11-14",
-    "checkedAt":"2026-11-14",
-    "urls":["https://www.domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.pdf","https://www.dddcommunity.org/resources/ddd_terms/","https://learn.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis","https://learn.microsoft.com/en-us/azure/architecture/microservices/model/tactical-domain-driven-design","https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model","https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/domain-events-design-implementation"]
+    "authority": "Domain Language's DDD Reference by Eric Evans, DDD Community glossary, Microsoft Azure Architecture Center strategic/tactical DDD guidance, and Microsoft .NET domain-model/event design references",
+    "edition": "Timeless strategic and tactical DDD concepts; primary DDD and official Microsoft sources rechecked 2026-11-20",
+    "checkedAt": "2026-11-20",
+    "urls": [
+      "https://www.domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.pdf",
+      "https://www.dddcommunity.org/resources/ddd_terms/",
+      "https://learn.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis",
+      "https://learn.microsoft.com/en-us/azure/architecture/microservices/model/tactical-domain-driven-design",
+      "https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model",
+      "https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/domain-events-design-implementation"
+    ]
   },
-  "scopeExclusions":["CQRS read/write models, event sourcing, saga, outbox, and integration delivery guarantees (t08-005 and t08-010)","EF Core entity mapping and persistence-specific implementation (track-04)","Microservice decomposition and API implementation details (t08-006 through t08-012 and track-02)","Specific named context-map relationship classifications are included as vocabulary; examples must make clear that they are collaboration patterns, not mandatory topology rules"],
+  "scopeExclusions": [
+    "CQRS read/write models, event sourcing, saga, outbox, and integration delivery guarantees (t08-005 and t08-010)",
+    "EF Core entity mapping and persistence-specific implementation (track-04)",
+    "Microservice decomposition and API implementation details (t08-006 through t08-012 and track-02)",
+    "Specific named context-map relationship classifications are included as vocabulary; examples must make clear that they are collaboration patterns, not mandatory topology rules"
+  ],
   "generationAllowed": true
 }

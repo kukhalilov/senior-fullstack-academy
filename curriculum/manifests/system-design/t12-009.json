@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 4,
+  "id": "t12-009",
+  "track": "track-12",
+  "title": "End-to-end performance engineering for web applications",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Performance is a user-visible property across browser, network, API, database, dependencies, and operations; no single component metric explains the whole journey.",
+    "Begin with a user journey, workload, success threshold, and baseline. Define latency percentiles, throughput, error rate, resource use, and cost at explicit boundaries before optimizing.",
+    "A request path is a queueing system: concurrency and fan-out amplify tail latency, while retries and unbounded queues can increase load during overload. Budget timeouts and capacity across dependencies.",
+    "Browser performance includes resource discovery, caching, critical rendering, JavaScript/main-thread work, React rendering/hydration, and interaction responsiveness; API speed alone is not page speed.",
+    "ASP.NET Core performance depends on async I/O, thread-pool health, allocations/GC, serialization, middleware, connection pools, payloads, and downstream waits. Async improves resource use for waits but does not make CPU work faster.",
+    "EF Core and SQL Server performance is primarily shaped by query shape, rows/columns transferred, indexes, plans, parameter behavior, locks, round trips, and realistic data; ORM micro-optimizations come after database evidence.",
+    "Caching, batching, pagination, streaming, compression, and background work trade freshness, CPU, memory, network bytes, latency, and complexity; each requires correctness and failure policies.",
+    "Use traces, metrics, logs, browser profiles, database plans, and runtime profiles together. A profile generates a hypothesis; a controlled experiment tests it and a repeatable measurement confirms the effect.",
+    "Capacity and performance are release concerns: load shape, headroom, autoscaling delay, resource limits, canaries, rollback thresholds, and real-user measurements determine whether a change is safe."
+  ],
+  "inventory": [
+    {
+      "id": "performance-goals-and-workload",
+      "title": "Define experience, workload, and measurable objectives",
+      "items": [
+        "User journey performance budget",
+        "Latency versus throughput",
+        "p50 p95 p99 latency",
+        "Tail latency",
+        "Error rate and availability",
+        "Workload model",
+        "Arrival rate and concurrency",
+        "Read/write mix",
+        "Payload size distribution",
+        "Cold versus warm workload",
+        "Service level indicator (SLI)",
+        "Service level objective (SLO)",
+        "Performance acceptance threshold",
+        "Coordinated omission"
+      ]
+    },
+    {
+      "id": "browser-and-react-performance",
+      "title": "Browser loading, rendering, and interaction performance",
+      "items": [
+        "Critical rendering path",
+        "Largest Contentful Paint (LCP)",
+        "Interaction to Next Paint (INP)",
+        "Cumulative Layout Shift (CLS)",
+        "Resource discovery and priority",
+        "Render-blocking CSS",
+        "JavaScript parse and execution cost",
+        "Long task",
+        "Main-thread contention",
+        "React Profiler commit duration",
+        "Unnecessary render versus expensive render",
+        "React hydration cost",
+        "Code splitting and route chunking",
+        "Image and font payload optimization",
+        "Real User Monitoring (RUM) versus synthetic test"
+      ]
+    },
+    {
+      "id": "api-and-runtime-performance",
+      "title": "ASP.NET Core request and runtime bottlenecks",
+      "items": [
+        "Request critical path and span budget",
+        "Async I/O versus CPU-bound work",
+        "ThreadPool starvation",
+        "Sync-over-async",
+        "Allocation rate and garbage collection",
+        "Serialization cost",
+        "Response compression CPU tradeoff",
+        "Streaming and backpressure",
+        "Pagination and bounded response size",
+        "Connection pool saturation",
+        "HTTP connection reuse",
+        "Request queueing and admission control",
+        "Cancellation propagation",
+        "Background queue versus long request"
+      ]
+    },
+    {
+      "id": "database-and-ef-performance",
+      "title": "EF Core query shape and SQL Server execution",
+      "items": [
+        "Query count and round trips",
+        "N+1 query pattern",
+        "Projection and selected column count",
+        "Rows read versus rows returned",
+        "Index seek versus scan evidence",
+        "Actual execution plan",
+        "Cardinality estimation",
+        "Parameter sensitivity",
+        "Lock wait and blocking",
+        "Connection pool wait",
+        "Keyset pagination",
+        "Split query round trip tradeoff",
+        "Batching and bulk operations",
+        "Query Store regression comparison"
+      ]
+    },
+    {
+      "id": "distributed-path-and-capacity",
+      "title": "Network, dependencies, caching, and capacity",
+      "items": [
+        "DNS and connection setup time",
+        "Distributed trace critical path",
+        "Fan-out latency",
+        "Dependency timeout budget",
+        "Retry amplification",
+        "Bounded queue and queue depth",
+        "Cache hit ratio and miss penalty",
+        "Cache stampede",
+        "Stale data budget",
+        "Load shedding",
+        "Bulkhead isolation",
+        "CPU throttling and memory limit",
+        "Autoscaling delay",
+        "Capacity headroom",
+        "Failover capacity"
+      ]
+    },
+    {
+      "id": "performance-investigation-and-release",
+      "title": "Profile, experiment, and safely ship improvements",
+      "items": [
+        "Symptom hypothesis measurement loop",
+        "Browser performance waterfall",
+        ".NET CPU and allocation profile",
+        "Database wait and plan evidence",
+        "Baseline and controlled comparison",
+        "Representative test data",
+        "Load test versus benchmark",
+        "Load stress spike and soak test",
+        "Flame graph interpretation",
+        "Before-and-after confidence interval",
+        "Canary performance monitoring",
+        "Regression threshold and rollback",
+        "Cost per successful request",
+        "Privacy-safe telemetry"
+      ]
+    }
+  ],
+  "practiceProblems": [
+    {
+      "id": "trace-and-improve-checkout",
+      "name": "Trace and improve a slow checkout journey",
+      "difficulty": "advanced",
+      "patterns": [
+        "set user-visible objective",
+        "follow browser-to-database critical path",
+        "separate queueing from service time",
+        "validate improvement and safety"
+      ],
+      "statement": "A React checkout has poor p95 completion time despite acceptable API averages. The path includes browser rendering, ASP.NET Core, EF Core, SQL Server, and a payment dependency. Build an evidence-led plan to identify and improve the bottleneck without weakening correctness.",
+      "constraints": [
+        "Do not optimize averages while p95 worsens.",
+        "Payment retries can duplicate charges unless the operation is idempotent.",
+        "Improving one layer can move the bottleneck elsewhere."
+      ],
+      "examples": [
+        {
+          "input": "p95 4.2 s; browser wait 1.5 s; API span 2.7 s; payment p95 1.8 s; SQL p95 300 ms",
+          "output": "Trace representative slow requests, split payment and queue wait from app/SQL work, inspect page resource/long-task timing, and set budgets before selecting a change."
+        }
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0",
+        "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
+        "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitor-and-tune-for-performance?view=sql-server-ver17",
+        "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+        "https://sre.google/workbook/implementing-slos/"
+      ]
+    },
+    {
+      "id": "investigate-latency-regression",
+      "name": "Investigate a cross-layer latency regression",
+      "difficulty": "advanced",
+      "patterns": [
+        "compare baseline and release cohort",
+        "correlate traces and resource signals",
+        "identify saturation and queue growth",
+        "choose reversible mitigation"
+      ],
+      "statement": "After a deployment, API p99 doubles, browser INP worsens, SQL CPU is unchanged, and the request queue grows. Design a diagnosis and mitigation sequence that considers ASP.NET Core thread-pool behavior, serialization, browser work, dependency timeouts, and rollback.",
+      "constraints": [
+        "A correlation is not sufficient to identify cause.",
+        "A retry storm can worsen queue growth.",
+        "The mitigation must preserve user data and security."
+      ],
+      "examples": [
+        {
+          "input": "Queue depth rises only for the new release cohort while CPU remains moderate",
+          "output": "Compare cohort traces, thread-pool queue/blocked work, dependency waits, and payload sizes; mitigate with rollback or traffic reduction while testing a focused hypothesis."
+        }
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/available-counters",
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
+        "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
+        "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0",
+        "https://sre.google/workbook/alerting-on-slos/"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    "Browser user experience metrics versus server request latency: related but measured at different boundaries.",
+    "Latency versus throughput: reducing one can increase resource use or reduce sustainable request rate.",
+    "Benchmark versus load test versus production measurement: isolated operation cost, system behavior under workload, and real user outcomes answer different questions.",
+    "Cache versus source query optimization: cache reduces repeated work but adds freshness, invalidation, memory, and stampede concerns.",
+    "Async I/O versus parallelism: async releases blocked threads during waits; parallelism uses concurrent CPU execution and can increase contention.",
+    "Profiling versus optimization: profiles identify where to investigate; controlled before/after measurement establishes whether the change helped."
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0",
+    "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitor-and-tune-for-performance?view=sql-server-ver17",
+    "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+    "https://sre.google/workbook/implementing-slos/",
+    "https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory",
+    "https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-architecture-guide?view=sql-server-ver17"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "Microsoft ASP.NET Core, .NET runtime, EF Core, and SQL Server documentation; React and browser performance guidance; Google SRE Workbook; web.dev Web Vitals guidance",
+    "edition": "Current official documentation checked 2026-11-21; metrics, runtime tools, and deployment constraints are version/environment dependent.",
+    "checkedAt": "2026-11-21",
+    "urls": [
+      "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/available-counters",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-runtime",
+      "https://learn.microsoft.com/en-us/ef/core/performance/performance-diagnosis",
+      "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
+      "https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics",
+      "https://learn.microsoft.com/en-us/ef/core/querying/pagination",
+      "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitor-and-tune-for-performance?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/display-an-actual-execution-plan?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/query-processing-architecture-guide?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/parameter-sensitivity-plan-optimization?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store?view=sql-server-ver17",
+      "https://react.dev/reference/react/Profiler",
+      "https://react.dev/reference/react/useTransition",
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+      "https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming",
+      "https://web.dev/articles/vitals",
+      "https://web.dev/articles/optimize-lcp",
+      "https://web.dev/articles/inp",
+      "https://sre.google/workbook/implementing-slos/",
+      "https://sre.google/workbook/alerting-on-slos/",
+      "https://sre.google/sre-book/handling-overload/",
+      "https://www.brendangregg.com/flamegraphs.html"
+    ]
+  },
+  "accuracyFacts": [
+    "Measure percentiles and representative workload; averages can hide tail latency, and coordinated omission can understate latency during pauses.",
+    "LCP, INP, and CLS represent different user experience dimensions; server response time does not substitute for these browser metrics.",
+    "React Profiler measures React rendering work, not total browser navigation or network time.",
+    "Async I/O improves thread utilization during waits but does not make CPU-bound work faster or guarantee unlimited throughput.",
+    "EF Core query compilation optimizations do not repair inefficient SQL, poor indexes, excess rows, or avoidable round trips.",
+    "A SQL execution plan is an optimizer choice for a particular query and environment; validate with actual workload and runtime evidence.",
+    "Retries can amplify load and duplicate side effects; bound retries and require idempotency for safely repeated operations.",
+    "Caching trades repeated work for freshness, invalidation, memory, and failure complexity; a cache hit is not inherently correct.",
+    "Benchmark, load, stress, spike, soak, capacity, synthetic, and real-user measurements answer different questions.",
+    "A before/after improvement must use comparable workload and measurement boundaries; changing workload or cache state invalidates simplistic comparisons."
+  ],
+  "scopeExclusions": [
+    "Exhaustive API references for React, .NET diagnostics, EF Core, SQL Server, or browser performance; their specialized topics remain authoritative.",
+    "Universal numeric SLO or benchmark thresholds; targets depend on product, workload, device, and business requirements.",
+    "Provider-specific load-test, APM, or cloud autoscaling commands beyond the role-level comparison and diagnostic method."
+  ],
+  "generationAllowed": true
+}

@@ -4,7 +4,7 @@ Sources: [HLD Handbook](https://hld.handbook.academy/), [NetworkX cycle algorith
 
 ## Scope and version
 
-This case study covers detecting whether a graph contains a cycle, finding one witness cycle, and the separate task of enumerating cycles. “Ring” is not a single algorithmic contract: the correct method depends on whether edges are directed, whether the graph is a multigraph, whether self-loops count, and whether the system needs one cycle, all simple cycles, or a cycle basis. NetworkX documentation was checked on 2026-11-17 for definitions and reference algorithms; the principles below are language- and library-independent.
+This case study covers detecting whether a graph contains a cycle, finding one witness cycle, and the separate task of enumerating cycles. “Ring” is not a single algorithmic contract: the correct method depends on whether edges are directed, whether the graph is a multigraph, whether self-loops count, and whether the system needs one cycle, all simple cycles, or a cycle basis. NetworkX documentation was checked on 2026-11-21 for definitions and reference algorithms; the principles below are language- and library-independent.
 
 ## How this group fits the mental model
 

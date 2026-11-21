@@ -16,7 +16,7 @@ These APIs are exported by `react-dom` or its client entry point, not by core `r
 
 ### `requestFormReset`
 
-`requestFormReset(form)` requests a reset for a form rendered by React. It is intended to be called from an Action/Transition workflow. Uncontrolled fields return to their initial values; controlled fields continue to reflect React state, which the application must update separately. The function is not a substitute for native validation or server-side data handling.
+`requestFormReset(form)` requests a reset for a form rendered by React. It should be called from an Action/Transition workflow. Outside one, React warns in development and performs a synchronous reset. The target must be a form rendered by React; a non-form or unmanaged form throws. Uncontrolled fields return to their initial values; controlled fields continue to reflect React state, which the application must update separately. The function is not a substitute for native validation or server-side data handling.
 
 ### `createPortal`
 

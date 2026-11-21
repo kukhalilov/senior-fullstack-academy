@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 4,
+  "id": "t07-027",
+  "track": "track-07",
+  "title": "End-to-end browser navigation and web request lifecycle",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "A URL navigation crosses browser, operating system, resolver, network, TLS endpoint, HTTP infrastructure, application middleware, data dependencies, and renderer boundaries; many requests skip work because of caches or reused connections.",
+    "DNS resolution, address selection, TCP or QUIC transport setup, TLS authentication, and HTTP negotiation are related but distinct stages whose order and reuse vary by protocol and connection state.",
+    "HTTP defines request/response semantics; proxies, CDNs, load balancers, server middleware, and application handlers can transform, route, authorize, cache, or reject the exchange.",
+    "Browser security policies such as same-origin, CORS, cookie rules, CSP, and mixed-content checks affect whether requests are sent, credentials are attached, and responses are exposed to script; they are not substitutes for server authorization.",
+    "HTTP caching, service-worker CacheStorage, browser memory caches, and application data stores have different owners and freshness rules; diagnose which layer served the response.",
+    "After HTML arrives, the browser parses and discovers resources, builds render-related structures, runs scripts, computes styles/layout, paints, and may hydrate or update a React tree; critical rendering and interactivity are affected by resource dependencies.",
+    "Performance and production debugging require timelines and evidence at each boundary, including cache state, DNS/connect/TLS timing, redirects, server spans, response size, main-thread work, and rendering milestones."
+  ],
+  "inventory": [
+    {
+      "id": "url-navigation-and-browser-decisions",
+      "title": "From entered address to navigation request",
+      "items": [
+        "URL parsing and scheme selection",
+        "Browser autocomplete and search-engine decision",
+        "HSTS upgrade before network request",
+        "Service worker navigation interception",
+        "Navigation preload",
+        "Same-origin policy",
+        "Redirect chain",
+        "Browser HTTP cache lookup",
+        "Connection pool and connection reuse"
+      ]
+    },
+    {
+      "id": "name-resolution-and-transport",
+      "title": "DNS, address selection, transport, and TLS",
+      "items": [
+        "DNS resolver cache",
+        "Recursive DNS resolution",
+        "A and AAAA address records",
+        "Happy Eyeballs address racing",
+        "TCP three-way handshake",
+        "QUIC connection establishment",
+        "TLS handshake",
+        "Certificate chain and hostname validation",
+        "ALPN protocol negotiation",
+        "TLS session resumption",
+        "SNI and encrypted client hello boundary",
+        "HTTP/1.1 connection reuse",
+        "HTTP/2 multiplexing",
+        "HTTP/3 over QUIC"
+      ]
+    },
+    {
+      "id": "http-routing-and-server-request",
+      "title": "HTTP exchange through proxies and ASP.NET Core",
+      "items": [
+        "HTTP method target headers and body",
+        "CDN edge and cache key",
+        "Reverse proxy and load balancer",
+        "Forwarded headers trust boundary",
+        "Kestrel connection and request parsing",
+        "ASP.NET Core middleware order",
+        "Authentication versus authorization",
+        "Endpoint routing and model binding",
+        "EF Core query and database round trip",
+        "Response status headers and body",
+        "Compression and content negotiation",
+        "Streaming response and backpressure",
+        "Request cancellation propagation"
+      ]
+    },
+    {
+      "id": "browser-security-and-state",
+      "title": "Browser credentials, origins, and request visibility",
+      "items": [
+        "Cookie attachment rules",
+        "Secure HttpOnly SameSite cookie attributes",
+        "CORS simple request",
+        "CORS preflight OPTIONS request",
+        "Access-Control-Allow-Origin",
+        "Access-Control-Allow-Credentials",
+        "Credentialed cross-origin fetch",
+        "CSRF versus CORS distinction",
+        "Content Security Policy",
+        "Mixed content blocking",
+        "Fetch response exposure versus network delivery",
+        "AbortController cancellation"
+      ]
+    },
+    {
+      "id": "freshness-caching-and-revalidation",
+      "title": "Cache layers and freshness decisions",
+      "items": [
+        "Cache-Control directives",
+        "ETag and If-None-Match",
+        "Last-Modified and If-Modified-Since",
+        "304 Not Modified",
+        "Vary response header",
+        "Private versus shared cache",
+        "CDN cache hit and miss",
+        "Service worker CacheStorage",
+        "Stale response and revalidation",
+        "Cache invalidation and purge"
+      ]
+    },
+    {
+      "id": "html-to-rendered-react",
+      "title": "Response delivery to pixels and React interactivity",
+      "items": [
+        "HTML parser and preload scanner",
+        "DOM tree construction",
+        "CSSOM construction",
+        "Render tree",
+        "Layout and paint",
+        "JavaScript parse compile and execute",
+        "Render-blocking stylesheet",
+        "Parser-blocking script",
+        "Critical rendering path",
+        "Largest Contentful Paint (LCP)",
+        "First Input Delay (FID) and Interaction to Next Paint (INP)",
+        "React hydration",
+        "Hydration mismatch",
+        "Streaming HTML and Suspense boundary"
+      ]
+    },
+    {
+      "id": "diagnosis-and-reliability",
+      "title": "Trace and debug the complete request path",
+      "items": [
+        "Browser Performance panel waterfall",
+        "Resource Timing API",
+        "DNS timing versus connection timing",
+        "Server distributed trace span",
+        "Correlation and trace context",
+        "HTTP status versus browser console error",
+        "Timeout at each network boundary",
+        "Retry safety and idempotency",
+        "Payload size and compression",
+        "Main-thread long task",
+        "Cold cache versus warm cache",
+        "Synthetic versus real-user measurement"
+      ]
+    }
+  ],
+  "practiceProblems": [
+    {
+      "id": "trace-slow-product-navigation",
+      "name": "Trace a slow product-page navigation",
+      "difficulty": "advanced",
+      "patterns": [
+        "separate browser and server time",
+        "read a request waterfall",
+        "identify cache and connection reuse",
+        "prioritize the critical path"
+      ],
+      "statement": "A React product page feels slow. Browser records show a redirect, DNS/connect time, a large JavaScript bundle, an API request, and delayed LCP. Build a step-by-step investigation plan that separates network, server, and rendering costs.",
+      "constraints": [
+        "Do not assume every navigation performs fresh DNS, TCP, and TLS setup.",
+        "The endpoint may return quickly while client rendering remains slow.",
+        "Some browser console errors describe response exposure rather than whether a network request reached the server."
+      ],
+      "examples": [
+        {
+          "input": "Warm navigation, cached assets, API response in 120 ms, LCP in 3.8 s",
+          "output": "Compare cold and warm waterfalls, inspect redirect/resource dependencies and long tasks, and optimize the measured critical path rather than the already-fast API alone."
+        }
+      ],
+      "sourceUrls": [
+        "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+        "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+        "https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming",
+        "https://web.dev/articles/optimize-lcp"
+      ]
+    },
+    {
+      "id": "diagnose-cross-origin-request-failure",
+      "name": "Diagnose a cross-origin API request failure",
+      "difficulty": "advanced",
+      "patterns": [
+        "distinguish CORS from authorization",
+        "inspect preflight and credentials",
+        "separate delivery from script exposure",
+        "verify server and browser evidence"
+      ],
+      "statement": "A React app calls an ASP.NET Core API on another origin. The browser reports a CORS error after a preflight; the developer suspects the bearer token is invalid. Diagnose the request and propose a safe correction.",
+      "constraints": [
+        "CORS is enforced by browsers and does not authorize access to server data.",
+        "Credentialed requests require a specific allowed origin, not a wildcard.",
+        "A preflight may be rejected before the actual request is sent."
+      ],
+      "examples": [
+        {
+          "input": "OPTIONS receives 401 and no actual POST appears in server logs",
+          "output": "Inspect middleware/proxy handling for OPTIONS and the required CORS policy before debugging POST authorization; then verify credentials and authorization on the actual request."
+        }
+      ],
+      "sourceUrls": [
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS",
+        "https://fetch.spec.whatwg.org/",
+        "https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-11.0"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    "Navigation versus subresource fetch: browser-controlled document transition versus script-initiated request and response exposure.",
+    "TCP plus TLS versus QUIC: distinct transport setup paths; HTTP/2 and HTTP/3 do not mean the same transport.",
+    "CORS versus authentication/authorization: browser response-sharing policy versus server access-control decision.",
+    "HTTP cache versus CacheStorage: protocol freshness semantics versus application-managed request/response entries.",
+    "Server latency versus page readiness: response completion and browser render/interactivity milestones measure different user experiences."
+  ],
+  "comparisonSources": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+    "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+    "https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage",
+    "https://learn.microsoft.com/en-us/ef/core/performance/efficient-querying",
+    "https://www.rfc-editor.org/rfc/rfc6797.html",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers",
+    "https://developer.mozilla.org/en-US/docs/Web/API/NavigationPreloadManager",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS",
+    "https://fetch.spec.whatwg.org/",
+    "https://www.rfc-editor.org/rfc/rfc9110.html",
+    "https://www.rfc-editor.org/rfc/rfc9111.html",
+    "https://www.rfc-editor.org/rfc/rfc9000.html",
+    "https://www.rfc-editor.org/rfc/rfc9114.html",
+    "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Caching",
+    "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "WHATWG Fetch and HTML standards; IETF DNS/TLS/HTTP/QUIC standards; MDN browser guides; Microsoft ASP.NET Core documentation; web.dev performance guidance",
+    "edition": "Current standards and official documentation checked 2026-11-21; runtime and browser behavior may vary by protocol negotiation and deployment.",
+    "checkedAt": "2026-11-21",
+    "urls": [
+      "https://fetch.spec.whatwg.org/",
+      "https://html.spec.whatwg.org/multipage/",
+      "https://dom.spec.whatwg.org/",
+      "https://www.rfc-editor.org/rfc/rfc1034.html",
+      "https://www.rfc-editor.org/rfc/rfc1035.html",
+      "https://www.rfc-editor.org/rfc/rfc8305.html",
+      "https://www.rfc-editor.org/rfc/rfc9293.html",
+      "https://www.rfc-editor.org/rfc/rfc9000.html",
+      "https://www.rfc-editor.org/rfc/rfc9001.html",
+      "https://www.rfc-editor.org/rfc/rfc9110.html",
+      "https://www.rfc-editor.org/rfc/rfc9111.html",
+      "https://www.rfc-editor.org/rfc/rfc9112.html",
+      "https://www.rfc-editor.org/rfc/rfc9113.html",
+      "https://www.rfc-editor.org/rfc/rfc9114.html",
+      "https://www.rfc-editor.org/rfc/rfc9846.html",
+      "https://www.rfc-editor.org/rfc/rfc9849.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/ETag",
+      "https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming",
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+      "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Caching",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-11.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-11.0",
+      "https://react.dev/reference/react-dom/client/hydrateRoot",
+      "https://web.dev/articles/optimize-lcp",
+      "https://web.dev/articles/inp"
+    ]
+  },
+  "accuracyFacts": [
+    "A navigation may reuse DNS answers, connections, cached resources, or a service-worker response; do not describe every request as a fresh full handshake.",
+    "CORS controls whether browser script may access a cross-origin response; it is not server-side authentication or authorization.",
+    "A failed preflight can prevent the actual request from being sent; a browser CORS error alone does not prove the server never received any request.",
+    "HTTP/2 commonly uses a TCP connection with TLS for HTTPS; HTTP/3 uses QUIC over UDP. Negotiated protocol and setup details depend on browser and server support.",
+    "Server response latency, LCP, and INP measure different parts of the user experience and cannot be substituted for one another.",
+    "Cache-Control applies to HTTP caching semantics; CacheStorage behavior is controlled by application code.",
+    "Forwarded headers are trustworthy only when accepted from known proxies; client-supplied forwarding headers are untrusted input.",
+    "React hydration expects the client initial output to match server-rendered markup; browser-only state should not silently change the initial tree."
+  ],
+  "scopeExclusions": [
+    "Exhaustive DNS, TLS, HTTP, Fetch, cookie, React DOM, or ASP.NET Core API inventories; their dedicated topics remain authoritative for exact APIs.",
+    "Provider-specific router, CDN, load-balancer, and operating-system configuration beyond the generic request path.",
+    "A claim that every browser navigation follows one fixed sequence; caches, preconnect, service workers, protocol negotiation, and browser implementation change the path."
+  ],
+  "generationAllowed": true
+}

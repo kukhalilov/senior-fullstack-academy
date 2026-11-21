@@ -193,14 +193,16 @@
       ]
     },
     {
-      "edition": "Rolldown 1.3 and Rspack 2.0/current 2.3 (2026)",
+      "edition": "Rolldown 1.3 and Rspack 2.0/Rspack 2.3.3 current patch (2026-11)",
       "items": [
         "2.0 modernized defaults and ESM/output while preserving broad webpack compatibility",
-        "2.3 integrates SWC Next parser and adds memory/build, split-chunk, and experimental cache changes"
+        "2.3 integrates SWC Next parser and adds memory/build, split-chunk, and experimental cache changes",
+        "Rspack 2.3.3 changes HTTP module lockfile and content cache naming to match webpack; regenerate files from the old Rspack format before using frozen HTTP builds."
       ],
       "sourceUrls": [
         "https://rspack.rs/blog/announcing-2-0",
-        "https://rspack.rs/blog/announcing-2-3"
+        "https://rspack.rs/blog/announcing-2-3",
+        "https://github.com/web-infra-dev/rspack/releases"
       ]
     },
     {
@@ -229,8 +231,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Official Vite, Webpack, Rollup, esbuild, Parcel, Rspack, Next.js/Turbopack, Rolldown, Bun, and TypeScript documentation",
-    "edition": "Current stable tool documentation checked 2026-11-18; Parcel 3 alpha labeled separately",
-    "checkedAt": "2026-11-18",
+    "edition": "Current stable tool documentation checked 2026-11-20; Parcel 3 alpha labeled separately",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://vite.dev/guide/",
       "https://vite.dev/blog/announcing-vite8.html",
@@ -267,7 +269,8 @@
       "https://parceljs.org/features/targets",
       "https://vite.dev/releases",
       "https://github.com/vitejs/vite/releases",
-      "https://github.com/rolldown/rolldown/releases"
+      "https://github.com/rolldown/rolldown/releases",
+      "https://github.com/web-infra-dev/rspack/releases"
     ]
   },
   "accuracyFacts": [
@@ -276,7 +279,7 @@
     "Rollup emphasizes ES module graph analysis and tree shaking and commonly serves libraries; CommonJS support is supplied through plugins rather than being equivalent to Node's full resolver by default.",
     "esbuild offers fast transform/build APIs plus watch, serve, rebuild contexts, and plugins in its asynchronous JS API; its documented code splitting supports ESM output only, and its serve/watch feature is not HMR.",
     "Parcel 2 (v2.15.0) is the stable line in this snapshot; it emphasizes automatic discovery, integrated asset processing, dev server/hot reload, caching, and targets. Parcel 3 alpha was announced 2026-11-04 as a Rust rewrite with native plugin ABI and centralized configuration; alpha docs list .d.ts generation, custom bundler plugins, and a programmatic JavaScript API as incomplete. Do not teach Parcel 3 alpha as production stable.",
-    "Rspack 2.3 is the latest stable minor documented on 2026-10-29. Rspack 2.0 modernized defaults and ESM/output while retaining broad webpack compatibility; 2.3 integrates the SWC Next parser and adds memory/build, split-chunk, and experimental-cache changes. Compatibility is substantial rather than perfect; some webpack plugins/loaders may need alternatives or adaptation. Rsbuild is the higher-level out-of-box tool built on Rspack.",
+    "Rspack 2.3.3 is the latest stable patch on the 2.3 line checked 2026-11-20. Rspack 2.0 modernized defaults and ESM/output while retaining broad webpack compatibility; 2.3 integrates the SWC Next parser and adds memory/build, split-chunk, and experimental-cache changes. Rspack 2.3.3 changes HTTP module lockfiles/cache filenames to match webpack; old Rspack-format lockfiles/caches must be deleted and regenerated before frozen builds. Compatibility is substantial rather than perfect; some webpack plugins/loaders may need alternatives or adaptation. Rsbuild is the higher-level tool built on Rspack.",
     "Turbopack is integrated with Next.js and became the default bundler for development and builds in Next.js 16; --webpack opts out. It is not a general standalone webpack replacement. It supports selected webpack loaders through loader-runner but does not support webpack plugins, and Next docs list behavioral gaps.",
     "Rolldown is a standalone Rust bundler with a Rollup-compatible plugin interface and additional features; compatibility is not identical to Rollup, and some features remain experimental or work in progress. Vite 8 embeds it as its bundler.",
     "Bun.build is Bun's native bundler API/CLI and is integrated with the Bun runtime and plugins. Some options/features have maturity/target-specific caveats; its docs should be checked before using it as a browser or Node deployment pipeline.",

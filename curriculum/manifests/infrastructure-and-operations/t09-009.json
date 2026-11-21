@@ -194,7 +194,75 @@
         "PromQL ts_of_min_over_time function",
         "PromQL ts_of_max_over_time function",
         "PromQL ts_of_last_over_time function",
-        "PromQL ts_of_first_over_time function"
+        "PromQL ts_of_first_over_time function",
+        "PromQL acos function",
+        "PromQL acosh function",
+        "PromQL asin function",
+        "PromQL asinh function",
+        "PromQL atan function",
+        "PromQL atanh function",
+        "PromQL cos function",
+        "PromQL cosh function",
+        "PromQL sin function",
+        "PromQL sinh function",
+        "PromQL tan function",
+        "PromQL tanh function",
+        "PromQL deg function",
+        "PromQL pi function",
+        "PromQL rad function",
+        "PromQL integral function",
+        "PromQL max_of function",
+        "PromQL min_of function",
+        "PromQL unary minus operator",
+        "PromQL addition operator",
+        "PromQL subtraction operator",
+        "PromQL multiplication operator",
+        "PromQL division operator",
+        "PromQL modulo operator",
+        "PromQL exponentiation operator",
+        "PromQL comparison operators",
+        "PromQL bool modifier",
+        "PromQL logical and operator",
+        "PromQL logical or operator",
+        "PromQL logical unless operator",
+        "PromQL atan2 operator",
+        "PromQL histogram trim upper operator",
+        "PromQL histogram trim lower operator",
+        "PromQL vector matching",
+        "PromQL on modifier",
+        "PromQL ignoring modifier",
+        "PromQL group_left modifier",
+        "PromQL group_right modifier",
+        "PromQL fill modifier",
+        "PromQL fill_left modifier",
+        "PromQL fill_right modifier",
+        "PromQL sum aggregation operator",
+        "PromQL avg aggregation operator",
+        "PromQL min aggregation operator",
+        "PromQL max aggregation operator",
+        "PromQL bottomk aggregation operator",
+        "PromQL topk aggregation operator",
+        "PromQL limitk aggregation operator",
+        "PromQL limit_ratio aggregation operator",
+        "PromQL group aggregation operator",
+        "PromQL count aggregation operator",
+        "PromQL count_values aggregation operator",
+        "PromQL stddev aggregation operator",
+        "PromQL stdvar aggregation operator",
+        "PromQL quantile aggregation operator",
+        "PromQL by aggregation modifier",
+        "PromQL without aggregation modifier",
+        "PromQL label matcher operators",
+        "PromQL regular expression matcher",
+        "PromQL @ modifier",
+        "PromQL float literal",
+        "PromQL string literal",
+        "PromQL duration literal",
+        "PromQL duration expression",
+        "PromQL metric name quoting",
+        "PromQL UTF-8 unquoted names feature",
+        "Prometheus promql-binop-fill-modifiers feature flag",
+        "Prometheus promql-experimental-functions feature flag"
       ]
     },
     {
@@ -429,15 +497,17 @@
         "Prometheus v3.8.0 marks native histograms stable, but in v3 scraping remains opt-in with scrape_native_histograms; in v3.8 the old feature flag only sets that configuration default, while from v3.9 the flag is a no-op. Remote-write transmission separately requires send_native_histograms. Do not infer end-to-end enablement from stability."
       ],
       "sourceUrls": [
-        "https://prometheus.io/docs/specs/native_histograms/"
+        "https://prometheus.io/docs/specs/native_histograms/",
+        "https://prometheus.io/download/"
       ]
     },
     {
-      "edition": "OpenTelemetry Collector Contrib v0.164.0 (2026-10-27 announcement)",
+      "edition": "OpenTelemetry Collector Contrib v0.165.1 (latest release checked 2026-11-20); OTTL v1 milestone v0.164.0",
       "items": [
         "OTTL v1 became stable for traces, metrics, and logs starting with opentelemetry-collector-contrib v0.164.0. This stability promise covers the OTTL language, not every Collector processor or component; the transform processor was still described as a separate promotion effort in the announcement."
       ],
       "sourceUrls": [
+        "https://github.com/open-telemetry/opentelemetry-collector-contrib/releases",
         "https://opentelemetry.io/blog/2026/ottl-v1/",
         "https://opentelemetry.io/docs/collector/transforming-telemetry/"
       ]
@@ -475,14 +545,29 @@
       "fact": "Prometheus experimental PromQL functions require the promql-experimental-functions feature flag and can change. In particular, histogram_quantiles, info, integral, double_exponential_smoothing, time-boundary functions, sort_by_label variants, and experimental over-time functions must not be presented as universally available stable syntax.",
       "sourceUrls": [
         "https://prometheus.io/docs/prometheus/latest/querying/functions/",
+        "https://prometheus.io/docs/prometheus/latest/querying/operators/",
+        "https://prometheus.io/docs/prometheus/latest/feature_flags/"
+      ]
+    },
+    {
+      "fact": "The current PromQL function reference also includes experimental, feature-flagged integral, max_of, and min_of functions; circular trigonometric functions use radians, hyperbolic functions use dimensionless numeric values, deg and rad convert angle units, and pi returns a scalar. start_timestamp has a separate use-start-timestamps feature gate.",
+      "sourceUrls": [
+        "https://prometheus.io/docs/prometheus/latest/querying/functions/",
+        "https://prometheus.io/docs/prometheus/latest/feature_flags/"
+      ]
+    },
+    {
+      "fact": "Current PromQL also includes vector matching modifiers on/ignoring/group_left/group_right, comparison bool, aggregation operators including experimental limitk and limit_ratio, and optional binary fill modifiers gated by promql-binop-fill-modifiers. Histogram trim operators </ and >/ operate on native histograms with scalar thresholds. Consult the deployed Prometheus version and feature flags; latest documentation can describe features newer than an installed server.",
+      "sourceUrls": [
+        "https://prometheus.io/docs/prometheus/latest/querying/operators/",
         "https://prometheus.io/docs/prometheus/latest/feature_flags/"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "OpenTelemetry official documentation/specification, Prometheus documentation/specifications, and Google SRE Workbook",
-    "edition": "Current signal concepts, OpenTelemetry status and Prometheus latest documentation checked 2026-11-17; implementation-specific backend query languages are out of scope",
-    "checkedAt": "2026-11-17",
+    "edition": "OpenTelemetry specification 1.62.0; Collector Contrib 0.165.1; Prometheus 3.16.0 and current PromQL documentation checked 2026-11-20; implementation-specific backend query languages are out of scope",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://opentelemetry.io/docs/concepts/signals/",
       "https://opentelemetry.io/docs/concepts/signals/traces/",

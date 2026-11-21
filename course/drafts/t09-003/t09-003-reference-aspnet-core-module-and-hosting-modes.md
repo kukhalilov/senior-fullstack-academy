@@ -4,7 +4,7 @@ Sources: [ASP.NET Core 11 IIS hosting](https://learn.microsoft.com/en-us/aspnet/
 
 ## Scope and version
 
-The current stable target is ASP.NET Core 11 GA, released November 10, 2026. This lesson distinguishes .NET 11 hosting behavior from the latest published ANCM startup-code mapping, whose troubleshooting article remains the ASP.NET Core 10 edition at the time checked (November 16, 2026). Verify deployed `web.config`, installed Hosting Bundle/module version, architecture, and the target-version documentation on the actual server. The manifest records the exact current source snapshot.
+The current stable target is ASP.NET Core 11 GA, released November 10, 2026. This lesson distinguishes .NET 11 hosting behavior from the latest published ANCM startup-code mapping, whose troubleshooting article remains the ASP.NET Core 10 edition at the time checked (November 20, 2026). Verify deployed `web.config`, installed Hosting Bundle/module version, architecture, and the target-version documentation on the actual server. The manifest records the exact current source snapshot.
 
 ## How this group fits the mental model
 

@@ -28,16 +28,16 @@ Scale increases the amount of work; reliability defines useful behavior when com
 - **Circuit breaker** — Stops calls to a failing dependency temporarily, then probes recovery; complements rather than replaces timeouts.
 - **Timeout and retry** — Timeout bounds waiting; retry may recover transient failures but must be bounded, jittered, and safe against duplicate effects.
 - **Idempotent request** — Repeating the operation has the same intended effect, often through an idempotency key and stored outcome.
-- **At-least-once delivery** — Message is retried until acknowledgment under assumptions; duplicates are possible.
+- **At-least-once delivery** — The delivery system may redeliver when acknowledgment or processing is uncertain, subject to its retry and retention policy; duplicates are possible.
 - **Duplicate processing** — Repeated handling of the same event; use idempotent consumers or deduplication with an appropriate retention period.
 - **Eventual consistency** — Replicas or projections converge if updates stop; user-visible stale behavior and repair need definition.
 - **Read-your-writes consistency** — A user can observe their own accepted write in later reads, possibly through routing or version tokens.
-- **Strong consistency requirement** — Reads obey a specified latest-write ordering guarantee; define scope and availability tradeoff precisely.
+- **Strong consistency requirement** — State the exact consistency model and scope required; for example, whether a read must reflect a completed write. Do not treat the label as a universal guarantee across systems.
 - **Single point of failure** — One component whose failure disables a required capability with no adequate alternate path.
 - **Zone redundancy** — Distribute instances/data across failure zones within a region; account for quorum and correlated dependencies.
 - **Multi-region deployment** — Run in multiple geographic regions; define data replication, routing, failover, residency, and conflict behavior.
 - **Failover** — Move service or traffic to a surviving component; test detection, promotion, fencing, and return to normal.
-- **Recovery Point Objective (RPO)** — Maximum acceptable data loss measured as time before a disruption.
+- **Recovery Point Objective (RPO)** — Target maximum age of the recoverable data point after a disruption; it describes the acceptable data-loss window, not a guarantee that replication or backups meet it.
 - **Recovery Time Objective (RTO)** — Target duration to restore a service after disruption.
 - **Graceful degradation** — Preserve essential behavior while disabling or simplifying optional features.
 - **Data loss risk** — Possibility acknowledged writes or derived state cannot be recovered; evaluate backups, replication, and replay.

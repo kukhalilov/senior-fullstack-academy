@@ -62,4 +62,4 @@ Start with one region plus the appropriate in-region redundancy and tested backu
 
 ## Scope and version
 
-The recovery objective definitions and architecture trade-offs are cross-checked against the cited Google Cloud and Microsoft architecture guidance. Exact service behavior is intentionally not generalized across vendors. This lesson remains in draft pending full claim-by-claim audit and manifest omission check.
+The recovery objective definitions and architecture trade-offs are cross-checked against the cited Google Cloud and Microsoft architecture guidance. Exact service behavior is intentionally not generalized across vendors.

@@ -4,9 +4,9 @@ Sources: [HLD Handbook](https://hld.handbook.academy/), [OpenRouter provider sel
 
 ## Scope and version
 
-OpenRouter is a hosted API gateway that exposes a unified interface to multiple model providers and routes requests among eligible provider endpoints. This lesson focuses on system design, not a full endpoint or account configuration reference. Its documentation was checked on 2026-11-17. Model catalogs, provider eligibility, pricing, privacy terms, plans, and routing behavior change; pin explicit model versions where reproducibility matters and re-check the current provider/model policy before production use.
+OpenRouter is a hosted API gateway that exposes a unified interface to multiple model providers and routes requests among eligible provider endpoints. This lesson focuses on system design, not a full endpoint or account configuration reference. Its documentation was checked on 2026-11-21. Model catalogs, provider eligibility, pricing, privacy terms, plans, and routing behavior change; pin explicit model versions where reproducibility matters and re-check the current provider/model policy before production use.
 
-OpenRouter announced a provider-routing change on 2026-10-28: default routing began considering effective price, time to first token, throughput, error/rate-limit behavior, and output quality signals, while explicit provider order and sort settings can select other behaviors. This is a current service behavior, not a timeless property of a generic gateway; validate it against the live routing documentation.
+OpenRouter announced a provider-routing change on 2026-10-28: its announcement described default routing using effective price, time to first token, throughput, error/rate-limit behavior, and output-quality signals, while explicit provider order and sort settings can select other behaviors. This describes a dated service behavior, not a timeless property of a generic gateway; validate it against the live routing documentation.
 
 ## How this group fits the mental model
 
@@ -78,3 +78,7 @@ Protect API keys with least privilege, rotation, per-environment separation, and
 ## Practice
 
 Design a customer-support summarization feature using OpenRouter. Set requirements for model capability, latency, budget, region, data retention, and fallback. Define how you will constrain eligible providers, handle a provider outage during streaming, validate the result, and notice a routing-policy change. Explain what should happen when no endpoint satisfies the privacy and capability constraints.
+
+## Review status
+
+Reviewed 2026-11-21. Current provider-selection documentation confirms provider constraints, ordering/sorting, parameter support, and data-policy filters; current fallback documentation confirms model-level failover behavior. The dated routing announcement is treated as a vendor-specific snapshot, not a durable algorithm guarantee. The lesson correctly separates provider failover from model fallback and calls out privacy, feature compatibility, reproducibility, and output validation. No material factual corrections or missing core concepts were found.

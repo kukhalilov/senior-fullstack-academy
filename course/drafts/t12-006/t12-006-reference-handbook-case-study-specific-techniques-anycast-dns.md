@@ -55,7 +55,3 @@ Operationally, probe from multiple external networks and regions; expose node id
 2. **If a DNS anycast site is unhealthy, will its clients instantly move to another site?** Not necessarily. Health detection, route withdrawal, routing convergence, resolver retries, and client behavior all contribute to recovery time.
 3. **Does advertising the same prefix ensure all sites serve the same DNS zone data?** No. Data synchronization and rollout are separate responsibilities.
 4. **How would you investigate reports that only some users cannot resolve names?** Probe from multiple networks, correlate failures with the serving site/node and route state, inspect site health and zone version, and account for resolver caching and path changes.
-
-## Review status
-
-Anycast mechanics and operational cautions are checked against IETF RFC 4786 and DNS terminology against RFC 9499. The lesson remains pending complete claim-by-claim audit and manifest omission check.

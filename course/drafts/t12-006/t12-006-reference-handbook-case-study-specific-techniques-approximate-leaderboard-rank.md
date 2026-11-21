@@ -56,4 +56,4 @@ Define whether inactive users count, how deleted/cheating accounts are removed, 
 
 ## Review status
 
-KLL rank/quantile error framing is checked against the DataSketches paper and BigQuery documentation; Redis sorted-set rank behavior is checked against Redis docs. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Reviewed 2026-11-21. Apache DataSketches documents KLL's mathematically bounded error in rank space, not a general bound on score-value error; the lesson distinguishes approximate rank/quantile from exact order and distinct counting. Redis sorted-set rank behavior and BigQuery sketch use were checked against their product documentation. Tie policy, population, freshness, and merge/shard semantics are correctly called out. No material factual corrections or missing core concepts were found.

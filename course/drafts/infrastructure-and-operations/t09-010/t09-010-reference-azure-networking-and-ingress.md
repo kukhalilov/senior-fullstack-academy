@@ -4,7 +4,7 @@ Sources: [Virtual networks](https://learn.microsoft.com/en-us/azure/virtual-netw
 
 ## Scope and version
 
-This reference covers common Azure VNet, private connectivity and traffic-entry services. Routing, DNS, network security, service support and regional availability vary by resource/provider. Current guidance was checked 2026-11-16. Test name resolution and the actual application path after deployment; a control-plane object being present is not proof of data-plane reachability.
+This reference covers common Azure VNet, private connectivity and traffic-entry services. Routing, DNS, network security, service support and regional availability vary by resource/provider. Current guidance was checked 2026-11-20. Test name resolution and the actual application path after deployment; a control-plane object being present is not proof of data-plane reachability.
 
 ## How this group fits the mental model
 

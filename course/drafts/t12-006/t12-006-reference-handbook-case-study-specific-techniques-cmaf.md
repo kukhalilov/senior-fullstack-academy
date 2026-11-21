@@ -1,10 +1,10 @@
 # end-to-end system design case studies — Reference: CMAF
 
-Sources: [MPEG CMAF standard overview](https://www.mpeg.org/standards/MPEG-A/19/), [Apple CMAF with HLS](https://developer.apple.com/documentation/http-live-streaming/about-the-common-media-application-format-with-http-live-streaming-hls), [Apple HLS authoring specification](https://developer.apple.com/streaming/hls-authoring-specification-for-apple-devices.html), [MPEG-DASH standard overview](https://www.mpeg.org/standards/MPEG-DASH/), [DASH-IF implementation guidelines](https://dashif.org/Guidelines-TimingModel/Timing-Model.pdf).
+Sources: [MPEG CMAF standard overview](https://www.mpeg.org/standards/MPEG-A/19/), [ISO/IEC 23000-19:2024 base standard](https://www.iso.org/standard/85623.html), [ISO/IEC 23000-19:2024/Amd 2:2026](https://committee.iso.org/standard/89043.html), [Apple CMAF with HLS](https://developer.apple.com/documentation/http-live-streaming/about-the-common-media-application-format-with-http-live-streaming-hls), [Apple HLS authoring specification](https://developer.apple.com/streaming/hls-authoring-specification-for-apple-devices.html), [MPEG-DASH standard overview](https://www.mpeg.org/standards/MPEG-DASH/), [DASH-IF implementation guidelines](https://dashif.org/Guidelines-TimingModel/Timing-Model.pdf).
 
 ## Scope and version
 
-The Common Media Application Format (CMAF) is standardized as ISO/IEC 23000-19 for segmented media. MPEG currently lists the first edition (2018), released second and third editions, and a fourth edition marked ongoing; check the live edition and amendments when implementing. This lesson covers packaging and delivery, not every codec, DRM, or device profile. Confirm the actual HLS/DASH profile support of target packagers and players.
+The Common Media Application Format (CMAF) is standardized as ISO/IEC 23000-19 for segmented media. The currently published base standard is ISO/IEC 23000-19:2024, Edition 3; Amendment 2:2026 added an additional structural CMAF brand profile. MPEG also lists work on Edition 4 as ongoing. Confirm which published edition and amendments a packager/player implements instead of assuming the in-progress edition is already normative. This lesson covers packaging and delivery, not every codec, DRM, or device profile. Confirm the actual HLS/DASH profile support of target packagers and players.
 
 ## How this group fits the mental model
 

@@ -7,7 +7,7 @@
 # Source units, namespaces, and using directives
 
 ## Scope and version
-This lesson covers the structural organization of C# source code. Microsoft Learn checked 2026-11-17 lists C# 15 as current for .NET 11. Namespace and using syntax here is not tied to a specific language version except where noted.
+This lesson covers the structural organization of C# source code. Microsoft Learn checked 2026-11-20 lists C# 15 as current for .NET 11. Namespace and using syntax here is not tied to a specific language version except where noted.
 
 *Source: [Microsoft Learn C# Fundamentals](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure)*
 

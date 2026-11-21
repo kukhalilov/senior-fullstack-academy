@@ -127,23 +127,22 @@ Trailer helpers require protocol/server support and must be used in the proper o
 
 ## Cross-item comparison
 
-Compare only the supplied names here. Stream properties offer sequential access; pipe properties offer segmented buffers and explicit cursors. Buffered form binding is convenient for bounded files; multipart streaming handles large input with greater application responsibility. Response callbacks surround the commit point, while body writes/flushes may cause it. File result types differ by byte source (content, path, virtual path, or stream) and share authorization/range/metadata decisions.
-
+Status and headers are mutable only before response start. OnStarting callbacks run before headers are committed; OnCompleted is after response processing and cannot alter the response. Stream/file result choices determine where bytes come from, while range, content type, authorization, and cancellation remain separate decisions.
 ## Examples
 
-```csharp
-app.MapPost("/echo", async (HttpContext context, CancellationToken cancellationToken) =>
-{
-    var input = await context.Request.ReadFromJsonAsync<EchoRequest>(cancellationToken);
-    if (input is null) return Results.BadRequest();
-    return Results.Json(new { message = input.Message });
-});
+A streaming response can send chunks without first materializing the complete result. Once the response starts, status and headers cannot be replaced; handle late failures through the stream contract and logs.
 
-public sealed record EchoRequest(string Message);
+```csharp
+app.MapGet("/events", async (HttpContext context, CancellationToken cancellationToken) =>
+{
+    context.Response.ContentType = "text/plain; charset=utf-8";
+    context.Response.Headers["Cache-Control"] = "no-store";
+    await context.Response.StartAsync(cancellationToken);
+    await context.Response.WriteAsync("ready\n", cancellationToken);
+});
 ```
 
-This is a request-body consumer; do not also deserialize the same body in middleware. In .NET 10 and later framework parsing uses PipeReader by default, so converters must support segmented values. For a file upload, use a server-generated destination name, enforce a byte limit during copy, honor cancellation, and remove partial output on exceptions.
-
+Use an actual streaming format and flush policy appropriate to the endpoint; this short example demonstrates response start and header timing only.
 ## Common mistakes
 
 - Retaining HttpContext or RequestServices for background work.
@@ -156,8 +155,6 @@ This is a request-body consumer; do not also deserialize the same body in middle
 
 ## Knowledge checks with answers
 
-1. What must a second stream reader have? Buffering enabled before consumption and a rewind before the second read.
-2. What is the difference between `consumed` and `examined`? One releases processed bytes; the other reports how far parsing looked.
-3. Does MultipartBodyLengthLimit replace Kestrel's request-size limit? No; they constrain different stages and units.
-4. When is a response header immutable? When response start commits it.
-5. Which filename should be used for storage? A server-generated name, never the untrusted upload filename.
+1. When do response headers become immutable? Once response start commits them.
+2. What does OnStarting allow? It runs before headers are sent, allowing last-stage header adjustments.
+3. Can OnCompleted change the response? No; it runs after response processing and is for cleanup/observation.

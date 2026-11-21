@@ -4,7 +4,7 @@
 
 # Scope and version
 
-* **Edition & Checked Date:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+* **Edition & Checked Date:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-20 ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Topic Scope:** This reference lesson covers the exact inventory group of implicit numeric conversions originating from the `char` type, explaining their role within broader C# numeric literal and conversion concepts.
 * **Automatic Draft Notice:** This document is an automatically generated draft.
 
@@ -16,7 +16,7 @@ In C#, numeric types and characters share a close relationship at the binary rep
 
 # Supplied names explained
 
-* **char to ushort (implicit numeric conversion):** Promotes a 16-bit unsigned character code into a 16-bit unsigned integer type (`ushort`), which shares the exact same bit width and range.
+* **char to ushort (implicit numeric conversion):** Converts a `char` code-unit numeric value to `ushort`; the numeric range is identical, though the types have distinct meanings.
 * **char to int (implicit numeric conversion):** Widens a 16-bit unsigned character code into a 32-bit signed integer (`int`), preventing overflow since the source range fits entirely within a positive signed 32-bit integer.
 * **char to uint (implicit numeric conversion):** Widens a 16-bit unsigned character code into a 32-bit unsigned integer (`uint`).
 * **char to nint (implicit numeric conversion):** Converts a 16-bit unsigned character code into a native-sized signed integer (`nint`), which matches the pointer size of the execution target (32-bit or 64-bit).
@@ -33,7 +33,7 @@ Within this inventory group, all conversions share a common source (`char`) but 
 
 * **To 16-bit (`ushort`):** Retains identical bit-width and range characteristics.
 * **To Signed/Unsigned 32-bit and 64-bit (`int`, `uint`, `nint`, `nuint`, `long`, `ulong`):** Widens the container to accommodate larger arithmetic operations. Signed targets succeed because the maximum value of a `char` fits safely inside positive signed limits.
-* **To Floating-Point and Decimal (`float`, `double`, `decimal`):** Converts the code-unit's integer value; all 16-bit `char` values are exactly representable by these targets.
+* **To Floating-Point and Decimal (`float`, `double`, `decimal`):** Converts the code-unit's integer value; all `char` code-unit values (0 through 65,535) are exactly representable by each listed destination.
 
 # Examples
 

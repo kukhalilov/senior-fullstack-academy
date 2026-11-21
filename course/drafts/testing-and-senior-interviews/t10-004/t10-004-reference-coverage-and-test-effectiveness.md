@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This reference covers the supplied .NET coverage and mutation-testing names. VSTest and Microsoft.Testing.Platform use distinct integration and command-line surfaces. The MTP coverage documentation says the test assembly is excluded by default, unlike historical VSTest behavior, and warns that fixed output paths can overwrite reports in multi-module runs. Sources checked 2026-11-17. [VSTest coverage](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage) [MTP coverage](https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-code-coverage)
+This reference covers the supplied .NET coverage and mutation-testing names. VSTest and Microsoft.Testing.Platform use distinct integration and command-line surfaces. The MTP coverage documentation says the test assembly is excluded by default, unlike historical VSTest behavior, and warns that fixed output paths can overwrite reports in multi-module runs. Sources rechecked 2026-11-21, including current VSTest and Microsoft.Testing.Platform coverage package/CLI boundaries. [VSTest coverage](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage) [MTP coverage](https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-code-coverage)
 
 # How this group fits the mental model
 
@@ -16,7 +16,7 @@ Coverage measures execution. Mutation testing probes whether assertions distingu
 - `Method coverage` — The proportion of measured methods invoked. It is a coarse measure: a method may contain many branches and edge cases even when it is counted as covered once.
 - `Condition coverage` — Whether the individual boolean conditions in a decision have evaluated to both true and false as measured by the tool. It is distinct from branch coverage and does not by itself prove all combinations or interactions among conditions.
 - `Code coverage collector` — Instrumentation/runtime tooling that observes code execution and emits coverage data. Configuration, filters, target frameworks, generated code, and runner integration determine what the report includes.
-- `Microsoft.CodeCoverage` — Microsoft’s .NET code-coverage collector/tooling used in VSTest-oriented coverage workflows. Its setup and options should not be copied blindly into Microsoft.Testing.Platform projects.
+- `Microsoft.CodeCoverage` — Microsoft Code Coverage is the .NET coverage tooling family, not one runner-neutral command. VSTest uses its built-in Code Coverage data collector; Microsoft.Testing.Platform uses the separate `Microsoft.Testing.Extensions.CodeCoverage` extension and its own options. Choose instructions for the runner actually used.
 - `Microsoft.Testing.Extensions.CodeCoverage` — The MTP extension package that adds Microsoft code coverage to an MTP test project. Current guidance notes that test assemblies are excluded by default and that the extension has its own configuration/CLI surface.
 - `Coverlet` — An open-source cross-platform .NET coverage tool that collects coverage and supports formats such as Cobertura. Choose the collector or MSBuild integration appropriate to the runner and avoid collecting overlapping reports without knowing how they combine.
 - `coverlet.collector` — Coverlet’s VSTest data-collector package, commonly used with the friendly name `XPlat Code Coverage`. Match the collection command to the test runner and ensure the package is present in the test project.

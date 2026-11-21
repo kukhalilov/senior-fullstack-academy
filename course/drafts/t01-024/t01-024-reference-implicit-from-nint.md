@@ -5,7 +5,7 @@
 *Automatically generated draft.*
 
 # Scope and version
-This lesson covers `nint` implicit numeric conversions as defined in C# 15 / .NET 11. The information is based on the official Microsoft Learn documentation for C# numeric conversions, checked as of 2026-11-14.
+This lesson covers `nint` implicit numeric conversions as defined in C# 15 / .NET 11. The information is based on the official Microsoft Learn documentation for C# numeric conversions, checked as of 2026-11-20.
 
 # How this group fits the mental model
 In C#, `nint` is a native-sized integer type. Its size depends on the underlying platform (32-bit or 64-bit). Because the compiler cannot always guarantee the exact bit-width of `nint` at compile time, implicit conversions are restricted to types that are guaranteed to hold the value regardless of whether the platform is 32-bit or 64-bit. These conversions allow you to promote a platform-dependent integer to a wider or more flexible type without explicit casting.

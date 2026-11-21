@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This reference explains the supplied operational mitigation, recovery, verification, and communication practices. It follows current SRE incident-response guidance and NIST SP 800-61 Rev. 3 final, checked 2026-11-17. The safest action depends on service architecture, data state, security plan, and authority; examples are not universal commands. [SRE incident response](https://sre.google/workbook/incident-response/) [NIST SP 800-61 Rev. 3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)
+This reference explains the supplied operational mitigation, recovery, verification, and communication practices. It follows current SRE incident-response guidance and NIST SP 800-61 Rev. 3 final, checked 2026-11-20. The safest action depends on service architecture, data state, security plan, and authority; examples are not universal commands. [SRE incident response](https://sre.google/workbook/incident-response/) [NIST SP 800-61 Rev. 3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)
 
 # How this group fits the mental model
 

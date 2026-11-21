@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson covers the exact accessibility and visual-testing names supplied for this group. WCAG 2.2 contains testable success criteria at several conformance levels, but a tool scan does not establish conformance. Playwright’s accessibility guide uses axe-core as an example and explicitly cautions against treating automated checks as complete. Sources were checked 2026-11-17. [WCAG 2.2](https://www.w3.org/TR/WCAG22/) [Playwright accessibility testing](https://playwright.dev/docs/accessibility-testing) [axe-core](https://github.com/dequelabs/axe-core)
+This lesson covers the exact accessibility and visual-testing names supplied for this group. WCAG 2.2 contains testable success criteria at several conformance levels, but a tool scan does not establish conformance. Playwright’s accessibility guide uses axe-core as an example and explicitly cautions against treating automated checks as complete. Sources were rechecked 2026-11-21, including WCAG conformance requirements for full pages and all success criteria at the claimed level. [WCAG 2.2](https://www.w3.org/TR/WCAG22/) [Playwright accessibility testing](https://playwright.dev/docs/accessibility-testing) [axe-core](https://github.com/dequelabs/axe-core)
 
 # How this group fits the mental model
 
@@ -19,8 +19,8 @@ Accessibility checks ask whether content and controls can be perceived, understo
 - `Focus order` — The sequence in which focus moves through interactive content. It should preserve meaning and operability; DOM order and visual order should not create a confusing or impossible navigation path.
 - `Focus trap` — A deliberate focus boundary used in some modal interactions to keep keyboard focus inside the active dialog until it closes, then return focus appropriately. An accidental trap blocks users from leaving a region and is a serious barrier.
 - `Skip link` — A keyboard-accessible link that lets users bypass repeated navigation and move to the main content. It should become visible when focused and lead to a meaningful destination.
-- `WCAG 2.2 Level A` — The Level A success criteria defined by WCAG 2.2, the baseline conformance level. A passing automated scan is not a claim that every Level A criterion is met.
-- `WCAG 2.2 Level AA` — The Level A and Level AA success criteria defined by WCAG 2.2. Many legal or organizational standards specify a target level, but the applicable requirement depends on jurisdiction and policy; this term alone does not state which obligation applies.
+- `WCAG 2.2 Level A` — The minimum WCAG 2.2 conformance level. A conformance claim applies to a full page and requires satisfying every Level A success criterion (or a conforming alternate version); a passing automated scan is not enough.
+- `WCAG 2.2 Level AA` — Conformance requires satisfying all Level A and Level AA success criteria for the full page (or a conforming alternate version). Many legal or organizational standards specify a target level, but the applicable requirement depends on jurisdiction and policy; this term alone does not state which obligation applies.
 - `axe-core` — Deque’s open-source accessibility testing engine that evaluates a rendered DOM against rules it can automate. It can detect many common issues, but cannot determine all context-dependent barriers or replace human checks.
 - `AxeBuilder` — The Playwright integration’s builder used to configure and run axe-core analysis for a page. Use a focused page/state and report actionable violations; do not treat a passing scan as full conformance.
 - `@axe-core/playwright` — The package that integrates axe-core scanning with Playwright pages through `AxeBuilder`. Keep its version aligned with the accessibility rules and browser setup used by the project.

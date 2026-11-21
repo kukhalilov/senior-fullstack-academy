@@ -5,10 +5,10 @@
 *Draft: Automatically generated.*
 
 # Scope and version
-This lesson covers `ulong` implicit numeric conversions in C# 15 / .NET 11. The information is based on the C# language specification and .NET runtime behaviors as of 2026-11-14.
+This lesson covers `ulong` implicit numeric conversions in C# 15 / .NET 11. The information is based on the C# language specification and .NET runtime behaviors as of 2026-11-20.
 
 # How this group fits the mental model
-The language defines implicit conversions from `ulong` to `float`, `double`, and `decimal`. Every value stays within range, but the floating-point conversions can lose precision; `decimal` preserves every `ulong` integer exactly.
+The language defines implicit conversions from `ulong` to `float`, `double`, and `decimal`. The floating-point destinations can round some integer values; `decimal` can represent every `ulong` value exactly, though later decimal arithmetic can round or overflow.
 
 # Supplied names explained
 
@@ -21,7 +21,7 @@ The language defines implicit conversions from `ulong` to `float`, `double`, and
 | Conversion | Precision Impact | Use Case |
 | :--- | :--- | :--- |
 | `ulong` to `float` | High risk of precision loss | Performance-sensitive, low-precision math |
-| `ulong` to `double` | Low risk of precision loss | General-purpose scientific calculations |
+| `ulong` to `double` | May lose low-order integer precision for some values | General-purpose scientific calculations |
 | `ulong` to `decimal` | No precision loss | Financial or exact-value requirements |
 
 *Source: [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)*
@@ -40,7 +40,7 @@ decimal m = myUlong; // Implicit conversion to decimal
 In this example, the compiler automatically handles the conversion. Note that `f` may not hold the exact value of `myUlong` due to the limitations of the `float` type.
 
 # Common mistakes
-*   **Assuming exactness**: A common mistake is assuming that converting a `ulong` to a `float` or `double` preserves every digit of the original integer. Always use `decimal` if you require exact integer representation.
+*   **Assuming exactness**: A common mistake is assuming that converting a `ulong` to a `float` or `double` preserves every digit of the original integer. `decimal` represents every `ulong` value exactly, but it has a bounded range and is not a universal substitute for integer types; use an integer type when integer arithmetic is intended.
 *   **Ignoring promotion**: Remember that these are implicit conversions. If you perform arithmetic between a `ulong` and a `float`, the `ulong` will be implicitly promoted to `float` before the operation occurs.
 
 # Knowledge checks with answers

@@ -10,8 +10,8 @@ String renderers return a string synchronously rather than controlling a stream.
 
 ## Supplied names explained
 
-- `renderToString` renders a React tree to an HTML string. It can be used for server-generated markup that will be hydrated, but it does not stream and has limited behavior when rendering suspending components. Prefer streaming APIs for SSR that needs robust Suspense handling or progressive delivery.
-- `renderToStaticMarkup` renders a React tree to a non-interactive HTML string. It is appropriate for output that will not be hydrated; it omits React behavior needed for hydration. It is not a faster spelling of `renderToString` when interactivity is required.
+- `renderToString(reactNode, options?)` synchronously returns an HTML string. Its only documented option is `identifierPrefix`, which must match `hydrateRoot` when `useId` is used. It does not stream or wait for data; when a child suspends, it immediately emits the fallback. It can produce markup for later `hydrateRoot`, provided the initial client tree matches. React recommends streaming APIs when available and permits this API when the server cannot stream.
+- `renderToStaticMarkup(reactNode, options?)` synchronously returns non-interactive HTML that cannot be hydrated. Its only documented option is `identifierPrefix`. A suspended child immediately produces its fallback. Use it for static output such as email/static pages, not interactive apps.
 
 ## Cross-item comparison
 
@@ -32,7 +32,8 @@ const emailFragment = renderToStaticMarkup(<EmailSummary />);
 
 - Hydrating output from `renderToStaticMarkup`.
 - Assuming `renderToString` streams or fully waits for suspended content.
-- Choosing a string API solely because it is easy to concatenate.
+- Assuming either string API waits for suspended work; both immediately emit Suspense fallbacks.
+- Using `renderToString` in client code to turn components into markup; React recommends rendering into a DOM node instead.
 - Treating either function as a complete HTML document builder with security/response handling included.
 
 ## Knowledge checks with answers

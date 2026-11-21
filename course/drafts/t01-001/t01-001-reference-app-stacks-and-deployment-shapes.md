@@ -4,15 +4,15 @@
 
 # Scope and version
 
-**Scope:** This reference lesson covers the inventory group `.NET application stacks, workloads, operating systems, and deployment choices` within the broader `.NET platform vs runtime vs SDK vs framework and alternatives` topic.  
-**Version & Authority:** Current product lifecycle and publishing behavior checked against Microsoft documentation on 2026-11-17. .NET 11 is STS and .NET 10 is LTS, each supported until November 2028.
+**Scope:** This reference lesson covers the inventory group `.NET application stacks, workloads, operating systems, and deployment choices` within the broader `.NET platform vs runtime vs SDK vs framework and alternatives` topic.
+**Version & Authority:** Current product lifecycle and publishing behavior checked against Microsoft documentation on 2026-11-20. .NET 11 is STS and .NET 10 is LTS, each supported until November 2028.
 **Draft Notice:** This is an automatically generated draft.
 
 ---
 
 # How this group fits the mental model
 
-When building software in .NET, you must distinguish between the *base runtime* (which executes compiled code) and the *application stack* (the architectural layer providing UI, web, or background execution patterns). Furthermore, your code must be packaged and deployed correctly for specific operating systems, CPU architectures, and hosting environments. 
+When building software in .NET, you must distinguish between the *base runtime* (which executes compiled code) and the *application stack* (the architectural layer providing UI, web, or background execution patterns). Furthermore, your code must be packaged and deployed correctly for specific operating systems, CPU architectures, and hosting environments.
 
 The supplied items in this inventory group represent the concrete choices you make when configuring what your application is (its stack), how it builds (workloads and architecture targets), and how it travels to the target machine (publishing shapes, roll-forward rules, and containerization). They sit downstream of the core SDK and runtime concepts, translating general .NET code into a runnable, production-ready artifact.
 
@@ -35,7 +35,7 @@ The supplied items in this inventory group represent the concrete choices you ma
 * **Architecture target: Arm64**: A compilation and deployment target for 64-bit ARM processor architectures (such as Apple Silicon or ARM64 servers).
 * **Single-file deployment**: A publishing option that bundles the application and its dependencies into a single binary file to ease distribution.
 * **ReadyToRun publishing**: A publish option that stores precompiled native code alongside IL. The runtime can use that code and tiered compilation may later replace frequently used methods with JIT-compiled code; it is not equivalent to removing the JIT.
-* **Native AOT publishing**: A self-contained publish mode that compiles application code to native code without runtime JIT and includes required runtime libraries. Startup/memory benefits and artifact size depend on the app; dynamic loading, code generation, trimming, and reflection compatibility have limitations.
+* **Native AOT publishing**: A publish mode that produces a self-contained native-code deployment that compiles application code to native code without runtime JIT and includes required runtime libraries. Startup/memory benefits and artifact size depend on the app; dynamic loading, code generation, trimming, and reflection compatibility have limitations.
 * **RID-specific deployment**: A Runtime Identifier-specific deployment that targets a precise operating system and architecture combination (e.g., `linux-x64`).
 * **Runtime roll-forward**: Runtime selection rules for a framework-dependent app when choosing installed runtimes. Patch roll-forward is normally automatic; minor/major behavior can be configured and should be checked against current runtime documentation.
 * **SDK roll-forward**: The behavior configured by SDK resolution rules (including `global.json`) to select an installed SDK when the requested version is missing or later versions are permitted.
@@ -97,14 +97,14 @@ The supplied items in this inventory group represent the concrete choices you ma
 
 # Knowledge checks with answers
 
-1. **Question:** What is the fundamental difference between a Windows-only application framework like WPF and a cross-platform stack like ASP.NET Core?  
+1. **Question:** What is the fundamental difference between a Windows-only application framework like WPF and a cross-platform stack like ASP.NET Core?
    **Answer:** WPF relies on native Windows APIs (such as DirectX and Win32 windowing) and cannot run on non-Windows operating systems, whereas ASP.NET Core is built on cross-platform abstractions capable of running on Linux, macOS, and Windows [https://learn.microsoft.com/en-us/dotnet/core/introduction](https://learn.microsoft.com/en-us/dotnet/core/introduction).
 
-2. **Question:** How does Native AOT publishing differ from standard single-file deployment regarding runtime execution?  
+2. **Question:** How does Native AOT publishing differ from standard single-file deployment regarding runtime execution?
    **Answer:** Single-file deployment bundles application binaries into a single file but still uses the standard JIT runtime to execute. Native AOT compiles code directly to native machine code ahead-of-time, eliminating the JIT compiler and managed runtime startup overhead.
 
-3. **Question:** What does a `global.json` file configure regarding SDK behavior?  
+3. **Question:** What does a `global.json` file configure regarding SDK behavior?
    **Answer:** It locks down or guides **SDK roll-forward** and exact version selection, forcing the .NET CLI to use a specified SDK version when building code in that directory tree.
 
-4. **Question:** Why would you choose a Worker Service instead of a Console application?  
+4. **Question:** Why would you choose a Worker Service instead of a Console application?
    **Answer:** The Worker Service template provides a Generic Host-based starting point for a long-running background process. A console application can also use the Generic Host and run background work; the distinction is project setup and conventions, not an inability of console apps to host services.

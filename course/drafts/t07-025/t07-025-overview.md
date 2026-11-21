@@ -44,7 +44,7 @@ The references cover test levels, React Testing Library queries/render, user int
 
 ## Version context
 
-The current Testing Library docs describe `@testing-library/user-event` v14 and recommend it over legacy v13. API details and runner configuration should be checked against installed versions. [user-event introduction](https://testing-library.com/docs/user-event/intro/)
+The current Testing Library docs describe `@testing-library/user-event` v14 and recommend it over legacy v13. The current runner snapshots checked here are Vitest 5.1 and Playwright 1.65 (2026-11-20); API details and runtime requirements must still be checked against the versions installed in a project. Vitest 5 introduced faster execution, stable file-system module caching, nested project/config inheritance, and a `vitest doctor` command; 5.1 stabilized Browser Mode trace view with failure-only capture by default and added interactive snapshot review. Playwright 1.65 added Bun-runner support and changed TypeScript class-field, inert-element actionability, and cookie matching behavior; it no longer tests Node 20. [user-event introduction](https://testing-library.com/docs/user-event/intro/) [Vitest 5](https://vitest.dev/blog/vitest-5.html) [Vitest 5.1](https://vitest.dev/blog/vitest-5-1) [Playwright release notes](https://playwright.dev/docs/release-notes)
 
 ## What is covered elsewhere
 

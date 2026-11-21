@@ -1,6 +1,6 @@
 # system design technology landscape and selection — Core concepts and how they fit together
 
-Sources: [HLD Handbook](https://hld.handbook.academy/technologies/), [reference 1](https://www.postgresql.org/docs/current/), [reference 2](https://kafka.apache.org/documentation/), [reference 3](https://grpc.io/about/), [reference 4](https://grpc.io/docs/what-is-grpc/core-concepts/), [reference 5](https://graphql.org/learn/), [reference 6](https://cloud.google.com/spanner), [reference 7](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html), [reference 8](https://vitess.io/docs/24.0/overview/whatisvitess/), [reference 9](https://docs.scylladb.com/manual/master/using-scylla/cassandra-compatibility.html).
+Sources: [HLD Handbook technology index](https://hld.handbook.academy/technologies/), [EF Core transactions](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [ASP.NET Core RequestAborted](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/use-http-context), [Google SRE: Handling overload](https://sre.google/sre-book/handling-overload/), [Google SRE: Cascading failures](https://sre.google/sre-book/addressing-cascading-failures/), [Transactional outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html), [AWS idempotency best practices](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_prevent_interaction_failure_idempotent.html), [PostgreSQL documentation](https://www.postgresql.org/docs/current/), [Kafka documentation](https://kafka.apache.org/documentation/), [gRPC concepts](https://grpc.io/docs/what-is-grpc/core-concepts/), [GraphQL](https://graphql.org/learn/), [Cloud Spanner](https://cloud.google.com/spanner), [DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html), [Vitess](https://vitess.io/docs/24.0/overview/whatisvitess/), [ScyllaDB Cassandra compatibility](https://docs.scylladb.com/manual/master/using-scylla/cassandra-compatibility.html).
 
 ## Learning objectives
 
@@ -28,7 +28,7 @@ Estimate average and peak arrival rate, burst duration, concurrency, payload siz
 
 ### Correctness precedes optimization
 
-Name the source of truth and transaction boundary. Decide which operations require atomicity, which reads may be stale, what ordering is required, and what duplicate work means. Then distinguish serving replicas and derived indexes from authoritative data. Every asynchronous path needs acknowledgement, retry, deduplication, and recovery rules.
+Name the source of truth and transaction boundary. Decide which operations require atomicity, which reads may be stale, what ordering is required, and what duplicate work means. Then distinguish serving replicas and derived indexes from authoritative data. For each asynchronous boundary, define the acknowledgement, retry, idempotency/deduplication, and recovery behavior that its delivery contract requires.
 
 ### Networks create partial failure
 
@@ -44,7 +44,7 @@ State what users see when a dependency, zone, region, or provider fails. Define 
 
 ## Mechanisms and relationships
 
-A typical request crosses a browser or client, an edge or load-balancing layer, an application boundary, data stores, and possibly a broker or external provider. At each boundary ask: who authenticates and authorizes; what data crosses; what timeout/deadline applies; what is recorded; and whether a retry is safe. Distributed traces connect spans across services, while aggregate metrics reveal saturation and user-level error rates.
+A typical request crosses a browser or client, an edge or load-balancing layer, an application boundary, data stores, and possibly a broker or external provider. At each boundary ask: who authenticates and authorizes; what data crosses; what timeout/deadline applies; what is recorded; and whether a retry is safe. Distributed traces connect spans across services, while aggregate metrics reveal saturation and service/route error rates; use traces or logs for individual-request context rather than unbounded metric labels.
 
 In .NET, propagate cancellation tokens through ASP.NET Core handlers, HttpClient, and database calls; use bounded worker concurrency and explicit transaction boundaries. EF Core transactions protect database work but do not atomically publish to an unrelated broker, which is why an outbox is useful. In React, the UI must represent loading, stale, empty, error, and retry states honestly; client cancellation cannot revoke a server-side side effect. SSR, hydration, caching, and API deployments must remain compatible during rolling releases.
 
@@ -67,3 +67,7 @@ For a read-heavy catalog, begin with database indexes and query shape, measure c
 2. **Why add a cache?** To meet a measured latency/capacity need when a defined freshness and invalidation policy is acceptable.
 3. **What makes a queue durable?** Its configured persistence/replication and acknowledgement contract, plus retention and tested consumer recovery; the word “queue” alone is not a guarantee.
 4. **When split a service?** When independent ownership, scaling, security, or release needs outweigh network and operational costs.
+
+## Review status
+
+Reviewed 2026-11-21. Audited the central claims against Microsoft EF Core and ASP.NET Core documentation, Google SRE guidance, the transactional outbox pattern, and AWS idempotency guidance. Clarified that asynchronous delivery requirements depend on the boundary’s contract and replaced ambiguous “user-level error rates” metric wording with aggregate service/route metrics plus trace/log context. No material omission remains in the supplied concepts scope.

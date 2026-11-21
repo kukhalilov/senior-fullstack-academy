@@ -5,7 +5,7 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers implicit numeric conversions originating from the `byte` type in C# 15 and .NET 11. It focuses on the compile-time safety and promotion rules that allow a `byte` to be treated as a larger numeric type without explicit casting. Information is based on the C# 15 / .NET 11 GA specification as of 2026-11-14.
+This lesson covers implicit numeric conversions originating from the `byte` type in C# 15 and .NET 11. It focuses on the compile-time safety and promotion rules that allow a `byte` to be treated as a larger numeric type without explicit casting. Information is based on the C# 15 / .NET 11 GA specification as of 2026-11-20.
 
 Source: [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)
 

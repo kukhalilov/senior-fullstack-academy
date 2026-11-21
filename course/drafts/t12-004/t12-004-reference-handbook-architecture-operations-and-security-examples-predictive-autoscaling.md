@@ -1,36 +1,60 @@
 # architecture patterns multi-region tenancy and reliability — Reference: Predictive autoscaling
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 3](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://csrc.nist.gov/pubs/sp/800/207/final), [reference 6](https://owasp.org/www-project-api-security/), [reference 7](https://opentelemetry.io/docs/concepts/), [reference 8](https://hld.handbook.academy/curriculum/architecture-patterns/), [reference 9](https://hld.handbook.academy/curriculum/reliability-and-operations/), [reference 10](https://hld.handbook.academy/curriculum/security-at-scale/), [reference 11](https://hld.handbook.academy/curriculum/emerging-patterns/), [reference 12](https://csrc.nist.gov/pubs/fips/203/final), [reference 13](https://csrc.nist.gov/pubs/fips/204/final).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [AWS predictive scaling overview](https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-policy-overview.html), [AWS predictive scaling how it works](https://docs.aws.amazon.com/autoscaling/application/userguide/aas-predictive-scaling-how-it-works.html), [AWS evaluate predictive scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-graphs.html), [Google Cloud autoscaling concepts](https://cloud.google.com/compute/docs/autoscaler).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+Predictive autoscaling forecasts upcoming demand from historical or externally provided patterns and adds capacity before a reactive threshold is crossed. The AWS pages illustrate one product implementation; forecast windows, training requirements, resource support, scale-in behavior, and configuration differ by provider. Verify current product constraints before relying on a specific feature.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Reactive autoscaling observes current demand, then starts a feedback loop. If capacity takes several minutes to provision and warm, a short spike may arrive before the new capacity can serve requests. Predictive scaling tries to move part of that work earlier by using a recurring schedule or a forecast. It is most useful when demand has learnable patterns and provisioning delay is material.
+
+A forecast is a probability-informed estimate, not a guarantee. The practical design is usually a baseline capacity plus proactive capacity where the forecast is useful, with reactive scaling to absorb forecast error. Define what the signal means (requests, queue depth, CPU, or a workload-specific measure), ensure history reflects current behavior, and validate predictions in forecast-only/shadow mode before allowing capacity changes.
 
 ## Supplied names explained
 
-- `Predictive autoscaling` — Forecasts demand to provision capacity before expected load; forecast error, warm-up time, cost, and fallback reactive capacity matter.
+- **Predictive autoscaling** — Capacity control that uses forecasts or known schedules to add resources ahead of expected demand. It can reduce cold-start and scale-out delay, but may overprovision when predictions are high or leave a deficit when patterns change.
+
+### Design and validation workflow
+
+1. **Measure the lag.** Estimate time from scaling decision through quota checks, provisioning, boot, deployment, cache warming, and readiness. Compare it with the time between demand increase and SLO breach.
+2. **Select a useful signal.** Prefer a metric with a demonstrated relationship to capacity needs. CPU may be too late if it rises after the request backlog; request rate, queue age, or a business calendar may lead demand.
+3. **Establish representative history.** Exclude or annotate incidents, one-off launches, outages, and major product changes. Forecasts trained on stale topology or a different service version can mislead.
+4. **Inspect forecast errors.** Track under-forecast and over-forecast separately, by season and important event. A forecast-only mode allows comparison against actual demand without triggering a resource change.
+5. **Set guardrails.** Cap cost, preserve minimum capacity, respect downstream concurrency, and combine proactive actions with reactive control. Choose the lead/buffer time empirically; too little misses the ramp, too much pays for idle resources.
+6. **Define fallback.** If forecast data is missing, stale, or anomalous, reactive scaling and operational alerting should remain available. Treat a sudden new workload as a regime change requiring retraining or a schedule override.
+
+Some managed implementations scale out proactively but leave scale-in to another policy; others expose different modes. Do not assume a single product’s exact forecast horizon or downscale behavior applies generally.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Strategy | What it uses | Good fit | Failure mode to plan for |
+|---|---|---|---|
+| Reactive threshold | Current utilization or queue/request metric | Unpredictable demand where scaling lag is acceptable | Capacity arrives after the spike begins |
+| Scheduled scaling | Known calendar or business schedule | Predictable daily/weekly or launch schedule | Schedule no longer matches real demand |
+| Predictive forecast | Historical/learned patterns | Repeating demand with a material provisioning delay | Model error, stale history, novel event, overspend |
+| Baseline plus reactive and predictive | Warm minimum, forecast lead, reactive correction | Important service where both response time and cost matter | More control loops and policies to observe and reconcile |
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+**Daily reporting traffic.** A dashboard API sees a predictable weekday surge after 09:00, while database replicas need eight minutes to become useful. First run a forecast in observation mode and compare predicted versus actual request rate and queue age across multiple weeks. If errors are acceptable, raise capacity ahead of the usual ramp with a cost cap, then retain reactive scaling for a larger-than-usual spike. Alert if demand changes shape or if the forecast misses the SLO-relevant backlog threshold.
+
+**One-time promotion.** A new marketing campaign has no representative historical pattern. A forecast trained on ordinary weekdays cannot infer this event reliably. Use a tested scheduled/manual capacity reservation for the launch, keep reactive scaling enabled, and monitor origin/dependency capacity. Afterward, classify this event separately rather than blindly teaching the model that every day has launch-level demand.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating a forecast as a capacity guarantee or assuming machine learning can predict unprecedented events.
+- Turning on forecast-driven scaling before checking the signal, training window, forecast error, and behavior under missing data.
+- Scaling too early or too high and paying for idle capacity; scaling too late to beat provisioning time.
+- Using a metric correlated with demand but not with useful capacity, such as CPU when the real limiter is database connections.
+- Removing reactive scaling after adding predictive control, leaving no protection for forecast error.
+- Scaling one tier without checking whether the database, third-party quota, caches, or network can support the additional load.
+- Assuming all cloud products use the same forecast horizon and scale-in policy.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **When does predictive scaling add value over reactive scaling?** When demand patterns can be forecast with useful accuracy and capacity startup time is long enough that waiting for the reactive signal risks an SLO breach.
+2. **Why start with forecast-only observation?** It reveals errors and drift before predictions create real cost or capacity actions.
+3. **How should a system handle a novel campaign spike?** Use explicit launch planning or a schedule/capacity override plus reactive safeguards; ordinary historical forecasts may not cover it.
+4. **What should remain after predictive scaling is enabled?** Cost and maximum-capacity guardrails, dependency protection, reactive correction where appropriate, forecast monitoring, and a fallback for stale/missing predictions.

@@ -8,7 +8,7 @@
 
 This lesson covers nullability in C# 15 and .NET 11, specifically focusing on reference annotations, nullable contexts, null-state flow analysis, and related syntax. 
 
-* **Edition**: Current C# 15 and .NET 11 documentation checked 2026-11-17.
+* **Edition**: Current C# 15 and .NET 11 documentation checked 2026-11-20.
 * **Scope boundaries**: This reference covers the explicit inventory group of reference annotations, nullable contexts, null-state flow, and syntax. It excludes nullable value types (`Nullable<T>`), full DataAnnotations validation APIs, Entity Framework Core column mappings, and ASP.NET Core request validation.
 * **Sources**: 
   * [Microsoft Learn C# language reference: Nullable value types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types)
@@ -16,6 +16,7 @@ This lesson covers nullability in C# 15 and .NET 11, specifically focusing on re
   * [Microsoft Learn C# language reference: Nullable analysis attributes](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/attributes/nullable-analysis)
   * [Microsoft Learn .NET API reference: ArgumentNullException.ThrowIfNull](https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception.throwifnull)
   * [Microsoft Learn .NET API reference: ArgumentException.ThrowIfNullOrWhiteSpace](https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception.throwifnullorwhitespace)
+  * [Microsoft Learn C# reference: Generic type constraints](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/where-generic-type-constraint)
 
 ---
 
@@ -45,8 +46,8 @@ Every item in the assigned reference inventory is detailed below, explaining its
 * `Nullable enable project property`: The MSBuild project setting (`<Nullable>enable</Nullable>`) that enables nullable annotations and warnings by default, subject to source directives and other project configuration.
 * `Nullable disable project property`: The MSBuild project setting (`<Nullable>disable</Nullable>`) that disables nullable annotations and warnings by default, subject to source directives.
 * `#nullable enable directive`: A source-code directive that enables both nullable annotations and warnings for subsequent code in its applicable file region.
-* `#nullable disable directive`: A source-code directive that disables nullable annotations and warnings for subsequent code in its applicable file region.
-* `#nullable restore directive`: A directive that restores both nullable contexts to their prevailing project/default settings for subsequent code.
+* `#nullable disable directive`: A source-code directive that disables nullable annotations and warnings for subsequent code in its applicable file region. Disabled annotation and warning contexts make reference types nullable-oblivious for analysis.
+* `#nullable restore directive`: A directive that restores both nullable contexts to their prevailing project/default settings for subsequent code; it does not necessarily enable them.
 * `#nullable enable annotations`: A directive that enables only nullable annotations for subsequent code.
 * `#nullable enable warnings`: A directive that enables only nullable warnings for subsequent code, using the annotation context that applies.
 * `Maybe-null state`: A compiler flow-analysis state indicating that an expression may be null on a possible path; it is not a runtime property stored with each reference.
@@ -63,14 +64,14 @@ Every item in the assigned reference inventory is detailed below, explaining its
 * `is not null pattern`: A pattern-matching expression (`x is not null`) used to confirm an expression holds an object reference, refining its null state.
 * `Property pattern null check`: A pattern such as `x is { P: not null }` that requires a non-null input and tests nested properties; getters may have their own behavior.
 * `Null-state after assignment`: The updated tracking state of a variable immediately following an assignment operation.
-* `Null-state after return`: The verified null state of values or variables exiting a method scope.
+* `Null-state after return`: The compiler's analysis of values and members on a normal method exit; annotations and attributes describe intended state but do not verify runtime truth.
 * `Null-state after throw`: Flow analysis recognizes that a path following an unconditional throw is unreachable; attributes such as `DoesNotReturn` can describe helpers with this behavior.
 * `Null-state in conditional branch`: The branch-specific null state applied when code executes inside an `if` block or ternary true branch.
-* `Null-state after argument validation`: The refined null state after a recognized guard or annotated helper; arbitrary validation helpers must communicate their postcondition for analysis to follow it.
+* `Null-state after argument validation`: The refined null state after a recognized guard or annotated helper; arbitrary validation helpers must communicate their postcondition for analysis to follow it. The conclusion applies on the continuing path and can be invalidated by later mutation.
 * `Nullable array element annotation`: The syntax specifying whether items inside an array can be null (e.g., `string?[]`).
 * `Nullable jagged array annotation`: The syntax specifying nullability for multi-dimensional arrays of arrays (e.g., `string?[][]?`).
 * `Nullable generic type argument`: A type supplied to a generic parameter that carries a nullable annotation (e.g., `List<string?>`).
-* `Nullable generic type parameter annotation`: Nullable annotations/constraints on type parameters (for example, `T?`, `where T : class?`, or `where T : notnull`) that affect compiler analysis; semantics depend on the constraint and context.
+* `Nullable generic type parameter annotation`: Nullable syntax for a type parameter is constraint-sensitive. With `where T : struct`, `T?` means `Nullable<T>`; with `where T : class` or `class?`, it annotates a reference type; on an unconstrained `T` in nullable-aware code, `T?` is the maybe-null form (and is not simply `Nullable<T>` for every substitution). The `default` constraint resolves specific override/interface-implementation ambiguity for unconstrained `T?`.
 * `Nullable delegate annotation`: The nullability contract applied to delegate parameters and return types.
 * `Nullable tuple element annotation`: The distinct nullability annotations assigned to individual fields within a tuple.
 * `Nullable event handler annotation`: The explicit nullability applied to event delegates and sender-receiver signatures.
@@ -87,7 +88,7 @@ Every item in the assigned reference inventory is detailed below, explaining its
 The following items from the core nullability concept map are contrasted:
 
 * **Nullable reference type vs. Non-nullable reference type**: Annotations describe intent and influence warnings/metadata. Neither nullable nor non-nullable annotation changes a reference's runtime ability to be null or automatically checks assignments.
-* **Nullable context vs. Null-state analysis**: Annotation context controls nullable annotation interpretation; warning context controls nullable diagnostics. Null-state analysis is the compiler's flow engine that reasons about expressions under those contexts.
+* **Nullable context vs. Null-state analysis**: Annotation context controls nullable annotation interpretation; warning context controls nullable diagnostics. Null-state analysis is the compiler's flow engine that reasons about expressions under those contexts. Generic `T?` semantics depend on constraints: for example, `where T : struct` gives `Nullable<T>`, while a reference constraint gives a nullable reference annotation.
 * **Null-forgiving operator (!) vs. Runtime null check**: The operator suppresses nullable analysis for an expression and does not itself validate it. A runtime guard such as `ArgumentNullException.ThrowIfNull` checks the value and throws if null.
 
 ---
@@ -118,7 +119,7 @@ public class Processor
     }
 }
 ```
-* **Expected result**: With a current compiler and nullable analysis enabled, this isolated snippet has no nullable warning. Inside the branch, flow analysis treats `input` as not-null; it does not protect against later mutation or external contract violations.
+* **Expected result**: With a current compiler and nullable analysis enabled, this isolated snippet has no nullable warning. Inside the branch, flow analysis treats `input` as not-null. This follows the local variable’s checked state; checks on mutable fields or properties may need to be repeated because their values can change between reads.
 
 ## Example 2: Operator Usage (Null-conditional and Null-coalescing)
 This example highlights null-conditional access and null-coalescing assignment.

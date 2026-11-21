@@ -1,10 +1,10 @@
 # cloud computing foundations and architecture — Reference: Service models, shared responsibility, accounts, and control planes
 
-Sources: [Azure application architecture fundamentals](https://learn.microsoft.com/en-us/azure/architecture/guide/), [Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/), [AWS Well-Architected Framework definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html), and [Azure cloud adoption decision guides](https://learn.microsoft.com/en-us/azure/architecture/cloud-adoption/decision-guides/).
+Sources: [NIST SP 800-145](https://nvlpubs.nist.gov/NISTPUBS/LEGACY/SP/NISTSPECIALPUBLICATION800-145.PDF), [Google Cloud resource hierarchy](https://docs.cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), [AWS account organization guidance](https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/aws-organizations.html), [Azure application architecture fundamentals](https://learn.microsoft.com/en-us/azure/architecture/guide/), [Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/), and [AWS Well-Architected Framework definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html).
 
 ## Scope and version
 
-Cloud models are provider-neutral concepts with provider-specific implementations. Official Azure and AWS architecture material was checked on 2026-11-16. Exact account names, API semantics, policy inheritance, quotas, and pricing differ; Azure and AWS details live in their separate track topics.
+Cloud models are provider-neutral concepts with provider-specific implementations. NIST cloud characteristics and current official Google Cloud, Azure, and AWS architecture material were checked on 2026-11-20. Exact account names, API semantics, policy inheritance, quotas, and pricing differ; Azure and AWS details live in their separate track topics.
 
 ## How this group fits the mental model
 
@@ -35,8 +35,8 @@ Before selecting a product, identify who operates each layer, which administrati
 - **Cloud account** — Provider administrative container for resources, identities/policy context, quotas and/or billing; “account” exact meaning differs by provider.
 - **Cloud tenant** — Identity/directory or isolation boundary in some providers; it is not necessarily the same object as a billing account or subscription.
 - **Cloud subscription** — Provider-specific resource/billing/administration scope (Azure terminology); not a provider-neutral synonym for every account.
-- **Cloud project** — Provider-specific resource and IAM boundary (Google/AWS concept varies); do not infer semantics from the word “project.”
-- **Organization hierarchy** — Parent-child arrangement of accounts/tenants/projects for governance, billing, identity and policy inheritance.
+- **Cloud project** — In Google Cloud, the fundamental resource container and an IAM/policy inheritance point under an optional folder and organization; it is also used for API enablement and billing association. AWS Organizations organizes AWS accounts, not projects; AWS may use “project” in particular services or signup experiences, so map the term to that service's actual account/resource model.
+- **Organization hierarchy** — Provider-specific parent-child arrangement: for example, Google Cloud organization → folders → projects → resources, versus AWS Organizations root → organizational units → accounts. Billing and identity boundaries do not necessarily match every hierarchy level.
 - **Resource group** — Lifecycle/management grouping (e.g. Azure) for related resources; it is not a security boundary unless policies/permissions make it one.
 - **Management group** — Azure hierarchy scope above subscriptions for policy/role assignment; provider-specific term.
 - **Organizational unit (OU)** — Grouping construct in some cloud/account hierarchies, notably AWS Organizations; policy inheritance semantics are provider-specific.
@@ -72,7 +72,7 @@ Control/management plane provisions and configures; data plane serves workload. 
 
 ## Examples
 
-An IaC deployment identity may need permission to create a VM and role assignment at a project scope. Granting owner at the organization root is simpler but increases blast radius. A team can instead grant the pipeline identity narrow scope and separately approve role-assignment creation. If a deployment fails because the control plane is unavailable, existing app traffic may continue; confirm behavior before assuming recovery or stopping services.
+An IaC deployment identity may need permission to create a VM and role assignment in a Google Cloud project or an AWS account. Granting broad administration at the organization root is simpler but increases blast radius. A team can instead grant the pipeline identity narrow scope and separately approve role-assignment creation. If a deployment fails because the control plane is unavailable, existing app traffic may continue; confirm behavior before assuming recovery or stopping services.
 
 ## Common mistakes
 

@@ -1,6 +1,6 @@
 # data systems storage engines analytics streams and search — Exercises and worked solutions
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.postgresql.org/docs/current/mvcc.html), [reference 2](https://kafka.apache.org/documentation/), [reference 3](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://hld.handbook.academy/curriculum/data-systems/).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [PostgreSQL MVCC](https://www.postgresql.org/docs/current/mvcc.html), [Kafka design](https://kafka.apache.org/36/design/design/), [Azure data-store choices](https://learn.microsoft.com/azure/architecture/data-guide/technology-choices/data-storage), [Azure CQRS pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs), [Azure event-sourcing pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing), [AWS transactional outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html), [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [HLD Handbook data systems syllabus](https://hld.handbook.academy/curriculum/data-systems/).
 
 ## Goals
 
@@ -11,6 +11,8 @@ Apply the topic's system model to a concrete workload, explain assumptions, and 
 Design the data flow for an order API that needs immediate confirmation, search, financial reporting, and replayable downstream processing.
 
 **Worked solution.** Commit the order and transactional outbox record atomically in the authoritative relational store. Return confirmation only after the transaction outcome is known. Publish with a stable event ID and make consumers idempotent. Build search and analytical projections asynchronously, define lag objectives, expose freshness timestamps, and retain events or snapshots long enough for recovery. Reconcile totals against the source of truth; do not claim cross-system exactly-once execution from a broker setting alone.
+
+This is not the only valid answer. If volume is low and no search/report freshness target requires a separate system, begin with one relational store, suitable indexes, and a scheduled aggregate. Keep the event boundary only if downstream work needs independent retry or decoupling. Add the broker and separate projections when requirements justify their extra schemas, monitoring, backfill, access control, and on-call work.
 
 ## Exercises
 
@@ -33,6 +35,19 @@ Start with user behavior and invariants. Draw a baseline before adding component
 4. A timeout is ambiguous. Retry only with an idempotency key or verify the operation by a stable identifier before issuing a new effect.
 5. Preserve critical behavior and degrade optional work. Emit dependency latency/error, request outcome, queue age where relevant, and trace context without high-cardinality sensitive fields.
 6. Select evidence for the actual constraint, such as database saturation, tail latency, queue age, or cache miss cost. Scale the constrained component and retest.
+
+## Failure analysis table
+
+| Failure point | What is known | Safe response | Evidence to monitor |
+|---|---|---|---|
+| Client loses response after order commit | Outcome is unknown to client | Retry with same idempotency key or query by stable request ID | Duplicate-key conflicts, unknown-outcome rate |
+| Outbox relay publishes then crashes before marking sent | Event may be delivered twice | Consumer deduplicates by stable event ID | Duplicate count, outbox age, relay retries |
+| Search consumer falls behind | Order state remains authoritative; search is stale | Keep serving source-backed order confirmation; alert on lag and replay | Oldest event age, projection freshness |
+| Analytics backfill overlaps live events | Results can double-count or omit data | Use a consistent snapshot/offset handoff and deterministic upsert or deduplication | Reconciliation delta, duplicate business keys |
+| New schema reaches old consumer | Consumer may reject or misread event | Add fields compatibly, version contracts, deploy tolerant readers first | Deserialization failures by version |
+| Restore from backup loses recent transactions | Recovery point exceeded target | Recover from logs or reconcile from an external authoritative record if designed | Restore duration and recovered-through timestamp |
+
+The safe response depends on the business action. A duplicate search-index update is usually repairable; a duplicate payment or email may not be. Classify effects before choosing retry semantics.
 
 ## Tests and edge cases
 

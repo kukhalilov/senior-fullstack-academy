@@ -11,16 +11,9 @@
 * Apply correct equality patterns using `EqualityComparer<T>.Default` and `IEquatable<T>`.
 
 # Worked example
-Consider the difference between a `struct` (value type) and a `class` (reference type).
+Consider the difference between a struct (value type) and a class (reference type).
 
-```csharp
-// Value type: Struct
-struct Point { public int X; }
-
-// Reference type: Class
-class Box { public int X; }
-
-// Copying behavior
+~~~csharp
 Point p1 = new Point { X = 10 };
 Point p2 = p1; // Value copy: p2 has its own X = 10
 p2.X = 20;     // p1.X remains 10
@@ -28,7 +21,10 @@ p2.X = 20;     // p1.X remains 10
 Box b1 = new Box { X = 10 };
 Box b2 = b1;   // Reference copy: b2 points to the same object as b1
 b2.X = 20;     // b1.X is now 20 (aliasing)
-```
+
+struct Point { public int X; }
+class Box { public int X; }
+~~~
 
 **Why this happens:**
 When you assign a struct variable, the target receives a copy of its value (including any reference fields). When you assign a class variable, the target receives a copy of the reference; both can designate the same object. Physical storage is a runtime implementation detail.
@@ -44,15 +40,13 @@ When you assign a struct variable, the target receives a copy of its value (incl
 * **Hint 3:** `ReferenceEquals` checks whether two references identify the same object instance (identity), not if their contents are the same.
 
 # Complete solutions
-```csharp
+~~~csharp
 // Exercise 1
-struct Dimensions { public int W, H; }
 Dimensions d1 = new Dimensions { W = 1, H = 2 };
 Dimensions d2 = d1;
 d2.W = 5; // d1.W is still 1
 
 // Exercise 2
-class Container { public int W; }
 Container c1 = new Container { W = 1 };
 Container c2 = c1;
 c2.W = 5; // c1.W is now 5
@@ -62,7 +56,10 @@ Container a = new Container { W = 1 };
 Container b = new Container { W = 1 };
 bool sameRef = object.ReferenceEquals(a, b); // False
 bool sameSelf = object.ReferenceEquals(a, a); // True
-```
+
+struct Dimensions { public int W, H; }
+class Container { public int W; }
+~~~
 
 # Tests and edge cases
 * **Boxing:** Casting a struct value to `object` creates a boxed object containing a copy. Mutating that boxed copy does not mutate the original struct variable; boxing commonly allocates, though optimization can remove unobservable allocation.

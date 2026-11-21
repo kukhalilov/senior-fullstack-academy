@@ -85,9 +85,10 @@ The overload families below share the same lifecycle rules: pass cancellation, c
 
 ## Cross-item comparison
 
-Compare only the supplied names here. Stream properties offer sequential access; pipe properties offer segmented buffers and explicit cursors. Buffered form binding is convenient for bounded files; multipart streaming handles large input with greater application responsibility. Response callbacks surround the commit point, while body writes/flushes may cause it. File result types differ by byte source (content, path, virtual path, or stream) and share authorization/range/metadata decisions.
-
+JSON deserialization consumes the body stream; form binding may buffer or spool multipart sections, while direct multipart streaming gives the application more control over limits and memory. PipeReader enables segmented reads but callers must not assume a single contiguous buffer.
 ## Examples
+
+A JSON endpoint consumes the request body once. Middleware should not attempt a second deserialization unless buffering was deliberately enabled before reading. Propagate request cancellation to the asynchronous read.
 
 ```csharp
 app.MapPost("/echo", async (HttpContext context, CancellationToken cancellationToken) =>
@@ -99,9 +100,6 @@ app.MapPost("/echo", async (HttpContext context, CancellationToken cancellationT
 
 public sealed record EchoRequest(string Message);
 ```
-
-This is a request-body consumer; do not also deserialize the same body in middleware. In .NET 10 and later framework parsing uses PipeReader by default, so converters must support segmented values. For a file upload, use a server-generated destination name, enforce a byte limit during copy, honor cancellation, and remove partial output on exceptions.
-
 ## Common mistakes
 
 - Retaining HttpContext or RequestServices for background work.
@@ -114,8 +112,6 @@ This is a request-body consumer; do not also deserialize the same body in middle
 
 ## Knowledge checks with answers
 
-1. What must a second stream reader have? Buffering enabled before consumption and a rewind before the second read.
-2. What is the difference between `consumed` and `examined`? One releases processed bytes; the other reports how far parsing looked.
-3. Does MultipartBodyLengthLimit replace Kestrel's request-size limit? No; they constrain different stages and units.
-4. When is a response header immutable? When response start commits it.
-5. Which filename should be used for storage? A server-generated name, never the untrusted upload filename.
+1. Why can a request body usually be consumed only once? It is a forward-only stream unless buffering is enabled before the first read.
+2. What does PipeReader examined report? How far the consumer inspected, which can differ from bytes it consumed.
+3. What behavior changed for JSON request body parsing in newer ASP.NET Core? The framework uses PipeReader by default; custom converters must handle segmented input.

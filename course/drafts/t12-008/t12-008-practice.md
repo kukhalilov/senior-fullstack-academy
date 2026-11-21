@@ -12,6 +12,18 @@ Choose a storage, consistency, deployment, API, and event-delivery approach for 
 
 **Worked solution.** Keep the invariant explicit: inventory cannot be oversold. Compare a single-region transactional baseline with multi-region options using measured write latency, recovery objectives, and conflict semantics. Use a query/API contract suited to clients and cacheability, while documenting schema evolution. Choose event delivery based on whether consumers need task dispatch or retained replay. Make cache freshness bounded and never use it as the final allocation authority. Revisit each decision if assumptions change.
 
+| Concern | Baseline decision | Why | Failure behavior to test |
+|---|---|---|---|
+| Authoritative stock | One transactional SQL database with a conditional decrement/reservation row | A single authority can enforce the last-unit invariant simply | Concurrent final-unit requests, deadlock/timeout, recovery from backup |
+| Catalog browsing | Cacheable read model/CDN where fields are public | Browsing can tolerate a stated freshness bound | Stale page after a price/availability change; purge/expiry behavior |
+| Reservation confirmation | Commit reservation ID and outbox record in one local transaction | Durable acceptance and publish intent are recorded together | Crash after commit, duplicate outbox event, delayed consumer |
+| Fulfillment | Durable queue for worker dispatch; analytics may use a retained log | Fulfillment is competing work; analytics needs independent replay | Redelivery, poison job, consumer outage, retention expiry |
+| Global access | Regional reads first; write placement chosen from RTO/RPO and conflict needs | Worldwide users do not automatically require multi-writer inventory | Region loss, failover lag, duplicate reservation, stale browsing |
+
+### Small capacity estimate
+
+Assume for exercise purposes 100,000 daily active users, each making 8 catalog reads/day and 1 reservation per 50 users/day. This gives 800,000 reads/day (about 9.3 average reads/s) and 2,000 reservations/day (about 0.023 average reservations/s). If the measured peak-to-average factor is 20, the rough peak is about 185 reads/s and 0.46 reservations/s. These are illustrative estimates, not product facts; real traffic may be much burstier around sales. Add payload sizes, concurrent sessions, cache hit ratio, retries, background events, growth, and safety headroom before sizing.
+
 ## Exercises
 
 1. Restate the product goal as two functional requirements and three measurable quality objectives.

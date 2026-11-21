@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson covers the supplied Vitest 4.x-style runner API surface and test double patterns. Check the installed Vitest version for exact options; this is not the full configuration/matcher catalog. [Vitest guide](https://vitest.dev/guide/) [Vitest API](https://vitest.dev/api/)
+This lesson covers the supplied Vitest runner API subset, checked against Vitest 5.1 (2026-11-20), plus test-double patterns. Vitest 5 added performance improvements, stable file-system module caching, nested project/config inheritance, and `vitest doctor`; 5.1 stabilized Browser Mode trace view with failure-only capture by default and added interactive snapshot review. The CLI's `--since-last-run` remains experimental and selects tests using recorded dependency file modification times, so it is distinct from Git-based `--changed`. Check the installed Vitest/Vite/Node versions and migration guide for exact compatibility; this is not the full configuration/matcher catalog. [Vitest guide](https://vitest.dev/guide/) [Vitest API](https://vitest.dev/api/) [Vitest 5](https://vitest.dev/blog/vitest-5.html) [Vitest 5.1](https://vitest.dev/blog/vitest-5-1) [Migration guide](https://vitest.dev/guide/migration.html)
 
 ## How this group fits the mental model
 

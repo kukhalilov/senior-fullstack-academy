@@ -1,10 +1,14 @@
 # Kestrel reverse proxies TLS networking and load balancing — Reference: Listener endpoints, address binding, HTTP versions, and server limits
 
-Sources: [Kestrel web server](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-10.0), [Kestrel endpoint configuration](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-10.0), [Kestrel security considerations](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-10.0), [Kestrel HTTP/3](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3), and [.NET support policy](https://dotnet.microsoft.com/en-us/platform/support/policy).
+Sources: [Kestrel 11 protocol-compliance change](https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/kestrel-strict-protocol-compliance), [Kestrel web server](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-10.0), [Kestrel endpoint configuration](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-10.0), [Kestrel security considerations](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations?view=aspnetcore-10.0), [Kestrel HTTP/3](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3), and [.NET support policy](https://dotnet.microsoft.com/en-us/platform/support/policy).
 
 ## Scope and version
 
 Kestrel is the current ASP.NET Core HTTP server and this curriculum targets .NET 11 GA. Some versioned Learn pages still use the 10.0 selector; the current HTTP/3 article documents .NET 11 early-request processing, while protocol constraints remain as described below. Confirm the target runtime, OS, proxy/IIS integration, and endpoint configuration in the deployed environment.
+
+### .NET 11 protocol-compliance change
+
+Kestrel 11 applies stricter HTTP framing rules. HTTP/2 and HTTP/3 reject connection-specific request headers including `Proxy-Connection`, `Keep-Alive`, `Transfer-Encoding`, and `Upgrade` (and reject `TE` except `trailers`); HTTP/1.1 closes the connection after responding when a request contains both `Content-Length` and `Transfer-Encoding`. Audit legacy clients and protocol-translating gateways that forward such headers. Compliant clients are unaffected; the change helps prevent request-smuggling ambiguity. [Kestrel 11 breaking change](https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/kestrel-strict-protocol-compliance)
 
 ## How this group fits the mental model
 
@@ -74,6 +78,7 @@ If only an upload endpoint needs a larger body, use a scoped request feature or 
 - Binding `ListenAnyIP` and assuming the service remains private.
 - Setting an HTTPS port without configuring a certificate.
 - Assuming HTTP/3 is enabled automatically when `HttpProtocols.Http3` is specified but MsQuic/UDP is unavailable.
+- Forwarding connection-specific HTTP/1.1 headers into HTTP/2/3 through a legacy gateway; .NET 11 rejects these protocol-invalid requests.
 - Confusing concurrent TCP connections with HTTP/2/3 concurrent streams or active requests.
 - Raising body-size limits at Kestrel while an earlier proxy retains a smaller limit.
 - Changing `IHttpMaxRequestBodySizeFeature` after reading has begun.

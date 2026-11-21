@@ -8,6 +8,10 @@ Kestrel is ASP.NET Core’s cross-platform HTTP server. It can face clients dire
 
 This module explains Kestrel listeners and HTTP protocols, TLS and certificates, forwarded request context, YARP route/cluster/destination configuration, and health/load-balancing behavior. It targets .NET 11 GA (released November 10, 2026). YARP is versioned independently: the latest stable release listed on its official roadmap is 2.3.0, which supports .NET 8 or later. Microsoft Learn’s versioned Kestrel pages may still use the 10.0 selector even though its current HTTP/3 article documents a .NET 11 behavior; where no 11.0 selector was verified, the lesson labels that limitation instead of inventing one.
 
+## Current .NET 11 protocol change
+
+Kestrel 11 rejects more invalid connection-specific headers on HTTP/2 and HTTP/3, and closes HTTP/1.1 connections after ambiguous `Content-Length` plus `Transfer-Encoding`. If an older gateway translates HTTP/1.1 to HTTP/2, verify it strips connection-specific headers and emits unambiguous framing. [Official breaking-change note](https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/kestrel-strict-protocol-compliance)
+
 ## Plain-language mental model
 
 Kestrel is the application’s front door. A reverse proxy is a receptionist in front of it: the proxy may terminate the public encrypted connection, choose a backend, and send a new request inward. Because the backend sees the proxy’s connection, it needs a trustworthy way to recover the original scheme, host, and client address. Forwarded headers are the receptionist’s note—but only a known receptionist’s note should be trusted.

@@ -1,6 +1,6 @@
 # end-to-end system design case studies — Reference: Content-addressed attachment deduplication
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [RFC 6920: Naming Things with Hashes](https://www.rfc-editor.org/rfc/rfc6920.html), [RFC 9054: COSE Hash Algorithms](https://www.rfc-editor.org/rfc/rfc9054.html), [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [RFC 6920: Naming Things with Hashes](https://www.rfc-editor.org/rfc/rfc6920.html), [NIST policy on hash functions](https://csrc.nist.gov/projects/hash-functions/nist-policy-on-hash-functions), [NIST hash-function guidance](https://csrc.nist.gov/Projects/Hash-Functions), [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
 
 ## Scope and version
 
@@ -12,7 +12,7 @@ Content addressing names an object by a digest of its bytes rather than by a mut
 
 ## Supplied names explained
 
-- **Content digest:** hash of the uploaded bytes under a named algorithm and encoding; persist the algorithm/version with the identifier so future migrations are possible.
+- **Content digest:** hash of the uploaded bytes under a named algorithm and encoding; persist the algorithm/version with the identifier so future migrations are possible. For adversarially chosen files, select a currently accepted collision-resistant cryptographic hash such as a SHA-2 or SHA-3 member under the applicable policy; do not use MD5 or SHA-1 as a security-sensitive content identity. A digest is public metadata, not a secret or authorization token.
 - **Blob/object:** immutable byte content stored under a digest-derived key.
 - **Attachment metadata:** owner/tenant, filename, declared and detected media type, size, scan status, retention, and access policy.
 - **Deduplication:** reusing existing bytes for identical content; cross-tenant reuse can expose membership or timing signals.
@@ -54,4 +54,4 @@ If clients can query whether a digest exists before upload, a malicious user cou
 
 ## Review status
 
-Digest naming and hash security cautions are checked against RFC 6920 and RFC 9054. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Digest naming is checked against RFC 6920; algorithm-selection and collision-resistance cautions are checked against NIST hash-function policy. The design examples are application patterns; authorization and lifecycle rules must be enforced by the owning service.

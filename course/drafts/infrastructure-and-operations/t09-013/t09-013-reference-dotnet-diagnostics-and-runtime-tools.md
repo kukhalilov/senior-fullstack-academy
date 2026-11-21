@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This reference covers the listed .NET diagnostics, tools, runtime measurements, and attachment boundaries. Microsoft documentation checked 2026-11-17. The .NET 9+ `System.Runtime` meter and the .NET 8-and-earlier EventCounters path differ. Ordinary EventPipe collection and the Linux native `collect-linux` path have different permissions and evidence. Diagnostic artifacts can contain sensitive memory data. [Diagnostics overview](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/) [dotnet-counters](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters) [dotnet-trace](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace)
+This reference covers the listed .NET diagnostics, tools, runtime measurements, and attachment boundaries. Microsoft documentation checked 2026-11-20. The .NET 9+ `System.Runtime` meter and the .NET 8-and-earlier EventCounters path differ. Ordinary EventPipe collection and the Linux native `collect-linux` path have different permissions and evidence. Diagnostic artifacts can contain sensitive memory data. [Diagnostics overview](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/) [dotnet-counters](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters) [dotnet-trace](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace)
 
 # How this group fits the mental model
 
@@ -33,11 +33,66 @@ Counters reveal changing trends; traces reveal timed event/stack evidence; dumps
 - `dotnet-dump` — A CLI to collect and analyze process dumps. A dump can expose in-memory request data, credentials, and personal information, so restrict access, secure transfer, and delete per policy.
 - `dotnet-dump collect` — Captures a process dump through the runtime diagnostic mechanism. Dump type, target OS, process state, and runtime support affect size and contents.
 - `dotnet-dump analyze` — Opens a dump for SOS-based managed inspection such as threads, stacks, objects, and GC roots. It requires compatible analysis tools and often symbols for source-level detail.
-- `dotnet-gcdump` — A tool that collects managed GC heap information from a live process, often by requesting a GC dump through EventPipe. It focuses on managed objects rather than providing a full native process dump.
+- `dotnet-gcdump` — A tool that collects managed GC heap information from a live process by triggering a Gen 2 (full) collection, enabling special events, and rebuilding the object-root graph from the event stream. It focuses on managed objects rather than providing a full native process dump. On a large heap, the forced full collection can suspend the runtime for a long time; avoid casual collection on latency-sensitive production processes. The current documented viewer support for `.gcdump` analysis is Windows-based (PerfView or Visual Studio).
 - `dotnet-stack` — A CLI for capturing managed stack traces from a running .NET process. It provides a point-in-time view useful for blocked threads or deadlock investigation, not a history of execution.
 - `dotnet-monitor` — A diagnostic service that can monitor .NET processes and expose metrics or collect traces, dumps, and logs through configured endpoints. Secure its endpoints, authentication, authorization, and artifact storage.
-- `dotnet-dsrouter` — A tool that proxies diagnostic ports across environments such as emulators or devices where local pipe/socket access is unavailable. Its network exposure and port forwarding require explicit security controls.
+- `dotnet-symbol` — Downloads matching symbols, modules, host files, and debugging components such as DAC/DBI for dump analysis, especially when a dump was captured on another machine. Symbols must match the exact runtime/build; private symbols and dumps require access controls.
+- `dotnet-debugger-extensions` — Installs .NET debugger extensions for native debuggers such as WinDbg or LLDB. It is a debugger integration helper, not a collector or analyzer by itself.
+- `dotnet-debugger-extensions install` — Installs the debugger extensions locally and configures LLDB startup on macOS/Linux; architecture and debugger version affect setup.
+- `PerfCollect` — A Linux Bash collection script that combines `perf` CPU samples and LTTng/EventSource runtime events. It needs OS tracing prerequisites and appropriate capabilities; its GC-heavy profiles can materially increase runtime cost.
+- `dotnet-dsrouter` — A development/testing tool that proxies diagnostic ports to .NET apps on Android, iOS, and tvOS. Its TCP connections are unauthenticated and unencrypted; bind the TCP server only to loopback and do not expose it to untrusted networks.
 - `Microsoft.Diagnostics.NETCore.Client` — The .NET client library for communicating with runtime diagnostic ports and requesting diagnostic sessions. It is the foundation for custom diagnostics tooling and should follow supported runtime protocol behavior.
+
+## System.Runtime Meter: exact built-in metrics
+
+### Exact supplied metric terms
+
+- `dotnet.process.cpu.time metric`
+- `dotnet.process.memory.working_set metric`
+- `dotnet.gc.collections metric`
+- `dotnet.gc.heap.total_allocated metric`
+- `dotnet.gc.last_collection.memory.committed_size metric`
+- `dotnet.gc.last_collection.heap.size metric`
+- `dotnet.gc.last_collection.heap.fragmentation.size metric`
+- `dotnet.gc.pause.time metric`
+- `dotnet.jit.compiled_il.size metric`
+- `dotnet.jit.compiled_methods metric`
+- `dotnet.jit.compilation.time metric`
+- `dotnet.thread_pool.thread.count metric`
+- `dotnet.thread_pool.work_item.count metric`
+- `dotnet.thread_pool.queue.length metric`
+- `dotnet.monitor.lock_contentions metric`
+- `dotnet.timer.count metric`
+- `dotnet.assembly.count metric`
+- `dotnet.exceptions metric`
+- `cpu.mode metric attribute`
+- `gc.heap.generation metric attribute`
+- `error.type metric attribute`
+
+The .NET 9+ `System.Runtime` Meter publishes the following built-in metric names. Use the instrument type and unit rather than inferring semantics from a suffix. The reference also lists the attributes `cpu.mode`, `gc.heap.generation`, and `error.type`. .NET 8 and earlier expose legacy EventCounters instead, so names and display values differ. [Built-in .NET runtime metrics](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-runtime)
+
+| Metric | Type / unit | Meaning and key caveat |
+| --- | --- | --- |
+| `dotnet.process.cpu.time` | Counter, seconds | Process CPU time, split by `cpu.mode` (`user`/`system`). |
+| `dotnet.process.memory.working_set` | UpDownCounter, bytes | Physical memory mapped to the process; includes more than managed heap. |
+| `dotnet.gc.collections` | Counter, collections | Collections since process start, tagged by maximum `gc.heap.generation` collected. |
+| `dotnet.gc.heap.total_allocated` | Counter, bytes | Approximate managed GC-heap bytes allocated since start; excludes native allocations. |
+| `dotnet.gc.last_collection.memory.committed_size` | UpDownCounter, bytes | GC committed virtual memory at the latest collection; can exceed live heap size. |
+| `dotnet.gc.last_collection.heap.size` | UpDownCounter, bytes | Managed heap size including fragmentation at latest collection; tagged by generation including `loh` and `poh`. |
+| `dotnet.gc.last_collection.heap.fragmentation.size` | UpDownCounter, bytes | GC heap fragmentation after latest collection, tagged by generation. |
+| `dotnet.gc.pause.time` | Counter, seconds | Cumulative time paused in GC since process start; derive an interval rate/fraction carefully. |
+| `dotnet.jit.compiled_il.size` | Counter, bytes | IL bytes compiled by JIT since process start. |
+| `dotnet.jit.compiled_methods` | Counter, methods | JIT compilation/recompilation count since process start. |
+| `dotnet.jit.compilation.time` | Counter, seconds | Cumulative JIT compilation time. |
+| `dotnet.thread_pool.thread.count` | UpDownCounter, threads | Current ThreadPool worker-thread count. |
+| `dotnet.thread_pool.work_item.count` | Counter, work items | Completed ThreadPool work items since process start. |
+| `dotnet.thread_pool.queue.length` | UpDownCounter, work items | Current queued ThreadPool work items. |
+| `dotnet.monitor.lock_contentions` | Counter, contentions | Monitor lock contention count since process start. |
+| `dotnet.timer.count` | UpDownCounter, timers | Current active timer count. |
+| `dotnet.assembly.count` | UpDownCounter, assemblies | Currently loaded .NET assemblies. |
+| `dotnet.exceptions` | Counter, exceptions | Managed exceptions thrown, tagged by `error.type`; counts throws, not only uncaught/user-visible failures. |
+
+These metric names are not synonyms for older EventCounters such as `alloc-rate` or `time-in-gc`. Confirm target runtime, instrument version, and collection pipeline before comparing dashboards across upgrades.
 
 ## Instrumentation and event APIs
 
@@ -46,6 +101,9 @@ Counters reveal changing trends; traces reveal timed event/stack evidence; dumps
 - `EventCounter` — A legacy lightweight metric-emission type associated with EventSource. It remains useful for existing sources, but new instrumentation commonly uses `System.Diagnostics.Metrics`.
 - `System.Diagnostics.Metrics` — The modern .NET metric instrumentation API with instruments such as counters, gauges, and histograms. It integrates with multiple metric listeners/export paths.
 - `System.Diagnostics.Activity` — A representation of a timed operation/span with trace context and tags/events. It supports distributed tracing and can be created/observed through Activity APIs.
+- `ActivitySource` — The factory/provider API used to create `Activity` spans for distributed tracing. Consumers use listeners or exporters; activity creation alone does not guarantee export.
+- `ActivityListener` — A listener that controls sampling and observes activities from `ActivitySource` instances. Sampling choices affect overhead and which activities are recorded.
+- `MeterListener` — An in-process listener for measurements emitted by `System.Diagnostics.Metrics` instruments. It is a low-level observation API; export pipelines commonly use metric readers/exporters instead.
 - `Diagnostic listener` — An in-process subscriber to `DiagnosticSource` events. A listener can observe selected instrumentation, and enabling verbose events may add volume or expose payloads.
 
 ## Runtime counters and memory surfaces
@@ -72,7 +130,26 @@ Counters reveal changing trends; traces reveal timed event/stack evidence; dumps
 - `Managed stack trace` — A sequence of managed method frames for a thread or sampled execution. It may lack source lines when symbols are unavailable and may capture only a moment.
 - `Portable PDB symbol resolution` — Mapping compiled code back to source information using portable PDB symbols. Matching symbols to the exact build is essential; mismatched symbols can produce misleading lines.
 
+## Native AOT diagnostic boundaries
+
+Native AOT applications do not expose every full-runtime diagnostic capability. Microsoft documents EventPipe as optional in Native AOT and enabled by the `EventSourceSupport` MSBuild property; runtime provider/event support is partial. CPU profiling and native debugging are supported with limitations and matching native symbols. Managed heap analysis is not supported by the cited Native AOT diagnostics page, which specifically discusses .NET 8 behavior; check the target runtime because documentation and capabilities can change. Build-time diagnostics generally run on the full runtime, while published Native AOT binaries need their own post-publish verification. [Native AOT diagnostics](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/diagnostics)
+
+- `Native AOT diagnostics` — Diagnostics for published ahead-of-time native binaries, with capabilities that differ from CoreCLR and vary by feature/runtime version.
+- `Native AOT EventPipe support` — Optional EventPipe support in Native AOT, enabled by `EventSourceSupport`; availability does not imply every runtime event is implemented.
+- `EventSourceSupport MSBuild property` — The Native AOT project property that includes the optional EventPipe component when set to `true`.
+- `Native AOT runtime event support` — Partial support for selected runtime providers/events; verify the exact event needed rather than assuming full-runtime parity.
+- `Native AOT CPU profiling` — CPU sampling of a published Native AOT app using platform tools such as PerfView or Linux perf, with native symbols needed for useful method attribution.
+- `Native AOT managed heap analysis` — Managed heap analysis is unsupported in the cited Microsoft Native AOT diagnostics guidance; `dotnet-gcdump` and managed heap viewers should not be assumed to work on published Native AOT binaries.
+
 ## Attachment and artifact constraints
+
+### Exact diagnostic-port controls
+
+- `DOTNET_EnableDiagnostics` — Setting this to `0` disables external diagnostics ports and therefore blocks dotnet diagnostic tools and debugging; treat it as a security/operability choice, not a generic performance toggle.
+- `DOTNET_DiagnosticPorts` — Configures additional runtime-initiated diagnostic connections using a semicolon-separated list of endpoint descriptions. On Windows endpoints are named-pipe names; on Linux/macOS they are Unix-domain-socket paths; mobile Mono can use TCP.
+- `DOTNET_DefaultDiagnosticPortSuspend` — Setting this to `1` makes the runtime wait at startup for a tool on its default diagnostic port, useful for startup capture but dangerous if the collector never attaches.
+- `Diagnostic port connect mode` — The runtime connects to a tool-created endpoint. The endpoint is not authenticated by the runtime; use only a fully trusted path and prevent untrusted processes from replacing it.
+- `Diagnostic port suspend modifier` — Additional configured ports default to suspending until a diagnostic resume command unless `nosuspend` is selected. A port description has the form `address[,(listen|connect)][,(suspend|nosuspend)]`; `listen` is supported only by Mono on Android/iOS. [Diagnostic ports](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-port)
 
 - `Diagnostic port access control` — OS and runtime controls that determine which process identity can connect to diagnostics IPC. Diagnostics endpoints are privileged because they can expose memory or alter collection behavior.
 - `Diagnostics in containers` — Collecting diagnostics when target and tool have different namespaces, user IDs, filesystems, or runtime visibility. Ensure the correct diagnostic socket/pipe is shared and least privilege is maintained.
@@ -89,7 +166,7 @@ Counters reveal changing trends; traces reveal timed event/stack evidence; dumps
 | `dotnet-gcdump` | Which managed objects occupy the GC heap? | Managed heap graph |
 | `dotnet-stack` | What are managed threads doing now? | Point-in-time managed stacks |
 
-On .NET 9+, `dotnet-counters` reads the `System.Runtime` meter; on .NET 8 and earlier it falls back to EventCounters. The API surface differs even when similar names appear. Ordinary `dotnet-trace collect` uses EventPipe across supported operating systems; `collect-linux` is separate, Linux-only, requires kernel 6.4+ and root, and can add native/kernel evidence. [dotnet-counters](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters) [dotnet-trace](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace)
+On .NET 9+, `dotnet-counters` reads the `System.Runtime` meter; on .NET 8 and earlier it falls back to EventCounters. The API surface differs even when similar names appear. Ordinary `dotnet-trace collect` uses EventPipe across supported operating systems; `collect-linux` is separate, Linux-only, requires .NET 10+, Linux x64/Arm64, kernel 6.4+ with CONFIG_USER_EVENTS, mounted tracefs, glibc 2.27+, and root/CAP_PERFMON or CAP_SYS_ADMIN, and can add native/kernel evidence. Linux `PerfCollect` is an alternative `perf` + LTTng collection path with its own kernel/library/capability prerequisites. [dotnet-counters](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters) [dotnet-trace](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace)
 
 # Examples
 
@@ -98,6 +175,9 @@ Start with `dotnet-counters monitor` to confirm a high allocation rate and incre
 # Common mistakes
 
 - Collecting a huge dump before checking counters or articulating a hypothesis.
+- Forgetting that `dotnet-gcdump collect` forces a Gen 2 collection, which can cause a long pause on a large heap.
+- Collecting a full/heap dump inside a tightly memory-limited container without accounting for the target's additional paging and memory pressure; the OS may terminate the container.
+- Binding `dotnet-dsrouter` to a non-loopback interface even though its TCP endpoint has no authentication or encryption.
 - Assuming a managed heap dump explains native memory growth.
 - Treating similar metric names from EventCounters and the modern meter as identical without version verification.
 - Assuming a diagnostic endpoint should be exposed broadly over a network.
@@ -113,8 +193,11 @@ Start with `dotnet-counters monitor` to confirm a high allocation rate and incre
 3. What is the difference between `dotnet-gcdump` and a process dump? **A GC dump focuses on managed heap information; a process dump captures broader process memory/state.**
 4. Why can a diagnostic port fail in a container? **Tool and target may differ in process identity, namespace, socket visibility, or permissions.**
 5. Why protect a dump? **It may contain secrets, customer data, and other application memory.**
-6. Does `dotnet-trace collect-linux` have the same requirements as ordinary `collect`? **No; it is Linux-only, requires kernel 6.4+ and root, and captures additional native/kernel evidence.**
+6. Does `dotnet-trace collect-linux` have the same requirements as ordinary `collect`? **No; it is Linux-only, requires .NET 10+, Linux x64/Arm64, kernel 6.4+ with CONFIG_USER_EVENTS, mounted tracefs, glibc 2.27+, and root/CAP_PERFMON or CAP_SYS_ADMIN, and captures additional native/kernel evidence.**
+7. What production impact can `dotnet-gcdump collect` have? **It forces a full Gen 2 collection to walk the heap, which can suspend a large process for a long time.**
+8. Why can full/heap `dotnet-dump` collection be risky in a container? **It can page in substantial target virtual memory and exceed the container's memory limit, leading to termination.**
+9. How should `dotnet-dsrouter` be network-bound? **Loopback only; its TCP endpoint is unauthenticated and unencrypted.**
 
 # Sources
 
-[.NET diagnostics](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/) · [Diagnostic port](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-port) · [EventPipe](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/eventpipe) · [dotnet-counters](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters) · [dotnet-trace](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace) · [dotnet-dump](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump)
+[.NET diagnostics](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/) · [Diagnostic port](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/diagnostic-port) · [EventPipe](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/eventpipe) · [dotnet-counters](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters) · [dotnet-trace](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace) · [dotnet-dump](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump) · [Native AOT diagnostics](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/diagnostics) · [PerfCollect](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/trace-perfcollect-lttng) · [dotnet-symbol](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-symbol)

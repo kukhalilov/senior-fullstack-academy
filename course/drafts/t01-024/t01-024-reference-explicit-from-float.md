@@ -26,7 +26,7 @@ Because a `float` can represent fractional values and much wider or narrower num
 
 Every item in this reference group is an **explicit numeric conversion** originating from a `float` value.
 
-* **`float to sbyte (explicit numeric conversion)`**: Converts a single-precision floating-point value to a signed 8-bit integer (`sbyte`). Fractional parts are truncated toward zero.
+* **`float to sbyte (explicit numeric conversion)`**: Converts a single-precision floating-point value to a signed 8-bit integer (`sbyte`). Fractional parts are truncated toward zero. In a checked context, an out-of-range conversion throws; unchecked out-of-range behavior is unspecified by C#, with runtime-specific saturation documented for certain targets in .NET 9 and .NET 11.
 * **`float to byte (explicit numeric conversion)`**: Converts a `float` to an unsigned 8-bit integer (`byte`), truncating any fractional component toward zero.
 * **`float to short (explicit numeric conversion)`**: Converts a `float` to a signed 16-bit integer (`short`), truncating the fractional part toward zero.
 * **`float to ushort (explicit numeric conversion)`**: Converts a `float` to an unsigned 16-bit integer (`ushort`), discarding fractional digits toward zero.

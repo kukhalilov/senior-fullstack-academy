@@ -4,7 +4,7 @@ Sources: [Workflow syntax](https://docs.github.com/en/actions/reference/workflow
 
 ## Scope and version
 
-Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-14. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
+Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-20. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
 
 ## How this group fits the mental model
 
@@ -55,7 +55,6 @@ Do not equate delivery with deployment, assume a gate proves untested behavior, 
 
 ## Knowledge checks with answers
 
-1. **What decision does this inventory support?** Selecting a workflow boundary, artifact control, delivery signal, release strategy, or credential policy.
-2. **What evidence should be preserved?** Source revision, check results, artifact digest, deployment outcome, and provenance where available.
-3. **How do you reduce risk?** Declare inputs, restrict permissions, promote the same tested output, and define failure handling.
-
+1. **When should a pipeline build once and promote the same artifact?** When environment changes are configuration-only and artifact identity must remain consistent across stages.
+2. **What should a release record capture?** Source revision, dependency/build inputs, artifact digest, checks, approvals, and deployment target.
+3. **Why separate build and deployment permissions?** It limits the credentials and environments exposed to untrusted build steps.

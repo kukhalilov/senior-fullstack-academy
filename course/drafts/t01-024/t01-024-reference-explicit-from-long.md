@@ -4,7 +4,7 @@
 
 # Scope and version
 
-**Scope and Version:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17. Source authority: Microsoft Learn C# numeric literal, numeric conversion, and numeric type references [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions). This is an automatically generated draft.
+**Scope and Version:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-20. Source authority: Microsoft Learn C# numeric literal, numeric conversion, and numeric type references [https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions). This is an automatically generated draft.
 
 This reference lesson covers one bounded inventory group: **long explicit numeric conversions**. All nonnumeric conversions, arithmetic operator catalogs beyond promotion, parsing APIs, and representation internals are excluded.
 

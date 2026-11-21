@@ -1,6 +1,6 @@
 # end-to-end system design case studies — Reference: FIFO order book
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [FIX Market Data Order Book Management specification](https://www.fixtrading.org/wp-content/uploads/download-manager-files/MDOWG_Book_Mgt-v20.pdf), [PostgreSQL transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html), [PostgreSQL explicit locking](https://www.postgresql.org/docs/current/explicit-locking.html).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [FIX Recommended Practices for Book Management](https://fixtrading.org/packages/recommended-practices-for-book-management/), [PostgreSQL transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html), [PostgreSQL explicit locking](https://www.postgresql.org/docs/current/explicit-locking.html).
 
 ## Scope and version
 
@@ -34,7 +34,7 @@ These are examples, not exhaustive venue methods. A production engine must imple
 
 ## Examples
 
-Resting asks: 10 shares at $100 entered first, then 8 shares at $100; another ask is 5 shares at $101. A buy limit at $101 for 15 shares is compatible with all three levels. Under this simplified price-time rule, it fills 10 at $100 with the first order, 5 of the second order at $100, and leaves 3 shares of the second plus 5 at $101 resting. A later order at $100 cannot jump ahead of the earlier eligible quantity at that same level. Fees, hidden liquidity, and venue-specific rules are omitted from the example.
+Resting asks: 10 shares at $100 entered first, then 8 shares at $100; another ask is 5 shares at $101. A buy limit at $101 for 15 shares is compatible with all three levels. Under this simplified price-time rule, it fills 10 at $100 with the first order, then 5 of the second order at $100. The incoming buy is fully filled; 3 shares of the second resting ask at $100 and all 5 shares at $101 remain in the book. A later order at $100 cannot jump ahead of earlier eligible quantity at that same level. Fees, hidden liquidity, and venue-specific rules are omitted from the example.
 
 Persist a canonical event sequence: accepted order, priority assignment, match/trade, remaining quantity, cancel/replace, and resulting book version. On recovery, rebuild from a consistent snapshot plus later events and verify invariants: nonnegative remaining quantities, no order matched beyond its leaves quantity, generated trades satisfy crossing price constraints, and book order follows the configured priority. Use deterministic replay and reconcile trade records with downstream settlement.
 
@@ -58,4 +58,4 @@ Persist a canonical event sequence: accepted order, priority assignment, match/t
 
 ## Review status
 
-Order-book depth distinctions are checked against the FIX book-management specification; concurrency/replay examples against PostgreSQL transaction documentation. Venue-specific claims are explicitly excluded. This lesson remains pending full claim-by-claim audit and manifest omission check.
+The FIX Trading Community’s book-management practices support the distinction between book views, snapshots, incremental updates, and venue-defined priority. PostgreSQL documentation supports the cited transaction-isolation and locking behavior. Price-time allocation is explicitly an educational rule model; venue rules remain authoritative.

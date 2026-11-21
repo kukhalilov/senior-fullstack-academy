@@ -1,6 +1,6 @@
 # end-to-end system design case studies — Reference: BM25 plus PageRank search ranking
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [Robertson and Zaragoza, The Probabilistic Relevance Framework: BM25 and Beyond](https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf), [Page, Brin, Motwani, and Winograd, The PageRank Citation Ranking](https://cs.brown.edu/courses/csci2531/papers/pagerank.pdf), [Google ML: recommendation and candidate ranking overview](https://developers.google.com/machine-learning/recommendation/overview/types).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [Robertson and Zaragoza, The Probabilistic Relevance Framework: BM25 and Beyond](https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf), [Page, Brin, Motwani, and Winograd: The PageRank Citation Ranking](https://cs.brown.edu/courses/csci2531/papers/pagerank.pdf), [Google Search ranking systems guide](https://developers.google.com/search/docs/appearance/ranking-systems-guide), [Google ML: recommendation and candidate ranking overview](https://developers.google.com/machine-learning/recommendation/overview/types).
 
 ## Scope and version
 
@@ -58,4 +58,4 @@ An implementation pipeline may tokenize and analyze query/document text, retriev
 
 ## Review status
 
-BM25 framing is checked against the probabilistic relevance review; PageRank against its original paper. This lesson remains pending full claim-by-claim audit and manifest omission check.
+BM25 framing and parameter roles are checked against the probabilistic relevance review; PageRank’s graph-based, query-independent baseline is checked against its original paper. Google’s current ranking-systems guide supports the distinction between the historical algorithm and modern multi-system ranking; no claim is made about a proprietary current ranking formula.

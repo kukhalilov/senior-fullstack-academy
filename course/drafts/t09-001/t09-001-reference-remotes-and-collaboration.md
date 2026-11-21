@@ -4,7 +4,7 @@ Sources: [official reference 1](https://git-scm.com/docs/gitworkflows), [officia
 
 ## Scope and version
 
-This guide covers the exact assigned inventory for Git 2.54 documentation checked 2026-11-14. Git’s availability and defaults depend on the installed version and configuration; check `git --version` and command help before relying on a new option. Path-oriented `git checkout` remains explained for compatibility, while focused `git switch` and `git restore` commands make intent clearer. [Git 2.54 documentation](https://git-scm.com/docs/git/2.54.0)
+This guide covers the exact assigned inventory for Git 2.56.1 documentation checked 2026-11-20. Git’s availability and defaults depend on the installed version and configuration; check `git --version` and command help before relying on a new option. Path-oriented `git checkout` remains explained for compatibility, while focused `git switch` and `git restore` commands make intent clearer. [Git 2.56.1 documentation](https://git-scm.com/docs/git/2.56.1)
 
 ## How this group fits the mental model
 
@@ -57,10 +57,6 @@ Assuming remote-tracking refs update automatically; assuming pull always merges;
 
 ## Knowledge checks with answers
 
-1. **Which state contains the proposed next snapshot?** The index.
-2. **Why does amending or rebasing change commit identity?** The commit object and/or parent relationship changes, producing a different object.
-3. **What is the safe response to a conflict?** Inspect operation roles, edit the desired result, stage and review, then continue or abort.
-4. **How do restore, reset, and revert differ?** Restore targets paths, reset moves local HEAD/ref and may reset index/worktree, and revert records an inverse commit.
-5. **What does fetch do without pull?** It downloads objects and updates local remote-tracking references without integrating into the current branch.
-6. **What are reflog limits?** It records local ref movements, can expire, and is not available as another clone’s backup.
-
+1. **What does fetch update?** Remote-tracking references and downloaded objects; it does not automatically merge into the current branch.
+2. **What is the difference between remote-tracking and a local branch?** One records the observed remote state; the other is a local movable branch you can commit on.
+3. **Why use a lease-protected force push?** It refuses the rewrite if the remote ref advanced beyond the expected state.

@@ -4,7 +4,7 @@ Sources: [Pods](https://kubernetes.io/docs/concepts/workloads/pods/), [Pod lifec
 
 ## Scope and version
 
-This reference covers the Pod and container interfaces relevant to workloads. A Pod is a Kubernetes API and execution boundary; exact runtime behavior can depend on the supported Kubernetes version, kubelet, CRI runtime, CNI and storage configuration. Current upstream version checked 2026-11-16: v1.37.1. Native restartable init-container sidecars are stable since v1.33. Consult the target cluster's docs for feature support and platform-specific constraints.
+This reference covers the Pod and container interfaces relevant to workloads. A Pod is a Kubernetes API and execution boundary; exact runtime behavior can depend on the supported Kubernetes version, kubelet, CRI runtime, CNI and storage configuration. Current upstream version checked 2026-11-20: v1.37.1. Native restartable init-container sidecars are stable since v1.33. Consult the target cluster's docs for feature support and platform-specific constraints.
 
 ## How this group fits the mental model
 
@@ -23,7 +23,7 @@ The Pod template is replicated by a workload controller. The scheduler chooses a
 - `Pod readiness gate` — Additional condition that must be true before Pod Ready becomes true. A controller/integration must populate the condition; an unknown gate can keep a Pod unready.
 - `Pod sandbox` — Runtime-created isolation environment for a Pod, especially its shared network namespace. A sandbox failure can block all containers.
 - `Pod restartPolicy` — Pod-level `Always`, `OnFailure` or `Never` behavior used when a container exits. Controllers still decide whether to replace the whole Pod.
-- `Pod-level resources` — Beta since v1.34 and enabled by default upstream as of v1.37. A Pod-level CPU/memory/hugepage budget can let containers share idle resources; it is a separate feature from container-level requests and limits and must be checked against node/runtime support.
+- `Pod-level resources` — The `.spec.resources` CPU/memory/hugepages API is Beta since v1.34 and enabled by default upstream in v1.37. This is distinct from **Pod-level resource managers**, a v1.37 Beta feature that is disabled by default and requires the `PodLevelResourceManagers` gate on relevant components to make CPU, memory and topology managers use Pod-level declarations for allocation/NUMA decisions. Check API and gate support separately; do not assume the second capability is on because the first is enabled.
 - `Pod user namespace` — Stable since v1.36, Linux user-namespace isolation maps container UIDs/GIDs to distinct host IDs; opt-in requires compatible runtime, filesystem and node support and forbids host PID/IPC/network namespaces ([v1.36 release announcement](https://kubernetes.io/blog/2026/04/23/kubernetes-v1-36-userns-ga/)).
 - `hostUsers` — Pod field; `false` opts a Linux Pod into a user namespace when supported. Do not set it without checking host namespace, block-device and filesystem limitations.
 - `runtimeClassName` — Selects a RuntimeClass configuration by name, often for a specialized runtime handler or overhead. The RuntimeClass must exist and supported nodes must provide its handler.

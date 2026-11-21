@@ -1,36 +1,57 @@
 # data systems storage engines analytics streams and search — Reference: Maxwell's Daemon
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.postgresql.org/docs/current/mvcc.html), [reference 2](https://kafka.apache.org/documentation/), [reference 3](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://hld.handbook.academy/curriculum/data-systems/).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [Maxwell overview](https://maxwells-daemon.io/), [quick start](https://maxwells-daemon.io/quickstart/), [configuration reference](https://maxwells-daemon.io/config/), [compatibility and caveats](https://maxwells-daemon.io/compat/), [deployment and multiple instances](https://maxwells-daemon.io/deployment/), [producers and partitioning](https://maxwells-daemon.io/producers/), [event data format](https://maxwells-daemon.io/dataformat/), [bootstrapping](https://maxwells-daemon.io/bootstrapping/), [schema tracking internals](https://maxwells-daemon.io/schemas/), [high availability](https://maxwells-daemon.io/high_availability/), [monitoring](https://maxwells-daemon.io/monitoring/), [changelog](https://maxwells-daemon.io/changelog/).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+Maxwell's Daemon is a MySQL change-data-capture application: it reads MySQL row-based binary logs, tracks schema and position in a MySQL schema database, then emits row-change events to configured producers. The latest documented/released Maxwell version found in the project documentation is 1.41.2, released 2024-06-05; the compatibility page lists MySQL 5.1, 5.5, 5.6, 5.7 and 8, and Java 11+. Those published compatibility details are old relative to current MySQL releases. Treat them as a warning to validate your exact MySQL/MariaDB/cloud database and Java combination, not as evidence that newer versions are supported. The project's documented release state is itself a selection and maintenance risk.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+CDC transports committed database changes without repeatedly polling whole tables. Maxwell consumes the database's binlog, interprets row events using schema metadata, and publishes change records. A downstream consumer can update a search index, cache, analytics table or service projection. The database remains the source of truth; the message stream is a derived change history with its own retention and delivery behavior.
+
+The pipeline has several independent positions: MySQL binlog file/offset or GTID, Maxwell's stored source position and schema history, producer partition/offset, and consumer checkpoint. Recovery is correct only if those boundaries line up. A restart after publishing but before position persistence can replay events; a producer failure, expired binlogs, schema mismatch, or uncoordinated bootstrap can create gaps or duplicates. Use stable row keys, replayable output, idempotent consumers, explicit delete handling, and source-to-sink reconciliation.
 
 ## Supplied names explained
 
-- `Maxwell's Daemon` — MySQL binlog-based change-data-capture tool named by the Handbook; verify supported versions, output semantics, and recovery behavior in its project documentation.
+- **MySQL binlog and row format** — Maxwell requires binary logging and `binlog_format=ROW` per its quick start. Row events provide the changed-row representation. The MySQL replication user needs the documented read and replication privileges; grant only what is required in your environment. Binlog retention must exceed the longest expected outage/recovery interval, or Maxwell may no longer find its saved position.
+- **Position and GTID** — Maxwell records its binlog position in its schema database and resumes from it after restart. GTID can help track transactions across MySQL failover, but the project's special heartbeat-based non-GTID master recovery is explicitly alpha-quality and unavailable in GTID mode. Maxwell's docs warn it can duplicate up to about one second on a highly active server. Do not turn that experimental recovery feature into a durability guarantee.
+- **Schema store and schema deltas** — Binlog row bytes need column types to become usable JSON. Maxwell captures base database/table/column schema, then records DDL-derived schema deltas with their binlog position/GTID and server identity. This lets it interpret events at the schema that existed at that point. If the schema store is lost, stale or connected to the wrong replication host, decoding can fail or produce incorrect event interpretation; back it up and test DDL and failover.
+- **Event format** — Events include database, table, operation `type`, timestamp and row `data`; updates may include `old` values. Optional output includes primary-key values/columns and the source query. The `xid` and `commit` marker can help consumers reassemble transaction boundaries. A bootstrap emits `bootstrap-insert`, not ordinary `insert`. Payload shape depends on options and binlog row image; downstream code must not assume every field is always present.
+- **`binlog_row_image=MINIMAL` caveat** — Maxwell supports MySQL's minimal row image, but its docs warn inserts may omit default values, updates may include only key/changed fields, and deletes may contain only primary keys. A consumer that expects a full replacement row must fetch/merge current state or configure a fuller row image. Do not interpret missing properties as SQL `NULL` without checking the event contract.
+- **Producers** — Documented built-in producer choices include stdout/file, Kafka, Kinesis, Pub/Sub, SQS, RabbitMQ, Redis and others exposed by the project reference. Each destination has distinct durability, retry, ordering, backpressure and acknowledgement semantics. Maxwell's docs warn that certain asynchronous producers can lose a message without reporting success/failure; producer acknowledgement timeout is a heuristic that can fail the process rather than establish exactly-once delivery. Verify the specific producer implementation before production use.
+- **Partitioning and ordering** — `producer_partition_by` can partition by database, table, primary key, transaction ID, column or randomly. Partition by primary key to preserve per-row ordering with more parallelism; partition by table/database when ordering across rows matters, at the cost of a hot partition and lower throughput. Ordering is only meaningful within the destination's partition/shard and chosen key. It does not create a global transaction order across all consumers.
+- **Filtering and schema scope** — Database/table/column filters control which events Maxwell emits. Excluding a table that is referenced by schema or downstream joins can break a projection. Keep filters in configuration under version control, test them on representative DDL and confirm that a filter update does not create an unnoticed gap.
+- **Bootstrap** — The bootstrap utility selects current table rows and publishes them as bootstrap records to initialize a downstream projection. This is a snapshot-plus-change-capture coordination problem: define the snapshot/binlog boundary, pause or coordinate consumer application as needed, use stable keys and upsert semantics, and reconcile after bootstrap. Treat bootstrap events differently from changes and don't assume a table scan is atomic with concurrent writes unless the actual procedure establishes that boundary.
+- **Multiple Maxwells and HA** — Independent Maxwell instances need unique `client_id` values for independent stored binlog positions and unique `replica_server_id` values. This is useful for intentionally separate table/output pipelines; it is not active-active duplicate suppression. The project's separate client-side HA mode uses a Raft-based leader election and is explicitly experimental/alpha quality in docs; it requires at least three nodes and careful network setup. Prefer mature external orchestration or a better-supported CDC platform where HA guarantees are central.
+- **Operations and security** — Monitor `row.count`, succeeded/failed messages, replication lag, in-flight messages, publish age/time and health endpoints. Protect HTTP diagnostic/config/metrics endpoints and JMX; the docs show an insecure JMX example for illustration, which must not be copied into production. Restrict replication credentials, TLS network paths and producer secrets. Alert on binlog remaining retention, not just Maxwell process liveness.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+Maxwell is one CDC option, not a general database replication protocol. Debezium offers a broader connector ecosystem and is typically embedded in Kafka Connect; AWS DMS is a managed migration/replication service; MySQL native replication serves database replica topology; application outbox records express business events transactionally. Compare source/version support, DDL fidelity, snapshot coordination, ordering, offsets, operational maturity, failover, transaction metadata, schema evolution and destination support. If current MySQL compatibility or project release freshness is a concern, validate alternatives before adopting Maxwell.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+For a product search projection, configure Maxwell to read row-based binlogs and partition Kafka records by product primary key. Consumer code upserts by product ID and handles delete events. Use the outbox/source database for business-critical event intent; CDC is a row-change feed and does not automatically encode domain meaning. Bootstrap the existing product table into a new index, then apply changes from a correctly coordinated position. Reindexing should be repeatable, and replaying the same event should not create duplicate products.
+
+If Maxwell is offline longer than MySQL retains the needed binlogs, it cannot resume from the old position. Recovery may require restoring a source backup, taking a fresh snapshot/bootstrap and reconciling changes. If it publishes an event and crashes before committing the position, it may publish the event again after restart. If it commits position before a destination durably accepts the event, a gap is possible. Test both failure boundaries with the chosen producer and never infer end-to-end exactly-once from CDC alone.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating Maxwell as a current, broadly supported connector without checking its 2024 latest documented release and old compatibility matrix.
+- Running without `binlog_format=ROW`, adequate binlog retention, schema access or the correct replication privileges.
+- Assuming each output event contains a full row when minimal row image is enabled.
+- Treating missing JSON fields as `NULL` or ignoring `old`, `commit`, `xid` and bootstrap operation types.
+- Selecting random partitioning when downstream updates to the same row must be ordered.
+- Assuming Kafka, Kinesis or other producer acknowledgement automatically yields exactly-once publication.
+- Starting snapshot bootstrap without coordinating its relationship to binlog position and concurrent writes.
+- Treating multiple independent instances as HA or copying the alpha Raft configuration into a production guarantee.
+- Monitoring process-up status while missing stalled replication lag, expired binlogs or producer failures.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What must be enabled for the documented Maxwell MySQL capture path?** Binary logging with row-based binlog events, plus a user with required schema/read/replication privileges and sufficient binlog retention.
+2. **Why can a Kafka consumer receive the same row change twice?** A crash can happen after publish but before Maxwell persists its source position; replay is a normal recovery possibility unless the full pipeline deduplicates.
+3. **What does partitioning by primary key buy?** It can keep changes for one row ordered in one partition while allowing parallelism across keys; it does not serialize all transactions globally.
+4. **Why is minimal row image dangerous to a replacement-row consumer?** The event can contain only changed columns and key fields, so absent columns are unknown rather than necessarily null.
+5. **What should the team do if the source binlog position has expired?** Re-establish state through a coordinated snapshot/bootstrap and reconcile; moving the offset arbitrarily can skip or duplicate data.

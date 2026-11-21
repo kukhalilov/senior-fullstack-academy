@@ -4,7 +4,7 @@ Sources: [Workflow artifacts](https://docs.github.com/en/actions/concepts/workfl
 
 ## Scope and version
 
-Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-14. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
+Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-20. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
 
 ## How this group fits the mental model
 
@@ -52,7 +52,6 @@ Do not confuse caches with artifacts, mutable tags with digests, or attestations
 
 ## Knowledge checks with answers
 
-1. **What decision does this inventory support?** Selecting a workflow boundary, artifact control, delivery signal, release strategy, or credential policy.
-2. **What evidence should be preserved?** Source revision, check results, artifact digest, deployment outcome, and provenance where available.
-3. **How do you reduce risk?** Declare inputs, restrict permissions, promote the same tested output, and define failure handling.
-
+1. **How do artifacts differ from caches?** Artifacts preserve outputs for later workflow stages; caches accelerate reuse and must not be treated as authoritative deliverables.
+2. **What integrity check should publication include?** Verify artifact identity/digest and the source revision that produced it.
+3. **Why should release packages be immutable?** It makes provenance, rollback, and environment promotion refer to the same bytes.

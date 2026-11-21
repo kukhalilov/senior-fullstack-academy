@@ -1,6 +1,6 @@
 # end-to-end system design case studies — Reference: Double-entry ledger
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [PostgreSQL transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html), [PostgreSQL constraints](https://www.postgresql.org/docs/current/ddl-constraints.html), [PostgreSQL explicit locking](https://www.postgresql.org/docs/current/explicit-locking.html).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [OpenStax trial balance and double-entry accounting](https://openstax.org/books/principles-financial-accounting/pages/3-6-prepare-a-trial-balance), [PostgreSQL transactions](https://www.postgresql.org/docs/15/tutorial-transactions.html), [PostgreSQL transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html), [PostgreSQL constraints](https://www.postgresql.org/docs/current/ddl-constraints.html), [PostgreSQL explicit locking](https://www.postgresql.org/docs/current/explicit-locking.html), [Stripe idempotent requests](https://docs.stripe.com/api/idempotent_requests).
 
 ## Scope and version
 
@@ -62,4 +62,4 @@ If an external payment succeeds but the application times out before recording t
 
 ## Review status
 
-Concurrency and isolation claims are checked against PostgreSQL’s official documentation. This lesson remains pending a full claim-by-claim accounting and manifest omission audit; the referenced database behavior is illustrative and not universal.
+The accounting invariant is checked against OpenStax’s accounting text; atomic transaction visibility, constraints, isolation, and locking claims are checked against PostgreSQL documentation; retry/idempotency behavior is illustrated with Stripe’s version-scoped API contract. PostgreSQL and Stripe illustrate implementation patterns; they do not define a universal accounting or provider contract.

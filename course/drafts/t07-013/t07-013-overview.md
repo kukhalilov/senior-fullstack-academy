@@ -6,7 +6,7 @@
 
 A React application is only one layer of a system. It renders a user interface, coordinates client state, and communicates with server-owned services. Good architecture makes those responsibilities visible and keeps trust boundaries intact: browser code is controlled by the user, whereas credentials, authorization decisions, and privileged operations belong on trusted servers.
 
-This topic connects frontend architecture to secure output handling and production delivery. It is not a replacement for backend security or platform-specific deployment design. The security sources are living OWASP and MDN guidance, checked alongside React 19.3 documentation on 2026-11-16.
+This topic connects frontend architecture to secure output handling and production delivery. It is not a replacement for backend security or platform-specific deployment design. The security sources are living OWASP and MDN guidance, checked alongside React 19.3 documentation on 2026-11-20.
 
 # Plain-language mental model
 

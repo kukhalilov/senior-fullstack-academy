@@ -39,7 +39,7 @@ Think of C# source files as units compiled into an application. **Namespaces** g
 
 ### Scenario questions
 *   **Scenario:** You have a massive project and want to avoid repeating `using System;` in every file.
-    *   **Solution:** Use a `global using` directive in a single file to make that namespace available to the entire compilation unit.
+    *   **Solution:** Use a `global using` directive in a single file to make that namespace available to the entire compilation.
 *   **Scenario:** You need to return an error code to a shell script that runs your app.
     *   **Solution:** Use `static int Main()` or `static Task<int> Main()` and return a non-zero integer to indicate failure.
 

@@ -4,7 +4,7 @@ Sources: [Dependency caching](https://docs.github.com/en/actions/concepts/workfl
 
 ## Scope and version
 
-Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-14. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
+Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-20. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
 
 ## How this group fits the mental model
 
@@ -60,7 +60,6 @@ Make cache misses safe; treat cache data as untrusted; lock dependencies; retain
 
 ## Knowledge checks with answers
 
-1. **What decision does this inventory support?** Selecting a workflow boundary, artifact control, delivery signal, release strategy, or credential policy.
-2. **What evidence should be preserved?** Source revision, check results, artifact digest, deployment outcome, and provenance where available.
-3. **How do you reduce risk?** Declare inputs, restrict permissions, promote the same tested output, and define failure handling.
-
+1. **Why use a lockfile in CI?** It constrains dependency resolution to a reproducible graph when the package manager honors it.
+2. **What is the difference between build and test evidence?** Build verifies compilation/package creation; tests exercise selected behavior and can still miss untested defects.
+3. **What belongs in a reusable build artifact?** The versioned output and provenance needed by downstream jobs, not secrets or mutable build state.

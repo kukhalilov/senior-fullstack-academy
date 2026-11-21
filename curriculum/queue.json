@@ -12,7 +12,7 @@
     "comparisons",
     "versionNotes"
   ],
-  "taskCount": 2349,
+  "taskCount": 2387,
   "tasks": [
     {
       "id": "t01-001-overview",
@@ -10811,6 +10811,338 @@
       "status": "draft-generation-eligible"
     },
     {
+      "id": "t07-026-overview",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Big-picture orientation and mental model",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t07-026-concepts",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Core concepts and how they fit together",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t07-026-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t07-026-reference-browser-persistence-choices",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Reference: Choosing browser persistence by data and lifetime",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-026-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "browser-persistence-choices"
+    },
+    {
+      "id": "t07-026-reference-indexeddb-data-model-and-transactions",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Reference: IndexedDB data model, queries, and transaction boundaries",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-026-reference-browser-persistence-choices"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "indexeddb-data-model-and-transactions"
+    },
+    {
+      "id": "t07-026-reference-indexeddb-schema-and-multitab-lifecycle",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Reference: IndexedDB schema upgrades, multiple tabs, and recovery",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-026-reference-indexeddb-data-model-and-transactions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "indexeddb-schema-and-multitab-lifecycle"
+    },
+    {
+      "id": "t07-026-reference-cache-api-and-http-cache",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Reference: Cache API, HTTP cache, and response freshness",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-026-reference-indexeddb-schema-and-multitab-lifecycle"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "cache-api-and-http-cache"
+    },
+    {
+      "id": "t07-026-reference-service-worker-lifecycle-and-routing",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Reference: Service worker registration, lifecycle, and fetch handling",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-026-reference-cache-api-and-http-cache"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "service-worker-lifecycle-and-routing"
+    },
+    {
+      "id": "t07-026-reference-offline-sync-and-conflict",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Reference: Offline experience, queued writes, synchronization, and conflicts",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-026-reference-service-worker-lifecycle-and-routing"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "offline-sync-and-conflict"
+    },
+    {
+      "id": "t07-026-reference-quota-privacy-and-security",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Reference: Quota, eviction, privacy, and security boundaries",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-026-reference-offline-sync-and-conflict"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "quota-privacy-and-security"
+    },
+    {
+      "id": "t07-026-reference-web-workers-and-context-coordination",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Reference: Web workers and communication between browser contexts",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-026-reference-quota-privacy-and-security"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "web-workers-and-context-coordination"
+    },
+    {
+      "id": "t07-026-reference-react-persistence-integration",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Reference: Integrating persistence and offline work into a React application",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-026-reference-web-workers-and-context-coordination"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "react-persistence-integration"
+    },
+    {
+      "id": "t07-026-practice-offline-task-editor",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Problem: Design an offline task editor with conflict recovery",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t07-026-reference-react-persistence-integration"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "offline-task-editor",
+      "problemTitle": "Design an offline task editor with conflict recovery"
+    },
+    {
+      "id": "t07-026-practice-safe-asset-cache-rollout",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Problem: Roll out cached application assets without stale-version breakage",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t07-026-practice-offline-task-editor"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "safe-asset-cache-rollout",
+      "problemTitle": "Roll out cached application assets without stale-version breakage"
+    },
+    {
+      "id": "t07-026-interview",
+      "track": "track-07",
+      "title": "Browser persistence offline operation and web workers — Interview questions and reasoning",
+      "module": "t07-026",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-026.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t07-026-practice-safe-asset-cache-rollout"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t07-027-overview",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Big-picture orientation and mental model",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t07-027-concepts",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Core concepts and how they fit together",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t07-027-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t07-027-reference-url-navigation-and-browser-decisions",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Reference: From entered address to navigation request",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-027-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "url-navigation-and-browser-decisions"
+    },
+    {
+      "id": "t07-027-reference-name-resolution-and-transport",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Reference: DNS, address selection, transport, and TLS",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-027-reference-url-navigation-and-browser-decisions"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "name-resolution-and-transport"
+    },
+    {
+      "id": "t07-027-reference-http-routing-and-server-request",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Reference: HTTP exchange through proxies and ASP.NET Core",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-027-reference-name-resolution-and-transport"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "http-routing-and-server-request"
+    },
+    {
+      "id": "t07-027-reference-browser-security-and-state",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Reference: Browser credentials, origins, and request visibility",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-027-reference-http-routing-and-server-request"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "browser-security-and-state"
+    },
+    {
+      "id": "t07-027-reference-freshness-caching-and-revalidation",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Reference: Cache layers and freshness decisions",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-027-reference-browser-security-and-state"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "freshness-caching-and-revalidation"
+    },
+    {
+      "id": "t07-027-reference-html-to-rendered-react",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Reference: Response delivery to pixels and React interactivity",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-027-reference-freshness-caching-and-revalidation"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "html-to-rendered-react"
+    },
+    {
+      "id": "t07-027-reference-diagnosis-and-reliability",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Reference: Trace and debug the complete request path",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-027-reference-html-to-rendered-react"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "diagnosis-and-reliability"
+    },
+    {
+      "id": "t07-027-practice-trace-slow-product-navigation",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Problem: Trace a slow product-page navigation",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t07-027-reference-diagnosis-and-reliability"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "trace-slow-product-navigation",
+      "problemTitle": "Trace a slow product-page navigation"
+    },
+    {
+      "id": "t07-027-practice-diagnose-cross-origin-request-failure",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Problem: Diagnose a cross-origin API request failure",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t07-027-practice-trace-slow-product-navigation"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "diagnose-cross-origin-request-failure",
+      "problemTitle": "Diagnose a cross-origin API request failure"
+    },
+    {
+      "id": "t07-027-interview",
+      "track": "track-07",
+      "title": "End-to-end browser navigation and web request lifecycle — Interview questions and reasoning",
+      "module": "t07-027",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-027.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t07-027-practice-diagnose-cross-origin-request-failure"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
       "id": "t07-016-overview",
       "track": "track-07",
       "title": "CSS selectors at-rules cascade values and box model — Big-picture orientation and mental model",
@@ -18500,6 +18832,19 @@
       "inventoryGroup": "removed-react-dom-apis"
     },
     {
+      "id": "t07-020-reference-react-event-object-and-event-types",
+      "track": "track-07",
+      "title": "React DOM components forms resource hints portals and preload APIs — Reference: React event objects, event interfaces, properties, and methods",
+      "module": "t07-020",
+      "manifest": "curriculum/manifests/react-and-frontend/t07-020.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t07-020-reference-removed-react-dom-apis"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "react-event-object-and-event-types"
+    },
+    {
       "id": "t07-020-practice",
       "track": "track-07",
       "title": "React DOM components forms resource hints portals and preload APIs — Exercises and worked solutions",
@@ -18507,7 +18852,7 @@
       "manifest": "curriculum/manifests/react-and-frontend/t07-020.json",
       "phase": "practice",
       "prerequisites": [
-        "t07-020-reference-removed-react-dom-apis"
+        "t07-020-reference-react-event-object-and-event-types"
       ],
       "status": "draft-generation-eligible"
     },
@@ -19984,7 +20329,7 @@
     {
       "id": "t07-023-reference-react-router-v8",
       "track": "track-07",
-      "title": "React routing frameworks data loading server components and deployment — Reference: React Router 8.5 Framework and Data mode APIs",
+      "title": "React routing frameworks data loading server components and deployment — Reference: React Router 8.5.2 Framework and Data mode APIs",
       "module": "t07-023",
       "manifest": "curriculum/manifests/react-and-frontend/t07-023.json",
       "phase": "reference",
@@ -28254,6 +28599,146 @@
       "phase": "interview",
       "prerequisites": [
         "t12-008-practice"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-009-overview",
+      "track": "track-12",
+      "title": "End-to-end performance engineering for web applications — Big-picture orientation and mental model",
+      "module": "t12-009",
+      "manifest": "curriculum/manifests/system-design/t12-009.json",
+      "phase": "overview",
+      "prerequisites": [],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-009-concepts",
+      "track": "track-12",
+      "title": "End-to-end performance engineering for web applications — Core concepts and how they fit together",
+      "module": "t12-009",
+      "manifest": "curriculum/manifests/system-design/t12-009.json",
+      "phase": "concepts",
+      "prerequisites": [
+        "t12-009-overview"
+      ],
+      "status": "draft-generation-eligible"
+    },
+    {
+      "id": "t12-009-reference-performance-goals-and-workload",
+      "track": "track-12",
+      "title": "End-to-end performance engineering for web applications — Reference: Define experience, workload, and measurable objectives",
+      "module": "t12-009",
+      "manifest": "curriculum/manifests/system-design/t12-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-009-concepts"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "performance-goals-and-workload"
+    },
+    {
+      "id": "t12-009-reference-browser-and-react-performance",
+      "track": "track-12",
+      "title": "End-to-end performance engineering for web applications — Reference: Browser loading, rendering, and interaction performance",
+      "module": "t12-009",
+      "manifest": "curriculum/manifests/system-design/t12-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-009-reference-performance-goals-and-workload"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "browser-and-react-performance"
+    },
+    {
+      "id": "t12-009-reference-api-and-runtime-performance",
+      "track": "track-12",
+      "title": "End-to-end performance engineering for web applications — Reference: ASP.NET Core request and runtime bottlenecks",
+      "module": "t12-009",
+      "manifest": "curriculum/manifests/system-design/t12-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-009-reference-browser-and-react-performance"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "api-and-runtime-performance"
+    },
+    {
+      "id": "t12-009-reference-database-and-ef-performance",
+      "track": "track-12",
+      "title": "End-to-end performance engineering for web applications — Reference: EF Core query shape and SQL Server execution",
+      "module": "t12-009",
+      "manifest": "curriculum/manifests/system-design/t12-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-009-reference-api-and-runtime-performance"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "database-and-ef-performance"
+    },
+    {
+      "id": "t12-009-reference-distributed-path-and-capacity",
+      "track": "track-12",
+      "title": "End-to-end performance engineering for web applications — Reference: Network, dependencies, caching, and capacity",
+      "module": "t12-009",
+      "manifest": "curriculum/manifests/system-design/t12-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-009-reference-database-and-ef-performance"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "distributed-path-and-capacity"
+    },
+    {
+      "id": "t12-009-reference-performance-investigation-and-release",
+      "track": "track-12",
+      "title": "End-to-end performance engineering for web applications — Reference: Profile, experiment, and safely ship improvements",
+      "module": "t12-009",
+      "manifest": "curriculum/manifests/system-design/t12-009.json",
+      "phase": "reference",
+      "prerequisites": [
+        "t12-009-reference-distributed-path-and-capacity"
+      ],
+      "status": "draft-generation-eligible",
+      "inventoryGroup": "performance-investigation-and-release"
+    },
+    {
+      "id": "t12-009-practice-trace-and-improve-checkout",
+      "track": "track-12",
+      "title": "End-to-end performance engineering for web applications — Problem: Trace and improve a slow checkout journey",
+      "module": "t12-009",
+      "manifest": "curriculum/manifests/system-design/t12-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-009-reference-performance-investigation-and-release"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "trace-and-improve-checkout",
+      "problemTitle": "Trace and improve a slow checkout journey"
+    },
+    {
+      "id": "t12-009-practice-investigate-latency-regression",
+      "track": "track-12",
+      "title": "End-to-end performance engineering for web applications — Problem: Investigate a cross-layer latency regression",
+      "module": "t12-009",
+      "manifest": "curriculum/manifests/system-design/t12-009.json",
+      "phase": "practice",
+      "prerequisites": [
+        "t12-009-practice-trace-and-improve-checkout"
+      ],
+      "status": "draft-generation-eligible",
+      "problemId": "investigate-latency-regression",
+      "problemTitle": "Investigate a cross-layer latency regression"
+    },
+    {
+      "id": "t12-009-interview",
+      "track": "track-12",
+      "title": "End-to-end performance engineering for web applications — Interview questions and reasoning",
+      "module": "t12-009",
+      "manifest": "curriculum/manifests/system-design/t12-009.json",
+      "phase": "interview",
+      "prerequisites": [
+        "t12-009-practice-investigate-latency-regression"
       ],
       "status": "draft-generation-eligible"
     },

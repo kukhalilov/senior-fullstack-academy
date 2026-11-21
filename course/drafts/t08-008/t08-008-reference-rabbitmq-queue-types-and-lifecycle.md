@@ -4,7 +4,7 @@ Sources: RabbitMQ 4.4 [Queues](https://www.rabbitmq.com/docs/4.4/queues), [Quoru
 
 ## Scope and version
 
-RabbitMQ 4.4 behavior is described where specified. Classic mirroring was removed in 4.0; transient non-exclusive classic queues are deprecated/disabled by default beginning with 4.3.0 according to current queue docs. Upgrade compatibility is version-sensitive.
+RabbitMQ 4.4.1 is the latest checked 4.4 patch (2026-11-20); the 4.4 series requires Erlang/OTP 27.0 or later. Classic mirroring was removed in 4.0; transient non-exclusive classic queues are deprecated/disabled by default beginning with 4.3.0 according to current queue docs. Upgrade compatibility is version-sensitive. [RabbitMQ 4.4.1 release notes](https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.4.1)
 
 ## How this group fits the mental model
 

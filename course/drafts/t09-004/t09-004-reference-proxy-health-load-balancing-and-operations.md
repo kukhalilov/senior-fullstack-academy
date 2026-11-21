@@ -1,10 +1,12 @@
 # Kestrel reverse proxies TLS networking and load balancing — Reference: Destination eligibility, affinity, health policy, timeout, and diagnostics
 
-Sources: [YARP health checks](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/dests-health-checks?view=aspnetcore-10.0), [YARP load balancing](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/load-balancing?view=aspnetcore-10.0), [YARP request timeouts](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/timeouts), [YARP configuration files](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/config-files), [YARP HTTPS and TLS](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/https-tls?view=aspnetcore-10.0), [Kestrel security considerations](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations), and [YARP release record](https://github.com/dotnet/yarp/releases).
+Sources: [YARP health checks](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/dests-health-checks?view=aspnetcore-10.0), [YARP load balancing](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/load-balancing?view=aspnetcore-10.0), [YARP request timeouts](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/timeouts), [YARP configuration files](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/config-files), [YARP HTTPS and TLS](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/https-tls?view=aspnetcore-10.0), [Kestrel security considerations](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/security-considerations), [YARP release record](https://github.com/dotnet/yarp/releases), and [YARP session affinity](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/session-affinity?view=aspnetcore-10.0).
 
 ## Scope and version
 
 YARP 2.3.0 is the latest stable version listed by the official project and supports .NET 8 or later; this scope therefore runs on .NET 11. The latest Learn references describe health, balancing, and timeout behavior for the YARP configuration model. Do not infer that every resilience pattern, such as a circuit breaker or automatic retry, is a built-in YARP cluster policy.
+
+YARP 2.3.0 was the latest stable package listed in the official release record checked 2026-11-20; this is independent of the .NET 11 runtime version.
 
 ## How this group fits the mental model
 
@@ -15,13 +17,13 @@ YARP selects a destination from the cluster’s currently available set. Health 
 ### Load distribution and affinity
 
 - `YARP load balancing policy` — Cluster policy selecting a destination from the available healthy destinations for each request. The built-in policy name is configured on the cluster; it is not the same as health eligibility.
-- `PowerOfTwoChoices load balancing` — Default built-in policy: choose two random available destinations, then select the one with fewer assigned requests. It reduces per-request scanning while avoiding some random-choice overload.
+- `PowerOfTwoChoices load balancing` — Default built-in policy: choose two random available destinations, then select the one with fewer assigned requests. It reduces per-request scanning while avoiding some random-choice overload. If no healthy/available destination remains, YARP returns 503 unless a custom policy changes that behavior.
 - `FirstAlphabetical load balancing` — Selects the alphabetically first available destination, useful for simple active/standby preference. It does not balance steady-state load across all destinations.
 - `LeastRequests load balancing` — Selects the destination with the fewest assigned requests by examining available destinations. It costs more selection work as the pool grows and does not measure backend CPU or queue depth directly.
 - `RoundRobin load balancing` — Cycles selection through available destinations. It distributes choices evenly in order, but does not account for different backend capacity or request cost.
 - `Random load balancing` — Chooses a random available destination. It is simple but can select a busy destination repeatedly by chance.
-- `Session affinity` — Attempts to route a client consistently to the same destination. It is useful only when the workload requires locality; externalizing session/state is usually more resilient.
-- `Cookie-based session affinity` — YARP affinity cookie records the selected destination for future requests. Protect cookie scope/SameSite/Secure attributes and plan what happens when the destination is unavailable.
+- `Session affinity` — Optional per-cluster behavior that keeps a related request sequence on a destination, commonly to reuse destination-local cache. It defaults disabled. Externalized state is usually more resilient; affinity can skew load and still has a configured failure policy.
+- `Cookie-based session affinity` — YARP can store a destination key in a cookie using `HashCookie` (default), `ArrCookie`, or Data Protection-protected `Cookie`; configure a unique affinity-key name and cookie scope. Hash variants do not provide strong privacy, so do not encode sensitive destination IDs. The default affinity failure policy redistributes to a healthy destination; `Return503Error` instead returns 503. Multi-instance proxies using protected cookies need shared Data Protection keys.
 
 ### Health state and destination eligibility
 

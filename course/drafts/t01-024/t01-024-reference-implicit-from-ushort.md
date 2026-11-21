@@ -5,7 +5,7 @@
 # Scope and version
 
 * **Topic:** C# numeric literals and numeric conversions (`ushort` implicit numeric conversions)
-* **Edition / Snapshot:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+* **Edition / Snapshot:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-20 ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Automatic Generation Notice:** This is an automatically generated draft.
 * **Scope Boundary:** This reference lesson covers only the exact set of implicit numeric conversions originating from the `ushort` type as defined in the inventory group. All other conversions, literal formatting options, and operators are excluded.
 

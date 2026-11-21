@@ -132,7 +132,43 @@
         "Diagnostic port access control",
         "Diagnostics in containers",
         "Diagnostic tool target process identity",
-        "Diagnostic artifact size"
+        "Diagnostic artifact size",
+        "DOTNET_EnableDiagnostics",
+        "DOTNET_DiagnosticPorts",
+        "DOTNET_DefaultDiagnosticPortSuspend",
+        "Diagnostic port connect mode",
+        "Diagnostic port suspend modifier",
+        "dotnet-symbol",
+        "dotnet-debugger-extensions",
+        "dotnet-debugger-extensions install",
+        "PerfCollect",
+        "Native AOT diagnostics",
+        "Native AOT EventPipe support",
+        "EventSourceSupport MSBuild property",
+        "Native AOT runtime event support",
+        "Native AOT CPU profiling",
+        "Native AOT managed heap analysis",
+        "dotnet.process.cpu.time metric",
+        "dotnet.process.memory.working_set metric",
+        "dotnet.gc.collections metric",
+        "dotnet.gc.heap.total_allocated metric",
+        "dotnet.gc.last_collection.memory.committed_size metric",
+        "dotnet.gc.last_collection.heap.size metric",
+        "dotnet.gc.last_collection.heap.fragmentation.size metric",
+        "dotnet.gc.pause.time metric",
+        "dotnet.jit.compiled_il.size metric",
+        "dotnet.jit.compiled_methods metric",
+        "dotnet.jit.compilation.time metric",
+        "dotnet.thread_pool.thread.count metric",
+        "dotnet.thread_pool.work_item.count metric",
+        "dotnet.thread_pool.queue.length metric",
+        "dotnet.monitor.lock_contentions metric",
+        "dotnet.timer.count metric",
+        "dotnet.assembly.count metric",
+        "dotnet.exceptions metric",
+        "cpu.mode metric attribute",
+        "gc.heap.generation metric attribute",
+        "error.type metric attribute"
       ]
     },
     {
@@ -355,21 +391,30 @@
   ],
   "versionNotes": [
     {
-      "edition": "Current .NET runtime diagnostics boundary checked 2026-11-17",
+      "edition": "Current .NET runtime diagnostics boundary checked 2026-11-20",
       "items": [
         "dotnet-counters reads System.Runtime metrics through System.Diagnostics.Metrics on .NET 9 and later; .NET 8 and earlier runtimes do not expose that meter and the tool falls back to older System.Runtime EventCounters. Match tool and runtime versions.",
-        "dotnet-trace collect-linux is distinct from cross-platform EventPipe collect: current documentation requires Linux kernel 6.4 or later and root privileges for collect-linux, which can capture native/kernel events unavailable through the ordinary EventPipe collect command."
+        "dotnet-trace collect-linux is distinct from cross-platform EventPipe collect. It requires .NET 10+, Linux x64 or Arm64, kernel 6.4+ with CONFIG_USER_EVENTS, mounted tracefs, glibc 2.27+, and root/CAP_PERFMON or CAP_SYS_ADMIN. This mode can capture native/kernel events unavailable through ordinary EventPipe collect."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
         "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace"
       ]
+    },
+    {
+      "edition": "Native AOT diagnostic support page checked 2026-11-20",
+      "items": [
+        "Native AOT shares only some full-runtime diagnostic capabilities. The current Microsoft diagnostic support page describes EventPipe as optional via EventSourceSupport, partial runtime event support and CPU profiling, native debugging with symbols, and unsupported managed heap analysis; it specifically frames some limitations with .NET 8, so verify current runtime/version support before relying on a particular tool."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/diagnostics"
+      ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft .NET diagnostics documentation, Google SRE performance guidance, and Brendan Gregg's flame graph reference",
-    "edition": "Current Microsoft .NET diagnostics documentation and diagnostics tools checked 2026-11-17; operating-system profiler requirements remain platform-specific",
-    "checkedAt": "2026-11-17",
+    "edition": "Current Microsoft .NET diagnostics documentation and diagnostics tools checked 2026-11-20; operating-system profiler requirements remain platform-specific",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/core/diagnostics",
       "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
@@ -392,7 +437,12 @@
       "https://www.rfc-editor.org/rfc/rfc9114",
       "https://perf.wiki.kernel.org/index.php/Main_Page",
       "https://learn.microsoft.com/en-us/windows-hardware/test/wpt/",
-      "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+      "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/tools-overview",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-symbol",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-debugger-extensions",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/trace-perfcollect-lttng",
+      "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/diagnostics"
     ]
   },
   "scopeExclusions": [
@@ -431,6 +481,24 @@
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-dump",
         "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump"
+      ]
+    },
+    {
+      "fact": "Current dotnet-trace collect-linux prerequisites include .NET 10+, Linux x64/Arm64, kernel 6.4+ with CONFIG_USER_EVENTS, mounted tracefs, glibc 2.27+, and root/CAP_PERFMON or CAP_SYS_ADMIN. This is distinct from ordinary cross-platform EventPipe collect, which does not require native profiler privileges.",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace"
+      ]
+    },
+    {
+      "fact": "Native AOT diagnostic support is not equivalent to CoreCLR: Microsoft documents EventPipe as optional via EventSourceSupport, partial runtime event support and CPU profiling, native debugging with symbols, and no managed heap analysis in the cited page (which specifically discusses .NET 8 limitations). Verify the deployed target version because the page may lag newer releases.",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/diagnostics"
+      ]
+    },
+    {
+      "fact": "The official .NET System.Runtime Meter reference lists the current built-in metrics individually, all starting in .NET 9: process CPU time and working set; GC collection count, total allocated bytes, last collection committed/heap/fragmentation sizes and pause time; JIT compiled IL size, compiled method count and compilation time; ThreadPool thread/work-item/queue counts; monitor lock contentions; active timers; loaded assemblies; and thrown exceptions. Important attributes include cpu.mode, gc.heap.generation and error.type.",
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/built-in-metrics-runtime"
       ]
     }
   ]

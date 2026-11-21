@@ -4,7 +4,7 @@ Sources: [IETF Idempotency-Key HTTP header Internet-Draft](https://datatracker.i
 
 ## Scope and version
 
-This lesson describes application-level idempotency keys for retryable commands. As of 2026-11-17, the IETF `Idempotency-Key` header document is an active Internet-Draft, not a published RFC; its syntax and recommendations may change. A service must publish its own key scope, retention, payload equivalence, and replay behavior. Idempotency is an application contract, not a property created merely by adding a header.
+This lesson describes application-level idempotency keys for retryable commands. As of 2026-11-20, the IETF `Idempotency-Key` header document is an active Internet-Draft, not a published RFC; its syntax and recommendations may change. A service must publish its own key scope, retention, payload equivalence, and replay behavior. Idempotency is an application contract, not a property created merely by adding a header.
 
 ## How this group fits the mental model
 

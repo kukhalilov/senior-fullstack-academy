@@ -4,7 +4,7 @@
 
 ## Scope and version
 
-**Scope and Version:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# numeric literal, numeric conversion, and numeric type references](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions), checked 2026-11-17).
+**Scope and Version:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# numeric literal, numeric conversion, and numeric type references](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions), checked 2026-11-20).
 
 This reference lesson covers the exact set of conversion rules, promotion behaviors, and special numeric outcomes specified in the inventory group. It is designed for self-study learners seeking to understand how C# transforms numbers between types at compile time and runtime.
 
@@ -12,7 +12,7 @@ This reference lesson covers the exact set of conversion rules, promotion behavi
 
 ## How this group fits the mental model
 
-In C#, numbers are stored in memory using strict byte sizes and representation formats (such as integers or floating-point approximations). When you move a number from one type to another—or combine different types in an expression—the language must decide how to safely interpret or alter those bits.
+In C#, numeric types have defined ranges and representations. When a number moves between types—or participates in mixed-type arithmetic—the language applies specified conversion and operator rules.
 
 The inventory items in this reference lesson represent the core rules governing that movement:
 - **Conversions** dictate whether a data transformation requires explicit programmer approval or happens automatically.
@@ -35,8 +35,8 @@ The inventory items in this reference lesson represent the core rules governing 
 *   **Truncation toward zero**: The standard behavior when casting a floating-point type to an integral type where any fractional part is discarded entirely (e.g., `1.9` becomes `1`, and `-1.9` becomes `-1`).
 *   **OverflowException**: A runtime exception thrown during a checked numeric conversion or arithmetic operation when the result exceeds the boundaries of the destination type.
 *   **NaN**: Stands for "Not a Number," a special IEEE 754 floating-point value resulting from undefined operations (such as `0.0 / 0.0`), referenced in [Microsoft Learn Floating-Point Numeric Types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types).
-*   **PositiveInfinity**: An IEEE 754 floating-point value representing numbers greater than `Double.MaxValue`, resulting from operations like dividing a positive number by zero.
-*   **NegativeInfinity**: An IEEE 754 floating-point value representing numbers less than `Double.MinValue`, resulting from operations like dividing a negative number by zero.
+*   **PositiveInfinity**: An IEEE 754 special value representing positive infinity; it can result from floating-point overflow or positive nonzero floating-point division by zero. `double.MaxValue` is the greatest finite `double`, not a threshold defining infinity as an ordinary number.
+*   **NegativeInfinity**: An IEEE 754 special value representing negative infinity; it can result from floating-point overflow or negative nonzero floating-point division by zero. `double.MinValue` is the most negative finite `double`.
 
 ---
 
@@ -48,7 +48,7 @@ The inventory items in this reference lesson represent the core rules governing 
 | **Checked explicit numeric conversion** | **Unchecked explicit numeric conversion** | Checked integral conversions throw on overflow; unchecked integral conversions truncate according to the language rules. Floating-point conversions have distinct rules, including runtime-specific behavior for unchecked out-of-range values. |
 | **Sign extension** | **Zero extension** | Sign extension replicates the most significant bit (preserving negative values for signed types), while zero extension always pads upper bits with `0` (used for unsigned types). |
 | **Integral numeric promotion** | **Floating-point numeric promotion** | Integral promotion follows C# operator rules (small integral operands commonly become `int`); it is not specified as a CPU word-alignment optimization. Floating-point expressions follow separate rules, and `decimal` cannot mix with binary floating-point types. |
-| **NaN** | **PositiveInfinity / NegativeInfinity** | `NaN` indicates an invalid or unrepresentable numerical result, whereas infinities represent valid mathematical magnitudes that have exceeded finite bounds. |
+| **NaN** | **PositiveInfinity / NegativeInfinity** | `NaN` is a special IEEE 754 value for an undefined numeric result; positive and negative infinity are distinct special values. Neither is an ordinary finite number. |
 
 ---
 

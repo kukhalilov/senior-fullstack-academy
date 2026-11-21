@@ -13,22 +13,148 @@
     "CQRS and event sourcing add operational and cognitive costs. Use them only when read/write divergence, audit history, temporal reconstruction, or independent scaling justifies those costs."
   ],
   "inventory": [
-    {"id":"cqrs-boundary","title":"Command-query separation and read/write model options","items":["Command Query Responsibility Segregation (CQRS)","Command","Query","Command model (write model)","Query model (read model)","Command handler","Query handler","Single model with separated handlers","Separate read and write models with one shared store","Separate read and write stores","Independent read scaling","Independent write scaling","CQRS without event sourcing"]},
-    {"id":"projection-consistency","title":"Building and consuming query projections","items":["Projection","Projector","Materialized view","Projection checkpoint","Asynchronous projection update","Eventual consistency","Read-your-own-write requirement","Projection rebuild","Projection lag","Projection error recovery","Projection idempotency"]},
-    {"id":"event-store-and-stream","title":"Append-only event history and current-state reconstruction","items":["Event Sourcing","Event store","Append-only event stream","Domain event as persisted fact","Stream identity","Stream ordering","Event append","Aggregate rehydration","Event replay","Snapshot","Snapshot frequency tradeoff","Historical state reconstruction"]},
-    {"id":"concurrency-and-evolution","title":"Concurrency control and historical event compatibility","items":["Optimistic concurrency control for stream append","Expected stream version","Concurrency conflict retry","Idempotent event handler","Event schema evolution","Tolerant deserialization","Event versioning","Event upcasting","Projection versioning","Event correction by compensating event","Sensitive data in immutable history","Event-store retention tradeoff"]},
-    {"id":"design-fit-and-tradeoffs","title":"Architecture fit, costs, and alternatives","items":["CRUD model","CQRS with a shared data store","CQRS with separate data stores","CQRS combined with Event Sourcing","Event Sourcing without separate read and write stores","Write-side consistency boundary","Query-optimized denormalized model","Audit trail","Operational complexity","Eventual consistency acceptance test"]}
+    {
+      "id": "cqrs-boundary",
+      "title": "Command-query separation and read/write model options",
+      "items": [
+        "Command Query Responsibility Segregation (CQRS)",
+        "Command",
+        "Query",
+        "Command model (write model)",
+        "Query model (read model)",
+        "Command handler",
+        "Query handler",
+        "Single model with separated handlers",
+        "Separate read and write models with one shared store",
+        "Separate read and write stores",
+        "Independent read scaling",
+        "Independent write scaling",
+        "CQRS without event sourcing"
+      ]
+    },
+    {
+      "id": "projection-consistency",
+      "title": "Building and consuming query projections",
+      "items": [
+        "Projection",
+        "Projector",
+        "Materialized view",
+        "Projection checkpoint",
+        "Asynchronous projection update",
+        "Eventual consistency",
+        "Read-your-own-write requirement",
+        "Projection rebuild",
+        "Projection lag",
+        "Projection error recovery",
+        "Projection idempotency"
+      ]
+    },
+    {
+      "id": "event-store-and-stream",
+      "title": "Append-only event history and current-state reconstruction",
+      "items": [
+        "Event Sourcing",
+        "Event store",
+        "Append-only event stream",
+        "Domain event as persisted fact",
+        "Stream identity",
+        "Stream ordering",
+        "Event append",
+        "Aggregate rehydration",
+        "Event replay",
+        "Snapshot",
+        "Snapshot frequency tradeoff",
+        "Historical state reconstruction"
+      ]
+    },
+    {
+      "id": "concurrency-and-evolution",
+      "title": "Concurrency control and historical event compatibility",
+      "items": [
+        "Optimistic concurrency control for stream append",
+        "Expected stream version",
+        "Concurrency conflict retry",
+        "Idempotent event handler",
+        "Event schema evolution",
+        "Tolerant deserialization",
+        "Event versioning",
+        "Event upcasting",
+        "Projection versioning",
+        "Event correction by compensating event",
+        "Sensitive data in immutable history",
+        "Event-store retention tradeoff"
+      ]
+    },
+    {
+      "id": "design-fit-and-tradeoffs",
+      "title": "Architecture fit, costs, and alternatives",
+      "items": [
+        "CRUD model",
+        "CQRS with a shared data store",
+        "CQRS with separate data stores",
+        "CQRS combined with Event Sourcing",
+        "Event Sourcing without separate read and write stores",
+        "Write-side consistency boundary",
+        "Query-optimized denormalized model",
+        "Audit trail",
+        "Operational complexity",
+        "Eventual consistency acceptance test"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["CRUD model","CQRS"],["CQRS","Event Sourcing"],["CQRS with one shared store","CQRS with separate stores"],["Domain Event","Integration Event"],["Projection","Event store"],["Strong read-after-write consistency","Eventual read-model consistency"]],
-  "comparisonSources": ["https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs","https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing","https://learn.microsoft.com/en-us/azure/architecture/patterns/materialized-view","https://martinfowler.com/bliki/CQRS.html","https://martinfowler.com/eaaDev/EventSourcing.html"],
+  "comparisons": [
+    [
+      "CRUD model",
+      "CQRS"
+    ],
+    [
+      "CQRS",
+      "Event Sourcing"
+    ],
+    [
+      "CQRS with one shared store",
+      "CQRS with separate stores"
+    ],
+    [
+      "Domain Event",
+      "Integration Event"
+    ],
+    [
+      "Projection",
+      "Event store"
+    ],
+    [
+      "Strong read-after-write consistency",
+      "Eventual read-model consistency"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs",
+    "https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing",
+    "https://learn.microsoft.com/en-us/azure/architecture/patterns/materialized-view",
+    "https://martinfowler.com/bliki/CQRS.html",
+    "https://martinfowler.com/eaaDev/EventSourcing.html"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
-    "authority":"Microsoft Azure Architecture Center CQRS, Event Sourcing, and Materialized View patterns; Martin Fowler's foundational CQRS and Event Sourcing articles",
-    "edition":"Timeless architecture patterns and current Azure pattern guidance; references checked 2026-11-14",
-    "checkedAt":"2026-11-14",
-    "urls":["https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs","https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing","https://learn.microsoft.com/en-us/azure/architecture/patterns/materialized-view","https://martinfowler.com/bliki/CQRS.html","https://martinfowler.com/eaaDev/EventSourcing.html"]
+    "authority": "Microsoft Azure Architecture Center CQRS, Event Sourcing, and Materialized View patterns; Martin Fowler's foundational CQRS and Event Sourcing articles",
+    "edition": "Timeless CQRS/event-sourcing patterns; Microsoft and Fowler references rechecked 2026-11-20",
+    "checkedAt": "2026-11-20",
+    "urls": [
+      "https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs",
+      "https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing",
+      "https://learn.microsoft.com/en-us/azure/architecture/patterns/materialized-view",
+      "https://martinfowler.com/bliki/CQRS.html",
+      "https://martinfowler.com/eaaDev/EventSourcing.html"
+    ]
   },
-  "scopeExclusions":["Sagas, process managers, transactional outbox/inbox, broker guarantees, and distributed transaction coordination (t08-008 and t08-010)","Event transport product APIs and broker-specific delivery semantics (t08-008)","Domain events and aggregate modeling fundamentals (t08-004)","Database-specific schema, indexing, and transaction implementation (track-03 and track-04)","Event sourcing is not recommended as a default or described as necessary for CQRS"],
+  "scopeExclusions": [
+    "Sagas, process managers, transactional outbox/inbox, broker guarantees, and distributed transaction coordination (t08-008 and t08-010)",
+    "Event transport product APIs and broker-specific delivery semantics (t08-008)",
+    "Domain events and aggregate modeling fundamentals (t08-004)",
+    "Database-specific schema, indexing, and transaction implementation (track-03 and track-04)",
+    "Event sourcing is not recommended as a default or described as necessary for CQRS"
+  ],
   "generationAllowed": true
 }

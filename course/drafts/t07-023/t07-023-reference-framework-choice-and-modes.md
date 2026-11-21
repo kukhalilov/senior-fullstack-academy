@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This compares the supplied ecosystem items using official React 19.3, Next.js 16.4.6, React Router 8.5.1, and TanStack v1 docs checked 2026-11-16. Framework modes and beta labels change; qualify these comparisons by their current docs. [React framework guidance](https://react.dev/learn/creating-a-react-app) [React Router modes](https://reactrouter.com/start/modes)
+This compares the supplied ecosystem items using official React 19.3, Next.js 16.4.6, React Router 8.5.2, and TanStack v1 docs checked 2026-11-20. Framework modes and maturity labels change; qualify these comparisons by their current docs. [React framework guidance](https://react.dev/learn/creating-a-react-app) [React Router modes](https://reactrouter.com/start/modes)
 
 ## How this group fits the mental model
 
@@ -15,7 +15,7 @@ Choose the level of application architecture you want the tool to own: URL match
 - `React Router Data Mode` uses data routers and route objects with loaders, actions, pending states, and error handling while the application owns more setup than Framework Mode.
 - `React Router Declarative Mode` maps URLs to route elements with `<Routes>`/`<Route>` without the loader/action data-router lifecycle. It is suited to simpler client routing or incremental integration.
 - `TanStack Router` is a router for React/Solid with type-safe navigation/search params, nested routes, loaders, and route prefetching. It is not by itself the full-stack Start framework.
-- `TanStack Start (Beta)` is listed as Beta on React's framework recommendation page, while TanStack's own current Start v1 docs call it stable. It is a full-stack framework on TanStack Router with SSR, streaming, server functions, and Vite/Rsbuild deployment support. State which source/version label is meant; the official pages disagree on maturity wording as of this snapshot. [React guide](https://react.dev/learn/creating-a-react-app) [Start docs](https://tanstack.com/start/latest/docs/framework/react/overview)
+- `TanStack Start 1.0 (stable; React guide still labels Beta)` is the product's stable release according to TanStack's October 2026 1.0 announcement and current v1 docs. React's framework recommendation page still calls it Beta, so explain that this is a stale/source-specific label rather than repeating it as the product's current release status. Start is a full-stack framework on TanStack Router with SSR, streaming, server functions, and Vite/Rsbuild deployment support. [TanStack Start 1.0](https://tanstack.com/blog/tanstack-start-1-0) [Start docs](https://tanstack.com/start/latest/docs/framework/react/overview) [React guide](https://react.dev/learn/creating-a-react-app)
 - `Vite as a build tool rather than a full-stack framework` means Vite transforms and serves assets/modules but does not itself prescribe route matching, loaders/actions, cache policy, or deployment architecture. It can power React Router Framework Mode or a custom/client app.
 - `File-based routing` derives route structure from files and naming conventions; Next App Router and React Router Framework Mode support this style.
 - `Code-based routing` declares route matching in configuration/code; common in React Router Data/Declarative modes and TanStack Router, with generated route trees also possible.
@@ -45,7 +45,7 @@ Need no server at launch?          Any choice that supports CSR/SSG and static h
 - Assuming a framework always implies server deployment.
 - Calling Vite a full-stack router/data framework.
 - Treating TanStack Router and TanStack Start as the same product.
-- Repeating the TanStack Start Beta label without noting the current official documentation conflict.
+- Treating React's older Beta label as TanStack Start's current release status; identify the stable 1.0 announcement and the stale React-page label.
 - Assuming file-based routes and code route configs have identical nesting/loader semantics.
 
 ## Knowledge checks with answers

@@ -12,29 +12,259 @@
     "The overview explains rendering and data flow before the exhaustive API reference."
   ],
   "inventory": [
-    {"id":"state-context-and-actions-hooks","title":"State, context, and action hooks","items":["useState","useReducer","useContext","useOptimistic","useActionState"]},
-    {"id":"ref-and-effect-hooks","title":"Ref and effect hooks","items":["useRef","useImperativeHandle","useEffect","useLayoutEffect","useInsertionEffect","useEffectEvent"]},
-    {"id":"performance-and-integration-hooks","title":"Performance, external store, identity, and diagnostics hooks","items":["useMemo","useCallback","useTransition","useDeferredValue","useDebugValue","useId","useSyncExternalStore"]},
-    {"id":"resource-api","title":"Resource reading API","items":["use"]},
-    {"id":"built-in-components","title":"Built-in React components and Fragment refs","items":["<Fragment>","<>...</>","<Profiler>","<Suspense>","<StrictMode>","<Activity>","<ViewTransition>","FragmentInstance","FragmentInstance.addEventListener","FragmentInstance.removeEventListener","FragmentInstance.dispatchEvent","FragmentInstance.focus","FragmentInstance.focusLast","FragmentInstance.blur","FragmentInstance.observeUsing","FragmentInstance.unobserveUsing","FragmentInstance.getClientRects","FragmentInstance.getRootNode","FragmentInstance.compareDocumentPosition","FragmentInstance.scrollIntoView"]},
-    {"id":"view-transition-component-api","title":"View Transition component props and behavior","items":["name prop","enter prop","exit prop","update prop","share prop","default prop","onEnter prop","onExit prop","onShare prop","onUpdate prop","Transition Types","View Transition Classes","Web Animations API integration"]},
-    {"id":"core-react-apis","title":"Core React APIs","items":["createContext","lazy","memo","startTransition","addTransitionType","act","cache","cacheSignal","captureOwnerStack","browser"]},
-    {"id":"react-directives","title":"React Server Component directives","items":["'use client'","'use server'"]}
+    {
+      "id": "state-context-and-actions-hooks",
+      "title": "State, context, and action hooks",
+      "items": [
+        "useState",
+        "useReducer",
+        "useContext",
+        "useOptimistic",
+        "useActionState"
+      ]
+    },
+    {
+      "id": "ref-and-effect-hooks",
+      "title": "Ref and effect hooks",
+      "items": [
+        "useRef",
+        "useImperativeHandle",
+        "useEffect",
+        "useLayoutEffect",
+        "useInsertionEffect",
+        "useEffectEvent"
+      ]
+    },
+    {
+      "id": "performance-and-integration-hooks",
+      "title": "Performance, external store, identity, and diagnostics hooks",
+      "items": [
+        "useMemo",
+        "useCallback",
+        "useTransition",
+        "useDeferredValue",
+        "useDebugValue",
+        "useId",
+        "useSyncExternalStore"
+      ]
+    },
+    {
+      "id": "resource-api",
+      "title": "Resource reading API",
+      "items": [
+        "use"
+      ]
+    },
+    {
+      "id": "built-in-components",
+      "title": "Built-in React components and Fragment refs",
+      "items": [
+        "<Fragment>",
+        "<>...</>",
+        "<Profiler>",
+        "<Suspense>",
+        "<StrictMode>",
+        "<Activity>",
+        "<ViewTransition>",
+        "FragmentInstance",
+        "FragmentInstance.addEventListener",
+        "FragmentInstance.removeEventListener",
+        "FragmentInstance.dispatchEvent",
+        "FragmentInstance.focus",
+        "FragmentInstance.focusLast",
+        "FragmentInstance.blur",
+        "FragmentInstance.observeUsing",
+        "FragmentInstance.unobserveUsing",
+        "FragmentInstance.getClientRects",
+        "FragmentInstance.getRootNode",
+        "FragmentInstance.compareDocumentPosition",
+        "FragmentInstance.scrollIntoView"
+      ]
+    },
+    {
+      "id": "view-transition-component-api",
+      "title": "View Transition component props and behavior",
+      "items": [
+        "name prop",
+        "enter prop",
+        "exit prop",
+        "update prop",
+        "share prop",
+        "default prop",
+        "onEnter prop",
+        "onExit prop",
+        "onShare prop",
+        "onUpdate prop",
+        "Transition Types",
+        "View Transition Classes",
+        "Web Animations API integration"
+      ]
+    },
+    {
+      "id": "core-react-apis",
+      "title": "Core React APIs",
+      "items": [
+        "createContext",
+        "lazy",
+        "memo",
+        "startTransition",
+        "addTransitionType",
+        "act",
+        "cache",
+        "cacheSignal",
+        "captureOwnerStack",
+        "browser(reason?)"
+      ]
+    },
+    {
+      "id": "react-directives",
+      "title": "React Server Component directives",
+      "items": [
+        "'use client'",
+        "'use server'"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["useState","useReducer"],["useEffect","useLayoutEffect"],["useEffect","useEffectEvent"],["useMemo","memo"],["useTransition","startTransition"],["<Suspense>","<Activity>"]],
-  "comparisonSources": ["https://react.dev/reference/react/hooks","https://react.dev/reference/react/apis","https://react.dev/reference/react/components","https://react.dev/reference/rsc/directives","https://react.dev/reference/react-dom/browser"],
+  "comparisons": [
+    [
+      "useState",
+      "useReducer"
+    ],
+    [
+      "useEffect",
+      "useLayoutEffect"
+    ],
+    [
+      "useEffect",
+      "useEffectEvent"
+    ],
+    [
+      "useMemo",
+      "memo"
+    ],
+    [
+      "useTransition",
+      "startTransition"
+    ],
+    [
+      "<Suspense>",
+      "<Activity>"
+    ]
+  ],
+  "comparisonSources": [
+    "https://react.dev/reference/react/hooks",
+    "https://react.dev/reference/react/apis",
+    "https://react.dev/reference/react/components",
+    "https://react.dev/reference/rsc/directives",
+    "https://react.dev/reference/react-dom/browser"
+  ],
   "versionNotes": [
-    {"edition":"React 19","items":["Actions","useActionState","useOptimistic","use","ref as a prop","Context object as provider; .Provider remains legacy-compatible","form actions"],"sourceUrls":["https://react.dev/blog/2024/12/05/react-19","https://react.dev/blog/2024/12/05/react-19#new-hook-useactionstate","https://react.dev/reference/react/createContext"]},
-    {"edition":"React 19.2","items":["<Activity>","useEffectEvent","cacheSignal","Performance Tracks"],"sourceUrls":["https://react.dev/blog/2025/10/01/react-19-2"]},
-    {"edition":"React 19.3","items":["<ViewTransition> stable","Fragment refs stable","addTransitionType","browser()","Trusted Types support"],"sourceUrls":["https://react.dev/blog/2026/09/09/react-19-3","https://react.dev/versions"]}
+    {
+      "edition": "React 19",
+      "items": [
+        "Actions",
+        "useActionState",
+        "useOptimistic",
+        "use",
+        "ref as a prop",
+        "Context object as provider; .Provider remains legacy-compatible",
+        "form actions"
+      ],
+      "sourceUrls": [
+        "https://react.dev/blog/2024/12/05/react-19",
+        "https://react.dev/blog/2024/12/05/react-19#new-hook-useactionstate",
+        "https://react.dev/reference/react/createContext"
+      ]
+    },
+    {
+      "edition": "React 19.2",
+      "items": [
+        "<Activity>",
+        "useEffectEvent",
+        "cacheSignal",
+        "Performance Tracks"
+      ],
+      "sourceUrls": [
+        "https://react.dev/blog/2025/10/01/react-19-2"
+      ]
+    },
+    {
+      "edition": "React 19.3",
+      "items": [
+        "<ViewTransition> stable",
+        "Fragment refs stable",
+        "addTransitionType",
+        "browser()",
+        "Trusted Types support"
+      ],
+      "sourceUrls": [
+        "https://react.dev/blog/2026/09/09/react-19-3",
+        "https://react.dev/versions"
+      ]
+    }
   ],
   "sourceSnapshot": {
-    "authority":"Official React documentation and React release notes",
-    "edition":"React 19.3 stable",
-    "checkedAt":"2026-11-16",
-    "urls":["https://react.dev/versions","https://react.dev/reference/react","https://react.dev/reference/react/hooks","https://react.dev/reference/react/components","https://react.dev/reference/react/apis","https://react.dev/reference/react/use","https://react.dev/reference/react/Fragment","https://react.dev/reference/react/Profiler","https://react.dev/reference/react/Suspense","https://react.dev/reference/react/StrictMode","https://react.dev/reference/react/Activity","https://react.dev/reference/react/ViewTransition","https://react.dev/reference/react/createContext","https://react.dev/reference/react/lazy","https://react.dev/reference/react/memo","https://react.dev/reference/react/startTransition","https://react.dev/reference/react/addTransitionType","https://react.dev/reference/react/act","https://react.dev/reference/react/cache","https://react.dev/reference/react/cacheSignal","https://react.dev/reference/react/captureOwnerStack","https://react.dev/reference/react/useState","https://react.dev/reference/react/useReducer","https://react.dev/reference/react/useContext","https://react.dev/reference/react/useOptimistic","https://react.dev/reference/react/useActionState","https://react.dev/reference/react/useRef","https://react.dev/reference/react/useImperativeHandle","https://react.dev/reference/react/useEffect","https://react.dev/reference/react/useLayoutEffect","https://react.dev/reference/react/useInsertionEffect","https://react.dev/reference/react/useEffectEvent","https://react.dev/reference/react/useMemo","https://react.dev/reference/react/useCallback","https://react.dev/reference/react/useTransition","https://react.dev/reference/react/useDeferredValue","https://react.dev/reference/react/useDebugValue","https://react.dev/reference/react/useId","https://react.dev/reference/react/useSyncExternalStore","https://react.dev/reference/react-dom","https://react.dev/reference/react-dom/browser","https://react.dev/reference/react/legacy","https://react.dev/reference/rsc/directives","https://react.dev/reference/rsc/use-client","https://react.dev/reference/rsc/use-server","https://react.dev/blog/2024/12/05/react-19","https://react.dev/blog/2025/10/01/react-19-2","https://react.dev/blog/2026/09/09/react-19-3"]
+    "authority": "Official React documentation and React release notes",
+    "edition": "React 19.3 stable",
+    "checkedAt": "2026-11-20",
+    "urls": [
+      "https://react.dev/versions",
+      "https://react.dev/reference/react",
+      "https://react.dev/reference/react/hooks",
+      "https://react.dev/reference/react/components",
+      "https://react.dev/reference/react/apis",
+      "https://react.dev/reference/react/use",
+      "https://react.dev/reference/react/Fragment",
+      "https://react.dev/reference/react/Profiler",
+      "https://react.dev/reference/react/Suspense",
+      "https://react.dev/reference/react/StrictMode",
+      "https://react.dev/reference/react/Activity",
+      "https://react.dev/reference/react/ViewTransition",
+      "https://react.dev/reference/react/createContext",
+      "https://react.dev/reference/react/lazy",
+      "https://react.dev/reference/react/memo",
+      "https://react.dev/reference/react/startTransition",
+      "https://react.dev/reference/react/addTransitionType",
+      "https://react.dev/reference/react/act",
+      "https://react.dev/reference/react/cache",
+      "https://react.dev/reference/react/cacheSignal",
+      "https://react.dev/reference/react/captureOwnerStack",
+      "https://react.dev/reference/react/useState",
+      "https://react.dev/reference/react/useReducer",
+      "https://react.dev/reference/react/useContext",
+      "https://react.dev/reference/react/useOptimistic",
+      "https://react.dev/reference/react/useActionState",
+      "https://react.dev/reference/react/useRef",
+      "https://react.dev/reference/react/useImperativeHandle",
+      "https://react.dev/reference/react/useEffect",
+      "https://react.dev/reference/react/useLayoutEffect",
+      "https://react.dev/reference/react/useInsertionEffect",
+      "https://react.dev/reference/react/useEffectEvent",
+      "https://react.dev/reference/react/useMemo",
+      "https://react.dev/reference/react/useCallback",
+      "https://react.dev/reference/react/useTransition",
+      "https://react.dev/reference/react/useDeferredValue",
+      "https://react.dev/reference/react/useDebugValue",
+      "https://react.dev/reference/react/useId",
+      "https://react.dev/reference/react/useSyncExternalStore",
+      "https://react.dev/reference/react-dom",
+      "https://react.dev/reference/react-dom/browser",
+      "https://react.dev/reference/react/legacy",
+      "https://react.dev/reference/rsc/directives",
+      "https://react.dev/reference/rsc/use-client",
+      "https://react.dev/reference/rsc/use-server",
+      "https://react.dev/blog/2024/12/05/react-19",
+      "https://react.dev/blog/2025/10/01/react-19-2",
+      "https://react.dev/blog/2026/09/09/react-19-3"
+    ]
   },
-  "scopeExclusions":["React DOM APIs and DOM built-in props (t07-020)","React client, server, and static rendering APIs (t07-021)","React Compiler (t07-022)","Third-party routers and state libraries (t07-023 and t07-024)","Legacy React APIs not recommended for new code; consult the official legacy API index when maintaining old code (https://react.dev/reference/react/legacy)"],
+  "scopeExclusions": [
+    "React DOM APIs and DOM built-in props (t07-020)",
+    "React client, server, and static rendering APIs (t07-021)",
+    "React Compiler (t07-022)",
+    "Third-party routers and state libraries (t07-023 and t07-024)",
+    "Legacy React APIs not recommended for new code; consult the official legacy API index when maintaining old code (https://react.dev/reference/react/legacy)"
+  ],
   "generationAllowed": true
 }

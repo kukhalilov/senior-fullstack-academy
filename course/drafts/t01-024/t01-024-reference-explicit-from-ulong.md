@@ -10,7 +10,7 @@
 
 **Scope Exclusions:** All non-numeric conversions, implicit numeric conversions, conversions to `ulong` from other types, floating-point conversions, and general arithmetic operator rules are excluded.
 
-**Version & Edition:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+**Version & Edition:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-20 ([Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 
 ---
 

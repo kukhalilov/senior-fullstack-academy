@@ -4,7 +4,7 @@ Sources: [systemd unit manual](https://www.freedesktop.org/software/systemd/man/
 
 ## Scope and version
 
-The documentation baseline is systemd 262.1 checked 2026-11-16. Unit directives and service types have version-introduction metadata in upstream documentation; a distribution may ship an older release or backport features. Check `systemd --version`, `man systemd.service`, and `systemd-analyze verify` on the target. User services, system services, containers, and non-systemd hosts differ.
+The documentation baseline is systemd 262.2 checked 2026-11-20. Unit directives and service types have version-introduction metadata in upstream documentation; a distribution may ship an older release or backport features. Check `systemd --version`, `man systemd.service`, and `systemd-analyze verify` on the target. User services, system services, containers, and non-systemd hosts differ.
 
 ## How this group fits the mental model
 

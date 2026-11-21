@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson covers general performance measurement and workload terminology. The principles are vendor-neutral; OS profiler commands, test tool defaults, and statistical estimators vary. Current .NET tooling notes are dated 2026-11-17. Define a workload and acceptance criteria before interpreting measurements. [SRE SLO workbook](https://sre.google/workbook/implementing-slos/) [Flame graphs](https://www.brendangregg.com/flamegraphs.html)
+This lesson covers general performance measurement and workload terminology. The principles are vendor-neutral; OS profiler commands, test tool defaults, and statistical estimators vary. Current .NET tooling notes are dated 2026-11-20. Define a workload and acceptance criteria before interpreting measurements. [SRE SLO workbook](https://sre.google/workbook/implementing-slos/) [Flame graphs](https://www.brendangregg.com/flamegraphs.html)
 
 # How this group fits the mental model
 

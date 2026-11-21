@@ -4,7 +4,7 @@ Sources: [Azure Resource Manager overview](https://learn.microsoft.com/en-us/azu
 
 ## Scope and version
 
-This guide covers common governance, ARM deployment and policy concepts, not every Azure Resource Provider API or CLI option. Microsoft services evolve independently; verify the subscription, cloud, region, provider registration and current documentation before deployment. Current service concepts were checked 2026-11-16.
+This guide covers common governance, ARM deployment and policy concepts, not every Azure Resource Provider API or CLI option. Microsoft services evolve independently; verify the subscription, cloud, region, provider registration and current documentation before deployment. Current service concepts were checked 2026-11-20.
 
 ## How this group fits the mental model
 
@@ -39,7 +39,7 @@ The scope hierarchy determines where resources live, inherit policy/role assignm
 - `Bicep targetScope` — Declares deployment scope such as tenant, management group, subscription or resource group; the scope determines what resources/operations are valid.
 - `Azure Resource Manager what-if operation` — Previews expected resource changes for a deployment. It helps catch destructive differences but is not a transaction guarantee for provider-side effects.
 - `Azure Resource Manager incremental deployment mode` — Applies declared resource changes while leaving unrelated resources in the scope; removing a resource from the template does not generally delete it.
-- `Azure Resource Manager complete deployment mode` — Historical deployment mode with deletion implications for resources omitted from a deployment at certain scopes. Prefer safer scoped ownership and verify current support/behavior before use.
+- `Azure Resource Manager complete deployment mode` — Deletes eligible resources omitted from the template in the deployment's target resource group; for multi-resource-group templates only the target group is eligible, and some child-resource deletion behavior differs. Microsoft marks complete mode not recommended and says it will be gradually deprecated; use deployment stacks for intentional template-managed deletion. Confirm API/scope behavior and inspect what-if before any legacy complete-mode deployment.
 - `Bicep resource symbolic name` — Local name used to refer to a declared resource within Bicep; distinct from the deployed resource's Azure name.
 - `Azure CLI (az)` — Cross-platform CLI for Azure management and service operations. Authenticate and set the intended cloud/subscription/context before any mutation.
 - `Azure PowerShell Az module` — PowerShell cmdlets for Azure management and service operations. Context selection is a critical safety step in multi-subscription sessions.

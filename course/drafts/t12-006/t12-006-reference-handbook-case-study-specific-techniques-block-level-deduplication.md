@@ -1,6 +1,6 @@
 # end-to-end system design case studies — Reference: Block-level deduplication
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [RFC 6920: Naming Things with Hashes](https://www.rfc-editor.org/rfc/rfc6920.html), [RFC 9054: COSE Hash Algorithms](https://www.rfc-editor.org/rfc/rfc9054.html).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [RFC 6920: Naming Things with Hashes](https://www.rfc-editor.org/rfc/rfc6920.html), [NIST policy on hash functions](https://csrc.nist.gov/projects/hash-functions/nist-policy-on-hash-functions), [NIST hash-function guidance](https://csrc.nist.gov/Projects/Hash-Functions).
 
 ## Scope and version
 
@@ -14,7 +14,7 @@ Instead of comparing whole files, divide each file into chunks, fingerprint each
 
 - **Fixed-size chunking:** splits at fixed byte offsets; simple, but an insertion near the start shifts later boundaries and can reduce reuse.
 - **Content-defined chunking:** chooses boundaries based on content fingerprints so similar regions can remain aligned after insertions; costs more computation and needs boundary/min/max controls.
-- **Chunk digest:** hash used as a candidate identifier. Compare length and, where threat/correctness requires, verify bytes before reusing; hash collision risk is tiny with suitable modern hashes but is not mathematical impossibility.
+- **Chunk digest:** hash used as a candidate identifier. For adversarially chosen content, use a currently accepted collision-resistant cryptographic hash such as an appropriate SHA-2 or SHA-3 member. Compare length and, where threat/correctness requires, verify bytes before reusing; collision risk is small with suitable hashes, not mathematically impossible.
 - **Manifest:** ordered chunk references, lengths, and file metadata needed to rebuild the original file.
 - **Reference count/mark-and-sweep:** ways to determine whether a chunk is still reachable by any live manifest before deleting it; concurrent upload/delete and retention windows complicate safe reclamation.
 
@@ -53,4 +53,4 @@ For multi-tenant attachments, a global “does this digest exist?” response ca
 
 ## Review status
 
-Hash-based naming and collision concepts are checked against RFC 6920 and RFC 9054. This lesson remains pending a full claim-by-claim audit and manifest omission check.
+Hash-based naming is checked against RFC 6920; algorithm-selection and collision-resistance cautions are checked against NIST policy. Chunking and storage examples are design patterns, not guarantees of a particular deduplication ratio.

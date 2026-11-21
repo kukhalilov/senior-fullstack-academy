@@ -44,7 +44,7 @@ If you are counting items in a list, `int` is usually sufficient. If you are dea
 ```csharp
 // Unverified example
 int itemCount = 10;
-decimal price = 19.99m; 
+decimal price = 19.99m;
 ```
 
 ### Example 2: Reference vs. Value
@@ -55,7 +55,7 @@ string name = "C#"; // Reference type: 'name' holds a reference to the string ob
 ```
 
 ## Misconceptions and edge cases
-* **Misconception:** `float`, `double`, and `decimal` are interchangeable. 
+* **Misconception:** `float`, `double`, and `decimal` are interchangeable.
     * **Reality:** They differ significantly in precision and performance. `float` and `double` are binary floating-point types (fast, but can have rounding errors), while `decimal` uses a base-10 scaled representation (often useful for decimal-domain amounts, though finite precision can still round); benchmark performance for the actual workload.
 * **Edge Case:** `void` represents absence of a type and is used for methods that return no value; it cannot be used for variables.
 * **Edge Case:** `dynamic` is a source-level type with runtime-bound operations, represented as `object` in metadata; it does not disable all compile-time checking.
@@ -73,7 +73,7 @@ string name = "C#"; // Reference type: 'name' holds a reference to the string ob
    * **Answer:** `nint` is a native-sized integer that adjusts its size (32-bit or 64-bit) to match the underlying processor architecture.
 
 4. **Question:** What happens if you use `dynamic`?
-   * **Answer:** The compiler skips type checking for that variable, and the type is resolved at runtime.
+   * **Answer:** Operations on a dynamic expression are bound at runtime, while other expressions and surrounding code retain ordinary compile-time checks.
 
 ***
 

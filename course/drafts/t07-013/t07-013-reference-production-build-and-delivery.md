@@ -18,7 +18,7 @@ A production release is a set of build artifacts plus a serving policy and opera
 - `Long-lived immutable asset caching` — Cache policy such as long max-age plus immutable for fingerprinted files whose URL never serves different bytes. Do not apply this blindly to unhashed files or mutable HTML.
 - `HTML cache policy` — Cache/revalidation policy for HTML documents. It often needs shorter caching or revalidation because HTML references the current asset graph and must not point clients at missing or deleted chunks.
 - `Content Security Policy header` — HTTP response header restricting allowed script, style, frame, and other resource sources. Prefer nonce/hash strategies where suitable; monitor violations and do not rely on broad unsafe directives as a substitute for safe code.
-- `Subresource Integrity` — Browser verification that a fetched external script or stylesheet matches a specified cryptographic hash. It protects against unexpected byte changes at a CDN but does not prove reviewed code is benign. Cross-origin use also interacts with CORS.
+- `Subresource Integrity` — The HTML `integrity` attribute is the integrity attribute that asks the browser to verify a fetched script or stylesheet against a specified cryptographic hash; a mismatch prevents the resource from being used. The `crossorigin=anonymous for cross-origin SRI` setting and a resource server that permits the CORS request are required for cross-origin SRI. It protects against unexpected byte changes at a CDN but does not prove that the pinned code is benign.
 - `Compression and content negotiation` — Serving compressed representations such as Brotli/gzip when the client advertises support, with correct `Content-Encoding` and cache variation metadata. The server must not mislabel bytes or serve an encoding the client did not request.
 - `Source map exposure policy` — Decision about whether source maps are public, private to an error-reporting service, or omitted. Maps can reveal source, paths, and comments; public deployment should be an intentional tradeoff.
 - `Error reporting` — Capturing client/server failures with context useful for triage, source maps where appropriate, and privacy controls. Remove tokens, personal data, and sensitive payloads before transmission.
@@ -39,7 +39,7 @@ For a static app, a common policy is: content-hashed JS/CSS receive long-lived i
 
 - Using immutable caching for `index.html` or unhashed filenames.
 - Deleting previous chunks immediately while clients still use older HTML.
-- Adding an SRI hash but forgetting cross-origin CORS requirements or failing to update it when the script changes.
+- Adding an `integrity` hash but forgetting the cross-origin `crossorigin`/CORS requirements or failing to update it when the script changes.
 - Deploying a CSP with broad unsafe sources and calling it strong protection.
 - Publishing source maps by accident or collecting credentials in error telemetry.
 - Assuming rollback is safe when database migrations are irreversible.

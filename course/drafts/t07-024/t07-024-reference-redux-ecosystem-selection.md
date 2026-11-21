@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This reference explains the supplied Redux Toolkit/RTK Query concepts at the ecosystem-selection level. Exact signatures and full behavior are taught in t07-011 and the official API references. [Redux Toolkit usage](https://redux.js.org/toolkit/usage/usage-guide) [RTK Query](https://redux.js.org/toolkit/rtk-query/overview)
+This reference explains the supplied Redux Toolkit 2.14.0/RTK Query concepts at the ecosystem-selection level, checked 2026-11-20. Exact signatures and full behavior are taught in t07-011 and the official API references. RTK 2.13 moved its build tooling to TSDown/PNPM and added TypeScript 7 support; 2.14 added dispatch/type-checking performance improvements, RTK Query cache-entry selectors, and a DevTools action sanitizer. [Redux Toolkit usage](https://redux.js.org/toolkit/usage/usage-guide) [RTK Query](https://redux.js.org/toolkit/rtk-query/overview) [Releases](https://github.com/reduxjs/redux-toolkit/releases)
 
 ## How this group fits the mental model
 

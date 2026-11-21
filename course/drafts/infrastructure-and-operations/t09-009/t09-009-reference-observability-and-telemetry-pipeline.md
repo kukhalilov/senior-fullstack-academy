@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson explains the supplied telemetry pipeline vocabulary and OpenTelemetry foundations. It reflects the source snapshot checked 2026-11-17. Component lifecycle is independent: tracing API/SDK/OTLP are stable in the specification summary; metric SDK support is mixed; Collector components have mixed maturity; Profiles protocol is in development. Verify the specific language distribution and component before production use. [OpenTelemetry status](https://opentelemetry.io/docs/specs/status/) [Component status](https://opentelemetry.io/status/)
+This lesson explains the supplied telemetry pipeline vocabulary and OpenTelemetry foundations. It reflects the source snapshot checked 2026-11-20 (OpenTelemetry specification 1.62.0; Collector Contrib 0.165.1). Component lifecycle is independent: tracing API/SDK/OTLP are stable in the specification summary; metric SDK support is mixed; Collector components have mixed maturity; Profiles protocol is in development. OTTL v1 is stable in Contrib 0.164.0 and later, but that is a language contract, not blanket component stability. Verify the specific language distribution and component before production use. [OpenTelemetry status](https://opentelemetry.io/docs/specs/status/) [Component status](https://opentelemetry.io/status/) [Collector Contrib releases](https://github.com/open-telemetry/opentelemetry-collector-contrib/releases) [OTTL v1](https://opentelemetry.io/blog/2026/ottl-v1/)
 
 # How this group fits the mental model
 

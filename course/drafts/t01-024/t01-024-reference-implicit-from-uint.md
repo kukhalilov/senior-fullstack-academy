@@ -6,7 +6,7 @@
 
 *Automatically generated draft.*
 
-This reference lesson covers the exact named group of `uint` implicit numeric conversions in C# under C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior, checked on 2026-11-14.
+This reference lesson covers the exact named group of `uint` implicit numeric conversions in C# under C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior, checked on 2026-11-20.
 
 The scope is strictly limited to the following inventory items:
 * `uint to long (implicit numeric conversion)`

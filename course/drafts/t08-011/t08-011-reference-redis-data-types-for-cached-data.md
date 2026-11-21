@@ -4,7 +4,7 @@ Sources: [Redis data types](https://redis.io/docs/latest/develop/data-types/), [
 
 ## Scope and version
 
-Redis Open Source 8.10 is current (checked 2026-11-16). Redis 8 integrated several previously separate modules into the distribution; actual feature availability still depends on server/product/deployment. This lesson compares structures and the complete Redis 8.8 Array command family. It does not enumerate every command of every type or Redis Search APIs.
+Redis Open Source 8.10 is the latest GA release (checked 2026-11-20). Redis 8 integrated several previously separate modules into the distribution; actual feature availability still depends on server/product/deployment. This lesson compares structures and the Redis Array command family introduced in 8.8 and documented in 8.10. It does not enumerate every command of every type or Redis Search APIs.
 
 ## How this group fits the mental model
 

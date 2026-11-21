@@ -9,6 +9,8 @@ Compare routing/framework modes; explain route loaders/actions, navigation and m
 Know React components, URLs, HTTP requests/responses, promises, caches, and server/client JavaScript. A **route** maps a URL pattern to UI and behavior. A **loader** reads route data; an **action** handles a mutation. A **runtime** is the environment executing server or client code.
 
 ## Core concepts
+Framework choices also change performance boundaries: code splitting affects initial JavaScript, server/static rendering affects HTML delivery, data loaders affect request fan-out, and cache/revalidation policies affect freshness and reuse. Measure route-level LCP/INP and server spans together. Avoid assuming SSR is automatically faster or that a framework cache is correctly partitioned for user-specific data; use the integrated performance engineering topic for a cross-layer investigation sequence.
+
 
 ### Router versus framework
 

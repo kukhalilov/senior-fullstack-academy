@@ -1,10 +1,10 @@
 # cloud computing foundations and architecture — Reference: Operations, telemetry, cost allocation, and architecture review
 
-Sources: [Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/), [AWS Well-Architected Framework definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html), and [Azure application architecture fundamentals](https://learn.microsoft.com/en-us/azure/architecture/guide/).
+Sources: [Azure Well-Architected pillars](https://learn.microsoft.com/en-us/azure/well-architected/pillars), [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/framework.html), and [Azure application architecture fundamentals](https://learn.microsoft.com/en-us/azure/architecture/guide/).
 
 ## Scope and version
 
-Architecture frameworks and provider tools evolve. Pillar names here reflect current Azure/AWS frameworks checked 2026-11-16; provider calculators, price lists, budgets, and regional availability are live product information and must be checked when making a purchase or deployment decision.
+Architecture frameworks and provider tools evolve. Azure's workload Well-Architected Framework uses five pillars: Reliability, Security, Cost Optimization, Operational Excellence, and Performance Efficiency. AWS uses six: Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability. Checked 2026-11-20; provider calculators, price lists, budgets, and regional availability are live product information and must be checked when making a purchase or deployment decision.
 
 ## How this group fits the mental model
 
@@ -50,13 +50,13 @@ Operational readiness joins telemetry, ownership, response procedures, capacity,
 
 ### Architecture quality review
 
-- **Well-Architected Framework** — Structured review of workload decisions against quality pillars and design principles; it is a diagnostic framework, not certification that guarantees safety.
+- **Well-Architected Framework** — Structured review of workload decisions against quality pillars and design principles. Framework names and pillar sets are provider-specific: Azure workload guidance currently has five pillars, while AWS has six including Sustainability. A review is diagnostic, not certification that guarantees safety.
 - **Operational excellence pillar** — Ability to run, observe and improve workloads through automation, clear ownership, learning and predictable operations.
 - **Security pillar** — Protect identities, data, systems and assets with defense in depth, least privilege, detection and response.
 - **Reliability pillar** — Workload performs intended function consistently and recovers from faults; includes resilience and tested recovery.
 - **Performance efficiency pillar** — Use appropriate resources and architecture to meet requirements as demand/technology change.
 - **Cost optimization pillar** — Deliver business value within cost constraints through visibility, efficient usage and ongoing review.
-- **Sustainability pillar** — Reduce energy/resource impact through efficient use, lifecycle and architectural choices; provider framework wording can differ.
+- **Sustainability pillar** — In AWS Well-Architected, the sixth pillar addresses environmental impact through efficient use and architectural choices. Azure includes sustainability guidance, but it is not listed as a sixth workload pillar alongside Azure's five pillars; its framework structure and terminology differ.
 - **Architecture review** — Deliberate evaluation of requirements, risks, alternatives, failure scenarios, security, operational readiness and cost; record decisions and owners.
 
 ## Cross-item comparison

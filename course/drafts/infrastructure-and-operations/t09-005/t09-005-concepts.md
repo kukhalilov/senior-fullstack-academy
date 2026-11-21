@@ -49,9 +49,7 @@ A pipeline connects one process's stdout to another's stdin. By default Bash rep
 
 ## Shells and processes
 
-The shell first parses syntax and performs expansions, then forms words/arguments, applies redirections, and runs builtins or external programs. Quoting changes parsing, not merely appearance: `"$value"` usually preserves one argument; unquoted `$value` may split into several words and undergo glob expansion. Redirection is applied left to right: `cmd >out 2>&1` sends both streams to `out`, while `cmd 2>&1 >out` leaves stderr on the original stdout destination.
-
-A pipeline connects one process's stdout to another's stdin. By default Bash reports the last command's status; `set -o pipefail` makes a pipeline fail if any command fails, but does not make every shell construct safe. `set -e` has context-dependent exceptions (including tests in conditions and parts of pipelines); use explicit status checks for critical operations. `SIGTERM` asks a process to stop, while `SIGKILL` cannot be caught or cleaned up. A zombie is already terminated and awaiting its parent to reap its exit status.
+The shell is one process among many: it resolves names through aliases, functions, builtins, and `PATH`, then launches programs with an argument vector, environment, working directory, and file descriptors. A service manager starts processes independently of an operator's interactive shell, so compare the actual runtime identity and environment instead of assuming startup files or variables carry over. Process state, parentage, signals, and resource limits explain what can be safely inspected or stopped.
 
 ## Identity and filesystem access
 

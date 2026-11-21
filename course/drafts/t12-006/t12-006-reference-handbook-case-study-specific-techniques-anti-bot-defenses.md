@@ -68,4 +68,4 @@ For uncertain low-risk traffic, observe and rate-limit gently. Increase friction
 
 ## Review status
 
-Layering, risk-based responses, and rate-limit dimensions are checked against OWASP guidance. The vendor-specific score caveat is checked against Cloudflare’s documentation. The lesson remains pending complete claim-by-claim audit and inventory omission check.
+Reviewed 2026-11-21. OWASP guidance confirms abuse cases, layered signals, independent per-account and per-source throttles, graduated responses, and the limits of CAPTCHA; Cloudflare's documentation bounds its bot-score as a vendor signal rather than proof of humanity. The handbook guidance supports evaluating legitimate automation and false positives. No material factual corrections or missing core defensive concepts were found.

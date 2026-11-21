@@ -1,36 +1,52 @@
 # end-to-end system design case studies — Reference: SFU
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [RFC 7667: RTP Topologies](https://www.rfc-editor.org/rfc/rfc7667.html), [W3C WebRTC specification](https://www.w3.org/TR/webrtc/), [RFC 8834: RTP Usage for WebRTC](https://www.rfc-editor.org/rfc/rfc8834.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+An SFU (Selective Forwarding Unit) is a common name for a media server that receives participant RTP streams and selectively forwards them to subscribers. RFC 7667 describes related RTP topologies under Selective Forwarding Middleboxes (SFM); vendor terminology is not perfectly uniform. This lesson describes the usual WebRTC conferencing pattern, not a required W3C component or a specific vendor’s implementation.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+In a peer-to-peer mesh, each participant may need to send a separate stream to every other participant, so each sender’s upload and encode work grows with room size. With an SFU, each client generally sends one or a small number of encoded streams to the server. The SFU chooses which received streams, encodings, or layers to forward to each subscriber based on subscription, active-speaker policy, layout, and available bandwidth. Clients still decode and render the streams they receive.
+
+The SFU usually forwards encoded media without composing all participants into one new video. It still terminates or participates in transport security, parses RTP/RTCP metadata, manages congestion feedback and subscriptions, and may transcode or process media in optional features. “No transcoding” is a common efficiency objective, not a universal guarantee. End-to-end media encryption can limit server-side inspection and adaptation, depending on architecture.
 
 ## Supplied names explained
 
-- `SFU` — Selective Forwarding Unit routes received media streams to participants without mixing every stream into one output; bandwidth and topology shape client load.
+- **SFU**: Selective Forwarding Unit; product term for a server that selectively forwards individual media streams to clients rather than mixing every input into one output.
+- **Publisher**: participant sending an audio/video track or RTP stream to the SFU.
+- **Subscriber**: participant receiving selected publications. Subscription is often controlled by application signaling, distinct from media transport.
+- **Forwarding policy**: logic deciding what each subscriber receives, such as pinned speakers, active-speaker video, thumbnails, or selected quality layers.
+- **RTP/RTCP feedback**: transport and control information used for stream identity, loss/congestion adaptation, and synchronization. Implementations need compatible codecs, feedback, and signaling behavior.
+- **Simulcast/SVC input**: multiple encodings or scalable layers can let the server choose a suitable quality; support and negotiation depend on codec and client implementation.
+- **Room placement**: routing participants to one SFU or a coordinated multi-region SFU topology. Cross-region forwarding reduces some latency but increases inter-server bandwidth and failure complexity.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+An SFU forwards selected participant streams. An MCU (Multipoint Control Unit) typically decodes and mixes/composites inputs, then encodes one or more outputs. Mesh sends media directly among peers without one central media server. SFU reduces client upload versus full mesh while retaining per-participant streams for flexible layouts; MCU can simplify client rendering and downstream stream count at greater server processing cost.
+
+An SFU is distinct from TURN: TURN relays packets to make a transport path possible, while an SFU understands RTP streams and makes per-subscriber forwarding decisions. A TURN relay can carry traffic to an SFU when direct ICE connectivity to the SFU fails.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+In a 12-person call, each client publishes one camera stream and one audio stream to a regional SFU. A gallery subscriber receives low-resolution video for most participants and a higher layer for the active speaker. When the client’s network degrades, congestion feedback and subscription policy reduce incoming video bitrate while preserving audio. The service monitors end-to-end latency, packet loss, jitter, bitrate, keyframe requests, SFU CPU/network capacity, and per-room participant limits.
+
+If one SFU reaches capacity, place new rooms on other nodes rather than moving a live room without a controlled migration protocol. For very large events, use a hierarchy or broadcast fan-out architecture and distinguish interactive participants from passive viewers; one SFU forwarding every stream to every attendee can still create quadratic egress and client decode pressure.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Calling an SFU a mixer even though it forwards separate streams.
+- Assuming an SFU always avoids decode/transcode or can inspect end-to-end encrypted media.
+- Forwarding every participant’s highest-quality stream to every subscriber.
+- Ignoring client decode/render limits while scaling only server capacity.
+- Treating TURN and SFU as interchangeable.
+- Assuming WebRTC specifies the SFU’s subscription policy or signaling protocol.
+- Ignoring room placement, inter-region bandwidth, and correlated node failure.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What is selective about an SFU?** It chooses which participant streams or encodings to forward to each subscriber.
+2. **Does an SFU normally create one composite video?** No; that is characteristic of an MCU-style mixing path.
+3. **How can an SFU and TURN coexist?** TURN may relay a client’s transport packets to the SFU when direct network connectivity fails.
+4. **Why can a large SFU room still overload clients?** Receiving, decoding, and rendering too many streams can exceed client bandwidth or device capacity.

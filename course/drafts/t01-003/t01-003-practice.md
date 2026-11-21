@@ -16,10 +16,10 @@ In C#, `int` is a keyword alias for `System.Int32`. A value-type variable contai
 
 ```csharp
 // 'int' is a value type; assignment copies its value.
-int count = 10; 
+int count = 10;
 
 // 'string' is a reference type; the variable contains a reference to a string object.
-string message = "Hello"; 
+string message = "Hello";
 ```
 
 **Step-by-step behavior:**
@@ -35,7 +35,7 @@ string message = "Hello";
 ## Progressive hints
 * **Hint 1 (Exercise 1):** Look at the `other-built-in` list. Is there a type specifically for logical truth values?
 * **Hint 2 (Exercise 2):** `float` and `double` are IEEE binary floating-point; `decimal` uses finite precision base-10 scaling. Ask what scale, rounding, range, and interoperability the financial specification requires.
-* **Hint 3 (Exercise 3):** Refer to the `native-integral` category. These types were introduced in C# 9 to match the size of the native pointer on the host machine.
+* **Hint 3 (Exercise 3):** Refer to the `native-integral` category. C# 9 added language support for native-sized integers; their width follows process architecture. They are appropriate where an API contract is native-sized.
 
 ## Complete solutions
 1. **`bool`**: It is the built-in type for Boolean values.
@@ -49,7 +49,7 @@ string message = "Hello";
 
 ## Reflection questions
 * Why does C# provide both `int` and `long`? (Consider memory usage vs. range).
-* How does `dynamic` differ from `object`? (Hint: `dynamic` bypasses compile-time type checking).
+* How does `dynamic` differ from `object`? (Hint: operations on `dynamic` expressions are bound at runtime).
 * When should you prefer `string` over `char`? (Consider if you are storing a single character or a sequence).
 
 ***

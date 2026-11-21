@@ -321,21 +321,23 @@
     "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions",
     "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=aspnetcore-10.0",
     "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/timeouts",
-    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/https-tls?view=aspnetcore-10.0"
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/https-tls?view=aspnetcore-10.0",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/session-affinity?view=aspnetcore-10.0"
   ],
   "versionNotes": [
     {
-      "edition": "ASP.NET Core 8.0.17/9.0.6 forwarded-header security change and ASP.NET Core 10 docs, checked 2026-11-14",
+      "edition": "ASP.NET Core 8.0.17/9.0.6 forwarded-header security change and ASP.NET Core 10 docs, checked 2026-11-20",
       "items": [
-        "Starting with ASP.NET Core 8.0.17 and 9.0.6, forwarded headers from unconfigured proxies are ignored by default. Trust proxies explicitly; current code uses KnownIPNetworks (KnownNetworks is obsolete). Clearing KnownProxies/KnownIPNetworks or enabling the forwarded-header environment switch can allow arbitrary peers to supply client identity and scheme headers. Current Kestrel HTTP/3 support depends on platform and QUIC requirements."
+        "Starting with ASP.NET Core 8.0.17 and 9.0.6, forwarded headers from unconfigured proxies are ignored by default. Trust proxies explicitly; current code uses KnownIPNetworks (KnownNetworks and the ASP.NET Core IPNetwork are obsolete since .NET 10; use System.Net.IPNetwork and KnownIPNetworks). Clearing KnownProxies/KnownIPNetworks or enabling the forwarded-header environment switch can allow arbitrary peers to supply client identity and scheme headers. Current Kestrel HTTP/3 support depends on platform and QUIC requirements."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/8/forwarded-headers-unknown-proxies?view=aspnetcore-10.0",
-        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-10.0"
+        "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-10.0",
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/10/ipnetwork-knownnetworks-obsolete?view=aspnetcore-10.0"
       ]
     },
     {
-      "edition": "ASP.NET Core 11 GA and current YARP release state, checked 2026-11-16",
+      "edition": "ASP.NET Core 11 GA and current YARP release state, checked 2026-11-20",
       "items": [
         ".NET 11 GA was released November 10, 2026 (STS). Current Microsoft Learn Kestrel HTTP/3 guidance documents early request processing, removing the wait for QUIC control-stream SETTINGS before processing request streams; HTTP/3 still depends on MsQuic/platform requirements and is not enabled by default. YARP 2.3.0 is the latest listed stable release and supports .NET 8 or later, so it is compatible with .NET 11; do not confuse the .NET runtime release number with YARP package version. The source set preserves Microsoft Learn 10.0 selector URLs for pages where a separate 11.0 view was not verifiable during this snapshot."
       ],
@@ -348,7 +350,7 @@
       ]
     },
     {
-      "edition": "Kestrel TLS observability and ClientHello APIs in ASP.NET Core 11, checked 2026-11-16",
+      "edition": "Kestrel TLS observability and ClientHello APIs in ASP.NET Core 11, checked 2026-11-20",
       "items": [
         "ASP.NET Core 11 adds ListenOptions.UseTlsClientHelloListener for connection middleware that inspects ClientHello before UseHttps, and ITlsHandshakeFeature.Exception exposes the handshake exception to appropriately ordered connection middleware. TlsClientHelloBytesCallback is obsolete in .NET 11 in favor of the listener API. The ClientHello listener timeout adds to handshake timeout; bound the combined time. Certificate file watching can be disabled with the named AppContext switch. Keep the default OS-selected TLS protocols unless policy requires an explicit supported restriction."
       ],
@@ -358,12 +360,21 @@
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.connections.features.itlshandshakefeature",
         "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions"
       ]
+    },
+    {
+      "edition": "ASP.NET Core 11 Kestrel HTTP compliance, checked 2026-11-20",
+      "items": [
+        "Kestrel 11 strictly rejects additional connection-specific headers on HTTP/2 and HTTP/3 (`Proxy-Connection`, `Keep-Alive`, `Transfer-Encoding`, `Upgrade`; plus invalid `TE`) and closes HTTP/1.1 connections after processing a request containing both `Content-Length` and `Transfer-Encoding`. Audit older protocol-translating gateways and clients for header stripping and ambiguous framing; compliant clients are unaffected."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/kestrel-strict-protocol-compliance"
+      ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn Kestrel, HTTP/3, proxy/load-balancer and YARP docs; official .NET support policy; official YARP release record",
-    "edition": "ASP.NET Core 11 GA with latest published Kestrel/YARP references checked 2026-11-16; YARP 2.3.0 is the latest stable release listed",
-    "checkedAt": "2026-11-16",
+    "edition": "ASP.NET Core 11 GA Kestrel/YARP documentation and release state checked 2026-11-20; versioned Learn selectors are retained where appropriate",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-10.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-10.0",
@@ -387,7 +398,11 @@
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.listenoptionshttpsextensions",
       "https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=aspnetcore-10.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/timeouts",
-      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/https-tls?view=aspnetcore-10.0"
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/https-tls?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/11/kestrel-strict-protocol-compliance",
+      "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11",
+      "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/10/ipnetwork-knownnetworks-obsolete?view=aspnetcore-10.0",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/yarp/session-affinity?view=aspnetcore-10.0"
     ]
   },
   "scopeExclusions": [

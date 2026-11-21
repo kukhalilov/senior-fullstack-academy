@@ -55,4 +55,4 @@ If two branches share a cache, ensure the key includes lockfiles, compiler/runti
 
 ## Review status
 
-Hash-based naming and digest limitations are checked against RFC 6920; workflow trust boundary and secure-use guidance against GitHub documentation. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Hash-based naming and digest limitations are checked against RFC 6920; workflow trust boundaries, artifact handling, and provenance guidance are checked against GitHub Actions documentation. A digest only confirms byte identity against an expected digest obtained through a trusted channel.

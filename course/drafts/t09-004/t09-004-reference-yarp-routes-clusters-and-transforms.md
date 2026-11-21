@@ -4,7 +4,7 @@ Sources: [YARP getting started](https://learn.microsoft.com/en-us/aspnet/core/fu
 
 ## Scope and version
 
-YARP is a .NET library versioned independently from ASP.NET Core. The latest stable release listed on the official YARP roadmap/release page checked November 16, 2026 is YARP 2.3.0, which supports .NET 8 or later and therefore can run on .NET 11. These lessons use the 2.3 configuration model; verify package/schema support when upgrading.
+YARP is a .NET library versioned independently from ASP.NET Core. The latest stable release listed on the official YARP roadmap/release page checked November 20, 2026 is YARP 2.3.0, which supports .NET 8 or later and therefore can run on .NET 11. These lessons use the 2.3 configuration model; verify package/schema support when upgrading.
 
 ## How this group fits the mental model
 

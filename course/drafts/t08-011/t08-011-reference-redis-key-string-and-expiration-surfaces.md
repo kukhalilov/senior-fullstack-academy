@@ -4,7 +4,7 @@ Sources: [Redis 8.8 command reference](https://redis.io/docs/latest/commands/red
 
 ## Scope and version
 
-Commands are described against Redis Open Source 8.8, checked 2026-11-16. `SET` comparison modifiers and `DELEX` were added in 8.4; `INCREX` and `MSETEX` are current newer string commands. Older servers may reject these options/commands. Use the exact server's `COMMAND DOCS`/official reference. Cluster multi-key operations may require same-slot keys.
+Commands are described against Redis Open Source 8.10 GA, checked 2026-11-20. `SET` comparison modifiers and `DELEX` were added in 8.4; `INCREX` and `MSETEX` are current newer string commands. Older servers may reject these options/commands. Use the exact server's `COMMAND DOCS`/official reference. Cluster multi-key operations may require same-slot keys.
 
 ## How this group fits the mental model
 

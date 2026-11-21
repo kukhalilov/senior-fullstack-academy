@@ -14,6 +14,8 @@ Practice designing Kestrel listener exposure, TLS termination and validation, tr
 
 ## Exercises
 
+Use `KnownIPNetworks` with `System.Net.IPNetwork`; the old `KnownNetworks` property and ASP.NET Core `IPNetwork` type are obsolete beginning in .NET 10.
+
 1. **Listener exposure:** A container app must accept traffic only from a sidecar proxy in the same pod. Compare `ListenLocalhost` and `ListenAnyIP`; state when each is appropriate and what network policy must still enforce.
 2. **Protocol negotiation:** Browser clients should use HTTP/2 where possible and HTTP/1.1 fallback. Explain endpoint configuration and ALPN. What changes if HTTP/3 is added?
 3. **TLS pass-through:** A TCP load balancer routes TLS by SNI to Kestrel. The app team asks for `X-Forwarded-Proto` and client IP restoration. Explain which metadata is unavailable and name the transport-level option that may carry peer data.
@@ -27,7 +29,8 @@ Practice designing Kestrel listener exposure, TLS termination and validation, tr
 11. **Affinity and failover:** A session-affinity cookie pins clients to a destination that becomes unhealthy. What failure policy choices exist, and what architecture removes the need for pinning?
 12. **Observability:** Users report intermittent 502s from a YARP gateway. Design the minimal logs, metrics, and trace correlation needed to distinguish route miss, unavailable cluster, TLS failure, destination timeout, and application 500.
 13. **.NET 11 ClientHello diagnostics:** You need to inspect ClientHello bytes and log handshake exceptions. State middleware ordering, new APIs, timeout relationship, and sensitive-data precautions.
-14. **Kestrel limits:** A 413 occurs for a 40 MB upload, while the app allows 100 MB. Identify every relevant layer and explain why raising the Kestrel limit alone may not help.
+14. **Legacy proxy protocol break:** After upgrading to .NET 11, HTTP/2 requests through an old gateway fail when it forwards `Connection: keep-alive` and `Transfer-Encoding`. Explain the cause, compliant fix, and why weakening Kestrel is not the first answer.
+15. **Kestrel limits:** A 413 occurs for a 40 MB upload, while the app allows 100 MB. Identify every relevant layer and explain why raising the Kestrel limit alone may not help.
 
 ## Progressive hints
 
@@ -44,7 +47,7 @@ Practice designing Kestrel listener exposure, TLS termination and validation, tr
 11. YARP can redistribute or fail with an error under affinity failure behavior. Externalize state so any healthy instance can serve the client.
 12. Log trace ID, route/cluster/destination, status and timing, outbound exception category, and health state; use low-cardinality metrics.
 13. Register `UseTlsClientHelloListener` before `UseHttps`; wrap `UseHttps` with connection logging that reads `ITlsHandshakeFeature.Exception`; bound additive timeouts.
-14. Check CDN/WAF, cloud load balancer, ingress/edge proxy, IIS if present, Kestrel server limits, request feature, and application endpoint configuration.
+15. Check CDN/WAF, cloud load balancer, ingress/edge proxy, IIS if present, Kestrel server limits, request feature, and application endpoint configuration.
 
 ## Complete solutions
 
@@ -61,7 +64,8 @@ Practice designing Kestrel listener exposure, TLS termination and validation, tr
 11. Affinity failure policy can redistribute a client to another available destination or return 503 when its pinned target is unavailable. If the app externalizes session/state (database/cache/shared token design), any healthy destination can serve the client and affinity can often be disabled. If sticky local state remains necessary, accept uneven load and define failover behavior explicitly.
 12. Record trace/request ID, time, route ID, cluster ID, selected destination (or none), health/availability state, incoming/outgoing status, duration, bytes/protocol, and classified transport/TLS/timeout error. Correlate YARP spans with backend trace context. Metrics should count low-cardinality route/cluster/status/error and latency, not raw host/path/user IDs. Keep secrets and full authorization headers out of logs.
 13. Register `ListenOptions.UseTlsClientHelloListener` before `UseHttps` to inspect raw ClientHello. Middleware that reads `ITlsHandshakeFeature.Exception` must wrap the HTTPS middleware and execute in the correct `finally`/failure path. The ClientHello timeout adds to `HandshakeTimeout`, so tune both to a bounded connection setup budget. Log only necessary handshake metadata; ClientHello can include host/SNI and fingerprinting data.
-14. A request can be rejected by CDN/WAF, cloud LB/ingress, edge proxy, IIS integration, Kestrel server limit, per-request `IHttpMaxRequestBodySizeFeature`, or application validation. Find the first component returning 413 in logs/traces and compare its actual configured cap. Raise only each required boundary, protect memory/disk, and ensure the endpoint streams large bodies instead of buffering without bounds.
+14. Kestrel 11 treats those connection-specific fields as invalid on HTTP/2. Configure the gateway to strip hop-by-hop/connection-specific headers when translating to HTTP/2 and emit valid framing; review RFC-compliant client behavior. Do not add those fields to the backend request or enable compatibility switches that restore unsafe ambiguous framing.
+15. A request can be rejected by CDN/WAF, cloud LB/ingress, edge proxy, IIS integration, Kestrel server limit, per-request `IHttpMaxRequestBodySizeFeature`, or application validation. Find the first component returning 413 in logs/traces and compare its actual configured cap. Raise only each required boundary, protect memory/disk, and ensure the endpoint streams large bodies instead of buffering without bounds.
 
 ## Tests and edge cases
 

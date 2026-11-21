@@ -4,7 +4,7 @@ Sources: [Scheduling, preemption and eviction](https://kubernetes.io/docs/concep
 
 ## Scope and version
 
-This reference covers Pod placement, capacity control, eviction and selected current scheduling/resource APIs. The official release page lists Kubernetes v1.37.1 as latest on 2026-11-16. In v1.37, HPA scaling to zero for suitable object/external metrics is Beta and enabled by default; gang scheduling and workload-aware preemption are Beta; several DRA surfaces reach Stable. Feature gates, API versions, metrics adapters, scheduler configuration and node/provider capacity must still be checked in the target cluster.
+This reference covers Pod placement, capacity control, eviction and selected current scheduling/resource APIs. The official release page lists Kubernetes v1.37.1 as latest on 2026-11-20. In v1.37, HPA scaling to zero for suitable object/external metrics is Beta and enabled by default; gang scheduling and workload-aware preemption are Beta; several DRA surfaces reach Stable. Feature gates, API versions, metrics adapters, scheduler configuration and node/provider capacity must still be checked in the target cluster.
 
 ## How this group fits the mental model
 

@@ -41,7 +41,7 @@ A team deploys RDS Multi-AZ and says it no longer needs backups. Explain which f
 
 ### 4. Choose an event model
 
-An application receives direct HTTP requests, queue messages and nightly long-running reconciliation jobs. Select among Lambda Web Functions, Lambda Event Functions, Lambda Managed Instances, ECS/Fargate, AWS Batch and Step Functions. Explain when the 90-minute exception matters.
+An application receives direct HTTP requests, queue messages and nightly long-running reconciliation jobs. Select among Lambda Web Functions, Lambda Event Functions, Lambda Managed Instances, ECS/Fargate, AWS Batch and Step Functions. Explain the current 30-minute and 90-minute limits and when they apply.
 
 ### 5. Messaging guarantee
 
@@ -96,7 +96,7 @@ Multi-AZ DB instance deployment maintains a standby for failover; it protects ag
 
 ### 4. Choose an event model
 
-Use Lambda Web Functions for a supported Node.js HTTP server where direct request/response behavior, concurrent requests per environment and its current regional/runtime contract fit. Use Lambda Event Functions for queue/event processing or short synchronous work with retries/idempotency. Lambda Managed Instances may be evaluated for eligible long-running asynchronous/event-source workloads; its 90-minute exception excludes some event sources and synchronous invocations stay within the ordinary 15-minute maximum. Do not select it solely by duration: check its concurrency/process model, support and pricing. Use ECS/Fargate for long-lived/container services needing service control without worker nodes; EC2 capacity can be justified for specialized requirements. AWS Batch is for queued batch jobs and compute environments. Step Functions is for explicit multi-step waits/retries/branching. Reconcile long jobs into idempotent chunks when simpler and more recoverable.
+Use Lambda Web Functions for a supported Node.js HTTP server where direct request/response behavior, concurrent requests per environment and its current regional/runtime contract fit. Use Lambda Event Functions for queue/event processing or synchronous work up to 30 minutes with retries/idempotency. Lambda Managed Instances may be evaluated for eligible long-running asynchronous/event-source workloads; its 90-minute exception excludes some event sources, and its synchronous limit is 30 minutes while initialization remains at 15 minutes; on-demand Event Functions also allow 30 minutes. Do not select it solely by duration: check its concurrency/process model, support and pricing. Use ECS/Fargate for long-lived/container services needing service control without worker nodes; EC2 capacity can be justified for specialized requirements. AWS Batch is for queued batch jobs and compute environments. Step Functions is for explicit multi-step waits/retries/branching. Reconcile long jobs into idempotent chunks when simpler and more recoverable.
 
 ### 5. Messaging guarantee
 

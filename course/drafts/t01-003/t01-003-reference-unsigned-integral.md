@@ -5,7 +5,7 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers the unsigned integral type keywords in C# 15, running on .NET 11 GA. The information is based on the Microsoft Learn C# built-in type reference (checked 2026-11-14).
+This lesson covers the unsigned integral type keywords in C# 15, running on .NET 11 GA. The information is based on the Microsoft Learn C# built-in type reference (checked 2026-11-20).
 
 # How this group fits the mental model
 In C#, integral types represent integers. Unsigned types represent zero and nonnegative values, with the same width's full range available above zero (for example, `byte` ranges 0–255 while `sbyte` ranges -128–127). These are value types; physical storage location is implementation- and context-dependent.

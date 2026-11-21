@@ -6,7 +6,7 @@
 
 * **Topic:** Real literal forms in C# numeric literals and numeric conversions.
 * **Scope Boundary:** This reference lesson explains only the supplied inventory items governing real (floating-point and decimal) literal forms in C#. It excludes nonnumeric conversions, arithmetic operator catalogs, parsing APIs, and general integral literals.
-* **Edition and Source Snapshot:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)); checked 2026-11-17.
+* **Edition and Source Snapshot:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)); checked 2026-11-20.
 * **Draft Status:** Automatically generated draft.
 
 ---
@@ -24,7 +24,7 @@ When writing C#, the literal syntax you choose directly determines the compile-t
 * **Decimal suffix M or m:** Appending an `M` or `m` character designates the literal as a `decimal` (`System.Decimal`). The `decimal` type offers high precision and base-10 representation, making it useful when base-10 representation fits the domain; decimal arithmetic has finite precision and can still round.
 * **Double suffix D or d:** Appending a `D` or `d` character explicitly marks the real literal as a `double`. While unadorned real literals default to `double`, adding the suffix explicitly clarifies intent in complex expressions or overloaded method calls.
 * **Exponent notation E or e:** The `E` or `e` character introduces a scale factor expressed as a power of 10 (e.g., `1.5e2` means $1.5 \times 10^2$). Exponent notation can be combined with suffixes (such as `1.5e2f` or `4.2E-3m`) to define fractional numbers of a specific target type.
-* **Digit separator _ in numeric literals:** The underscore character (`_`) can be placed anywhere between digits within a numeric literal (including real and exponent parts) to improve readability. The compiler ignores underscores completely; they have no effect on the numerical value or compile-time type.
+* **Digit separator _ in numeric literals:** The underscore character (`_`) can be used as a digit separator in numeric literals, subject to lexical placement rules (for example, not adjacent to a decimal point or suffix). The compiler ignores underscores completely; they have no effect on the numerical value or compile-time type.
 
 ---
 

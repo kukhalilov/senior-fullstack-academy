@@ -1,6 +1,6 @@
 # system design foundations and infrastructure building blocks — Reference: API versioning and evolution
 
-Sources: [Microsoft API design and versioning guidance](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/api-design), [Google API backward-compatibility guidance](https://docs.cloud.google.com/apis/design), [Microsoft Web API versioning strategies](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design).
+Sources: [Microsoft API design and versioning guidance](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/api-design), [Google API backward-compatibility guidance](https://google.aip.dev/180), [Microsoft Web API versioning strategies](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design), [HTTP Deprecation header](https://www.rfc-editor.org/rfc/rfc9745), [HTTP Sunset header](https://www.rfc-editor.org/rfc/rfc8594).
 
 ## Scope and version
 
@@ -67,7 +67,7 @@ No mechanism removes the cost of supporting old behavior. Multiple live versions
 
 Deprecation is a communication and migration phase, not deletion. Publish replacement guidance, dates or criteria, supported-client policy, security exceptions, and contact paths. Track requests by version and client identity where lawful and reliable; unknown or anonymous clients complicate retirement. Give mobile and partner consumers realistic update windows. Stop retirement if critical consumers remain unless risk or security requires it, and provide a migration/compatibility plan.
 
-If using HTTP deprecation or sunset signaling, follow the relevant standard and implementation guidance; a header is not a substitute for human communication or telemetry. Ensure documentation and SDKs state which versions are supported. Keep emergency security changes possible under a documented policy.
+For HTTP resources, RFC 9745 defines the `Deprecation` response field as lifecycle information that does not itself change resource behavior; RFC 8594 defines `Sunset` to communicate when a resource is expected to become unavailable. These signals are optional communication aids, not a substitute for migration documentation, telemetry, or a retirement plan. Ensure documentation and SDKs state which versions are supported. Keep emergency security changes possible under a documented policy.
 
 ## Compatibility testing and rollout
 

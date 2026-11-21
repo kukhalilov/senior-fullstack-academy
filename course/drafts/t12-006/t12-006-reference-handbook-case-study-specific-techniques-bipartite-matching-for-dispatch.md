@@ -62,4 +62,4 @@ Define objective priorities explicitly: serve more requests, minimize pickup tim
 
 ## Review status
 
-Assignment and solver family descriptions are checked against OR-Tools documentation. The lesson remains pending full claim-by-claim audit and manifest omission check; production matching objectives are domain-specific.
+Assignment, minimum-cost flow, MIP, and CP-SAT descriptions are checked against OR-Tools documentation. The production objective and its fairness/safety priorities are domain policy, not properties supplied by the solver.

@@ -4,7 +4,7 @@ Sources: [Azure Virtual Machines](https://learn.microsoft.com/en-us/azure/virtua
 
 ## Scope and version
 
-This guide compares Azure compute and application-hosting responsibility boundaries, not every VM SKU, runtime version or deployment API field. Service regions and features vary. Current guidance was checked 2026-11-16. Microsoft Learn lists Functions Flex Consumption as the recommended serverless Functions plan. Support for .NET Azure Functions in-process execution ended 2026-11-10; use the isolated-worker support matrix for current .NET deployment planning.
+This guide compares Azure compute and application-hosting responsibility boundaries, not every VM SKU, runtime version or deployment API field. Service regions and features vary. Current guidance was checked 2026-11-20. Microsoft Learn lists Functions Flex Consumption as the recommended serverless Functions plan. Support for .NET Azure Functions in-process execution ended 2026-11-10. Functions 4.x now lists .NET 11 for isolated worker when using Azure.Functions.Sdk 1.0.1 or later and an explicit Microsoft.Azure.Functions.Worker reference; .NET 11 is not available on Linux Consumption. Check the live plan/runtime matrix.
 
 ## How this group fits the mental model
 
@@ -72,9 +72,9 @@ Choose a platform by deciding what the team must control. More abstraction usual
 - `Azure Functions Dedicated plan` — Functions hosted on an App Service Plan with dedicated capacity; scaling is tied to that plan and may be shared with other apps.
 - `Azure Functions trigger` — Event source that starts a function execution, such as HTTP/timer/queue/event input. Trigger-specific concurrency, retries and checkpointing matter.
 - `Azure Functions binding` — Declarative connection between function code and an input/output service, often reducing boilerplate but requiring correct extension/configuration/identity.
-- `Azure Functions isolated worker model` — .NET app runs in a separate process from the Functions host, providing independent dependency/configuration control and support for newer .NET versions per current matrix.
+- `Azure Functions isolated worker model` — .NET app runs in a separate process from the Functions host, providing independent dependency/configuration control. As of 2026-11-20, Functions 4.x lists .NET 11 GA for isolated worker with Azure.Functions.Sdk 1.0.1+ and an explicit Microsoft.Azure.Functions.Worker package; .NET 11 is not supported on Linux Consumption.
 - `Azure Functions in-process model` — .NET function code runs in the host process. Microsoft support ended 2026-11-10; migrate to isolated worker for continued support.
-- `Azure Functions in-process model support end date` — 2026-11-10 according to current Microsoft Learn. This is a lifecycle date; check the official runtime/framework support table before migration.
+- `Azure Functions in-process model support end date` — Support ended on 2026-11-10 according to Microsoft Learn. This is a lifecycle date; check the official runtime/framework support table before migration.
 - `Durable Functions` — Extension for stateful workflows/orchestrations using durable history/checkpointing. Orchestrator code can replay, so it must follow deterministic/replay-safe patterns.
 - `Azure Batch` — Managed service for scheduling parallel batch jobs/tasks across pools of compute nodes; suited to large-scale batch work, not general web ingress.
 - `Azure Service Fabric` — Distributed application platform for microservices and containers with its own cluster and service lifecycle model; it is distinct from AKS.

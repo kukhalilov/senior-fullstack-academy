@@ -6,7 +6,7 @@
 2. Distinguish watch mode, incremental rebuild, a dev server, live reload, and HMR.
 3. What are tree shaking and code splitting? How are they different from minification?
 4. Why can a bundler accept TypeScript syntax while the project still has type errors?
-5. Compare Vite 8.3, Webpack 5, Rollup, esbuild, Parcel 2, Rspack 2.3, Turbopack, Rolldown, Bun.build, and tsc by role.
+5. Compare Vite 8.3, Webpack 5, Rollup, esbuild, Parcel 2, Rspack 2.3.3, Turbopack, Rolldown, Bun.build, and tsc by role.
 6. What changed internally in Vite 8, and why should a plugin be rechecked?
 7. What are the important Webpack 5 changes from Webpack 4?
 8. Is Parcel 3 ready as a stable replacement for Parcel 2? What does its alpha status imply?
@@ -14,6 +14,7 @@
 10. What does sideEffects metadata do, and how can it break production output?
 11. Why is putting an environment variable into a browser bundle not a secret-management strategy?
 12. How do content hashes and preview servers participate in deployment without replacing deployment testing?
+13. What migration check is required for Rspack 2.3.3 HTTP module lockfiles?
 
 ## Concise interview answers
 
@@ -24,11 +25,12 @@
 5. Vite is an integrated frontend workflow; Webpack a configurable loader/plugin system; Rollup an ESM-focused tree-shaker; esbuild a fast transform/build API without HMR; Parcel an integrated low-config tool; Rspack a webpack-compatible Rust bundler; Turbopack the Next.js 16 default bundler for dev/build; Rolldown a standalone Rollup-compatible Rust bundler; Bun.build is runtime-coupled; tsc type-checks/emits but does not bundle the app graph.
 6. Vite 8 unified development and production bundling on Rolldown with Oxc-based transforms. Some Rollup/esbuild hooks/options differ or are unsupported, so test the specific plugin and output. [Vite 8](https://vite.dev/blog/announcing-vite8.html) · [Migration](https://vite.dev/guide/migration)
 7. Webpack 5 added persistent filesystem caching, Module Federation, improved tree shaking, native asset modules, and stopped automatic browser Node-core polyfills. [Webpack 5](https://webpack.js.org/blog/2020-10-10-webpack-5-release/)
-8. No. Parcel 3 was alpha as of 2026-11-18, with declaration generation, custom bundler plugins, and programmatic JavaScript API listed as incomplete. Parcel 2.15 remained the stable line. [Parcel 3 alpha](https://v3.parceljs.org/blog/v3-alpha/)
+8. No. Parcel 3 was alpha as of 2026-11-20, with declaration generation, custom bundler plugins, and programmatic JavaScript API listed as incomplete. Parcel 2.15 remained the stable line. [Parcel 3 alpha](https://v3.parceljs.org/blog/v3-alpha/)
 9. Rspack intentionally offers broad webpack API compatibility but still has migration gaps. Turbopack is tied to Next.js, is default for dev/build in Next.js 16, and supports some webpack loaders through an adapter but not webpack plugins. [Rspack](https://rspack.rs/guide/start/introduction) · [Turbopack](https://nextjs.org/docs/pages/api-reference/turbopack)
 10. It tells the optimizer which modules are safe to omit when exports are unused. Incorrectly marking CSS/polyfills as side-effect-free can delete required behavior.
 11. Browser bundles are public artifacts; build-time replacement embeds values that users can inspect. Keep credentials on the server.
 12. Content hashes give changed assets new URLs for cache invalidation. Preview inspects built files locally, but production hosts/CDNs may differ in base paths, routing, headers, and caching.
+13. Rspack 2.3.3 changes HTTP module lockfile and content-cache naming to match webpack. Delete and regenerate files written in the old Rspack format before enabling frozen builds; review and commit regenerated lockfiles. [Rspack releases](https://github.com/web-infra-dev/rspack/releases)
 
 ## Deep follow-up answers
 
@@ -107,6 +109,7 @@ A syntax transformer may erase TypeScript syntax without semantic checking. Add 
 - “All Vite plugins work in Vite 8.” Migration docs list unsupported/changed behavior.
 - “Turbopack supports Webpack plugins.” It does not; loader support is partial.
 - “Rspack is a drop-in replacement in every project.” Verify each integration and output.
+- “Existing Rspack HTTP module lockfiles work unchanged after upgrading to 2.3.3.” The format changed; regenerate them before using frozen builds.
 - “Parcel 3 is the latest stable Parcel.” It is alpha in this snapshot; Parcel 2 remains stable.
 - “Environment variables are private if injected at build time.” Client output is inspectable.
 

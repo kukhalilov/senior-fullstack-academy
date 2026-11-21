@@ -4,7 +4,7 @@ Sources: [HLD Handbook](https://hld.handbook.academy/), [Harness FME overview](h
 
 ## Scope and version
 
-Harness Feature Management & Experimentation (FME) combines feature flags, controlled rollouts, experiment assignment, metrics, and release monitoring. The official documentation was checked on 2026-11-17. SDK APIs, supported clients, statistical options, product entitlements, and pipeline steps evolve; use the specific SDK and account documentation for implementation details. This lesson separates safe delivery from causal measurement: a rollout can reduce release risk without proving that a treatment improved a product metric.
+Harness Feature Management & Experimentation (FME) combines feature flags, controlled rollouts, experiment assignment, metrics, and release monitoring. The official documentation was checked on 2026-11-21. SDK APIs, supported clients, statistical options, product entitlements, and pipeline steps evolve; use the specific SDK and account documentation for implementation details. This lesson separates safe delivery from causal measurement: a rollout can reduce release risk without proving that a treatment improved a product metric.
 
 ## How this group fits the mental model
 
@@ -79,3 +79,7 @@ Experiment tooling does not guarantee randomization quality or causal validity. 
 ## Practice
 
 Plan an experiment for a new search ranking. Define eligibility and randomization unit, control and treatment, exposure event, primary metric, guardrails, sample-size rationale, rollout stages, outage behavior, and cleanup plan. Explain how you would distinguish an operational canary from an experiment and what would make the results inconclusive.
+
+## Review status
+
+Reviewed 2026-11-21. Harness's current FME docs were checked for SDK-side evaluation and refresh behavior, impression and metric definitions, experiment configuration, Java SDK capabilities, pipeline metric checks, rollout gating, and permissions. The lesson correctly distinguishes assignment from rendered exposure and progressive delivery from causal inference; vendor-specific SDK behavior remains explicitly version-bound. No material factual corrections or missing core concepts were found.

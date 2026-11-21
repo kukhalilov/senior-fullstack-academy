@@ -11,6 +11,8 @@ Separate database, network, and EF costs; explain why generated SQL is not a per
 Understand LINQ query composition, relational tables and joins, indexes, `DbContext`, change tracking, and async database calls. Provider-specific physical plan operators belong in the database track; the workflow here applies across providers.
 
 ## Core concepts
+For an endpoint-level investigation, trace the full path before tuning EF Core: browser and application work can dominate even when a query is involved. At the data boundary, count commands, inspect selected columns and rows, and compare actual SQL plans/waits using representative parameters and data. Apply a change such as projection, keyset pagination, or query reshaping, then remeasure end-to-end p95 as well as database resource cost. This connects the detailed techniques here to the integrated performance engineering topic.
+
 
 ### Diagnose before changing code
 

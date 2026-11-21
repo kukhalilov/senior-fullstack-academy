@@ -9,7 +9,7 @@
 This reference lesson covers the exact named inventory item: **float to double (implicit numeric conversion)** within C# numeric conversions.
 
 - **Scope boundary:** This lesson strictly explains the mechanics and implications of converting a single-precision floating-point value (`float`) to a double-precision floating-point value (`double`) implicitly. Nonnumeric conversions, explicit narrowing casts, and parsing APIs are excluded.
-- **Edition and checked date:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17.
+- **Edition and checked date:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-20.
 - **Reference citation:** [Microsoft Learn Numeric Conversions Table](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions) [1].
 
 # How this group fits the mental model

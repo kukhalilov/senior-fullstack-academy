@@ -9,7 +9,7 @@
 - **Topic:** C# numeric literals and numeric conversions
 - **Assigned Inventory Group:** Explicit numeric conversions from `char`
 - **Edition / Scope:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions))
-- **Checked Date:** 2026-11-14
+- **Checked Date:** 2026-11-20
 
 ---
 

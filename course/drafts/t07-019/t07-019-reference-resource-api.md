@@ -14,7 +14,7 @@ Ordinary Hooks associate stateful behavior with a component's stable call order.
 
 Promise state has important ownership constraints. Pass a stable Promise created by a data/framework layer; creating a new Promise during each Client Component render can repeatedly suspend and produce an “uncached promise” warning. If the Promise is pending, place a suitable `<Suspense>` boundary above it. If it rejects, a nearest Error Boundary handles the failure; a Suspense fallback is not an error UI. A Promise's resolved value must be usable by the environment and framework. Do not assume `use` itself fetches, caches, deduplicates, retries, or authorizes the request. [use](https://react.dev/reference/react/use)
 
-The `browser()` resource is exported from `react-dom` and passed to `use`; it is not imported from `react`. In server rendering it causes the nearest Suspense boundary to remain on fallback for browser-only content, then `use(browser())` returns `undefined` in the browser. It must run in a Client Component and under Suspense during server rendering. [browser](https://react.dev/reference/react-dom/browser)
+The `browser(reason?)` resource is exported from `react-dom` and passed to `use`; it is not imported from `react`. Its optional reason is a string or a function whose returned string is supplied as the cause for the server renderer’s `onBrowserBailout` callback. In server rendering it causes the nearest Suspense boundary to remain on fallback for browser-only content, then `use(browser())` returns `undefined` in the browser. It must run in a Client Component and under Suspense during server rendering; calling `browser()` alone has no effect. [browser](https://react.dev/reference/react-dom/browser)
 
 ## Cross-item comparison
 

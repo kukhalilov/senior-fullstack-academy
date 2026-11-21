@@ -78,7 +78,7 @@ Console.WriteLine(name!.Length); // Assertion: "I know this isn't null"
     *   **Answer:** No. The annotation affects compiler analysis and emitted nullability metadata, but does not create a distinct runtime type or automatic check.
 
 2.  **Question:** What is the difference between `Nullable<T>.Value` and `GetValueOrDefault()`?
-    *   **Answer:** `Value` throws an `InvalidOperationException` if no value is present. `GetValueOrDefault()` returns `default(T)), or the supplied fallback overload; use a fallback only when it matches the domain meaning.
+    *   **Answer:** `Value` throws an `InvalidOperationException` if no value is present. `GetValueOrDefault()` returns `default(T)`, or the supplied fallback overload; use a fallback only when it matches the domain meaning.
 
 3.  **Question:** Why would you use `[NotNullWhen(true)]` on a method parameter?
     *   **Answer:** To describe the method's conditional postcondition to the compiler. For example, `[NotNullWhen(true)]` states that the annotated parameter is not null when the method returns true; the implementation must uphold that contract.

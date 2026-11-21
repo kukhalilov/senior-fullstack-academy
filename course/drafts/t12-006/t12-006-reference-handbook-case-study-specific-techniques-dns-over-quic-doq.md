@@ -1,60 +1,53 @@
 # end-to-end system design case studies — Reference: DNS over QUIC (DoQ)
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [RFC 9250: DNS over Dedicated QUIC Connections](https://www.rfc-editor.org/rfc/rfc9250.html), [RFC 9000: QUIC transport](https://www.rfc-editor.org/rfc/rfc9000.html), [RFC 8932: Recommendations for DNS Privacy Service Operators](https://www.rfc-editor.org/rfc/rfc8932.html), [RFC 4033: DNSSEC introduction and requirements](https://www.rfc-editor.org/rfc/rfc4033.html).
+Sources: [RFC 9250: DNS over Dedicated QUIC Connections](https://www.rfc-editor.org/rfc/rfc9250.html), [RFC 7858: DNS over TLS](https://www.rfc-editor.org/rfc/rfc7858.html), [RFC 8310: DNS privacy usage profiles](https://www.rfc-editor.org/rfc/rfc8310.html), [RFC 9499: DNS Terminology](https://www.rfc-editor.org/rfc/rfc9499.html).
 
 ## Scope and version
 
-This lesson covers the standardized DNS-over-QUIC mapping in RFC 9250 for client/stub-to-recursive-resolver use. It does not describe generic DNS carried over arbitrary QUIC streams. Check current resolver/client support, QUIC version negotiation, network policy, and operational behavior before deployment.
+DNS over QUIC (DoQ) is standardized by RFC 9250 as DNS messages mapped directly onto dedicated QUIC connections. It can serve stub-to-recursive, recursive-to-authoritative, and nameserver-to-nameserver scenarios. DoQ is distinct from DNS over HTTP/3: both can use QUIC, but DoH retains HTTP request/response semantics while DoQ uses its own DNS-to-QUIC stream mapping. Verify current resolver/client implementation support and authentication profile.
 
 ## How this group fits the mental model
 
-DoQ carries DNS messages over QUIC, which uses UDP as its underlying transport and provides encrypted connections via TLS 1.3 as part of QUIC. It gives a privacy-protected channel from the client to the selected resolver and multiplexes independent streams without TCP’s transport-level head-of-line blocking across those streams. It cannot prevent all packet loss effects within one stream, hide the query from the resolver, or guarantee that UDP traffic will pass through every network.
+QUIC provides encrypted transport with multiplexed streams. RFC 9250 maps each DNS query/response transaction to a separate QUIC stream, allowing independent transactions to complete without waiting for earlier streams blocked by packet loss. A connection can be reused for multiple queries. The design aims for privacy properties similar to DoT and latency characteristics similar to DNS over UDP, but real performance depends on connection reuse, network loss, server location, and implementation.
 
-RFC 9250 specifies UDP port 853 by default and says DoQ must not use UDP port 53, avoiding confusion with classic DNS over UDP. Client and resolver support are both required. As with DoT and DoH, the resolver is a trust choice, and DNSSEC remains a separate mechanism for validating DNS data origin/integrity.
+Encrypted transport does not hide the query from the recursive resolver, which must resolve it. A client must authenticate the resolver under its chosen usage profile; otherwise encryption alone may not prevent active endpoint substitution. DoQ also does not prevent a network from blocking QUIC or port 853. Define an explicit fallback policy and understand whether it can send queries in cleartext.
 
 ## Supplied names explained
 
-- **QUIC connection:** secure transport over UDP with connection establishment, loss recovery, congestion control, and stream multiplexing as defined by QUIC specifications.
-- **DoQ:** DNS message mapping over dedicated QUIC connections with the `doq` ALPN identifier and protocol-specific stream/message rules defined by RFC 9250.
-- **UDP port 853:** default destination port for DoQ in RFC 9250; use of port 53 is prohibited by the specification.
-- **Connection migration:** QUIC’s ability to maintain a connection across some network path/address changes, subject to protocol validation and implementation/network behavior; it does not guarantee continuity through all address changes or outages.
-- **DNSSEC:** validates signed DNS data; separate from encryption of the client-resolver path.
+- **DoQ**: DNS-over-QUIC mapping defined in RFC 9250. It uses dedicated QUIC connections, not HTTP semantics.
+- **QUIC connection**: encrypted transport connection supporting independent streams, congestion control, connection IDs, and migration behavior. Connection lifecycle and resource limits are operational concerns.
+- **DNS transaction stream**: RFC 9250 maps a query/response transaction to a QUIC stream so parallel DNS responses need not be delivered in query order.
+- **Port selection**: RFC 9250 reserves UDP port 853 for DoQ; a mutually agreed alternative such as UDP 443 may be operationally useful but requires shared configuration/discovery.
+- **Server authentication**: DoQ follows DNS privacy usage-profile guidance for authenticating the intended resolver. The resolver still sees and can log queries.
+- **0-RTT/session resumption**: QUIC can reduce connection setup latency on resumed sessions. Early data has replay/privacy considerations; clients and servers should follow RFC 9250’s guidance rather than enabling it without review.
+- **Fallback**: if DoQ connection establishment fails, clients may use DoT or another configured transport depending on policy. Fallback to cleartext DNS weakens confidentiality and must be an intentional choice.
 
 ## Cross-item comparison
 
-| Protocol | Client transport | Practical deployment considerations |
-| --- | --- | --- |
-| DoT | TLS over TCP, default port 853 | Familiar TCP firewall behavior; persistent connections can be reused; TCP handshake and transport behavior apply |
-| DoH | DNS messages over HTTPS | Can use HTTP infrastructure and ports; shares web transport paths but requires endpoint discovery/policy and may complicate network-level DNS visibility/control |
-| DoQ | QUIC over UDP, default port 853 | Stream multiplexing and QUIC connection behavior can help latency and network migration, but UDP reachability, client/server support, and QUIC-aware operations matter |
-| Classic DNS | Usually UDP or TCP port 53 | Broad compatibility, but transport is not encrypted by itself; use other security mechanisms as needed |
+DoQ is a direct DNS mapping over QUIC with independent stream delivery. DoT maps DNS over TLS over TCP and uses a dedicated TCP service, conventionally port 853. DoH maps DNS messages into HTTP exchanges and may use HTTP/3, gaining HTTP proxy/cache behavior while adding HTTP semantics. Classic UDP DNS has low setup overhead but no transport confidentiality and can be modified by on-path actors.
 
-No protocol is automatically “fastest” or “most private” in every network. Measure connection setup, reuse, loss, resolver latency, battery/resource use, fallback behavior, and network blocking for the target clients.
+The preferred protocol depends on client/resolver support, enterprise firewall policy, endpoint discovery, connection behavior, and privacy requirements. QUIC’s reduced head-of-line blocking does not guarantee lower DNS latency when the connection is cold or the resolver is far away.
 
 ## Examples
 
-A mobile device moves from Wi-Fi to cellular during a session with its recursive resolver. QUIC may be able to migrate the connection after validating the new path, avoiding a full connection restart in some conditions. If UDP 853 is blocked, DoQ cannot be assumed to work; the client needs a documented alternative such as another supported encrypted DNS transport or a policy-defined error. Silent fallback to plaintext can violate the privacy contract.
+A stub sends simultaneous A and AAAA queries over a reused DoQ connection. Each transaction uses its own stream, so loss affecting one stream need not block delivery of the other transaction’s response. The resolver validates and processes both, then returns DNS messages over their respective streams. The client authenticates the configured resolver, handles errors, and applies DNS cache TTLs as usual.
 
-At the service, monitor connection establishment failures, handshake/ALPN errors, UDP reachability, stream resets, packet loss, query latency, resolver error rates, and traffic by client/network type. Do not assume a successful QUIC handshake proves the DNS service can answer correctly; correlate DNS-layer results and DNSSEC validation separately.
+For a mobile client changing networks, QUIC connection migration may help retain connectivity where supported, but it can reveal network changes and has privacy considerations. Test IPv4/IPv6, UDP blocking, captive portals, connection reuse, 0-RTT behavior, resolver failover, and fallback policy. Monitor connection establishment failures and latency separately from DNS resolution failures.
 
 ## Common mistakes
 
-- Confusing DoQ with DNS sent over any QUIC-capable HTTP service; RFC 9250 specifies a dedicated DNS mapping.
-- Using UDP port 53 for DoQ despite RFC 9250’s explicit port rule.
-- Assuming QUIC migration always works or preserves a connection across any network disruption.
-- Assuming UDP 853 is universally reachable or that every client/resolver supports DoQ.
-- Claiming DoQ conceals query names from the resolver or makes DNSSEC unnecessary.
-- Treating lower transport setup time as proof that end-to-end DNS resolution is faster in a particular deployment.
-- Silently downgrading to unencrypted DNS when QUIC is blocked without accounting for the privacy promise.
-- Monitoring only QUIC connection success and ignoring resolver correctness, DNSSEC state, and answer latency.
+- Calling DNS over HTTP/3 “DoQ”; RFC 9250 defines a direct DNS/QUIC mapping.
+- Assuming the resolver cannot see queries because QUIC encrypts the connection.
+- Assuming DoQ cannot be blocked by middleboxes.
+- Enabling 0-RTT without considering replay and privacy guidance.
+- Falling back to cleartext without making the privacy trade-off explicit.
+- Treating QUIC’s stream independence as a guarantee of faster DNS in every network.
+- Forgetting endpoint authentication and resolver identity configuration.
+- Assuming classic DNSSEC validation behavior is replaced by DoQ.
 
 ## Knowledge checks with answers
 
-1. **What transport and default port does RFC 9250 specify?** DoQ uses QUIC over UDP and defaults to UDP port 853; it must not use UDP port 53.
-2. **Does DoQ prevent the resolver from seeing a domain lookup?** No. It protects the transport to the resolver; that resolver processes the query.
-3. **If a client changes networks, is the existing DoQ connection guaranteed to survive?** No. QUIC supports migration under its protocol conditions, but path validation, network changes, peer behavior, and implementation determine the outcome.
-4. **Why might an operator offer DoT or DoH as well?** Client support and network reachability differ. The fallback policy should preserve the stated privacy level and be measured rather than silently downgrading.
-
-## Review status
-
-The dedicated mapping, ALPN, transport, and port rules are checked against RFC 9250; QUIC transport behavior against RFC 9000. Privacy and DNSSEC distinctions are checked against RFC 8932 and RFC 4033. This lesson remains pending full claim-by-claim audit and manifest omission check.
+1. **What is the key DoQ transport?** Dedicated QUIC connections with DNS transactions mapped to streams.
+2. **Does DoQ use HTTP semantics?** No. DoH does; DoQ defines its own mapping over QUIC.
+3. **Can the recursive resolver inspect the question?** Yes. Encryption protects the transport path to that resolver, not the resolver from the query.
+4. **Why specify fallback carefully?** A fallback may change privacy, authentication, and availability properties, especially if it uses cleartext DNS.

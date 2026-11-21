@@ -4,7 +4,11 @@ Sources: [official reference 1](https://git-scm.com/docs/git-rebase), [official 
 
 ## Scope and version
 
-This guide covers the exact assigned inventory for Git 2.54 documentation checked 2026-11-14. Git’s availability and defaults depend on the installed version and configuration; check `git --version` and command help before relying on a new option. Path-oriented `git checkout` remains explained for compatibility, while focused `git switch` and `git restore` commands make intent clearer. [Git 2.54 documentation](https://git-scm.com/docs/git/2.54.0)
+This guide covers the exact assigned inventory for Git 2.56.1 documentation checked 2026-11-20. Git’s availability and defaults depend on the installed version and configuration; check `git --version` and command help before relying on a new option. Path-oriented `git checkout` remains explained for compatibility, while focused `git switch` and `git restore` commands make intent clearer. [Git 2.56.1 documentation](https://git-scm.com/docs/git/2.56.1)
+
+## Recent version changes
+
+Git 2.56.1 is the current release checked on 2026-11-20. Git 2.56 added the conflict-focused `git add --resolved` workflow and `git branch --delete-merged` for cautious branch cleanup. The experimental `git history drop` helper also gained a `drop` subcommand; it is still experimental and cannot operate on histories containing merge commits. See [Git 2.56 highlights](https://github.blog/open-source/git/highlights-from-git-2-56/) and the [Git 2.56.1 manual](https://git-scm.com/docs/git/2.56.1).
 
 ## How this group fits the mental model
 
@@ -13,6 +17,7 @@ Integration combines independent histories while preserving or rewriting their s
 ## Supplied names explained
 
 - `git branch` — Lists, creates, renames, or deletes branch references depending on options.
+- `git branch --delete-merged` — In Git 2.56+, bulk-deletes local branches whose tips are reachable from their matching upstreams; supports dry-run and skips unsafe/ambiguous candidates. Review the candidates before deleting.
 - `git switch` — Changes the current branch or detached checkout; it is focused on branch switching.
 - `git switch -c` — Creates a branch and switches to it in one operation.
 - `git checkout` — Legacy multi-purpose command for switching branches or restoring paths; prefer focused switch/restore forms for clarity.
@@ -30,6 +35,7 @@ Integration combines independent histories while preserving or rewriting their s
 - `Merge base` — A best common ancestor of the histories being combined, used as the comparison base for three-way integration.
 - `git merge-base` — Finds a best common ancestor used to understand divergence and three-way integration.
 - `git mergetool` — Launches a configured merge tool for conflicted paths; inspect and test the result afterward.
+- `git add --resolved` — In Git 2.56+, stages only currently unmerged paths after checking regular files for leftover conflict markers; unrelated modified files are left unstaged. This is a safer conflict-resolution staging option than broad `git add -u`.
 - `git merge --continue` — Completes a merge after conflicts are resolved and staged.
 - `git merge --abort` — Attempts to return to the pre-merge state; preserve unrelated edits before starting risky operations.
 - `git rebase` — Replays commits onto a new base, creating new commit identities.
@@ -64,10 +70,6 @@ Rebasing shared work without coordination; choosing ours/theirs based on intuiti
 
 ## Knowledge checks with answers
 
-1. **Which state contains the proposed next snapshot?** The index.
-2. **Why does amending or rebasing change commit identity?** The commit object and/or parent relationship changes, producing a different object.
-3. **What is the safe response to a conflict?** Inspect operation roles, edit the desired result, stage and review, then continue or abort.
-4. **How do restore, reset, and revert differ?** Restore targets paths, reset moves local HEAD/ref and may reset index/worktree, and revert records an inverse commit.
-5. **What does fetch do without pull?** It downloads objects and updates local remote-tracking references without integrating into the current branch.
-6. **What are reflog limits?** It records local ref movements, can expire, and is not available as another clone’s backup.
-
+1. **What does a branch name identify?** A movable reference to a commit, not a separate copy of all files.
+2. **How does merge differ from rebase?** Merge records integration of histories; rebase replays commits onto a new base and changes their identities.
+3. **What should you inspect after conflict resolution?** The resulting diff, tests, and intended parent/history shape before completing integration.

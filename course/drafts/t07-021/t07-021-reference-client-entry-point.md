@@ -10,10 +10,10 @@ A root connects React's update lifecycle to one browser DOM container. Create a 
 
 ## Supplied names explained
 
-- `createRoot` from `react-dom/client` creates a new client root for a DOM container. Calling `root.render(node)` initially clears existing children in that container. Optional root options include error callbacks and identifier-prefix support for advanced multi-root/hydration setups. Do not use it to attach to server output.
-- `hydrateRoot` from `react-dom/client` attaches React to existing server-rendered HTML and returns a root. Its second argument is the React tree expected to match that HTML. Root options include recoverable error reporting and identifier prefixes. Initial server/client mismatch can cause React to regenerate content; avoid depending on patching arbitrary mismatch details.
-- `root.render` updates the React tree owned by a root returned from `createRoot` or `hydrateRoot`. Keep the same root and call this for later top-level updates; do not create a new root per update. For a hydrated root, its initial tree is supplied to `hydrateRoot`.
-- `root.unmount` stops React rendering into the container and runs cleanup for the tree. Call it when a third-party host removes the container or when an embedded root's lifetime ends. An unmounted root cannot be reused; create a new root if mounting again.
+- `createRoot(domNode, options?)` creates a client root and returns `{render, unmount}`. `options` may include `onCaughtError(error, errorInfo)`, `onUncaughtError(error, errorInfo)`, `onRecoverableError(error, errorInfo)`, and `identifierPrefix`. Each `errorInfo` includes `componentStack`; a recoverable error may carry its original cause in `error.cause`. Its first `root.render(node)` clears existing container HTML. Use `hydrateRoot` for React server/build HTML and `createPortal` for content elsewhere in the DOM tree.
+- `hydrateRoot(domNode, reactNode, options?)` attaches React to existing React-generated HTML and returns `{render, unmount}`. In addition to the three error callbacks and `identifierPrefix`, options include `formState` for the matching server-function submission state used with `useActionState` and a permalink. The `identifierPrefix` and `formState` must match the server values. The initial client tree must match the server output; mismatches are bugs, may not be patched, and React can recover by client-rendering content.
+- `root.render(reactNode)` accepts a React node and returns `undefined`. Repeated calls update the same root. It is not a promise that effects have fired when it returns; use `flushSync` only for rare cases that require synchronous DOM/effect timing. Calling it before hydration finishes clears the server HTML and switches the entire root to client rendering.
+- `root.unmount()` takes no arguments, returns `undefined`, unmounts the entire tree, removes handlers/state and lets effects clean up subscriptions. It is mainly needed when other code can remove the root container or an ancestor. That root cannot be rendered again; a new root is required.
 
 ## Cross-item comparison
 
@@ -39,7 +39,8 @@ The marker is illustrative: production code should have an explicit, trusted ren
 
 ## Common mistakes
 
-- Calling `root.render` immediately after `hydrateRoot` with a different tree and assuming mismatch is repaired harmlessly.
+- Calling `root.render` before hydration completes, which can discard all server markup and switch the root to client rendering.
+- Using mismatched `identifierPrefix` values between server rendering and hydration, which can produce inconsistent `useId` values.
 - Calling `createRoot` on server HTML.
 - Creating multiple roots for repeated updates in one container.
 - Calling `root.render` after `root.unmount`.

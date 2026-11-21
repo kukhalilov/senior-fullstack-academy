@@ -28,7 +28,7 @@ Model the domain explicitly: an intent is directional (`A → B`), while a match
 
 ## Concurrency and consistency
 
-Consider nearly simultaneous likes: transaction T1 writes A→B and sees no B→A; T2 writes B→A and sees no A→B. If both commit without serialization, the reciprocal predicate becomes true but neither creates a match. Possible solutions include serializable transactions with retry, locking a canonical pair row/key, or a single-writer partition per pair. A unique constraint prevents duplicates but does not alone prevent a missed match; after writing intent, the transaction must reliably re-check or a reconciliation process must repair missed pairs.
+Consider nearly simultaneous likes: transaction T1 writes A→B and sees no B→A; T2 writes B→A and sees no A→B. If both commit without serialization, the reciprocal predicate becomes true but neither creates a match. Possible solutions include serializable transactions with retry, a lock that protects the canonical pair key (for example, a pre-existing lock row or transaction-scoped advisory lock), or a single-writer partition per pair. A unique constraint prevents duplicate pair rows but does not alone prevent a missed match. Under PostgreSQL Serializable, retry serialization failures and still handle possible unique violations; after writing intent, reliably re-check reciprocity or use reconciliation to repair missed pairs.
 
 In a multi-region design, decide whether a user expects immediate global reciprocity. Asynchronous replication can delay the reverse like, so a local check may temporarily miss a valid match. Options include routing both directions for a pair to one authoritative region/partition, using a globally consistent database, or accepting delayed match creation with a reliable reconciliation event. Do not claim strong consistency from cross-region replicas without a database guarantee that provides it.
 
@@ -78,3 +78,7 @@ A blocks B while a reciprocal like is being processed. Define the serialization 
 ## Practice
 
 Design this flow with two active-active regions. Specify the canonical pair key, transaction/partition strategy, behavior under delayed replication, idempotency key, outbox event, block race, deletion policy, read authorization, and reconciliation metrics. Explain which consistency guarantees the database actually provides and what the user experiences during a cross-region delay.
+
+## Review status
+
+Reviewed 2026-11-21. PostgreSQL uniqueness, transaction isolation, and serialization-retry behavior were checked against current database documentation; the transactional outbox reference supports atomic event recording with at-least-once relay; Gale–Shapley source supports the distinction from stable assignment. Added a concrete warning that an absent row cannot be row-locked and that PostgreSQL Serializable may still raise unique violations. The lesson distinguishes directed intent from canonical pair state and includes block, deletion, retry, authorization, and cross-region cases. No material omissions remain in the supplied topic scope.

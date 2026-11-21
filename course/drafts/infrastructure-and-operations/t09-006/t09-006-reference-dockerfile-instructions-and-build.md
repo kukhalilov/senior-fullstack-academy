@@ -4,7 +4,7 @@ Sources: [Dockerfile reference](https://docs.docker.com/reference/dockerfile/), 
 
 ## Scope and version
 
-The stable instruction set and BuildKit-specific extensions are distinguished below. The docs page includes `docker/dockerfile:1-labs` features that are explicitly experimental; do not use them without accepting syntax instability. Buildx, BuildKit, Docker Engine, and Dockerfile frontend versions are independent. The latest Engine checked is 29.10.0 on 2026-11-16; inspect the selected builder and frontend before relying on a feature.
+The stable instruction set and BuildKit-specific extensions are distinguished below. The docs page includes `docker/dockerfile:1-labs` features that are explicitly experimental; do not use them without accepting syntax instability. Buildx, BuildKit, Docker Engine, and Dockerfile frontend versions are independent. The latest Engine checked is 29.10.0 on 2026-11-20; inspect the selected builder and frontend before relying on a feature.
 
 ## How this group fits the mental model
 

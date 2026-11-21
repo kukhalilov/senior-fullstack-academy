@@ -20,8 +20,7 @@ Use the item descriptions above to compare purpose, guarantee, and cost. Choose 
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
-
+Before fetching a site path, retrieve and parse the applicable robots policy for the origin. Cache the policy only within its HTTP freshness rules, apply the specified matching group and longest-match behavior, and distinguish a successful policy response from unavailable or unreachable policy retrieval. Robots rules guide crawler behavior; they are not access control and do not authorize bypassing authentication or server restrictions.
 ## Common mistakes
 
 - Selecting a component by popularity before defining the requirement.

@@ -10,8 +10,10 @@ Static prerender generates complete output after suspended work is ready. The AP
 
 ## Supplied names explained
 
-- `prerenderToNodeStream` renders a React tree to static HTML using a Node.js stream and waits for suspended content. The returned promise resolves with the stream and possible postponed work information for a matching resume workflow. It is suited to static generation/complete output, not progressive SSR. Configure bootstrap scripts, error handling, nonce, and identifier prefix where the application needs them.
-- `resumeAndPrerenderToNodeStream` continues a tree previously postponed by `prerenderToNodeStream` and returns the remaining static HTML as a Node.js stream. It is not a generic way to resume an arbitrary render or the result of `renderToPipeableStream`.
+- `prerenderToNodeStream(reactNode, options?)` expects a full-document tree and returns a promise for `{prelude, postponed}`. It waits for all Suspense data unless aborted; `postponed` is JSON-serializable opaque state for `resumeToPipeableStream` and is `null` if complete. Options: `bootstrapScriptContent`, `bootstrapScripts`, `bootstrapModules`, `identifierPrefix`, `importMap`, `maxHeadersLength`, `namespaceURI`, `onBrowserBailout`, `onError`, `onHeaders`, `progressiveChunkSize`, and `signal`. `nonce` is unavailable in prerender output because it must be unique per request.
+- `resumeAndPrerenderToNodeStream(reactNode, postponedState, options?)` continues the same tree from `prerenderToNodeStream` or a previous resume, returning `{prelude, postponed}`. Options are `signal`, `onBrowserBailout`, and `onError`. It can be aborted and resumed again, or the partial result can be sent to `resumeToPipeableStream` for progressive completion. It is a static-generation continuation, not a generic continuation of a streaming SSR result.
+
+Partial prerendering is an intentional workflow: the render may use React's `postpone()` mechanism, or the static call may be aborted with `signal`, yielding serializable opaque `postponed` state. Persist it with the matching app/tree and resume with the corresponding API; `null` means no resume work remains. Do not inspect or mutate this renderer-owned value.
 
 ## Cross-item comparison
 
@@ -36,7 +38,8 @@ Consume or write the returned Node stream according to the static generation pip
 - Expecting content to stream while suspended work is still pending.
 - Using the Web Stream API in Node without considering the dedicated Node implementation.
 - Calling `resumeAndPrerenderToNodeStream` without a compatible postponed tree.
-- Treating static generated output as automatically interactive/hydratable.
+- Assuming the static API has a `nonce` option; it does not, because static output could be reused across requests.
+- Treating `postponed: null` as missing data; it means the prerender finished and resume is unnecessary.
 
 ## Knowledge checks with answers
 

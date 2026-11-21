@@ -60,4 +60,4 @@ For a container platform, verify that the runtime actually places every process/
 
 ## Review status
 
-The cgroup v2 controller descriptions and overcommit/protection caveats are checked against Linux kernel docs. This lesson remains pending full claim-by-claim and manifest omission audit.
+The cgroup v2 controller descriptions and overcommit/protection caveats are checked against the Linux kernel’s cgroup v2 and namespace documentation. Exact controller availability and effects depend on the running kernel, device, and host manager as stated above.

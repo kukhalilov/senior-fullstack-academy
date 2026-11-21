@@ -13,7 +13,7 @@
 *   Recognize how runtime updates (like .NET 9/11) affect floating-point to integer conversions.
 
 ## Worked Example
-In C#, the compiler assigns a type to a literal based on its suffix. If you omit a suffix, the compiler defaults to `int` for integers and `double` for real numbers.
+In C#, the compiler assigns a type to a literal based on its suffix. An unsuffixed integer literal selects the first fitting type from `int`, `uint`, `long`, and `ulong`; real literals without a suffix are `double`.
 
 ```csharp
 // Literals
@@ -72,7 +72,7 @@ checked {
 ### Exercise 2
 1. Valid (Implicit).
 2. **Error**: Cannot implicitly convert `long` to `int` because `long` is larger. Requires an explicit cast.
-3. Valid (implicit constant-expression conversion: 10 is exactly representable as float; a general int variable can also implicitly convert with possible precision loss).
+3. Valid: the integer constant `10` has an implicit constant-expression conversion to `float`; by contrast, a general `int` variable converts implicitly to `float` but can lose precision for large values.
 
 ### Exercise 3
 This checked floating-point-to-integral conversion throws `OverflowException` because the truncated value is outside the `int` range.

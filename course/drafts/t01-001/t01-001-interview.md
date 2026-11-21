@@ -22,7 +22,7 @@
 *   **What is the role of the Runtime Identifier (RID)?**
     The RID specifies the target operating system and CPU architecture (e.g., `win-x64`, `linux-arm64`). It is used for platform-specific builds and self-contained deployments.
 *   **What is the difference between LTS and STS releases?**
-    Under current Microsoft policy, STS releases have 24 months of support. LTS releases have a minimum of three years or one year after the next LTS release, whichever is later. As of 2026-11-17, .NET 10 LTS and .NET 11 STS are both supported until November 2028.
+    Under current Microsoft policy, STS releases have 24 months of support. LTS releases have a minimum of three years or one year after the next LTS release, whichever is later. As of 2026-11-20, .NET 10 LTS and .NET 11 STS are both supported until November 2028; these tracks do not imply a difference in release quality.
 
 # Deep follow-up answers
 

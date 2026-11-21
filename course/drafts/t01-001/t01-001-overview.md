@@ -39,7 +39,7 @@ Imagine you are building a simple console application:
 # When to use it and tradeoffs
 *   **Modern .NET:** It is Microsoft's primary cross-platform implementation and a common choice for new applications; verify workload, platform, library, and lifecycle requirements for the specific project.
 *   **.NET Framework:** It remains a supported Windows implementation for existing applications and Windows-specific workloads; evaluate migration requirements rather than treating it as an unsupported product.
-*   **LTS vs. STS:** As of 2026-11-17, .NET 10 is LTS and .NET 11 is STS; both are supported through November 2028. STS support is 24 months, while LTS is at least 3 years or one year after the next LTS ships if later. Choose from Microsoft's current lifecycle and the application's upgrade needs, not a presumed support-length difference for these two releases.
+*   **LTS vs. STS:** As of 2026-11-20, .NET 10 is LTS and .NET 11 is STS; both are supported through November 2028. STS support is 24 months, while LTS is at least 3 years or one year after the next LTS ships if later. Microsoft states the release quality is the same; choose from lifecycle and application upgrade needs.
 *   **Tradeoff:** Self-contained deployments include the runtime and are usually larger; framework-dependent deployments rely on a compatible installed runtime and can simplify centralized runtime servicing. Neither packaging mode makes an app portable across incompatible OSes or architectures.
 
 # What later lessons cover

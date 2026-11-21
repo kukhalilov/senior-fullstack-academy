@@ -252,23 +252,19 @@ The request trailer helpers distinguish declaration from received trailer values
 
 ## Cross-item comparison
 
-Compare only the supplied names here. Stream properties offer sequential access; pipe properties offer segmented buffers and explicit cursors. Buffered form binding is convenient for bounded files; multipart streaming handles large input with greater application responsibility. Response callbacks surround the commit point, while body writes/flushes may cause it. File result types differ by byte source (content, path, virtual path, or stream) and share authorization/range/metadata decisions.
-
+Request metadata and headers describe the current exchange; they are not trusted identity claims by themselves. RequestServices exposes scoped dependencies, while storing HttpContext or its services beyond request lifetime is unsafe. Typed header views help parse field structure but do not remove the need to validate values.
 ## Examples
 
+Read only the metadata needed for a request and use a correlation value generated or validated by trusted middleware. Do not trust client-supplied forwarding headers unless the sender is a configured proxy.
+
 ```csharp
-app.MapPost("/echo", async (HttpContext context, CancellationToken cancellationToken) =>
+app.MapGet("/orders", (HttpContext context) =>
 {
-    var input = await context.Request.ReadFromJsonAsync<EchoRequest>(cancellationToken);
-    if (input is null) return Results.BadRequest();
-    return Results.Json(new { message = input.Message });
+    var requestId = context.TraceIdentifier;
+    var accept = context.Request.Headers.Accept.ToString();
+    return Results.Ok(new { requestId, accepts = accept });
 });
-
-public sealed record EchoRequest(string Message);
 ```
-
-This is a request-body consumer; do not also deserialize the same body in middleware. In .NET 10 and later framework parsing uses PipeReader by default, so converters must support segmented values. For a file upload, use a server-generated destination name, enforce a byte limit during copy, honor cancellation, and remove partial output on exceptions.
-
 ## Common mistakes
 
 - Retaining HttpContext or RequestServices for background work.
@@ -281,8 +277,6 @@ This is a request-body consumer; do not also deserialize the same body in middle
 
 ## Knowledge checks with answers
 
-1. What must a second stream reader have? Buffering enabled before consumption and a rewind before the second read.
-2. What is the difference between `consumed` and `examined`? One releases processed bytes; the other reports how far parsing looked.
-3. Does MultipartBodyLengthLimit replace Kestrel's request-size limit? No; they constrain different stages and units.
-4. When is a response header immutable? When response start commits it.
-5. Which filename should be used for storage? A server-generated name, never the untrusted upload filename.
+1. Which header values should be treated as untrusted input? Client-provided fields, including host/forwarding metadata unless a trusted proxy boundary establishes them.
+2. How long is HttpContext valid? Only for the active request pipeline; do not retain it for background work.
+3. When should typed header parsing be used? When the field has a defined grammar; still validate application-specific meaning.

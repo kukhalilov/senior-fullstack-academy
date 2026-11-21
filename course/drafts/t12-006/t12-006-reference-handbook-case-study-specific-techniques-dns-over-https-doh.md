@@ -1,61 +1,53 @@
 # end-to-end system design case studies — Reference: DNS over HTTPS (DoH)
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [RFC 8484: DNS Queries over HTTPS](https://www.rfc-editor.org/rfc/rfc8484.html), [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html), [RFC 8932: Recommendations for DNS Privacy Service Operators](https://www.rfc-editor.org/rfc/rfc8932.html), [RFC 4033: DNSSEC introduction and requirements](https://www.rfc-editor.org/rfc/rfc4033.html).
+Sources: [RFC 8484: DNS Queries over HTTPS](https://www.rfc-editor.org/rfc/rfc8484.html), [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html), [RFC 9499: DNS Terminology](https://www.rfc-editor.org/rfc/rfc9499.html).
 
 ## Scope and version
 
-This lesson covers DNS messages sent to a recursive resolver using the standardized DNS-over-HTTPS protocol in RFC 8484. The RFC specifies DNS message encodings over HTTP, including GET and POST forms. Browser/vendor policies, resolver discovery, caching, HTTP versions, and endpoint configuration can vary; verify current support and implementation settings.
+DNS over HTTPS (DoH), specified by RFC 8484, maps DNS query/response pairs into HTTP exchanges. The standard defines a DNS message media type and HTTP request/response behavior; service discovery, browser policy, proxy configuration, and resolver selection are deployment concerns. DoH can use HTTP versions including HTTP/2 and, where supported, HTTP/3. It encrypts the client-to-DoH-resolver connection but does not conceal queries from that resolver.
 
 ## How this group fits the mental model
 
-DoH carries DNS queries and responses as HTTPS requests to a resolver endpoint. TLS protects the client-to-resolver transport when the client validates the intended endpoint. Because it uses HTTP, DoH can use web infrastructure and ports, but network operators may have less visibility or control over DNS requests, and endpoint policy becomes important. The chosen resolver sees the query; encryption is not anonymity and does not guarantee that queries are not logged.
+DoH makes DNS look like an HTTPS application exchange to the network path. This can help it traverse networks that allow ordinary web traffic and lets it use HTTP features such as connection reuse, proxies, caching, and content negotiation. The privacy benefit is protection from passive on-path observation and tampering when TLS authentication is valid. The trade-off is that network operators may have less visibility and control, while the DoH provider gains query visibility.
 
-DoH is a transport for DNS, not a replacement for DNSSEC. DNSSEC provides origin authentication and integrity for signed DNS data; DoH provides confidentiality/integrity in transit on the client-resolver connection. They solve different problems and can be used together.
+DoH is not merely arbitrary DNS bytes tunneled through a web page. RFC 8484 defines media types and request forms. A client can send a DNS message using HTTP GET with a base64url-encoded `dns` parameter or HTTP POST with the DNS message in the body and the specified content type. HTTP response status, cache headers, redirects, and content negotiation have defined effects and must be handled correctly.
 
 ## Supplied names explained
 
-- **DoH endpoint:** an HTTPS URI serving DNS queries according to the RFC-defined media types and behavior; clients need to know which resolver endpoint to use.
-- **DNS wire format:** the DNS message representation carried in the HTTP request/response body or encoded for the defined GET form.
-- **HTTP GET form:** carries a DNS message in the URI’s `dns` parameter using base64url encoding; query length can interact with URI limits, logging, and caching.
-- **HTTP POST form:** carries the DNS message in the request body with the defined DNS message content type; intermediaries and servers must support the protocol behavior.
-- **Resolver policy:** controls endpoint choice, query logging, retention, filtering, and client configuration. A private transport to an untrusted resolver still exposes query contents to that resolver.
-- **DNSSEC:** validates authenticated DNS data; independent of whether the DNS message travelled over DoH.
+- **DoH**: DNS query/response mapping over HTTPS as defined in RFC 8484.
+- **DoH endpoint**: an HTTPS URI identifying a resolver service and DNS path. Resolver discovery and policy are outside the basic wire protocol and must be securely configured.
+- **GET request**: carries a base64url-encoded DNS message in the `dns` query parameter. URLs may be recorded in browser, proxy, and server logs, so request logging and cache policy matter.
+- **POST request**: carries the DNS wire-format message in the request body with the DoH media type. It avoids putting the raw query in the URL but still requires careful logging and privacy controls.
+- **DNS media type**: `application/dns-message` identifies the DNS message payload; HTTP content negotiation and response type validation are part of the protocol.
+- **Resolver identity**: TLS certificate validation authenticates the HTTPS endpoint name. A trusted TLS connection says which resolver endpoint answered, not that every answer is correct or DNSSEC validated.
+- **HTTP cache and proxy behavior**: DoH responses can use HTTP caching semantics, but caches must respect DNS TTLs and HTTP directives. Shared caches must not mix responses incorrectly across query names, classes, or types.
 
 ## Cross-item comparison
 
-| Option | Transport and operational effect | Design caution |
-| --- | --- | --- |
-| DoH | DNS over HTTPS/TLS; compatible with HTTP infrastructure and web connection behavior | Can be difficult for an enterprise to distinguish/control; resolver endpoint and policy must be explicitly managed |
-| DoT | DNS over TLS/TCP, commonly port 853 | A distinct transport with different network visibility and blocking behavior |
-| DoQ | DNS over QUIC/UDP, commonly port 853 | Requires QUIC/UDP support and has protocol-specific connection behavior |
-| DNSSEC validation | Validates data signatures and chain of trust | Does not encrypt queries or hide them from the resolver/network path |
+DoH uses HTTP and can share port 443 with websites, gaining compatibility with HTTP proxies and infrastructure. DoT uses a dedicated DNS-over-TLS service, conventionally port 853. DoQ uses a direct DNS mapping over QUIC. DoH can use HTTP/3 and QUIC, but its semantics remain an HTTP mapping, not RFC 9250 DoQ. All three encrypt the client-to-resolver hop when authenticated and leave the resolver able to see queries.
 
-Do not claim one transport universally wins in speed, privacy, reliability, or compatibility. Compare actual client support, connection reuse, network blocking, endpoint discovery, policy enforcement, and user expectations.
+For managed networks, centralized DoH endpoint policy can provide control if clients honor enterprise configuration. Unmanaged browser-level DoH can bypass OS resolver settings and filtering. Decide whether application, OS, or network policy owns resolver choice and make fallback behavior explicit.
 
 ## Examples
 
-A browser configured for a public DoH endpoint sends `example.org` as a DNS query inside an HTTPS exchange. A local Wi-Fi operator may see a connection to the resolver and timing/volume metadata, but not the DNS message contents in a correctly authenticated TLS session. The selected resolver still learns the queried name. If the device also uses a corporate VPN or policy-managed resolver, browser-level DoH may bypass expected filtering or split-DNS rules unless the deployment explicitly controls endpoint selection.
+A browser sends `www.example.test A` as a DoH POST to its configured resolver. It validates the TLS server identity and response content type, then parses the DNS message and returns the result to the application. If a response is cached, the cache honors DNS TTL and HTTP cache directives. If the resolver returns a redirect, the client follows only according to a safe resolver policy; accepting arbitrary redirects could disclose queries to another endpoint.
 
-For a managed enterprise service, choose an authenticated endpoint, document logging/retention and jurisdiction, configure browser/OS policy to avoid conflicting resolvers, ensure split-horizon names and captive portal behavior are handled, monitor HTTP and DNS-level error rates, and define failure/fallback behavior. Check whether GET URIs may be exposed in intermediary or endpoint logs; use the supported request form and logging practices carefully.
+An enterprise configures a known DoH endpoint and prevents unmanaged resolver overrides through device/browser policy. The endpoint authenticates clients as required, applies rate limits, protects query logs, and monitors latency, errors, cache correctness, and abuse. A fallback to system DNS during endpoint failure is either explicitly allowed or denied; it is never assumed to preserve the same privacy policy.
 
 ## Common mistakes
 
-- Assuming HTTPS means the resolver cannot see or retain the DNS query.
-- Treating encrypted DNS as DNSSEC; one protects transport, the other validates signed DNS data.
-- Letting browser-level DoH silently bypass enterprise DNS controls, split-horizon resolution, or incident response policy.
-- Assuming the network cannot infer anything; resolver IP, timing, volume, and connection metadata can remain observable.
-- Ignoring DNS message caching, HTTP caching semantics, content types, GET URI length/logging, or POST support.
-- Providing multiple encrypted resolvers without clarifying which one receives sensitive queries or how failure fallback works.
-- Assuming all operating systems, browsers, resolvers, and networks support the same DoH profile or discovery behavior.
-- Forgetting that a malicious or compromised resolver can return false answers even though the HTTPS transport is encrypted; use DNSSEC validation where the threat model requires it.
+- Assuming HTTPS hides queries from the DoH provider.
+- Treating DoH as DNSSEC or a guarantee that answers are correct.
+- Assuming all browsers use the operating system’s configured resolver.
+- Ignoring query strings in GET URLs and their potential logging exposure.
+- Caching responses without respecting DNS and HTTP cache semantics.
+- Following redirects to untrusted resolver endpoints.
+- Claiming DoH is equivalent to DoQ just because HTTP/3 can run over QUIC.
+- Failing to define resolver discovery, enterprise policy, and plaintext fallback.
 
 ## Knowledge checks with answers
 
-1. **Does DoH hide a requested domain from the selected recursive resolver?** No. The resolver must process the query; endpoint logging and retention are policy issues.
-2. **What does DoH protect from a local passive observer?** The DNS message contents on the authenticated HTTPS connection; connection metadata may still be visible.
-3. **Can DoH replace DNSSEC?** No. DoH protects a transport segment, while DNSSEC validates DNS data origin/integrity through its trust chain.
-4. **Why can centrally enabled browser DoH break internal services?** It may send internal names to a public resolver or bypass split-horizon DNS and enterprise policies unless endpoint selection and internal name behavior are designed.
-
-## Review status
-
-The protocol framing is checked against RFC 8484; transport semantics against RFC 9110; privacy and DNSSEC distinction against RFC 8932/RFC 4033. This lesson remains pending full claim-by-claim audit and manifest omission check.
+1. **What does RFC 8484 map to an HTTP exchange?** Each DNS query/response pair.
+2. **Which DoH methods carry the DNS message?** GET encodes it in the `dns` URL parameter; POST carries it in the request body.
+3. **Can a network resolver provider read a DoH query?** Yes; it terminates the connection and processes the DNS message.
+4. **Is DoH the same protocol as DoQ?** No. DoH is DNS over HTTP; DoQ is a dedicated DNS mapping over QUIC.

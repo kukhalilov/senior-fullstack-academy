@@ -13,26 +13,326 @@
     "Durability and availability consume resources and impose latency or operational tradeoffs. Select queue type, replication, retention, acknowledgement policy, and replay behavior from recovery requirements and verify them with failure tests."
   ],
   "inventory": [
-    {"id":"messaging-models-and-rabbitmq-routing","title":"Message broker model and RabbitMQ exchange-to-queue routing","items":["Message broker","Publisher","Consumer","Message broker topology","RabbitMQ AMQP 0-9-1","RabbitMQ virtual host","RabbitMQ exchange","RabbitMQ binding","RabbitMQ routing key","RabbitMQ default exchange","Direct exchange","Fanout exchange","Topic exchange","Headers exchange","Exchange-to-exchange binding","Alternate exchange","Unroutable message","Mandatory publish flag","Queue","Work queue","Competing consumers","Publish-subscribe fan-out","Dead Letter Exchange (DLX)"]},
-    {"id":"rabbitmq-queue-types-and-lifecycle","title":"RabbitMQ queue types, properties, and consumer lifecycle","items":["RabbitMQ classic queue","RabbitMQ quorum queue","RabbitMQ stream","RabbitMQ super stream","Durable queue metadata","Transient queue metadata","Persistent message delivery mode","Transient message delivery mode","Queue durability versus message persistence","Temporary queue","Exclusive queue","Auto-delete queue","Server-generated queue name","Queue declaration and property equivalence","Queue optional arguments (x-arguments)","RabbitMQ policy","Queue Time-To-Live (TTL)","Message TTL","Queue length limit","Queue priority","Single Active Consumer","Consumer prefetch","Consumer acknowledgement timeout","RabbitMQ consumer cancellation","RabbitMQ consumer redelivery","RabbitMQ message requeue","RabbitMQ dead-letter reason","Quorum queue delivery limit","Quorum queue delayed retry","At-least-once quorum queue dead-lettering","RabbitMQ stream offset","RabbitMQ stream repeated reads","RabbitMQ stream retention","RabbitMQ super-stream partitioning"]},
-    {"id":"kafka-log-topics-and-partitions","title":"Kafka append-only topic log, keys, partitioning, and retention","items":["Apache Kafka broker","Kafka cluster","Kafka controller","Kafka topic","Kafka topic partition","Kafka record","Kafka record key","Kafka record value","Kafka record headers","Kafka record timestamp","Kafka producer","Kafka consumer","Kafka partition offset","Kafka log append","Kafka partition leader","Kafka partition replica","Kafka replication factor","Kafka in-sync replica (ISR)","Kafka producer acknowledgement setting (acks)","Kafka idempotent producer","Kafka transactional producer","Kafka topic retention by time","Kafka topic retention by size","Kafka log compaction","Kafka tombstone record","Kafka record batch","Kafka compression type","Kafka consumer group","Kafka group coordinator","Kafka partition assignment","Kafka consumer group rebalance","Kafka committed offset","Kafka offset reset policy"]},
-    {"id":"delivery-acknowledgement-and-recovery","title":"Publisher acceptance, delivery acknowledgement, retry, and duplicate boundaries","items":["RabbitMQ publisher confirm","RabbitMQ consumer delivery acknowledgement","RabbitMQ basic.ack","RabbitMQ basic.nack","RabbitMQ basic.reject","RabbitMQ automatic acknowledgement","RabbitMQ manual acknowledgement","RabbitMQ multi-message acknowledgement","Publisher confirm versus consumer acknowledgement","Kafka producer acknowledgement","Kafka consumer offset commit","Automatic Kafka offset commit","Manual Kafka offset commit","Commit-before-processing failure window","Commit-after-processing duplicate window","At-most-once delivery","At-least-once delivery","Exactly-once processing scope","Idempotent message handler","Message deduplication key","Duplicate delivery","Redelivery","Poison message","Dead-letter queue","Retry queue","Consumer failure recovery","Publisher retry after uncertain confirmation","End-to-end side-effect atomicity limit"]},
-    {"id":"ordering-and-throughput-scaling","title":"Ordering scope, parallelism, backpressure, and message flow","items":["FIFO queue insertion order","RabbitMQ queue delivery order","Ordering impact of multiple RabbitMQ consumers","Ordering impact of message requeue","Ordering impact of message priority","Kafka per-partition order","Kafka key-based partitioning","Kafka order across partitions","Partition count and parallelism","Consumer concurrency within one partition","Consumer group maximum active consumers","RabbitMQ competing-consumer parallelism","RabbitMQ prefetch backpressure","Kafka producer batching","Kafka linger delay","Kafka consumer fetch batching","Consumer lag","Queue depth","Broker backpressure","Partition hot spot","Key skew","Batch size versus latency"]},
-    {"id":"durability-replication-and-choice","title":"Replication safety and choosing RabbitMQ queue or Kafka log semantics","items":["RabbitMQ classic queue replication status in RabbitMQ 4.4","RabbitMQ quorum replication with Raft","RabbitMQ quorum publisher-confirm quorum","RabbitMQ stream replication","Kafka leader-follower replication","Kafka minimum in-sync replicas","Unclean Kafka leader election tradeoff","Durability versus availability","Replication latency versus durability","RabbitMQ queue versus Kafka partitioned log","RabbitMQ quorum queue versus RabbitMQ stream","RabbitMQ work queue versus Kafka consumer group","Transient task delivery versus retained event replay","Independent replay by Kafka consumer group","RabbitMQ competing consumer versus Kafka partition ownership","Broker recovery point objective","Broker recovery time objective","Message retention requirement","Fan-out scale requirement","Broker selection by replay and routing needs","RabbitMQ federation","RabbitMQ federation versus intra-cluster replication"]}
+    {
+      "id": "messaging-models-and-rabbitmq-routing",
+      "title": "Message broker model and RabbitMQ exchange-to-queue routing",
+      "items": [
+        "Message broker",
+        "Publisher",
+        "Consumer",
+        "Message broker topology",
+        "RabbitMQ AMQP 0-9-1",
+        "RabbitMQ virtual host",
+        "RabbitMQ exchange",
+        "RabbitMQ binding",
+        "RabbitMQ routing key",
+        "RabbitMQ default exchange",
+        "Direct exchange",
+        "Fanout exchange",
+        "Topic exchange",
+        "Headers exchange",
+        "Exchange-to-exchange binding",
+        "Alternate exchange",
+        "Unroutable message",
+        "Mandatory publish flag",
+        "Queue",
+        "Work queue",
+        "Competing consumers",
+        "Publish-subscribe fan-out",
+        "Dead Letter Exchange (DLX)"
+      ]
+    },
+    {
+      "id": "rabbitmq-queue-types-and-lifecycle",
+      "title": "RabbitMQ queue types, properties, and consumer lifecycle",
+      "items": [
+        "RabbitMQ classic queue",
+        "RabbitMQ quorum queue",
+        "RabbitMQ stream",
+        "RabbitMQ super stream",
+        "Durable queue metadata",
+        "Transient queue metadata",
+        "Persistent message delivery mode",
+        "Transient message delivery mode",
+        "Queue durability versus message persistence",
+        "Temporary queue",
+        "Exclusive queue",
+        "Auto-delete queue",
+        "Server-generated queue name",
+        "Queue declaration and property equivalence",
+        "Queue optional arguments (x-arguments)",
+        "RabbitMQ policy",
+        "Queue Time-To-Live (TTL)",
+        "Message TTL",
+        "Queue length limit",
+        "Queue priority",
+        "Single Active Consumer",
+        "Consumer prefetch",
+        "Consumer acknowledgement timeout",
+        "RabbitMQ consumer cancellation",
+        "RabbitMQ consumer redelivery",
+        "RabbitMQ message requeue",
+        "RabbitMQ dead-letter reason",
+        "Quorum queue delivery limit",
+        "Quorum queue delayed retry",
+        "At-least-once quorum queue dead-lettering",
+        "RabbitMQ stream offset",
+        "RabbitMQ stream repeated reads",
+        "RabbitMQ stream retention",
+        "RabbitMQ super-stream partitioning"
+      ]
+    },
+    {
+      "id": "kafka-log-topics-and-partitions",
+      "title": "Kafka append-only topic log, keys, partitioning, and retention",
+      "items": [
+        "Apache Kafka broker",
+        "Kafka cluster",
+        "Kafka controller",
+        "Kafka topic",
+        "Kafka topic partition",
+        "Kafka record",
+        "Kafka record key",
+        "Kafka record value",
+        "Kafka record headers",
+        "Kafka record timestamp",
+        "Kafka producer",
+        "Kafka consumer",
+        "Kafka partition offset",
+        "Kafka log append",
+        "Kafka partition leader",
+        "Kafka partition replica",
+        "Kafka replication factor",
+        "Kafka in-sync replica (ISR)",
+        "Kafka producer acknowledgement setting (acks)",
+        "Kafka idempotent producer",
+        "Kafka transactional producer",
+        "Kafka topic retention by time",
+        "Kafka topic retention by size",
+        "Kafka log compaction",
+        "Kafka tombstone record",
+        "Kafka record batch",
+        "Kafka compression type",
+        "Kafka consumer group",
+        "Kafka group coordinator",
+        "Kafka partition assignment",
+        "Kafka consumer group rebalance",
+        "Kafka committed offset",
+        "Kafka offset reset policy"
+      ]
+    },
+    {
+      "id": "delivery-acknowledgement-and-recovery",
+      "title": "Publisher acceptance, delivery acknowledgement, retry, and duplicate boundaries",
+      "items": [
+        "RabbitMQ publisher confirm",
+        "RabbitMQ consumer delivery acknowledgement",
+        "RabbitMQ basic.ack",
+        "RabbitMQ basic.nack",
+        "RabbitMQ basic.reject",
+        "RabbitMQ automatic acknowledgement",
+        "RabbitMQ manual acknowledgement",
+        "RabbitMQ multi-message acknowledgement",
+        "Publisher confirm versus consumer acknowledgement",
+        "Kafka producer acknowledgement",
+        "Kafka consumer offset commit",
+        "Automatic Kafka offset commit",
+        "Manual Kafka offset commit",
+        "Commit-before-processing failure window",
+        "Commit-after-processing duplicate window",
+        "At-most-once delivery",
+        "At-least-once delivery",
+        "Exactly-once processing scope",
+        "Idempotent message handler",
+        "Message deduplication key",
+        "Duplicate delivery",
+        "Redelivery",
+        "Poison message",
+        "Dead-letter queue",
+        "Retry queue",
+        "Consumer failure recovery",
+        "Publisher retry after uncertain confirmation",
+        "End-to-end side-effect atomicity limit"
+      ]
+    },
+    {
+      "id": "ordering-and-throughput-scaling",
+      "title": "Ordering scope, parallelism, backpressure, and message flow",
+      "items": [
+        "FIFO queue insertion order",
+        "RabbitMQ queue delivery order",
+        "Ordering impact of multiple RabbitMQ consumers",
+        "Ordering impact of message requeue",
+        "Ordering impact of message priority",
+        "Kafka per-partition order",
+        "Kafka key-based partitioning",
+        "Kafka order across partitions",
+        "Partition count and parallelism",
+        "Consumer concurrency within one partition",
+        "Consumer group maximum active consumers",
+        "RabbitMQ competing-consumer parallelism",
+        "RabbitMQ prefetch backpressure",
+        "Kafka producer batching",
+        "Kafka linger delay",
+        "Kafka consumer fetch batching",
+        "Consumer lag",
+        "Queue depth",
+        "Broker backpressure",
+        "Partition hot spot",
+        "Key skew",
+        "Batch size versus latency"
+      ]
+    },
+    {
+      "id": "durability-replication-and-choice",
+      "title": "Replication safety and choosing RabbitMQ queue or Kafka log semantics",
+      "items": [
+        "RabbitMQ classic queue replication status in RabbitMQ 4.4",
+        "RabbitMQ quorum replication with Raft",
+        "RabbitMQ quorum publisher-confirm quorum",
+        "RabbitMQ stream replication",
+        "Kafka leader-follower replication",
+        "Kafka minimum in-sync replicas",
+        "Unclean Kafka leader election tradeoff",
+        "Durability versus availability",
+        "Replication latency versus durability",
+        "RabbitMQ queue versus Kafka partitioned log",
+        "RabbitMQ quorum queue versus RabbitMQ stream",
+        "RabbitMQ work queue versus Kafka consumer group",
+        "Transient task delivery versus retained event replay",
+        "Independent replay by Kafka consumer group",
+        "RabbitMQ competing consumer versus Kafka partition ownership",
+        "Broker recovery point objective",
+        "Broker recovery time objective",
+        "Message retention requirement",
+        "Fan-out scale requirement",
+        "Broker selection by replay and routing needs",
+        "RabbitMQ federation",
+        "RabbitMQ federation versus intra-cluster replication"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["RabbitMQ exchange and binding routing","Kafka topic and partition append"],["RabbitMQ work queue","Kafka retained partitioned log"],["RabbitMQ quorum queue","RabbitMQ stream"],["RabbitMQ publisher confirm","RabbitMQ consumer delivery acknowledgement"],["Kafka producer acknowledgement","Kafka consumer offset commit"],["At-most-once delivery","At-least-once delivery","Exactly-once processing scope"],["RabbitMQ FIFO insertion order","Kafka per-partition record order"],["RabbitMQ competing consumers","Kafka consumer-group partition assignment"],["RabbitMQ queue TTL","Kafka topic retention policy"]],
-  "comparisonSources": ["https://www.rabbitmq.com/docs/4.4/exchanges","https://www.rabbitmq.com/docs/4.4/queues","https://www.rabbitmq.com/docs/4.4/quorum-queues","https://www.rabbitmq.com/docs/4.4/streams","https://www.rabbitmq.com/docs/4.4/consumers","https://www.rabbitmq.com/docs/4.4/confirms","https://www.rabbitmq.com/docs/4.4/dlx","https://www.rabbitmq.com/docs/4.4/federation","https://www.rabbitmq.com/release-information","https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.4.0","https://kafka.apache.org/documentation/","https://kafka.apache.org/44/documentation/","https://kafka.apache.org/44/documentation/#semantics"],
+  "comparisons": [
+    [
+      "RabbitMQ exchange and binding routing",
+      "Kafka topic and partition append"
+    ],
+    [
+      "RabbitMQ work queue",
+      "Kafka retained partitioned log"
+    ],
+    [
+      "RabbitMQ quorum queue",
+      "RabbitMQ stream"
+    ],
+    [
+      "RabbitMQ publisher confirm",
+      "RabbitMQ consumer delivery acknowledgement"
+    ],
+    [
+      "Kafka producer acknowledgement",
+      "Kafka consumer offset commit"
+    ],
+    [
+      "At-most-once delivery",
+      "At-least-once delivery",
+      "Exactly-once processing scope"
+    ],
+    [
+      "RabbitMQ FIFO insertion order",
+      "Kafka per-partition record order"
+    ],
+    [
+      "RabbitMQ competing consumers",
+      "Kafka consumer-group partition assignment"
+    ],
+    [
+      "RabbitMQ queue TTL",
+      "Kafka topic retention policy"
+    ]
+  ],
+  "comparisonSources": [
+    "https://www.rabbitmq.com/docs/4.4/exchanges",
+    "https://www.rabbitmq.com/docs/4.4/queues",
+    "https://www.rabbitmq.com/docs/4.4/quorum-queues",
+    "https://www.rabbitmq.com/docs/4.4/streams",
+    "https://www.rabbitmq.com/docs/4.4/consumers",
+    "https://www.rabbitmq.com/docs/4.4/confirms",
+    "https://www.rabbitmq.com/docs/4.4/dlx",
+    "https://www.rabbitmq.com/docs/4.4/federation",
+    "https://www.rabbitmq.com/release-information",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.4.0",
+    "https://kafka.apache.org/documentation/",
+    "https://kafka.apache.org/44/documentation/",
+    "https://kafka.apache.org/44/documentation/#semantics"
+  ],
   "versionNotes": [
-    {"edition":"RabbitMQ 4.4 current release documentation, checked 2026-11-16","items":["RabbitMQ 4.4.0 was released on October 20, 2026 and is the latest supported release in the official release table checked on November 16, 2026.","RabbitMQ documents quorum queues and streams as its replicated data structures; classic queue mirroring was removed starting in RabbitMQ 4.0.","RabbitMQ 4.3.0 deprecated and disabled transient non-exclusive classic queues by default; RabbitMQ 4.4 retains this upgrade-relevant behavior.","RabbitMQ 4.4 adds quorum-queue delayed messages, a server-named queue name-prefix argument, a configurable quorum delivery-limit policy, and configurable initial stream offset; consult the 4.4 release notes for the complete upgrade list.","Quorum queues support delivery limits and optional at-least-once dead-lettering; do not treat those guarantees as defaults for every queue type or DLX configuration."],"sourceUrls":["https://www.rabbitmq.com/docs/4.4/quorum-queues","https://www.rabbitmq.com/docs/4.4/dlx","https://www.rabbitmq.com/docs/4.4/streams","https://www.rabbitmq.com/docs/4.4/queues","https://www.rabbitmq.com/release-information","https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.4.0"]},
-    {"edition":"Apache Kafka 4.4 documentation, checked 2026-11-14","items":["Use current Kafka 4.4 documentation for broker, topic/partition, consumer-group, producer, offset, and processing-semantics terminology; exact client defaults and APIs remain client-version-specific."],"sourceUrls":["https://kafka.apache.org/documentation/","https://kafka.apache.org/44/configuration/producer-configs/","https://kafka.apache.org/44/configuration/consumer-configs/"]}
+    {
+      "edition": "RabbitMQ 4.4.1 current patch and 4.4-series documentation, checked 2026-11-20",
+      "items": [
+        "RabbitMQ 4.4.1 was released on November 16, 2026 and is the latest release in the official supported-release table checked November 20. It is a maintenance release; the 4.4 series requires Erlang/OTP 27.0 or later.",
+        "RabbitMQ documents quorum queues and streams as its replicated data structures; classic queue mirroring was removed starting in RabbitMQ 4.0.",
+        "RabbitMQ 4.3.0 deprecated and disabled transient non-exclusive classic queues by default; RabbitMQ 4.4 retains this upgrade-relevant behavior.",
+        "RabbitMQ 4.4.0 added quorum-queue delayed messages, availability-zone-aware quorum member placement, and other features; 4.4.1 is a maintenance update with fixes and tighter validation/limits, including a cap on quorum-queue message expiration and bounded management polling-consumer results. Consult the versioned release notes for the full upgrade list.",
+        "Quorum queues support delivery limits and optional at-least-once dead-lettering; do not treat those guarantees as defaults for every queue type or DLX configuration."
+      ],
+      "sourceUrls": [
+        "https://www.rabbitmq.com/docs/4.4/quorum-queues",
+        "https://www.rabbitmq.com/docs/4.4/dlx",
+        "https://www.rabbitmq.com/docs/4.4/streams",
+        "https://www.rabbitmq.com/docs/4.4/queues",
+        "https://www.rabbitmq.com/release-information",
+        "https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.4.0",
+        "https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.4.1"
+      ]
+    },
+    {
+      "edition": "Apache Kafka 4.4.0 current documentation/release, checked 2026-11-20",
+      "items": [
+        "Apache Kafka 4.4.0 was released October 22, 2026 and is the latest stable release checked on November 20. Use Kafka 4.4 documentation for broker/topic/partition, consumer-group, producer, offset, and processing-semantics concepts; exact client defaults and APIs remain client-version-specific. Notable 4.4 additions include dead-letter-queue support for share groups (after upgrading the share feature) and opt-in transactional Kafka Streams state stores; these do not change the standard consumer-group or producer guarantees described here."
+      ],
+      "sourceUrls": [
+        "https://kafka.apache.org/documentation/",
+        "https://kafka.apache.org/44/configuration/producer-configs/",
+        "https://kafka.apache.org/44/configuration/consumer-configs/",
+        "https://kafka.apache.org/blog/2026/10/22/apache-kafka-4.4.0-release-announcement/",
+        "https://kafka.apache.org/downloads/"
+      ]
+    }
   ],
   "sourceSnapshot": {
-    "authority":"RabbitMQ 4.4 official documentation and Apache Kafka 4.4 official documentation",
-    "edition":"RabbitMQ 4.4 and Apache Kafka 4.4 documentation; sources checked 2026-11-16",
-    "checkedAt":"2026-11-16",
-    "urls":["https://www.rabbitmq.com/docs/4.4/exchanges","https://www.rabbitmq.com/docs/4.4/queues","https://www.rabbitmq.com/docs/4.4/quorum-queues","https://www.rabbitmq.com/docs/4.4/streams","https://www.rabbitmq.com/docs/4.4/consumers","https://www.rabbitmq.com/docs/4.4/confirms","https://www.rabbitmq.com/docs/4.4/dlx","https://www.rabbitmq.com/docs/4.4/publishers","https://www.rabbitmq.com/docs/4.4/federation","https://www.rabbitmq.com/release-information","https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.4.0","https://kafka.apache.org/documentation/","https://kafka.apache.org/44/getting-started/introduction/","https://kafka.apache.org/44/configuration/producer-configs/","https://kafka.apache.org/44/configuration/consumer-configs/"]
+    "authority": "RabbitMQ 4.4 official documentation and Apache Kafka 4.4 official documentation",
+    "edition": "RabbitMQ 4.4.1 and Apache Kafka 4.4.0 documentation; sources checked 2026-11-20",
+    "checkedAt": "2026-11-20",
+    "urls": [
+      "https://www.rabbitmq.com/docs/4.4/exchanges",
+      "https://www.rabbitmq.com/docs/4.4/queues",
+      "https://www.rabbitmq.com/docs/4.4/quorum-queues",
+      "https://www.rabbitmq.com/docs/4.4/streams",
+      "https://www.rabbitmq.com/docs/4.4/consumers",
+      "https://www.rabbitmq.com/docs/4.4/confirms",
+      "https://www.rabbitmq.com/docs/4.4/dlx",
+      "https://www.rabbitmq.com/docs/4.4/publishers",
+      "https://www.rabbitmq.com/docs/4.4/federation",
+      "https://www.rabbitmq.com/release-information",
+      "https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.4.0",
+      "https://kafka.apache.org/documentation/",
+      "https://kafka.apache.org/44/getting-started/introduction/",
+      "https://kafka.apache.org/44/configuration/producer-configs/",
+      "https://kafka.apache.org/44/configuration/consumer-configs/",
+      "https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.4.1",
+      "https://kafka.apache.org/blog/2026/10/22/apache-kafka-4.4.0-release-announcement/"
+    ]
   },
-  "scopeExclusions":["Generic messaging topology, interaction models, and protocol choice (t08-007)","Retry algorithms, generic circuit breakers, application idempotency implementation, and API rate limiting (t08-009)","Transactional outbox/inbox, distributed sagas, and cross-service transaction coordination (t08-010)","Domain event design and event sourcing (t08-004 and t08-005)","Language-specific RabbitMQ and Kafka client class/method reference is not enumerated here; exact current product behavior and core broker semantics are covered, while library APIs belong with their language track","Managed broker cloud SKU limits, pricing, and vendor-specific operations (track-09)","Kafka ordering is per partition and RabbitMQ delivery order can change under redelivery, requeue, priorities, or concurrent consumption; no global total order is claimed"],
+  "scopeExclusions": [
+    "Generic messaging topology, interaction models, and protocol choice (t08-007)",
+    "Retry algorithms, generic circuit breakers, application idempotency implementation, and API rate limiting (t08-009)",
+    "Transactional outbox/inbox, distributed sagas, and cross-service transaction coordination (t08-010)",
+    "Domain event design and event sourcing (t08-004 and t08-005)",
+    "Language-specific RabbitMQ and Kafka client class/method reference is not enumerated here; exact current product behavior and core broker semantics are covered, while library APIs belong with their language track",
+    "Managed broker cloud SKU limits, pricing, and vendor-specific operations (track-09)",
+    "Kafka ordering is per partition and RabbitMQ delivery order can change under redelivery, requeue, priorities, or concurrent consumption; no global total order is claimed"
+  ],
   "generationAllowed": true
 }

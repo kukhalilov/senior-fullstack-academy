@@ -4,7 +4,7 @@ Sources: [Compose Specification](https://docs.docker.com/reference/compose-file/
 
 ## Scope and version
 
-Docker Compose v5.7.1 is the latest tagged release checked on 2026-11-16. Compose implementations do not necessarily support every optional specification field identically. The top-level `version` key is obsolete and informational; the installed Compose implementation determines supported fields. Validate with `docker compose version` and `docker compose config` while protecting resolved output.
+Docker Compose v5.8.0 is the latest tagged release checked on 2026-11-20. Compose implementations do not necessarily support every optional specification field identically. The top-level `version` key is obsolete and informational; the installed Compose implementation determines supported fields. Validate with `docker compose version` and `docker compose config` while protecting resolved output. Experimental scheduled jobs also require Docker Engine 29.10+ and its opt-in jobs extension.
 
 ## How this group fits the mental model
 

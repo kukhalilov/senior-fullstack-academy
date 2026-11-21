@@ -4,7 +4,7 @@ Sources: [Controlling access to the Kubernetes API](https://kubernetes.io/docs/c
 
 ## Scope and version
 
-This guide covers workload identity, authorization, Pod hardening, extension APIs and diagnostic tools. The upstream release checked 2026-11-16 is Kubernetes v1.37.1. Authentication plugins, admission policies, audit configuration and security enforcement vary by cluster. Always check the active context and target API before running commands with access to production.
+This guide covers workload identity, authorization, Pod hardening, extension APIs and diagnostic tools. The upstream release checked 2026-11-20 is Kubernetes v1.37.1. Authentication plugins, admission policies, audit configuration and security enforcement vary by cluster. Always check the active context and target API before running commands with access to production.
 
 ## How this group fits the mental model
 

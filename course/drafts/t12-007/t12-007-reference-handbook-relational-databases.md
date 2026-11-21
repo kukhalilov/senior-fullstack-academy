@@ -1,39 +1,60 @@
 # system design technology landscape and selection — Reference: Relational databases
 
-Sources: [HLD Handbook](https://hld.handbook.academy/technologies/), [reference 1](https://www.postgresql.org/docs/current/), [reference 2](https://kafka.apache.org/documentation/), [reference 3](https://grpc.io/about/), [reference 4](https://grpc.io/docs/what-is-grpc/core-concepts/), [reference 5](https://graphql.org/learn/), [reference 6](https://cloud.google.com/spanner), [reference 7](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html), [reference 8](https://vitess.io/docs/24.0/overview/whatisvitess/), [reference 9](https://docs.scylladb.com/manual/master/using-scylla/cassandra-compatibility.html).
+Sources: [PostgreSQL 18 documentation](https://www.postgresql.org/docs/18/), [MySQL 8.4 InnoDB transaction model](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-model.html), [MySQL 8.4 transaction isolation](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html), [Cloud Spanner TrueTime and external consistency](https://docs.cloud.google.com/spanner/docs/true-time-external-consistency), [CockroachDB transaction retries](https://www.cockroachlabs.com/docs/stable/developer-basics.html), [HLD Handbook technology overview](https://hld.handbook.academy/technologies/).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson covers relational databases as an application system-of-record choice and compares PostgreSQL, MySQL, Google Cloud Spanner, and CockroachDB. Versioned links are used where available; cloud service behavior, editions, pricing, limits, and compatibility change, so validate against the exact current deployment documentation. “SQL database” does not mean that engines share identical SQL, isolation, indexing, replication, or operational behavior.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+A relational database stores data in relations (commonly tables), represents links through keys, and lets applications query and update sets of rows. The key design advantage is that relationships and invariants can be explicit: primary/foreign keys, unique constraints, check constraints, transactions, and queries can protect correctness close to the data. This is useful when several workflows must update related records consistently, such as placing an order, reserving inventory, and recording payment intent.
+
+Transactions group operations into a logical unit. ACID is a useful vocabulary—atomicity, consistency with defined invariants, isolation, and durability—but the exact guarantee depends on engine, transaction mode, schema, and configuration. Isolation determines what concurrent transactions can observe and which anomalies can occur. PostgreSQL uses MVCC snapshots and provides selectable isolation levels; InnoDB combines MVCC and locking, with behavior influenced by isolation and query form. Serializable execution may abort a transaction that must be retried; applications need a bounded retry strategy that repeats the entire business transaction safely.
+
+Indexes accelerate reads by maintaining additional structures, but they consume space and make writes more expensive. A query planner chooses a plan from SQL, indexes, statistics, and cost estimates; inspect actual plans and representative data rather than assuming an index is used. Normalize to avoid unnecessary duplicate facts and update anomalies; denormalize selectively when measured access patterns justify the extra consistency work. Use constraints for invariants such as uniqueness or referential integrity instead of relying only on preflight application checks.
+
+Relational databases scale vertically and can scale reads through replicas, partitioning, or sharding; those choices have distinct consistency, write, routing, and failure consequences. A single-node relational engine is not automatically a distributed SQL system. Distributed SQL adds consensus/replication, cross-node transaction coordination, topology and locality concerns, and often higher tail latency for some operations in exchange for scale and resilience across nodes/regions.
 
 ## Supplied names explained
 
-- `PostgreSQL` — General-purpose relational database; evaluate transaction, indexing, extension, operations, and workload fit. Selection check: compare workload fit, consistency and durability needs, query/access pattern, latency, failure/recovery behavior, deployment and operational ownership, ecosystem, cost, and migration path. Validate exact current behavior against the product's own documentation.
-- `MySQL` — General-purpose relational database; evaluate its engine, compatibility, operations, and workload fit. Selection check: compare workload fit, consistency and durability needs, query/access pattern, latency, failure/recovery behavior, deployment and operational ownership, ecosystem, cost, and migration path. Validate exact current behavior against the product's own documentation.
-- `Spanner` — Distributed relational database service; examine geographic consistency, latency, and service-specific operating model. Selection check: compare workload fit, consistency and durability needs, query/access pattern, latency, failure/recovery behavior, deployment and operational ownership, ecosystem, cost, and migration path. Validate exact current behavior against the product's own documentation.
-- `CockroachDB` — Distributed SQL database; examine transaction semantics, topology, latency, and operating complexity. Selection check: compare workload fit, consistency and durability needs, query/access pattern, latency, failure/recovery behavior, deployment and operational ownership, ecosystem, cost, and migration path. Validate exact current behavior against the product's own documentation.
+- **PostgreSQL:** general-purpose open-source relational database with extensibility and a broad SQL/data-type feature set. Select exact extensions and versioned features deliberately; MVCC, transaction isolation, indexes, and operations remain workload-dependent.
+- **MySQL:** relational database family; this comparison specifically references MySQL 8.4 with InnoDB. Its default isolation, locking reads, gap/next-key locks, and optimizer/storage-engine behavior should be assessed for the exact queries and schema.
+- **Spanner:** Google Cloud distributed relational database. Its documented TrueTime and transaction timestamp model provide external consistency by default for serializable transactions; geography, schema design, read modes, latency, and managed-service coupling affect fit.
+- **CockroachDB:** distributed SQL database designed for transactional workloads across nodes. Serializable transactions can require retries under contention; use supported retry wrappers and understand locality and topology behavior.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Choice | Typical reason to evaluate | Questions to verify before choosing |
+| --- | --- | --- |
+| PostgreSQL | Rich relational modeling, SQL, extensibility, and self-managed or managed deployment options | Which version/extensions? What are HA, backup/PITR, upgrade, replication lag, and operational staffing requirements? |
+| MySQL/InnoDB | Existing MySQL ecosystem, managed offerings, application compatibility, and transactional relational data | Does the workload depend on InnoDB-specific isolation/locking? What are replication and failover semantics? Are SQL features portable? |
+| Spanner | Managed horizontal scale and strong distributed transaction behavior across regions | What write/read locality and latency do the schema and placement imply? What are service coupling, cost, quotas, and migration tradeoffs? |
+| CockroachDB | Distributed SQL with PostgreSQL-wire/protocol ecosystem and multi-node deployment | Which PostgreSQL features are compatible? What retry/transaction patterns and region placement are required? What is operational and licensing cost? |
+
+No product name substitutes for workload evidence. Compare representative read/write mixes, transaction size, hot-key contention, query complexity, data volume, growth, regional access, recovery-point/recovery-time objectives, and operator capability. A managed service can reduce routine infrastructure work but does not remove schema, backup, access-control, observability, cost, or disaster-recovery responsibilities.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+For an order system, define an invariant that inventory cannot be reserved twice. A “read available quantity, then update” flow can race. Use a transaction with a conditional update or locking/constraint design appropriate to the engine, persist an idempotency key for retries, and emit downstream events using an outbox or another reliable handoff. Test concurrent reservations under the actual isolation level. If serialization failures occur, retry the full decision with a bounded policy; do not blindly retry only the final SQL statement.
+
+For an analytics-heavy workload, avoid assuming that adding more OLTP replicas solves large scans. Consider separating analytical workloads into a warehouse/columnar system or using replicas with explicit freshness limits. For a geographically distributed application, compare keeping a primary in one region plus read replicas against a distributed SQL topology. A multi-region database can preserve stronger transactional semantics but may add coordination latency; data placement and access locality still determine practical performance.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Treating ACID as a single identical guarantee across all engines and configurations.
+- Assuming SQL or PostgreSQL wire compatibility means feature and behavior equivalence.
+- Choosing a database before identifying entities, invariants, transaction boundaries, query patterns, and consistency needs.
+- Using indexes as free performance; each adds write, storage, and maintenance cost.
+- Relying on application-side “check then write” for uniqueness or no-overlap invariants under concurrency.
+- Ignoring transaction retries, deadlocks, lock duration, connection pooling, and long-running transactions.
+- Calling a read replica current without measuring/communicating replication lag and consistency semantics.
+- Moving to distributed SQL solely because traffic is growing, without testing latency, locality, contention, operations, and cost.
+- Assuming managed backup means tested restore; perform recovery drills against stated RPO/RTO.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What should guide a relational database choice?** Data invariants, transaction/query patterns, consistency and durability requirements, operational ownership, regional needs, recovery targets, ecosystem, and cost.
+2. **What does an index trade?** Additional storage and write/maintenance work for faster access paths when the planner can use it.
+3. **Why can Serializable transactions still return an error?** The engine may abort a conflicting transaction to preserve serializable outcomes; the application must safely retry the whole transaction.
+4. **Does distributed SQL make every query faster?** No. It can improve scale/resilience and simplify distributed transactions, while coordination, placement, and network distance can raise latency or cost.

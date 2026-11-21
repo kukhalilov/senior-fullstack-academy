@@ -169,8 +169,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn ASP.NET Core integration testing, minimal API testing, .NET testing and EF Core testing documentation; PactNet and Testcontainers for .NET official docs",
-    "edition": "ASP.NET Core 11 / .NET 11 stable API boundary and current integration-testing guidance checked 2026-11-17",
-    "checkedAt": "2026-11-17",
+    "edition": "ASP.NET Core 11 / .NET 11 stable API boundary and current integration-testing guidance checked 2026-11-17; PactNet real-socket provider-verification constraint rechecked 2026-11-21",
+    "checkedAt": "2026-11-21",
     "urls": [
       "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0",
       "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/test-min-api?view=aspnetcore-10.0",
@@ -200,7 +200,8 @@
     "Pact-style consumer/provider contract tests use a simulated provider during consumer verification and provider verification against the provider implementation. They test interactions captured in contracts, not every behavior of the whole distributed system.",
     "A loopback HTTP server such as WireMock.Net exercises real HTTP serialization and request handling from the client perspective; an HttpMessageHandler stub is narrower and does not exercise sockets, HTTP framing, or server behavior.",
     "Database isolation strategy must account for all connections, background work, transactions, parallel tests, and cleanup. A transaction around the test is insufficient when application code uses an independent connection or commits outside that transaction.",
-    "Logs, dumps, request bodies, database snapshots, and container output can contain secrets or personal data. Capture only what is needed and apply the repository's artifact-access and retention policy."
+    "Logs, dumps, request bodies, database snapshots, and container output can contain secrets or personal data. Capture only what is needed and apply the repository's artifact-access and retention policy.",
+    "PactNet provider verification requires the provider to be reachable over a real TCP socket; the PactNet project warns that ASP.NET Core TestServer/WebApplicationFactory in-process hosting cannot be used for provider verification."
   ],
   "scopeExclusions": [
     "Unit test design and xUnit/MSTest/NUnit/TUnit authoring are covered in t10-001.",

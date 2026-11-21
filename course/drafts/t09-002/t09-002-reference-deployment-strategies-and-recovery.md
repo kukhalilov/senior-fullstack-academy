@@ -4,7 +4,11 @@ Sources: [Deployment environments](https://docs.github.com/en/actions/concepts/w
 
 ## Scope and version
 
-Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-14. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
+Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-20. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
+
+### Plan and visibility limits
+
+On GitHub Free, environments and their secrets/protection features are available for public repositories; on private/internal repositories these require Pro, Team, or Enterprise. On Free, Pro, and Team, required reviewers and wait timers are limited to public repositories. A YAML `environment:` declaration alone therefore does not guarantee an approval gate or environment secret access; confirm repository visibility and plan. [Deployment environments](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments) · [Reviewing deployments](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/review-deployments)
 
 ## How this group fits the mental model
 
@@ -55,7 +59,6 @@ Smoke checks are narrow. Canary thresholds need representative traffic/time. Old
 
 ## Knowledge checks with answers
 
-1. **What decision does this inventory support?** Selecting a workflow boundary, artifact control, delivery signal, release strategy, or credential policy.
-2. **What evidence should be preserved?** Source revision, check results, artifact digest, deployment outcome, and provenance where available.
-3. **How do you reduce risk?** Declare inputs, restrict permissions, promote the same tested output, and define failure handling.
-
+1. **What does a canary reveal?** Behavior of a limited release cohort under real traffic, compared with a control or baseline.
+2. **Why is database rollback different from app rollback?** Data migrations can be irreversible or shared with old code; use compatible expand/migrate/contract steps.
+3. **What makes a rollback decision operationally useful?** A measured trigger, known-good artifact, owner, and tested recovery path.

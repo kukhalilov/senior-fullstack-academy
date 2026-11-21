@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson covers the supplied service-health, SLI/SLO, alerting, and dashboard vocabulary. It uses the SRE Workbook guidance and current Prometheus concepts in the source snapshot checked 2026-11-17. An objective is meaningful only when its eligible population, good-event definition, window, data source, and missing-data policy are explicit. [SLO implementation](https://sre.google/workbook/implementing-slos/) [SLO alerting](https://sre.google/workbook/alerting-on-slos/)
+This lesson covers the supplied service-health, SLI/SLO, alerting, and dashboard vocabulary. It uses the SRE Workbook guidance and current Prometheus concepts in the source snapshot checked 2026-11-20. An objective is meaningful only when its eligible population, good-event definition, window, data source, and missing-data policy are explicit. [SLO implementation](https://sre.google/workbook/implementing-slos/) [SLO alerting](https://sre.google/workbook/alerting-on-slos/)
 
 # How this group fits the mental model
 

@@ -4,7 +4,7 @@ Sources: [official reference 1](https://git-scm.com/docs/git-reset), [official r
 
 ## Scope and version
 
-This guide covers the exact assigned inventory for Git 2.54 documentation checked 2026-11-14. Git’s availability and defaults depend on the installed version and configuration; check `git --version` and command help before relying on a new option. Path-oriented `git checkout` remains explained for compatibility, while focused `git switch` and `git restore` commands make intent clearer. [Git 2.54 documentation](https://git-scm.com/docs/git/2.54.0)
+This guide covers the exact assigned inventory for Git 2.56.1 documentation checked 2026-11-20. Git’s availability and defaults depend on the installed version and configuration; check `git --version` and command help before relying on a new option. Path-oriented `git checkout` remains explained for compatibility, while focused `git switch` and `git restore` commands make intent clearer. [Git 2.56.1 documentation](https://git-scm.com/docs/git/2.56.1)
 
 ## How this group fits the mental model
 
@@ -56,10 +56,6 @@ Using hard reset as a general undo; confusing path restore with ref reset; clean
 
 ## Knowledge checks with answers
 
-1. **Which state contains the proposed next snapshot?** The index.
-2. **Why does amending or rebasing change commit identity?** The commit object and/or parent relationship changes, producing a different object.
-3. **What is the safe response to a conflict?** Inspect operation roles, edit the desired result, stage and review, then continue or abort.
-4. **How do restore, reset, and revert differ?** Restore targets paths, reset moves local HEAD/ref and may reset index/worktree, and revert records an inverse commit.
-5. **What does fetch do without pull?** It downloads objects and updates local remote-tracking references without integrating into the current branch.
-6. **What are reflog limits?** It records local ref movements, can expire, and is not available as another clone’s backup.
-
+1. **Which command family safely undoes a committed public change?** Revert creates a new inverse change without rewriting shared history.
+2. **When can reset discard work?** Depending on mode, it moves HEAD/index and may overwrite the working tree; inspect status and preserve needed changes first.
+3. **What is the first recovery step after an accidental operation?** Stop modifying refs, inspect status/reflog, and create a rescue ref or backup before attempting repair.

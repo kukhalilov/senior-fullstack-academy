@@ -1,6 +1,6 @@
 # Docker images Dockerfiles compose networks volumes and security — Big-picture orientation and mental model
 
-Sources: [Docker Engine 29 release notes](https://docs.docker.com/engine/release-notes/), [Dockerfile reference](https://docs.docker.com/reference/dockerfile/), [Docker build best practices](https://docs.docker.com/build/building/best-practices/), [Compose Specification](https://docs.docker.com/reference/compose-file/), and [Docker Compose releases](https://github.com/docker/compose/releases).
+Sources: [Docker Engine 29 release notes](https://docs.docker.com/engine/release-notes/29/), [Dockerfile reference](https://docs.docker.com/reference/dockerfile/), [Docker build best practices](https://docs.docker.com/build/building/best-practices/), [Compose Specification](https://docs.docker.com/reference/compose-file/), [Docker Compose jobs](https://docs.docker.com/reference/compose-file/jobs/), and [Docker Compose releases](https://github.com/docker/compose/releases).
 
 ## Problem and purpose
 
@@ -37,11 +37,11 @@ An image digest identifies the packaged artifact; a container ID identifies one 
 
 ## End-to-end walkthrough
 
-For a .NET API and database, keep source in a small build context with `.dockerignore`; use a multi-stage Dockerfile to compile in an SDK stage and copy only published output into a runtime base. Use exec-form `ENTRYPOINT` or `CMD` so the app receives termination signals. Build for the target platform and label/tag the artifact, ideally recording its digest and provenance/SBOM. Push to a registry using short-lived credentials. In Compose, define an API service, database service, user-defined network, persistent database volume, health check, and dependency condition. Keep database credentials out of the image and source-controlled YAML. At deploy time, verify the resolved Compose configuration, image digest, network reachability, health endpoint, persistent data, logs, and resource limits.
+For a .NET API and database, keep source in a small build context with `.dockerignore`; use a multi-stage Dockerfile to compile in an SDK stage and copy only published output into a runtime base. Use exec-form `ENTRYPOINT` or `CMD` so the app receives termination signals. Build for the target platform and label/tag the artifact, ideally recording its digest and provenance/SBOM. Push to a registry using short-lived credentials. In Compose, define an API service, database service, user-defined network, persistent database volume, health check, and dependency condition. Keep database credentials out of the image and source-controlled YAML. An optional Compose job can run a one-shot migration or backup; scheduled jobs currently require Engine 29.10+, Compose 5.8+, and an explicitly enabled experimental daemon extension. At deploy time, verify the resolved Compose configuration, image digest, network reachability, health endpoint, persistent data, logs, and resource limits.
 
 ## When to use it and tradeoffs
 
-Use Docker images for repeatable packaging and containers for process isolation, test environments, and deployments. Containers share the host kernel; they are not automatically equivalent to a VM security boundary. Multi-stage builds and small bases reduce runtime contents but can make debugging harder. Digest pinning increases reproducibility but requires an update process. Bind mounts are convenient for development and host integration; named volumes are usually better for engine-managed persistent data. Compose is useful for local/single-host applications, while multi-host orchestration requires a platform that implements those semantics.
+Use Docker images for repeatable packaging and containers for process isolation, test environments, and deployments. Containers share the host kernel; they are not automatically equivalent to a VM security boundary. Multi-stage builds and small bases reduce runtime contents but can make debugging harder. Digest pinning increases reproducibility but requires an update process. Bind mounts are convenient for development and host integration; named volumes are usually better for engine-managed persistent data. Compose is useful for local/single-host applications. Its experimental scheduled jobs are daemon-managed on one Engine, not a multi-host scheduler or a substitute for a production orchestration platform.
 
 ## What later lessons cover
 

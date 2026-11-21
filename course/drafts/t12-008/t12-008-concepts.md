@@ -28,7 +28,7 @@ Estimate average and peak arrival rate, burst duration, concurrency, payload siz
 
 ### Correctness precedes optimization
 
-Name the source of truth and transaction boundary. Decide which operations require atomicity, which reads may be stale, what ordering is required, and what duplicate work means. Then distinguish serving replicas and derived indexes from authoritative data. Every asynchronous path needs acknowledgement, retry, deduplication, and recovery rules.
+Name the source of truth and transaction boundary. Decide which operations require atomicity, which reads may be stale, what ordering is required, and what duplicate work means. Then distinguish serving replicas and derived indexes from authoritative data. For each asynchronous boundary, define when the sender may consider work accepted, whether delivery or execution can repeat, which failures are retryable, how ordering and poison work are handled, and how an operator or consumer can recover. Some paths use an acknowledgement and replay; others use a durable job record, scheduled reconciliation, or an explicit best-effort contract. Do not assume one delivery pattern fits every async path.
 
 ### Networks create partial failure
 
@@ -44,7 +44,7 @@ State what users see when a dependency, zone, region, or provider fails. Define 
 
 ## Mechanisms and relationships
 
-A typical request crosses a browser or client, an edge or load-balancing layer, an application boundary, data stores, and possibly a broker or external provider. At each boundary ask: who authenticates and authorizes; what data crosses; what timeout/deadline applies; what is recorded; and whether a retry is safe. Distributed traces connect spans across services, while aggregate metrics reveal saturation and user-level error rates.
+A typical request crosses a browser or client, an edge or load-balancing layer, an application boundary, data stores, and possibly a broker or external provider. At each boundary ask: who authenticates and authorizes; what data crosses; what timeout/deadline applies; what is recorded; and whether a retry is safe. Distributed traces connect spans across services. Bounded aggregate metrics such as service, operation, and normalized route reveal rates, errors, and saturation; request-specific identifiers belong in sampled traces or controlled logs rather than unbounded metric labels.
 
 In .NET, propagate cancellation tokens through ASP.NET Core handlers, HttpClient, and database calls; use bounded worker concurrency and explicit transaction boundaries. EF Core transactions protect database work but do not atomically publish to an unrelated broker, which is why an outbox is useful. In React, the UI must represent loading, stale, empty, error, and retry states honestly; client cancellation cannot revoke a server-side side effect. SSR, hydration, caching, and API deployments must remain compatible during rolling releases.
 

@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson explains the supplied MobX 6 concepts as a selection reference. Detailed annotations/signatures belong in t07-012 and the official MobX reference. [Observable state](https://mobx.js.org/observable-state.html) [Computeds](https://mobx.js.org/computeds.html) [React integration](https://mobx.js.org/react-integration.html)
+This lesson explains the supplied MobX 7.1.7 concepts as a selection reference. Detailed annotations/signatures belong in t07-012 and the official MobX reference. MobX 7 requires Proxy support and no longer supports MobX 6's legacy decorator mode; projects using legacy decorators must migrate to modern decorators or another annotation style, and Proxy-less runtimes may need MobX 6. [Observable state](https://mobx.js.org/observable-state.html) [Computeds](https://mobx.js.org/computeds.html) [React integration](https://mobx.js.org/react-integration.html) [MobX 7 configuration](https://mobx.js.org/configuration.html) [Decorator migration](https://mobx.js.org/enabling-decorators.html)
 
 ## How this group fits the mental model
 

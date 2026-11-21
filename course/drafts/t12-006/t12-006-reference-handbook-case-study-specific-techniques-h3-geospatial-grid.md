@@ -1,10 +1,10 @@
 # end-to-end system design case studies — Reference: H3 geospatial grid
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [H3 documentation: overview](https://h3geo.org/docs/core-library/overview/), [H3 cell index mode](https://h3geo.org/docs/library/index/cell/), [H3 hierarchy API](https://h3geo.org/docs/api/hierarchy/), [H3 traversal API](https://h3geo.org/docs/api/traversal/), [Uber: H3's design](https://www.uber.com/us/en/blog/h3/).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [current H3 documentation](https://h3geo.org/docs/), [H3 cell indexing](https://h3geo.org/docs/library/index/cell/), [H3 hierarchy API](https://h3geo.org/docs/api/hierarchy/), [H3 traversal API](https://h3geo.org/docs/api/traversal/), [H3 cell statistics](https://h3geo.org/docs/core-library/restable/), [Uber: H3's design](https://www.uber.com/us/en/blog/h3/).
 
 ## Scope and version
 
-This case study explains the H3 discrete global grid system and its use as a spatial indexing layer. The H3 documentation and API pages were checked on 2026-11-17; use the linked documentation for the exact behavior of a library release and language binding. H3 is an index, not a complete GIS database, routing engine, map projection for display, or substitute for geometry predicates.
+This case study explains the H3 discrete global grid system and its use as a spatial indexing layer. Current H3 documentation was checked on 2026-11-21; use the linked API documentation for exact behavior of the library release and language binding in use. H3 is an index, not a complete GIS database, routing engine, map projection for display, or substitute for geometry predicates.
 
 ## How this group fits the mental model
 

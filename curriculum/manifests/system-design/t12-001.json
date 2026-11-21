@@ -209,7 +209,13 @@
       "id": "handbook-building-block-product-and-protocol-examples-google-cloud-storage-gcs",
       "title": "Google Cloud Storage (GCS)",
       "items": [
-        "Google Cloud Storage (GCS)"
+        "Google Cloud Storage (GCS)",
+        "Flat namespace bucket",
+        "Hierarchical namespace (HNS) bucket",
+        "Simulated folders",
+        "Managed folders",
+        "HNS folder resources",
+        "Atomic folder rename and move"
       ]
     },
     {
@@ -370,8 +376,8 @@
   ],
   "sourceSnapshot": {
     "authority": "The HLD Handbook public system-design syllabus, with relevant standards, framework guidance, and official platform documentation for technical context.",
-    "edition": "HLD Handbook syllabus checked 2026-11-17; protocol claims use the current cited standards, including TLS 1.3 RFC 9846 (July 2026).",
-    "checkedAt": "2026-11-17",
+    "edition": "HLD Handbook syllabus checked 2026-11-17; technical sources refreshed through 2026-11-20, including TLS 1.3 RFC 9846 and current API, object-storage, and protocol guidance. Edge runtime limits, Deno runtime/service lifecycle, and Durable Objects SQLite storage refreshed 2026-11-20. APNs and FCM provider/message semantics refreshed 2026-11-20. Edge database alternatives (DynamoDB MRSC/MREC, distributed SQL, XDCR) and OS/process/data-structure material refreshed 2026-11-20.",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://hld.handbook.academy/",
       "https://www.rfc-editor.org/rfc/rfc9110",
@@ -527,7 +533,42 @@
       "https://firebase.google.com/docs/cloud-messaging/customize-messages/collapsible-message-types",
       "https://firebase.google.com/docs/cloud-messaging/customize-messages/setting-message-priority",
       "https://firebase.google.com/docs/cloud-messaging/understand-delivery",
-      "https://firebase.google.com/docs/cloud-messaging/manage-tokens"
+      "https://firebase.google.com/docs/cloud-messaging/manage-tokens",
+      "https://google.aip.dev/180",
+      "https://www.rfc-editor.org/rfc/rfc9745",
+      "https://www.rfc-editor.org/rfc/rfc8594",
+      "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2",
+      "https://learn.microsoft.com/en-us/azure/architecture/patterns/idempotent-consumer",
+      "https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos",
+      "https://docs.cloud.google.com/storage/docs/hns-overview",
+      "https://docs.cloud.google.com/storage/docs/rename-hns-folders",
+      "https://docs.cloud.google.com/storage/docs/folder-types",
+      "https://deno.com/blog/cloudflare",
+      "https://developers.cloudflare.com/durable-objects/api/sqlite-storage-api/",
+      "https://developer.apple.com/documentation/usernotifications/generating-a-remote-notification",
+      "https://firebase.google.com/docs/cloud-messaging/android-message-priority",
+      "https://firebase.google.com/docs/cloud-messaging/throttling-and-quotas",
+      "https://firebase.google.com/docs/cloud-messaging/ios/receive-messages",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html",
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/dynamodb-global-tables/overview.html",
+      "https://www.cockroachlabs.com/docs/stable/multiregion-overview.html",
+      "https://docs.yugabyte.com/stable/explore/multi-region-deployments/row-level-geo-partitioning/",
+      "https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-overview.html",
+      "https://man7.org/linux/man-pages/man2/fork.2.html",
+      "https://man7.org/linux/man-pages/man7/pthreads.7.html",
+      "https://man7.org/linux/man-pages/man2/getrlimit.2.html",
+      "https://commons.apache.org/proper/commons-collections/bloomFilters/intro.html",
+      "https://github.com/meta/rocksdb/wiki/RocksDB-Tuning-Guide",
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Navigation_and_resource_timings",
+      "https://web.dev/learn/performance/understanding-the-critical-path",
+      "https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments",
+      "https://martinfowler.com/bliki/ParallelChange.html",
+      "https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying",
+      "https://docs.aws.amazon.com/durable-execution/patterns/best-practices/idempotency/",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BestPractices_ImplementingVersionControl.html",
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/PresignedUrlUploadObject.html"
     ]
   },
   "scopeExclusions": [

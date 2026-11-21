@@ -23,11 +23,28 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+These mechanisms should not be treated as substitutes:
+
+| Mechanism | What it changes | Main decision |
+|---|---|---|
+| Cache-aside | Avoids recomputing or rereading a value on a hit | Is stale data acceptable, and how are misses, invalidation, and stampedes handled? |
+| Write-through | Couples a cache update to the write path by policy | What happens if the authoritative write succeeds but cache update fails, or vice versa? |
+| TTL | Expires an entry after a time bound | Is the bound sufficient for the freshness promise, and do all readers honor expiry? |
+| Token bucket | Allows a configured burst while limiting average admission rate | What is the key (user, tenant, route), and is quota state local or shared? |
+| Leaky bucket / paced queue | Smooths admitted work at a controlled drain rate | Is delay acceptable, and what is the queue bound and overload response? |
+| Message queue | Buffers work for one or more competing workers | What are ack, retry, visibility, dead-letter, ordering, and retention semantics? |
+| Event stream | Retains records for independent consumer positions and replay | What ordering scope, partition key, retention, and replay load are required? |
+| Object storage | Stores large objects independently from transactional rows | How are upload authorization, completion, versioning, lifecycle, integrity, and deletion reconciled? |
+
+A queue is often a work-distribution mechanism: one message is normally claimed by a worker group, processed, then acknowledged/deleted under that product’s contract. A retained log is often a fan-out/replay mechanism: independent consumer groups keep positions and can reread within retention. Implementations can combine features, so use the actual product contract rather than the label. Backpressure requires bounded buffers, admission control, and a policy for reject, shed, delay, or degrade; unlimited retries merely move overload into the future.
+
+Cache write patterns are also distinct. Cache-aside makes the application load on miss; write-through updates the cache as part of an application write policy; write-behind acknowledges before the backing store is updated and therefore needs a durable recovery path; refresh-ahead updates likely hot values before expiry but can waste work. TTL limits age only if reads respect it, and does not invalidate an entry early after a business change. Invalidation messages can be lost, so systems commonly combine invalidation with bounded TTL and reconciliation. A cache stampede can occur when many misses recompute one hot key simultaneously; single-flight request coalescing, jittered refresh, stale-while-revalidate, or carefully bounded locking are alternatives with different failure modes.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+For a product catalog, the database owns product truth and a cache-aside layer stores derived read values under a normalized key. TTL bounds how long a forgotten invalidation can persist, but the freshness objective determines whether that bound is acceptable. Coalesce concurrent misses for a hot product or serve a permitted stale value while one refresh runs. For checkout, do not use an eventually refreshed cache as the sole authority for the final inventory reservation.
+
+For a burst of image processing jobs, persist the job request before reporting durable acceptance, place it in a bounded queue, and let workers acknowledge only after a durable result or handoff. Define retry limits, dead-letter inspection, and what the API reports while backlog age grows. If several downstream consumers each need to replay an event independently, a retained stream may fit better than a competing-consumer queue. For large uploads, store bytes in object storage and keep metadata/state in a database; reconcile the two effects because an object write and database transaction are not one atomic operation.
 
 ## Common mistakes
 
@@ -35,9 +52,13 @@ For a new feature, trace one successful operation and one failure through the re
 - Treating a protocol or product name as a guarantee without reading its contract.
 - Ignoring cost, operational ownership, observability, and recovery.
 - Applying one consistency or caching rule to data with different correctness needs.
+- Assuming a TTL guarantees freshness or that invalidation always reaches every cache.
+- Treating a queue as an event archive, or assuming an event stream provides global ordering across partitions.
+- Retrying indefinitely without bounding backlog, consumer concurrency, or downstream load.
+- Acknowledging work before durable processing when the product contract can then discard it.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What does a queue decouple?** Producers from consumers in time and often load, but not necessarily in ownership or transactionality.
+2. **Why pair an outbox with idempotent consumers?** The outbox closes a database/message dual-write gap; consumer deduplication handles redelivery.
+3. **What does a cache copy imply about authority?** Nothing by itself; ownership and staleness rules must be defined separately.

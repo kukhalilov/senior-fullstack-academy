@@ -4,7 +4,7 @@ Sources: [Azure Storage overview](https://learn.microsoft.com/en-us/azure/storag
 
 ## Scope and version
 
-This reference compares the common Azure storage, database, cache and integration families in the manifest. It does not enumerate every service API, SKU, SDK method or regional capability. Current Microsoft Learn guidance was checked 2026-11-16. Service lifecycle and pricing can change; verify the target region/tier before design or migration.
+This reference compares the common Azure storage, database, cache and integration families in the manifest. It does not enumerate every service API, SKU, SDK method or regional capability. Current Microsoft Learn guidance was checked 2026-11-20. Service lifecycle and pricing can change; verify the target region/tier before design or migration.
 
 ## How this group fits the mental model
 
@@ -84,9 +84,9 @@ Choose a data service from its access pattern, consistency, durability, retentio
 
 ### Caching, messaging and recovery
 
-- `Azure Cache for Redis` — Legacy Azure-hosted Redis service. Enterprise/Enterprise Flash retirement is scheduled for 2027-03-31; Basic/Standard/Premium for 2028-09-30. Creation restrictions differ by tier and customer/cloud.
-- `Azure Cache for Redis retirement schedule` — Microsoft Learn's dated lifecycle plan as checked 2026-11-16. Enterprise tiers retire 2027-03-31; Basic/Standard/Premium retire 2028-09-30. Confirm eligibility and current migration dates in the official FAQ.
-- `Azure Managed Redis` — Current managed Redis Enterprise-based service and recommended migration destination. GA product status does not mean every SKU/feature is GA.
+- `Azure Cache for Redis` — Legacy Azure-hosted Redis service. Enterprise/Enterprise Flash retirement is scheduled for 2027-03-31; Basic/Standard/Premium for 2028-09-30. As of 2026-11-20, public Azure blocks new customers from creating Basic/Standard/Premium since 2026-04-01, but tenants qualify as existing if any subscription had an instance before that date and can continue creating until retirement. Azure Government and China clouds have no creation block before retirement under the July 2026 update; verify cloud-specific lifecycle notices.
+- `Azure Cache for Redis retirement schedule` — Microsoft Learn's dated lifecycle plan as checked 2026-11-20. Enterprise/Enterprise Flash retire 2027-03-31; Basic/Standard/Premium retire 2028-09-30. Public Azure allows tenant-wide existing customers (any subscription had a cache before 2026-04-01) to create Basic/Standard/Premium until retirement; Government and China have different rules, and eligibility must be confirmed.
+- `Azure Managed Redis` — Current managed Redis Enterprise-based service and recommended migration destination. GA product status does not mean every SKU/feature is GA; as checked 2026-11-20, Redis 8.2 is preview and unavailable with Flash Optimized, geo-replication and custom data access policies. In-memory tiers above 350 GB and Flash Optimized A2000/A4500 are preview. Some separate features are also preview; check the live tier/region/feature matrix.
 - `Azure Managed Redis clustered cache` — Clustered behavior is the default configuration; clients should support cluster redirection and avoid unsupported cross-slot assumptions.
 - `Azure Service Bus` — Brokered messaging service for queues/topics with locks, settlement, sessions, duplicate detection and dead-letter behavior.
 - `Service Bus queue` — Point-to-point message entity with competing consumers and brokered delivery semantics.

@@ -58,4 +58,4 @@ On recovery, load snapshot version 8800 and replay committed log records 8801 th
 
 ## Review status
 
-Ordering/transaction caveats are checked against Kafka documentation; book representation context against FIX; transaction/replay examples are bounded to the stated model. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Reviewed 2026-11-21. Kafka 4.1 documentation confirms partition-scoped ordering and carefully scoped transactional processing guarantees; FIX's cited document covers market-data book representation, not a universal matching algorithm. The examples explicitly state that venue rules govern priority and acceptance, and separate matching from publication, clearing, and settlement. No material factual corrections or missing core concepts were found.

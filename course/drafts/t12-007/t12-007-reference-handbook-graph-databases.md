@@ -1,36 +1,59 @@
 # system design technology landscape and selection — Reference: Graph databases
 
-Sources: [HLD Handbook](https://hld.handbook.academy/technologies/), [reference 1](https://www.postgresql.org/docs/current/), [reference 2](https://kafka.apache.org/documentation/), [reference 3](https://grpc.io/about/), [reference 4](https://grpc.io/docs/what-is-grpc/core-concepts/), [reference 5](https://graphql.org/learn/), [reference 6](https://cloud.google.com/spanner), [reference 7](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html), [reference 8](https://vitess.io/docs/24.0/overview/whatisvitess/), [reference 9](https://docs.scylladb.com/manual/master/using-scylla/cassandra-compatibility.html).
+Sources: [Neo4j graph database concepts](https://neo4j.com/docs/getting-started/appendix/graphdb-concepts/), [Neo4j graph modeling tips](https://neo4j.com/docs/getting-started/data-modeling/modeling-tips/), [Neo4j index configuration](https://neo4j.com/docs/operations-manual/current/performance/index-configuration/), [Neo4j graph type and schema ingestion guide](https://neo4j.com/docs/data-ingestion-guide/best-practices/schema-and-indexes/), [HLD Handbook technology overview](https://hld.handbook.academy/technologies/).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This lesson explains property-graph database design using Neo4j as the named product. It focuses on current Neo4j documentation and general graph-modeling principles. Neo4j’s Cypher, editions, graph algorithms, clustering, and APIs evolve; versioned features such as graph types introduced in Neo4j 2026.02 require compatible Cypher 25 support. Check the deployed edition/version for exact capabilities.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+A property graph stores entities as nodes and their connections as relationships; both can have properties. Labels classify nodes, relationship types describe connections, and relationships have direction (queries may choose to traverse either direction). The graph is useful when the question is about paths and connections: “Which devices are connected to accounts that share a suspicious address within three hops?” or “What route connects this component to a service dependency?”
+
+Unlike a relational join that repeatedly matches foreign-key values, a graph engine can traverse stored relationships directly. But the database does not make every query fast automatically. Start queries from selective, indexed anchor nodes, constrain relationship types and depth, and avoid unconstrained path expansion. Model around the questions that matter, measure with realistic graph sizes, and expect some queries to be better served by relational or search indexes.
+
+Graph shape matters. A supernode with millions of edges can become a traversal hotspot; high-degree nodes require query bounds, alternate projections, partitioning, or precomputation. A relationship can carry meaningful attributes such as `since`, `role`, or `weight`. Promote a property to its own node when it is shared, independently queried, or has its own lifecycle. Avoid turning every attribute into a node because that adds path length and complexity.
 
 ## Supplied names explained
 
-- `Neo4j` — Property-graph database; evaluate relationship traversal patterns, graph model, and query needs. Selection check: compare workload fit, consistency and durability needs, query/access pattern, latency, failure/recovery behavior, deployment and operational ownership, ecosystem, cost, and migration path. Validate exact current behavior against the product's own documentation.
+- **Neo4j:** property-graph database queried with Cypher. It supports property indexes, constraints, text/full-text and point indexes; the query planner selects suitable indexes for Cypher. Graph Data Science and vector-search capabilities are additional product areas whose availability and behavior depend on product/version.
+- **Node:** entity such as person, account, device, or service; labels and properties classify/describe it.
+- **Relationship:** directed, typed connection between two nodes; properties can describe the edge itself.
+- **Traversal:** following relationships from a starting node under type, direction, depth, and predicate constraints.
+- **Path:** ordered sequence of nodes and relationships; variable-length path queries need explicit bounds and uniqueness semantics to control work.
+- **Index/constraint:** indexes help locate anchor nodes or properties; constraints enforce data invariants such as key uniqueness. Indexing every property increases storage and write maintenance.
+- **Graph type (Neo4j 2026.02+, Cypher 25):** a newer schema mechanism for declaring graph element/property types and constraints; older deployments may use traditional indexes and constraints instead.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Model | Strong fit | Trade-off |
+| --- | --- | --- |
+| Property graph | Multi-hop relationship queries and evolving connection-centric models | Query shape and graph degree govern cost; not a replacement for every relational constraint or aggregate scan |
+| Relational tables | Structured entities, joins, constraints, reporting, and set-based operations | Deep recursive traversals can require recursive queries and repeated joins; performance depends on indexes and query shape |
+| Document store | Aggregate-oriented reads of nested data | Relationship traversal across many documents can require repeated fetches or denormalization |
+| RDF/triple store | Semantic web/RDF data with subject-predicate-object and ontology standards | Different data/query model (e.g., SPARQL); property-graph and RDF semantics are not interchangeable |
+| Graph processing engine | Large offline algorithms such as centrality/community detection over snapshots | Batch processing may not provide the same online transactional update/query path as an operational graph DB |
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+For fraud investigation, model `(:Account)-[:USES]->(:Device)` and `(:Account)-[:SENDS_TO]->(:Account)`. Add uniqueness constraints for stable account/device IDs and indexes on properties used to find an initial account. A query searches only a bounded path pattern and returns the explanation path for an investigator. If a device is used by an unusually large number of accounts, make that fan-out explicit in monitoring and cap or route broad expansion separately; otherwise, one request can touch a large portion of the graph.
+
+Use transactional writes for related node/relationship changes when they must appear together. Define idempotent ingestion keys so replay does not create duplicate graph entities. Index only properties used in lookup/traversal entry points, and profile queries on representative data. For graph analytics, a snapshot or projection can be processed by a graph algorithm engine; avoid running an expensive global algorithm synchronously on a user request.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Choosing a graph database because the domain has relationships; relational databases also model relationships well.
+- Starting a traversal from all nodes or permitting unbounded variable-length paths.
+- Using generic relationship types and filtering huge edge sets after traversal.
+- Creating a supernode without understanding degree, fan-out, and read/write hotspots.
+- Adding an index for every property and increasing write/storage cost without useful query selectivity.
+- Confusing property graphs, RDF triples, and graph-processing platforms as one interchangeable “graph DB.”
+- Treating Cypher syntax or protocol familiarity as proof of scale, transaction, or edition parity.
+- Modeling queries before listing the business questions, then accumulating workarounds that expand the graph unnecessarily.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **When is a graph database a good fit?** When important queries repeatedly navigate multi-hop relationships and the graph model makes those paths natural and efficient.
+2. **Why do graph queries still need indexes?** Indexes find selective starting points; traversals then expand from those anchors instead of scanning all nodes.
+3. **What makes a supernode risky?** Its large degree can make traversals expensive and concentrate load; query bounds and alternate representations may be needed.
+4. **Does Neo4j’s 2026 graph type feature apply to all versions?** No. The documentation says graph types are introduced in 2026.02 and require Cypher 25; earlier versions use other schema mechanisms.

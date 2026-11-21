@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson explains the supplied CPU, memory, GC, concurrency, and profiler terms. .NET runtime tools are current as checked 2026-11-17; OS-level tools require platform-specific privileges, symbols, and configuration. CPU and memory evidence should be collected under the workload where the symptom occurs. [Microsoft diagnostics](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/) [Linux perf](https://perf.wiki.kernel.org/index.php/Main_Page) [Windows Performance Toolkit](https://learn.microsoft.com/en-us/windows-hardware/test/wpt/)
+This lesson explains the supplied CPU, memory, GC, concurrency, and profiler terms. .NET runtime tools are current as checked 2026-11-20; OS-level tools require platform-specific privileges, symbols, and configuration. CPU and memory evidence should be collected under the workload where the symptom occurs. [Microsoft diagnostics](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/) [Linux perf](https://perf.wiki.kernel.org/index.php/Main_Page) [Windows Performance Toolkit](https://learn.microsoft.com/en-us/windows-hardware/test/wpt/)
 
 # How this group fits the mental model
 

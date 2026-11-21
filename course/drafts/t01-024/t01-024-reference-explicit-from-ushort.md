@@ -20,7 +20,7 @@ The following list defines the explicit conversions from `ushort` to other types
 *   **ushort to sbyte (explicit numeric conversion):** Converts a 16-bit unsigned integer to an 8-bit signed integer. This may result in data loss if the `ushort` value is greater than 127.
 *   **ushort to byte (explicit numeric conversion):** Converts a 16-bit unsigned integer to an 8-bit unsigned integer. This may result in data loss if the `ushort` value is greater than 255.
 *   **ushort to short (explicit numeric conversion):** Converts a 16-bit unsigned integer to a 16-bit signed integer. This may result in data loss if the `ushort` value is greater than 32,767.
-*   **ushort to nint (explicit numeric conversion):** Converts a 16-bit unsigned integer to a native-sized signed integer. While `nint` is at least 32 bits, the conversion is explicit because it involves a change in signedness.
+*   **ushort to nint (explicit numeric conversion):** Converts a 16-bit unsigned integer to a native-sized signed integer. Every `ushort` value fits in `nint` on supported 32-bit and 64-bit processes, but this predefined conversion is explicit.
 *   **ushort to char (explicit numeric conversion):** Converts a 16-bit unsigned integer to a 16-bit UTF-16 code unit. This is explicit because `char` is treated as a distinct type from `ushort` in C#.
 
 # Cross-item comparison

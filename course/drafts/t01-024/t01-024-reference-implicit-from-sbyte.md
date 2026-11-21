@@ -5,7 +5,7 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers `sbyte` implicit numeric conversions within the context of C# 15 and .NET 11. All information is based on the official Microsoft Learn C# documentation and .NET 11 compatibility notes, checked as of 2026-11-14.
+This lesson covers `sbyte` implicit numeric conversions within the context of C# 15 and .NET 11. All information is based on the official Microsoft Learn C# documentation and .NET 11 compatibility notes, checked as of 2026-11-20.
 
 # How this group fits the mental model
 In C#, `sbyte` is an 8-bit signed integer. The language defines implicit conversions from it to the listed destinations. These target types accommodate its magnitude; the exactness of floating-point conversions depends on the target, though all `sbyte` values are exact in `float` and `double`.

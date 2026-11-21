@@ -4,7 +4,7 @@ Sources: [ASP.NET Core startup troubleshooting status mappings (latest published
 
 ## Scope and version
 
-This lesson targets IIS-hosted ASP.NET Core 11 GA (released November 10, 2026). Microsoft’s current startup troubleshooting status-code article still resolves to ASP.NET Core 10. The codes below are the latest published mapping checked November 16, 2026, not a guarantee that every detail is unchanged in every ANCM build. Compare the exact message, installed ANCM/Hosting Bundle, Event Log, and target-version documentation. IIS service configuration names and AppCmd behavior also depend on installed Windows/IIS version.
+This lesson targets IIS-hosted ASP.NET Core 11 GA (released November 10, 2026). Microsoft’s current startup troubleshooting status-code article still resolves to ASP.NET Core 10. The codes below are the latest published mapping checked November 20, 2026, not a guarantee that every detail is unchanged in every ANCM build. Compare the exact message, installed ANCM/Hosting Bundle, Event Log, and target-version documentation. IIS service configuration names and AppCmd behavior also depend on installed Windows/IIS version.
 
 ## How this group fits the mental model
 

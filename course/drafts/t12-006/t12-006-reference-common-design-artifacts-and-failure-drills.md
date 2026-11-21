@@ -63,7 +63,3 @@ For each critical write, inject or reason about: request delivered twice; reques
 3. **Why do SLOs belong near functional requirements?** They turn qualities such as latency and availability into measurable user-facing goals that guide architecture and operations.
 4. **What makes a capacity estimate useful if it is uncertain?** Explicit units/assumptions, ranges or sensitivities, and a plan to validate the dominant unknown with measurement/load testing.
 5. **When should an ADR be revisited?** When the evidence, workload, constraints, or trigger recorded in the decision changes materially.
-
-## Review status
-
-The SLO and operational-artifact framing is cross-checked against Google SRE and cloud Well-Architected guidance. This lesson remains pending full claim-by-claim audit and manifest omission check.

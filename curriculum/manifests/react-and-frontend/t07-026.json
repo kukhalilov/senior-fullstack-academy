@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 4,
+  "id": "t07-026",
+  "track": "track-07",
+  "title": "Browser persistence offline operation and web workers",
+  "status": "source-backed-draft-generation-enabled",
+  "concepts": [
+    "Choose persistence from lifetime, size, access pattern, server visibility, sensitivity, and offline requirements; no browser store is automatically a durable source of truth.",
+    "Cookies travel between browser and server on matching requests according to cookie rules, so keep them small and define Secure, HttpOnly, SameSite, domain, path, and expiry deliberately. Web Storage is script-readable, string-based, synchronous, and suited to small preferences rather than secrets or large datasets.",
+    "IndexedDB is asynchronous, structured, indexed, transactional client-side storage suited to larger records, blobs, and offline application data. Its schema is changed through version upgrades, and open connections in other tabs can block an upgrade.",
+    "The Cache API stores Request/Response pairs under application-managed cache names. It is not the browser HTTP cache and does not automatically apply HTTP caching headers; the application owns freshness, invalidation, and safe cache keys.",
+    "A service worker is an event-driven worker that can mediate requests for pages within its scope and provide cached responses. It is not a continuously running background process and the browser can stop it between events.",
+    "Offline support is a product behavior: reads need a stated freshness promise; writes need durable pending state, replay safety, conflict handling, and a way to show unsynchronized work. Connectivity events are hints and do not prove a server accepted a write.",
+    "Browser-managed storage is best effort by default. Quotas vary, writes can fail, data can be evicted or cleared, and a persistent-storage request may be denied. Critical user data needs synchronization or export/recovery design.",
+    "Dedicated and shared workers move suitable computation off the UI thread; service workers have different lifecycle and network-mediation roles. Messages use structured cloning or transfer semantics, so data movement and ownership have costs.",
+    "React state renders current UI; it is not a persistence layer. Put browser storage behind an asynchronous boundary, subscribe/unsubscribe cleanly, and model loading, errors, conflicts, stale data, and server-rendered environments explicitly."
+  ],
+  "inventory": [
+    {
+      "id": "browser-persistence-choices",
+      "title": "Choosing browser persistence by data and lifetime",
+      "items": [
+        "HTTP cookie",
+        "Web Storage",
+        "localStorage",
+        "sessionStorage",
+        "IndexedDB",
+        "Cache API and CacheStorage",
+        "HTTP cache",
+        "Origin Private File System (OPFS)",
+        "Client-side source of truth",
+        "Sensitive-data persistence"
+      ]
+    },
+    {
+      "id": "indexeddb-data-model-and-transactions",
+      "title": "IndexedDB data model, queries, and transaction boundaries",
+      "items": [
+        "IndexedDB database",
+        "Object store",
+        "Key path and key generator",
+        "Index",
+        "Cursor and key range",
+        "Structured clone",
+        "readonly transaction",
+        "readwrite transaction",
+        "Transaction completion and abort",
+        "Asynchronous request model"
+      ]
+    },
+    {
+      "id": "indexeddb-schema-and-multitab-lifecycle",
+      "title": "IndexedDB schema upgrades, multiple tabs, and recovery",
+      "items": [
+        "Database version",
+        "upgradeneeded migration",
+        "versionchange event",
+        "blocked upgrade",
+        "Connection close and upgrade coordination",
+        "Atomic schema upgrade",
+        "Transaction error bubbling",
+        "Quota and storage failure recovery"
+      ]
+    },
+    {
+      "id": "cache-api-and-http-cache",
+      "title": "Cache API, HTTP cache, and response freshness",
+      "items": [
+        "CacheStorage named cache",
+        "Cache request/response matching",
+        "Manual cache policy",
+        "HTTP cache directives",
+        "Cache versioning and cleanup",
+        "Cache-first strategy",
+        "Network-first strategy",
+        "Stale-while-revalidate strategy",
+        "Authenticated response cache boundary",
+        "Cache invalidation"
+      ]
+    },
+    {
+      "id": "service-worker-lifecycle-and-routing",
+      "title": "Service worker registration, lifecycle, and fetch handling",
+      "items": [
+        "Service worker",
+        "Secure context requirement",
+        "Registration scope",
+        "installing, waiting, and active workers",
+        "install event and precache",
+        "activate event and cleanup",
+        "skipWaiting and clients.claim",
+        "Worker event lifetime",
+        "fetch event and respondWith",
+        "Update and rollback behavior"
+      ]
+    },
+    {
+      "id": "offline-sync-and-conflict",
+      "title": "Offline experience, queued writes, synchronization, and conflicts",
+      "items": [
+        "Offline read fallback",
+        "Offline write queue",
+        "Optimistic update",
+        "Pending versus synchronized state",
+        "Idempotent replay",
+        "Conflict detection",
+        "Conflict resolution policy",
+        "Background Sync availability caveat",
+        "Retry and backoff",
+        "User-visible freshness and recovery"
+      ]
+    },
+    {
+      "id": "quota-privacy-and-security",
+      "title": "Quota, eviction, privacy, and security boundaries",
+      "items": [
+        "Origin-scoped storage",
+        "Storage estimate",
+        "QuotaExceededError",
+        "Best-effort storage",
+        "Persistent storage request",
+        "Browser eviction",
+        "Private browsing behavior",
+        "User-initiated data clearing",
+        "XSS exposure from script-readable storage",
+        "Data minimization and retention"
+      ]
+    },
+    {
+      "id": "web-workers-and-context-coordination",
+      "title": "Web workers and communication between browser contexts",
+      "items": [
+        "Main-thread work and responsiveness",
+        "Dedicated Worker",
+        "SharedWorker",
+        "Service Worker comparison",
+        "postMessage data copy",
+        "Transferable objects",
+        "Structured clone limits",
+        "Worker lifecycle and termination",
+        "Cross-tab coordination"
+      ]
+    },
+    {
+      "id": "react-persistence-integration",
+      "title": "Integrating persistence and offline work into a React application",
+      "items": [
+        "Persistent domain data versus React view state",
+        "Repository/service boundary",
+        "Effect subscription and cleanup",
+        "Hydration and server rendering boundary",
+        "Optimistic UI with durable pending state",
+        "Cross-tab invalidation",
+        "Storage failure UI",
+        "Offline and stale-state accessibility",
+        "Progressive enhancement"
+      ]
+    }
+  ],
+  "practiceProblems": [
+    {
+      "id": "offline-task-editor",
+      "name": "Design an offline task editor with conflict recovery",
+      "difficulty": "advanced",
+      "patterns": [
+        "choose local persistence by record type",
+        "queue writes with stable operation identity",
+        "resolve server/local conflicts",
+        "make unsynchronized state visible"
+      ],
+      "statement": "A React task editor must open recently viewed tasks without a network and allow edits during a short outage. Multiple devices may edit the same task. Design persistence, queued writes, synchronization, and conflict recovery.",
+      "constraints": [
+        "Server remains authoritative after synchronization; local changes must not disappear silently.",
+        "The browser may evict local data or the user may clear site data.",
+        "A retry can arrive after the server already accepted the original operation."
+      ],
+      "examples": [
+        {
+          "input": "The user edits a task offline on a laptop, then another device updates the same title before the laptop reconnects.",
+          "output": "Persist a local pending operation, replay with stable identity and a version/precondition, then apply the documented conflict policy and show the user if a merge or choice is needed."
+        }
+      ],
+      "sourceUrls": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB",
+        "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Offline_and_background_operation",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria",
+        "https://react.dev/learn/synchronizing-with-effects",
+        "https://storage.spec.whatwg.org/"
+      ]
+    },
+    {
+      "id": "safe-asset-cache-rollout",
+      "name": "Roll out cached application assets without stale-version breakage",
+      "difficulty": "advanced",
+      "patterns": [
+        "version the app shell and cache set",
+        "preserve old worker/client compatibility",
+        "bound runtime caches",
+        "recover from failed installation"
+      ],
+      "statement": "A new React release changes JavaScript and CSS assets while some users have old tabs open and service-worker caches. Plan an update that avoids a mixed-version blank screen and permits recovery.",
+      "constraints": [
+        "A new service worker can wait while pages still use the previous active worker.",
+        "The cache can be cleared independently of the service worker script.",
+        "Assets and APIs may be used by both old and new clients during rollout."
+      ],
+      "examples": [
+        {
+          "input": "The new worker activates but one required asset was not precached because the network failed.",
+          "output": "Fail installation when the required precache set is incomplete, keep the prior worker/cache serving current clients, and let the app recover from network/cache failure rather than deleting the last working cache."
+        }
+      ],
+      "sourceUrls": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers",
+        "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Caching",
+        "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Offline_and_background_operation",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Cache"
+      ]
+    }
+  ],
+  "inventoryComplete": true,
+  "comparisons": [
+    "Cookies versus Web Storage versus IndexedDB versus Cache API: server communication, synchronous access, structured records, and response caching are different jobs.",
+    "HTTP cache versus Cache API: browser-managed HTTP freshness versus application-managed Request/Response entries.",
+    "Dedicated/shared workers versus service workers: computation and context communication versus event-driven request mediation and offline behavior.",
+    "Browser persistence versus server-authoritative storage: local speed/offline utility versus cross-device authority and recovery."
+  ],
+  "comparisonSources": [
+    "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage",
+    "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Cache",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+    "https://storage.spec.whatwg.org/"
+  ],
+  "versionNotes": [],
+  "sourceSnapshot": {
+    "authority": "WHATWG Storage Standard; W3C Indexed Database API and Service Worker specifications; MDN Web API and PWA guides; React documentation",
+    "edition": "Current browser-platform guidance checked 2026-11-21; storage limits and background capabilities vary by user agent and are not hard-coded as constants.",
+    "checkedAt": "2026-11-21",
+    "urls": [
+      "https://storage.spec.whatwg.org/",
+      "https://w3c.github.io/IndexedDB/",
+      "https://w3c.github.io/ServiceWorker/",
+      "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB",
+      "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API",
+      "https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest/blocked_event",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Cache",
+      "https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria",
+      "https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/persist",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers",
+      "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Caching",
+      "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Offline_and_background_operation",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage",
+      "https://react.dev/learn/synchronizing-with-effects",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
+    ]
+  },
+  "accuracyFacts": [
+    "Cookies, Web Storage, IndexedDB, Cache API, HTTP cache, and OPFS have different roles; do not present them as interchangeable.",
+    "Web Storage is synchronous string storage and is accessible to same-origin script; it is not an appropriate secret store.",
+    "IndexedDB operations occur in transactions; schema changes require an upgrade transaction and can be blocked by older open connections.",
+    "The Cache API is application-managed Request/Response storage and does not automatically obey HTTP cache-control directives.",
+    "Service workers are event-driven, can be stopped by the browser between events, require a secure context for registration, and do not have DOM access.",
+    "Persistent storage can be requested but may be denied; browser-managed storage can fail, be evicted, or be cleared by users.",
+    "Offline retries require idempotency and conflict policy; a local successful write does not mean the server accepted it.",
+    "Background Sync support and behavior vary; do not promise eventual background delivery without feature detection and a foreground fallback."
+  ],
+  "scopeExclusions": [
+    "Exhaustive method/attribute reference for every IndexedDB, Cache, Service Worker, Worker, Push, Background Fetch, or browser filesystem API; this topic teaches role-relevant architecture and common behavior.",
+    "Cookie and authentication API implementation details, covered by web-security and ASP.NET Core topics.",
+    "React-specific API reference, covered by React API topics."
+  ],
+  "generationAllowed": true
+}

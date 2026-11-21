@@ -4,7 +4,7 @@ Sources: [HLD Handbook](https://hld.handbook.academy/), [Nasdaq colocation servi
 
 ## Scope and version
 
-This is a vendor-neutral architecture case study, current to the cited materials checked on 2026-11-17. Colocation means placing a participant's computing equipment in or near an exchange's data-center environment. Exact facilities, connectivity, fees, protocols, and regulatory obligations are venue- and jurisdiction-specific; this lesson is not trading, legal, or vendor configuration advice.
+This is a vendor-neutral architecture case study, current to the cited materials checked on 2026-11-21. Colocation means placing a participant's computing equipment in or near an exchange's data-center environment. Exact facilities, connectivity, fees, protocols, and regulatory obligations are venue- and jurisdiction-specific; this lesson is not trading, legal, or vendor configuration advice.
 
 ## How this group fits the mental model
 
@@ -76,3 +76,7 @@ For a latency experiment, compare the same software, feed, order path, traffic p
 ## Practice
 
 Draw the feed-to-fill path and mark every queue, clock, state owner, and failure boundary. Propose five measurements that could distinguish network delay from software queueing. Then explain what the system does for a feed gap, a process crash after send, and loss of the primary facility. A sound answer states assumptions, prevents unsafe duplicate orders, and balances tail latency against correctness, cost, and recoverability.
+
+## Review status
+
+Reviewed 2026-11-21. Nasdaq describes its own colocation as proximity that can reduce latency and network complexity; this does not establish a universal latency result. SEC Rule 15c3-5 and staff FAQs support the pre-trade risk-control discussion, with the FAQs correctly identified as staff views rather than Commission rules. Geography and venue scope remain explicit. No material factual corrections or missing core concepts were found.

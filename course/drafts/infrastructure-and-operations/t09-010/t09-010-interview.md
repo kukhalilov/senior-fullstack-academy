@@ -68,7 +68,7 @@ Start with data relationships, transaction boundaries, query patterns, consisten
 
 ### What is the operational meaning of Functions isolated worker?
 
-The .NET application executes in a process separate from the Functions host, so the app controls its dependency injection/configuration and can target supported frameworks independently. Trigger/binding extensions and host/app settings still require migration. In-process support ended 2026-11-10; selecting the isolated model is not sufficient without verifying package/runtime support, local tooling, deployment plan and trigger retry semantics.
+The .NET application executes in a process separate from the Functions host, so the app controls its dependency injection/configuration and can target supported frameworks independently. Trigger/binding extensions and host/app settings still require migration. In-process support ended 2026-11-10. Functions 4.x supports .NET 11 isolated worker with SDK 1.0.1 or later and explicit worker package; .NET 11 is not supported on Linux Consumption. Verify plan constraints, local tooling, deployment and trigger retry semantics.
 
 ## Scenario questions
 

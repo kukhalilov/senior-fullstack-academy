@@ -57,4 +57,4 @@ If a job is canceled or the VM loses network access before deregistration, a con
 
 ## Review status
 
-GitHub’s ephemeral/JIT runner model and self-hosted runner security caveats are checked against official docs. This lesson remains pending complete claim-by-claim audit and manifest omission check.
+GitHub’s ephemeral/JIT runner model and self-hosted runner security caveats are checked against its official runner and secure-use documentation. One-job registration limits cross-job residue but does not remove the need to destroy or sanitize the underlying execution environment.

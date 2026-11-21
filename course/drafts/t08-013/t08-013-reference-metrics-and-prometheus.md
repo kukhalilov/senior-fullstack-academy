@@ -4,7 +4,7 @@ Sources: [official reference 1](https://opentelemetry.io/docs/specs/otel/metrics
 
 ## Scope and version
 
-This guide explains the assigned observability inventory group in the context of the current OpenTelemetry specification snapshot and Prometheus 3.x/current documentation checked 2026-11-14. The terminology and component maturity can evolve. The observability profiles signal and individual Collector components do not have a universal stability guarantee.
+This guide explains the assigned observability inventory group in the context of the current OpenTelemetry specification snapshot and Prometheus 3.x/current documentation checked 2026-11-20. The terminology and component maturity can evolve. The observability profiles signal and individual Collector components do not have a universal stability guarantee.
 
 ## How this group fits the mental model
 
@@ -84,14 +84,13 @@ Summing unrelated gauges; averaging instance quantiles; applying a counter rate 
 
 ## Knowledge checks with answers
 
-1. **What question does this group help answer?** It helps identify the evidence type, data boundary, or operational action appropriate to a real service investigation.
-2. **Why do identity and semantics matter?** Consistent names and bounded dimensions allow safe grouping and correlation across producers without uncontrolled series growth.
-3. **Name a common failure mode.** Incomplete context, unsafe sensitive data, unsupported component assumptions, or missing delivery health can make apparently healthy dashboards misleading.
-4. **How should you apply these terms?** Start from a user or operator question, select the minimal sufficient evidence, verify lifecycle and backend support, and rehearse the investigation.
-
+1. **Why can instance p99 values not simply be averaged?** Quantiles are not generally composable; aggregate distributions or use suitable histogram buckets.
+2. **How should a monotonically increasing counter be interpreted?** As cumulative state; calculate a rate over a time interval and account for resets.
+3. **What makes a label set dangerous?** Unbounded or high-cardinality values such as user IDs create excessive time series.
+4. **What does a histogram bucket count represent?** Cumulative observations up to a boundary, not a disjoint interval count.
 ## Recent version changes
 
-OpenTelemetry Semantic Conventions documentation identifies version 1.45.0 in the checked snapshot. Individual conventions have their own stability status, and migrations may use explicit opt-in modes; do not assume a global release makes every convention stable. [Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/)
+OpenTelemetry core specification documentation identifies version 1.62.0, while Semantic Conventions are version 1.45.0. These are separate version streams, and individual conventions have their own stability status. Migrations may use explicit opt-in modes; do not assume a global release makes every convention stable. [OpenTelemetry specification](https://opentelemetry.io/docs/specs/otel/) [Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/)
 
-Prometheus 3.0 added UTF-8 metric and label name support; conventional naming remains useful for tool interoperability. Current Prometheus docs distinguish native histograms from classic bucket series. [Prometheus data model](https://prometheus.io/docs/concepts/data_model/) [Metric types](https://prometheus.io/docs/concepts/metric_types/)
+Prometheus 3.0 added UTF-8 metric and label name support; conventional naming remains useful for tool interoperability. As of 2026-11-20, 3.16.0 is the latest release. Current Prometheus docs distinguish native histograms from classic bucket series. [Prometheus data model](https://prometheus.io/docs/concepts/data_model/) [Metric types](https://prometheus.io/docs/concepts/metric_types/) [Current releases](https://prometheus.io/download/)
 

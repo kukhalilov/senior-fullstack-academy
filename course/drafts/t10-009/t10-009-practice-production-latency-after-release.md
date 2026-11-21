@@ -1,6 +1,6 @@
 # architecture interviews tradeoffs requirements and constraints — Problem: Investigate a latency regression after release
 
-Sources: [source](https://hld.handbook.academy/), [source](https://sre.google/sre-book/table-of-contents/), [source](https://learn.microsoft.com/en-us/azure/architecture/guide/), [source](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework)
+Sources: [Google SRE service-level objectives](https://sre.google/sre-book/service-level-objectives/), [Google Cloud reliability guidance](https://docs.cloud.google.com/architecture/framework/reliability), [Azure safe deployments](https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments)
 
 ## Goals
 
@@ -14,28 +14,32 @@ Check p95/p99 and user journey metrics by route, region, device, and release coh
 
 ## Exercises
 
-1. State one functional goal, one invariant, and two measurable quality targets.
-2. Draw the normal write/read path and identify the authoritative state.
-3. Introduce a timeout or partial failure. Explain what is known, unknown, and safe to retry.
-4. Name the security and privacy boundaries and the telemetry needed to operate the design.
-5. State one alternative and the evidence that would make you choose it.
+1. Define the user-facing latency SLI and compare the affected release cohort with a stable baseline.
+2. p50 is unchanged, but p99 doubled in one region. What dimensions and dependency spans do you inspect?
+3. Decide when to stop rollout, roll back, or mitigate forward. Which signals and authority govern that choice?
+4. Preserve useful incident evidence while avoiding uncontrolled personal or credential data.
 
 ## Progressive hints
 
-Start from the user-visible invariant. Separate acceptance from completion. Follow data through every durable boundary. Treat timeouts as ambiguous and include a recovery path.
+1. Averages and p50 can hide a tail or cohort-specific regression.
+2. Separate client/browser, edge, application, database, and downstream time; correlate traces with saturation and errors.
+3. Reduce blast radius first; use the service's defined guardrails rather than an arbitrary universal threshold.
+4. Compare release IDs and timestamps, queue age, resource saturation, and dependency behavior.
 
 ## Complete solutions
 
-1. Unchanged p50 does not rule out tail regression. Segment by cohort and inspect trace span duration, errors, queue age, saturation, and real-user/browser timing. Reduce blast radius and rollback based on the service objective.
-2. State the owner and transaction boundary; distinguish derived data from authoritative data.
-3. Retry only with stable idempotency or outcome verification. Define bounded deadlines, deduplication, and reconciliation.
-4. Enforce authorization on the server at each resource/action. Observe user outcomes, saturation, latency, and recovery age without logging credentials or uncontrolled personal data.
-5. Compare alternatives against consistency, workload, operational maturity, failure behavior, and cost.
+1. Use an operation-specific latency objective under a defined workload and segment by release, region, route, and client class. Compare equivalent windows and account for traffic mix.
+2. Inspect p95/p99 distributions, trace spans, resource saturation, queue age, retries, database plans/latency, dependency calls, and real-user browser timing for the affected cohort.
+3. Pause expansion when agreed rollout guardrails are breached. Roll back if the change is the likely cause and rollback is safe; otherwise mitigate forward with incident authority, preserve diagnostics, and verify recovery.
+4. Retain bounded logs/traces with correlation IDs and release metadata; redact credentials and minimize sensitive fields. Record actions and timestamps for later review.
 
 ## Tests and edge cases
 
-Test duplicate submission, lost acknowledgement after success, dependency outage, replay after restart, peak load, partial rollback, access by another tenant, and recovery after data corruption or regional loss.
+Check low-volume percentile instability, traffic-mix changes, one-region degradation, client-only regressions, missing traces, sampling bias, a rollback that worsens schema compatibility, and recovery confirmation after mitigation.
 
 ## Reflection questions
+
+Which signal would demonstrate user impact most directly, and what blind spot remains?
+
 
 Which assumption could change your design? Which failure could cause an irreversible side effect? How will production evidence confirm the design meets its objective?

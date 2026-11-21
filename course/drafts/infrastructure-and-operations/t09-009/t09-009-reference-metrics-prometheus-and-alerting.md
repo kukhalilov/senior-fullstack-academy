@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This reference explains the supplied metric, Prometheus, PromQL, rule, and notification names against the latest Prometheus documentation checked 2026-11-17. Prometheus native histograms are stable beginning in v3.8.0; in v3, scrape and remote-write settings still require explicit enablement. Some current PromQL functions are experimental and feature-flagged, and their behavior may change. Consult the deployed server version before using them. [Native histogram specification](https://prometheus.io/docs/specs/native_histograms/) [PromQL functions](https://prometheus.io/docs/prometheus/latest/querying/functions/) [Feature flags](https://prometheus.io/docs/prometheus/latest/feature_flags/)
+This reference explains the supplied metric, Prometheus, PromQL, rule, and notification names against Prometheus 3.16.0 and the latest documentation checked 2026-11-20. Prometheus native histograms are stable beginning in v3.8.0; in v3, scrape and remote-write settings still require explicit enablement (the v3.8 scrape feature flag only changes its configuration default, and is a no-op from v3.9). Some current PromQL functions are experimental and feature-flagged, and their behavior may change. Consult the deployed server version before using them. [Prometheus downloads](https://prometheus.io/download/) [Native histogram specification](https://prometheus.io/docs/specs/native_histograms/) [PromQL functions](https://prometheus.io/docs/prometheus/latest/querying/functions/) [Feature flags](https://prometheus.io/docs/prometheus/latest/feature_flags/)
 
 # How this group fits the mental model
 
@@ -78,6 +78,32 @@ The following supplied function names are separate APIs with different input typ
 - `PromQL sqrt function` — `sqrt` computes square roots of float samples and ignores histogram samples.
 - `PromQL vector function` — `vector` converts a scalar into a one-element instant vector with no labels; use cautiously because it does not represent observed service telemetry.
 
+## PromQL trigonometric and angle-conversion functions
+
+Circular trigonometric functions use radians and operate on float samples in an instant vector; the hyperbolic functions use dimensionless numeric values. Histogram samples are ignored. `deg` and `rad` convert circular angles represented by float vector values, while `pi()` returns the mathematical constant as a scalar. These are general numeric helpers, not special metric-only operations. [PromQL function reference](https://prometheus.io/docs/prometheus/latest/querying/functions/)
+
+- `PromQL acos function` — `acos` computes inverse cosine in radians for float samples.
+- `PromQL acosh function` — `acosh` computes inverse hyperbolic cosine for float samples; its input must be at least 1 for a real-valued result.
+- `PromQL asin function` — `asin` computes inverse sine in radians.
+- `PromQL asinh function` — `asinh` computes inverse hyperbolic sine for float samples.
+- `PromQL atan function` — `atan` computes inverse tangent in radians.
+- `PromQL atanh function` — `atanh` computes inverse hyperbolic tangent for float samples; values outside the real domain can yield NaN.
+- `PromQL cos function` — `cos` computes cosine in radians.
+- `PromQL cosh function` — `cosh` computes hyperbolic cosine for dimensionless float samples.
+- `PromQL sin function` — `sin` computes sine in radians.
+- `PromQL sinh function` — `sinh` computes hyperbolic sine for dimensionless float samples.
+- `PromQL tan function` — `tan` computes tangent in radians.
+- `PromQL tanh function` — `tanh` computes hyperbolic tangent for dimensionless float samples.
+- `PromQL deg function` — `deg` converts radians to degrees for float samples.
+- `PromQL pi function` — `pi()` returns pi as a scalar.
+- `PromQL rad function` — `rad` converts degrees to radians for float samples.
+
+The function reference documents special floating-point cases; domain errors can produce NaN or infinities. Keep units explicit when applying these helpers to telemetry values.
+
+~~~promql
+deg(asin(clamp(vector(0.5), -1, 1)))
+~~~
+
 ## PromQL time, calendar, and timestamp functions
 
 - `PromQL day_of_month function` — `day_of_month` interprets float values as Unix timestamps and returns their UTC day number from 1 to 31; its default input is the evaluation time.
@@ -94,7 +120,7 @@ The following supplied function names are separate APIs with different input typ
 - `PromQL end function` — `end` returns the end time of the current range-query evaluation; it is experimental/feature-flagged in current documentation.
 - `PromQL range function` — `range` returns the range duration being evaluated; instant queries return zero, and the function is experimental/feature-flagged.
 - `PromQL step function` — `step` returns the query resolution step in seconds; instant queries return zero and the function is experimental/feature-flagged.
-- `PromQL start_timestamp function` — `start_timestamp` returns a sample’s start timestamp when used directly on an instant vector and when its required feature is enabled; otherwise results may be empty.
+- `PromQL start_timestamp function` — `start_timestamp` returns a sample’s start timestamp only when used directly on an instant vector and the separate `use-start-timestamps` feature flag is enabled; otherwise it returns an empty result.
 
 ## PromQL change, trend, and histogram functions
 
@@ -114,6 +140,12 @@ The following supplied function names are separate APIs with different input typ
 - `PromQL histogram_sum function` — `histogram_sum` extracts observation sums from native histogram samples, useful with histogram rates but not a substitute for a latency percentile.
 - `PromQL label_join function` — `label_join` joins selected source-label values with a separator into a destination label for each vector element. It transforms labels on the query result; high-cardinality or sensitive joins can still create costly or unsafe outputs.
 - `PromQL label_replace function` — `label_replace` uses a regular expression and replacement expression to set a destination label from another label. Nonmatching series are returned unchanged, so test patterns and named capture groups against real labels.
+
+## Additional experimental PromQL functions
+
+- `PromQL integral function` — `integral(v, strategy)` estimates the time integral of a gauge range-vector. Strategies select left-rectangle, right-rectangle, or trapezoidal quadrature; the default is trapezoidal. Units become value-units multiplied by seconds, so only integrate a series when that result has a meaningful interpretation. It requires `--enable-feature=promql-experimental-functions`.
+- `PromQL max_of function` — `max_of(a, b)` returns the larger of two scalars; it is experimental and requires `--enable-feature=promql-experimental-functions`.
+- `PromQL min_of function` — `min_of(a, b)` returns the smaller of two scalars; it is experimental and requires `--enable-feature=promql-experimental-functions`.
 
 ## PromQL range-vector functions
 
@@ -138,7 +170,96 @@ The following supplied function names are separate APIs with different input typ
 ## PromQL specialized and experimental functions
 
 - `PromQL info function` — `info` enriches a vector with data labels from matching info series. It is experimental/feature-flagged, its behavior may change, and its identifying-label assumptions should be checked before relying on it.
-- `PromQL integral function` — `integral` estimates the time integral of float gauge samples using a selected quadrature strategy; it is experimental/feature-flagged and is meaningful only when units and sampling make the area meaningful.
+
+## PromQL operators, aggregation, and vector matching
+
+### Exact supplied term names
+
+- `PromQL unary minus operator`
+- `PromQL addition operator`
+- `PromQL subtraction operator`
+- `PromQL multiplication operator`
+- `PromQL division operator`
+- `PromQL modulo operator`
+- `PromQL exponentiation operator`
+- `PromQL comparison operators`
+- `PromQL bool modifier`
+- `PromQL logical and operator`
+- `PromQL logical or operator`
+- `PromQL logical unless operator`
+- `PromQL atan2 operator`
+- `PromQL histogram trim upper operator`
+- `PromQL histogram trim lower operator`
+- `PromQL vector matching`
+- `PromQL on modifier`
+- `PromQL ignoring modifier`
+- `PromQL group_left modifier`
+- `PromQL group_right modifier`
+- `PromQL fill modifier`
+- `PromQL fill_left modifier`
+- `PromQL fill_right modifier`
+- `PromQL sum aggregation operator`
+- `PromQL avg aggregation operator`
+- `PromQL min aggregation operator`
+- `PromQL max aggregation operator`
+- `PromQL bottomk aggregation operator`
+- `PromQL topk aggregation operator`
+- `PromQL limitk aggregation operator`
+- `PromQL limit_ratio aggregation operator`
+- `PromQL group aggregation operator`
+- `PromQL count aggregation operator`
+- `PromQL count_values aggregation operator`
+- `PromQL stddev aggregation operator`
+- `PromQL stdvar aggregation operator`
+- `PromQL quantile aggregation operator`
+- `PromQL by aggregation modifier`
+- `PromQL without aggregation modifier`
+- `PromQL label matcher operators`
+- `PromQL regular expression matcher`
+- `PromQL @ modifier`
+- `PromQL float literal`
+- `PromQL string literal`
+- `PromQL duration literal`
+- `PromQL duration expression`
+- `PromQL metric name quoting`
+- `PromQL UTF-8 unquoted names feature`
+- `Prometheus promql-binop-fill-modifiers feature flag`
+- `Prometheus promql-experimental-functions feature flag`
+- `Prometheus promql-unquoted-utf8-names feature flag`
+
+PromQL binary vector operations first need a matching rule. By default, series match only when their full label sets match. `on(labels)` narrows matching to the listed labels; `ignoring(labels)` removes listed labels from matching. `group_left` enables many-to-one matching when the left side has more series, and `group_right` enables one-to-many matching when the right side has more. These modifiers are for arithmetic, comparison, and trigonometric operators; use them only after checking uniqueness on the one side. Group modifiers can copy selected labels from the one side. Set operators already apply set matching and do not use group modifiers. [PromQL operators](https://prometheus.io/docs/prometheus/latest/querying/operators/)
+
+| Supplied syntax | Meaning and important behavior |
+| --- | --- |
+| `-` unary minus | Negates a scalar, every float sample, or every component of a histogram; a negated histogram is a gauge histogram. |
+| `+`, `-`, `*`, `/`, `%`, `^` | Arithmetic operators. For histograms, only multiplication or histogram-on-left division by a scalar are supported for histogram/float pairs; histogram/histogram supports `+` and `-`. Unsupported pairs are omitted with annotations. Vector arithmetic drops the metric name. |
+| `==`, `!=`, `>`, `<`, `>=`, `<=` | Comparisons filter by default. Add `bool` to return 0 or 1 for matched comparisons; unmatched vector elements still do not magically become values. Scalar/scalar comparisons require `bool`. |
+| `and`, `or`, `unless` | Set operations over instant vectors, based on label-set matching; they preserve sample values rather than comparing them. |
+| `atan2` | Trigonometric binary operator (not a function); applies the two-argument arctangent to matched float vectors and uses vector matching. Histogram elements are omitted with an info annotation. |
+| `</`, `>/` | Experimental native-histogram trim operators: trim observations above or below a scalar threshold. They may interpolate a bucket boundary and approximately recompute the remaining sum. Confirm support and syntax in the deployed release. |
+| `fill(value)` | Fill unmatched series from either side of a supported binary vector operation using a numeric literal value. |
+| `fill_left(value)`, `fill_right(value)` | Fill only the missing left or right side, respectively; do not use with set operators. Fill modifiers are feature-gated by `--enable-feature=promql-binop-fill-modifiers` and must come after other binary modifiers. |
+
+`sum`, `avg`, `min`, `max`, `bottomk`, `topk`, `group`, `count`, `count_values`, `stddev`, `stdvar`, and `quantile` are aggregation operators, not ordinary functions. They reduce a single instant vector. `by(labels)` keeps only the listed grouping labels; `without(labels)` removes the listed labels while preserving the others. The clauses can appear before or after the vector argument. `limitk(k, v)` samples k elements and `limit_ratio(r, v)` samples a pseudo-random ratio; both are experimental and require `--enable-feature=promql-experimental-functions`. Aggregation of mixed float and histogram samples in the same output group may omit that group with a warning; histogram aggregation also requires compatible bucket layouts. [PromQL operators](https://prometheus.io/docs/prometheus/latest/querying/operators/) [Prometheus feature flags](https://prometheus.io/docs/prometheus/latest/feature_flags/)
+
+## PromQL selectors, literals, names, and evaluation time
+
+Label matchers are `=` (equal), `!=` (not equal), `=~` (regex match), and `!~` (regex non-match). Regex matches are fully anchored. A matcher that accepts an empty value also matches series where the label is absent, and a selector must include a metric name or at least one matcher that cannot match the empty string. Metric and label names with punctuation can be quoted. The optional `--enable-feature=promql-unquoted-utf8-names` allows broader Unicode names unquoted; this is parser behavior and must match server support. The official current feature-flag page marks this flag as enabled in the current release line, so check the deployed server rather than assuming it is off or universally accepted by older releases. [PromQL basics](https://prometheus.io/docs/prometheus/latest/querying/basics/) [Feature flags](https://prometheus.io/docs/prometheus/latest/feature_flags/)
+
+PromQL literals include quoted strings (single quotes, double quotes, or backticks), decimal/scientific and hexadecimal float literals, `NaN`, `Inf`, and underscores between digits. Durations use integer components with `ms`, `s`, `m`, `h`, `d`, `w`, or `y`; concatenated components are ordered longest-to-shortest and each unit appears once. Duration expressions support arithmetic and `step()`, `range()`, `min_of()`, and `max_of()` where durations are accepted, including range selectors and offsets, but not inside `@`. Parenthesize an offset duration expression. A range query repeats the same PromQL expression at equally spaced evaluation times; it is not a different query language. The `@` modifier fixes a selector or subquery to a timestamp (or supported `start()`/`end()` boundary), while `offset` shifts its evaluation relative to the current evaluation time. [PromQL basics](https://prometheus.io/docs/prometheus/latest/querying/basics/)
+
+| Named aggregation API | Purpose |
+| --- | --- |
+| `sum`, `avg` | Sum or arithmetic mean across samples. |
+| `min`, `max` | Select the smallest or largest sample. |
+| `bottomk(k, v)`, `topk(k, v)` | Select the k smallest or largest samples by value. |
+| `limitk(k, v)`, `limit_ratio(r, v)` | Experimental element sampling; not value ranking. |
+| `group` | Emit one-valued output elements for groups. |
+| `count`, `count_values(label, v)` | Count elements, or count equal sample values into a label. |
+| `stddev`, `stdvar` | Population standard deviation or variance. |
+| `quantile(phi, v)` | Estimate a quantile for 0 ≤ phi ≤ 1 across the group. |
+
+The fill modifier flag remains experimental. The `promql-extended-range-selectors` flag is now a no-op because `anchored` and `smoothed` selectors are enabled by default. Check the target server’s release and feature flags before using fill modifiers, histogram trimming, UTF-8 unquoted names, or experimental aggregation operators. Current `/latest/` documentation may describe a newer parser than the deployed release.
 
 ## Rules, notifications, and exporters
 

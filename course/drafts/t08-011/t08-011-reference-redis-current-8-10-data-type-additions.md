@@ -4,7 +4,11 @@ Sources: [Redis 8.10](https://redis.io/docs/latest/develop/whats-new/8-10/), [Re
 
 ## Scope and version
 
-Redis Open Source 8.10 is the current general-availability release checked 2026-11-16. This group freezes the major 8.10 data-type features relevant to this cache/data-structure curriculum. It does not attempt to catalogue Redis Search, backup/restore, every command, or broker consumer-group design. Some Redis products may expose different feature sets; check compatibility and server version.
+Redis Open Source 8.10 is the latest general-availability release checked 2026-11-20. Redis 8.12-RC1 is a feature-complete prerelease, not suitable for production; see the release maturity note below. This group freezes the major 8.10 data-type features relevant to this cache/data-structure curriculum. It does not attempt to catalogue Redis Search, backup/restore, every command, or broker consumer-group design. Some Redis products may expose different feature sets; check compatibility and server version.
+
+## Release maturity note
+
+Redis Open Source 8.10 remains the latest GA release in the checked release index. Redis 8.12-RC1 (October 2026) is a feature-complete prerelease that Redis says is not suitable for production. It adds set-member expiration commands (`SEXPIRE`, `SPEXPIRE`, `SEXPIREAT`, `SPEXPIREAT`, `STTL`, `SPTTL`, `SEXPIRETIME`, and `SPEXPIRETIME`) and `BLESS` key eviction protection; these are preview changes and are not part of the 8.10 stable baseline. Recheck the release index before relying on them. Source: [Redis 8.12 release notes](https://redis.io/docs/latest/operate/oss_and_stack/stack-with-enterprise/release-notes/redisce/redisos-8.12-release-notes/).
 
 ## How this group fits the mental model
 

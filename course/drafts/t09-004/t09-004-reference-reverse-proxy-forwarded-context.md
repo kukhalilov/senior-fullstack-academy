@@ -4,7 +4,7 @@ Sources: [ASP.NET Core proxy and load-balancer guidance](https://learn.microsoft
 
 ## Scope and version
 
-This lesson covers ASP.NET Core proxy context and trust boundaries for current .NET 11 GA. Servicing changes beginning with ASP.NET Core 8.0.17 and 9.0.6 ignore forwarded headers from unconfigured proxies by default; explicitly trust expected proxies/networks. Exact defaults and compatibility depend on target runtime and hosting integration, so verify effective configuration at deployment.
+This lesson covers ASP.NET Core proxy context and trust boundaries for current .NET 11 GA. Servicing changes beginning with ASP.NET Core 8.0.17 and 9.0.6 ignore forwarded headers from unconfigured proxies by default; .NET 10 also obsoleted `KnownNetworks` in favor of `System.Net.IPNetwork` and `KnownIPNetworks`. Explicitly trust expected proxies/networks. Exact defaults and compatibility depend on target runtime and hosting integration, so verify effective configuration at deployment.
 
 ## How this group fits the mental model
 
@@ -43,7 +43,7 @@ A backend sees the proxy as its TCP peer. Forwarded metadata is a claim from tha
 - `X-Original-Host` — Header preserving the original host context before forwarded processing. Do not treat it as trustworthy if arbitrary clients can reach the backend.
 - `X-Original-Prefix` — Header preserving the original path-base context before prefix transformation. Keep the proxy rewrite and app base-path contract consistent.
 - `KnownProxies` — Explicit trusted proxy IP addresses in forwarded-header options. The secure default includes loopback rather than arbitrary network peers; add only actual proxy addresses.
-- `KnownIPNetworks` — Trusted proxy IP ranges using network prefixes. Use the smallest stable network range that matches real proxy egress addresses.
+- `KnownIPNetworks` — Trusted proxy IP ranges using `System.Net.IPNetwork`. This is the current API; `KnownNetworks` and the ASP.NET Core-specific `IPNetwork` became obsolete in .NET 10. Use the smallest stable range matching actual proxy egress. [Breaking change](https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/10/ipnetwork-knownnetworks-obsolete?view=aspnetcore-10.0)
 - `ForwardLimit` — Maximum number of forwarded values/hops middleware processes. Set it to the actual trusted proxy chain length; an unlimited/incorrect limit can let attacker-controlled entries influence identity.
 - `AllowedHosts` — Host filtering configuration restricting accepted host names. Use explicit production domains; forwarded host processing does not replace host validation.
 - `RequireHeaderSymmetry` — Option requiring related forwarded-header families to have corresponding value counts. It can reject malformed/inconsistent proxy chains; configure with the proxy’s actual header format.

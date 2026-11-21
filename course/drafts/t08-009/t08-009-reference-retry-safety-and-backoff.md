@@ -78,7 +78,7 @@ Latest time by which another retry may begin/complete within the operation’s o
 
 ### `Retry-After` response field
 
-HTTP response field communicating when the client should try again, as a date or delay-seconds form per HTTP semantics. It is back-pressure guidance, not permission to ignore the caller deadline.
+HTTP response field communicating when the client ought to make a follow-up request. Its value is either an HTTP date or non-negative delay-seconds. RFC 9110 describes it for 503 and 3xx responses; rate-limited services also commonly return it with 429. Treat it as back-pressure guidance, not permission to ignore the caller deadline.
 
 ### Retry after rate-limit response
 

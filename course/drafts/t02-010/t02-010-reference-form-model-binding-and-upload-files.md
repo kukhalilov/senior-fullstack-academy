@@ -69,23 +69,23 @@ For each member, ask: is it per-request state, untrusted metadata, a body consum
 
 ## Cross-item comparison
 
-Compare only the supplied names here. Stream properties offer sequential access; pipe properties offer segmented buffers and explicit cursors. Buffered form binding is convenient for bounded files; multipart streaming handles large input with greater application responsibility. Response callbacks surround the commit point, while body writes/flushes may cause it. File result types differ by byte source (content, path, virtual path, or stream) and share authorization/range/metadata decisions.
-
+Buffered form binding offers simpler access to bounded files and fields. Multipart streaming avoids buffering a whole large upload but requires explicit section parsing, size enforcement, cancellation, temporary-file cleanup, and partial-failure handling. The choice follows upload size and resource limits.
 ## Examples
 
-```csharp
-app.MapPost("/echo", async (HttpContext context, CancellationToken cancellationToken) =>
-{
-    var input = await context.Request.ReadFromJsonAsync<EchoRequest>(cancellationToken);
-    if (input is null) return Results.BadRequest();
-    return Results.Json(new { message = input.Message });
-});
+For a small, bounded upload, form binding is convenient. Enforce request and file limits, use a server-generated name, and avoid trusting the uploaded filename as a storage path. Large uploads need a streaming approach so the entire body is not buffered in memory.
 
-public sealed record EchoRequest(string Message);
+```csharp
+app.MapPost("/avatar", async (IFormFile file, CancellationToken cancellationToken) =>
+{
+    if (file.Length is <= 0 or > 2_000_000) return Results.BadRequest();
+    var safeName = Guid.NewGuid().ToString("N");
+    await using var output = File.Create(Path.Combine("uploads", safeName));
+    await file.CopyToAsync(output, cancellationToken);
+    return Results.Created($"/avatars/{safeName}", new { id = safeName });
+});
 ```
 
-This is a request-body consumer; do not also deserialize the same body in middleware. In .NET 10 and later framework parsing uses PipeReader by default, so converters must support segmented values. For a file upload, use a server-generated destination name, enforce a byte limit during copy, honor cancellation, and remove partial output on exceptions.
-
+This is a bounded illustrative endpoint; configure the required antiforgery handling for the selected Minimal API/framework version, plus authentication/authorization, storage permissions, content validation, and upload limits.
 ## Common mistakes
 
 - Retaining HttpContext or RequestServices for background work.
@@ -98,8 +98,6 @@ This is a request-body consumer; do not also deserialize the same body in middle
 
 ## Knowledge checks with answers
 
-1. What must a second stream reader have? Buffering enabled before consumption and a rewind before the second read.
-2. What is the difference between `consumed` and `examined`? One releases processed bytes; the other reports how far parsing looked.
-3. Does MultipartBodyLengthLimit replace Kestrel's request-size limit? No; they constrain different stages and units.
-4. When is a response header immutable? When response start commits it.
-5. Which filename should be used for storage? A server-generated name, never the untrusted upload filename.
+1. Does MultipartBodyLengthLimit replace the server request-size limit? No; multipart section and whole-request limits are separate controls.
+2. Which filename should be used for storage? A server-generated name, not the untrusted upload filename.
+3. What cleanup is required after a failed streamed upload? Remove incomplete temporary output and report failure without exposing a partial file.

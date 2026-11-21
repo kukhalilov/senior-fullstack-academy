@@ -4,7 +4,7 @@ Sources: [HLD Handbook](https://hld.handbook.academy/), [RFC 9309 Robots Exclusi
 
 ## Scope and version
 
-This case study covers a crawler that discovers, schedules, fetches, parses, and stores public web resources while respecting site policies and protecting both the target service and the crawler itself. HTTP references are the current Internet Standards checked on 2026-11-17. RFC 9309 specifies the Robots Exclusion Protocol (REP). `robots.txt` rules are crawler instructions, explicitly not access authorization; a crawler must also consider authentication boundaries, privacy, applicable law, contracts, site terms, and its organization's policy.
+This case study covers a crawler that discovers, schedules, fetches, parses, and stores public web resources while respecting site policies and protecting both the target service and the crawler itself. HTTP references were checked on 2026-11-21. RFC 9309 specifies the Robots Exclusion Protocol (REP). `robots.txt` rules are crawler instructions, explicitly not access authorization; a crawler must also consider authentication boundaries, privacy, applicable law, contracts, site terms, and its organization's policy.
 
 ## How this group fits the mental model
 
@@ -82,3 +82,7 @@ The scheduler validates the URL and resolved address before making the request. 
 ## Practice
 
 Design a crawler for public documentation sites. Define URL identity, robots retrieval and caching, per-origin fairness, priority and starvation prevention, redirect/SSRF checks, 429/503 behavior, conditional requests, body limits, provenance, and recrawl policy. Walk through a robots 503, an HTTP 429 with `Retry-After`, and a redirect to a private address. Explain which behavior comes from RFCs and which is your stricter local policy.
+
+## Review status
+
+Reviewed 2026-11-21. RFC 9309 was checked for user-agent groups, rule matching, unavailable versus unreachable robots responses, and caching limits; RFCs 9110, 9111, and 6585 were checked for redirects/conditional requests, cache validators, and 429 behavior. The lesson correctly distinguishes protocol requirements from local collection policy and includes SSRF defenses, fairness, bounded retries, and parser/network failure separation. No material omissions remain in the supplied topic scope.

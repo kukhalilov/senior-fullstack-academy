@@ -61,4 +61,4 @@ Define retention for idempotency keys at least as long as realistic retry/replay
 
 ## Review status
 
-Kafka transaction/offset boundaries and external-system caveats are checked against Apache Kafka documentation; HTTP idempotent semantics against RFC 9110. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Reviewed 2026-11-21. Apache Kafka documentation confirms the scope of transactional processing for consumed offsets and produced Kafka records and warns that external effects need cooperation; Kafka producer configuration and RFC 9110 idempotent-method semantics were checked for their narrower guarantees. The lesson correctly distinguishes at-most-once, at-least-once, effectively-once outcomes, transactional boundaries, idempotency, outbox/inbox, and saga/reconciliation. No material factual corrections or missing core concepts were found.

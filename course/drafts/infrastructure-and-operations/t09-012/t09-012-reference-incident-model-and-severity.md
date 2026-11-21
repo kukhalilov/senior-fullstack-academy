@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson covers incident declaration, impact, coordination roles, and lifecycle terminology. Current source snapshot: Google SRE incident-management guidance and NIST SP 800-61 Rev. 3 final (April 2025), checked 2026-11-17. Role names, severity levels, and declaration rules are organization-specific examples and policies, not universal standards. Rev. 3 supersedes NIST SP 800-61 Rev. 2, withdrawn in 2025. [Google SRE managing incidents](https://sre.google/sre-book/managing-incidents/) [NIST SP 800-61 Rev. 3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)
+This lesson covers incident declaration, impact, coordination roles, and lifecycle terminology. Current source snapshot: Google SRE incident-management guidance and NIST SP 800-61 Rev. 3 final (April 2025), checked 2026-11-20. Role names, severity levels, and declaration rules are organization-specific examples and policies, not universal standards. Rev. 3 supersedes NIST SP 800-61 Rev. 2, withdrawn in 2025. [Google SRE managing incidents](https://sre.google/sre-book/managing-incidents/) [NIST SP 800-61 Rev. 3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)
 
 # How this group fits the mental model
 

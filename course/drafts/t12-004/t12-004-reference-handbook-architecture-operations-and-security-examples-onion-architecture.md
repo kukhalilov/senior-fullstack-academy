@@ -1,36 +1,60 @@
 # architecture patterns multi-region tenancy and reliability — Reference: Onion Architecture
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 3](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 4](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 5](https://csrc.nist.gov/pubs/sp/800/207/final), [reference 6](https://owasp.org/www-project-api-security/), [reference 7](https://opentelemetry.io/docs/concepts/), [reference 8](https://hld.handbook.academy/curriculum/architecture-patterns/), [reference 9](https://hld.handbook.academy/curriculum/reliability-and-operations/), [reference 10](https://hld.handbook.academy/curriculum/security-at-scale/), [reference 11](https://hld.handbook.academy/curriculum/emerging-patterns/), [reference 12](https://csrc.nist.gov/pubs/fips/203/final), [reference 13](https://csrc.nist.gov/pubs/fips/204/final).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [Microsoft architecture styles](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/), [Microsoft tactical DDD guidance](https://learn.microsoft.com/en-us/azure/architecture/microservices/model/tactical-ddd), [Martin Fowler on Dependency Injection](https://martinfowler.com/articles/injection.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+Onion Architecture is a style for organizing dependencies around domain behavior. The exact rings differ by author and codebase; this lesson explains the common dependency direction and how to apply it without confusing diagram shape with a correctness guarantee.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Picture the domain model in the center, with application services and ports around it, and technology-specific infrastructure farther out. A source dependency should point inward: a database adapter may depend on a domain/application contract, while the domain does not depend on the ORM. At runtime, dependency injection can connect an inner port to an outer adapter. This keeps business rules less sensitive to database, delivery, and framework choices.
+
+The architectural goal is not to make the domain ignorant of all external facts. It should model business concepts accurately. The boundary should translate external representation into concepts the domain understands, preserve its invariants, and translate results back. Choose boundaries according to stable policy and reasons for change.
 
 ## Supplied names explained
 
-- `Onion Architecture` — Layering approach that keeps domain policy central and dependencies directed inward; adapt boundaries to actual change and testing needs.
+- **Onion Architecture** — A dependency-oriented style with domain policy in the center and outer rings for application coordination, adapters, and infrastructure. Dependencies point inward; outer mechanisms implement or invoke contracts required by inner code.
+
+### Responsibilities and flow
+
+1. An inbound adapter receives an HTTP request or message, performs transport parsing and authentication integration, and calls an application operation.
+2. The application service coordinates the use case and uses ports for required capabilities such as loading an aggregate, publishing an event, or obtaining a payment result.
+3. Domain entities/value objects enforce business invariants that belong to the model. They should not become passive bags if behavior is part of the rule.
+4. Outbound adapters implement ports with a database, payment provider, message broker, or other external system.
+5. Composition wiring binds the implementations for a particular environment. Tests can substitute fakes at a deliberate boundary, while integration tests verify the real adapters.
+
+Keep transaction boundaries and failure semantics explicit. For example, an order write plus an outbox record may require one local transaction. Calling a payment provider is a separate distributed side effect and cannot be made atomic with the local database merely because the code sits in one application service.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Style | Central image | Useful vocabulary | Caveat |
+|---|---|---|---|
+| Onion | Domain at the center, surrounding rings | Core, services, infrastructure | Teams may disagree on exact ring names |
+| Clean Architecture | Policy/use cases inside, adapters and mechanisms outside | Use case, boundary, adapter | Often makes application-specific use cases explicit |
+| Hexagonal Architecture | Application core surrounded by ports and adapters | Port, adapter | Emphasizes interaction points and replaceable adapters |
+| Traditional layers | Responsibilities stacked in layers | Presentation, business, data access | A lower layer may leak concrete dependencies upward unless constrained |
+
+Use the common principle, not terminology debates: stable policy should not import volatile implementation details. Onion and Clean Architecture overlap substantially; neither automatically guarantees good domain modeling or low coupling.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+**Inventory reservation.** `ReserveInventory` is an application operation. It loads the relevant inventory aggregate through a repository port, asks domain behavior to reserve quantity under its invariant, and persists the outcome. An infrastructure adapter implements persistence. If the operation emits an event, an outbox may persist that event in the same local transaction as the reservation. A later consumer handles delivery; do not imply that a broker publish and database commit are one atomic operation.
+
+**Boundary placement test.** Suppose a rule says an order cannot be shipped until payment is captured. This is a domain/business invariant and should be represented in a stable model or policy. The HTTP status code, SQL query syntax, and vendor payment SDK request belong outside. A use case may coordinate the payment call and state transitions, but the workflow must define what happens when the remote outcome is unknown.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Depending on folder names like `Core` and `Infrastructure` while inner code still references an ORM or web framework.
+- Making every operation an interface and every entity a separate persistence DTO without a reason.
+- Letting entities directly call network services and thereby hiding latency, retries, and partial failure in domain methods.
+- Pretending a local transaction can atomically cover a remote provider call.
+- Hiding business rules in database triggers or controllers while claiming the domain is central.
+- Requiring all projects to have a pure domain library even when the product has little domain complexity and the separation would add more indirection than value.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What do the onion rings guarantee?** Nothing by their shape alone. The intended constraint is inward source dependency and separation of policy from technology.
+2. **Can the application service call an external provider?** It can coordinate through a port, but must model timeout, duplicate, and unknown-outcome behavior explicitly.
+3. **Where should a shipping eligibility invariant live?** In domain policy or an explicit application policy, not only in an HTTP controller or ORM callback.
+4. **When should this style be simplified?** When the system has little volatile infrastructure or domain complexity and extra interfaces/mapping layers are not buying testability or change isolation.

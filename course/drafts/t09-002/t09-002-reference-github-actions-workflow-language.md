@@ -4,11 +4,11 @@ Sources: [Workflow syntax](https://docs.github.com/en/actions/reference/workflow
 
 ## Scope and version
 
-Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-14. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
+Covers the exact assigned inventory against current GitHub Actions documentation checked 2026-11-20. Runner images, action runtimes, product-plan capabilities, and event details can change independently; verify current behavior before depending on it.
 
 ### Recent workflow-syntax changes
 
-The checked syntax reference includes timezone-aware scheduled workflows and concurrency queue policies beyond a single pending run. These are platform syntax features, not guarantees that every repository plan or event configuration provides an identical setup. Verify current syntax and repository policy before relying on a schedule or deployment queue. [Workflow syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
+GitHub Actions schedules support POSIX cron, UTC by default or an IANA timezone, and a minimum interval of five minutes. They use the latest default-branch commit; heavy platform load can delay runs, so do not use a schedule as a precise timer. Concurrency serializes matching work. The default retains at most one pending run and replaces an older pending run; `queue: max` allows up to 100 pending runs. Queue order follows when work starts waiting, not dispatch time. `queue: max` cannot be combined with `cancel-in-progress: true`. [Workflow syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax) · [Events](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) · [Limits](https://docs.github.com/en/actions/reference/limits)
 
 ## How this group fits the mental model
 
@@ -21,7 +21,7 @@ Actions YAML describes event triggers and a job graph. Each job/step gets specif
 - `workflow name` — The display name shown for workflow runs; it helps people identify automation but does not grant permissions or define its trigger.
 - `on.push` — Runs on selected pushes; branch/tag filters and path filters narrow which refs or files qualify.
 - `on.pull_request` — Runs for selected pull-request activities and base branches; fork context and token permissions require special security care.
-- `on.schedule` — Runs on a cron schedule using the platform’s scheduling behavior; schedule precision and default-branch requirements matter.
+- `on.schedule` — Runs on POSIX cron, UTC by default or an IANA timezone. Minimum interval is five minutes; it uses the latest default-branch commit and can be delayed under load.
 - `on.workflow_dispatch` — Enables manual initiation with declared inputs; the chosen ref and input validation must be considered.
 - `on.workflow_call` — Makes a workflow callable from another workflow and defines its reusable interface.
 - `on.workflow_run` — Starts after named workflows complete; avoid treating completion as proof of a trusted artifact without checking the source run/ref.
@@ -69,7 +69,7 @@ Actions YAML describes event triggers and a job graph. Each job/step gets specif
 - `workflow_dispatch input` — A user-supplied manual trigger parameter; declare type/options/default and validate it before acting.
 - `Workflow concurrency group` — A key that identifies runs competing for the same resource or branch, enabling serialization or cancellation policy.
 - `cancel-in-progress` — A concurrency policy that can stop an active run when a newer one starts; dangerous for deployments with side effects.
-- `Concurrency queue policy` — Controls handling of pending runs in a concurrency group; queue ordering and capacity affect deployments.
+- `Concurrency queue policy` — `single` (default) keeps one pending run and replaces it with a newer one; `max` permits up to 100 pending runs, but ordering follows wait-start time and is not guaranteed by dispatch order. `max` cannot pair with `cancel-in-progress: true`.
 - `Job timeout-minutes` — Upper limit on job duration, helping terminate hung work while allowing valid slow tasks to finish.
 - `Workflow permissions` — Default GITHUB_TOKEN scope for jobs; prefer minimum read access, then raise only required scopes.
 - `Job-level permissions` — Per-job override of token scopes, isolating a publishing/deploying job from ordinary validation.
@@ -89,7 +89,6 @@ Check event filters and context availability. Never interpolate untrusted event 
 
 ## Knowledge checks with answers
 
-1. **What decision does this inventory support?** Selecting a workflow boundary, artifact control, delivery signal, release strategy, or credential policy.
-2. **What evidence should be preserved?** Source revision, check results, artifact digest, deployment outcome, and provenance where available.
-3. **How do you reduce risk?** Declare inputs, restrict permissions, promote the same tested output, and define failure handling.
-
+1. **What does a job dependency express?** A required completion relationship; downstream jobs can consume outputs/artifacts only through supported mechanisms.
+2. **Why pin third-party actions?** A mutable tag can change behavior; pinning an immutable commit improves supply-chain repeatability.
+3. **How should untrusted event text be handled in scripts?** Pass it as data through environment/arguments and validate it; do not interpolate it into shell code.

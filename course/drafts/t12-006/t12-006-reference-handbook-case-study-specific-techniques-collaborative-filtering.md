@@ -60,4 +60,4 @@ For a brand-new user, blend a short preference selection or session context with
 
 ## Review status
 
-Collaborative-filtering concepts and pipeline stages are checked against Google ML documentation. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Reviewed 2026-11-21. Google ML documentation confirms interaction-matrix collaborative filtering, latent embeddings, candidate generation, cold-start limitations, and the separate scoring/re-ranking stages. The lesson correctly treats missing interactions as unknown rather than negative feedback and notes exposure bias and privacy/consent requirements. No material factual corrections or missing core concepts were found.

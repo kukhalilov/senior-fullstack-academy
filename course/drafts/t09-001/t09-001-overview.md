@@ -21,7 +21,7 @@ Git stores file contents and directory relationships as objects, then commits po
 3. Stage the specific changes that belong together; inspect the staged diff separately.
 4. Commit the staged snapshot with a message that explains why the change exists.
 5. Create a branch to isolate a unit of work. Update it from shared history with a deliberate merge or rebase.
-6. Resolve conflicts by understanding both sides, editing the desired result, and checking the index and complete diff.
+6. Resolve conflicts by understanding both sides, editing the desired result, and checking the index and complete diff. Git 2.56 adds `git add --resolved` to stage only resolved conflict paths after checking for leftover markers; use it when available, while retaining the deliberate edit-stage-review workflow for every version.
 7. Fetch remote history before integrating. Push a fast-forward update, or coordinate carefully if shared history must be rewritten.
 8. Use restore for path-level discard, reset to move local state/references, revert to add an inverse commit, and reflog for local reference recovery.
 

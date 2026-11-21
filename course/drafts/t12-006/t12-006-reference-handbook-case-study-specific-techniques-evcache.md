@@ -4,7 +4,7 @@ Sources: [HLD Handbook](https://hld.handbook.academy/), [Netflix EVCache documen
 
 ## Scope and version
 
-EVCache is Netflix's open-source client and distributed cache system built around Memcached and related storage components. This lesson explains the architectural pattern and the documented EVCache behavior checked on 2026-11-17. EVCache's implementation, configuration, dependencies, deployment model, and feature set change over time; the linked project documentation and release history are the authority for a particular version. This is a case study, not a recommendation to copy Netflix's production topology.
+EVCache is Netflix's open-source client and distributed cache system built around Memcached and related storage components. This lesson explains the architectural pattern and the documented EVCache behavior checked on 2026-11-21. The project overview notes that some deployments are backed by RocksDB, so do not assume every EVCache configuration is purely in-memory. Implementation, dependencies, topology, and feature set change over time; the linked project docs and release history are the authority for a particular version. This is a case study, not a recommendation to copy Netflix's production topology.
 
 ## How this group fits the mental model
 

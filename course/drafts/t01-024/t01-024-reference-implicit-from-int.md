@@ -6,7 +6,7 @@
 
 * **Topic:** `int` implicit numeric conversions in C#
 * **Scope and Boundary:** This reference lesson covers exactly the five predefined implicit numeric conversions originating from the `int` type, as specified in the frozen source snapshot. All nonnumeric conversions, explicit narrowing casts, parsing APIs, operator catalogs, and other source types are excluded.
-* **Edition and Verification:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+* **Edition and Verification:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-20 ([Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Draft Status:** Automatically generated draft.
 
 ---

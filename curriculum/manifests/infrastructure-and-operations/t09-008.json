@@ -580,9 +580,9 @@
   ],
   "versionNotes": [
     {
-      "edition": "Kubernetes v1.34 Pod-level resources",
+      "edition": "Kubernetes v1.34 Pod-level resources and v1.37 resource managers",
       "items": [
-        "Pod-level CPU, memory, and hugepage requests/limits are Beta since Kubernetes v1.34 and enabled by default upstream in v1.37; support remains feature- and resource-type-specific. They define a Pod budget and can let containers share unused resources. Do not describe this API as Stable."
+        "The .spec.resources CPU/memory/hugepages API is Beta since Kubernetes v1.34 and enabled by default upstream in v1.37. The distinct Pod-level resource managers feature is Beta since v1.37 but disabled by default; it needs the PodLevelResourceManagers gate on relevant components and lets CPU, memory, and topology managers use Pod-level declarations for allocation decisions. Do not conflate API availability with manager integration or describe either as Stable."
       ],
       "sourceUrls": [
         "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
@@ -591,7 +591,7 @@
     {
       "edition": "Kubernetes v1.37 current stable release",
       "items": [
-        "The official release page lists v1.37.1 (released 2026-09-15) as the latest release as checked 2026-11-16. Notable workload-facing changes: metrics.k8s.io graduates to the stable v1 API (v1beta1 remains usable during migration); HPA scale-to-zero for suitable object/external metrics is Beta and enabled by default; gang scheduling and workload-aware preemption graduate to Beta; Dynamic Resource Allocation (DRA) adds stable extended-resource support, device taints/tolerations, and standardized device status/NUMA information. Verify the cluster version, feature status, and component support before relying on a feature."
+        "The official release page lists v1.37.1 (released 2026-09-15) as the latest release as checked 2026-11-20. Notable workload-facing changes: metrics.k8s.io graduates to the stable v1 API (v1beta1 remains usable during migration); HPA scale-to-zero for suitable object/external metrics is Beta and enabled by default; gang scheduling and workload-aware preemption graduate to Beta; Dynamic Resource Allocation (DRA) adds stable extended-resource support, device taints/tolerations, and standardized device status/NUMA information. Verify the cluster version, feature status, and component support before relying on a feature."
       ],
       "sourceUrls": [
         "https://kubernetes.io/releases/",
@@ -656,8 +656,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Official Kubernetes documentation and reference API",
-    "edition": "Current Kubernetes v1.37 documentation checked 2026-11-16; release maturity, feature gates, and implementation requirements are recorded where they affect learning",
-    "checkedAt": "2026-11-16",
+    "edition": "Current Kubernetes v1.37 documentation checked 2026-11-20; release maturity, feature gates, and implementation requirements are recorded where they affect learning",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://kubernetes.io/docs/concepts/overview/working-with-objects/",
       "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
@@ -713,7 +713,11 @@
       "https://kubernetes.io/blog/2026/09/02/kubernetes-v1-37-hpa-scale-to-zero-beta/",
       "https://kubernetes.io/blog/2026/09/03/kubernetes-v1-37-dra-updates/",
       "https://kubernetes.io/releases/",
-      "https://kubernetes.io/docs/concepts/policy/pod-security-standards/"
+      "https://kubernetes.io/docs/concepts/policy/pod-security-standards/",
+      "https://kubernetes.io/docs/concepts/resource-management/pod-level-resource-managers/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/assign-pod-level-resources/",
+      "https://kubernetes.io/blog/2026/09/15/kubernetes-v1-37-pod-level-resource-managers-beta/",
+      "https://kubernetes.io/docs/concepts/resource-management/dynamic-resource-allocation/"
     ]
   },
   "scopeExclusions": [

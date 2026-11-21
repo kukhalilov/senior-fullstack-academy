@@ -13,22 +13,167 @@
     "Record assumptions and uncertainty explicitly. Prefer a reversible, testable decision when the evidence is weak, and revisit the decision when workload or business conditions change."
   ],
   "inventory": [
-    {"id":"requirements-and-quality","title":"System purpose, constraints, and measurable quality objectives","items":["Business outcome","Functional requirement","Nonfunctional requirement","Constraint","Stakeholder and actor","Use case","Workload assumption","Quality attribute","Reliability","Security","Cost optimization","Operational excellence","Performance efficiency","Sustainability consideration","Acceptance criterion","Measurable quality target"]},
-    {"id":"service-level-language","title":"User-centered reliability and performance targets","items":["Service Level Indicator (SLI)","Service Level Objective (SLO)","Service Level Agreement (SLA)","Error budget","Availability target","Latency target","Percentile latency","Measurement boundary","Observation window","Good event definition","User-visible failure"]},
-    {"id":"workload-model-and-capacity","title":"Demand shape, resource estimates, and capacity headroom","items":["Request arrival rate","Average request rate","Peak request rate","Burst traffic","Concurrency","Read-to-write ratio","Request and response payload size","Data growth rate","Retention period","Resource-to-capacity ratio","Capacity forecast","Load test","Capacity headroom","N+1 redundancy","N+2 redundancy","Day-one versus steady-state demand","Forecast validation"]},
-    {"id":"overload-and-resilience-requirements","title":"Failure behavior, recovery, and overload decisions","items":["Failure mode","Blast radius","Fault isolation","Graceful degradation","Load shedding","Queueing under overload","Dynamic timeout","Retry amplification risk","Recovery Time Objective (RTO)","Recovery Point Objective (RPO)","Planned outage","Unplanned outage","Capacity during component failure","Overload acceptance test"]},
-    {"id":"tradeoff-and-decision-process","title":"Comparing architecture choices and managing uncertainty","items":["Architecture tradeoff","Quality-attribute conflict","Cost versus availability","Performance versus cost","Reliability versus change velocity","Risk assessment","Assumption register","Sensitivity analysis","Reversible decision","Architecture Decision Record (ADR)","Decision trigger","Post-deployment measurement","Design revision criterion"]}
+    {
+      "id": "requirements-and-quality",
+      "title": "System purpose, constraints, and measurable quality objectives",
+      "items": [
+        "Business outcome",
+        "Functional requirement",
+        "Nonfunctional requirement",
+        "Constraint",
+        "Stakeholder and actor",
+        "Use case",
+        "Workload assumption",
+        "Quality attribute",
+        "Reliability",
+        "Security",
+        "Cost optimization",
+        "Operational excellence",
+        "Performance efficiency",
+        "Sustainability consideration",
+        "Acceptance criterion",
+        "Measurable quality target"
+      ]
+    },
+    {
+      "id": "service-level-language",
+      "title": "User-centered reliability and performance targets",
+      "items": [
+        "Service Level Indicator (SLI)",
+        "Service Level Objective (SLO)",
+        "Service Level Agreement (SLA)",
+        "Error budget",
+        "Availability target",
+        "Latency target",
+        "Percentile latency",
+        "Measurement boundary",
+        "Observation window",
+        "Good event definition",
+        "User-visible failure"
+      ]
+    },
+    {
+      "id": "workload-model-and-capacity",
+      "title": "Demand shape, resource estimates, and capacity headroom",
+      "items": [
+        "Request arrival rate",
+        "Average request rate",
+        "Peak request rate",
+        "Burst traffic",
+        "Concurrency",
+        "Read-to-write ratio",
+        "Request and response payload size",
+        "Data growth rate",
+        "Retention period",
+        "Resource-to-capacity ratio",
+        "Capacity forecast",
+        "Load test",
+        "Capacity headroom",
+        "N+1 redundancy",
+        "N+2 redundancy",
+        "Day-one versus steady-state demand",
+        "Forecast validation"
+      ]
+    },
+    {
+      "id": "overload-and-resilience-requirements",
+      "title": "Failure behavior, recovery, and overload decisions",
+      "items": [
+        "Failure mode",
+        "Blast radius",
+        "Fault isolation",
+        "Graceful degradation",
+        "Load shedding",
+        "Queueing under overload",
+        "Dynamic timeout",
+        "Retry amplification risk",
+        "Recovery Time Objective (RTO)",
+        "Recovery Point Objective (RPO)",
+        "Planned outage",
+        "Unplanned outage",
+        "Capacity during component failure",
+        "Overload acceptance test"
+      ]
+    },
+    {
+      "id": "tradeoff-and-decision-process",
+      "title": "Comparing architecture choices and managing uncertainty",
+      "items": [
+        "Architecture tradeoff",
+        "Quality-attribute conflict",
+        "Cost versus availability",
+        "Performance versus cost",
+        "Reliability versus change velocity",
+        "Risk assessment",
+        "Assumption register",
+        "Sensitivity analysis",
+        "Reversible decision",
+        "Architecture Decision Record (ADR)",
+        "Decision trigger",
+        "Post-deployment measurement",
+        "Design revision criterion"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Functional requirement","Nonfunctional requirement"],["SLI","SLO","SLA"],["Average load","Peak load","Burst load"],["Capacity forecast","Measured capacity"],["N+1 redundancy","N+2 redundancy"],["Normal-operation design","Failure-mode design"],["Performance efficiency","Cost optimization"]],
-  "comparisonSources": ["https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework","https://learn.microsoft.com/en-us/azure/well-architected/pillars","https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics","https://sre.google/sre-book/service-level-objectives/","https://sre.google/sre-book/service-best-practices/"],
+  "comparisons": [
+    [
+      "Functional requirement",
+      "Nonfunctional requirement"
+    ],
+    [
+      "SLI",
+      "SLO",
+      "SLA"
+    ],
+    [
+      "Average load",
+      "Peak load",
+      "Burst load"
+    ],
+    [
+      "Capacity forecast",
+      "Measured capacity"
+    ],
+    [
+      "N+1 redundancy",
+      "N+2 redundancy"
+    ],
+    [
+      "Normal-operation design",
+      "Failure-mode design"
+    ],
+    [
+      "Performance efficiency",
+      "Cost optimization"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework",
+    "https://learn.microsoft.com/en-us/azure/well-architected/pillars",
+    "https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics",
+    "https://sre.google/sre-book/service-level-objectives/",
+    "https://sre.google/sre-book/service-best-practices/"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
-    "authority":"Microsoft Azure Well-Architected Framework, including its current definitions for SLI/SLO/SLA and recovery objectives, and Google Site Reliability Engineering service-level and capacity-planning guidance",
-    "edition":"Current Well-Architected pillar guidance and established SRE capacity-planning concepts; references checked 2026-11-14",
-    "checkedAt":"2026-11-14",
-    "urls":["https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework","https://learn.microsoft.com/en-us/azure/well-architected/pillars","https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics","https://sre.google/sre-book/service-level-objectives/","https://sre.google/sre-book/service-best-practices/"]
+    "authority": "Microsoft Azure Well-Architected Framework, including its current definitions for SLI/SLO/SLA and recovery objectives, and Google Site Reliability Engineering service-level and capacity-planning guidance",
+    "edition": "Current Azure Well-Architected Framework and established Google SRE capacity/SLO guidance rechecked 2026-11-20",
+    "checkedAt": "2026-11-20",
+    "urls": [
+      "https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework",
+      "https://learn.microsoft.com/en-us/azure/well-architected/pillars",
+      "https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics",
+      "https://sre.google/sre-book/service-level-objectives/",
+      "https://sre.google/sre-book/service-best-practices/"
+    ]
   },
-  "scopeExclusions":["Vendor-specific cloud sizing calculators and SKU-level resource quotas (track-09)","Detailed availability architecture, replication, sharding, and load-balancer designs (t08-012)","Specific resilience implementation patterns such as circuit breakers and retry APIs (t08-009)","Database query/index sizing and cache policy (tracks 03, 04, and t08-011)","Formal ISO/IEC quality taxonomy is not a prerequisite for defining measurable system requirements"],
+  "scopeExclusions": [
+    "Vendor-specific cloud sizing calculators and SKU-level resource quotas (track-09)",
+    "Detailed availability architecture, replication, sharding, and load-balancer designs (t08-012)",
+    "Specific resilience implementation patterns such as circuit breakers and retry APIs (t08-009)",
+    "Database query/index sizing and cache policy (tracks 03, 04, and t08-011)",
+    "Formal ISO/IEC quality taxonomy is not a prerequisite for defining measurable system requirements"
+  ],
   "generationAllowed": true
 }

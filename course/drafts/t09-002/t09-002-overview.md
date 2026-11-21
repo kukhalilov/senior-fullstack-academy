@@ -16,7 +16,7 @@ A cache is a reusable toolbox for speed, not the product. A downstream environme
 
 ## How the parts fit together
 
-1. A push, pull request, schedule, or other event starts a workflow.
+1. A push, pull request, schedule, or other event starts a workflow. Scheduled runs may be delayed; they are not precise timers.
 2. Jobs form a dependency graph and run on selected runners with defined steps and permissions.
 3. Restore dependencies deterministically from lockfiles; a cache may accelerate restore but must be disposable and contain no secrets.
 4. Build and test. Use matrices where platform or runtime variation matters; preserve reports as artifacts.

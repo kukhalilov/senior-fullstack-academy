@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson covers security-oriented incident response, evidence handling, business continuity, and recovery governance. The current general NIST incident-response publication is SP 800-61 Rev. 3 final, published April 2025; it supersedes Rev. 2, withdrawn in April 2025. CISA’s federal incident response playbooks are scoped to U.S. federal civilian executive branch agencies. Legal and regulatory duties vary by jurisdiction and event; use designated counsel and organizational policy. Checked 2026-11-17. [NIST SP 800-61 Rev. 3](https://csrc.nist.gov/pubs/sp/800/61/r3/final) [CISA playbooks](https://www.cisa.gov/resources-tools/resources/incident-response-playbooks)
+This lesson covers security-oriented incident response, evidence handling, business continuity, and recovery governance. The current general NIST incident-response publication is SP 800-61 Rev. 3 final, published April 2025; it supersedes Rev. 2, withdrawn in April 2025. CISA’s federal incident response playbooks are scoped to U.S. federal civilian executive branch agencies. Legal and regulatory duties vary by jurisdiction and event; use designated counsel and organizational policy. Checked 2026-11-20. [NIST SP 800-61 Rev. 3](https://csrc.nist.gov/pubs/sp/800/61/r3/final) [CISA playbooks](https://www.cisa.gov/resources-tools/resources/incident-response-playbooks)
 
 # How this group fits the mental model
 

@@ -23,7 +23,7 @@
         "React Router Data Mode",
         "React Router Declarative Mode",
         "TanStack Router",
-        "TanStack Start (Beta)",
+        "TanStack Start 1.0 (stable; React guide still labels Beta)",
         "Vite as a build tool rather than a full-stack framework",
         "File-based routing",
         "Code-based routing",
@@ -57,12 +57,14 @@
         "use cache directive",
         "revalidatePath(path)",
         "revalidateTag(tag, profile)",
+        "updateTag(tag)",
+        "refresh() from a Server Action",
         "Suspense streaming boundary"
       ]
     },
     {
       "id": "react-router-v8",
-      "title": "React Router 8.5 Framework and Data mode APIs",
+      "title": "React Router 8.5.2 Framework and Data mode APIs",
       "items": [
         "createBrowserRouter(routes, options?)",
         "createHashRouter(routes, options?)",
@@ -82,6 +84,8 @@
         "useFetcher()",
         "useRouteError()",
         "useRevalidator()",
+        "React Router view-transition APIs deprecated in v8",
+        "React <ViewTransition> replacement in React 19.3",
         "loader export",
         "action export",
         "clientLoader export",
@@ -177,30 +181,35 @@
   ],
   "versionNotes": [
     {
-      "edition": "Next.js 16 (current docs: 16.4.5)",
+      "edition": "Next.js 16 (current docs: 16.4.6)",
       "items": [
-        "Turbopack became the default bundler for new applications; Cache Components add a directive-based cache and Partial Prerendering model; proxy.ts replaces the middleware.ts convention."
+        "Turbopack became the default bundler for new applications; Cache Components add a directive-based cache and Partial Prerendering model; proxy.ts replaces the middleware.ts convention.",
+        "Next.js 16 adds updateTag(tag) for immediate tagged-cache expiration/read-your-own-writes in Server Actions and refresh() for rerunning current-route dynamic work without invalidating server cache."
       ],
       "sourceUrls": [
         "https://nextjs.org/docs/app",
         "https://nextjs.org/blog/next-16",
-        "https://nextjs.org/docs/app/api-reference/file-conventions/proxy"
+        "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+        "https://nextjs.org/docs/app/api-reference/functions/updateTag",
+        "https://nextjs.org/docs/app/api-reference/functions/refresh"
       ]
     },
     {
-      "edition": "React Router 8.0 (2026)",
+      "edition": "React Router 8.5.2 (current stable docs, 2026-11-20)",
       "items": [
-        "Future-flagged v8 behaviors became defaults, including always-on middleware and Vite environment API; minimum baseline moved to Node 22.22, React 19.2.7, and Vite 7; packages became ESM-only."
+        "Future-flagged v8 behaviors became defaults, including always-on middleware and Vite environment API; minimum baseline moved to Node 22.22, React 19.2.7, and Vite 7; packages became ESM-only.",
+        "React Router 8.5 deprecated its view-transition APIs in favor of React 19.3 <ViewTransition>; the router APIs remain during v8 and are scheduled for removal in v9."
       ],
       "sourceUrls": [
-        "https://reactrouter.com/changelog"
+        "https://reactrouter.com/changelog",
+        "https://react.dev/reference/react/ViewTransition"
       ]
     }
   ],
   "sourceSnapshot": {
     "authority": "Official React, Next.js, React Router, and TanStack Router documentation",
-    "edition": "Next.js App Router 16.4.6 docs, React Router 8.5.1 stable, TanStack Router v1 and Start v1 stable docs checked 2026-11-16",
-    "checkedAt": "2026-11-16",
+    "edition": "Next.js App Router 16.4.6 docs, React Router 8.5.2 stable, TanStack Router v1 and Start 1.0 stable docs checked 2026-11-20; React guide still labels Start Beta",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://react.dev/learn/creating-a-react-app",
       "https://nextjs.org/docs/app",
@@ -212,6 +221,10 @@
       "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
       "https://nextjs.org/docs/app/guides/production-checklist",
       "https://nextjs.org/blog/next-16",
+      "https://nextjs.org/docs/app/api-reference/functions/updateTag",
+      "https://nextjs.org/docs/app/api-reference/functions/refresh",
+      "https://nextjs.org/docs/app/api-reference/functions/revalidatePath",
+      "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
       "https://reactrouter.com/start/framework/routing",
       "https://reactrouter.com/start/framework/route-module",
       "https://reactrouter.com/start/framework/data-loading",
@@ -220,11 +233,14 @@
       "https://reactrouter.com/start/framework/deploying",
       "https://reactrouter.com/start/data/route-object",
       "https://reactrouter.com/changelog",
+      "https://github.com/remix-run/react-router/releases",
       "https://tanstack.com/router/latest/docs/overview",
       "https://tanstack.com/start/latest/docs/framework/react/overview",
+      "https://tanstack.com/blog/tanstack-start-1-0",
       "https://reactrouter.com/start/framework/pending-ui",
       "https://reactrouter.com/start/modes",
-      "https://nextjs.org/docs/app/getting-started/server-and-client-components"
+      "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+      "https://react.dev/reference/react/ViewTransition"
     ]
   },
   "scopeExclusions": [

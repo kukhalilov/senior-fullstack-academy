@@ -4,7 +4,7 @@ Sources: [HLD Handbook](https://hld.handbook.academy/), [Stanford MOSS service a
 
 ## Scope and version
 
-MOSS (“Measure Of Software Similarity”) is a Stanford-hosted service for finding similarities between programs. The official service page was checked on 2026-11-17; its current terms, accepted languages, submission limits, and data handling are subject to change. MOSS identifies similarity, not intent or misconduct. Its result must be interpreted by a qualified human in the context of the assignment, permitted collaboration, starter code, and evidence.
+MOSS (“Measure Of Software Similarity”) is a Stanford-hosted service for finding similarities between programs. The official service page was checked on 2026-11-21; its current terms, accepted languages, submission limits, and data handling are subject to change. MOSS identifies similarity, not intent or misconduct. Its result must be interpreted by a qualified human in the context of the assignment, permitted collaboration, starter code, and evidence.
 
 The Stanford page currently states that submitted code appears in results accessible to anyone who has the result URL; results are typically removed after 14 days, but may be deleted sooner; and submissions are limited to 100 per day per user. It also says the service is for non-commercial use. Verify the current page before submitting confidential, personal, commercially sensitive, or institutionally restricted code.
 

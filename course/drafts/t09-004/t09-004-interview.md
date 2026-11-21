@@ -4,6 +4,8 @@ Sources: [Kestrel web server](https://learn.microsoft.com/en-us/aspnet/core/fund
 
 ## Core questions
 
+**Version scope:** ASP.NET Core 11 is the current runtime target. YARP is independently versioned; this audit checked the official release list, where 2.3.0 is the latest stable version.
+
 1. What role does Kestrel play in an ASP.NET Core deployment?
 2. When would you run Kestrel at the edge versus behind a reverse proxy?
 3. Trace TLS termination, forwarding, and scheme restoration through a proxy chain.
@@ -22,6 +24,7 @@ Sources: [Kestrel web server](https://learn.microsoft.com/en-us/aspnet/core/fund
 16. What changed in .NET 11 Kestrel TLS diagnostics and HTTP/3 request processing?
 17. How do you observe a 502 across Kestrel, YARP, and destination services?
 18. What is the relationship between load balancing, reverse proxying, and API gateway functions?
+19. What .NET 11 Kestrel protocol-compliance changes can reveal an old gateway/client defect?
 
 ## Concise interview answers
 
@@ -43,6 +46,7 @@ Sources: [Kestrel web server](https://learn.microsoft.com/en-us/aspnet/core/fund
 16. .NET 11 adds `UseTlsClientHelloListener` and `ITlsHandshakeFeature.Exception`; the old ClientHello callback is obsolete. Kestrel HTTP/3 can process requests before waiting for initial control-stream SETTINGS.
 17. Correlate trace ID, route/cluster/destination, health state, proxy status/timing, outbound error, and backend trace/logs. Check whether the request reached Kestrel and whether a destination was selected.
 18. Load balancing selects instances; reverse proxying forwards application-layer requests; an API gateway often adds API policy such as auth, quota, transformation, and version routing. Products may combine roles.
+19. Kestrel 11 rejects additional connection-specific headers on HTTP/2/3 and closes HTTP/1.1 after ambiguous `Content-Length` plus `Transfer-Encoding`. Audit old translating proxies for stripping/framing; compliant clients are unaffected.
 
 ## Deep follow-up answers
 

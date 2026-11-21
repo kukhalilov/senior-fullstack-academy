@@ -5,7 +5,7 @@
 # Scope and version
 * **Topic:** C# numeric literals and numeric conversions — specifically, the `decimal explicit numeric conversions` inventory group ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Target Audience:** Self-study learners seeking exact reference details on casting `decimal` values to other primitive types.
-* **Edition and Timeline:** C# 15 / .NET 11 General Availability (GA) numeric conversions and .NET 9 behavior; checked 2026-11-17 ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
+* **Edition and Timeline:** C# 15 / .NET 11 General Availability (GA) numeric conversions and .NET 9 behavior; checked 2026-11-20 ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 * **Scope Boundary:** This reference covers only the named explicit conversions originating from `decimal`. Nonnumeric conversions, widening conversions, parsing APIs, and other source types are excluded ([Microsoft Learn C# Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)).
 
 ---

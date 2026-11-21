@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This lesson covers the supplied Playwright Test API surface. Use current documentation for exact options and browser support; the course does not reproduce the full Playwright API. [Playwright intro](https://playwright.dev/docs/intro) [Locators](https://playwright.dev/docs/locators) [Assertions](https://playwright.dev/docs/test-assertions)
+This lesson covers the supplied Playwright Test API surface, checked against Playwright 1.65 (2026-11-20). Version 1.65 added Bun test-runner support, but Bun has documented differences such as no watch mode and TypeScript options not being applied by Playwright. It also changed TypeScript class-field semantics to follow `useDefineForClassFields`, made actions wait for inert elements to become actionable, and aligned cookie matching with RFC 6265. Its support notice says Node.js 20 is no longer tested and lists 22, 24, and 26. Use current documentation for exact options and browser support; the course does not reproduce the full Playwright API. [Playwright intro](https://playwright.dev/docs/intro) [Locators](https://playwright.dev/docs/locators) [Assertions](https://playwright.dev/docs/test-assertions) [Release notes](https://playwright.dev/docs/release-notes)
 
 ## How this group fits the mental model
 

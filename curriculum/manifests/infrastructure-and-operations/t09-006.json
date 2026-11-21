@@ -481,15 +481,27 @@
         "Compose watch extensions sync+exec",
         "Compose profiles",
         "Compose profile auto-start rules",
-        "Compose jobs (v5.7 partial support)",
-        "Compose job manual trigger limitation",
         "Service deploy.restart_policy condition delay max_attempts window",
         "Service deploy.update_config parallelism delay failure_action monitor order",
         "Service deploy.rollback_config",
         "Service deploy.placement constraints preferences",
         "Service deploy.mode replicated global",
         "Service deploy.endpoint_mode vip dnsrr",
-        "Compose deploy implementation support"
+        "Compose deploy implementation support",
+        "Compose top-level jobs (Compose 5.8 experimental)",
+        "Compose job triggers manual and schedule",
+        "Compose job manual true and false semantics",
+        "Compose job schedule cron five-field syntax",
+        "Compose job IANA timezone and UTC default",
+        "Compose job concurrency forbid and queue",
+        "Compose job missed_fires one and skip",
+        "Compose job scheduled depends_on is not started or awaited",
+        "Compose job execution run records and retention",
+        "Compose job registration immutable definition and re-registration",
+        "Compose job extension gRPC API authorization boundary",
+        "Docker Engine jobs extension org.mobyproject.jobs.v0 opt-in",
+        "Docker Engine 29.10 loopback insecure-registry behavior",
+        "Docker Engine API OpenAPI 3.2 source and Swagger transition"
       ]
     }
   ],
@@ -596,10 +608,10 @@
   ],
   "versionNotes": [
     {
-      "edition": "Docker Engine 29.10.0; Docker Compose v5.7.1; Dockerfile reference and Compose Specification checked 2026-11-16",
+      "edition": "Docker Engine 29.10.0; Docker Compose v5.8.0; Dockerfile reference and Compose Specification checked 2026-11-20",
       "items": [
-        "Docker Engine 29.10.0 is the latest release listed on 2026-11-16. Its notable changes include opt-in experimental daemon-managed one-shot and scheduled jobs, an OpenAPI 3.2 Engine API specification, customizable embedded containerd configuration, and stricter handling when insecure registries are explicitly configured. Job support is experimental and requires the org.mobyproject.jobs.v0 extension; do not treat it as a general production scheduler.",
-        "Docker Compose v5.7.1 is the latest tagged release checked 2026-11-16. Compose v5.3 introduced pre_start init-container hooks; v5.7 has partial jobs support, currently manual-trigger only per the release notes. Compose Specification keys have per-field minimum versions; validate with the installed docker compose version and docker compose config.",
+        "Docker Engine 29.10.0 (released 2026-11-16) adds opt-in experimental daemon-managed one-shot/scheduled jobs, an OpenAPI 3.2 Engine API source specification, customizable embedded containerd configuration, a `restarting` die-event attribute, and changed handling of loopback registries when insecure-registries is explicitly configured. The jobs extension is disabled by default; its gRPC API is served on daemon listener addresses and Docker authorization plugins do not authorize it.",
+        "Docker Compose v5.8.0 (released 2026-11-17) adds manual and scheduled top-level jobs. Scheduled jobs require Docker Engine 29.10+ with its experimental jobs extension enabled. Jobs remain experimental; scheduled runs do not start or wait for depends_on dependencies. Compose Specification keys have per-field minimum versions; validate with the installed docker compose version and docker compose config.",
         "Current Dockerfile reference includes instruction modifiers beyond the basic instruction names: COPY/ADD flags, labs-only FROM --reset and configuration --unset features, and BuildKit RUN mounts/network/security/device controls. Stable Dockerfile syntax and BuildKit entitlement/configuration support vary; labs features are explicitly experimental.",
         "HEALTHCHECK --start-interval requires Docker Engine 25.0+. Health metadata alone does not make the engine restart a container merely because it is unhealthy. Docker Engine/CLI, Buildx, BuildKit, Dockerfile frontend, and Compose have separate release versions and must be checked independently.",
         "Docker Content Trust and Notary v1 are being retired; Docker documentation currently gives 2026-12-08 as the Notary v1 service shutdown date. Explain DCT as legacy terminology and teach current image signing/attestation verification options under an explicit trust policy."
@@ -610,11 +622,14 @@
         "https://docs.docker.com/reference/dockerfile/",
         "https://docs.docker.com/reference/compose-file/services/",
         "https://docs.docker.com/retired/",
-        "https://docs.docker.com/engine/security/trust/"
+        "https://docs.docker.com/engine/security/trust/",
+        "https://docs.docker.com/reference/compose-file/jobs/",
+        "https://docs.docker.com/compose/how-tos/jobs/",
+        "https://docs.docker.com/engine/daemon/jobs/"
       ]
     },
     {
-      "edition": "BuildKit, Buildx, and Dockerfile frontend current references checked 2026-11-16",
+      "edition": "BuildKit, Buildx, and Dockerfile frontend current references checked 2026-11-20",
       "items": [
         "BuildKit features may require newer BuildKit/front-end syntax or explicit entitlements; builders can be remote and differ from the local Docker Engine. Buildx and Docker Engine releases are independent. Check docker buildx version, docker buildx inspect, and the selected builder."
       ],
@@ -627,8 +642,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Official Docker Engine 29.10 release notes, Docker Compose releases/specification, Dockerfile reference, BuildKit/Buildx documentation, and Docker security guidance",
-    "edition": "Docker Engine 29.10.0 and Docker Compose v5.7.1 checked 2026-11-16; BuildKit, Buildx, Dockerfile frontend, and Compose keys are versioned independently",
-    "checkedAt": "2026-11-16",
+    "edition": "Docker Engine 29.10.0 and Docker Compose v5.8.0 checked 2026-11-20; BuildKit, Buildx, Dockerfile frontend, and Compose keys are versioned independently",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://docs.docker.com/reference/dockerfile/",
       "https://docs.docker.com/build/building/best-practices/",
@@ -673,7 +688,11 @@
       "https://docs.docker.com/guides/docker-scout/sbom/",
       "https://docs.docker.com/reference/cli/docker/scout/sbom/",
       "https://docs.docker.com/scout/policy/",
-      "https://docs.docker.com/scout/quickstart/"
+      "https://docs.docker.com/scout/quickstart/",
+      "https://docs.docker.com/reference/compose-file/jobs/",
+      "https://docs.docker.com/compose/how-tos/jobs/",
+      "https://docs.docker.com/engine/daemon/jobs/",
+      "https://docs.docker.com/engine/release-notes/29/"
     ]
   },
   "scopeExclusions": [

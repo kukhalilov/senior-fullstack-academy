@@ -38,6 +38,8 @@ The behavior of your code depends on these interactions:
 
 ### Example 1: Copying Behavior
 ```csharp
+using System;
+
 // Value Type (struct)
 int a = 10;
 int b = a; // b is a copy of a
@@ -52,7 +54,7 @@ list2.Add(2);            // list1 now also contains { 1, 2 }
 ### Example 2: Equality
 ```csharp
 string s1 = "hello";
-string s2 = new string("hello");
+string s2 = new string("hello".ToCharArray());
 
 bool refEq = object.ReferenceEquals(s1, s2); // False: different objects
 bool valEq = s1 == s2;                       // True: string overrides == for value equality

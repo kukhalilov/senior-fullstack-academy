@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This comparison covers the supplied route-data concepts across Next.js 16.4.6, React Router 8.5.1, and current React guidance. Identically named concepts can use different cache and invalidation systems. [React Router data loading](https://reactrouter.com/start/framework/data-loading) [Next.js caching](https://nextjs.org/docs/app/guides/caching)
+This comparison covers the supplied route-data concepts across Next.js 16.4.6, React Router 8.5.2, and current React guidance checked 2026-11-20. Identically named concepts can use different cache and invalidation systems. [React Router data loading](https://reactrouter.com/start/framework/data-loading) [Next.js caching](https://nextjs.org/docs/app/guides/caching)
 
 ## How this group fits the mental model
 
@@ -23,6 +23,8 @@ Route data is part of navigation and rendering, not merely an arbitrary request 
 - `Persistent data cache` reuses results across requests/builds depending on framework/runtime. Define cache keys, freshness, tags, and user/tenant isolation; never cache private data under a shared key.
 - `Cache invalidation` marks cached data/path output stale or expired. It is framework-specific and should follow the mutation's read-after-write needs.
 - `Tag-based revalidation` associates cached results with labels and invalidates/revalidates those labels on a mutation. Next.js `revalidateTag(tag, profile)` uses a cache-life profile in Next.js 16; React Router uses route loader revalidation and does not share that API.
+- `updateTag(tag)` is a Next.js Server Action API for immediate expiration of a tagged cache entry so the mutating user sees fresh data (read-your-own-writes). It cannot be called from a Route Handler; use `revalidateTag` there.
+- `refresh() from a Server Action` reruns dynamic work for the current Next.js route without invalidating server-side cached data. It is distinct from client `router.refresh()` and from `updateTag`/`revalidatePath`, which invalidate server cache entries.
 - `Partial prerendering` combines a static shell with dynamic regions rendered later/at request time. Next.js 16 Cache Components support a PPR model; React Router has its own rendering strategies. Don't assume one setting enables this in every framework.
 - `Streaming uncached route content` streams dynamic/pending regions around a static or cached shell when the renderer/host supports it. Suspense placement, cache configuration, and adapter behavior matter.
 - `Avoid duplicate fetches across server component boundaries` by sharing/promoting data work at an appropriate server boundary and using framework-supported request memoization/cache. Do not rely on unrelated component modules to automatically share every fetch; verify the framework and cache context.

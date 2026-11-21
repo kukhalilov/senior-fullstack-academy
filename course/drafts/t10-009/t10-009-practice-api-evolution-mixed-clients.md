@@ -1,6 +1,6 @@
 # architecture interviews tradeoffs requirements and constraints — Problem: Evolve an API used by old and new clients
 
-Sources: [source](https://hld.handbook.academy/), [source](https://sre.google/sre-book/table-of-contents/), [source](https://learn.microsoft.com/en-us/azure/architecture/guide/), [source](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework)
+Sources: [Azure API design and versioning](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/api-design), [Azure API design best practices](https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design)
 
 ## Goals
 
@@ -14,28 +14,32 @@ Prefer additive compatible changes: add optional response fields, tolerate unkno
 
 ## Exercises
 
-1. State one functional goal, one invariant, and two measurable quality targets.
-2. Draw the normal write/read path and identify the authoritative state.
-3. Introduce a timeout or partial failure. Explain what is known, unknown, and safe to retry.
-4. Name the security and privacy boundaries and the telemetry needed to operate the design.
-5. State one alternative and the evidence that would make you choose it.
+1. Classify adding an optional response field, removing a field, changing a field's meaning, and making a previously optional request field required.
+2. Plan a staged migration while some mobile clients remain installed for months.
+3. What telemetry is needed before retiring the old contract, and how do you avoid collecting unnecessary personal data?
+4. When is a new API version safer than an additive change?
 
 ## Progressive hints
 
-Start from the user-visible invariant. Separate acceptance from completion. Follow data through every durable boundary. Treat timeouts as ambiguous and include a recovery path.
+1. Compatibility depends on how old clients parse and use the contract, not only on whether the server compiles.
+2. Deploy tolerant server behavior before clients depend on new behavior.
+3. Track client version/capability and endpoint/field use with suitable privacy controls.
+4. A changed meaning or incompatible shape cannot be made safe by merely adding a field.
 
 ## Complete solutions
 
-1. Keep old clients valid through the migration window. Add a new optional field/endpoint first; update clients; track adoption; then deprecate and remove only after usage and policy permit. Mobile updates are not instantaneous.
-2. State the owner and transaction boundary; distinguish derived data from authoritative data.
-3. Retry only with stable idempotency or outcome verification. Define bounded deadlines, deduplication, and reconciliation.
-4. Enforce authorization on the server at each resource/action. Observe user outcomes, saturation, latency, and recovery age without logging credentials or uncontrolled personal data.
-5. Compare alternatives against consistency, workload, operational maturity, failure behavior, and cost.
+1. Adding a field is commonly compatible when clients tolerate unknown fields and the server tolerates omission from older requests. Removal, changed meaning, or newly required input can break clients; verify actual client behavior and contract rules.
+2. Add the new field or endpoint without changing old semantics, deploy server support, release clients, observe adoption/errors, and keep the old path through the support window. Remove it only after usage, policy, and communication criteria are satisfied.
+3. Measure supported client version/capability and contract usage, aggregate where possible, set retention/access controls, and avoid logging sensitive request payloads.
+4. Version when the contract change cannot preserve old semantics or when independent migration is needed. Document support and retirement policy; parallel versions add testing and operational cost.
 
 ## Tests and edge cases
 
-Test duplicate submission, lost acknowledgement after success, dependency outage, replay after restart, peak load, partial rollback, access by another tenant, and recovery after data corruption or regional loss.
+Run old and new client contract tests against each deployment stage. Test unknown response fields, omitted fields, null versus absent values, enum expansion, pagination defaults, retries, rollback during mixed versions, and a client that cannot be upgraded promptly.
 
 ## Reflection questions
+
+What is the oldest client still in support, and what evidence permits removal?
+
 
 Which assumption could change your design? Which failure could cause an irreversible side effect? How will production evidence confirm the design meets its objective?

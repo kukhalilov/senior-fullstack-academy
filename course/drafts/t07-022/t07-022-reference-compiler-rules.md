@@ -27,8 +27,17 @@ React may render components more than once, pause, or restart work. Pure, idempo
 - `static-components lint`: flags components created dynamically inside another component when that recreation breaks stable identity; define components at module scope or use a stable pattern.
 - `preserve-manual-memoization lint`: helps ensure compiler transformation does not invalidate existing manual memoization assumptions. Treat warnings as a signal to inspect dependency and identity semantics.
 - `unsupported-syntax lint`: identifies syntax/patterns the compiler cannot safely analyze and may skip. Unsupported does not necessarily mean invalid JavaScript or a runtime bug.
+- `exhaustive-deps lint`: checks that Effect-like Hook dependency lists include the reactive values they use; it helps catch stale closures but does not mean every dependency warning should be silenced with a broader array.
+- `component-hook-factories lint`: detects higher-order functions that define nested component or Hook factories, which can recreate identities and interfere with compiler assumptions.
+- `config lint`: validates React Compiler configuration options and reports unsupported or invalid settings.
+- `error-boundaries lint`: recommends Error Boundaries for errors thrown while rendering descendant components; a surrounding `try/catch` in the parent render does not catch child render errors.
+- `gating lint`: validates the configuration used to gate compiled output behind a runtime feature flag.
+- `globals lint`: detects assignment to or mutation of global values during render, which violates purity and can make repeated rendering inconsistent.
+- `incompatible-library lint`: identifies libraries whose behavior or mutation patterns are incompatible with compiler memoization assumptions.
+- `immutability lint`: detects mutation of props, state, and other values React treats as immutable.
+- `use-memo lint`: flags `useMemo` calls whose callback does not return a value, since the memoized result would be `undefined` and the Hook likely does not express the intended work.
 
-The `eslint-plugin-react-hooks` recommended preset combines core Hook rules and compiler diagnostics. The compiler can skip a component with detected violations while compiling other eligible components; linting can be adopted before compiler activation. [ESLint plugin](https://react.dev/reference/eslint-plugin-react-hooks) [Compiler 1.0](https://react.dev/blog/2025/10/07/react-compiler-1)
+The `eslint-plugin-react-hooks` recommended preset includes `exhaustive-deps`, `rules-of-hooks`, and compiler-related diagnostics such as `component-hook-factories`, `config`, `error-boundaries`, `gating`, `globals`, `immutability`, `incompatible-library`, `preserve-manual-memoization`, `purity`, `refs`, `set-state-in-effect`, `set-state-in-render`, `static-components`, `unsupported-syntax`, and `use-memo`. Compiler diagnostics can be used before the compiler is enabled. When the compiler finds a problem, it skips affected components/hooks while continuing to compile eligible code; diagnostics can be adopted and addressed incrementally. [ESLint plugin](https://react.dev/reference/eslint-plugin-react-hooks) [Compiler 1.0](https://react.dev/blog/2025/10/07/react-compiler-1)
 
 ## Cross-item comparison
 

@@ -1,36 +1,53 @@
 # end-to-end system design case studies — Reference: Excalidraw
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [Excalidraw GitHub project](https://github.com/excalidraw/excalidraw), [Excalidraw developer docs: FAQ](https://docs.excalidraw.com/docs/%40excalidraw/excalidraw/faq), [Excalidraw Plus: Share and collaborate](https://plus.excalidraw.com/guides/share-and-collaborate), [HLD Handbook: Diagramming Skills for System Design Interviews](https://hld.handbook.academy/curriculum/interview-framework/diagramming-skills/).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+Excalidraw is a hand-drawn-style virtual whiteboard and diagram editor, available as a hosted application and as an open-source React component/project. This lesson focuses on using it to communicate system designs and distinguishes features of the hosted app from capabilities of the embeddable package. Collaboration, sharing, export, and plan features can change; verify the current product and interview environment. Sources checked 2026-11-21.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+A whiteboard is a communication surface, not the design itself. A useful architecture diagram shows the system boundary, major components, data ownership, and a few labeled flows. Visual neatness matters less than whether the interviewer can follow the request path and understand why each component exists. A lightweight sketch is often faster than learning a tool’s advanced controls during an interview.
 
 ## Supplied names explained
 
-- `Excalidraw` — Collaborative whiteboard/diagramming tool named by the Handbook; tool familiarity and access matter, while diagram clarity and decision reasoning matter more than visual polish.
+- **Excalidraw editor:** canvas-based drawing with an intentionally sketch-like visual style, useful for boxes, arrows, labels, and quick revisions. The project repository describes the editor and its embeddable component.
+- **Hosted application and sharing:** the hosted app offers collaboration/sharing workflows; exact session and link behavior depends on the current product. A shared URL may convey board access, so do not put confidential interview or customer information into a public or broadly shared board.
+- **Embeddable library:** the React package exposes the drawing editor and APIs, but its FAQ explicitly says the package does not include collaboration by itself because collaboration is host-specific. An application embedding it must build or integrate its own collaboration and persistence design.
+- **Persistence and export:** distinguish a local/exported drawing from a cloud-hosted board or live session. Confirm how to save, reopen, and export your work before relying on it; do not assume all modes have identical retention or privacy guarantees.
+- **Interview diagram practice:** prepare a small visual vocabulary: boxes for services, cylinders or labeled boxes for stores, arrows for calls/events, dashed lines for asynchronous work, and short labels for protocols or data. Keep one read path and one write path legible, group optional components separately, and edit the diagram as assumptions change.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Tool style | Useful for | Trade-off |
+| --- | --- | --- |
+| Excalidraw | Fast informal architecture sketches and hand-drawn diagrams | Hosted-app collaboration and storage are distinct from the open-source editor package |
+| Miro | Shared visual workspace with broader collaboration, facilitation, and diagramming features | More surface area to manage; feature access and sharing controls vary by plan |
+| Plain text or a simple drawing surface | Fastest fallback when tools are unavailable | Less spatial flexibility; still sufficient if flows and boundaries are clear |
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+To sketch a CI/CD system, draw source repository → event intake → workflow scheduler → isolated runner pool → artifact store → deployment controller. Label the trusted and untrusted paths, mark where secrets are available, and show cache separately from immutable artifacts. If the interviewer asks about fork pull requests, update the boundary visibly rather than adding a paragraph of disconnected notes. Keep the diagram readable at interview scale and narrate changes as you make them.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Assuming the Excalidraw React package supplies hosted collaboration, persistence, or access control automatically.
+- Relying on a shared link without understanding who can view or edit it and how long the board persists.
+- Spending minutes aligning icons or choosing colors while the data flow is unclear.
+- Drawing unlabeled arrows that hide whether a path is synchronous, asynchronous, or bidirectional.
+- Using product-specific iconography before the logical component and responsibility are understood.
+- Sharing secrets, customer data, or private architecture on a public board.
+- Depending on a particular tool without checking the interview’s permitted software and access setup.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Does the Excalidraw embeddable package provide real-time collaboration out of the box?** No. Its developer FAQ says collaboration is host-specific and not built into the package.
+2. **What belongs in an interview architecture diagram?** Components, boundaries, ownership, labeled flows, and the path that demonstrates the requirements.
+3. **Is a shared link automatically private?** Do not assume that. Confirm current permissions and sharing behavior before putting sensitive content on a board.
+4. **Should visual polish take priority over reasoning?** No. Optimize for readable flows and clear explanation.
+5. **What is the safest fallback if the tool fails?** Continue with a simple sketch or structured text while preserving the same component and flow clarity.
+
+## Review status
+
+Reviewed 2026-11-21. Replaced the placeholder with a tool-focused lesson and checked the distinction between hosted Excalidraw collaboration and the open-source package, whose official FAQ states collaboration is not built in. Added interview diagram practices and privacy/access caveats. Version-sensitive product capabilities are explicitly subject to current documentation. No material omission remains in the supplied topic scope.

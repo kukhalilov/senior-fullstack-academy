@@ -6,7 +6,7 @@
 
 * **Topic:** C# numeric literals and numeric conversions (`byte` explicit numeric conversions)
 * **Scope Boundary:** This reference lesson covers exactly two conversions starting from the `byte` type: `byte to sbyte (explicit numeric conversion)` and `byte to char (explicit numeric conversion)`. Nonnumeric conversions, larger integral conversions, and parsing APIs are excluded.
-* **Edition & Snapshot Date:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-17.
+* **Edition & Snapshot Date:** C# 15 / .NET 11 GA numeric conversions and .NET 9 behavior; checked 2026-11-20.
 * **Sources:** [Microsoft Learn Numeric Conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions) [1], [Microsoft Learn Integral Numeric Types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types) [2].
 
 ---
@@ -25,7 +25,7 @@ The inventory group covered in this lesson (`byte to sbyte` and `byte to char`) 
 
 ## Supplied names explained
 
-* **`byte to sbyte (explicit numeric conversion)`**: Converts an unsigned 8-bit integer (`byte`) into a signed 8-bit integer (`sbyte`). Because the maximum value of a `byte` (`255`) exceeds the maximum value of an `sbyte` (`127`), this requires an explicit cast operator `(sbyte)`. Values from `0` through `127` retain their numeric value, while values from `128` through `255` in checked context, out-of-range values throw `OverflowException`; in unchecked context, integral conversion truncates to the low-order bits according to language rules.
+* **`byte to sbyte (explicit numeric conversion)`**: Converts an unsigned 8-bit integer (`byte`) into a signed 8-bit integer (`sbyte`). Because the maximum value of a `byte` (`255`) exceeds the maximum value of an `sbyte` (`127`), this requires an explicit cast operator `(sbyte)`. Values from `0` through `127` retain their numeric value. Values from `128` through `255` are out of range: checked conversion throws `OverflowException`; unchecked conversion follows the language-defined integral conversion rules (for example, `(sbyte)200` yields `-56`).
 * **`byte to char (explicit numeric conversion)`**: Converts an unsigned 8-bit integer (`byte`) into a 16-bit UTF-16 code unit (`char`). Because moving from an 8-bit integral storage format to a 16-bit character format requires an explicit cast syntax, this is treated as an explicit numeric conversion. The resulting `char` takes the UTF-16 code unit with that numeric value; values 0–127 correspond to ASCII code points, while 128–255 are not all ASCII.
 
 ---

@@ -1,6 +1,6 @@
 # end-to-end system design case studies — Reference: Delta sync
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [Google Drive API: retrieve changes](https://developers.google.com/workspace/drive/api/guides/manage-changes), [Google Drive API: changes.list](https://developers.google.com/workspace/drive/api/reference/rest/v3/changes/list), [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html), [RFC 6902: JSON Patch](https://www.rfc-editor.org/rfc/rfc6902.html).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [Google Drive API: retrieve changes](https://developers.google.com/workspace/drive/api/guides/manage-changes), [Google Drive API: getStartPageToken](https://developers.google.com/workspace/drive/api/reference/rest/v3/changes/getStartPageToken), [Google Drive API: changes.list](https://developers.google.com/workspace/drive/api/reference/rest/v3/changes/list), [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html), [RFC 6902: JSON Patch](https://www.rfc-editor.org/rfc/rfc6902.html).
 
 ## Scope and version
 
@@ -17,7 +17,7 @@ A change notification usually means “check for changes,” not “the notifica
 - **Change feed:** ordered or cursor-addressable record of changes since a point. It may contain full current resource state, operations, or invalidation hints; know which.
 - **Cursor/page token:** opaque continuation marker. Store it exactly as issued; do not infer order or manufacture one.
 - **Pagination:** fetching all pages in a batch. Advance to a new durable cursor only after the complete batch is processed and persisted.
-- **Tombstone/removal event:** representation that an item was deleted or removed from the user’s view. Without it, stale local copies can remain forever.
+- **Tombstone/removal event:** representation that an item was deleted or removed from the user’s view. In Drive API v3, a `removed` change can mean deletion or loss of access; it is not always proof that the underlying file was deleted. Without handling removal, stale local copies can remain forever.
 - **Idempotent apply:** applying the same change twice has the same resulting local state as applying it once, or duplicates are detected by change ID/version.
 - **Snapshot/resync:** full baseline download followed by change-feed continuation when local state is missing or cursor recovery requires it.
 - **Conditional update:** client submits an expected version/ETag so the server can reject a write based on stale state instead of silently overwriting newer data.
@@ -34,7 +34,7 @@ A change notification usually means “check for changes,” not “the notifica
 
 ## Examples
 
-Google Drive API v3 provides a start page token, `changes.list`, and pagination using `nextPageToken`; its response supplies `newStartPageToken` at the end of the current changes list for future polling. The client should process every page, persist local effects, and then save the returned new start token. The API’s change list can include current file state and removal information according to requested options; it is not a generic patch protocol.
+Google Drive API v3 provides a start page token, `changes.list`, and pagination using `nextPageToken`; its response supplies `newStartPageToken` at the end of the current changes list for future polling. Drive documents these tokens as non-expiring, but the token is still scoped to Drive's API semantics. The client should process every page, persist local effects, and then save the returned new start token. A `removed` entry can represent deletion or loss of access; the API’s change list may include current file state and removal information according to requested options, and is not a generic patch protocol.
 
 For a generic client, maintain a local transaction that upserts/deletes changes and records the consumed page position atomically. If the client crashes after applying changes but before saving the cursor, it replays the page, so handlers must be idempotent. If it saves the cursor before committing local changes, a crash can skip data permanently. If a downloaded object and change record refer to different revisions, fetch/validate the current revision or retry from a consistent snapshot.
 
@@ -61,4 +61,4 @@ For client edits, include the base revision/ETag. RFC 9110 conditional `If-Match
 
 ## Review status
 
-The Drive cursor/pagination behavior is checked against official Google API documentation; HTTP conditional update semantics against RFC 9110; patch format scope against RFC 6902. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Drive cursor, token-lifetime, pagination, and removal semantics are checked against current official Google API documentation; HTTP conditional update semantics against RFC 9110; patch format scope against RFC 6902. Generic cursor expiry remains a concern for other APIs even though Drive documents its page tokens as non-expiring.

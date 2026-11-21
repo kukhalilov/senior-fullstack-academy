@@ -1,45 +1,66 @@
 # data systems storage engines analytics streams and search — Reference: Databases and storage-engine tradeoffs
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.postgresql.org/docs/current/mvcc.html), [reference 2](https://kafka.apache.org/documentation/), [reference 3](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://hld.handbook.academy/curriculum/data-systems/).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [PostgreSQL index types](https://www.postgresql.org/docs/current/indexes.html), [PostgreSQL B-tree internals](https://www.postgresql.org/docs/current/btree.html), [PostgreSQL concurrency and MVCC](https://www.postgresql.org/docs/current/mvcc.html), [PostgreSQL WAL](https://www.postgresql.org/docs/current/wal-intro.html), [MySQL InnoDB transaction model](https://dev.mysql.com/doc/refman/9.7/en/innodb-transaction-model.html), [MySQL InnoDB multi-versioning](https://dev.mysql.com/doc/refman/9.7/en/innodb-multi-versioning.html), [DynamoDB data modeling](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/data-modeling.html), [MongoDB document relationships](https://www.mongodb.com/docs/manual/applications/data-models-relationships/), [Cassandra data-model introduction](https://cassandra.apache.org/doc/latest/cassandra/developing/data-modeling/intro.html), [Cassandra primary-key definition](https://cassandra.apache.org/doc/latest/cassandra/developing/cql/ddl.html), [RocksDB overview](https://github.com/facebook/rocksdb/wiki/RocksDB-Overview), [RocksDB compaction](https://github.com/facebook/rocksdb/wiki/Compaction), [original LSM-tree paper](https://db.cs.berkeley.edu/cs286/papers/lsm-acta1996.pdf).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+This is a storage and workload reference, not a recommendation to choose a specific vendor. It covers the ten names frozen in the topic inventory: OLTP, OLAP, B-tree, LSM tree, WAL, MVCC, relational database, key-value store, document database and column-family store. Product examples illustrate common implementations; their guarantees are implementation-specific. PostgreSQL current docs, MySQL 9.7 docs, current AWS DynamoDB docs, current MongoDB manual, Cassandra latest docs and RocksDB project docs were checked 2026-11-20.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+Choose storage by the operations the application must perform and the invariants it must preserve. Start with questions such as: which keys are read, whether queries need ranges or joins, how many records change together, what must be atomic, how stale a read may be, whether the workload is mostly random point access or broad scans, and how data is partitioned and recovered.
+
+“Database type” and “storage engine” are different levels. Relational/document/key-value/wide-column describe logical data and access interfaces. B-tree and LSM describe physical indexing/storage structures. WAL describes recovery. MVCC describes concurrency/version visibility. One product may combine several: an OLTP relational engine may use B-tree indexes, a WAL and MVCC; a key-value engine may use an LSM tree plus a WAL. These labels do not independently promise transaction scope, durability, isolation, availability or query capability.
 
 ## Supplied names explained
 
-- `OLTP` — Online transaction processing handles many small, concurrent reads and writes under transactional constraints.
-- `OLAP` — Online analytical processing scans and aggregates larger data sets for reporting and decision support.
-- `B-tree` — A balanced search tree suited to ordered lookup and range scans; updates maintain page structure and locality.
-- `Log-structured merge tree (LSM tree)` — Buffers writes and merges sorted runs later, favoring write throughput while compaction and read amplification require management.
-- `Write-ahead log (WAL)` — Records changes durably before data pages are updated so a database can recover committed work after a crash.
-- `MVCC` — Multi-version concurrency control lets transactions observe snapshots while writes create versions; vacuum or cleanup controls obsolete versions.
-- `Relational database` — Stores structured relations with constraints and transaction/query capabilities; schema and query design still determine scale behavior.
-- `Key-value store` — Looks up values by keys with simple access semantics; secondary query and relational integrity may be limited or external.
-- `Document database` — Stores nested document-shaped records; embedding and denormalization affect update consistency and query flexibility.
-- `Column-family store` — Organizes data around partition and clustering keys for predictable high-scale access patterns; access patterns constrain queries.
+- **OLTP (online transaction processing)** — Many short, concurrent operations that read or change a small part of operational state: place order, debit account, reserve inventory. The design is judged by transaction correctness, contention, tail latency, write durability and predictable point/range access. OLTP is a workload category, not a database product. Indexes accelerate selected reads but add write work and storage; secondary indexes can become hotspots or make each update touch many pages.
+- **OLAP (online analytical processing)** — Broad scans, joins and aggregates over large data sets to answer reporting or analytical questions. Engines may use columnar storage, compression, vectorized execution, partitions and distributed scans. OLAP is not always “eventually consistent”: freshness depends on ingestion/refresh design. A warehouse or lakehouse query can be transactionally consistent over its own snapshot yet lag the operational database.
+- **B-tree** — A balanced, page-oriented search structure. Internal pages guide lookups; leaf pages contain ordered keys and row references or data. It supports equality and ordered/range operations, prefix/order use subject to collation and composite-key rules. Tree height grows slowly, but random updates can dirty pages, split pages and cause I/O; actual cost depends on cache, fill factor, key distribution, page layout and clustering. Do not claim every vendor's “B-tree” is identical to the textbook variant. PostgreSQL calls its index B-tree; its docs describe page levels and that MVCC row versions can each have index entries.
+- **Log-structured merge tree (LSM tree)** — Also called an LSM tree, this is a write-oriented family that buffers writes and periodically merges sorted runs. A typical engine appends to a WAL, updates an in-memory sorted structure, flushes immutable sorted files (SSTables), and compacts overlapping runs. Bloom filters and indexes can avoid unnecessary file reads. The trade is deferred work: compaction consumes disk bandwidth/CPU, increases write amplification, may temporarily need extra space, and can create read amplification or write stalls when merge debt accumulates. “LSM is faster” is incomplete; measure point reads, range reads, updates, tombstones, compaction and p99 latency under sustained load.
+- **Write-ahead log (WAL)** — A WAL is a sequential record of changes used for crash recovery, replication or point-in-time recovery in many engines. The central rule is that required log records reach the required durability boundary before the corresponding data page can be considered safely persisted. Commit durability can depend on configuration, hardware flush behavior, replication acknowledgement and storage service semantics. A WAL is not automatically an event-sourcing log: internal redo records may not be a stable public business-event contract or replayable forever.
+- **MVCC (multi-version concurrency control)** — Keeps versions so a reader can observe a consistent snapshot while writers create newer versions, reducing read/write blocking for supported operations. It does not eliminate locks, write conflicts, serialization failures or deadlocks. Old versions require cleanup (e.g. vacuum/purge); long-running snapshots can prevent reclamation and grow storage. Isolation level determines which changes a transaction can observe; “MVCC database” alone does not tell you if two updates can violate a business invariant.
+- **Relational database** — Models relations/tables, rows, typed columns, keys, constraints and declarative queries, commonly SQL. The optimizer chooses an execution plan using statistics and indexes. Joins and constraints make cross-entity queries and integrity convenient, but schema migrations, index design, lock contention, partitioning and horizontal write scaling still require care. Normalization reduces duplicated authoritative facts; denormalization can improve read shape but creates synchronization work. ACID properties describe transaction behavior and do not guarantee a particular distributed consistency model across systems.
+- **Key-value store** — Retrieves values using an explicit key, often with simple operations such as get/put/delete. Some systems support range keys, secondary indexes, transactions, conditional writes, TTL or document values; others do not. “Key-value” predicts the primary access path, not the full feature set. If a request needs an unknown search predicate, global sort or multi-record invariant, check whether the store supports it or plan a separate index/query model. Partition-key distribution must avoid hot keys and preserve the access patterns needed by the application.
+- **Document database** — Stores a record as a nested document, often JSON-like, which can match the shape read by an application. Embedding related data can make a common read one operation and allow atomic updates within a document in some systems; references normalize separately updated or high-cardinality entities but require additional reads/joins and consistency coordination. Unbounded arrays/documents, duplicated mutable facts and broad scans are common traps. Flexible schema does not mean schema-free design: version fields, validation, indexes and migration policy remain necessary.
+- **Column-family / wide-column store** — Organizes data around a partition key and ordered clustering columns, often across a distributed cluster. In Cassandra, the partition key determines placement while clustering columns order data within a partition; query-first modeling commonly creates multiple tables for different access patterns. A wide-column store is not a columnar OLAP format. Its partition boundaries, maximum partition growth, hot-key risk, consistency settings and restricted query shapes are central design choices. “Column family” does not have one identical meaning across every product.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Workload or need | Typical starting point | Questions that decide the fit |
+|---|---|---|
+| Many small writes with multi-row invariants and flexible joins | Relational OLTP database | Transaction scope, indexes, contention, isolation, growth, backup/restore |
+| Durable lookup by known key with predictable access patterns | Key-value store | Key distribution, conditional writes, secondary queries, transaction limits |
+| Read/write a nested aggregate mostly together | Document database | Embed versus reference, document growth, atomicity, duplicated update cost |
+| Very large distributed data with query-specific partitions | Column-family store | Partition key, clustering order, hot partitions, consistency and query restrictions |
+| Long analytical scans/aggregations | OLAP warehouse or lakehouse | Freshness, scan cost, file/table format, governance, concurrency and retention |
+| Storage-engine implementation choice | B-tree or LSM family | Read/write mix, range behavior, write amplification, compaction debt, cache and tail latency |
+
+These are tendencies, not laws. A relational system can serve analytics; a document database can enforce validation; an LSM-backed engine can support transactions. Choose from measured query/write patterns and required invariants, not labels. A derived search/analytics copy should have a declared owner, refresh lag and rebuild path.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+An order submission must atomically create an order, reserve inventory and record a payment authorization intent. First decide which of these state changes belong in one database transaction and which cross-service steps require a saga/outbox. A relational OLTP database is a reasonable starting point because the invariants cross records and queries need joins. Add a B-tree on the order's stable key and indexes that support measured access paths; avoid indexing every column. If a dashboard needs daily totals, publish changes to an analytical projection rather than forcing every customer request to scan the complete order history.
+
+For a high-rate device state lookup, a key-value table keyed by `(tenant, deviceId)` may suit get/replace operations. If queries also need “all readings for device in time order,” model a composite partition/sort key or choose a time-series/column-family table with an appropriate partition strategy. A single tenant/device combination can become hot; estimate skew and partition size before selecting a key. If the query later needs arbitrary geo/text search, build a separate index and make its lag/rebuild behavior explicit.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Choosing a data model before writing the important queries and transaction invariants.
+- Assuming B-tree means every access is O(log n) with stable latency; page cache, fanout, I/O, lock contention and data distribution matter.
+- Treating WAL as a public event stream or assuming a successful application write is durable without checking commit/flush/replication settings.
+- Assuming MVCC removes locking or makes application-level read-modify-write safe.
+- Confusing column-family/wide-column with columnar analytical storage.
+- Treating flexible document schemas as permission to ignore versioning, validation and bounded document size.
+- Choosing a partition key with poor cardinality or a single hot tenant/device.
+- Believing a relational database automatically scales horizontally without changing query, transaction or data-placement constraints.
+- Duplicating facts into search/analytics stores without a replay, freshness and deletion-propagation plan.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Are OLTP and B-tree alternatives at the same layer?** No. OLTP describes a workload; B-tree is one physical index structure that an OLTP engine may use.
+2. **Why does an LSM engine need compaction?** It merges sorted runs to bound how many files and obsolete versions reads must consider. Compaction is background work with CPU, I/O, space and tail-latency costs.
+3. **What does MVCC guarantee by itself?** It is a versioning/concurrency technique. The actual snapshot and conflict guarantees depend on the database's isolation and transaction rules.
+4. **When embed a related entity in a document?** When it is read/updated with the parent and bounded growth is acceptable. Reference it when it changes independently, has high cardinality, or is queried on its own.
+5. **Why is Cassandra data modeling query-first?** The partition key controls placement and the clustering key controls within-partition order; those choices determine the efficient query shapes.
+6. **Can WAL replace an outbox?** Not safely by assumption. A database's internal recovery log is generally not a versioned, supported business-event API. An outbox records an application event transactionally with business state.

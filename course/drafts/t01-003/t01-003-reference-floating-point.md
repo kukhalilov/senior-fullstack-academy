@@ -5,7 +5,7 @@
 *Automatically generated draft.*
 
 # Scope and version
-This lesson covers the C# built-in floating-point and decimal type keywords: `float`, `double`, and `decimal`. 
+This lesson covers the C# built-in floating-point and decimal type keywords: `float`, `double`, and `decimal`.
 *   **Scope:** C# 15 stable on .NET 11 GA.
 *   **Reference:** [Microsoft Learn C# built-in types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table).
 

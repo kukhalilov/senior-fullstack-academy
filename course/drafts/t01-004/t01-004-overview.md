@@ -31,6 +31,8 @@ The C# type system is divided into these two categories.
 Consider a simple scenario:
 
 ```csharp
+using System.Collections.Generic;
+
 // Value Type Example
 int a = 10;
 int b = a; // b is a separate copy

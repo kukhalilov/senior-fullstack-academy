@@ -10,12 +10,12 @@ This lesson covers the implicit numeric conversions from `long` to `float`, `dou
 Source: [Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)
 
 # How this group fits the mental model
-In C#, numeric types have different ranges and precision. An "implicit conversion" is a safe operation performed automatically by the compiler because the target type can represent the source value without overflow. When moving from a `long` (a 64-bit integer) to floating-point types (`float`, `double`) or `decimal`, the compiler allows the conversion because these types can accommodate the magnitude of a `long`.
+In C#, numeric types have different ranges and precision. An "implicit conversion" is a conversion the language permits without cast syntax; it is not a promise that the target preserves every source bit or exact value. When moving from a `long` (a 64-bit integer) to floating-point types (`float`, `double`) or `decimal`, the compiler allows the conversion because these types can accommodate the magnitude of a `long`.
 
 # Supplied names explained
 
 * **long to float (implicit numeric conversion)**: Converts a 64-bit signed integer to a single-precision 32-bit floating-point number. While the magnitude is preserved, the `float` type has fewer significant digits than a `long`, meaning precision may be lost for very large integers.
-* **long to double (implicit numeric conversion)**: Converts a 64-bit signed integer to a double-precision 64-bit floating-point number. This is generally safer than converting to `float` because `double` provides more significant digits.
+* **long to double (implicit numeric conversion)**: Converts a 64-bit signed integer to a double-precision 64-bit floating-point number. Some `long` values are not exactly representable because `double` has 53 bits of significand precision; it nevertheless has more precision than `float`.
 * **long to decimal (implicit numeric conversion)**: Converts a 64-bit signed integer to a 128-bit decimal type. The conversion preserves the integer value exactly; decimal may be useful where base-10 arithmetic is desired, but finite-precision arithmetic can still round.
 
 # Cross-item comparison
@@ -46,7 +46,7 @@ decimal myDecimal = myLong; // Exact representation
 # Knowledge checks with answers
 
 1. **Question**: Why is `long` to `float` an implicit conversion if it can lose precision?
-   * **Answer**: In C#, "implicit" refers to the ability to store the *magnitude* of the value without overflow. The compiler permits it because it is safe from a range perspective, even if the underlying representation (floating-point) differs from the source (integer).
+   * **Answer**: In C#, "implicit" refers to the ability to store the *magnitude* of the value without overflow. The language permits it because the floating-point type has sufficient range for the source magnitude; precision can still be lost.
 
 2. **Question**: Which of the three conversions preserves a `long` integer exactly?
    * **Answer**: `decimal` preserves the integer exactly, but the right financial representation depends on domain scale and rounding rules; the type alone does not guarantee correct monetary calculations.

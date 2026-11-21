@@ -1,36 +1,56 @@
 # end-to-end system design case studies — Reference: Proxy bidding
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://sre.google/sre-book/table-of-contents/), [reference 2](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 3](https://learn.microsoft.com/en-us/azure/well-architected/what-is-well-architected-framework), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://www.rfc-editor.org/rfc/rfc9110), [reference 6](https://learn.microsoft.com/en-us/ef/core/saving/transactions), [reference 7](https://hld.handbook.academy/curriculum/case-studies/), [reference 8](https://hld.handbook.academy/curriculum/interview-framework/frameworks-compared/), [reference 9](https://www.rfc-editor.org/rfc/rfc9309), [reference 10](https://www.rfc-editor.org/rfc/rfc5322), [reference 11](https://www.rfc-editor.org/rfc/rfc8216).
+Sources: [eBay automatic bidding](https://www.ebay.com/help/buying/auctions-bidding/bidding-works?id=4014), [eBay bidding API guide](https://developer.ebay.com/develop/guides/buy/checkout-bid-guide), [PostgreSQL transaction isolation](https://www.postgresql.org/docs/18/transaction-iso.html), [Redis Lua scripting](https://redis.io/docs/latest/develop/programmability/eval-intro/), [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html).
 
 ## Scope and version
 
-This is a conceptual reference, not a vendor configuration guide. The supplied list below is the complete named scope for this lesson. Exact service limits and implementation details vary; consult the cited standard or current product documentation before deployment.
+Proxy bidding accepts a bidder’s confidential maximum and automatically raises the displayed bid only as needed under the auction’s published rules. eBay is a product example; its increment table, tie-breaking, API capabilities, and auction policy are not universal. A platform must define its own rules and keep bidder maximums confidential.
 
 ## How this group fits the mental model
 
-These concepts are tools for solving different parts of the system path. Select them from workload, correctness, and failure requirements. Combining tools does not automatically compose their guarantees.
+There are two values: each bidder’s private maximum and the public current price/leader. When a new maximum arrives, the auction engine compares it with the current leading maximum and applies its own bid-increment schedule. The winning displayed price may be below the winner’s maximum. The maximum is authorization for future automatic bids, not a price that should be broadcast to competitors.
+
+Correctness requires an ordered decision for each auction. Concurrent maximum changes must not both evaluate against the same stale leader and publish contradictory winners. Store auction state in an authoritative transactional system or execute a bounded atomic compare/update in a single-shard state store, and append an audit event. Define tie policy, minimum increments, reserve price, close time, bid retraction rules, and what happens when two requests race with close. A maximum bid should be encrypted/protected at rest, excluded from ordinary logs and analytics, and visible only to services and staff with a need to know.
 
 ## Supplied names explained
 
-- `Proxy bidding` — Stores a bidder's maximum and automatically places bids according to auction rules; fairness, secrecy, tie-breaking, and atomic ordering are essential.
+- **Proxy/automatic bid:** a stored maximum limit from which the platform emits the minimum bid needed to remain competitive under its published rules.
+- **Maximum bid:** private limit; it should not be exposed through public APIs, events, or client-visible error details.
+- **Displayed/current price:** public auction amount, derived from the leading and competing maximums plus the increment policy.
+- **Bid increment table:** deterministic rule mapping price ranges to minimum legal step; version it or snapshot it with the auction so later changes do not silently alter active auctions.
+- **Tie-breaking:** explicit rule for equal maximums, often based on order accepted by the service; the rule must use a trusted serialization point, not client clocks.
+- **Idempotency key:** lets a bidder safely retry an ambiguous request without storing the same logical maximum as multiple actions.
+- **Audit trail:** durable record of bid acceptance, rule version, auction state transition, and result for support and disputes; protect private maximums in that record too.
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+| Auction approach | User experience | System requirement |
+| --- | --- | --- |
+| Manual bidding | User submits each new public bid | Handle repeated requests and concurrent updates; no automatic proxy behavior |
+| Proxy bidding | User submits a private cap once; system raises bid as needed | Secure maximum storage, deterministic auction ordering, privacy-safe observability |
+| First-price sealed bid | Bidders submit hidden offers and winner pays own offer under defined rules | Sealed submission and close-time processing; fundamentally different price rule |
+| Second-price style auction | Winner’s payment derives from next-best offer plus rule-specific adjustment | Precise reserve/tie/increment rules and auditability; do not assume it is equivalent to every proxy-bid implementation |
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+The leading bidder’s maximum is 80 and current price is 52. Another bidder submits a maximum of 65. The engine keeps the first bidder leading and raises the displayed price only according to the applicable increment rule, never exposing the private 80 maximum. If a third bidder submits 90, the new bidder becomes leader and the displayed amount is derived from the previous maximum plus the rule’s increment, subject to the new bidder’s cap. The exact number depends on the auction’s published rules; the engine should compute it in one serialized state transition and record the decision.
+
+If a client times out after submitting a maximum, the server may have accepted it. The client retries with the same idempotency key and receives the original outcome. If the auction closes at nearly the same moment, a single authoritative ordering determines whether the bid was accepted before the close boundary. A late event must not reopen a closed auction unless the rules explicitly define an extension mechanism.
 
 ## Common mistakes
 
-- Selecting a component by popularity before defining the requirement.
-- Treating a protocol or product name as a guarantee without reading its contract.
-- Ignoring cost, operational ownership, observability, and recovery.
-- Applying one consistency or caching rule to data with different correctness needs.
+- Revealing the maximum to other bidders in API payloads, logs, telemetry, or support tooling.
+- Assuming a proxy-bid system always charges the winner the full maximum or always implements a textbook second-price auction.
+- Using browser timestamps to decide which equal bid arrived first.
+- Checking auction state and writing the leader in separate unprotected operations.
+- Retrying after a timeout with a new request identity and creating ambiguous duplicate actions.
+- Changing increments or close rules mid-auction without versioning or preserving the original contract.
+- Emitting public bid events before the durable decision commits.
+- Treating fraud, eligibility, payment authorization, settlement, and auction ordering as one concern.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **Is the private maximum the public current price?** No. It is an upper limit used by the engine; the current price is derived according to auction rules.
+2. **Why must tie handling use a server-side order?** Client clocks and network delays are not a trustworthy global ordering; the auction needs a defined serialized decision point.
+3. **What should a client do after a submission timeout?** Retry with the same idempotency identity or query the result, because the outcome may already have committed.
+4. **Does the term “proxy bidding” define a universal pricing formula?** No. The platform must specify increments, tie policy, reserves, close semantics, and payment rules.

@@ -4,7 +4,7 @@ Sources: [HLD Handbook](https://hld.handbook.academy/), [LiteLLM gateway archite
 
 ## Scope and version
 
-LiteLLM is an open-source SDK and gateway that provides a common interface for calling many model providers and manages routing features such as load balancing, retries, and fallbacks. The vendor documentation was checked on 2026-11-17. This ecosystem changes rapidly: endpoint support, routing behavior, security controls, and deployment architecture must be checked against the exact LiteLLM release and provider contract. A gateway does not make different models behaviorally equivalent.
+LiteLLM is an open-source SDK and gateway that provides a common interface for calling many model providers and manages routing features such as load balancing, retries, and fallbacks. The vendor documentation was checked on 2026-11-21. This ecosystem changes rapidly: endpoint support, routing behavior, security controls, and deployment architecture must be checked against the exact LiteLLM release and provider contract. A gateway does not make different models behaviorally equivalent.
 
 ## How this group fits the mental model
 
@@ -77,3 +77,7 @@ Keep routing config in version control. Use staging credentials or mock endpoint
 ## Practice
 
 Design a multi-tenant gateway for an internal support assistant. Specify caller identity, model allowlists, provider credentials, budget concurrency, prompt-log retention, retries, fallback eligibility, streaming behavior, and failure handling when Redis or the accounting database is unavailable. Explain which measurements determine whether to keep the gateway centralized or move a latency-sensitive path to a narrower service.
+
+## Review status
+
+Reviewed 2026-11-21. Current LiteLLM documentation confirms the gateway request path, tenant/key/budget controls, routing retries versus group fallbacks, and optional shared routing state across workers. Version-sensitive router internals are described as current product behavior rather than generic guarantees. The lesson correctly highlights the gateway trust/availability boundary, provider capability differences, idempotency and retry cost, and fail-safe accounting policy. No material factual corrections or missing core concepts were found.

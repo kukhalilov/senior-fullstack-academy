@@ -75,4 +75,4 @@ Measure gateway CPU, memory, active connections, request queueing, TLS handshake
 
 ## Review status
 
-The HLD Handbook provides the case-study context. Official Azure and AWS references support the gateway offloading and throttling cautions above. Exact product claims are limited to the cited product documentation; this lesson remains pending a full claim-by-claim audit and inventory omission check.
+The HLD Handbook provides the case-study context. Official Azure and AWS references support the gateway offloading and throttling cautions above. AWS’s request throttling and quota targets are explicitly best-effort, as the lesson states; exact product behavior is limited to the cited documentation.

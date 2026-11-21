@@ -501,11 +501,30 @@
     "https://learn.microsoft.com/en-us/azure/backup/backup-overview",
     "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview"
   ],
-  "versionNotes": [],
+  "versionNotes": [
+    {
+      "edition": "Azure services checked 2026-11-20",
+      "version": "2026-11 snapshot",
+      "date": "2026-11-20",
+      "items": [
+        "Azure Functions .NET in-process model support ended 2026-11-10; migrate supported .NET apps to isolated worker. As checked 2026-11-20, Functions 4.x supports .NET 11 isolated worker with Azure.Functions.Sdk 1.0.1 or later plus explicit Microsoft.Azure.Functions.Worker package; .NET 11 is not supported on Linux Consumption, and plan constraints must be checked.",
+        "Azure Cache for Redis Enterprise/Enterprise Flash retirement remains 2027-03-31; Basic/Standard/Premium 2028-09-30. In Azure public cloud, new customers cannot create Basic/Standard/Premium since 2026-04-01, but existing customers qualify tenant-wide if any subscription had an instance before that date and can create until retirement; Azure Government/China have no creation block before retirement per July 2026 update. Verify current cloud/tenant lifecycle notices.",
+        "Azure Managed Redis is GA as a product. As checked 2026-11-20, Redis 8.2 is preview and unavailable with Flash Optimized, geo-replication or custom data access policies; in-memory tiers above 350 GB, Flash Optimized A2000/A4500, and some features remain preview.",
+        "ARM complete deployment mode is not recommended and is gradually deprecated; deployment stacks are recommended for intentional deletions."
+      ],
+      "sourceUrls": [
+        "https://learn.microsoft.com/en-us/azure/azure-functions/functions-versions",
+        "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-whats-new",
+        "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/retirement-faq",
+        "https://learn.microsoft.com/en-us/azure/redis/overview",
+        "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes"
+      ]
+    }
+  ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn: Azure Architecture Center, Microsoft Entra, Azure service documentation and Azure Well-Architected Framework",
-    "edition": "Current Microsoft Learn service guidance and lifecycle notices checked 2026-11-16; service/SKU/API availability varies by region, subscription, deployment model, and product lifecycle",
-    "checkedAt": "2026-11-16",
+    "edition": "Current Microsoft Learn service guidance and lifecycle notices checked 2026-11-20; service/SKU/API availability varies by region, subscription, deployment model, and product lifecycle",
+    "checkedAt": "2026-11-20",
     "urls": [
       "https://learn.microsoft.com/en-us/azure/architecture/guide/",
       "https://learn.microsoft.com/en-us/azure/architecture/cloud-adoption/decision-guides/",
@@ -523,6 +542,7 @@
       "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
       "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management",
       "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes",
       "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/deployment-stacks",
       "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview",
       "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview",
@@ -542,7 +562,7 @@
       "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview",
       "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview",
       "https://learn.microsoft.com/en-us/azure/azure-functions/flex-consumption-plan",
-      "https://learn.microsoft.com/en-us/azure/azure-functions/functions-versions",
+        "https://learn.microsoft.com/en-us/azure/azure-functions/functions-versions",
       "https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide",
       "https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-in-process-differences",
       "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview",
@@ -631,8 +651,8 @@
   ],
   "generationAllowed": true,
   "accuracyFacts": [
-    "As checked 2026-11-16, Microsoft Learn states support for the Azure Functions .NET in-process model ended November 10, 2026. Treat in-process as out of support and plan migration to the isolated worker model; verify the runtime and target framework support table for the current deployment.",
-    "As checked 2026-11-16, Azure Cache for Redis Enterprise and Enterprise Flash retirement is scheduled for March 31, 2027; Basic, Standard, and Premium retirement is scheduled for September 30, 2028. Creation restrictions differ by cloud and existing-customer status. Azure Managed Redis is the recommended migration destination, but feature, SKU, region, cluster-policy, and migration-tool support must be checked before planning.",
+    "As checked 2026-11-20, Microsoft Learn states support for the Azure Functions .NET in-process model ended November 10, 2026. Treat in-process as out of support and plan migration to the isolated worker model; verify the runtime and target framework support table for the current deployment.",
+    "As checked 2026-11-20, Azure Cache for Redis Enterprise and Enterprise Flash retirement is scheduled for March 31, 2027; Basic, Standard, and Premium retirement is scheduled for September 30, 2028. Creation restrictions differ by cloud and existing-customer status. Azure Managed Redis is the recommended migration destination, but feature, SKU, region, cluster-policy, and migration-tool support must be checked before planning.",
     "Azure Managed Redis became generally available in May 2025, but Microsoft Learn still labels some capabilities and larger tiers as preview; do not generalize GA status to every feature or SKU.",
     "Azure RBAC management-plane permissions and service data-plane permissions are distinct. A role assignment at a parent scope can inherit; Key Vault access policies and Key Vault data-plane RBAC are separate authorization models.",
     "Azure Private Endpoint provides a private IP network interface for a Private Link resource; correct private DNS zone records, VNet links, routing, and service-side network settings are required for name resolution and access.",

@@ -2,7 +2,7 @@
 
 ## Scope and version
 
-This reference covers the supplied Next.js 16 App Router file conventions and APIs against current docs checked 2026-11-16. Next.js defaults and caching behavior changed across releases; verify the major version and whether Cache Components are enabled. [App Router](https://nextjs.org/docs/app) [Next.js 16](https://nextjs.org/blog/next-16)
+This reference covers the supplied Next.js 16 App Router file conventions and APIs against current docs checked 2026-11-20 (App Router docs 16.4.6). Next.js defaults and caching behavior changed across releases; verify the major version and whether Cache Components are enabled. [App Router](https://nextjs.org/docs/app) [Next.js 16](https://nextjs.org/blog/next-16)
 
 ## How this group fits the mental model
 
@@ -28,6 +28,8 @@ The `app/` tree maps URL segments to nested layouts and pages. Server Components
 - `use cache directive` enables caching of a page, component, or function when Next.js Cache Components are configured. In Next.js 16 this explicit cache model is opt-in via `cacheComponents: true`; cached inputs/keys and revalidation policy must avoid cross-user leakage. [Next.js 16](https://nextjs.org/blog/next-16) [Caching](https://nextjs.org/docs/app/guides/caching)
 - `revalidatePath(path)` invalidates cached data/rendering associated with a path so it is refreshed on a later request/navigation, according to Next.js cache rules. It is not a direct database cache invalidation API.
 - `revalidateTag(tag, profile)` revalidates tagged cached data using the named cache-life profile. In Next.js 16 the profile-based form is the current API; `updateTag()` is a separate API for immediate expiration/read-your-own-writes workflows. [Next.js 16](https://nextjs.org/blog/next-16)
+- `updateTag(tag)` immediately expires data associated with a cache tag for read-your-own-writes behavior. It is available only inside a Server Action; the next read waits for fresh data, and the action response updates the current route. Use `revalidateTag` for Route Handlers or other server contexts. [updateTag](https://nextjs.org/docs/app/api-reference/functions/updateTag)
+- `refresh() from a Server Action` reruns dynamic work for the current route without invalidating server-side cached data. Import it from `next/cache`; it can be called only in a Server Action. In a Client Component, `router.refresh()` is the different client API. Use `updateTag` or `revalidatePath` when a mutation must invalidate server cache entries. [refresh](https://nextjs.org/docs/app/api-reference/functions/refresh)
 - `Suspense streaming boundary` lets a server-rendered subtree show a fallback while asynchronous content is pending and stream later content when ready, subject to route and deployment support.
 
 ## Cross-item comparison
@@ -53,6 +55,8 @@ Next.js 16 APIs may make params asynchronous; use types and conventions from the
 - Treating `'use server'` as a Server Component marker.
 - Assuming cache defaults from Next.js 14/15 still apply to Next.js 16 Cache Components.
 - Using `revalidateTag` without a profile or confusing it with `updateTag`.
+- Calling `updateTag` or `refresh()` from a Route Handler; both APIs are Server Action only.
+- Assuming `refresh()` invalidates server-side cached data; it reruns dynamic work without invalidating those entries.
 - Calling `proxy.ts` a general-purpose edge runtime guarantee.
 - Using `route.ts` and `page.tsx` for the same route segment as though both can own a response.
 - Assuming a deployment platform supports streaming just because Next.js can generate it.
@@ -65,6 +69,7 @@ Next.js 16 APIs may make params asynchronous; use types and conventions from the
 4. What does `'use server'` mark? A Server Function.
 5. In Next.js 16 what replaced `middleware.ts`? `proxy.ts`.
 6. Does `use cache` enable a cache by itself regardless of config? Cache Components must be enabled for the documented Next.js 16 model.
+7. How do `updateTag(tag)` and `refresh()` differ? `updateTag` expires tagged server cache for read-your-own-writes; `refresh()` reruns current-route dynamic work without invalidating server cache.
 
 ## Sources
 
@@ -76,3 +81,5 @@ Next.js 16 APIs may make params asynchronous; use types and conventions from the
 - [Caching](https://nextjs.org/docs/app/guides/caching)
 - [Proxy convention](https://nextjs.org/docs/app/api-reference/file-conventions/proxy)
 - [Next.js 16](https://nextjs.org/blog/next-16)
+- [updateTag](https://nextjs.org/docs/app/api-reference/functions/updateTag)
+- [refresh](https://nextjs.org/docs/app/api-reference/functions/refresh)

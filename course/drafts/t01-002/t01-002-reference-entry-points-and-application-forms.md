@@ -7,12 +7,12 @@
 # C# Source-File Organization and Application Entry Points
 
 ## Scope and version
-This lesson covers the structure of C# applications and the mechanisms used to define entry points. Microsoft documentation checked 2026-11-17 lists C# 15 as current with .NET 11, and C# 14 file-based apps with .NET 10+.
+This lesson covers the structure of C# applications and the mechanisms used to define entry points. Microsoft documentation checked 2026-11-20 lists C# 15 as current with .NET 11, and C# 14 file-based apps with .NET 10+.
 
 *Source: [Microsoft Learn C# Fundamentals](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure)*
 
 ## How this group fits the mental model
-In C#, code is organized into files and projects. To run an application, the runtime needs a specific starting point—the entry point. You can choose between a modern, simplified approach (**Top-level statements**) or the traditional, explicit approach (**Main method**). These choices dictate how your application interacts with the operating system via **Command-line arguments** and **Program exit codes**.
+In C#, code is organized into files and projects. To run an application, the compiler/runtime need a single starting point—the entry point. You can choose between a modern, simplified approach (**Top-level statements**) or the traditional, explicit approach (**Main method**). These choices dictate how your application interacts with the operating system via **Command-line arguments** and **Program exit codes**.
 
 ## Supplied names explained
 
@@ -48,7 +48,7 @@ The `Main` method can take several forms depending on whether you need to return
 
 ## Examples
 
-### Using Top-level statements (File-based)
+### Using Top-level statements (File-based or Project-based)
 ```csharp
 // This can be a file-based or project-based app using top-level statements
 Console.WriteLine("Hello, World!");

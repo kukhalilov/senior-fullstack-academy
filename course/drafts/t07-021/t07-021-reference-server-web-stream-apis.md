@@ -10,8 +10,8 @@ The APIs generate interactive server HTML progressively or continue a static pre
 
 ## Supplied names explained
 
-- `renderToReadableStream` renders a React tree to a Web `ReadableStream` containing HTML. The returned promise resolves with the stream when the shell is ready; the stream can be returned in a web response. Options can include bootstrap scripts, error callbacks, nonce, identifier prefix, and a `signal` to abort. Suspense boundaries can let the shell stream before all content is ready. Handle shell errors and stream errors according to the API callbacks and web runtime.
-- `resume` continues output produced by the static `prerender` API, returning a Web `ReadableStream` for remaining React output. It is not a general method for resuming an arbitrary stream or a tree that was never prerendered. Use the compatible prerender/resume workflow and preserve any required serialized state/transport details supplied by the framework.
+- `renderToReadableStream(reactNode, options?)` expects a tree representing the full document (usually including `<html>`). It resolves to a Web `ReadableStream` once the shell is ready; shell failure rejects the promise. Options include `bootstrapScriptContent`, `bootstrapScripts`, `bootstrapModules`, `formState`, `identifierPrefix`, `importMap` (Canary only), `maxHeadersLength`, `namespaceURI`, `nonce` (string or `{script, style}`), `onBrowserBailout`, `onError`, `onHeaders`, `progressiveChunkSize`, and `signal`. Its stream has `allReady`, which resolves after all shell and boundary content; awaiting it prevents progressive delivery. Shell/error callbacks and HTTP status policy must be handled deliberately.
+- `resume(reactNode, postponedState, options?)` resumes a tree previously passed to `prerender`; `reactNode` must represent the same full document and `postponedState` is the opaque serialized state from that prerender. It resolves to a Web stream after a successful shell or rejects on shell failure; the stream also has `allReady`. Its options are `nonce`, `signal`, `onBrowserBailout`, and `onError`. Bootstrap scripts/modules and `identifierPrefix` must be set during prerender, not resume. It is not a general continuation of an arbitrary stream.
 
 ## Cross-item comparison
 
@@ -38,7 +38,9 @@ Use a supported Web Streams runtime; production code should also handle aborts, 
 - Using it in a Node server where React recommends `renderToPipeableStream`.
 - Calling `resume` without output created by the matching `prerender` flow.
 - Assuming every Suspense boundary necessarily produces a useful shell.
-- Forgetting to handle aborts and errors.
+- Forgetting that the rendered node should represent the complete document and that the server APIs inject the doctype.
+- Awaiting `stream.allReady` on a latency-sensitive response and thereby giving up progressive loading.
+- Passing bootstrap script or `identifierPrefix` options to `resume`; those belong to the matching prerender call.
 
 ## Knowledge checks with answers
 

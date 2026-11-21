@@ -2,6 +2,8 @@
 
 Refer to the [React application guidance](https://react.dev/learn/creating-a-react-app), [Next.js App Router docs](https://nextjs.org/docs/app), and [React Router mode guide](https://reactrouter.com/start/modes) for version-specific details.
 
+Version snapshot checked 2026-11-20: Next.js App Router docs 16.4.6 and React Router 8.5.2. TanStack Start 1.0 is stable per TanStack's release/docs, although React's framework page still labels it Beta. React Router 8.5 deprecated its view-transition APIs in favor of React 19.3 `<ViewTransition>`; the router APIs remain during v8 and are slated for removal in v9.
+
 ## Core questions
 
 1. What is the difference between a router, a build tool, and a full-stack framework?
@@ -10,6 +12,8 @@ Refer to the [React application guidance](https://react.dev/learn/creating-a-rea
 4. What are loaders, actions, fetchers, and revalidation?
 5. Compare static rendering, request SSR, streaming, and partial prerendering.
 6. What changes between Node, Edge, and static hosting deployments?
+7. How should a Next.js Server Action choose between `updateTag()` and `refresh()`?
+8. What changed for React Router view transitions in v8.5?
 
 ## Concise interview answers
 
@@ -19,6 +23,8 @@ Refer to the [React application guidance](https://react.dev/learn/creating-a-rea
 4. Loaders read route data; actions mutate; fetchers perform data work without navigation; revalidation refreshes affected loader data by framework rules.
 5. Static is build-time/cacheable; SSR is request-time/fresh; streaming sends chunks progressively; partial prerender combines static shell and dynamic parts.
 6. Node APIs and streams differ from Edge Web APIs; static hosting has no request runtime; adapters/CDNs can change streaming, cache, and environment behavior.
+7. `updateTag(tag)` expires tagged server cache for read-your-own-writes; `refresh()` reruns current-route dynamic work without invalidating the server cache. Both are Server Action APIs, but they solve different freshness needs.
+8. React Router deprecated its view-transition APIs in v8.5 in favor of React 19.3 `<ViewTransition>`. The router APIs still work during v8 but are planned for removal in v9; React's component requires transitions to remain enabled.
 
 ## Deep follow-up answers
 

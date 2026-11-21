@@ -2,11 +2,11 @@
 
 ## Scope and version
 
-This lesson describes the React DOM 19.3 client resource hint APIs and their browser-dependent effects. [React DOM](https://react.dev/reference/react-dom)
+This lesson describes React DOM 19.3 resource hint APIs and their browser-dependent effects across client and server rendering. [React DOM](https://react.dev/reference/react-dom)
 
 ## How this group fits the mental model
 
-React DOM resource APIs emit browser resource hints from application code. They express intent; the browser may ignore, reprioritize, or deduplicate hints, and a hint does not guarantee a successful fetch. Frameworks may already manage these hints, so avoid redundant calls. These functions are client-side `react-dom` APIs. [React DOM](https://react.dev/reference/react-dom)
+React DOM resource APIs emit browser resource hints from application code. They express intent; the browser may ignore, reprioritize, or deduplicate hints, and a hint does not guarantee a successful fetch. Frameworks may already manage these hints, so avoid redundant calls. These functions are exported by `react-dom` and work in browser rendering; in server-side rendering or Server Components, each hint only takes effect when called during component rendering or in an async context that originates from component rendering. Calls from other server contexts are ignored. In the browser, they may be called while rendering, in Effects, or in event handlers. [React DOM](https://react.dev/reference/react-dom)
 
 ## Supplied names explained
 
@@ -15,19 +15,19 @@ React DOM resource APIs emit browser resource hints from application code. They 
 | API | Intent | Key distinction |
 |---|---|---|
 | `prefetchDNS(href)` | Resolve a host name early | DNS only; useful for a likely future origin |
-| `preconnect(href, options?)` | Resolve and establish an early connection | More work than DNS; use for a likely cross-origin request |
+| `preconnect(href)` | Resolve and establish an early connection | More work than DNS; use for a likely cross-origin request |
 | `preload(href, options)` | Fetch a resource needed soon | Requires `as`; use for a resource with high confidence of near-term use |
-| `preloadModule(href, options?)` | Preload a JavaScript module | Module-specific; options include script type and security/priority fields |
+| `preloadModule(href, options)` | Preload an ESM module without evaluating it | Requires `as: "script"`; module-specific |
 | `preinit(href, options)` | Fetch and initialize a script or stylesheet | Can execute a script or make stylesheet available early; stronger side effect than preload |
-| `preinitModule(href, options?)` | Fetch and initialize a JavaScript module | Module initialization semantics; stronger than merely preloading |
+| `preinitModule(href, options)` | Fetch and evaluate an ESM module | Requires `as: "script"`; code runs after download |
 
 ### Options and matching
 
-For `preload`, `as` is required. Depending on resource, options include `crossOrigin`, `referrerPolicy`, `integrity`, `type`, `fetchPriority`, and responsive image fields `imageSrcSet` and `imageSizes`. A cross-origin fetch commonly needs a matching `crossOrigin` mode to be reused by the eventual request. The URL and relevant attributes should match the eventual resource or the browser may fetch twice.
+For `preload`, `as` is required and can be `audio`, `document`, `embed`, `fetch`, `font`, `image`, `object`, `script`, `style`, `track`, `video`, or `worker`. Options can include `crossOrigin`, `referrerPolicy`, `integrity`, `type`, `nonce`, `fetchPriority`, and image-only `imageSrcSet` and `imageSizes`. `crossOrigin` is required when `as` is `fetch`. A cross-origin fetch commonly needs a matching `crossOrigin` mode to be reused by the eventual request. The URL and relevant attributes should match the eventual resource or the browser may fetch twice.
 
-`preloadModule` and `preinitModule` use module script semantics; their options can include `as: "script"`, `crossOrigin`, `integrity`, `nonce`, and `fetchPriority`. `preinit` accepts `as: "script"` or `as: "style"`; for stylesheets, `precedence` determines React's managed ordering. Script options can include `crossOrigin`, `integrity`, `nonce`, and `fetchPriority`. Do not call a preinit API casually: script initialization can execute code.
+`preloadModule` and `preinitModule` use module script semantics and require an options object with `as: "script"`; it may also include `crossOrigin`, `integrity`, `nonce`, and `fetchPriority`. `preinit` requires `as: "script"` or `as: "style"`; for stylesheets, `precedence` is also required and accepts `reset`, `low`, `medium`, or `high` to determine React's managed ordering. Script options can include `crossOrigin`, `integrity`, `nonce`, and `fetchPriority`. Do not call a preinit API casually: script initialization can execute code.
 
-`prefetchDNS` is usually appropriate for a likely third-party host but offers no benefit for an already-connected same-origin host. `preconnect` consumes network resources, so reserve it for origins likely to be used soon. `fetchPriority` is a browser hint, not a guarantee. Responsive image hints should align `imageSrcSet`/`imageSizes` with the rendered image's candidate selection.
+`prefetchDNS` is usually appropriate for a likely third-party host but offers no benefit for an already-connected same-origin host. `preconnect` consumes network resources, so reserve it for origins likely to be used soon; it gives no benefit for the already-connected origin serving the page. `fetchPriority` is a browser hint, not a guarantee. Responsive image hints should align `imageSrcSet`/`imageSizes` with the rendered image's candidate selection.
 
 ## Cross-item comparison
 
@@ -45,7 +45,7 @@ function ProductPage() {
 }
 ```
 
-Only hint resources that are likely to be used; ensure responsive images and credentials match the actual request.
+Only hint resources that are likely to be used; ensure responsive images and credentials match the actual request. On the server, put calls in a component render or render-originating async context or no hint is emitted.
 
 ## Common mistakes
 

@@ -4,7 +4,7 @@ Sources: [Compose service reference](https://docs.docker.com/reference/compose-f
 
 ## Scope and version
 
-The full service attribute surface was checked against current Docker documentation on 2026-11-16. Docker Compose v5.7.1 is the latest tagged plugin release checked. Attributes such as `attach`, `post_start`, `pre_start`, `provider`, `models`, `use_api_socket`, and various resource controls have minimum-version or implementation constraints. `docker compose config` validates the installed implementation's accepted model, not every runtime/platform effect.
+The full service attribute surface was checked against current Docker documentation on 2026-11-20. Docker Compose v5.8.0 is the latest tagged plugin release checked. Attributes such as `attach`, `post_start`, `pre_start`, `provider`, `models`, `use_api_socket`, and various resource controls have minimum-version or implementation constraints. `docker compose config` validates the installed implementation's accepted model, not every runtime/platform effect. Top-level `jobs` is now a separate experimental one-shot workload model; not every service-only attribute applies to jobs.
 
 ## How this group fits the mental model
 

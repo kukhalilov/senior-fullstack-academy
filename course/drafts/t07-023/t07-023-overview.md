@@ -45,7 +45,7 @@ References compare framework modes, Next.js App Router conventions, React Router
 
 ## Version context
 
-As checked on 2026-11-16, the official React Router changelog labels 8.5.1 latest, Next.js App Router docs show 16.4.6, and TanStack Start docs label Start v1 stable. React's framework recommendation page still calls TanStack Start Beta. Treat Start's maturity label as source-page-dependent and verify the release documentation used by a project. [React Router changelog](https://reactrouter.com/changelog) [Next.js App Router](https://nextjs.org/docs/app) [TanStack Start](https://tanstack.com/start/latest/docs/framework/react/overview) [React framework guidance](https://react.dev/learn/creating-a-react-app)
+As checked on 2026-11-20, the official React Router changelog labels 8.5.1 latest, Next.js App Router docs show 16.4.6, and TanStack Start docs label Start v1 stable. React's framework recommendation page still calls TanStack Start Beta. Treat Start's maturity label as source-page-dependent and verify the release documentation used by a project. [React Router changelog](https://reactrouter.com/changelog) [Next.js App Router](https://nextjs.org/docs/app) [TanStack Start](https://tanstack.com/start/latest/docs/framework/react/overview) [React framework guidance](https://react.dev/learn/creating-a-react-app)
 
 ## What is covered elsewhere
 

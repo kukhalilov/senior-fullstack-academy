@@ -4,7 +4,7 @@ Sources: [Redis key eviction](https://redis.io/docs/latest/reference/eviction/),
 
 ## Scope and version
 
-This catalogue reflects Redis Open Source 8.10 current docs checked 2026-11-16. LRM was introduced in 8.6. Policy names describe candidate/selection behavior, not exact deterministic eviction order; implementation uses approximations and version/product details matter.
+This catalogue reflects Redis Open Source 8.10, the latest GA release; docs checked 2026-11-20. LRM was introduced in 8.6. Policy names describe candidate/selection behavior, not exact deterministic eviction order; implementation uses approximations and version/product details matter.
 
 ## How this group fits the mental model
 

@@ -1,6 +1,6 @@
 # data systems storage engines analytics streams and search — Core concepts and how they fit together
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [reference 1](https://www.postgresql.org/docs/current/mvcc.html), [reference 2](https://kafka.apache.org/documentation/), [reference 3](https://learn.microsoft.com/en-us/azure/architecture/guide/), [reference 4](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [reference 5](https://hld.handbook.academy/curriculum/data-systems/).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [PostgreSQL MVCC](https://www.postgresql.org/docs/current/mvcc.html), [Kafka design](https://kafka.apache.org/36/design/design/), [Azure data-store choices](https://learn.microsoft.com/azure/architecture/data-guide/technology-choices/data-storage), [Azure CQRS pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs), [Azure event-sourcing pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing), [AWS transactional outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html), [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), [HLD Handbook data systems syllabus](https://hld.handbook.academy/curriculum/data-systems/).
 
 ## Learning objectives
 
@@ -42,6 +42,14 @@ Vertical scaling increases resources for a node; horizontal scaling adds nodes a
 
 State what users see when a dependency, zone, region, or provider fails. Define error budgets and recovery targets, bound queues and retries, isolate optional work, and exercise restoration. Redundancy is meaningful only if remaining capacity, independent failure domains, and failover procedures meet the target.
 
+### Separate write ownership from read shape deliberately
+
+The simplest design often uses one store for both commands and queries. A useful index or query-specific table can be enough; CQRS does not require two databases. A separate read model becomes useful when read and write models need different schemas, scaling, or security, but updates then propagate asynchronously and readers must handle lag. Event sourcing makes the event history authoritative, which adds event-schema evolution, concurrency, replay, projection rebuild, retention, and operational obligations. Adopt it only when audit history or reconstruction is a real requirement, not merely because events are already sent to a broker.
+
+### Capacity depends on bytes, skew, and retained history
+
+Estimate not only requests per second but also average record size, indexes and replicas, change rate, retention, backup copies, and temporary migration/compaction headroom. For streams, retention is an event-rate and byte-rate calculation; for time-series metrics, label cardinality can dominate sample count; for search, the analyzed/indexed representation can exceed source text size. Distribution is rarely uniform: hot tenants, popular keys, and large partitions can overload one shard while aggregate capacity looks ample.
+
 ## Mechanisms and relationships
 
 A typical request crosses a browser or client, an edge or load-balancing layer, an application boundary, data stores, and possibly a broker or external provider. At each boundary ask: who authenticates and authorizes; what data crosses; what timeout/deadline applies; what is recorded; and whether a retry is safe. Distributed traces connect spans across services, while aggregate metrics reveal saturation and user-level error rates.
@@ -51,6 +59,8 @@ In .NET, propagate cancellation tokens through ASP.NET Core handlers, HttpClient
 ## Worked examples
 
 For a read-heavy catalog, begin with database indexes and query shape, measure cacheable traffic, then introduce a CDN or application cache with an explicit key and freshness policy. For a payment, prefer a durable idempotent command and ledger-like state transitions over blind retries. For a report, asynchronous processing is often appropriate if acceptance is durable and users can inspect status.
+
+For a schema migration, use an expand-and-contract sequence: add backward-compatible fields or tables, deploy readers/writers that tolerate both forms, backfill in bounded batches, switch traffic after reconciliation, and remove the old form only after old application instances are gone. A rollback plan must account for writes made in the new format; “deploy the previous binary” may not reverse data changes.
 
 ## Misconceptions and edge cases
 

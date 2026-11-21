@@ -1,6 +1,6 @@
 # system design foundations and infrastructure building blocks — Reference: Google Cloud Storage (GCS)
 
-Sources: [Google Cloud Storage documentation](https://cloud.google.com/storage/docs), [Consistency](https://docs.cloud.google.com/storage/docs/consistency), [Object metadata](https://docs.cloud.google.com/storage/docs/metadata), [Request preconditions](https://docs.cloud.google.com/storage/docs/request-preconditions), [Resumable uploads](https://docs.cloud.google.com/storage/docs/resumable-uploads), [Signed URLs](https://docs.cloud.google.com/storage/docs/access-control/signed-urls), [Soft delete](https://docs.cloud.google.com/storage/docs/soft-delete), [Object Versioning](https://docs.cloud.google.com/storage/docs/object-versioning), [Lifecycle Management](https://docs.cloud.google.com/storage/docs/lifecycle), [Object Retention Lock](https://docs.cloud.google.com/storage/docs/object-lock), [Uniform bucket-level access](https://docs.cloud.google.com/storage/docs/uniform-bucket-level-access), [Public access prevention](https://docs.cloud.google.com/storage/docs/public-access-prevention).
+Sources: [Google Cloud Storage documentation](https://cloud.google.com/storage/docs), [Consistency](https://docs.cloud.google.com/storage/docs/consistency), [Object metadata](https://docs.cloud.google.com/storage/docs/metadata), [Request preconditions](https://docs.cloud.google.com/storage/docs/request-preconditions), [Resumable uploads](https://docs.cloud.google.com/storage/docs/resumable-uploads), [Signed URLs](https://docs.cloud.google.com/storage/docs/access-control/signed-urls), [Soft delete](https://docs.cloud.google.com/storage/docs/soft-delete), [Object Versioning](https://docs.cloud.google.com/storage/docs/object-versioning), [Lifecycle Management](https://docs.cloud.google.com/storage/docs/lifecycle), [Object Retention Lock](https://docs.cloud.google.com/storage/docs/object-lock), [Uniform bucket-level access](https://docs.cloud.google.com/storage/docs/uniform-bucket-level-access), [Public access prevention](https://docs.cloud.google.com/storage/docs/public-access-prevention), [Hierarchical namespace](https://docs.cloud.google.com/storage/docs/hns-overview), [HNS folder operations](https://docs.cloud.google.com/storage/docs/rename-hns-folders), [Cloud Storage folder types](https://docs.cloud.google.com/storage/docs/folder-types).
 
 ## Scope and version
 
@@ -10,13 +10,20 @@ This lesson explains the core design model and common application patterns for G
 
 Suppose users upload photos and later view them. The application stores each byte sequence as an object, keeps searchable business facts such as owner and moderation state in a database, and serves bytes from Cloud Storage or a CDN. This separates large durable blobs from records that need queries and transactions. The application must still decide who may upload or read each object, how retries avoid overwriting newer content, and how accidental deletion is recovered.
 
-An object is addressed by a bucket and object name. Names can contain `/`, so tools often display a hierarchy, but the namespace is not a general-purpose directory tree. Objects have data and metadata. A replacement object gets a new `generation`; edits to metadata advance its `metageneration`. These numbers let clients identify which data and metadata they observed.
+An object is addressed by a bucket and object name. Cloud Storage offers two namespace modes. In a **flat-namespace bucket**, `/` is part of an object name; console/CLI tools can display prefixes as simulated folders, but moving or renaming a folder-like prefix requires object operations rather than a directory rename. A bucket created with **hierarchical namespace (HNS)** enabled has real folder resources and supports atomic folder rename/move. HNS must be selected when creating the bucket and cannot later be switched on or off; it also requires uniform bucket-level access and excludes some data-protection and replication features, including Object Versioning, Object Retention Lock, object holds, and cross-bucket replication. Choose the mode from the workload and protection requirements before creation. Managed folders are separate IAM resources and are not the same thing as simulated folders or HNS folder resources.
+
+Objects have data and metadata. A replacement object gets a new `generation`; edits to metadata advance its `metageneration`. These numbers let clients identify which data and metadata they observed.
 
 Cloud Storage documents strong global consistency for object reads after writes, metadata updates, deletion, and object listing. Once a successful write response arrives, a later read or listing can observe that write. This does not create an atomic transaction across multiple objects, make a multi-step application workflow atomic, or guarantee that a cache or external CDN has discarded its copy.
 
 ## Supplied names explained
 
 - `Google Cloud Storage (GCS)` — Google Cloud's managed object-storage service. It stores named objects in buckets and exposes APIs and client libraries for reading, writing, listing, and managing them. Choose it for durable blobs, media, backups, exports, and data-lake files; use a database for indexed records and transactions, and a filesystem or block volume when software needs mounted file semantics or random block updates.
+- `Flat namespace bucket` — The standard bucket model where `/` is part of an object name; a displayed folder is a prefix view rather than a directory resource.
+- `Hierarchical namespace (HNS) bucket` — A bucket created with real folder resources and atomic folder operations; HNS is a creation-time choice with a different supported-feature set.
+- `Simulated folders` — Prefix-based folder views over object names in flat-namespace buckets.
+- `Atomic folder rename and move` — An HNS operation that renames or moves a folder as one atomic folder-level operation, rather than copying and deleting every object under a prefix.
+- `Managed folders` — Separate Cloud Storage resources used to apply IAM permissions to groups of objects; they are distinct from simulated folders and HNS folder resources.
 
 ## Cross-item comparison
 
@@ -29,6 +36,7 @@ Cloud Storage documents strong global consistency for object reads after writes,
 | Give a browser temporary direct access | Issue a narrowly scoped, short-lived signed URL for a specific operation and object | The URL grants its bearer access until expiry; do not log or expose it as if it were an ordinary public URL |
 | Recover from deletion or overwrite | Choose soft delete, object versioning, retention, or a combination based on recovery goals | These mechanisms have distinct restore and permanent-deletion behavior and can add storage cost. Test restoration; a backup is not proven until restored |
 | Publish read-heavy content | Serve through a CDN with deliberate cache headers and invalidation/versioned names | Strong consistency at Cloud Storage does not purge a browser or CDN cache that is allowed to serve an older response |
+| Choose folder semantics | Use a flat namespace for broad feature compatibility or create an HNS bucket for real folders and atomic folder rename | HNS is a create-time choice, requires uniform bucket-level access, and is incompatible with some versioning, retention, holds, and replication features |
 
 ## Examples
 
@@ -53,6 +61,7 @@ Decide how long users or operators may restore accidentally deleted or replaced 
 ## Common mistakes
 
 - Treating object names with slashes as proof that Cloud Storage has filesystem directories or POSIX rename semantics.
+- Applying the flat-namespace explanation to every bucket; HNS buckets have real folder resources and atomic folder operations, with their own feature restrictions.
 - Assuming strong consistency gives a transaction across object storage and a SQL database, or invalidates downstream caches.
 - Retrying an overwrite blindly after a timeout; the first request may have succeeded and a newer writer may have since replaced it. Use generations and inspect current state.
 - Treating a signed URL or resumable session URI as harmless text. Anyone who obtains a valid bearer capability may use its granted access.

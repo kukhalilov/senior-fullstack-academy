@@ -32,15 +32,15 @@ The inventory below addresses the "boundary" problem: how to bridge the gap betw
 * `Database nullable column mapping`: A data-access mapping between database column nullability and application types; provider/ORM configuration and schema determine behavior, not C# nullable annotations alone.
 * `Nullable reference annotations are not runtime checks`: A reminder that annotations do not prevent nulls at runtime.
 * `Null-forgiving operator has no runtime effect`: The `!` operator suppresses compiler warnings but does not perform a null check.
-* `Null-safe operator chain`: Using `?.` to skip member/index access when a receiver is null; it does not catch exceptions thrown by a called member or by indexing a non-null collection.
+* `Null-safe operator chain`: Using `?.`/`?[]` to skip member or element access when that receiver is null; it does not catch exceptions thrown by a called member or by indexing a non-null collection.
 * `Optional parameter versus nullable parameter`: An optional parameter can be omitted at the call site due to a default value; a nullable parameter accepts null. These are independent properties.
 * `Optional<T> domain type`: A custom type used to represent the presence or absence of data.
 * `Maybe type`: A functional programming pattern for handling optional values.
-* `Try-pattern nullable output`: A method pattern (for example, `bool TryGet(out T? value)`) that returns a status and output; the meaning of false/null and nullable postconditions are defined by that method's contract.
+* `Try-pattern nullable output`: A method pattern (for example, `bool TryGet(out T? value)`) that returns a status and output; false does not universally require null, and success does not universally prove non-null unless the API contract (and annotations) says so.
 * `out T? result`: An output parameter whose nullable annotation permits a null result; success/failure semantics depend on the API contract.
 * `Dictionary.TryGetValue nullable annotation`: With nullable annotations, the out value's null state is conditional on the Boolean result and TValue's annotation; verify the overload contract rather than assuming every successful lookup proves a non-null value.
-* `FirstOrDefault nullable result`: Returns the first element or default(T) when empty. With nullable annotations, the reference-type overload may return maybe-null; for value types it returns default(T), which is not necessarily a meaningful sentinel.
-* `SingleOrDefault nullable result`: Returns the only element or default(T) when empty; throws if more than one element exists. Reference-type annotations may express a maybe-null result; value types yield default(T).
+* `FirstOrDefault nullable result`: Returns the first element or `default(T)` when empty, or an explicitly supplied default value on overloads that accept one. For reference types this can be null; for value types it can be a value such as zero that is not a meaningful sentinel. Predicate overloads also return a default when no element matches.
+* `SingleOrDefault nullable result`: Returns the only element or `default(T)` when empty, or an explicitly supplied default value on overloads that accept one; throws if more than one element exists. Reference-type annotations may express a maybe-null result; value types yield default(T).
 * `Null object pattern`: Providing a non-null implementation with benign/no-op behavior where that behavior is semantically valid; it is not a universal replacement for representing absent data.
 * `Sentinel value`: A chosen in-band value (such as -1) used to signal absence; it is safe only when that value cannot be a valid result or the ambiguity is otherwise resolved.
 * `Empty collection instead of null`: Returning an empty collection when empty and absent have the same domain meaning; otherwise preserve the distinction explicitly.

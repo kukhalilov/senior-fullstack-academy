@@ -5,10 +5,10 @@
 *This is an automatically generated draft.*
 
 # Scope and version
-This lesson covers the signed integral type keywords in C# 15, running on .NET 11 GA. The information provided is accurate as of the checked date: 2026-11-14. Source: [Microsoft Learn C# built-in types table](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table).
+This lesson covers the signed integral type keywords in C# 15, running on .NET 11 GA. The information provided is accurate as of the checked date: 2026-11-20. Source: [Microsoft Learn C# built-in types table](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table).
 
 # How this group fits the mental model
-In C#, every piece of data must have a type. The language provides "built-in type aliases," which are keywords that act as shorthand for specific types in the .NET type system. 
+In C#, every piece of data must have a type. The language provides "built-in type aliases," which are keywords that act as shorthand for specific types in the .NET type system.
 
 Signed integral types are **value types**. A variable of one of these types contains its value; the language does not promise that a local occupies a particular physical memory location. They are "signed," which means they can represent both positive and negative whole numbers. Choosing the right type from this group is a balance between the range of numbers you need to store and the amount of memory you want to consume.
 

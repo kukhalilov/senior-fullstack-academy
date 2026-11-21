@@ -39,7 +39,7 @@ A tool may offer only some phases of the pipeline, and similarly named features 
 | `Library mode` | Builds distributable packages with selected entry points/formats/externals instead of a single application site. Consumers' module systems and package exports must match generated files. |
 | `Multiple entry points` | Builds several independent roots, pages, or library entry modules. Shared dependencies may be extracted or duplicated according to tool/output settings. |
 | `Type checking versus transpilation` | Transpilation transforms syntax; type checking analyzes TypeScript relationships and diagnostics. Many bundlers use fast per-file transforms without full checking, so a separate `tsc --noEmit` or equivalent is often needed. |
-| `Persistent build cache` | Stores reusable work across process restarts. Cache keys/invalidation must account for inputs, config, tool/plugin versions, environment, and dependencies. Webpack 5 added filesystem cache; Rspack 2.3 introduced an experimental new cache. |
+| `Persistent build cache` | Stores reusable work across process restarts. Cache keys/invalidation must account for inputs, config, tool/plugin versions, environment, and dependencies. Webpack 5 added filesystem cache; Rspack 2.3.3 introduced an experimental new cache; 2.3.3 changed HTTP module lockfiles/cache filenames to match webpack, so discard and regenerate older Rspack-format lockfiles/caches before enabling frozen builds. |
 
 ## Cross-item comparison
 
@@ -110,4 +110,4 @@ This can let an optimizer omit files that appear unused, including CSS or polyfi
 4. **Why can sideEffects metadata be dangerous?** False claims can cause required modules to be dropped.
 5. **Does a TS transform prove types are correct?** No; run a type checker separately when the bundler does not perform full semantic checking.
 
-Sources: [Vite guide](https://vite.dev/guide/), [Vite migration](https://vite.dev/guide/migration), [Webpack HMR](https://webpack.js.org/concepts/hot-module-replacement), [Webpack tree shaking](https://webpack.js.org/guides/tree-shaking/), [esbuild API](https://esbuild.github.io/api/), [Parcel docs](https://parceljs.org/docs/), [Next.js Turbopack](https://nextjs.org/docs/pages/api-reference/turbopack), [Rspack 2.3](https://rspack.rs/blog/announcing-2-3).
+Sources: [Vite guide](https://vite.dev/guide/), [Vite migration](https://vite.dev/guide/migration), [Webpack HMR](https://webpack.js.org/concepts/hot-module-replacement), [Webpack tree shaking](https://webpack.js.org/guides/tree-shaking/), [esbuild API](https://esbuild.github.io/api/), [Parcel docs](https://parceljs.org/docs/), [Next.js Turbopack](https://nextjs.org/docs/pages/api-reference/turbopack), [Rspack 2.3.3](https://rspack.rs/blog/announcing-2-3).

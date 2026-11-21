@@ -8,7 +8,7 @@
 
 ## Scope and version
 This lesson covers the C# keywords `nint` and `nuint`. These types are stable as of C# 15 on .NET 11 GA.
-*Source: [Microsoft Learn C# Built-in Types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table)*
+*Sources: [Microsoft built-in types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/built-in-types-table), [integral numeric types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types), and [C# version history](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history).*
 
 ## How this group fits the mental model
 In C#, most numeric types have a fixed size (e.g., `int` is always 32 bits). Native-sized integers may be useful with native-sized integer APIs or low-level libraries; their width matches the process pointer size (32 bits in a 32-bit process, 64 bits in a 64-bit process).
@@ -17,8 +17,8 @@ In C#, most numeric types have a fixed size (e.g., `int` is always 32 bits). Nat
 
 ## Supplied names explained
 
-*   **`nint`**: A signed native-sized integer. It is an alias for the .NET type `System.IntPtr`. Its size is determined by the underlying platform's pointer size.
-*   **`nuint`**: An unsigned native-sized integer. It is an alias for the .NET type `System.UIntPtr`. Like `nint`, its size adjusts automatically to the platform's pointer size.
+*   **`nint`**: A signed native-sized integer. It is an alias for the .NET type `System.IntPtr`. Its width is 32 or 64 bits according to the process architecture.
+*   **`nuint`**: An unsigned native-sized integer. It is an alias for the .NET type `System.UIntPtr`. Its width is 32 or 64 bits according to the process architecture.
 
 ## Cross-item comparison
 
@@ -43,7 +43,7 @@ nuint nativeValue = 0x12345678;
 
 ## Common mistakes
 1.  **Assuming fixed size:** Developers often mistakenly assume `nint` is always 64 bits because they work on 64-bit machines. Always treat these types as platform-dependent.
-2.  **Mixing with fixed types:** While you can perform arithmetic between `nint` and `int`, be aware that implicit conversions may result in data loss or overflow if the `nint` value exceeds the range of the fixed-size type.
+2.  **Mixing with fixed types:** Native integer operators and conversions have language-defined rules; narrowing conversions and arithmetic can overflow. Check the applicable checked/unchecked context and API contract.
 3.  **Overuse:** Do not use `nint` or `nuint` for general-purpose counters or loop indices. Use `int` or `long` for standard application logic to maintain readability and intent.
 
 ## Knowledge checks with answers
@@ -52,7 +52,7 @@ nuint nativeValue = 0x12345678;
 *Answer:* `int` is always 32 bits, whereas `nint` changes its size to match the pointer size of the underlying platform (32 or 64 bits).
 
 **2. If you are writing code that needs to handle memory addresses, which type is more appropriate: `nint` or `int`?**
-*Answer:* `nint` (or `nuint`), because it is designed to match the native pointer size of the processor.
+*Answer:* `nint` (or `nuint`), because its width follows process architecture and may match native-sized API values; it is not itself a managed reference or a guarantee of safe pointer arithmetic.
 
 **3. Is `nint` a signed or unsigned type?**
 *Answer:* `nint` is a signed type.

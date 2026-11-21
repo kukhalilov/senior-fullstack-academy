@@ -4,7 +4,7 @@ Sources: [HLD Handbook](https://hld.handbook.academy/), [Mapbox Vector Tile spec
 
 ## Scope and version
 
-This lesson explains a vendor-neutral tiled map rendering architecture and uses the Mapbox Vector Tile (MVT) specification as a concrete vector-tile format. MVT 2.1 is the latest published specification version listed in the specification repository as checked on 2026-11-17. Tile URL schemes, projections, source metadata, cache rules, licensing, and renderer features vary; do not assume one provider's conventions are universal.
+This lesson explains a vendor-neutral tiled map rendering architecture and uses the Mapbox Vector Tile (MVT) specification as a concrete vector-tile format. MVT 2.1 is the latest published specification version listed in the specification repository as checked on 2026-11-21. Tile URL schemes, projections, source metadata, cache rules, licensing, and renderer features vary; do not assume one provider's conventions are universal.
 
 ## How this group fits the mental model
 

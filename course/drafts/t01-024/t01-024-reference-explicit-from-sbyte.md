@@ -5,7 +5,7 @@
 *Automatically generated draft.*
 
 # Scope and version
-This lesson covers `sbyte` explicit numeric conversions in C# 15 / .NET 11. The information is based on the .NET 11 GA release and .NET 9 behavior, checked as of 2026-11-14.
+This lesson covers `sbyte` explicit numeric conversions in C# 15 / .NET 11. The information is based on the .NET 11 GA release and .NET 9 behavior, checked as of 2026-11-20.
 Source: [Microsoft Learn C# numeric conversions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/numeric-conversions)
 
 # How this group fits the mental model

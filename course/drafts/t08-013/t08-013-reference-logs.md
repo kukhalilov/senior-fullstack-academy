@@ -4,7 +4,7 @@ Sources: [official reference 1](https://opentelemetry.io/docs/specs/otel/logs/),
 
 ## Scope and version
 
-This guide explains the assigned observability inventory group in the context of the current OpenTelemetry specification snapshot and Prometheus 3.x/current documentation checked 2026-11-14. The terminology and component maturity can evolve. The observability profiles signal and individual Collector components do not have a universal stability guarantee.
+This guide explains the assigned observability inventory group in the context of the current OpenTelemetry specification snapshot and Prometheus 3.x/current documentation checked 2026-11-20. The terminology and component maturity can evolve. The observability profiles signal and individual Collector components do not have a universal stability guarantee.
 
 ## How this group fits the mental model
 
@@ -60,14 +60,13 @@ Parsing unstable prose for dashboards; logging tokens or raw payment data; treat
 
 ## Knowledge checks with answers
 
-1. **What question does this group help answer?** It helps identify the evidence type, data boundary, or operational action appropriate to a real service investigation.
-2. **Why do identity and semantics matter?** Consistent names and bounded dimensions allow safe grouping and correlation across producers without uncontrolled series growth.
-3. **Name a common failure mode.** Incomplete context, unsafe sensitive data, unsupported component assumptions, or missing delivery health can make apparently healthy dashboards misleading.
-4. **How should you apply these terms?** Start from a user or operator question, select the minimal sufficient evidence, verify lifecycle and backend support, and rehearse the investigation.
-
+1. **Why use structured fields?** They allow consistent filtering and aggregation without parsing changing prose.
+2. **Which values should not enter routine logs?** Credentials, tokens, secrets, and unnecessary personal or payment data.
+3. **When is audit logging different from diagnostic logging?** Audit records need explicit completeness, retention, access, and integrity controls; ordinary debug sampling may be unacceptable.
+4. **What does a log trace identifier provide?** A join key to related trace context when propagated and retained consistently.
 ## Recent version changes
 
-OpenTelemetry Semantic Conventions documentation identifies version 1.45.0 in the checked snapshot. Individual conventions have their own stability status, and migrations may use explicit opt-in modes; do not assume a global release makes every convention stable. [Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/)
+OpenTelemetry Semantic Conventions documentation identifies version 1.45.0 in the checked 2026-11-20 snapshot. Individual conventions have their own stability status, and migrations may use explicit opt-in modes; do not assume a global release makes every convention stable. [Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/)
 
 Prometheus 3.0 added UTF-8 metric and label name support; conventional naming remains useful for tool interoperability. Current Prometheus docs distinguish native histograms from classic bucket series. [Prometheus data model](https://prometheus.io/docs/concepts/data_model/) [Metric types](https://prometheus.io/docs/concepts/metric_types/)
 

@@ -14,24 +14,23 @@ Design multi-device sync that supports large files, offline edits, version histo
 
 ## Exercises
 
-1. Write the top functional requirements and the quality objective that most changes the architecture.
-2. Estimate demand, storage growth, and the likely hot key or constrained resource. State assumptions.
-3. Define authoritative data, identifiers, API behavior, and transaction boundary.
-4. Trace a write and a read, including a timeout or duplicate request.
-5. Describe one scaling change and its consistency, cost, and operational tradeoffs.
+1. **Specify the contract.** From this case — Design multi-device sync that supports large files, offline edits, version history, deletion, and shared folders. — write three must-have behaviors, one explicit non-goal, and the invariant that must remain true under concurrency.
+2. **Model demand.** Estimate average, peak, and burst requests; identify the work that scales with object durability, metadata versions, offline clients, and conflict resolution. State units and unknowns, and choose one production measurement that would revise your estimate.
+3. **Trace ownership and API.** Name the authoritative record, its stable identifier, the read path, and the write/acceptance path. State where authorization and idempotency are checked and which derived data may be stale.
+4. **Resolve a failure.** Analyze this case-specific drill: A client reconnects after losing acknowledgements while membership, privacy, or source permissions have changed. Reconcile cursor/version, deduplicate replay, and recheck current authorization before delivery. Identify the state before/after, retry rule, user-visible result, and recovery signal.
+5. **Defend a trade-off.** Compare a simple baseline with one scaling mechanism relevant to object durability, metadata versions, offline clients, and conflict resolution. Give the quality metric, latency/cost metric, and failure mode that decide whether to keep the mechanism.
 
 ## Progressive hints
 
-Start with the invariant and user-visible outcome. Separate write and read paths. Identify a simpler baseline before adding distributed components. Make one failure case concrete.
+Start with the user promise and the invariant, not a vendor diagram. Sketch the smallest correct read/write flow. Put timestamps and operation IDs on the path. Separate authoritative state from cache, index, notification, or analytics. Use the named failure drill to test retry and recovery. Add a scale mechanism only after identifying the bottleneck.
 
 ## Complete solutions
 
-1. Prioritize user-visible correctness and measurable latency, availability, freshness, durability, or cost for the relevant path.
-2. Use ranges for traffic and growth. Identify skew and fan-out rather than assuming uniform keys. Validate the sensitive estimate with a representative benchmark.
-3. Name one authoritative owner for each critical fact. Specify idempotency and compatibility when callers may retry or remain old.
-4. Treat missing acknowledgements as unknown outcomes. Retry only with idempotency or verify state; make asynchronous effects deduplicable.
-5. Add replication, caching, partitioning, or queueing only to meet a stated need; explain the operations burden and recovery plan.
-
+1. The contract should make the case-specific promise observable and name one invariant. For Design a file synchronization service, write a distinct browse/read promise and a command/write promise; define which actor is authorized and what happens when the invariant cannot be confirmed.
+2. Estimate the busiest interval and skew, not just a daily average. For the supplied patterns (object durability, metadata versions, offline clients, and conflict resolution), account for the dominant fan-out, payload, active-state, or storage multiplier. Keep the estimate as a range and validate it with representative traffic or a replay.
+3. Keep one authoritative owner for the critical fact. Use stable IDs and explicit request/response semantics. Authenticate first, authorize at the data/action boundary, record durable acceptance before claiming completion, and mark caches or projections with their freshness/rebuild policy.
+4. For the drill, a timeout means outcome unknown. Query durable operation state or retry with the same idempotency identity; never issue a second unguarded effect. Bound retries, expose pending/unknown status, alert on age/backlog, and reconcile external or derived state after recovery.
+5. Keep the baseline until measurements show it misses the stated SLO. A cache, queue, partition, fan-out, replica, or specialized index earns its cost only if the chosen measure improves without breaking the invariant, privacy, or recovery contract. Use a rollback/disable path and monitor tail latency, errors, saturation, and the case-specific quality signal.
 ### Case-specific design answer
 
 Store immutable versioned bytes in object storage and authoritative metadata/version state transactionally. Upload resumable chunks, verify checksums, then publish the completed version. Clients resume from a change cursor. Propagate deletion as a tombstone before garbage collection. Concurrent offline edits create conflict versions unless the product defines merge semantics. Apply tenant authorization to both metadata and object transfers and reconcile orphaned objects.

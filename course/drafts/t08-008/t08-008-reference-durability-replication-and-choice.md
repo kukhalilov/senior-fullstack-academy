@@ -4,7 +4,7 @@ Sources: RabbitMQ 4.4 [Queues](https://www.rabbitmq.com/docs/4.4/queues), [Quoru
 
 ## Scope and version
 
-This lesson compares product data structures and replication choices using current RabbitMQ 4.4 and Kafka 4.4 documentation. Exact defaults depend on queue/topic/client configuration.
+This lesson compares product data structures and replication choices using RabbitMQ 4.4.1 (latest checked patch) and Kafka 4.4.0 documentation. RabbitMQ 4.4.1 is a maintenance release; its 4.4 series requires Erlang/OTP 27.0 or later. Exact defaults depend on queue/topic/client configuration. [RabbitMQ 4.4.1 release notes](https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.4.1) [Kafka 4.4 release announcement](https://kafka.apache.org/blog/2026/10/22/apache-kafka-4.4.0-release-announcement/)
 
 ## How this group fits the mental model
 

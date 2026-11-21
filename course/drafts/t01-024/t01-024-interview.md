@@ -46,7 +46,7 @@ Think of numeric types as containers of different sizes and shapes.
 
 ### Common weak answers
 *   **"Casts always work."** Weak because they ignore overflow risks and potential data loss.
-*   **"All numbers are doubles by default."** Incorrect; integer literals default to `int` (or `long` if the value is too large), while real literals default to `double`.
+*   **"All numbers are doubles by default."** Incorrect; unsuffixed integer literals select the first fitting type from `int`, `uint`, `long`, and `ulong`; real literals default to `double`. The selected integer type can differ for decimal versus hex/binary values with high bits.
 *   **"I don't need to worry about overflow."** Weak because in `checked` contexts, overflow causes runtime crashes.
 
 ### Self-check rubric

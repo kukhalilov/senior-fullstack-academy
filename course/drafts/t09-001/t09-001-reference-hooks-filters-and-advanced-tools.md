@@ -4,7 +4,7 @@ Sources: [official reference 1](https://git-scm.com/docs/githooks), [official re
 
 ## Scope and version
 
-This guide covers the exact assigned inventory for Git 2.54 documentation checked 2026-11-14. Git’s availability and defaults depend on the installed version and configuration; check `git --version` and command help before relying on a new option. Path-oriented `git checkout` remains explained for compatibility, while focused `git switch` and `git restore` commands make intent clearer. [Git 2.54 documentation](https://git-scm.com/docs/git/2.54.0)
+This guide covers the exact assigned inventory for Git 2.56.1 documentation checked 2026-11-20. Git’s availability and defaults depend on the installed version and configuration; check `git --version` and command help before relying on a new option. Path-oriented `git checkout` remains explained for compatibility, while focused `git switch` and `git restore` commands make intent clearer. [Git 2.56.1 documentation](https://git-scm.com/docs/git/2.56.1)
 
 ## How this group fits the mental model
 
@@ -55,10 +55,6 @@ Relying on local hooks as the only policy; bisecting flaky checks; removing a wo
 
 ## Knowledge checks with answers
 
-1. **Which state contains the proposed next snapshot?** The index.
-2. **Why does amending or rebasing change commit identity?** The commit object and/or parent relationship changes, producing a different object.
-3. **What is the safe response to a conflict?** Inspect operation roles, edit the desired result, stage and review, then continue or abort.
-4. **How do restore, reset, and revert differ?** Restore targets paths, reset moves local HEAD/ref and may reset index/worktree, and revert records an inverse commit.
-5. **What does fetch do without pull?** It downloads objects and updates local remote-tracking references without integrating into the current branch.
-6. **What are reflog limits?** It records local ref movements, can expire, and is not available as another clone’s backup.
-
+1. **When does a client-side hook run?** In a local operation such as commit, under the configured hook path; it can be bypassed and is not a server trust boundary.
+2. **What does a filter change?** How content is transformed between repository objects and the working tree; configuration and clean/smudge symmetry matter.
+3. **Why use worktrees?** To check out multiple branches into separate working directories sharing repository data, while respecting worktree-specific restrictions.

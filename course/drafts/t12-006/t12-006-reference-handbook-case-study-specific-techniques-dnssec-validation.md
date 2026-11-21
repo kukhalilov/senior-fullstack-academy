@@ -1,6 +1,6 @@
 # end-to-end system design case studies — Reference: DNSSEC validation
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [RFC 4033: DNSSEC introduction and requirements](https://www.rfc-editor.org/rfc/rfc4033.html), [RFC 4034: DNSSEC resource records](https://www.rfc-editor.org/rfc/rfc4034.html), [RFC 4035: DNSSEC protocol modifications](https://www.rfc-editor.org/rfc/rfc4035.html), [RFC 9364: DNSSEC](https://www.rfc-editor.org/rfc/rfc9364.html), [RFC 8932: DNS Privacy Service Operator Recommendations](https://www.rfc-editor.org/rfc/rfc8932.html).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [RFC 4033: DNSSEC introduction and requirements](https://www.rfc-editor.org/rfc/rfc4033.html), [RFC 4034: DNSSEC resource records](https://www.rfc-editor.org/rfc/rfc4034.html), [RFC 4035: DNSSEC protocol modifications](https://www.rfc-editor.org/rfc/rfc4035.html), [RFC 9364: DNSSEC](https://www.rfc-editor.org/rfc/rfc9364.html), [RFC 9499: DNS terminology](https://www.rfc-editor.org/rfc/rfc9499.html), [RFC 8932: DNS Privacy Service Operator Recommendations](https://www.rfc-editor.org/rfc/rfc8932.html).
 
 ## Scope and version
 
@@ -20,7 +20,7 @@ This prevents certain forged or modified DNS answers from being accepted as vali
 - **RRSIG:** digital signature covering a DNS RRset, with metadata such as signer and validity interval.
 - **RRset:** records with the same owner name, class, and type, validated as a set.
 - **NSEC/NSEC3:** authenticated denial-of-existence mechanisms. They can prove that a name or record does not exist, with different privacy and operational characteristics; they are not simply ordinary negative-cache answers.
-- **Secure / insecure / bogus / indeterminate:** high-level validation outcomes. Secure means a valid chain supports the signed data; insecure means the chain reaches a delegation intentionally without DNSSEC; bogus means data should be signed but validation fails; indeterminate means the resolver cannot determine status. Exact client-facing behavior depends on resolver and DNS state.
+- **Secure / insecure / bogus / indeterminate:** high-level validation outcomes. Secure means a valid chain supports the signed data; insecure means the resolver establishes there is no authenticated DS chain at a delegation; bogus means data is expected to validate but does not; indeterminate means the resolver cannot determine whether it should validate. Exact client-facing behavior depends on resolver and DNS state.
 - **Key rollover:** controlled transition between signing keys. Parent DS data, child DNSKEY/RRSIG data, TTLs, caches, and timing must align or valid names can become bogus during transition.
 
 ## Cross-item comparison
@@ -61,4 +61,4 @@ When debugging, compare validating and non-validating resolver behavior, inspect
 
 ## Review status
 
-Validation chain and security-status claims are checked against RFCs 4033/4035, with RFC 9364 for the DNSSEC specification set. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Validation-chain and security-status claims are checked against RFCs 4033–4035, RFC 9364, and the updated DNS terminology in RFC 9499. Encrypted transport/privacy claims are separated from DNSSEC and checked against the cited privacy guidance.

@@ -11,6 +11,8 @@ Trace latency to React or browser work; distinguish render attempts from commits
 Know render purity, props and state snapshots, component identity, Hooks, and Effects. Performance work builds on correct component behavior; it cannot repair incorrect state ownership or synchronization.
 
 ## Core concepts
+Place React profiling inside the browser’s larger experience path. A React commit is not LCP, and neither is INP: network resource discovery, CSS/layout, JavaScript execution, hydration, and event processing all matter. Use browser traces for the complete path and React Profiler for component work, then confirm improvements with representative devices and real-user data when available. The integrated performance engineering topic joins these measurements to API and database traces.
+
 
 React may render a component to compute a candidate UI, and it may restart or discard that work. A commit applies changes to the host environment. Rendering a component does not imply that the browser visibly changed the DOM. Browser latency may instead come from JavaScript outside React, layout, paint, network, or long tasks.
 

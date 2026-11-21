@@ -61,4 +61,4 @@ Use a relational database for transactional relationships when its model fits; u
 
 ## Self-check rubric
 
-Score each from 0 (missing) to 2 (clear and supported): requirements, assumptions, capacity units, read/write flow, data ownership, tradeoffs, failure behavior, security/privacy, and concise summary. A strong interview answer scores at least 14/18 and invites correction as it develops.
+Score each from 0 (missing) to 2 (clear and supported): requirements, assumptions, capacity units, read/write flow, data ownership, tradeoffs, failure behavior, security/privacy, and concise summary. Use the score to identify omissions, not as a validated pass threshold; quality depends on the prompt, time, and interviewer expectations. Invite correction as the design develops.

@@ -12,7 +12,7 @@ The purpose of C# built-in type aliases is to provide a convenient, readable sho
 # Plain-language mental model
 Think of C# types as describing values and operations. A value-type variable contains an instance; ordinary assignment copies that instance. A reference-type variable contains a reference to an object. The language doesn't specify that reference as a physical address or prescribe where objects are stored.
 
-When you use a keyword like `int`, you are telling the compiler: "I need a box that holds a whole number." The compiler then maps that keyword to a specific .NET structure that handles the math and memory storage for you.
+When you use a keyword like `int`, you select a defined 32-bit signed integer type. The keyword aliases `System.Int32`; the language specifies its value semantics and range, while physical storage is context-dependent.
 
 # How the parts fit together
 C# built-in types are organized by how they store data and what kind of data they represent:
@@ -42,12 +42,12 @@ Imagine you are writing a program to track a user's age and their name.
 
 # When to use it and tradeoffs
 *   **Use built-in keywords** for standard operations because they are concise and universally understood by C# developers.
-*   **Tradeoffs:** 
+*   **Tradeoffs:**
     *   **Range vs. Memory:** Using a `long` instead of an `int` allows for larger numbers but uses more memory.
     *   **Precision:** `float` has less precision than `decimal`; do not assume it is faster without measuring. `decimal` may suit decimal-domain financial calculations, but it too has finite precision.
     *   **Interoperability:** Sometimes you must choose a type based on what an external API expects, even if it isn't your first choice for the domain.
 
-**Common Mistake:** Confusing `object` (which can hold anything but requires "boxing" to convert value types) with `dynamic` (which bypasses compile-time type checking).
+**Common Mistake:** Confusing `object` (which can hold anything but requires "boxing" to convert value types) with `dynamic` (whose operations are bound at runtime).
 
 # What later lessons cover
 This overview provides the foundation. Future lessons will explore:

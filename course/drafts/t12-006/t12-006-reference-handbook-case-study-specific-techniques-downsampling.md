@@ -60,4 +60,4 @@ For a service dashboard, retain raw latency histograms for a short period and cr
 
 ## Review status
 
-Aggregation, rate ordering, ratio weighting, and histogram caveats are checked against Prometheus documentation. This lesson remains pending full claim-by-claim and manifest omission audit.
+Prometheus recording-rule guidance supports aggregating ratio numerators and denominators separately and avoiding averages of averages; its query-function and histogram documentation supports counter-rate ordering, histogram aggregation, and quantile caveats. These semantics are Prometheus-specific where stated; other stores may expose different rollup and histogram behavior.

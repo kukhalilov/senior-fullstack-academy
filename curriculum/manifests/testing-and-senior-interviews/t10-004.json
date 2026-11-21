@@ -225,8 +225,8 @@
   ],
   "sourceSnapshot": {
     "authority": "Microsoft Learn .NET testing, coverage, test platform and MSTest documentation; Stryker.NET official docs; FsCheck official docs",
-    "edition": "Current .NET 11 testing guidance, MSTest 4.4 behavior, Stryker.NET and FsCheck documentation checked 2026-11-17",
-    "checkedAt": "2026-11-17",
+    "edition": "Current .NET 11 testing guidance, MSTest 4.4 behavior, Stryker.NET and FsCheck documentation checked 2026-11-17; coverage runner boundaries, Stryker metrics, FsCheck and MSTest controls rechecked 2026-11-21",
+    "checkedAt": "2026-11-21",
     "urls": [
       "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-code-coverage",
       "https://learn.microsoft.com/en-us/dotnet/core/testing/microsoft-testing-platform-code-coverage",
@@ -261,7 +261,8 @@
     "MSTest TestContext.CancellationToken is available starting with MSTest 3.11 and is signaled on timeout or test-run abort. Cooperative cancellation requires test code to observe/pass the token; otherwise timed-out work may continue.",
     "MSTest 4.4 and Microsoft.Testing.Platform report retry attempts and identify retried/flaky tests in the run summary; process-level retries and method-level retries can multiply executions.",
     "Retries, quarantine, and numeric quality gates can improve diagnostics or manage risk temporarily, but they do not repair nondeterministic tests or prove behavior by themselves.",
-    "Test pyramids and test trophies are planning metaphors, not universally correct test-count ratios. Select layers based on behavior, failure risk, fidelity, diagnostic value, and maintenance cost."
+    "Test pyramids and test trophies are planning metaphors, not universally correct test-count ratios. Select layers based on behavior, failure risk, fidelity, diagnostic value, and maintenance cost.",
+    "“Microsoft Code Coverage” is a tooling family: VSTest uses its built-in Code Coverage data collector, while MTP uses the separate Microsoft.Testing.Extensions.CodeCoverage package and MTP command options. The instruction must match the selected runner."
   ],
   "scopeExclusions": [
     "Framework-specific test declaration APIs are covered in t10-001; integration and frontend test implementations are covered in t10-002 and t10-003.",

@@ -13,21 +13,123 @@
     "Boundaries create translation and indirection costs. Use them where independent change, testing, or replacement matters, and avoid empty layers and interfaces that add no meaningful seam."
   ],
   "inventory": [
-    {"id":"modular-monolith","title":"Monolithic deployment with explicit internal module boundaries","items":["Modular monolith","Module boundary","Module API","Module ownership","Encapsulation of module internals","Shared database with module-owned schema","In-process module interaction","Module dependency rule","Architecture test for module boundaries","Big-ball-of-mud monolith"]},
-    {"id":"layered-architecture","title":"Layered application architecture and allowed dependencies","items":["Layered architecture","Presentation layer","Application layer","Domain layer","Infrastructure layer","Presentation-Domain-Data layering","Strict layering","Relaxed layering","Layer dependency direction","Cross-layer data transfer object","Layer leakage","Anemic domain layer"]},
-    {"id":"hexagonal-architecture","title":"Ports and adapters around an application core","items":["Hexagonal architecture","Ports and Adapters architecture","Application core","Primary (driving) actor","Secondary (driven) actor","Inbound port","Outbound port","Primary adapter","Secondary adapter","Technology-specific adapter","Port protocol","Adapter translation"]},
-    {"id":"clean-architecture","title":"Clean Architecture dependency rules and boundary crossings","items":["Clean Architecture","Entities (enterprise business rules)","Use cases (application business rules)","Interface adapters","Frameworks and drivers","Dependency Rule","Source-code dependency direction","Runtime control flow","Boundary crossing","Boundary data structure","Dependency inversion across a boundary","Composition root"]}
+    {
+      "id": "modular-monolith",
+      "title": "Monolithic deployment with explicit internal module boundaries",
+      "items": [
+        "Modular monolith",
+        "Module boundary",
+        "Module API",
+        "Module ownership",
+        "Encapsulation of module internals",
+        "Shared database with module-owned schema",
+        "In-process module interaction",
+        "Module dependency rule",
+        "Architecture test for module boundaries",
+        "Big-ball-of-mud monolith"
+      ]
+    },
+    {
+      "id": "layered-architecture",
+      "title": "Layered application architecture and allowed dependencies",
+      "items": [
+        "Layered architecture",
+        "Presentation layer",
+        "Application layer",
+        "Domain layer",
+        "Infrastructure layer",
+        "Presentation-Domain-Data layering",
+        "Strict layering",
+        "Relaxed layering",
+        "Layer dependency direction",
+        "Cross-layer data transfer object",
+        "Layer leakage",
+        "Anemic domain layer"
+      ]
+    },
+    {
+      "id": "hexagonal-architecture",
+      "title": "Ports and adapters around an application core",
+      "items": [
+        "Hexagonal architecture",
+        "Ports and Adapters architecture",
+        "Application core",
+        "Primary (driving) actor",
+        "Secondary (driven) actor",
+        "Inbound port",
+        "Outbound port",
+        "Primary adapter",
+        "Secondary adapter",
+        "Technology-specific adapter",
+        "Port protocol",
+        "Adapter translation"
+      ]
+    },
+    {
+      "id": "clean-architecture",
+      "title": "Clean Architecture dependency rules and boundary crossings",
+      "items": [
+        "Clean Architecture",
+        "Entities (enterprise business rules)",
+        "Use cases (application business rules)",
+        "Interface adapters",
+        "Frameworks and drivers",
+        "Dependency Rule",
+        "Source-code dependency direction",
+        "Runtime control flow",
+        "Boundary crossing",
+        "Boundary data structure",
+        "Dependency inversion across a boundary",
+        "Composition root"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Modular monolith","Microservices architecture"],["Layered architecture","Hexagonal architecture"],["Hexagonal architecture","Clean Architecture"],["Strict layering","Relaxed layering"],["Compile-time dependency direction","Runtime control flow direction"]],
-  "comparisonSources": ["https://learn.microsoft.com/en-us/dotnet/standard/modern-web-apps-azure-architecture/common-web-application-architectures","https://martinfowler.com/bliki/PresentationDomainDataLayering.html","https://alistair.cockburn.us/hexagonal-architecture","https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles"],
+  "comparisons": [
+    [
+      "Modular monolith",
+      "Microservices architecture"
+    ],
+    [
+      "Layered architecture",
+      "Hexagonal architecture"
+    ],
+    [
+      "Hexagonal architecture",
+      "Clean Architecture"
+    ],
+    [
+      "Strict layering",
+      "Relaxed layering"
+    ],
+    [
+      "Compile-time dependency direction",
+      "Runtime control flow direction"
+    ]
+  ],
+  "comparisonSources": [
+    "https://learn.microsoft.com/en-us/dotnet/standard/modern-web-apps-azure-architecture/common-web-application-architectures",
+    "https://martinfowler.com/bliki/PresentationDomainDataLayering.html",
+    "https://alistair.cockburn.us/hexagonal-architecture",
+    "https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
-    "authority":"Microsoft .NET architecture guidance, Martin Fowler's application architecture references, and Alistair Cockburn's Ports and Adapters description",
-    "edition":"Timeless application architecture styles and dependency principles; references checked 2026-11-14",
-    "checkedAt":"2026-11-14",
-    "urls":["https://learn.microsoft.com/en-us/dotnet/standard/modern-web-apps-azure-architecture/common-web-application-architectures","https://martinfowler.com/bliki/PresentationDomainDataLayering.html","https://alistair.cockburn.us/hexagonal-architecture","https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles"]
+    "authority": "Microsoft .NET architecture guidance, Martin Fowler's application architecture references, and Alistair Cockburn's Ports and Adapters description",
+    "edition": "Timeless application architecture styles and dependency principles; official and original sources rechecked 2026-11-20",
+    "checkedAt": "2026-11-20",
+    "urls": [
+      "https://learn.microsoft.com/en-us/dotnet/standard/modern-web-apps-azure-architecture/common-web-application-architectures",
+      "https://martinfowler.com/bliki/PresentationDomainDataLayering.html",
+      "https://alistair.cockburn.us/hexagonal-architecture",
+      "https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles"
+    ]
   },
-  "scopeExclusions":["Distributed deployment and service-boundary decisions (t08-006 through t08-012)","Domain-driven design modeling details such as aggregates and bounded contexts (t08-004)","Framework-specific application startup, DI registration, project templates, and deployment settings (tracks 01, 02, and 09)","Clean Architecture and Hexagonal Architecture are explained as boundary and dependency models; no single canonical layer count or project layout is claimed"],
+  "scopeExclusions": [
+    "Distributed deployment and service-boundary decisions (t08-006 through t08-012)",
+    "Domain-driven design modeling details such as aggregates and bounded contexts (t08-004)",
+    "Framework-specific application startup, DI registration, project templates, and deployment settings (tracks 01, 02, and 09)",
+    "Clean Architecture and Hexagonal Architecture are explained as boundary and dependency models; no single canonical layer count or project layout is claimed"
+  ],
   "generationAllowed": true
 }

@@ -4,7 +4,7 @@ Sources: [Docker Engine 29 release notes](https://docs.docker.com/engine/release
 
 ## Scope and version
 
-Checked against Docker Engine 29.10.0 (2026-11-16). Docker Engine, Docker CLI, containerd/image store, BuildKit, Buildx, Dockerfile frontend, and Compose have separate versions and feature gates. Docker 29.10's daemon-managed jobs extension is experimental and opt-in; it is not a default scheduler or a substitute for a production orchestrator.
+Checked against Docker Engine 29.10.0 and Docker Compose 5.8.0 (2026-11-20). Docker Engine, Docker CLI, containerd/image store, BuildKit, Buildx, Dockerfile frontend, and Compose have separate versions and feature gates. Docker 29.10's daemon-managed jobs extension is experimental and opt-in; it is not a default scheduler or a substitute for a production orchestrator.
 
 ## How this group fits the mental model
 
@@ -33,7 +33,7 @@ The image is the package identity; a container is an execution instance. The CLI
 - **linux/amd64 image platform** — Linux x86-64 platform descriptor; CPU feature level and runtime compatibility still matter.
 - **linux/arm64 image platform** — Linux AArch64 platform descriptor; emulation may allow a build/run on other hosts but can be slower or incompatible.
 - **Docker Engine 29.10 experimental jobs extension** — Opt-in experimental daemon extension `org.mobyproject.jobs.v0` for one-shot/cron-style workload management; experimental status and extension enablement are material limitations.
-- **Docker Engine job manual and scheduled execution modes** — Engine 29.10 release notes describe native one-shot and cron-scheduled jobs in the experimental extension; Compose 5.7.1 release notes describe only partial manual-trigger job support, so do not conflate both APIs.
+- **Docker Engine job manual and scheduled execution modes** — Engine 29.10 release notes describe native one-shot and cron-scheduled jobs in the experimental extension. Compose 5.8 adds manual and scheduled job support, but scheduled execution still depends on the experimental Engine extension.
 - **Docker Engine API OpenAPI specification** — Engine 29.10 moves its API source specification to OpenAPI 3.2; clients pinned to generated older Swagger files need compatibility review.
 
 ### Runtime instance and settings
@@ -83,6 +83,7 @@ Inspect both layers of identity before rollout: `docker image inspect --format '
 - Assuming a container's PID 1 will reap children and handle SIGTERM correctly.
 - Treating `docker stats` as historical monitoring or the whole host's resource view.
 - Assuming Docker 29.10 experimental jobs or Compose jobs are stable, interoperable scheduling APIs.
+- Assuming the Docker authorization plugin protects the jobs API; the extension serves gRPC on daemon listener addresses while those plugins authorize HTTP API requests only.
 
 ## Knowledge checks with answers
 

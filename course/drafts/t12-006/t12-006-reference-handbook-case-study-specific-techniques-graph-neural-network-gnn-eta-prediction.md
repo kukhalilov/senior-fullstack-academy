@@ -1,10 +1,10 @@
 # end-to-end system design case studies — Reference: Graph Neural Network (GNN) ETA prediction
 
-Sources: [HLD Handbook](https://hld.handbook.academy/), [Google Maps: ETA Prediction with Graph Neural Networks](https://arxiv.org/abs/2108.11482), [DuETA: graph learning for ETA at Baidu Maps](https://arxiv.org/abs/2208.06979), [CompactETA at KDD 2020](https://www.kdd.org/kdd2020/accepted-papers/view/compacteta-a-fast-inference-system-for-travel-time-prediction.html).
+Sources: [HLD Handbook](https://hld.handbook.academy/), [Google Maps: ETA Prediction with Graph Neural Networks](https://arxiv.org/abs/2108.11482), [DuETA: graph learning for ETA at Baidu Maps](https://arxiv.org/abs/2208.06979), [CompactETA at KDD 2020](https://www.kdd.org/kdd2020/accepted-papers/view/compacteta-a-fast-inference-system-for-travel-time-prediction.html), [FRIGATE: spatio-temporal forecasting on road networks](https://arxiv.org/abs/2306.08277).
 
 ## Scope and version
 
-This case study explains how graph neural networks can help estimate travel time over a road network. It focuses on the model-serving system and its data/evaluation pipeline, not on one mandatory architecture. The cited research and production reports span 2020–2022 and were checked on 2026-11-17; they show design examples rather than a current guarantee about any mapping service. Models and traffic systems evolve, and a GNN is not inherently more accurate than a strong route-aware baseline.
+This case study explains how graph neural networks can help estimate travel time over a road network. It focuses on the model-serving system and its data/evaluation pipeline, not on one mandatory architecture. The cited ETA research spans 2020–2022; a 2023 FRIGATE paper adds a related traffic-forecasting example focused on sparse sensors, missing histories, and changing road connectivity. Sources were checked on 2026-11-21 and show research designs rather than a current guarantee about any mapping service. Models and traffic systems evolve, and a GNN is not inherently more accurate than a strong route-aware baseline.
 
 ## How this group fits the mental model
 

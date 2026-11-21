@@ -4,14 +4,14 @@
 
 ## Scope and version
 
-This reference lesson covers the comparable language and platform ecosystems and selection criteria associated with the .NET platform. 
+This reference lesson covers the comparable language and platform ecosystems and selection criteria associated with the .NET platform.
 
 - **Scope boundary:** The inventory is restricted to the specific platform alternatives, runtime models, architecture traits, and decision criteria listed in the frozen topic data. It does not re-explain the entire .NET runtime architecture or general C# language syntax.
 - **Version and authority snapshot:** Microsoft currently lists .NET 11 as STS and .NET 10 as LTS; both are supported through November 2028. Ecosystem claims below are deliberately limited to stable architectural distinctions; product versions and support policies should be checked at selection time.
 
 ## How this group fits the mental model
 
-When building software, developers rarely choose a language in isolation. Every language relies on a broader ecosystem comprising compilers, runtime engines, memory management models, package managers, and deployment formats. 
+When building software, developers rarely choose a language in isolation. Every language relies on a broader ecosystem comprising compilers, runtime engines, memory management models, package managers, and deployment formats.
 
 The items in this group represent the wider landscape of software platforms. Understanding how other ecosystems—such as Java, Node.js, Python, Go, and Rust—solve engineering challenges provides a yardstick for evaluating .NET. Instead of viewing .NET as the only possible choice, developers use these ecosystem traits and decision criteria to match a specific workload (such as cloud microservices, web apps, command-line tools, or systems software) to the right runtime, deployment model, and support cadence.
 
@@ -83,7 +83,7 @@ To understand how these concepts interact, consider three major platform axes:
 
 ### Example 1: Selecting a Platform Based on Startup vs. Throughput
 - **Scenario:** A cloud function has a cold-start budget, while a long-running service has a sustained-throughput target. Measure the relevant deployed configuration, including initialization and workload behavior.
-- **Match:** 
+- **Match:**
   - Native compilation and smaller runtime surfaces may help some Rust or Go deployments, but must be measured.
   - .NET or JVM applications may use JIT optimization; Native AOT and ahead-of-time strategies change their startup/performance tradeoffs. No platform wins without workload measurements.
 

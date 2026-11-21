@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This lesson covers the supplied privacy, security, data-quality, and cost-control names. OpenTelemetry and Prometheus specifications provide formats and mechanisms, but retention, identity, and service guarantees depend on the deployment. Design controls end-to-end: application instrumentation, local collection, network transport, backend storage, query access, exports, and deletion. The snapshot is checked 2026-11-17. [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) [OTLP](https://opentelemetry.io/docs/specs/otlp/) [Prometheus security](https://prometheus.io/docs/operating/security/)
+This lesson covers the supplied privacy, security, data-quality, and cost-control names. OpenTelemetry and Prometheus specifications provide formats and mechanisms, but retention, identity, and service guarantees depend on the deployment. Design controls end-to-end: application instrumentation, local collection, network transport, backend storage, query access, exports, and deletion. The snapshot is checked 2026-11-20. [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) [OTLP](https://opentelemetry.io/docs/specs/otlp/) [Prometheus security](https://prometheus.io/docs/operating/security/)
 
 # How this group fits the mental model
 

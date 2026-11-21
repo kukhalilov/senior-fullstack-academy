@@ -2,7 +2,7 @@
 
 # Scope and version
 
-This reference covers on-call operations and alert response patterns from the SRE Workbook, with local policy assumptions checked 2026-11-17. There is no universal severity scale, page threshold, staffing ratio, or rotation design. Organizations must align practices with service risk, labor requirements, support hours, and team sustainability. [Google SRE on-call](https://sre.google/workbook/on-call/) [Alerting on SLOs](https://sre.google/workbook/alerting-on-slos/)
+This reference covers on-call operations and alert response patterns from the SRE Workbook, with local policy assumptions checked 2026-11-20. There is no universal severity scale, page threshold, staffing ratio, or rotation design. Organizations must align practices with service risk, labor requirements, support hours, and team sustainability. [Google SRE on-call](https://sre.google/workbook/on-call/) [Alerting on SLOs](https://sre.google/workbook/alerting-on-slos/)
 
 # How this group fits the mental model
 

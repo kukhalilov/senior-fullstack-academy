@@ -7,7 +7,7 @@
 # Scope and version
 This lesson covers equality contracts, identity, and comparison mechanisms in C# 15 and .NET 11. It focuses on how the language distinguishes between value-based equality and reference-based identity. 
 
-**Source:** [Microsoft Learn C# 15 language reference and .NET 11 API reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types)
+**Sources:** [C# equality operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/equality-operators), [EqualityComparer<T>.Create](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.equalitycomparer-1.create), [C# tuple types and equality](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-tuples)
 
 # How this group fits the mental model
 In C#, equality is type-specific and separate from the value/reference type distinction:
@@ -37,20 +37,29 @@ The items in this inventory provide the tools to define, compare, and customize 
 *   **Structural equality**: Comparing elements/fields according to a structural comparer rather than just an object's identity. Nested values are compared using the supplied comparer; deep recursive comparison isn't automatic for every collection.
 *   **IStructuralEquatable** / **IStructuralComparable**: Interfaces implemented by arrays and tuples to support structural comparison with a comparer.
 *   **StructuralComparisons.StructuralEqualityComparer** / **StructuralComparisons.StructuralComparer**: Pre-defined comparers for structural logic.
-*   **ITuple** / **ValueTuple.Equals** / **ValueTuple equality operators**: Logic for comparing tuple contents.
+*   **ITuple** / **ValueTuple.Equals** / **C# tuple equality operators**: `ValueTuple.Equals` is a .NET method; tuple-expression `==`/`!=` are C# language operators that compare corresponding tuple elements. Do not assume the underlying `ValueTuple<...>` struct itself declares an `==` operator.
 *   **SequenceEqual extension method** / **MemoryExtensions.SequenceEqual** / **Span<T>.SequenceEqual**: Methods compare sequence lengths and corresponding elements; equality uses the default comparer or the supplied comparer where an overload exists.
 *   **SequenceEqual comparer overload**: Allows passing a custom comparer to sequence comparisons.
+
+### Equality details and pitfalls
+* **Generic code:** use `EqualityComparer<T>.Default` or pass an `IEqualityComparer<T>` when generic algorithms need type-specific equality. `==` may be unavailable for unconstrained `T` or resolve differently by static type.
+* **Strings:** `string.Equals` and `==` use ordinal, case-sensitive content equality by default. For user-facing linguistic search or sort, specify an appropriate culture-aware `StringComparison` or `CompareInfo`; culture-aware equality should not be used for machine identifiers.
+* **Arrays:** Their ordinary `Equals` and `==` are identity-based. They also implement structural comparison interfaces for explicit use, but that does not change ordinary operators. Jagged-array structural comparisons recurse only as determined by the comparer and nested values' behavior.
+* **SequenceEqual:** LINQ `Enumerable.SequenceEqual` enumerates two sequences and compares corresponding elements using `EqualityComparer<T>.Default` or a provided comparer. `MemoryExtensions.SequenceEqual`/`Span<T>.SequenceEqual` compare spans element by element using their API's element semantics; byte-like spans can use optimized implementations. These APIs compare ordered sequences, not unordered set equality.
+* **EqualityComparer<T>.Create:** .NET 9+ provides overloads that create a comparer from equality and optional hash-code delegates, or from a key selector and optional key comparer. If the delegate overload omits its hash-code delegate, calls to that comparer’s `GetHashCode` throw `NotSupportedException`; do not use it in hash-based collections without a hash implementation. In either overload, the chosen equality and hash behavior must be coherent.
+* **Hash codes:** Equal under the same equality contract implies equal hash codes. The reverse is false. Hashes are not unique identifiers and generally should not be persisted as stable IDs. A mutable key is dangerous only when mutation changes data used by the active comparer while it is stored.
+* **ValueType.Equals:** The default implementation compares value-type fields, but its exact algorithm and performance are runtime implementation details; types should implement an explicit equality contract when needed. Current .NET API documentation states it throws for inline-array types on .NET 9+.
 
 ### Records and Special Types
 *   **Record synthesized equality** / **Record equality contract** / **EqualityContract property**: Records synthesize equality and hash-code members based on their components. Record-class equality accounts for runtime record type; `EqualityContract` is synthesized for record classes and overridden in derived record classes.
 *   **Record class equality** / **Record struct equality**: Specific implementations for record types.
-*   **Record with-expression copy semantics**: Creates a new record instance with selected values changed. The copy is shallow, so referenced members remain shared unless explicitly replaced.
+*   **Record with-expression copy semantics**: Creates a new record instance with selected values changed. The copy is shallow, so referenced members remain shared unless explicitly replaced. A record `with` expression is not supported for anonymous types.
 *   **Anonymous type equality**: Compiler-generated equality for anonymous objects based on property values.
 *   **Array reference equality**: Arrays use reference equality for `==` and `Equals` by default, even if their contents are identical; use a sequence or structural comparer when that is the intended policy.
 
 ### Contracts and Hazards
 *   **Object.GetHashCode()**: Returns an integer hash code. Equal values must have equal hash codes, but hash codes need not be unique and must not be treated as stable identifiers across runs.
-*   **Hash code consistency contract**: The rule that objects equal under the chosen equality comparer return the same hash code; changing equality-relevant state while used as a key can break lookup assumptions.
+*   **Hash code consistency contract**: The rule that objects equal under the chosen equality comparer return the same hash code; unequal objects may collide. A hash code need not remain unchanged if equality-relevant state changes, so mutating such state while used as a key can break lookup assumptions.
 *   **Equal objects same hash code** / **Unequal objects may share hash code**: Fundamental rules for hash-based collections.
 *   **Mutable hash key hazard**: Mutating state used by a key's equality/hash implementation can make lookup unreliable after insertion; the behavior depends on the collection's comparer and whether the hash changes.
 *   **Dictionary key equality** / **HashSet equality semantics**: How collections use equality to manage unique items.
@@ -60,22 +69,24 @@ The items in this inventory provide the tools to define, compare, and customize 
 # Cross-item comparison
 *   **`==` vs `Equals`**: `==` is an operator that can be overloaded; `Equals` is a virtual method. For reference types, `==` defaults to reference equality unless overloaded.
 *   **`ReferenceEquals` vs `==`**: `ReferenceEquals` cannot be overridden and always checks identity. `==` can be changed by the type author.
-*   **`IEquatable<T>` vs `Object.Equals`**: A generic equality comparer can call `IEquatable<T>` without boxing a value type. This can reduce overhead, but performance depends on the call path and implementation.
+*   **`IEquatable<T>` vs `Object.Equals`**: `EqualityComparer<T>.Default` honors the type equality contract and uses `IEquatable<T>` where applicable; a value-type implementation may avoid boxing on that path, but performance depends on implementation and call shape.
 
 # Examples
-```csharp
-// Value equality with Records
-record Point(int X, int Y);
+~~~csharp
+using System;
+using System.Linq;
+
 var p1 = new Point(1, 2);
 var p2 = new Point(1, 2);
 Console.WriteLine(p1 == p2); // True (synthesized equality)
 
-// Reference equality with Arrays
 int[] a1 = { 1, 2 };
 int[] a2 = { 1, 2 };
 Console.WriteLine(a1 == a2); // False (different references)
-Console.WriteLine(a1.SequenceEqual(a2)); // True (structural equality)
-```
+Console.WriteLine(a1.SequenceEqual(a2)); // True (element-by-element equality)
+
+record Point(int X, int Y);
+~~~
 
 # Common mistakes
 1.  **Mutating a Dictionary Key**: If state used by the comparer changes after insertion, lookup may search a different hash bucket and fail; it isn't guaranteed to be permanently unreachable in every case.

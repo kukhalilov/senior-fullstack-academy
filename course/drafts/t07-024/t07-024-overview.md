@@ -43,6 +43,10 @@ Start with React state and URL state. Add Redux Toolkit when explicit action his
 
 Reference lessons map state categories and React sharing choices, locate Redux Toolkit/RTK Query and MobX in the ecosystem, and compare migration and selection tradeoffs. Full API semantics live in t07-011 and t07-012.
 
+## Version context
+
+Checked 2026-11-20: Redux Toolkit 2.14.0 is the latest release checked; 2.13 modernized package build tooling and added TypeScript 7 support, and 2.14 added performance work plus RTK Query cache-entry selectors and a DevTools action sanitizer. MobX 7.1.7 is the latest checked release. MobX 7 removes MobX 6's Proxy-less ES5 fallback and legacy decorator mode, so older runtimes or projects using legacy decorators need a migration decision. [Redux Toolkit releases](https://github.com/reduxjs/redux-toolkit/releases) [MobX releases](https://github.com/mobxjs/mobx/releases) [MobX configuration](https://mobx.js.org/configuration.html) [Decorator migration](https://mobx.js.org/enabling-decorators.html)
+
 ## What is covered elsewhere
 
 This topic does not repeat the full method/option catalog for Redux Toolkit or MobX; see [Redux Toolkit details](../t07-011/) and [MobX details](../t07-012/) in the course.

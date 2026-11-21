@@ -4,7 +4,7 @@
 
 # Scope and version
 
-This reference lesson covers the exact inventory group `platform-components-and-build-chain` within the .NET ecosystem, checked against .NET 11 GA and .NET 10 LTS as of November 15, 2026. 
+This reference lesson covers the exact inventory group `platform-components-and-build-chain` within the .NET ecosystem, checked against Microsoft documentation on 2026-11-20. .NET 11 is GA and STS; .NET 10 is LTS, and both are supported until November 2028.
 
 *Automatic generation notice: This is an automatically generated draft.*
 
@@ -18,7 +18,7 @@ This reference lesson covers the exact inventory group `platform-components-and-
 
 # How this group fits the mental model
 
-To understand how a human-written source file becomes an executing software process, you must separate **compile-time tools** from **runtime components**, and **language specifications** from **execution environments**. 
+To understand how a human-written source file becomes an executing software process, you must separate **compile-time tools** from **runtime components**, and **language specifications** from **execution environments**.
 
 Imagine a construction project:
 1. **The Blueprint (Programming language & C# compiler):** You write source code in a programming language. The compiler checks your syntax and translates human-readable text into a portable bytecode called Intermediate Language (IL).

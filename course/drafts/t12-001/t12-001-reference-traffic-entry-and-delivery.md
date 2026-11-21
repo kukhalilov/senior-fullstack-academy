@@ -23,11 +23,25 @@ These concepts are tools for solving different parts of the system path. Select 
 
 ## Cross-item comparison
 
-Use the item descriptions above to compare purpose, guarantee, and cost. Choose the smallest mechanism that provides the needed behavior; similar names may operate at different layers or under different assumptions.
+These components solve different problems and can be layered, but each layer adds a health model, timeout, routing decision, and failure mode:
+
+| Choice | Decision it answers | Useful when | Cost or limit |
+|---|---|---|---|
+| Layer 4 load balancer | Which target receives this network flow? | TCP/UDP or other transport-level traffic, or when HTTP inspection is not needed | Usually cannot route by URL or HTTP header; long-lived connections can stay on one target |
+| Layer 7 load balancer / reverse proxy | Which origin receives this HTTP request? | Host/path/header routing, TLS termination, connection pooling, or HTTP-aware health policy | Must correctly parse protocols and forwarded metadata; proxy adds a hop and is itself capacity and availability infrastructure |
+| API gateway | Which API policy and backend apply? | API authentication integration, quotas, version routing, or controlled request policy | Can become a bottleneck or business-logic dumping ground; gateway authentication does not replace authorization at the resource owner |
+| CDN | Can this response be served near the user without consulting the origin? | Public/static or carefully keyed cacheable content | A wrong cache key can leak personalized data; invalidation and stale content behavior must be designed |
+| Service discovery | Which instances currently offer a service? | Instances change dynamically across hosts or zones | Registry/DNS/client caches can be stale; clients need health-aware retry and bounded discovery refresh |
+| BFF | What response shape best serves this client? | Web/mobile clients need different aggregation or compatibility behavior | Duplicates some composition logic and creates another deployable boundary |
+| Edge compute | Which safe computation benefits from running near the user? | Request filtering, personalization from local data, or lightweight transformation | Runtime limits, data residency, cold starts, replication, and debugging can outweigh saved round trips |
+
+Load-balancing algorithms also encode tradeoffs. Round robin is simple when targets have similar capacity and request cost; weighted round robin can represent known capacity differences where the implementation supports it; least-connections or least-outstanding-request approaches can help with variable-duration work but depend on accurate connection/request accounting; consistent hashing preserves affinity for selected keys but can create hot targets and uneven partitions. These are alternatives with implementation-specific availability (for example, AWS ALB offers round robin, least outstanding requests, and weighted random with distinct constraints). None of these algorithms fixes an overloaded downstream database. Health checks should answer whether a target should receive a class of traffic, while separate end-to-end telemetry answers whether users are succeeding. A shallow check can leave a broken service in rotation; a deep check against one shared dependency can eject every target at once.
 
 ## Examples
 
-For a new feature, trace one successful operation and one failure through the relevant items. Identify the authoritative component, the state that is copied or derived, and what happens when a request is delayed, repeated, or interrupted.
+For a product page, a CDN can serve immutable images while a Layer 7 proxy routes `/api/products/*` to the API. The API still authorizes the customer and reads the authoritative product record. If recommendations are optional, the API can enforce a deadline and return the product without that section when its BFF-style composition call is slow. During a deploy, readiness should represent the target’s ability to accept work; draining must allow bounded in-flight work and tell long-lived clients how to reconnect. Verify that cache keys include every response-varying dimension and that forwarded client IP headers are accepted only from trusted proxy hops.
+
+For a TCP service that does not use HTTP, a Layer 4 balancer may be the right entry point; adding an API gateway does not help if it cannot speak the application protocol. For a client-specific response that combines several services, a BFF can be useful even behind the same proxy. Decide whether each additional hop earns its latency, policy, or isolation cost.
 
 ## Common mistakes
 
@@ -35,9 +49,12 @@ For a new feature, trace one successful operation and one failure through the re
 - Treating a protocol or product name as a guarantee without reading its contract.
 - Ignoring cost, operational ownership, observability, and recovery.
 - Applying one consistency or caching rule to data with different correctness needs.
+- Treating Layer 4 and Layer 7 as interchangeable names for the same routing behavior.
+- Assuming DNS/service discovery changes instantly at every client or that health checks instantly move existing connections.
+- Caching an authenticated response without a complete cache key and an explicit private/shared-cache policy.
 
 ## Knowledge checks with answers
 
-1. **Which item is the source of truth?** That is an explicit application data-ownership decision, not implied by a cache or replica.
-2. **What if an acknowledgement is lost?** Treat the outcome as unknown; use idempotency or verification before repeating an effect.
-3. **How do you choose among alternatives?** Compare them against the named workload, guarantee, cost, operational skill, and failure scenario.
+1. **What does a reverse proxy do?** Accepts client traffic and forwards or routes it; it may terminate TLS but does not grant application permissions.
+2. **What must a CDN cache key include?** Every request dimension that changes a shareable representation, while excluding unnecessary high-cardinality values.
+3. **Why configure trusted forwarded headers?** To prevent arbitrary clients from spoofing original scheme, host, or address metadata.

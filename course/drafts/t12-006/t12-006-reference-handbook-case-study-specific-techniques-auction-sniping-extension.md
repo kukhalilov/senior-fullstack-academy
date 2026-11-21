@@ -59,4 +59,4 @@ Test simultaneous bids, request retries, delayed network delivery, a close worke
 
 ## Review status
 
-The concurrency-control examples are checked against PostgreSQL’s official transaction/locking documentation; timestamp interchange is framed with RFC 3339. Auction rules are explicitly presented as policy choices rather than universal standards. This lesson remains pending full claim-by-claim audit and manifest omission check.
+Reviewed 2026-11-21. PostgreSQL transaction-isolation and explicit-locking docs support the need for a single serialized bid/close transition and retry after serialization failure; RFC 3339 covers timestamp representation but does not establish global event order. The lesson correctly treats extension windows, caps, and bid acceptance boundaries as disclosed product policy rather than a universal auction rule. No material factual corrections or missing core concepts were found.

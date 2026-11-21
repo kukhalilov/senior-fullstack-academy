@@ -81,7 +81,7 @@ Bash parses source text into commands, expands words, applies redirections, and 
 - **`read -E`** — Bash 5.3 option uses Readline for input even when not interactive, subject to Readline configuration. It is not suitable for unattended protocols requiring exact raw bytes.
 - **`source -p PATH`** — Bash 5.3 `source` option searches the supplied PATH value for the file. It does not make untrusted sourced code safe; verify the selected file and use controlled search paths.
 - **`bash_source_fullpath shopt option`** — Bash 5.3 `shopt -s bash_source_fullpath` makes source path entries use full paths when available. Scripts relying on path identity should still account for symlinks and invocation context.
-- **`BASH_MONOSECONDS`** — Bash 5.3 read-only variable providing an integer monotonic-seconds clock suitable for elapsed durations; use a monotonic clock rather than wall time for measuring intervals.
+- **`BASH_MONOSECONDS`** — Bash 5.3 special variable that returns the system monotonic clock value when referenced (or `EPOCHSECONDS` if a monotonic clock is unavailable). Unsetting it removes its special behavior even if later reset; use monotonic time rather than wall time for elapsed durations.
 - **`BASH_TRAPSIG`** — Bash 5.3 variable available while executing a signal trap, indicating the signal number that caused that trap; do not confuse it with a complete asynchronous event queue.
 
 ## Safe script pattern
