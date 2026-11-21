@@ -3,7 +3,7 @@
   "id": "t01-017",
   "track": "track-01",
   "title": "threads thread pool synchronization primitives races and parallelism",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Concurrency means multiple operations make progress during overlapping periods; parallelism means work runs at the same instant on multiple processors. Threads are execution resources, while tasks describe units of work and usually build on the thread pool.",
     "Shared mutable state creates race conditions when correctness depends on timing. Prefer ownership, immutability, message passing, and concurrent collections; use locks or atomic operations only to protect a clearly stated invariant. A lock protects state only when every access that participates in that invariant follows the same lock protocol.",
@@ -425,7 +425,6 @@
     "CPU cache, garbage collection, allocation, and memory diagnostics are covered in t01-018.",
     "This topic covers thread-level and data-parallel APIs; distributed coordination across processes or machines is outside the .NET threading surface."
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "Volatile.Read and Volatile.Write establish specified acquire/release ordering; they do not fetch directly from physical memory and do not make compound read-modify-write operations atomic.",
     "System.Threading.Lock is recognized by the C# lock statement starting with C# 13/.NET 9. Microsoft recommends it for best performance and to reduce locking mistakes; do not invent an object-header allocation explanation.",

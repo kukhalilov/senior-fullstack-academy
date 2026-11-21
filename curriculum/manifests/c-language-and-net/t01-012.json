@@ -3,7 +3,7 @@
   "id": "t01-012",
   "track": "track-01",
   "title": "C# pattern matching user-defined operators and conversions",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Pattern matching tests a value's shape and can extract data while expressing branches. Patterns use language-defined rules and are distinct from ordinary operator overload resolution.",
     "A conversion changes how a value is viewed or transformed. Standard and user-defined conversion candidates interact with static typing and overload resolution; a conversion should clarify domain meaning without hiding expensive or lossy behavior.",
@@ -305,7 +305,6 @@
     "Generic math implementation and numeric APIs are covered in numeric and generic-math topics; this manifest names the contracts used for operator abstractions.",
     "The C# 15 memory-safety preview is excluded from this stable-language scope."
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "Do not equate implicit conversions with lossless conversions; predefined implicit numeric conversions can lose precision, and user-defined implicit conversion quality is a design guideline.",
     "A non-exhaustive switch expression can warn and can throw SwitchExpressionException at runtime; exhaustiveness is limited to compiler-recognized closed alternatives.",

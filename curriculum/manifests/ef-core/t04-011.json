@@ -3,7 +3,7 @@
   "id": "t04-011",
   "track": "track-04",
   "title": "testing EF Core providers database isolation and pitfalls",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A test should verify the behavior that matters. Queries, provider translation, constraints, transactions, and collation need tests against the production database engine for reliable confidence.",
     "Real database tests can be fast and isolated with controlled database lifecycle, fixtures, and parallel-worker separation. They catch provider-specific behaviors that fakes cannot reproduce.",
@@ -108,6 +108,5 @@
     "Specific xUnit, NUnit, or MSTest APIs are covered in track-10.",
     "SQL Server test database setup and container operations are in database/operations topics.",
     "Testcontainers API methods are version-specific and must be checked against its current project documentation before naming."
-  ],
-  "generationAllowed": true
+  ]
 }

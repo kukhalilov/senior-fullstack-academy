@@ -4,18 +4,18 @@ The [HLD Handbook](https://hld.handbook.academy/) currently reports 159 units ac
 
 | Handbook part | Units | Academy mapping |
 |---|---:|---|
-| 0. Prerequisites | 5 | [t12-001 lessons](../course/drafts/t12-001/) and linked cross-track lessons |
-| 1. Core Fundamentals | 7 | [t12-001 lessons](../course/drafts/t12-001/) and linked cross-track lessons |
-| 2. Building Blocks | 16 | [t12-001 lessons](../course/drafts/t12-001/) and linked cross-track lessons |
-| 3. Distributed Systems Theory | 11 | [t12-002 lessons](../course/drafts/t12-002/) and linked cross-track lessons |
-| 4. Data Systems | 10 | [t12-003 lessons](../course/drafts/t12-003/) and linked cross-track lessons |
-| 5. Architecture Patterns | 11 | [t12-004 lessons](../course/drafts/t12-004/) and linked cross-track lessons |
-| 6. Reliability and Operations | 11 | [t12-004 lessons](../course/drafts/t12-004/) and linked cross-track lessons |
-| 7. Security at Scale | 10 | [t12-004 lessons](../course/drafts/t12-004/) and linked cross-track lessons |
+| 0. Prerequisites | 5 | [t12-001 lessons](../course/lessons/t12-001/) and linked cross-track lessons |
+| 1. Core Fundamentals | 7 | [t12-001 lessons](../course/lessons/t12-001/) and linked cross-track lessons |
+| 2. Building Blocks | 16 | [t12-001 lessons](../course/lessons/t12-001/) and linked cross-track lessons |
+| 3. Distributed Systems Theory | 11 | [t12-002 lessons](../course/lessons/t12-002/) and linked cross-track lessons |
+| 4. Data Systems | 10 | [t12-003 lessons](../course/lessons/t12-003/) and linked cross-track lessons |
+| 5. Architecture Patterns | 11 | [t12-004 lessons](../course/lessons/t12-004/) and linked cross-track lessons |
+| 6. Reliability and Operations | 11 | [t12-004 lessons](../course/lessons/t12-004/) and linked cross-track lessons |
+| 7. Security at Scale | 10 | [t12-004 lessons](../course/lessons/t12-004/) and linked cross-track lessons |
 | 8. Case Studies | 56 | [56 separate worked cases](system-design-case-studies.md) |
-| 9. AI & ML System Design | 15 | [t12-005 lessons](../course/drafts/t12-005/) and linked cross-track lessons |
-| 10. Emerging Patterns | 1 | [t12-004 lessons](../course/drafts/t12-004/) and linked cross-track lessons |
-| 11. Interview Framework | 6 | [t12-006 lessons](../course/drafts/t12-006/) and linked cross-track lessons |
+| 9. AI & ML System Design | 15 | [t12-005 lessons](../course/lessons/t12-005/) and linked cross-track lessons |
+| 10. Emerging Patterns | 1 | [t12-004 lessons](../course/lessons/t12-004/) and linked cross-track lessons |
+| 11. Interview Framework | 6 | [t12-006 lessons](../course/lessons/t12-006/) and linked cross-track lessons |
 
 ## Technology breadth and stack integration
 
@@ -23,4 +23,4 @@ System-design answers must compare appropriate alternatives across technology ec
 
 ## Coverage and factual-review status
 
-The matrix currently maps Handbook titles to candidate academy lesson locations. Its coverage status remains title-mapped-depth-audit-pending until each unit’s lesson is checked for complete topic scope and all claims have primary-source evidence. All lesson files remain drafts until their factual-review ledger records claim-level evidence and omissions have been addressed. See [the factual-review ledger](factual-review-ledger.json).
+The matrix maps Handbook titles to candidate academy lesson locations; it is a navigation and scope map, not the factual-review record. The factual-review ledger separately records the completed claim and inventory checks for the lessons. The title-to-lesson depth mapping remains a separate curriculum coverage question; see [the factual-review ledger](factual-review-ledger.json) for lesson review status.

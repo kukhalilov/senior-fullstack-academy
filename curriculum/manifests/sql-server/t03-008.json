@@ -3,7 +3,7 @@
   "id": "t03-008",
   "track": "track-03",
   "title": "indexes types covering indexes index maintenance and statistics",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "An index is an access structure the optimizer may choose; it is not a promise that a query will use it or that the query will be faster.",
     "A clustered rowstore index defines the leaf-level row organization; a nonclustered index stores key entries and a row locator, with included columns available at the leaf level.",
@@ -374,7 +374,6 @@
     "Full-text search query syntax and vector search application design are covered elsewhere.",
     "A missing-index recommendation is not treated as an instruction to add an index without workload validation."
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "An index is a candidate access path, not a command that forces the optimizer to use it. Scans can be the best plan for broad result sets.",
     "A rowstore clustered index defines leaf-level row organization; there can be only one. A heap has no clustered B+ tree. Nonclustered row locators are a RID for a heap and the clustered key for a clustered table.",

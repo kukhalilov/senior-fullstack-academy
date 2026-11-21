@@ -3,7 +3,7 @@
   "id": "t06-012",
   "track": "track-06",
   "title": "JavaScript arrays",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Array exotic objects",
     "Indexed properties",
@@ -247,7 +247,6 @@
     "User-defined subclass properties",
     "Third-party libraries"
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "An Array is an exotic object with special handling for array-index property keys. Its length is a non-enumerable, non-configurable data property initially writable, with value from 0 through 2^32 - 1. Assignment applies array-length conversion and range rules. Shrinking deletes configurable own indexed properties; if a non-configurable index blocks deletion, length is restored to one greater than that index and the requested operation fails.",
     "An array index is not the same as every canonical-looking numeric string; 2^32 - 1 is not an array index. Adding an own array-index property at or above length updates length to index + 1.",

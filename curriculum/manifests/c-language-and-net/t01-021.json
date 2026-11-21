@@ -3,7 +3,7 @@
   "id": "t01-021",
   "track": "track-01",
   "title": "dates times globalization formatting and regular expressions",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A date, a wall-clock time, an elapsed duration, and an instant on the UTC timeline are different values. Choose `DateOnly`, `TimeOnly`, `TimeSpan`, `DateTime`, or `DateTimeOffset` according to the meaning; a numeric time-zone offset is not the same as a named time zone with daylight-saving rules.",
     "Culture controls human-facing conventions such as number, date, casing, and sorting behavior. Persist and exchange culture-independent data with explicit invariant or standardized formats, then format it for a user with an explicit culture.",
@@ -418,7 +418,7 @@
         "NonBacktracking atomic group restriction",
         "NonBacktracking balancing-group restriction",
         "NonBacktracking conditional-group restriction",
-        "NonBacktracking \u005cG anchor restriction",
+        "NonBacktracking \\G anchor restriction",
         "ECMAScript and RightToLeft incompatible with NonBacktracking",
         "AnyNewLine incompatible with NonBacktracking and ECMAScript",
         "Regex source generation versus Compiled option",
@@ -430,16 +430,46 @@
   ],
   "inventoryComplete": true,
   "comparisons": [
-    ["DateTime", "DateTimeOffset"],
-    ["DateOnly", "DateTime"],
-    ["TimeOnly", "TimeSpan"],
-    ["UTC instant", "local wall-clock time"],
-    ["CultureInfo.InvariantCulture", "CultureInfo.CurrentCulture"],
-    ["StringComparison.Ordinal", "StringComparison.CurrentCulture"],
-    ["Parse", "TryParse"],
-    ["ParseExact", "Parse"],
-    ["RegexOptions.NonBacktracking", "backtracking Regex engine"],
-    ["GeneratedRegex", "RegexOptions.Compiled"]
+    [
+      "DateTime",
+      "DateTimeOffset"
+    ],
+    [
+      "DateOnly",
+      "DateTime"
+    ],
+    [
+      "TimeOnly",
+      "TimeSpan"
+    ],
+    [
+      "UTC instant",
+      "local wall-clock time"
+    ],
+    [
+      "CultureInfo.InvariantCulture",
+      "CultureInfo.CurrentCulture"
+    ],
+    [
+      "StringComparison.Ordinal",
+      "StringComparison.CurrentCulture"
+    ],
+    [
+      "Parse",
+      "TryParse"
+    ],
+    [
+      "ParseExact",
+      "Parse"
+    ],
+    [
+      "RegexOptions.NonBacktracking",
+      "backtracking Regex engine"
+    ],
+    [
+      "GeneratedRegex",
+      "RegexOptions.Compiled"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/dotnet/standard/datetime/",
@@ -494,6 +524,5 @@
     "Unicode normalization and grapheme APIs are introduced here for globalization context; JavaScript and browser text APIs are covered in the frontend track.",
     "TimeProvider-based async delay and timer behavior is covered with asynchronous programming in t01-016; this topic covers clock semantics and testable time dependencies.",
     "Regex is not presented as a full parser or general security validator; structured grammars should use parsers and domain-specific validation."
-  ],
-  "generationAllowed": true
+  ]
 }

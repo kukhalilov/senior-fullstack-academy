@@ -3,7 +3,7 @@
   "id": "t08-010",
   "track": "track-08",
   "title": "transactions distributed consistency saga outbox and inbox",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A local database transaction can make a set of changes atomic within its supported transaction boundary; it does not automatically include an HTTP service, message broker, or another service's database.",
     "A dual write that updates business data and publishes a message as separate operations can lose or duplicate one side when a process crashes. The transactional outbox writes business state and an outgoing message record in the same local transaction, then relays it asynchronously.",
@@ -263,6 +263,5 @@
     "SQL Server and EF Core transaction APIs, savepoints, execution strategies, and provider limitations (tracks 03 and 04)",
     "Compensating actions are not exact inverses or global database rollback, and saga/outbox/inbox do not claim arbitrary end-to-end exactly-once execution",
     "Two-phase commit is included for comparison and is not presented as categorically unavailable; suitability depends on participant support and operational requirements"
-  ],
-  "generationAllowed": true
+  ]
 }

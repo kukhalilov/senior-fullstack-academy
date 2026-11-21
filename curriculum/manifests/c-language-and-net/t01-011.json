@@ -3,7 +3,7 @@
   "id": "t01-011",
   "track": "track-01",
   "title": "delegates events lambdas closures and expression trees",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A delegate is a type-safe object that represents one or more callable methods. It lets an API accept behavior as a value; invocation follows the delegate signature and multicast delegates invoke an ordered invocation list.",
     "An event exposes controlled subscription to a notification. Subscribers can add or remove handlers, while only the declaring type can raise a field-like event; event lifetime and unsubscription affect object retention.",
@@ -311,7 +311,6 @@
     "Thread synchronization primitives and channel-based messaging are covered in concurrency and infrastructure topics.",
     "The full System.Linq.Expressions node API is larger than this topic; coverage is bounded to the standard node families, visitor model, lambda execution, and provider boundary named here."
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "Invoking a null delegate throws NullReferenceException; null-conditional invocation with ?.Invoke() skips the call when the delegate is null.",
     "For a multicast delegate with a non-void return, invocation returns the final invoked method's return value; intermediate return values are discarded. An exception stops normal progression through the invocation list.",

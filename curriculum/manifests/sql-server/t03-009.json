@@ -3,7 +3,7 @@
   "id": "t03-009",
   "track": "track-03",
   "title": "query processing execution plans cardinality and parameter sensitivity",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "The optimizer transforms a declarative query into an execution plan using schema, indexes, statistics, parameter information, and cost estimates; a plan is evidence about one compilation and execution context.",
     "Estimated plans show the chosen strategy and estimated rows; actual plans add runtime observations. Differences between estimated and actual cardinality often point to stale or insufficient statistics, data skew, parameter sensitivity, or expression selectivity.",
@@ -312,7 +312,6 @@
     "The Showplan operator inventory is a curated common set, not every operator in the engine; consult the live Microsoft operator reference for operators outside the named scope.",
     "The complete query-hint catalog is outside this inventory; only named hint behavior and Query Store APIs are covered."
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "An estimated plan contains optimizer estimates but no actual execution measurements; an actual plan records runtime observations from one execution and is not representative of all parameter values.",
     "Operator icons are not diagnoses: compare estimated and actual rows, executions, rows read, predicates, memory and waits; a seek can still read a broad range or incur repeated lookups.",

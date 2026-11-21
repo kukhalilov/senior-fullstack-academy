@@ -3,7 +3,7 @@
   "id": "t11-007",
   "track": "track-11",
   "title": "stacks, queues, deques, and priority-agnostic worklists",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A stack exposes last-in, first-out access; a queue exposes first-in, first-out access, so each is an abstract data type whose contract is separate from its implementation.",
     "Array-backed stacks use a top index and grow dynamically; linked stacks use nodes, with memory locality and allocation behavior differing between representations.",
@@ -16,29 +16,181 @@
     "Empty-structure behavior, capacity growth, overflow policy for fixed-capacity buffers, and amortized versus worst-case costs must be made explicit in an implementation."
   ],
   "inventory": [
-    {"id":"stack-models","title":"Stack contracts, representations, and operations","items":["Last-in, first-out (LIFO)","Push","Pop","Peek/top","Empty-stack behavior","Array-backed stack","Linked stack","Dynamic capacity growth","Fixed-capacity stack","Amortized push cost"]},
-    {"id":"queue-models","title":"Queue contracts, representations, and operations","items":["First-in, first-out (FIFO)","Enqueue","Dequeue","Front/peek","Empty-queue behavior","Array-backed queue","Circular array queue","Linked queue","Head and tail references","Ring-buffer wraparound","Capacity-full behavior"]},
-    {"id":"deques-and-simulations","title":"Double-ended queues and structure simulations","items":["Deque","Push front","Push back","Pop front","Pop back","Stack implemented with queues","Queue implemented with stacks","Lazy transfer between stacks","Amortized analysis of queue-from-stacks"]},
-    {"id":"applications-and-selection","title":"Applications, complexity, and selection boundaries","items":["Delimiter matching","Expression evaluation","Monotonic parsing stack use (conceptual link only)","Undo/history stack","Breadth-first traversal worklist","Producer-consumer buffering","Array versus linked implementation tradeoffs","FIFO/LIFO versus priority ordering"]}
+    {
+      "id": "stack-models",
+      "title": "Stack contracts, representations, and operations",
+      "items": [
+        "Last-in, first-out (LIFO)",
+        "Push",
+        "Pop",
+        "Peek/top",
+        "Empty-stack behavior",
+        "Array-backed stack",
+        "Linked stack",
+        "Dynamic capacity growth",
+        "Fixed-capacity stack",
+        "Amortized push cost"
+      ]
+    },
+    {
+      "id": "queue-models",
+      "title": "Queue contracts, representations, and operations",
+      "items": [
+        "First-in, first-out (FIFO)",
+        "Enqueue",
+        "Dequeue",
+        "Front/peek",
+        "Empty-queue behavior",
+        "Array-backed queue",
+        "Circular array queue",
+        "Linked queue",
+        "Head and tail references",
+        "Ring-buffer wraparound",
+        "Capacity-full behavior"
+      ]
+    },
+    {
+      "id": "deques-and-simulations",
+      "title": "Double-ended queues and structure simulations",
+      "items": [
+        "Deque",
+        "Push front",
+        "Push back",
+        "Pop front",
+        "Pop back",
+        "Stack implemented with queues",
+        "Queue implemented with stacks",
+        "Lazy transfer between stacks",
+        "Amortized analysis of queue-from-stacks"
+      ]
+    },
+    {
+      "id": "applications-and-selection",
+      "title": "Applications, complexity, and selection boundaries",
+      "items": [
+        "Delimiter matching",
+        "Expression evaluation",
+        "Monotonic parsing stack use (conceptual link only)",
+        "Undo/history stack",
+        "Breadth-first traversal worklist",
+        "Producer-consumer buffering",
+        "Array versus linked implementation tradeoffs",
+        "FIFO/LIFO versus priority ordering"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"valid-parentheses","name":"Valid Parentheses","difficulty":"introductory","patterns":["LIFO delimiter matching","early rejection of mismatched closing symbols"]},
-    {"id":"min-stack","name":"Min Stack","difficulty":"introductory","patterns":["augment stack state","constant-time minimum retrieval"]},
-    {"id":"implement-queue-using-stacks","name":"Implement Queue using Stacks","difficulty":"introductory","patterns":["two-stack simulation","lazy transfer and amortized analysis"]},
-    {"id":"implement-stack-using-queues","name":"Implement Stack using Queues","difficulty":"intermediate","patterns":["FIFO structure simulation","operation-cost tradeoff"]},
-    {"id":"evaluate-reverse-polish-notation","name":"Evaluate Reverse Polish Notation","difficulty":"intermediate","patterns":["operand stack","operator application order"]},
-    {"id":"design-circular-queue","name":"Design Circular Queue","difficulty":"intermediate","patterns":["ring-buffer indices","full and empty state distinction"]}
+    {
+      "id": "valid-parentheses",
+      "name": "Valid Parentheses",
+      "difficulty": "introductory",
+      "patterns": [
+        "LIFO delimiter matching",
+        "early rejection of mismatched closing symbols"
+      ]
+    },
+    {
+      "id": "min-stack",
+      "name": "Min Stack",
+      "difficulty": "introductory",
+      "patterns": [
+        "augment stack state",
+        "constant-time minimum retrieval"
+      ]
+    },
+    {
+      "id": "implement-queue-using-stacks",
+      "name": "Implement Queue using Stacks",
+      "difficulty": "introductory",
+      "patterns": [
+        "two-stack simulation",
+        "lazy transfer and amortized analysis"
+      ]
+    },
+    {
+      "id": "implement-stack-using-queues",
+      "name": "Implement Stack using Queues",
+      "difficulty": "intermediate",
+      "patterns": [
+        "FIFO structure simulation",
+        "operation-cost tradeoff"
+      ]
+    },
+    {
+      "id": "evaluate-reverse-polish-notation",
+      "name": "Evaluate Reverse Polish Notation",
+      "difficulty": "intermediate",
+      "patterns": [
+        "operand stack",
+        "operator application order"
+      ]
+    },
+    {
+      "id": "design-circular-queue",
+      "name": "Design Circular Queue",
+      "difficulty": "intermediate",
+      "patterns": [
+        "ring-buffer indices",
+        "full and empty state distinction"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Stack (LIFO)","Queue (FIFO)"],["Array-backed stack","Linked stack"],["Circular array queue","Linked queue"],["Deque","Stack or queue interface"],["Queue using two stacks","Stack using queues"],["FIFO/LIFO worklist","Priority queue"]],
-  "comparisonSources": ["https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html","https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1"],
+  "comparisons": [
+    [
+      "Stack (LIFO)",
+      "Queue (FIFO)"
+    ],
+    [
+      "Array-backed stack",
+      "Linked stack"
+    ],
+    [
+      "Circular array queue",
+      "Linked queue"
+    ],
+    [
+      "Deque",
+      "Stack or queue interface"
+    ],
+    [
+      "Queue using two stacks",
+      "Stack using queues"
+    ],
+    [
+      "FIFO/LIFO worklist",
+      "Priority queue"
+    ]
+  ],
+  "comparisonSources": [
+    "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+    "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "OpenDSA linear-structure chapters and official LeetCode problem statements",
     "edition": "Timeless data structures; canonical problem pages checked 2026-11-17",
     "checkedAt": "2026-11-17",
-    "urls": ["https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html","https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1","https://leetcode.com/problems/valid-parentheses/","https://leetcode.com/problems/min-stack/","https://leetcode.com/problems/implement-queue-using-stacks/","https://leetcode.com/problems/implement-stack-using-queues/","https://leetcode.com/problems/evaluate-reverse-polish-notation/","https://leetcode.com/problems/design-circular-queue/"]
+    "urls": [
+      "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/ListIntro.html",
+      "https://opendsa-server.cs.vt.edu/ODSA/Books/Catalog/html/Queue.html",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1",
+      "https://leetcode.com/problems/valid-parentheses/",
+      "https://leetcode.com/problems/min-stack/",
+      "https://leetcode.com/problems/implement-queue-using-stacks/",
+      "https://leetcode.com/problems/implement-stack-using-queues/",
+      "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+      "https://leetcode.com/problems/design-circular-queue/"
+    ]
   },
-  "scopeExclusions": ["Monotonic stacks and monotonic queues as algorithm patterns, covered in t11-022","Priority queues and heap operations, covered in t11-009","Binary-tree breadth-first traversal details, covered in tree topics","Concurrent blocking queues, channels, and synchronization primitives","Full C# Stack<T>, Queue<T>, and Deque API catalogs"],
-  "generationAllowed": true
+  "scopeExclusions": [
+    "Monotonic stacks and monotonic queues as algorithm patterns, covered in t11-022",
+    "Priority queues and heap operations, covered in t11-009",
+    "Binary-tree breadth-first traversal details, covered in tree topics",
+    "Concurrent blocking queues, channels, and synchronization primitives",
+    "Full C# Stack<T>, Queue<T>, and Deque API catalogs"
+  ]
 }

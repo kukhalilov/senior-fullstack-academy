@@ -1,0 +1,33 @@
+# JavaScript TypeScript
+
+[[Start Here|Academy home]] · [[course/indexes/learning-path|Learning path]]
+
+Topics: 27
+
+- [[course/indexes/topics/t06-001|t06-001 — JavaScript declarations, bindings, scope, and closures]]
+- [[course/indexes/topics/t06-002|t06-002 — JavaScript values and types]]
+- [[course/indexes/topics/t06-003|t06-003 — JavaScript function forms, parameters, and return behavior]]
+- [[course/indexes/topics/t06-017|t06-017 — JavaScript this binding and Function object methods]]
+- [[course/indexes/topics/t06-004|t06-004 — JavaScript objects, properties, descriptors, and reflection]]
+- [[course/indexes/topics/t06-018|t06-018 — JavaScript classes, inheritance, and private elements]]
+- [[course/indexes/topics/t06-019|t06-019 — ECMAScript modules, imports, exports, and module loading semantics]]
+- [[course/indexes/topics/t06-012|t06-012 — JavaScript arrays]]
+- [[course/indexes/topics/t06-013|t06-013 — JavaScript Map and Set collections]]
+- [[course/indexes/topics/t06-014|t06-014 — JavaScript WeakMap and WeakSet collections]]
+- [[course/indexes/topics/t06-015|t06-015 — JavaScript typed arrays and binary data views]]
+- [[course/indexes/topics/t06-016|t06-016 — JavaScript iterables, iterators, and generator protocols]]
+- [[course/indexes/topics/t06-005|t06-005 — JavaScript promises, async functions, and event-loop scheduling]]
+- [[course/indexes/topics/t06-006|t06-006 — JavaScript errors, exceptions, and error objects]]
+- [[course/indexes/topics/t06-020|t06-020 — Browser Fetch API, request cancellation, and response bodies]]
+- [[course/indexes/topics/t06-011|t06-011 — JavaScript coercion, equality, and comparison semantics]]
+- [[course/indexes/topics/t06-007|t06-007 — TypeScript primitive, literal, object, array, and tuple types]]
+- [[course/indexes/topics/t06-008|t06-008 — TypeScript generics, inference, constraints, and variance]]
+- [[course/indexes/topics/t06-009|t06-009 — TypeScript structural compatibility, interfaces, classes, and variance]]
+- [[course/indexes/topics/t06-010|t06-010 — TypeScript compiler, TSConfig options, project references, and build modes]]
+- [[course/indexes/topics/t06-021|t06-021 — TypeScript unions, intersections, narrowing, and control-flow analysis]]
+- [[course/indexes/topics/t06-022|t06-022 — TypeScript indexed, conditional, mapped, and utility types]]
+- [[course/indexes/topics/t06-023|t06-023 — TypeScript function types, overloads, predicates, and call signatures]]
+- [[course/indexes/topics/t06-024|t06-024 — TypeScript modules, declaration files, and augmentation]]
+- [[course/indexes/topics/t06-025|t06-025 — JavaScript package managers, dependency graphs, and lockfiles]]
+- [[course/indexes/topics/t06-026|t06-026 — JavaScript bundlers, build pipelines, and development servers]]
+- [[course/indexes/topics/t06-027|t06-027 — JavaScript linting, formatting, and source maps]]

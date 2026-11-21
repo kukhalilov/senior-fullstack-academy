@@ -3,7 +3,7 @@
   "id": "t09-013",
   "track": "track-09",
   "title": "performance profiling capacity and .NET diagnostics",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Performance work begins with a user-visible symptom and a reproducible workload. A profile samples or records resource use; it is evidence to test a bottleneck hypothesis, not a performance conclusion by itself.",
     "Latency distributions and throughput must be measured under representative concurrency, data shape, cache state, and dependency behavior. A mean can hide high-percentile regressions and coordinated omission.",
@@ -452,7 +452,6 @@
     "BenchmarkDotNet API reference is excluded; this topic teaches test design and runtime diagnosis rather than one benchmark library's full option surface",
     "Cloud provider instance SKUs and live capacity quotas change and belong to t09-010 and t09-011"
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     {
       "fact": "For .NET 9 and later, dotnet-counters can consume System.Runtime runtime metrics through System.Diagnostics.Metrics. .NET 8 and earlier do not provide that System.Runtime meter, so dotnet-counters falls back to older System.Runtime EventCounters. Do not describe both collection paths as the same API.",

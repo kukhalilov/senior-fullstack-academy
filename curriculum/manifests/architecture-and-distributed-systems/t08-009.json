@@ -3,7 +3,7 @@
   "id": "t08-009",
   "track": "track-08",
   "title": "retries backoff idempotency circuit breakers and rate limits",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Resilience strategies address different failure behaviors: timeout bounds waiting, retry repeats a potentially transient operation, circuit breaker stops calls likely to fail, bulkhead limits shared-resource impact, and rate limiting controls admission or request rate.",
     "A retry is safe only when the operation is repeatable or deduplicated and the failure is plausibly transient. Retrying after an ambiguous response may repeat a side effect, while nested retries can multiply load and cause a retry storm.",
@@ -234,6 +234,5 @@
     "Exact runtime APIs and package methods are addressed in the relevant language/framework track; this manifest covers named patterns and policy behavior",
     "Retries do not guarantee eventual success, exactly-once effects, or safety for non-idempotent operations",
     "Rate-limit algorithms are named for conceptual understanding; distributed synchronization and vendor-specific quota implementation are excluded"
-  ],
-  "generationAllowed": true
+  ]
 }

@@ -3,7 +3,7 @@
   "id": "t04-004",
   "track": "track-04",
   "title": "change tracking identity resolution no tracking and concurrency tokens",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A DbContext state manager tracks entity identity and values so SaveChanges can calculate database changes. Change detection can use snapshots, notifications, or proxies depending on configuration.",
     "Tracking queries perform identity resolution: a key already present in the context maps to the same object instance. No-tracking queries avoid state-manager work; the identity-resolving no-tracking variant maintains identity only for that query.",
@@ -163,6 +163,5 @@
     "Loading navigation properties is in t04-006.",
     "Transaction and retry strategies are in t04-008.",
     "Provider-specific rowversion semantics are not generalized beyond the named SQL Server example."
-  ],
-  "generationAllowed": true
+  ]
 }

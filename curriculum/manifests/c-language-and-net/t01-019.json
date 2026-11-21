@@ -3,7 +3,7 @@
   "id": "t01-019",
   "track": "track-01",
   "title": "CLR execution IL JIT AOT assemblies reflection attributes and loading",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "C# source is compiled by the SDK toolchain into assemblies containing metadata and intermediate language (IL). The Common Language Runtime (CLR) loads managed code, resolves dependencies, verifies or validates execution constraints, manages memory, and coordinates runtime services.",
     "The JIT compiler turns IL into native code as methods are needed. Tiered compilation and profile-guided optimization can replace early code with more optimized code. ReadyToRun and Native AOT move some or all compilation earlier, with different startup, size, portability, and dynamic-code tradeoffs.",
@@ -343,16 +343,47 @@
   ],
   "inventoryComplete": true,
   "comparisons": [
-    ["IL", "native machine code"],
-    ["JIT", "ReadyToRun", "Native AOT"],
-    ["Assembly", "AssemblyLoadContext"],
-    ["Reflection", "MetadataLoadContext"],
-    ["Attribute", "runtime configuration"],
-    ["AssemblyLoadContext", "AppDomain"],
-    ["AssemblyLoadContext", "security sandbox"],
-    ["collectible load context", "default load context"],
-    ["reflection-based discovery", "source-generated registration"],
-    ["framework-dependent deployment", "self-contained deployment"]
+    [
+      "IL",
+      "native machine code"
+    ],
+    [
+      "JIT",
+      "ReadyToRun",
+      "Native AOT"
+    ],
+    [
+      "Assembly",
+      "AssemblyLoadContext"
+    ],
+    [
+      "Reflection",
+      "MetadataLoadContext"
+    ],
+    [
+      "Attribute",
+      "runtime configuration"
+    ],
+    [
+      "AssemblyLoadContext",
+      "AppDomain"
+    ],
+    [
+      "AssemblyLoadContext",
+      "security sandbox"
+    ],
+    [
+      "collectible load context",
+      "default load context"
+    ],
+    [
+      "reflection-based discovery",
+      "source-generated registration"
+    ],
+    [
+      "framework-dependent deployment",
+      "self-contained deployment"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/dotnet/core/dependency-loading/overview",
@@ -400,6 +431,5 @@
     "Platform invoke, COM interop, marshalling, and native ABI details are covered in the interop topic.",
     "Garbage collection and memory-management APIs are covered in t01-018.",
     "Runtime configuration, SDK commands, and deployment workflows are introduced here only where they alter compilation or loading behavior; full publishing practices belong to operations topics."
-  ],
-  "generationAllowed": true
+  ]
 }

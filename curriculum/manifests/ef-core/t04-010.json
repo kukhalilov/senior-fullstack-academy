@@ -3,7 +3,7 @@
   "id": "t04-010",
   "track": "track-04",
   "title": "raw SQL bulk updates and Dapper comparison",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Raw SQL is useful when the query shape or database feature is not expressible in LINQ, but parameters must remain separate from SQL syntax. Interpolated and raw-string APIs have different safety contracts.",
     "Entity-returning raw SQL participates in EF tracking according to the query mode and must return the expected mapped columns. Scalar SQL APIs have their own composability constraints.",
@@ -159,6 +159,5 @@
     "SQL injection prevention concepts are in t05-006 and t03-012.",
     "Provider-specific bulk-copy APIs are not standardized across providers.",
     "Detailed performance tuning is in t04-009 and SQL Server topics."
-  ],
-  "generationAllowed": true
+  ]
 }

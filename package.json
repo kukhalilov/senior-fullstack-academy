@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate": "node scripts/generate.js",
-    "build:queue": "node scripts/build-queue.js",
-    "validate:dsa": "node scripts/validate-dsa-solutions.js",
-    "validate:drafts": "node scripts/validate-drafts.js",
-    "validate:catalog": "node scripts/validate-catalog.js",
-    "validate:structure": "node scripts/validate-catalog.js --structure-only",
-    "test": "node --test"
+    "build:queue": "node scripts/build/build-queue.js",
+    "build:vault": "node scripts/build/obsidian-index.js",
+    "validate:dsa": "node scripts/validate/dsa-solutions.js",
+    "validate:lessons": "node scripts/validate/lessons.js",
+    "validate:catalog": "node scripts/validate/catalog.js",
+    "validate:structure": "node scripts/validate/catalog.js --structure-only",
+    "test": "node --test tests"
   }
 }

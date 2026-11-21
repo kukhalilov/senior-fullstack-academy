@@ -3,7 +3,7 @@
   "id": "t04-001",
   "track": "track-04",
   "title": "DbContext service lifetimes configuration and providers",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "DbContext is an EF Core unit of work: it tracks changes, builds queries, coordinates provider services, and persists updates. It is short-lived and not thread-safe.",
     "Dependency injection commonly registers one context per request scope. Factories are useful when a longer-lived service must create separate units of work; pooling reuses instances and requires careful state-reset boundaries.",
@@ -137,6 +137,5 @@
     "Model entities, relationships, keys, and property configuration are in t04-002 and t04-003.",
     "Provider-specific migration SQL and database behavior are covered in track-03.",
     "Testing provider behavior is covered in t04-011."
-  ],
-  "generationAllowed": true
+  ]
 }

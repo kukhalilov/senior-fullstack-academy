@@ -3,7 +3,7 @@
   "id": "t03-010",
   "track": "track-03",
   "title": "transactions isolation levels blocking locks deadlocks and row versioning",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A transaction defines an atomic unit of work, but atomicity does not by itself prevent concurrent anomalies. Isolation level selects which interleavings readers can observe and what conflicts writers detect.",
     "Locking coordinates conflicting access; blocking is waiting, while deadlock is a cycle in which the engine chooses a victim. A transaction that holds locks too long increases contention and failure probability.",
@@ -251,6 +251,5 @@
     "Distributed transaction protocols and outbox patterns are taught in track-08.",
     "This lesson focuses on transaction and concurrency semantics; detailed DML syntax remains in t03-006.",
     "Optimized-locking platform availability and default settings differ; verify actual per-database settings."
-  ],
-  "generationAllowed": true
+  ]
 }

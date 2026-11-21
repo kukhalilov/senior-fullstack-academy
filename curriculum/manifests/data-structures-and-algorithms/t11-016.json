@@ -3,7 +3,7 @@
   "id": "t11-016",
   "track": "track-11",
   "title": "tries, prefix trees, and string dictionaries",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A trie stores keys by shared prefixes, with each edge representing one character or symbol and each node representing a prefix state.",
     "Lookup and insertion take time proportional to key length rather than the number of stored keys, while memory depends on how many distinct prefix nodes and child links are stored.",
@@ -15,29 +15,171 @@
     "Compressed radix tries merge chains of single-child nodes, while binary tries branch on bits and support XOR-related queries; these are distinct representations with different alphabets."
   ],
   "inventory": [
-    {"id":"trie-structure","title":"Prefix-node structure and terminal semantics","items":["Trie/prefix tree","Root node","Character edge","Prefix node","Terminal/end-of-key marker","Key that is also a prefix","Child lookup","Shared prefix","Alphabet size","Node count by distinct prefixes"]},
-    {"id":"operations-and-representations","title":"Insertion, lookup, deletion, and child storage","items":["Insert key","Exact-key search","Prefix search","Delete key terminal marker","Prune unused suffix nodes","Fixed child array","Hash-map children","Sorted child map","Sparse alphabet tradeoff","O(key length) traversal"]},
-    {"id":"pattern-and-prefix-queries","title":"Prefix enumeration and wildcard search","items":["Enumerate keys under prefix","Lexicographic trie traversal","Wildcard character branch","Pattern search with multiple active nodes","Autocomplete prefix result set","Longest stored prefix","Word break trie integration","Trie node as DP state"]},
-    {"id":"variants-and-tradeoffs","title":"Compressed, bitwise, and memory variants","items":["Radix/compressed trie","Path compression of single-child chains","Binary trie","Bitwise XOR trie connection","Trie memory proportional to stored prefixes","Trie versus hash set","Trie versus sorted dictionary","Fixed versus sparse alphabet","Pruning after deletion"]}
+    {
+      "id": "trie-structure",
+      "title": "Prefix-node structure and terminal semantics",
+      "items": [
+        "Trie/prefix tree",
+        "Root node",
+        "Character edge",
+        "Prefix node",
+        "Terminal/end-of-key marker",
+        "Key that is also a prefix",
+        "Child lookup",
+        "Shared prefix",
+        "Alphabet size",
+        "Node count by distinct prefixes"
+      ]
+    },
+    {
+      "id": "operations-and-representations",
+      "title": "Insertion, lookup, deletion, and child storage",
+      "items": [
+        "Insert key",
+        "Exact-key search",
+        "Prefix search",
+        "Delete key terminal marker",
+        "Prune unused suffix nodes",
+        "Fixed child array",
+        "Hash-map children",
+        "Sorted child map",
+        "Sparse alphabet tradeoff",
+        "O(key length) traversal"
+      ]
+    },
+    {
+      "id": "pattern-and-prefix-queries",
+      "title": "Prefix enumeration and wildcard search",
+      "items": [
+        "Enumerate keys under prefix",
+        "Lexicographic trie traversal",
+        "Wildcard character branch",
+        "Pattern search with multiple active nodes",
+        "Autocomplete prefix result set",
+        "Longest stored prefix",
+        "Word break trie integration",
+        "Trie node as DP state"
+      ]
+    },
+    {
+      "id": "variants-and-tradeoffs",
+      "title": "Compressed, bitwise, and memory variants",
+      "items": [
+        "Radix/compressed trie",
+        "Path compression of single-child chains",
+        "Binary trie",
+        "Bitwise XOR trie connection",
+        "Trie memory proportional to stored prefixes",
+        "Trie versus hash set",
+        "Trie versus sorted dictionary",
+        "Fixed versus sparse alphabet",
+        "Pruning after deletion"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"implement-trie-prefix-tree","name":"Implement Trie (Prefix Tree)","difficulty":"introductory","patterns":["insert, exact search, and prefix search","terminal marker independent of child links"]},
-    {"id":"design-add-and-search-words","name":"Design Add and Search Words Data Structure","difficulty":"intermediate","patterns":["wildcard branching","DFS over trie states"]},
-    {"id":"replace-words","name":"Replace Words","difficulty":"intermediate","patterns":["find the shortest stored prefix","stop at the first terminal node"]},
-    {"id":"map-sum-pairs","name":"Map Sum Pairs","difficulty":"intermediate","patterns":["store key values at terminal nodes","maintain prefix aggregates"]},
-    {"id":"longest-word-in-dictionary","name":"Longest Word in Dictionary","difficulty":"intermediate","patterns":["traverse only prefixes that are complete words","lexicographic tie handling"]},
-    {"id":"word-search-ii","name":"Word Search II","difficulty":"advanced","patterns":["prune board search by trie prefix","remove found words or empty branches safely"]}
+    {
+      "id": "implement-trie-prefix-tree",
+      "name": "Implement Trie (Prefix Tree)",
+      "difficulty": "introductory",
+      "patterns": [
+        "insert, exact search, and prefix search",
+        "terminal marker independent of child links"
+      ]
+    },
+    {
+      "id": "design-add-and-search-words",
+      "name": "Design Add and Search Words Data Structure",
+      "difficulty": "intermediate",
+      "patterns": [
+        "wildcard branching",
+        "DFS over trie states"
+      ]
+    },
+    {
+      "id": "replace-words",
+      "name": "Replace Words",
+      "difficulty": "intermediate",
+      "patterns": [
+        "find the shortest stored prefix",
+        "stop at the first terminal node"
+      ]
+    },
+    {
+      "id": "map-sum-pairs",
+      "name": "Map Sum Pairs",
+      "difficulty": "intermediate",
+      "patterns": [
+        "store key values at terminal nodes",
+        "maintain prefix aggregates"
+      ]
+    },
+    {
+      "id": "longest-word-in-dictionary",
+      "name": "Longest Word in Dictionary",
+      "difficulty": "intermediate",
+      "patterns": [
+        "traverse only prefixes that are complete words",
+        "lexicographic tie handling"
+      ]
+    },
+    {
+      "id": "word-search-ii",
+      "name": "Word Search II",
+      "difficulty": "advanced",
+      "patterns": [
+        "prune board search by trie prefix",
+        "remove found words or empty branches safely"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Trie","Hash set for exact lookup"],["Fixed child array","Sparse hash-map children"],["Trie exact search","Trie prefix search"],["Ordinary trie","Compressed radix trie"],["Character trie","Binary bitwise trie"]],
-  "comparisonSources": ["https://usaco.guide/adv/string-search","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2"],
+  "comparisons": [
+    [
+      "Trie",
+      "Hash set for exact lookup"
+    ],
+    [
+      "Fixed child array",
+      "Sparse hash-map children"
+    ],
+    [
+      "Trie exact search",
+      "Trie prefix search"
+    ],
+    [
+      "Ordinary trie",
+      "Compressed radix trie"
+    ],
+    [
+      "Character trie",
+      "Binary bitwise trie"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/adv/string-search",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "USACO Guide string-search/trie reference and official LeetCode problem statements",
     "edition": "Timeless data structure; canonical problem pages checked 2026-11-14",
     "checkedAt": "2026-11-14",
-    "urls": ["https://usaco.guide/adv/string-search","https://leetcode.com/problems/implement-trie-prefix-tree/","https://leetcode.com/problems/design-add-and-search-words-data-structure/","https://leetcode.com/problems/replace-words/","https://leetcode.com/problems/map-sum-pairs/","https://leetcode.com/problems/longest-word-in-dictionary/","https://leetcode.com/problems/word-search-ii/"]
+    "urls": [
+      "https://usaco.guide/adv/string-search",
+      "https://leetcode.com/problems/implement-trie-prefix-tree/",
+      "https://leetcode.com/problems/design-add-and-search-words-data-structure/",
+      "https://leetcode.com/problems/replace-words/",
+      "https://leetcode.com/problems/map-sum-pairs/",
+      "https://leetcode.com/problems/longest-word-in-dictionary/",
+      "https://leetcode.com/problems/word-search-ii/"
+    ]
   },
-  "scopeExclusions": ["General string algorithms such as KMP and suffix arrays","Bitwise operation and subset-mask techniques, covered in t11-031","Number theory, covered in t11-032","Range query structures, covered in t11-033","Full framework dictionary and sorted-map API catalogs"],
-  "generationAllowed": true
+  "scopeExclusions": [
+    "General string algorithms such as KMP and suffix arrays",
+    "Bitwise operation and subset-mask techniques, covered in t11-031",
+    "Number theory, covered in t11-032",
+    "Range query structures, covered in t11-033",
+    "Full framework dictionary and sorted-map API catalogs"
+  ]
 }

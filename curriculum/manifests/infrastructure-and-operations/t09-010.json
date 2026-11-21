@@ -3,7 +3,7 @@
   "id": "t09-010",
   "track": "track-09",
   "title": "Microsoft Azure architecture identity networking compute and data services",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Azure resources are governed through a hierarchy of management groups, subscriptions, resource groups, and resources. Azure Resource Manager (ARM) is the control plane for deployment and management; it is separate from service data-plane operations.",
     "Microsoft Entra ID represents identities and applications. An app registration describes an application identity, a service principal is its tenant-local representation, and managed identities provide Azure-hosted workloads credentials without storing application secrets.",
@@ -562,7 +562,7 @@
       "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview",
       "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview",
       "https://learn.microsoft.com/en-us/azure/azure-functions/flex-consumption-plan",
-        "https://learn.microsoft.com/en-us/azure/azure-functions/functions-versions",
+      "https://learn.microsoft.com/en-us/azure/azure-functions/functions-versions",
       "https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide",
       "https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-in-process-differences",
       "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview",
@@ -649,7 +649,6 @@
     "Portal click sequences and every Azure CLI command option are excluded; use current service-specific CLI reference for operational syntax",
     "Kubernetes resource API reference is covered in t09-008"
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "As checked 2026-11-20, Microsoft Learn states support for the Azure Functions .NET in-process model ended November 10, 2026. Treat in-process as out of support and plan migration to the isolated worker model; verify the runtime and target framework support table for the current deployment.",
     "As checked 2026-11-20, Azure Cache for Redis Enterprise and Enterprise Flash retirement is scheduled for March 31, 2027; Basic, Standard, and Premium retirement is scheduled for September 30, 2028. Creation restrictions differ by cloud and existing-customer status. Azure Managed Redis is the recommended migration destination, but feature, SKU, region, cluster-policy, and migration-tool support must be checked before planning.",

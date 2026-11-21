@@ -3,7 +3,7 @@
   "id": "t02-003",
   "track": "track-02",
   "title": "ASP.NET Core middleware pipeline order and branching",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "The request pipeline is an ordered chain of delegates. Middleware can run before and after the next delegate, short-circuit the request, or terminate the pipeline; response processing unwinds in reverse order.",
     "Exception handling belongs early enough to catch downstream failures. Routing establishes the selected endpoint, and authentication, authorization, CORS, rate limiting, caching, static files, and endpoint execution have ordering constraints.",
@@ -321,6 +321,5 @@
     "Exception response formats and validation errors are covered in t02-013",
     "IIS, Kestrel, proxy forwarding and TLS are covered in t02-020",
     "Static files are public by default; authenticated file delivery requires an explicitly authorized endpoint design"
-  ],
-  "generationAllowed": true
+  ]
 }

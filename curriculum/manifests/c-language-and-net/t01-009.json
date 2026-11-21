@@ -3,7 +3,7 @@
   "id": "t01-009",
   "track": "track-01",
   "title": "generics constraints and generic methods",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A generic type or method is written once with type parameters and works with caller-supplied type arguments. The compiler substitutes those arguments for type checking while preserving static type safety; this is not the same as storing every value as object and casting later.",
     "Constraints state what a type argument must support. They let a generic implementation safely use capabilities such as construction, reference identity, value semantics, a base class, an interface, or a static operator contract.",
@@ -222,7 +222,6 @@
     "The complete reflection API for generic type metadata is covered in t01-019.",
     "Closed hierarchy and union declaration syntax is covered in the type-shape and pattern-matching topics."
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "Do not describe ref struct values as necessarily residing on a physical stack. Ref safety constrains escape and usage; physical placement is an implementation detail.",
     "allows ref struct is a C# 13 anti-constraint; generic code must obey ref-safety rules when T may be a ref struct.",

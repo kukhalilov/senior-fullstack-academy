@@ -3,7 +3,7 @@
   "id": "t02-007",
   "track": "track-02",
   "title": "Microsoft dependency injection registrations lifetimes scopes disposal and keyed services",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "The built-in container maps service types to implementations or factories. Constructors receive dependencies, while the container controls construction, lifetime caching, scopes, and disposal for instances it creates.",
     "Transient creates an instance per resolution, scoped creates one per scope (normally an HTTP request), and singleton shares one instance for the provider lifetime. A lifetime controls reuse and disposal; it does not make the service thread-safe.",
@@ -393,6 +393,5 @@
     "DbContext-specific registration and context pooling are covered in t04-001",
     "Named HttpClient registration is covered in t02-017",
     "Third-party container APIs and decoration packages are mentioned only to distinguish them from built-in DI"
-  ],
-  "generationAllowed": true
+  ]
 }

@@ -3,7 +3,7 @@
   "id": "t01-010",
   "track": "track-01",
   "title": "covariance contravariance invariant types and delegates",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Variance describes safe conversions between constructed generic interfaces or delegates whose type arguments have an inheritance relationship. Covariance preserves the direction for produced values; contravariance reverses it for consumed values; invariance permits neither conversion.",
     "The `out` and `in` annotations on interface and delegate type parameters are contracts about how those parameters are used. A producer can be covariant; a consumer can be contravariant; mutable read/write abstractions usually must be invariant to remain safe.",
@@ -215,7 +215,6 @@
     "Inheritance, virtual dispatch, and interface implementation are covered in t01-007.",
     "Array APIs and generic collection operations are covered in t01-014."
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "Do not reduce interface variance safety to simple return-versus-parameter positions: nested generic/delegate variance composes, and static non-virtual, non-abstract interface members are exempt from variance-safety restrictions.",
     "Do not claim an entire covariant interface or its implementation is immutable; variance safety constrains access through the variant contract."

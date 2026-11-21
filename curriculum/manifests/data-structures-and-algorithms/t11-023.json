@@ -3,7 +3,7 @@
   "id": "t11-023",
   "track": "track-11",
   "title": "sweep-line events and active intervals",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A sweep-line algorithm sorts event coordinates and processes them in order while maintaining a compact summary of objects currently active at the sweep position.",
     "An interval contributes start and end events; event ordering at equal coordinates must match whether endpoints are closed, open, or half-open.",
@@ -15,29 +15,274 @@
     "The sweep state must be sufficient to answer the query; keeping only an overlap count cannot answer which intervals overlap or compute arbitrary geometric unions."
   ],
   "inventory": [
-    {"id":"events-and-order","title":"Events, sorting, and coordinate ties","items":["Start event","End event","Event coordinate","Sort by coordinate","Equal-coordinate event ordering","Closed interval tie rule","Half-open interval tie rule","Stable event tie-break","Sweep direction"]},
-    {"id":"active-state","title":"Maintaining active intervals and resources","items":["Active interval set","Active overlap counter","Maximum simultaneous overlap","Active end-time min-heap","Release finished intervals","Meeting-room allocation count","Resource assignment versus count-only query"]},
-    {"id":"coordinate-and-geometry","title":"Coordinate compression and geometric extension","items":["Coordinate compression","Rank-preserving coordinate mapping","Difference-array event accumulation","One-dimensional sweep","Rectangle edge events","Active coverage structure","Segment tree over compressed coordinates"]},
-    {"id":"correctness-and-cost","title":"Invariants, complexity, and limits","items":["Sweep-state invariant","Event conservation","Sort plus scan complexity","Active structure update cost","Duplicate event handling","Large coordinate ranges","Insufficient aggregate state","Endpoint off-by-one cases"]}
+    {
+      "id": "events-and-order",
+      "title": "Events, sorting, and coordinate ties",
+      "items": [
+        "Start event",
+        "End event",
+        "Event coordinate",
+        "Sort by coordinate",
+        "Equal-coordinate event ordering",
+        "Closed interval tie rule",
+        "Half-open interval tie rule",
+        "Stable event tie-break",
+        "Sweep direction"
+      ]
+    },
+    {
+      "id": "active-state",
+      "title": "Maintaining active intervals and resources",
+      "items": [
+        "Active interval set",
+        "Active overlap counter",
+        "Maximum simultaneous overlap",
+        "Active end-time min-heap",
+        "Release finished intervals",
+        "Meeting-room allocation count",
+        "Resource assignment versus count-only query"
+      ]
+    },
+    {
+      "id": "coordinate-and-geometry",
+      "title": "Coordinate compression and geometric extension",
+      "items": [
+        "Coordinate compression",
+        "Rank-preserving coordinate mapping",
+        "Difference-array event accumulation",
+        "One-dimensional sweep",
+        "Rectangle edge events",
+        "Active coverage structure",
+        "Segment tree over compressed coordinates"
+      ]
+    },
+    {
+      "id": "correctness-and-cost",
+      "title": "Invariants, complexity, and limits",
+      "items": [
+        "Sweep-state invariant",
+        "Event conservation",
+        "Sort plus scan complexity",
+        "Active structure update cost",
+        "Duplicate event handling",
+        "Large coordinate ranges",
+        "Insufficient aggregate state",
+        "Endpoint off-by-one cases"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"meeting-rooms-ii","name":"Meeting Rooms II","difficulty":"intermediate","patterns":["sorted start events","min-heap of active end times"],"statement":"Given meeting intervals [start,end), return the minimum number of rooms required so all meetings can take place without overlap.","constraints":["1 <= intervals.Length <= 10^4","0 <= start < end <= 10^6"],"examples":[{"input":"[[0,30],[5,10],[15,20]]","output":"2"},{"input":"[[7,10],[2,4]]","output":"1"}],"sourceUrls":["https://leetcode.com/problems/meeting-rooms-ii/","https://leetcode.doocs.org/en/lc/253/"]},
-    {"id":"car-pooling","name":"Car Pooling","difficulty":"intermediate","patterns":["passenger pickup and drop-off events","capacity prefix scan"],"statement":"Each trip [passengers,from,to] boards at from and exits at to while the car travels east. Return whether occupancy ever exceeds capacity; drop-offs occur before pickups at the same location.","constraints":["1 <= trips.Length <= 1000","trips[i].Length == 3","1 <= passengers <= 100","0 <= from < to <= 1000","1 <= capacity <= 10^5"],"examples":[{"input":"trips = [[2,1,5],[3,3,7]], capacity = 4","output":"false"},{"input":"trips = [[2,1,5],[3,3,7]], capacity = 5","output":"true"}],"sourceUrls":["https://leetcode.com/problems/car-pooling/"]},
-    {"id":"my-calendar-i","name":"My Calendar I","difficulty":"intermediate","patterns":["ordered interval insertion","overlap query"],"statement":"Implement a calendar that accepts a half-open event [start,end) only when it has no nonempty overlap with an existing event. A rejected booking does not change the calendar.","constraints":["0 <= start < end <= 10^9","At most 1000 book calls"],"examples":[{"input":"book(10,20), book(15,25), book(20,30)","output":"true, false, true"}],"sourceUrls":["https://leetcode.com/problems/my-calendar-i/"]},
-    {"id":"my-calendar-iii","name":"My Calendar III","difficulty":"advanced","patterns":["endpoint event counts","maximum active overlap"],"statement":"After each booking [start,end), return the largest number of events that overlap at any time among all bookings so far.","constraints":["0 <= start < end <= 10^9","At most 400 book calls"],"examples":[{"input":"book([10,20]), book([50,60]), book([10,40]), book([5,15]), book([5,10]), book([25,55])","output":"1,1,2,3,3,3"}],"sourceUrls":["https://leetcode.com/problems/my-calendar-iii/"]},
-    {"id":"number-of-flowers-in-full-bloom","name":"Number of Flowers in Full Bloom","difficulty":"intermediate","patterns":["start and end event boundaries","offline sweep over query times"],"statement":"For each person's arrival time, return the number of flowers whose inclusive bloom interval [start,end] contains that time.","constraints":["1 <= flowers.Length, people.Length <= 5 * 10^4","1 <= start <= end <= 10^9","1 <= people[i] <= 10^9"],"examples":[{"input":"flowers = [[1,6],[3,7],[9,12],[4,13]], people = [2,3,7,11]","output":"[1,2,2,2]"},{"input":"flowers = [[1,10],[3,3]], people = [3,3,2]","output":"[2,2,1]"}],"sourceUrls":["https://leetcode.com/problems/number-of-flowers-in-full-bloom/"]},
-    {"id":"the-skyline-problem","name":"The Skyline Problem","difficulty":"advanced","patterns":["building edge events","active height multiset"],"statement":"Given grounded rectangular buildings [left,right,height], return sorted skyline key points, merging consecutive equal-height segments and ending with height zero.","constraints":["1 <= buildings.Length <= 10^4","0 <= left < right <= 2^31 - 1","1 <= height <= 2^31 - 1","Buildings are sorted by left coordinate"],"examples":[{"input":"[[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]","output":"[[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]"},{"input":"[[0,2,3],[2,5,3]]","output":"[[0,3],[5,0]]"}],"sourceUrls":["https://leetcode.com/problems/the-skyline-problem/"]}
+    {
+      "id": "meeting-rooms-ii",
+      "name": "Meeting Rooms II",
+      "difficulty": "intermediate",
+      "patterns": [
+        "sorted start events",
+        "min-heap of active end times"
+      ],
+      "statement": "Given meeting intervals [start,end), return the minimum number of rooms required so all meetings can take place without overlap.",
+      "constraints": [
+        "1 <= intervals.Length <= 10^4",
+        "0 <= start < end <= 10^6"
+      ],
+      "examples": [
+        {
+          "input": "[[0,30],[5,10],[15,20]]",
+          "output": "2"
+        },
+        {
+          "input": "[[7,10],[2,4]]",
+          "output": "1"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/meeting-rooms-ii/",
+        "https://leetcode.doocs.org/en/lc/253/"
+      ]
+    },
+    {
+      "id": "car-pooling",
+      "name": "Car Pooling",
+      "difficulty": "intermediate",
+      "patterns": [
+        "passenger pickup and drop-off events",
+        "capacity prefix scan"
+      ],
+      "statement": "Each trip [passengers,from,to] boards at from and exits at to while the car travels east. Return whether occupancy ever exceeds capacity; drop-offs occur before pickups at the same location.",
+      "constraints": [
+        "1 <= trips.Length <= 1000",
+        "trips[i].Length == 3",
+        "1 <= passengers <= 100",
+        "0 <= from < to <= 1000",
+        "1 <= capacity <= 10^5"
+      ],
+      "examples": [
+        {
+          "input": "trips = [[2,1,5],[3,3,7]], capacity = 4",
+          "output": "false"
+        },
+        {
+          "input": "trips = [[2,1,5],[3,3,7]], capacity = 5",
+          "output": "true"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/car-pooling/"
+      ]
+    },
+    {
+      "id": "my-calendar-i",
+      "name": "My Calendar I",
+      "difficulty": "intermediate",
+      "patterns": [
+        "ordered interval insertion",
+        "overlap query"
+      ],
+      "statement": "Implement a calendar that accepts a half-open event [start,end) only when it has no nonempty overlap with an existing event. A rejected booking does not change the calendar.",
+      "constraints": [
+        "0 <= start < end <= 10^9",
+        "At most 1000 book calls"
+      ],
+      "examples": [
+        {
+          "input": "book(10,20), book(15,25), book(20,30)",
+          "output": "true, false, true"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/my-calendar-i/"
+      ]
+    },
+    {
+      "id": "my-calendar-iii",
+      "name": "My Calendar III",
+      "difficulty": "advanced",
+      "patterns": [
+        "endpoint event counts",
+        "maximum active overlap"
+      ],
+      "statement": "After each booking [start,end), return the largest number of events that overlap at any time among all bookings so far.",
+      "constraints": [
+        "0 <= start < end <= 10^9",
+        "At most 400 book calls"
+      ],
+      "examples": [
+        {
+          "input": "book([10,20]), book([50,60]), book([10,40]), book([5,15]), book([5,10]), book([25,55])",
+          "output": "1,1,2,3,3,3"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/my-calendar-iii/"
+      ]
+    },
+    {
+      "id": "number-of-flowers-in-full-bloom",
+      "name": "Number of Flowers in Full Bloom",
+      "difficulty": "intermediate",
+      "patterns": [
+        "start and end event boundaries",
+        "offline sweep over query times"
+      ],
+      "statement": "For each person's arrival time, return the number of flowers whose inclusive bloom interval [start,end] contains that time.",
+      "constraints": [
+        "1 <= flowers.Length, people.Length <= 5 * 10^4",
+        "1 <= start <= end <= 10^9",
+        "1 <= people[i] <= 10^9"
+      ],
+      "examples": [
+        {
+          "input": "flowers = [[1,6],[3,7],[9,12],[4,13]], people = [2,3,7,11]",
+          "output": "[1,2,2,2]"
+        },
+        {
+          "input": "flowers = [[1,10],[3,3]], people = [3,3,2]",
+          "output": "[2,2,1]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/number-of-flowers-in-full-bloom/"
+      ]
+    },
+    {
+      "id": "the-skyline-problem",
+      "name": "The Skyline Problem",
+      "difficulty": "advanced",
+      "patterns": [
+        "building edge events",
+        "active height multiset"
+      ],
+      "statement": "Given grounded rectangular buildings [left,right,height], return sorted skyline key points, merging consecutive equal-height segments and ending with height zero.",
+      "constraints": [
+        "1 <= buildings.Length <= 10^4",
+        "0 <= left < right <= 2^31 - 1",
+        "1 <= height <= 2^31 - 1",
+        "Buildings are sorted by left coordinate"
+      ],
+      "examples": [
+        {
+          "input": "[[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]",
+          "output": "[[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]"
+        },
+        {
+          "input": "[[0,2,3],[2,5,3]]",
+          "output": "[[0,3],[5,0]]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/the-skyline-problem/"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Interval merge scan","Sweep-line event scan"],["Overlap counter","Active interval structure"],["Event list sorting","Coordinate compression with indexed queries"],["Closed interval event order","Half-open interval event order"],["Sweep-line min-heap","Monotonic deque"]],
-  "comparisonSources": ["https://usaco.guide/plat/sweep-line?lang=cpp","https://usaco.guide/CPH.pdf"],
+  "comparisons": [
+    [
+      "Interval merge scan",
+      "Sweep-line event scan"
+    ],
+    [
+      "Overlap counter",
+      "Active interval structure"
+    ],
+    [
+      "Event list sorting",
+      "Coordinate compression with indexed queries"
+    ],
+    [
+      "Closed interval event order",
+      "Half-open interval event order"
+    ],
+    [
+      "Sweep-line min-heap",
+      "Monotonic deque"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/plat/sweep-line?lang=cpp",
+    "https://usaco.guide/CPH.pdf"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "USACO Guide sweep-line algorithm chapter and official LeetCode problem statements",
     "edition": "Timeless algorithm patterns; canonical problem pages checked 2026-11-14",
     "checkedAt": "2026-11-14",
-    "urls": ["https://usaco.guide/plat/sweep-line?lang=cpp","https://usaco.guide/CPH.pdf","https://leetcode.com/problems/meeting-rooms-ii/","https://leetcode.doocs.org/en/lc/253/","https://leetcode.com/problems/car-pooling/","https://leetcode.com/problems/my-calendar-i/","https://leetcode.com/problems/my-calendar-iii/","https://leetcode.com/problems/number-of-flowers-in-full-bloom/","https://leetcode.com/problems/the-skyline-problem/"]
+    "urls": [
+      "https://usaco.guide/plat/sweep-line?lang=cpp",
+      "https://usaco.guide/CPH.pdf",
+      "https://leetcode.com/problems/meeting-rooms-ii/",
+      "https://leetcode.doocs.org/en/lc/253/",
+      "https://leetcode.com/problems/car-pooling/",
+      "https://leetcode.com/problems/my-calendar-i/",
+      "https://leetcode.com/problems/my-calendar-iii/",
+      "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+      "https://leetcode.com/problems/the-skyline-problem/"
+    ]
   },
-  "scopeExclusions": ["General interval merge and scheduling algorithms, covered in t11-008","Heap implementation and priority-queue operation catalog, covered in t11-024","Full computational geometry and line-segment intersection algorithms","Dynamic interval trees and interval skip lists","Continuous-time scheduling, timezones, and calendar standards"],
-  "generationAllowed": true
+  "scopeExclusions": [
+    "General interval merge and scheduling algorithms, covered in t11-008",
+    "Heap implementation and priority-queue operation catalog, covered in t11-024",
+    "Full computational geometry and line-segment intersection algorithms",
+    "Dynamic interval trees and interval skip lists",
+    "Continuous-time scheduling, timezones, and calendar standards"
+  ]
 }

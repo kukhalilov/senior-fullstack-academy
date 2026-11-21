@@ -3,7 +3,7 @@
   "id": "t11-022",
   "track": "track-11",
   "title": "monotonic stacks and monotonic queues",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A monotonic stack keeps candidate values or indices in nondecreasing or nonincreasing order by removing candidates made permanently irrelevant by a new element.",
     "The stack's invariant and the strictness of its comparison determine how equal values are handled; duplicates can change the answer if the inequality is chosen incorrectly.",
@@ -15,29 +15,286 @@
     "The structures are useful when a query asks for a nearest extremal candidate or a sliding-window extremum; they do not replace a general-purpose stack, queue, heap, or range-query structure."
   ],
   "inventory": [
-    {"id":"monotonic-stack-invariants","title":"Stack invariants and nearest-element queries","items":["Monotonically increasing stack","Monotonically decreasing stack","Value stack","Index stack","Pop-dominated-candidates rule","Next greater element","Next smaller element","Previous greater element","Previous smaller element","Strict versus non-strict comparison","Duplicate-value tie handling"]},
-    {"id":"amortized-and-circular-scans","title":"Scan direction, circular arrays, and amortized proof","items":["Left-to-right unresolved-index scan","Right-to-left nearest-boundary scan","Circular-array scan by index modulo n","Each-index-pushed-once argument","Each-index-popped-once argument","Aggregate O(n) analysis","Unresolved candidates after final scan"]},
-    {"id":"monotonic-deque","title":"Monotonic deque and sliding-window extrema","items":["Monotonic deque","Deque of candidate indices","Expire out-of-window indices","Remove dominated candidates from the back","Sliding-window maximum","Sliding-window minimum","Window-size boundary handling","Duplicate extrema handling"]},
-    {"id":"boundary-and-aggregation-patterns","title":"Nearest boundaries and range aggregation","items":["Nearest smaller element on each side","Largest rectangle in a histogram","Subarray minimum contribution counting","Left and right span lengths","Equal-value ownership by asymmetric comparisons","Sentinel boundary technique","Off-by-one boundary verification"]}
+    {
+      "id": "monotonic-stack-invariants",
+      "title": "Stack invariants and nearest-element queries",
+      "items": [
+        "Monotonically increasing stack",
+        "Monotonically decreasing stack",
+        "Value stack",
+        "Index stack",
+        "Pop-dominated-candidates rule",
+        "Next greater element",
+        "Next smaller element",
+        "Previous greater element",
+        "Previous smaller element",
+        "Strict versus non-strict comparison",
+        "Duplicate-value tie handling"
+      ]
+    },
+    {
+      "id": "amortized-and-circular-scans",
+      "title": "Scan direction, circular arrays, and amortized proof",
+      "items": [
+        "Left-to-right unresolved-index scan",
+        "Right-to-left nearest-boundary scan",
+        "Circular-array scan by index modulo n",
+        "Each-index-pushed-once argument",
+        "Each-index-popped-once argument",
+        "Aggregate O(n) analysis",
+        "Unresolved candidates after final scan"
+      ]
+    },
+    {
+      "id": "monotonic-deque",
+      "title": "Monotonic deque and sliding-window extrema",
+      "items": [
+        "Monotonic deque",
+        "Deque of candidate indices",
+        "Expire out-of-window indices",
+        "Remove dominated candidates from the back",
+        "Sliding-window maximum",
+        "Sliding-window minimum",
+        "Window-size boundary handling",
+        "Duplicate extrema handling"
+      ]
+    },
+    {
+      "id": "boundary-and-aggregation-patterns",
+      "title": "Nearest boundaries and range aggregation",
+      "items": [
+        "Nearest smaller element on each side",
+        "Largest rectangle in a histogram",
+        "Subarray minimum contribution counting",
+        "Left and right span lengths",
+        "Equal-value ownership by asymmetric comparisons",
+        "Sentinel boundary technique",
+        "Off-by-one boundary verification"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"daily-temperatures","name":"Daily Temperatures","difficulty":"introductory","patterns":["next-greater index","unresolved indices in a decreasing stack"],"statement":"For each day's temperature, return how many days must pass until a strictly warmer temperature; return 0 if none exists later.","constraints":["1 <= temperatures.Length <= 10^5","30 <= temperatures[i] <= 100"],"examples":[{"input":"[73,74,75,71,69,72,76,73]","output":"[1,1,4,2,1,1,0,0]"},{"input":"[30,40,50,60]","output":"[1,1,1,0]"}],"sourceUrls":["https://leetcode.com/problems/daily-temperatures/"]},
-    {"id":"next-greater-element-ii","name":"Next Greater Element II","difficulty":"intermediate","patterns":["circular scan","next-greater index with modulo traversal"],"statement":"For each value in a circular integer array, return its first strictly greater value encountered while moving forward circularly, or -1 if absent.","constraints":["1 <= nums.Length <= 10^4","-10^9 <= nums[i] <= 10^9"],"examples":[{"input":"[1,2,1]","output":"[2,-1,2]"},{"input":"[1,2,3,4,3]","output":"[2,3,4,-1,4]"}],"sourceUrls":["https://leetcode.com/problems/next-greater-element-ii/"]},
-    {"id":"largest-rectangle-in-histogram","name":"Largest Rectangle in Histogram","difficulty":"intermediate","patterns":["nearest smaller boundaries","width from left and right spans"],"statement":"Given unit-width histogram bars, return the largest rectangle area contained in the histogram.","constraints":["1 <= heights.Length <= 10^5","0 <= heights[i] <= 10^4"],"examples":[{"input":"[2,1,5,6,2,3]","output":"10"},{"input":"[2,4]","output":"4"}],"sourceUrls":["https://leetcode.com/problems/largest-rectangle-in-histogram/"]},
-    {"id":"sliding-window-maximum","name":"Sliding Window Maximum","difficulty":"intermediate","patterns":["monotonic deque","expire indices outside the window"],"statement":"Return the maximum value for every contiguous window of size k as the window moves one position right at a time.","constraints":["1 <= nums.Length <= 10^5","-10^4 <= nums[i] <= 10^4","1 <= k <= nums.Length"],"examples":[{"input":"nums = [1,3,-1,-3,5,3,6,7], k = 3","output":"[3,3,5,5,6,7]"},{"input":"nums = [1], k = 1","output":"[1]"}],"sourceUrls":["https://leetcode.com/problems/sliding-window-maximum/"]},
-    {"id":"sum-of-subarray-minimums","name":"Sum of Subarray Minimums","difficulty":"advanced","patterns":["nearest smaller boundaries","duplicate ownership and contribution counting"],"statement":"For every nonempty contiguous subarray, take its minimum and return the sum of those minima modulo 10^9+7.","constraints":["1 <= arr.Length <= 3 * 10^4","1 <= arr[i] <= 3 * 10^4"],"examples":[{"input":"[3,1,2,4]","output":"17"},{"input":"[11,81,94,43,3]","output":"444"}],"sourceUrls":["https://leetcode.com/problems/sum-of-subarray-minimums/"]},
-    {"id":"remove-k-digits","name":"Remove K Digits","difficulty":"intermediate","patterns":["greedy increasing stack","remove a larger preceding digit"],"statement":"Remove exactly k digits from a nonnegative decimal string to produce the smallest possible resulting integer, represented without leading zeroes; return \"0\" if nothing remains.","constraints":["1 <= k <= num.Length <= 10^5","num contains only digits","num has no leading zeroes unless it is exactly \"0\""],"examples":[{"input":"num = \\\"1432219\\\", k = 3","output":"\\\"1219\\\""},{"input":"num = \\\"10200\\\", k = 1","output":"\\\"200\\\""},{"input":"num = \\\"10\\\", k = 2","output":"\\\"0\\\""}],"sourceUrls":["https://leetcode.com/problems/remove-k-digits/"]}
+    {
+      "id": "daily-temperatures",
+      "name": "Daily Temperatures",
+      "difficulty": "introductory",
+      "patterns": [
+        "next-greater index",
+        "unresolved indices in a decreasing stack"
+      ],
+      "statement": "For each day's temperature, return how many days must pass until a strictly warmer temperature; return 0 if none exists later.",
+      "constraints": [
+        "1 <= temperatures.Length <= 10^5",
+        "30 <= temperatures[i] <= 100"
+      ],
+      "examples": [
+        {
+          "input": "[73,74,75,71,69,72,76,73]",
+          "output": "[1,1,4,2,1,1,0,0]"
+        },
+        {
+          "input": "[30,40,50,60]",
+          "output": "[1,1,1,0]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/daily-temperatures/"
+      ]
+    },
+    {
+      "id": "next-greater-element-ii",
+      "name": "Next Greater Element II",
+      "difficulty": "intermediate",
+      "patterns": [
+        "circular scan",
+        "next-greater index with modulo traversal"
+      ],
+      "statement": "For each value in a circular integer array, return its first strictly greater value encountered while moving forward circularly, or -1 if absent.",
+      "constraints": [
+        "1 <= nums.Length <= 10^4",
+        "-10^9 <= nums[i] <= 10^9"
+      ],
+      "examples": [
+        {
+          "input": "[1,2,1]",
+          "output": "[2,-1,2]"
+        },
+        {
+          "input": "[1,2,3,4,3]",
+          "output": "[2,3,4,-1,4]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/next-greater-element-ii/"
+      ]
+    },
+    {
+      "id": "largest-rectangle-in-histogram",
+      "name": "Largest Rectangle in Histogram",
+      "difficulty": "intermediate",
+      "patterns": [
+        "nearest smaller boundaries",
+        "width from left and right spans"
+      ],
+      "statement": "Given unit-width histogram bars, return the largest rectangle area contained in the histogram.",
+      "constraints": [
+        "1 <= heights.Length <= 10^5",
+        "0 <= heights[i] <= 10^4"
+      ],
+      "examples": [
+        {
+          "input": "[2,1,5,6,2,3]",
+          "output": "10"
+        },
+        {
+          "input": "[2,4]",
+          "output": "4"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/largest-rectangle-in-histogram/"
+      ]
+    },
+    {
+      "id": "sliding-window-maximum",
+      "name": "Sliding Window Maximum",
+      "difficulty": "intermediate",
+      "patterns": [
+        "monotonic deque",
+        "expire indices outside the window"
+      ],
+      "statement": "Return the maximum value for every contiguous window of size k as the window moves one position right at a time.",
+      "constraints": [
+        "1 <= nums.Length <= 10^5",
+        "-10^4 <= nums[i] <= 10^4",
+        "1 <= k <= nums.Length"
+      ],
+      "examples": [
+        {
+          "input": "nums = [1,3,-1,-3,5,3,6,7], k = 3",
+          "output": "[3,3,5,5,6,7]"
+        },
+        {
+          "input": "nums = [1], k = 1",
+          "output": "[1]"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/sliding-window-maximum/"
+      ]
+    },
+    {
+      "id": "sum-of-subarray-minimums",
+      "name": "Sum of Subarray Minimums",
+      "difficulty": "advanced",
+      "patterns": [
+        "nearest smaller boundaries",
+        "duplicate ownership and contribution counting"
+      ],
+      "statement": "For every nonempty contiguous subarray, take its minimum and return the sum of those minima modulo 10^9+7.",
+      "constraints": [
+        "1 <= arr.Length <= 3 * 10^4",
+        "1 <= arr[i] <= 3 * 10^4"
+      ],
+      "examples": [
+        {
+          "input": "[3,1,2,4]",
+          "output": "17"
+        },
+        {
+          "input": "[11,81,94,43,3]",
+          "output": "444"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/sum-of-subarray-minimums/"
+      ]
+    },
+    {
+      "id": "remove-k-digits",
+      "name": "Remove K Digits",
+      "difficulty": "intermediate",
+      "patterns": [
+        "greedy increasing stack",
+        "remove a larger preceding digit"
+      ],
+      "statement": "Remove exactly k digits from a nonnegative decimal string to produce the smallest possible resulting integer, represented without leading zeroes; return \"0\" if nothing remains.",
+      "constraints": [
+        "1 <= k <= num.Length <= 10^5",
+        "num contains only digits",
+        "num has no leading zeroes unless it is exactly \"0\""
+      ],
+      "examples": [
+        {
+          "input": "num = \\\"1432219\\\", k = 3",
+          "output": "\\\"1219\\\""
+        },
+        {
+          "input": "num = \\\"10200\\\", k = 1",
+          "output": "\\\"200\\\""
+        },
+        {
+          "input": "num = \\\"10\\\", k = 2",
+          "output": "\\\"0\\\""
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/remove-k-digits/"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Monotonic increasing stack","Monotonic decreasing stack"],["Strict comparison","Non-strict comparison with duplicates"],["Nearest greater boundary","Nearest smaller boundary"],["Monotonic stack","Monotonic deque"],["Repeated full-window scan","Sliding-window monotonic deque"],["Monotonic deque","Heap for sliding-window maximum"]],
-  "comparisonSources": ["https://usaco.guide/gold/stacks","https://usaco.guide/gold/sliding-window"],
+  "comparisons": [
+    [
+      "Monotonic increasing stack",
+      "Monotonic decreasing stack"
+    ],
+    [
+      "Strict comparison",
+      "Non-strict comparison with duplicates"
+    ],
+    [
+      "Nearest greater boundary",
+      "Nearest smaller boundary"
+    ],
+    [
+      "Monotonic stack",
+      "Monotonic deque"
+    ],
+    [
+      "Repeated full-window scan",
+      "Sliding-window monotonic deque"
+    ],
+    [
+      "Monotonic deque",
+      "Heap for sliding-window maximum"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/gold/stacks",
+    "https://usaco.guide/gold/sliding-window"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "USACO Guide stack and sliding-window algorithm references; official LeetCode problem statements",
     "edition": "Timeless algorithm patterns; canonical problem pages checked 2026-11-14",
     "checkedAt": "2026-11-14",
-    "urls": ["https://usaco.guide/gold/stacks","https://usaco.guide/gold/sliding-window","https://leetcode.com/problems/daily-temperatures/","https://leetcode.com/problems/next-greater-element-ii/","https://leetcode.com/problems/largest-rectangle-in-histogram/","https://leetcode.com/problems/sliding-window-maximum/","https://leetcode.com/problems/sum-of-subarray-minimums/","https://leetcode.com/problems/remove-k-digits/"]
+    "urls": [
+      "https://usaco.guide/gold/stacks",
+      "https://usaco.guide/gold/sliding-window",
+      "https://leetcode.com/problems/daily-temperatures/",
+      "https://leetcode.com/problems/next-greater-element-ii/",
+      "https://leetcode.com/problems/largest-rectangle-in-histogram/",
+      "https://leetcode.com/problems/sliding-window-maximum/",
+      "https://leetcode.com/problems/sum-of-subarray-minimums/",
+      "https://leetcode.com/problems/remove-k-digits/"
+    ]
   },
-  "scopeExclusions": ["General stack and queue contracts and implementations, covered in t11-007","Priority queues and binary heaps, covered in t11-009","Segment trees and sparse tables for general range queries","Two-pointer window maintenance without monotonic candidate queues, covered in t11-003","Proofs for every less common Cartesian-tree variation"],
-  "generationAllowed": true
+  "scopeExclusions": [
+    "General stack and queue contracts and implementations, covered in t11-007",
+    "Priority queues and binary heaps, covered in t11-009",
+    "Segment trees and sparse tables for general range queries",
+    "Two-pointer window maintenance without monotonic candidate queues, covered in t11-003",
+    "Proofs for every less common Cartesian-tree variation"
+  ]
 }

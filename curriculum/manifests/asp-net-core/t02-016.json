@@ -3,7 +3,7 @@
   "id": "t02-016",
   "track": "track-02",
   "title": "health checks diagnostics metrics tracing and OpenTelemetry",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "inventoryComplete": true,
   "concepts": [
     "Operational visibility has distinct jobs: health endpoints answer whether a process or dependency is suitable for a particular action; metrics summarize numeric behavior over time; traces connect work across boundaries; logs retain event detail. None replaces the others, and high-cardinality or sensitive data must not be emitted as metric labels or trace attributes.",
@@ -589,6 +589,5 @@
     "Distributed system observability architecture, SLIs/SLOs, Prometheus, Grafana, cloud monitoring backends, and collector deployment are covered in architecture and infrastructure topics.",
     "Vendor-specific health-check provider packages and database health-check implementations are external packages; teach package boundaries and representative integration patterns without presenting a mutable third-party API catalog as built-in framework surface.",
     "Application-specific dashboards, alert rules, and incident response policies depend on the deployed backend and service objectives."
-  ],
-  "generationAllowed": true
+  ]
 }

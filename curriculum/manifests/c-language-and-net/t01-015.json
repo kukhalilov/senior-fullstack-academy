@@ -3,7 +3,7 @@
   "id": "t01-015",
   "track": "track-01",
   "title": "LINQ operators deferred execution IEnumerable IQueryable and async sequences",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "LINQ is a family of query patterns with a shared vocabulary for filtering, projection, ordering, grouping, joining, aggregation, and materialization. The same-looking call can execute locally, build a provider expression, or asynchronously consume a stream.",
     "Enumerable operators work with IEnumerable<T> and delegate values; many are deferred until enumeration, while terminal operators execute immediately. Re-enumerating a deferred query can repeat work or observe changed source data.",
@@ -467,6 +467,5 @@
     "PLINQ operators and parallel query execution are covered in the concurrency topic.",
     "Collection storage structures and their concrete API surfaces are covered in t01-014.",
     "The async/await state machine and cancellation model are covered in t01-016; this topic only covers async sequence operators and enumeration."
-  ],
-  "generationAllowed": true
+  ]
 }

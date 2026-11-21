@@ -3,7 +3,7 @@
   "id": "t11-012",
   "track": "track-11",
   "title": "weighted shortest paths and distance relaxation",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A shortest-path algorithm computes minimum path cost from a source; valid edge-weight assumptions determine which algorithm is correct.",
     "Relaxing edge (u,v) improves dist[v] when dist[u] plus its edge weight is smaller; unreachable distances need a sentinel that cannot overflow during addition.",
@@ -15,31 +15,219 @@
     "A shortest path may have multiple equal-cost routes; predecessor tracking reconstructs one path, while counting or enumerating all shortest paths needs additional rules and cycle care."
   ],
   "inventory": [
-    {"id":"distance-model-and-relaxation","title":"Distances, paths, and edge relaxation","items":["Source vertex","Tentative distance","Unreachable sentinel","Edge relaxation","Predecessor tracking","Path reconstruction","Equal-cost shortest paths","Overflow-safe distance addition","Directed weighted edge","Negative cycle"]},
-    {"id":"dijkstra-and-bfs-variants","title":"Dijkstra, BFS, and 0-1 BFS","items":["Dijkstra's algorithm","Nonnegative edge-weight precondition","Minimum tentative-distance extraction","Finalized vertex","Lazy priority-queue entries","Stale-entry skip","BFS for equal edge costs","0-1 BFS","Deque front/back relaxation","Indexed binary heap with decrease-key","Lazy binary heap complexity","Fibonacci heap theoretical complexity","Dijkstra complexity by graph representation",".NET PriorityQueue<TElement,TPriority> quaternary min-heap","Equal-priority dequeue order is unspecified",".NET PriorityQueue has no decrease-key","Lazy-update Dijkstra with .NET PriorityQueue"]},
-    {"id":"bellman-ford-and-all-pairs","title":"Bellman-Ford and Floyd-Warshall","items":["Bellman-Ford algorithm","V-1 relaxation passes","Early-stop optimization","Reachable negative-cycle detection","Negative-cycle reachability impact","Floyd-Warshall algorithm","Intermediate-vertex recurrence","All-pairs distance matrix","O(V³) Floyd-Warshall time","O(V²) Floyd-Warshall space"]},
-    {"id":"algorithm-selection","title":"Preconditions, proof sketches, and algorithm selection","items":["Unweighted graph -> BFS","Weights zero or one -> 0-1 BFS","Nonnegative weights -> Dijkstra","Negative edges -> Bellman-Ford or DAG method","Small all-pairs graph -> Floyd-Warshall","DAG shortest paths in topological order","Relaxation invariant","Negative cycle makes shortest cost unbounded"]}
+    {
+      "id": "distance-model-and-relaxation",
+      "title": "Distances, paths, and edge relaxation",
+      "items": [
+        "Source vertex",
+        "Tentative distance",
+        "Unreachable sentinel",
+        "Edge relaxation",
+        "Predecessor tracking",
+        "Path reconstruction",
+        "Equal-cost shortest paths",
+        "Overflow-safe distance addition",
+        "Directed weighted edge",
+        "Negative cycle"
+      ]
+    },
+    {
+      "id": "dijkstra-and-bfs-variants",
+      "title": "Dijkstra, BFS, and 0-1 BFS",
+      "items": [
+        "Dijkstra's algorithm",
+        "Nonnegative edge-weight precondition",
+        "Minimum tentative-distance extraction",
+        "Finalized vertex",
+        "Lazy priority-queue entries",
+        "Stale-entry skip",
+        "BFS for equal edge costs",
+        "0-1 BFS",
+        "Deque front/back relaxation",
+        "Indexed binary heap with decrease-key",
+        "Lazy binary heap complexity",
+        "Fibonacci heap theoretical complexity",
+        "Dijkstra complexity by graph representation",
+        ".NET PriorityQueue<TElement,TPriority> quaternary min-heap",
+        "Equal-priority dequeue order is unspecified",
+        ".NET PriorityQueue has no decrease-key",
+        "Lazy-update Dijkstra with .NET PriorityQueue"
+      ]
+    },
+    {
+      "id": "bellman-ford-and-all-pairs",
+      "title": "Bellman-Ford and Floyd-Warshall",
+      "items": [
+        "Bellman-Ford algorithm",
+        "V-1 relaxation passes",
+        "Early-stop optimization",
+        "Reachable negative-cycle detection",
+        "Negative-cycle reachability impact",
+        "Floyd-Warshall algorithm",
+        "Intermediate-vertex recurrence",
+        "All-pairs distance matrix",
+        "O(V³) Floyd-Warshall time",
+        "O(V²) Floyd-Warshall space"
+      ]
+    },
+    {
+      "id": "algorithm-selection",
+      "title": "Preconditions, proof sketches, and algorithm selection",
+      "items": [
+        "Unweighted graph -> BFS",
+        "Weights zero or one -> 0-1 BFS",
+        "Nonnegative weights -> Dijkstra",
+        "Negative edges -> Bellman-Ford or DAG method",
+        "Small all-pairs graph -> Floyd-Warshall",
+        "DAG shortest paths in topological order",
+        "Relaxation invariant",
+        "Negative cycle makes shortest cost unbounded"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"network-delay-time","name":"Network Delay Time","difficulty":"intermediate","patterns":["single-source Dijkstra","maximum finalized distance"]},
-    {"id":"cheapest-flights-within-k-stops","name":"Cheapest Flights Within K Stops","difficulty":"intermediate","patterns":["bounded Bellman-Ford relaxation passes","stop-count state"]},
-    {"id":"path-with-minimum-effort","name":"Path With Minimum Effort","difficulty":"intermediate","patterns":["Dijkstra over minimax path cost","relax with max edge effort"]},
-    {"id":"find-the-city","name":"Find the City With the Smallest Number of Neighbors at a Threshold Distance","difficulty":"intermediate","patterns":["Floyd-Warshall all-pairs distances","threshold reachability count"]},
-    {"id":"number-of-ways-arrive-destination","name":"Number of Ways to Arrive at Destination","difficulty":"advanced","patterns":["Dijkstra with equal-distance path counts","positive-weight shortest-path DAG reasoning"]},
-    {"id":"minimum-obstacle-removal","name":"Minimum Obstacle Removal to Reach Corner","difficulty":"intermediate","patterns":["0-1 BFS","zero-cost and one-cost deque placement"]},
-    {"id":"path-with-maximum-probability","name":"Path with Maximum Probability","difficulty":"intermediate","patterns":["priority-queue path extension","maximize product probability"]},
-    {"id":"shortest-path-binary-matrix","name":"Shortest Path in Binary Matrix","difficulty":"intermediate","patterns":["BFS shortest path with unit edge costs","distance tracked by level"]}
+    {
+      "id": "network-delay-time",
+      "name": "Network Delay Time",
+      "difficulty": "intermediate",
+      "patterns": [
+        "single-source Dijkstra",
+        "maximum finalized distance"
+      ]
+    },
+    {
+      "id": "cheapest-flights-within-k-stops",
+      "name": "Cheapest Flights Within K Stops",
+      "difficulty": "intermediate",
+      "patterns": [
+        "bounded Bellman-Ford relaxation passes",
+        "stop-count state"
+      ]
+    },
+    {
+      "id": "path-with-minimum-effort",
+      "name": "Path With Minimum Effort",
+      "difficulty": "intermediate",
+      "patterns": [
+        "Dijkstra over minimax path cost",
+        "relax with max edge effort"
+      ]
+    },
+    {
+      "id": "find-the-city",
+      "name": "Find the City With the Smallest Number of Neighbors at a Threshold Distance",
+      "difficulty": "intermediate",
+      "patterns": [
+        "Floyd-Warshall all-pairs distances",
+        "threshold reachability count"
+      ]
+    },
+    {
+      "id": "number-of-ways-arrive-destination",
+      "name": "Number of Ways to Arrive at Destination",
+      "difficulty": "advanced",
+      "patterns": [
+        "Dijkstra with equal-distance path counts",
+        "positive-weight shortest-path DAG reasoning"
+      ]
+    },
+    {
+      "id": "minimum-obstacle-removal",
+      "name": "Minimum Obstacle Removal to Reach Corner",
+      "difficulty": "intermediate",
+      "patterns": [
+        "0-1 BFS",
+        "zero-cost and one-cost deque placement"
+      ]
+    },
+    {
+      "id": "path-with-maximum-probability",
+      "name": "Path with Maximum Probability",
+      "difficulty": "intermediate",
+      "patterns": [
+        "priority-queue path extension",
+        "maximize product probability"
+      ]
+    },
+    {
+      "id": "shortest-path-binary-matrix",
+      "name": "Shortest Path in Binary Matrix",
+      "difficulty": "intermediate",
+      "patterns": [
+        "BFS shortest path with unit edge costs",
+        "distance tracked by level"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["BFS","Dijkstra"],["Dijkstra","Bellman-Ford"],["Dijkstra","Floyd-Warshall"],["Bellman-Ford","DAG shortest paths"],["Priority queue with lazy updates","Indexed decrease-key heap"],["Binary heap","Fibonacci heap"],[".NET quaternary min-heap","Binary min-heap"],["0-1 BFS","General nonnegative-weight Dijkstra"]],
-  "comparisonSources": ["https://usaco.guide/gold/shortest-paths","https://cp-algorithms.com/graph/dijkstra.html","https://cp-algorithms.com/graph/bellman_ford.html","https://cp-algorithms.com/graph/all-pair-shortest-path-floyd-warshall.html","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2"],
+  "comparisons": [
+    [
+      "BFS",
+      "Dijkstra"
+    ],
+    [
+      "Dijkstra",
+      "Bellman-Ford"
+    ],
+    [
+      "Dijkstra",
+      "Floyd-Warshall"
+    ],
+    [
+      "Bellman-Ford",
+      "DAG shortest paths"
+    ],
+    [
+      "Priority queue with lazy updates",
+      "Indexed decrease-key heap"
+    ],
+    [
+      "Binary heap",
+      "Fibonacci heap"
+    ],
+    [
+      ".NET quaternary min-heap",
+      "Binary min-heap"
+    ],
+    [
+      "0-1 BFS",
+      "General nonnegative-weight Dijkstra"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/gold/shortest-paths",
+    "https://cp-algorithms.com/graph/dijkstra.html",
+    "https://cp-algorithms.com/graph/bellman_ford.html",
+    "https://cp-algorithms.com/graph/all-pair-shortest-path-floyd-warshall.html",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "USACO Guide and CP-Algorithms shortest-path references; official LeetCode problem statements",
     "edition": "Timeless graph algorithms; canonical problem pages checked 2026-11-14",
     "checkedAt": "2026-11-14",
-    "urls": ["https://usaco.guide/gold/shortest-paths","https://cp-algorithms.com/graph/dijkstra.html","https://cp-algorithms.com/graph/bellman_ford.html","https://cp-algorithms.com/graph/all-pair-shortest-path-floyd-warshall.html","https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2","https://leetcode.com/problems/network-delay-time/","https://leetcode.com/problems/cheapest-flights-within-k-stops/","https://leetcode.com/problems/path-with-minimum-effort/","https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/","https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/","https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/","https://leetcode.com/problems/path-with-maximum-probability/","https://leetcode.com/problems/shortest-path-in-binary-matrix/"]
+    "urls": [
+      "https://usaco.guide/gold/shortest-paths",
+      "https://cp-algorithms.com/graph/dijkstra.html",
+      "https://cp-algorithms.com/graph/bellman_ford.html",
+      "https://cp-algorithms.com/graph/all-pair-shortest-path-floyd-warshall.html",
+      "https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2",
+      "https://leetcode.com/problems/network-delay-time/",
+      "https://leetcode.com/problems/cheapest-flights-within-k-stops/",
+      "https://leetcode.com/problems/path-with-minimum-effort/",
+      "https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/",
+      "https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/",
+      "https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/",
+      "https://leetcode.com/problems/path-with-maximum-probability/",
+      "https://leetcode.com/problems/shortest-path-in-binary-matrix/"
+    ]
   },
-  "scopeExclusions": ["Unweighted graph traversal and connected components, covered in t11-011","Topological sorting itself, covered in t11-026","Disjoint-set union, covered in t11-027","Minimum spanning trees and network flow","Johnson's algorithm and advanced sparse all-pairs methods","Time-dependent and multi-criteria routing"],
-  "generationAllowed": true
+  "scopeExclusions": [
+    "Unweighted graph traversal and connected components, covered in t11-011",
+    "Topological sorting itself, covered in t11-026",
+    "Disjoint-set union, covered in t11-027",
+    "Minimum spanning trees and network flow",
+    "Johnson's algorithm and advanced sparse all-pairs methods",
+    "Time-dependent and multi-criteria routing"
+  ]
 }

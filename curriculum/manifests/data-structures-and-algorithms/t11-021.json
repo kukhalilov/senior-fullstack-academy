@@ -3,7 +3,7 @@
   "id": "t11-021",
   "track": "track-11",
   "title": "sets and membership algorithms",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A set represents distinct values without attaching a separate value to each key",
     "Membership queries can replace repeated scans when the data supports efficient lookup",
@@ -267,7 +267,6 @@
     "Probabilistic membership structures such as Bloom filters",
     "Multisets and frequency maps as the main subject"
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "HashSet membership and updates are expected O(1) under suitable hashing, not strict worst-case O(1); collisions can degrade performance and growth can cause occasional O(n) resizing.",
     "SortedSet uses comparer ordering, and values for which the comparer returns zero are treated as equivalent duplicates. Its operations are typically O(log n).",

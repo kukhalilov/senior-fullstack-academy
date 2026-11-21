@@ -3,7 +3,7 @@
   "id": "t05-007",
   "track": "track-05",
   "title": "password storage hashing MFA account recovery and rate limits",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Passwords are low-entropy human secrets, so stored verifiers require deliberately expensive password hashing with a unique salt and configurable work factor. General-purpose fast hashes and reversible encryption are not equivalent.",
     "MFA adds an authenticator but factor and recovery strength matter. Phishing-resistant public-key authenticators provide stronger resistance to phishing than replayable one-time codes.",
@@ -143,14 +143,13 @@
       "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
       "https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html",
       "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
-      "https://pages.nist.gov/800-63-4/sp800-63b.html"
-      ,"https://www.w3.org/TR/webauthn-3/"
+      "https://pages.nist.gov/800-63-4/sp800-63b.html",
+      "https://www.w3.org/TR/webauthn-3/"
     ]
   },
   "scopeExclusions": [
     "ASP.NET Core Identity API mechanics are in t05-005 and track-02.",
     "OAuth token lifetimes and external identity providers are in t05-004.",
     "Cryptographic key management beyond password-specific peppers is in t05-009."
-  ],
-  "generationAllowed": true
+  ]
 }

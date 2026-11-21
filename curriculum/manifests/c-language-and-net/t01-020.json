@@ -3,7 +3,7 @@
   "id": "t01-020",
   "track": "track-01",
   "title": "streams file system serialization sockets and HTTP clients",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A stream is an ordered byte flow with capabilities such as reading, writing, seeking, and asynchronous I/O. The same stream abstraction can represent a file, memory buffer, network connection, or compression layer; encoding and message framing remain separate responsibilities.",
     "File APIs combine paths, permissions, handles, buffering, and operating-system behavior. Use asynchronous I/O for scalable waits, dispose owned streams and readers deterministically, and treat user-supplied paths and serialized data as untrusted input.",
@@ -480,16 +480,49 @@
   ],
   "inventoryComplete": true,
   "comparisons": [
-    ["Stream", "FileStream", "NetworkStream", "MemoryStream"],
-    ["Span<T>", "Memory<T>"],
-    ["File.ReadAllBytesAsync", "FileStream.ReadAsync"],
-    ["JsonDocument", "JsonNode", "Utf8JsonReader"],
-    ["reflection-based JSON serialization", "source-generated JSON metadata"],
-    ["Socket", "TcpClient and TcpListener"],
-    ["TCP", "UDP"],
-    ["long-lived HttpClient with PooledConnectionLifetime", "IHttpClientFactory"],
-    ["ResponseContentRead", "ResponseHeadersRead"],
-    ["synchronous I/O", "asynchronous I/O"]
+    [
+      "Stream",
+      "FileStream",
+      "NetworkStream",
+      "MemoryStream"
+    ],
+    [
+      "Span<T>",
+      "Memory<T>"
+    ],
+    [
+      "File.ReadAllBytesAsync",
+      "FileStream.ReadAsync"
+    ],
+    [
+      "JsonDocument",
+      "JsonNode",
+      "Utf8JsonReader"
+    ],
+    [
+      "reflection-based JSON serialization",
+      "source-generated JSON metadata"
+    ],
+    [
+      "Socket",
+      "TcpClient and TcpListener"
+    ],
+    [
+      "TCP",
+      "UDP"
+    ],
+    [
+      "long-lived HttpClient with PooledConnectionLifetime",
+      "IHttpClientFactory"
+    ],
+    [
+      "ResponseContentRead",
+      "ResponseHeadersRead"
+    ],
+    [
+      "synchronous I/O",
+      "asynchronous I/O"
+    ]
   ],
   "comparisonSources": [
     "https://learn.microsoft.com/en-us/dotnet/standard/io/",
@@ -543,6 +576,5 @@
     "ASP.NET Core server hosting, server-side HTTP routing, and web security are covered in platform topics.",
     "Database provider APIs and EF Core data access are covered in the persistence track.",
     "BinaryFormatter is excluded from recommended serialization practice because it is obsolete and unsafe for untrusted data."
-  ],
-  "generationAllowed": true
+  ]
 }

@@ -3,7 +3,7 @@
   "id": "t07-004",
   "track": "track-07",
   "title": "React function and class components JSX props and events",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Components package rendering logic into reusable units; composition nests small components to build larger interfaces.",
     "Function components receive one props object and return React nodes. Class components remain supported but functions are recommended for new code.",
@@ -14,18 +14,181 @@
     "Component composition and callback props allow a parent to provide behavior while a child owns presentation; event propagation can be stopped or allowed to continue."
   ],
   "inventory": [
-    {"id":"function-components-and-composition","title":"Function components and composition","items":["Function component","Component definition","Component invocation as JSX","Capitalized component identifiers","Lowercase host-tag identifiers","Component composition","Parent component","Child component","Nested components","Component extraction","Default export","Named export"]},
-    {"id":"class-components","title":"Supported class component surface","items":["Class component","Component","render()","this.props","constructor(props)","super(props)","static defaultProps","static contextType","Class components supported but not recommended for new code"]},
-    {"id":"jsx-syntax","title":"JSX syntax and JavaScript embedding","items":["JSX syntax extension","React 19 new JSX transform requirement","Single root element","Fragment shorthand <>...</>","Explicit Fragment <Fragment>","Self-closing JSX element","JSX attribute","className","htmlFor","aria-* and data-* JSX naming exception","style object","Curly-brace JavaScript expression","String attribute value","Expression attribute value","Spread attributes {...props}","Text children","Nested JSX children","JavaScript comment in JSX","JSX is not HTML"]},
-    {"id":"props-and-children","title":"Component props and children","items":["Props object","Props destructuring","Props are read-only","JavaScript values as props","Default prop value in parameter destructuring","children prop","JSX as children","Named content props","Prop forwarding"]},
-    {"id":"conditional-and-list-rendering","title":"Choosing and mapping rendered output","items":["Conditional rendering with if","Conditional rendering with conditional return","Conditional rendering with &&","Conditional rendering with ?: ","Returning null","Array.map() for list rendering","Keys on mapped elements"]},
-    {"id":"event-handlers","title":"React event handler behavior and propagation","items":["Event handler function","Passing a handler reference","Inline arrow-function handler","Event handler prop","Custom callback prop","onClick","onSubmit","onChange","onPointerEnter","Synthetic event object","Event bubbling","React onScroll bubbling exception","stopPropagation()","preventDefault()","Event capture handler naming with Capture suffix","Event object currentTarget","Event handler is not called during render"]}
+    {
+      "id": "function-components-and-composition",
+      "title": "Function components and composition",
+      "items": [
+        "Function component",
+        "Component definition",
+        "Component invocation as JSX",
+        "Capitalized component identifiers",
+        "Lowercase host-tag identifiers",
+        "Component composition",
+        "Parent component",
+        "Child component",
+        "Nested components",
+        "Component extraction",
+        "Default export",
+        "Named export"
+      ]
+    },
+    {
+      "id": "class-components",
+      "title": "Supported class component surface",
+      "items": [
+        "Class component",
+        "Component",
+        "render()",
+        "this.props",
+        "constructor(props)",
+        "super(props)",
+        "static defaultProps",
+        "static contextType",
+        "Class components supported but not recommended for new code"
+      ]
+    },
+    {
+      "id": "jsx-syntax",
+      "title": "JSX syntax and JavaScript embedding",
+      "items": [
+        "JSX syntax extension",
+        "React 19 new JSX transform requirement",
+        "Single root element",
+        "Fragment shorthand <>...</>",
+        "Explicit Fragment <Fragment>",
+        "Self-closing JSX element",
+        "JSX attribute",
+        "className",
+        "htmlFor",
+        "aria-* and data-* JSX naming exception",
+        "style object",
+        "Curly-brace JavaScript expression",
+        "String attribute value",
+        "Expression attribute value",
+        "Spread attributes {...props}",
+        "Text children",
+        "Nested JSX children",
+        "JavaScript comment in JSX",
+        "JSX is not HTML"
+      ]
+    },
+    {
+      "id": "props-and-children",
+      "title": "Component props and children",
+      "items": [
+        "Props object",
+        "Props destructuring",
+        "Props are read-only",
+        "JavaScript values as props",
+        "Default prop value in parameter destructuring",
+        "children prop",
+        "JSX as children",
+        "Named content props",
+        "Prop forwarding"
+      ]
+    },
+    {
+      "id": "conditional-and-list-rendering",
+      "title": "Choosing and mapping rendered output",
+      "items": [
+        "Conditional rendering with if",
+        "Conditional rendering with conditional return",
+        "Conditional rendering with &&",
+        "Conditional rendering with ?: ",
+        "Returning null",
+        "Array.map() for list rendering",
+        "Keys on mapped elements"
+      ]
+    },
+    {
+      "id": "event-handlers",
+      "title": "React event handler behavior and propagation",
+      "items": [
+        "Event handler function",
+        "Passing a handler reference",
+        "Inline arrow-function handler",
+        "Event handler prop",
+        "Custom callback prop",
+        "onClick",
+        "onSubmit",
+        "onChange",
+        "onPointerEnter",
+        "Synthetic event object",
+        "Event bubbling",
+        "React onScroll bubbling exception",
+        "stopPropagation()",
+        "preventDefault()",
+        "Event capture handler naming with Capture suffix",
+        "Event object currentTarget",
+        "Event handler is not called during render"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Function component","Class component"],["React component identifier","Host tag identifier"],["Passing a handler","Calling a handler during render"],["Props","Component-local state"],["JSX","HTML"]],
-  "comparisonSources": ["https://react.dev/learn/your-first-component","https://react.dev/reference/react/Component","https://react.dev/learn/writing-markup-with-jsx","https://react.dev/learn/passing-props-to-a-component","https://react.dev/learn/responding-to-events"],
-  "versionNotes": [{"edition":"React 19","items":["React 19 requires the modern JSX transform; the upgrade guide identifies it as necessary for improvements including ref-as-prop support."],"sourceUrls":["https://react.dev/blog/2024/04/25/react-19-upgrade-guide"]}],
-  "sourceSnapshot": {"authority":"Official React documentation","edition":"React 19.3 stable documentation checked 2026-11-17","checkedAt":"2026-11-17","urls":["https://react.dev/learn/your-first-component","https://react.dev/reference/react/Component","https://react.dev/learn/writing-markup-with-jsx","https://react.dev/learn/javascript-in-jsx-with-curly-braces","https://react.dev/learn/passing-props-to-a-component","https://react.dev/learn/conditional-rendering","https://react.dev/learn/rendering-lists","https://react.dev/learn/responding-to-events","https://react.dev/learn/responding-to-events#event-propagation","https://react.dev/reference/react/createElement","https://react.dev/reference/react-dom/components/common","https://react.dev/blog/2024/04/25/react-19-upgrade-guide"]},
-  "scopeExclusions":["Render lifecycle, purity, reconciliation, keys, and state identity (t07-003)","State hooks, reducer, context, and Actions (t07-005)","Effects, refs, and imperative handles (t07-006)","DOM-specific props, event prop complete reference, and form Actions (t07-020)","Error boundaries and class lifecycle methods beyond render basics (t07-012)"],
-  "generationAllowed": true
+  "comparisons": [
+    [
+      "Function component",
+      "Class component"
+    ],
+    [
+      "React component identifier",
+      "Host tag identifier"
+    ],
+    [
+      "Passing a handler",
+      "Calling a handler during render"
+    ],
+    [
+      "Props",
+      "Component-local state"
+    ],
+    [
+      "JSX",
+      "HTML"
+    ]
+  ],
+  "comparisonSources": [
+    "https://react.dev/learn/your-first-component",
+    "https://react.dev/reference/react/Component",
+    "https://react.dev/learn/writing-markup-with-jsx",
+    "https://react.dev/learn/passing-props-to-a-component",
+    "https://react.dev/learn/responding-to-events"
+  ],
+  "versionNotes": [
+    {
+      "edition": "React 19",
+      "items": [
+        "React 19 requires the modern JSX transform; the upgrade guide identifies it as necessary for improvements including ref-as-prop support."
+      ],
+      "sourceUrls": [
+        "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Official React documentation",
+    "edition": "React 19.3 stable documentation checked 2026-11-17",
+    "checkedAt": "2026-11-17",
+    "urls": [
+      "https://react.dev/learn/your-first-component",
+      "https://react.dev/reference/react/Component",
+      "https://react.dev/learn/writing-markup-with-jsx",
+      "https://react.dev/learn/javascript-in-jsx-with-curly-braces",
+      "https://react.dev/learn/passing-props-to-a-component",
+      "https://react.dev/learn/conditional-rendering",
+      "https://react.dev/learn/rendering-lists",
+      "https://react.dev/learn/responding-to-events",
+      "https://react.dev/learn/responding-to-events#event-propagation",
+      "https://react.dev/reference/react/createElement",
+      "https://react.dev/reference/react-dom/components/common",
+      "https://react.dev/blog/2024/04/25/react-19-upgrade-guide"
+    ]
+  },
+  "scopeExclusions": [
+    "Render lifecycle, purity, reconciliation, keys, and state identity (t07-003)",
+    "State hooks, reducer, context, and Actions (t07-005)",
+    "Effects, refs, and imperative handles (t07-006)",
+    "DOM-specific props, event prop complete reference, and form Actions (t07-020)",
+    "Error boundaries and class lifecycle methods beyond render basics (t07-012)"
+  ]
 }

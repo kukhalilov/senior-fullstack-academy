@@ -3,7 +3,7 @@
   "id": "t03-002",
   "track": "track-03",
   "title": "relational modeling constraints data types null and normalization",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A relational model represents facts as relations with declared keys and constraints. Table design begins by identifying entities, candidate identifiers, attributes, and relationships; constraints make invalid states harder to store.",
     "Normalization separates facts according to functional dependencies to reduce update, insertion, and deletion anomalies. Denormalization is a deliberate read or performance choice that introduces consistency work and should preserve an authoritative source.",
@@ -97,7 +97,7 @@
         "Three-valued predicate logic",
         "IS NULL predicate",
         "IS NOT NULL predicate",
-      "IS [NOT] DISTINCT FROM predicate (SQL Server 2022+)",
+        "IS [NOT] DISTINCT FROM predicate (SQL Server 2022+)",
         "NULL is not equal to NULL",
         "NULL versus zero",
         "NULL versus empty string",
@@ -362,8 +362,8 @@
       "https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description",
       "https://cs.rpi.edu/~sibel/csci4380/fall2026/course_notes/normalization.html",
       "https://www.cs.bu.edu/fac/gkollios/cs460f17/Slides/NF.pdf",
-      "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17"
-      ,"https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17"
+      "https://learn.microsoft.com/en-us/sql/t-sql/queries/is-distinct-from-transact-sql?view=sql-server-ver17",
+      "https://learn.microsoft.com/en-us/sql/t-sql/statements/alter-table-transact-sql?view=sql-server-ver17"
     ]
   },
   "scopeExclusions": [
@@ -372,7 +372,6 @@
     "Temporal-table querying and operations are covered in a separate SQL Server operations topic; this scope treats temporal modeling as a schema choice.",
     "Provider-specific PostgreSQL, MySQL, and document-store modeling differences are compared in t03-001, not asserted as SQL Server semantics."
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "In SQL Server, CHECK rejects FALSE but accepts UNKNOWN, so a nullable column can pass a CHECK; add NOT NULL when requiredness is part of the rule.",
     "SQL Server UNIQUE treats NULL as a key value and permits at most one NULL in a single-column nullable unique key; a filtered unique index can enforce uniqueness only for present values.",

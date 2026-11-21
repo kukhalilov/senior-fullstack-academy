@@ -3,23 +3,289 @@
   "id": "t06-020",
   "track": "track-06",
   "title": "Browser Fetch API, request cancellation, and response bodies",
-  "status": "source-backed-draft-generation-enabled",
-  "concepts": ["Fetch request and response lifecycle", "HTTP error statuses versus network rejection", "Headers and body streams", "Request construction and cloning", "Abort signals and cancellation propagation", "CORS and browser security constraints", "Deferred fetch activation, quota, and its no-response contract"],
+  "status": "source-backed-scope-complete",
+  "concepts": [
+    "Fetch request and response lifecycle",
+    "HTTP error statuses versus network rejection",
+    "Headers and body streams",
+    "Request construction and cloning",
+    "Abort signals and cancellation propagation",
+    "CORS and browser security constraints",
+    "Deferred fetch activation, quota, and its no-response contract"
+  ],
   "inventory": [
-    {"id":"fetch-interfaces-and-methods","title":"Fetch API interfaces, constructors, and methods","items":["fetch","Request","Request.prototype.constructor","Request.prototype.clone","Request.prototype.cache","Request.prototype.credentials","Request.prototype.destination","Request.prototype.duplex","Request.prototype.integrity","Request.prototype.isHistoryNavigation","Request.prototype.isReloadNavigation","Request.prototype.keepalive","Request.prototype.mode","Request.prototype.referrer","Request.prototype.referrerPolicy","Request.prototype.redirect","Request.prototype.targetAddressSpace","Request.prototype.arrayBuffer","Request.prototype.blob","Request.prototype.bytes","Request.prototype.formData","Request.prototype.json","Request.prototype.text","Request.prototype.textStream","Request.prototype.body","Request.prototype.bodyUsed","Request.prototype.headers","Request.prototype.method","Request.prototype.signal","Request.prototype.url","Response","Response.error","Response.json","Response.redirect","Response.prototype.constructor","Response.prototype.clone","Response.prototype.arrayBuffer","Response.prototype.blob","Response.prototype.bytes","Response.prototype.formData","Response.prototype.json","Response.prototype.text","Response.prototype.textStream","Response.prototype.body","Response.prototype.bodyUsed","Response.prototype.headers","Response.prototype.ok","Response.prototype.redirected","Response.prototype.status","Response.prototype.statusText","Response.prototype.type","Response.prototype.url","Headers","Headers.prototype.constructor","Headers.prototype.append","Headers.prototype.delete","Headers.prototype.get","Headers.prototype.getSetCookie","Headers.prototype.has","Headers.prototype.set","Headers.prototype.entries","Headers.prototype.forEach","Headers.prototype.keys","Headers.prototype.values","Headers.prototype[Symbol.iterator]"]},
-    {"id":"cancellation-and-abort","title":"AbortController, AbortSignal, and cancellation","items":["AbortController","AbortController.prototype.abort","AbortController.prototype.signal","AbortSignal","AbortSignal.abort","AbortSignal.any","AbortSignal.timeout","AbortSignal.prototype.aborted","AbortSignal.prototype.reason","AbortSignal.prototype.throwIfAborted","AbortSignal.prototype.onabort","AbortError"]},
-    {"id":"fetch-host-behavior","title":"Request options and browser fetch behavior","items":["RequestInit","RequestInit.method","RequestInit.headers","RequestInit.body","RequestInit.mode","RequestInit.credentials","RequestInit.cache","RequestInit.redirect","RequestInit.referrer","RequestInit.referrerPolicy","RequestInit.integrity","RequestInit.keepalive","RequestInit.signal","RequestInit.priority","RequestInit.priority values (high, low, auto)","RequestInit.duplex","RequestInit.window","RequestInit.attributionReporting","RequestInit.attributionReporting.eventSourceEligible","RequestInit.attributionReporting.triggerEligible","RequestInit.browsingTopics","RequestInit.privateToken","RequestInit.privateToken.operation values","RequestInit.privateToken.issuers","RequestInit.privateToken.refreshPolicy","RequestInit.privateToken.version","RequestInit.targetAddressSpace","RequestInit.targetAddressSpace values (local, loopback, public)","ResponseInit","ResponseInit.status","ResponseInit.statusText","ResponseInit.headers","CORS mode","same-origin mode","no-cors mode","CORS-safelisted request methods and headers","CORS preflight request headers","CORS preflight cache","CORS response header exposure","credentialed CORS requirements","preflight does not send credentials","redirect mode manual opaque redirect","HTTP cache modes","keepalive body size limit","streaming request upload and duplex half","opaque response","HTTP error status handling","ReadableStream response body","single-use request and response bodies","fetch response body cancellation and reader locking"]}
-    ,{"id":"deferred-fetch-api","title":"Deferred Fetch API and fetchLater quotas","items":["Window.fetchLater()","DeferredRequestInit","DeferredRequestInit.activateAfter","FetchLaterResult","FetchLaterResult.activated","Deferred fetch response is not exposed","Deferred fetch activation on timeout or page termination","Deferred fetch abort behavior","Deferred fetch ReadableStream body restriction","Deferred fetch connect-src CSP requirement","Deferred fetch Permissions Policy directives","Deferred fetch top-level traversable quota","Deferred fetch top-level and subframe quotas","Deferred fetch per-origin quota"]}
+    {
+      "id": "fetch-interfaces-and-methods",
+      "title": "Fetch API interfaces, constructors, and methods",
+      "items": [
+        "fetch",
+        "Request",
+        "Request.prototype.constructor",
+        "Request.prototype.clone",
+        "Request.prototype.cache",
+        "Request.prototype.credentials",
+        "Request.prototype.destination",
+        "Request.prototype.duplex",
+        "Request.prototype.integrity",
+        "Request.prototype.isHistoryNavigation",
+        "Request.prototype.isReloadNavigation",
+        "Request.prototype.keepalive",
+        "Request.prototype.mode",
+        "Request.prototype.referrer",
+        "Request.prototype.referrerPolicy",
+        "Request.prototype.redirect",
+        "Request.prototype.targetAddressSpace",
+        "Request.prototype.arrayBuffer",
+        "Request.prototype.blob",
+        "Request.prototype.bytes",
+        "Request.prototype.formData",
+        "Request.prototype.json",
+        "Request.prototype.text",
+        "Request.prototype.textStream",
+        "Request.prototype.body",
+        "Request.prototype.bodyUsed",
+        "Request.prototype.headers",
+        "Request.prototype.method",
+        "Request.prototype.signal",
+        "Request.prototype.url",
+        "Response",
+        "Response.error",
+        "Response.json",
+        "Response.redirect",
+        "Response.prototype.constructor",
+        "Response.prototype.clone",
+        "Response.prototype.arrayBuffer",
+        "Response.prototype.blob",
+        "Response.prototype.bytes",
+        "Response.prototype.formData",
+        "Response.prototype.json",
+        "Response.prototype.text",
+        "Response.prototype.textStream",
+        "Response.prototype.body",
+        "Response.prototype.bodyUsed",
+        "Response.prototype.headers",
+        "Response.prototype.ok",
+        "Response.prototype.redirected",
+        "Response.prototype.status",
+        "Response.prototype.statusText",
+        "Response.prototype.type",
+        "Response.prototype.url",
+        "Headers",
+        "Headers.prototype.constructor",
+        "Headers.prototype.append",
+        "Headers.prototype.delete",
+        "Headers.prototype.get",
+        "Headers.prototype.getSetCookie",
+        "Headers.prototype.has",
+        "Headers.prototype.set",
+        "Headers.prototype.entries",
+        "Headers.prototype.forEach",
+        "Headers.prototype.keys",
+        "Headers.prototype.values",
+        "Headers.prototype[Symbol.iterator]"
+      ]
+    },
+    {
+      "id": "cancellation-and-abort",
+      "title": "AbortController, AbortSignal, and cancellation",
+      "items": [
+        "AbortController",
+        "AbortController.prototype.abort",
+        "AbortController.prototype.signal",
+        "AbortSignal",
+        "AbortSignal.abort",
+        "AbortSignal.any",
+        "AbortSignal.timeout",
+        "AbortSignal.prototype.aborted",
+        "AbortSignal.prototype.reason",
+        "AbortSignal.prototype.throwIfAborted",
+        "AbortSignal.prototype.onabort",
+        "AbortError"
+      ]
+    },
+    {
+      "id": "fetch-host-behavior",
+      "title": "Request options and browser fetch behavior",
+      "items": [
+        "RequestInit",
+        "RequestInit.method",
+        "RequestInit.headers",
+        "RequestInit.body",
+        "RequestInit.mode",
+        "RequestInit.credentials",
+        "RequestInit.cache",
+        "RequestInit.redirect",
+        "RequestInit.referrer",
+        "RequestInit.referrerPolicy",
+        "RequestInit.integrity",
+        "RequestInit.keepalive",
+        "RequestInit.signal",
+        "RequestInit.priority",
+        "RequestInit.priority values (high, low, auto)",
+        "RequestInit.duplex",
+        "RequestInit.window",
+        "RequestInit.attributionReporting",
+        "RequestInit.attributionReporting.eventSourceEligible",
+        "RequestInit.attributionReporting.triggerEligible",
+        "RequestInit.browsingTopics",
+        "RequestInit.privateToken",
+        "RequestInit.privateToken.operation values",
+        "RequestInit.privateToken.issuers",
+        "RequestInit.privateToken.refreshPolicy",
+        "RequestInit.privateToken.version",
+        "RequestInit.targetAddressSpace",
+        "RequestInit.targetAddressSpace values (local, loopback, public)",
+        "ResponseInit",
+        "ResponseInit.status",
+        "ResponseInit.statusText",
+        "ResponseInit.headers",
+        "CORS mode",
+        "same-origin mode",
+        "no-cors mode",
+        "CORS-safelisted request methods and headers",
+        "CORS preflight request headers",
+        "CORS preflight cache",
+        "CORS response header exposure",
+        "credentialed CORS requirements",
+        "preflight does not send credentials",
+        "redirect mode manual opaque redirect",
+        "HTTP cache modes",
+        "keepalive body size limit",
+        "streaming request upload and duplex half",
+        "opaque response",
+        "HTTP error status handling",
+        "ReadableStream response body",
+        "single-use request and response bodies",
+        "fetch response body cancellation and reader locking"
+      ]
+    },
+    {
+      "id": "deferred-fetch-api",
+      "title": "Deferred Fetch API and fetchLater quotas",
+      "items": [
+        "Window.fetchLater()",
+        "DeferredRequestInit",
+        "DeferredRequestInit.activateAfter",
+        "FetchLaterResult",
+        "FetchLaterResult.activated",
+        "Deferred fetch response is not exposed",
+        "Deferred fetch activation on timeout or page termination",
+        "Deferred fetch abort behavior",
+        "Deferred fetch ReadableStream body restriction",
+        "Deferred fetch connect-src CSP requirement",
+        "Deferred fetch Permissions Policy directives",
+        "Deferred fetch top-level traversable quota",
+        "Deferred fetch top-level and subframe quotas",
+        "Deferred fetch per-origin quota"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["fetch","XMLHttpRequest"],["HTTP error response","network rejection"],["AbortController","AbortSignal.timeout"],["Request","Response"],["CORS mode","same-origin mode"]],
-  "comparisonSources": ["https://fetch.spec.whatwg.org/","https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API","https://developer.mozilla.org/en-US/docs/Web/API/AbortController","https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal"],
-  "versionNotes": [
-    {"edition":"2023-2025 browser platform additions","items":["AbortSignal.any","AbortSignal.timeout","Response.json","Headers.getSetCookie","Request.prototype.bytes","Response.prototype.bytes","Request.prototype.keepalive"],"sourceUrls":["https://fetch.spec.whatwg.org/","https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal","https://developer.mozilla.org/en-US/docs/Web/API/Request/keepalive","https://developer.mozilla.org/en-US/docs/Web/API/Response/bytes"]},
-    {"edition":"2026 current Fetch surface checked 2026-11-16","items":["Request.prototype.textStream","Response.prototype.textStream","RequestInit.attributionReporting","RequestInit.browsingTopics","RequestInit.privateToken","RequestInit.targetAddressSpace","Window.fetchLater()","FetchLaterResult","DeferredRequestInit"],"sourceUrls":["https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream","https://developer.mozilla.org/en-US/docs/Web/API/Response/textStream","https://developer.mozilla.org/en-US/docs/Web/API/RequestInit","https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater","https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch"]}
+  "comparisons": [
+    [
+      "fetch",
+      "XMLHttpRequest"
+    ],
+    [
+      "HTTP error response",
+      "network rejection"
+    ],
+    [
+      "AbortController",
+      "AbortSignal.timeout"
+    ],
+    [
+      "Request",
+      "Response"
+    ],
+    [
+      "CORS mode",
+      "same-origin mode"
+    ]
   ],
-  "sourceSnapshot": {"authority":"WHATWG Fetch Standard and MDN Web API reference","edition":"Living standard checked 2026-11-16","checkedAt":"2026-11-16","urls":["https://fetch.spec.whatwg.org/","https://fetch.spec.whatwg.org/#deferred-fetch","https://dom.spec.whatwg.org/#interface-AbortSignal","https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API","https://developer.mozilla.org/en-US/docs/Web/API/AbortController","https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal","https://developer.mozilla.org/en-US/docs/Web/API/Headers","https://developer.mozilla.org/en-US/docs/Web/API/Request","https://developer.mozilla.org/en-US/docs/Web/API/Response","https://developer.mozilla.org/en-US/docs/Web/API/RequestInit","https://developer.mozilla.org/en-US/docs/Web/API/Request/duplex","https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes","https://developer.mozilla.org/en-US/docs/Web/API/Response/bytes","https://developer.mozilla.org/en-US/docs/Web/API/Request/keepalive","https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream","https://developer.mozilla.org/en-US/docs/Web/API/Response/textStream","https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater","https://developer.mozilla.org/en-US/docs/Web/API/FetchLaterResult","https://developer.mozilla.org/en-US/docs/Web/API/DeferredRequestInit","https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch","https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Permissions-Policy/deferred-fetch","https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch","https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS","https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream"]},
-  "scopeExclusions": ["XHR event model details","Service worker interception and cache strategies","Non-browser fetch differences in Node.js and other runtimes"],
+  "comparisonSources": [
+    "https://fetch.spec.whatwg.org/",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
+    "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+    "https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal"
+  ],
+  "versionNotes": [
+    {
+      "edition": "2023-2025 browser platform additions",
+      "items": [
+        "AbortSignal.any",
+        "AbortSignal.timeout",
+        "Response.json",
+        "Headers.getSetCookie",
+        "Request.prototype.bytes",
+        "Response.prototype.bytes",
+        "Request.prototype.keepalive"
+      ],
+      "sourceUrls": [
+        "https://fetch.spec.whatwg.org/",
+        "https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Request/keepalive",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Response/bytes"
+      ]
+    },
+    {
+      "edition": "2026 current Fetch surface checked 2026-11-16",
+      "items": [
+        "Request.prototype.textStream",
+        "Response.prototype.textStream",
+        "RequestInit.attributionReporting",
+        "RequestInit.browsingTopics",
+        "RequestInit.privateToken",
+        "RequestInit.targetAddressSpace",
+        "Window.fetchLater()",
+        "FetchLaterResult",
+        "DeferredRequestInit"
+      ],
+      "sourceUrls": [
+        "https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Response/textStream",
+        "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "WHATWG Fetch Standard and MDN Web API reference",
+    "edition": "Living standard checked 2026-11-16",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://fetch.spec.whatwg.org/",
+      "https://fetch.spec.whatwg.org/#deferred-fetch",
+      "https://dom.spec.whatwg.org/#interface-AbortSignal",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
+      "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+      "https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Headers",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Request",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Response",
+      "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Request/duplex",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Request/bytes",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Response/bytes",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Request/keepalive",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Request/textStream",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Response/textStream",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetchLater",
+      "https://developer.mozilla.org/en-US/docs/Web/API/FetchLaterResult",
+      "https://developer.mozilla.org/en-US/docs/Web/API/DeferredRequestInit",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Deferred_Fetch",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Permissions-Policy/deferred-fetch",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+      "https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream"
+    ]
+  },
+  "scopeExclusions": [
+    "XHR event model details",
+    "Service worker interception and cache strategies",
+    "Non-browser fetch differences in Node.js and other runtimes"
+  ],
   "accuracyFacts": [
     "Fetch fulfills with a Response for HTTP statuses such as 404 or 500; rejection indicates network, policy, abort, or request-processing failure rather than a non-2xx status by itself.",
     "The Fetch Standard RequestInit dictionary contains method, headers, body, referrer, referrerPolicy, mode, credentials, cache, redirect, integrity, keepalive, signal, duplex, priority, and window. Attribution Reporting, Topics, Private State Token, and targetAddressSpace are browser-specific extensions outside that dictionary.",
@@ -30,6 +296,5 @@
     "Deferred Fetch allocates a default 640 KiB quota per top-level traversable/tab, with 128 KiB initially reserved for cross-origin minimal delegation, 8 KiB default reservations for eligible cross-origin nested contexts, 64 KiB normal delegated reservations, and a 64 KiB cap per reporting origin.",
     "fetchLater is Window-only, secure-context-only, requires an active document and HTTP(S) potentially trustworthy URL, rejects unknown-length/ReadableStream bodies, uses connect-src, and disables service-worker mode.",
     "fetchLater returns a synchronous FetchLaterResult whose activated flag indicates invocation, not server delivery or response success; its response is ignored."
-  ],
-  "generationAllowed": true
+  ]
 }

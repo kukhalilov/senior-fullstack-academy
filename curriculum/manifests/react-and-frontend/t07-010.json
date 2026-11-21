@@ -3,7 +3,7 @@
   "id": "t07-010",
   "track": "track-07",
   "title": "React Server Components directives resources and server functions",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "React Server Components render ahead of time, before client bundling, in a separate build or request-time server environment. They can access server-side data and keep server-only dependencies out of the client module subtree.",
     "Server Components and Client Components describe execution boundaries, not whether HTML is ever rendered on a server. Client Components can still contribute to server-rendered HTML in frameworks.",
@@ -14,17 +14,189 @@
     "React documents user-facing Server Components and Server Functions as stable in React 19, while lower-level framework/bundler integration APIs remain unstable across React 19 minor versions. Stability does not remove the need to update vulnerable RSC transport packages; the current security advisories include patched branch versions."
   ],
   "inventory": [
-    {"id":"server-component-model","title":"Server Component execution model","items":["React Server Component","Server Component","Client Component","Server Component render environment","Build-time Server Component rendering","Request-time Server Component rendering","Async Server Component","await during Server Component render","React Server Component Payload (RSC Payload)","Server Component output versus final HTML","Server-only dependency","Server Component versus server-side rendering","Server Component limitations on client Hooks","Component definition versus component usage","Module dependency tree versus render tree"]},
-    {"id":"client-boundaries","title":"Client module boundaries and serialization","items":["'use client'","'use client' directive placement","Client module boundary","Transitive client module dependency","Server-to-client component boundary","Serializable props across the boundary","Supported serializable value","Primitive serializable props","Global Symbol.for serializable value","Array Map Set and iterable props","TypedArray and ArrayBuffer props","Date and Promise props","Plain object props","JSX element props across boundary","Server Function prop","Unsupported class instance props","Unsupported local symbol props","Unsupported ordinary function prop","Server Component rendered as a Client Component child","Module shared by server and client usage","Browser-only API in a Client Component","Client Component can be server-rendered to HTML"]},
-    {"id":"server-functions","title":"Server Function semantics and directives","items":["Server Function","Server Action (older name for a Server Function used as an Action)","'use server'","Function-level 'use server' directive","Module-level 'use server' directive","'use server' requires async function","Module-level directive exports callable from client","Function-level directive cannot be directly imported from client","Async Server Function","Server Function reference","Server Function call from a Client Component","Serialized arguments","Serialized return value","Server Function serializable argument types","Server Function supported return value types","FormData Server Function argument","Server Function as a form action","Progressive enhancement of form Server Function","Server Function inside a Transition","Server Function useActionState argument order"]},
-    {"id":"security-and-stability","title":"Server boundary security and framework responsibilities","items":["Client-controlled Server Function arguments","Server Function input validation","Server Function authorization","Server Function mutation","Server Function is not a data-fetching cache","Server Function network request","Framework or bundler integration requirement","Stable React Server Components semantics in React 19","Unstable lower-level RSC implementation APIs","Pinning React versions for framework RSC integration","RSC transport package security advisory","Unauthenticated RCE risk in vulnerable RSC transport packages","React RSC security advisory patched versions","React Server Functions DoS advisory (2026-10-14)","RSC support can be vulnerable without an app-defined Server Function endpoint","Experimental React taint APIs are not a security substitute"]},
-    {"id":"server-components-interoperation","title":"Server and client interoperation","items":["Passing Server Component output to a Client Component","Passing a Server Function to a Client Component","Client context provider in a server-rendered tree","React 19.3 context imported from a use-client module rendered by a Server Component","Server Component composition","Client interactivity boundary placement","Server Component data access","Client Component state and event handling","Client Component HTML in framework SSR","Server Component payload reconciled with client bundle"]}
+    {
+      "id": "server-component-model",
+      "title": "Server Component execution model",
+      "items": [
+        "React Server Component",
+        "Server Component",
+        "Client Component",
+        "Server Component render environment",
+        "Build-time Server Component rendering",
+        "Request-time Server Component rendering",
+        "Async Server Component",
+        "await during Server Component render",
+        "React Server Component Payload (RSC Payload)",
+        "Server Component output versus final HTML",
+        "Server-only dependency",
+        "Server Component versus server-side rendering",
+        "Server Component limitations on client Hooks",
+        "Component definition versus component usage",
+        "Module dependency tree versus render tree"
+      ]
+    },
+    {
+      "id": "client-boundaries",
+      "title": "Client module boundaries and serialization",
+      "items": [
+        "'use client'",
+        "'use client' directive placement",
+        "Client module boundary",
+        "Transitive client module dependency",
+        "Server-to-client component boundary",
+        "Serializable props across the boundary",
+        "Supported serializable value",
+        "Primitive serializable props",
+        "Global Symbol.for serializable value",
+        "Array Map Set and iterable props",
+        "TypedArray and ArrayBuffer props",
+        "Date and Promise props",
+        "Plain object props",
+        "JSX element props across boundary",
+        "Server Function prop",
+        "Unsupported class instance props",
+        "Unsupported local symbol props",
+        "Unsupported ordinary function prop",
+        "Server Component rendered as a Client Component child",
+        "Module shared by server and client usage",
+        "Browser-only API in a Client Component",
+        "Client Component can be server-rendered to HTML"
+      ]
+    },
+    {
+      "id": "server-functions",
+      "title": "Server Function semantics and directives",
+      "items": [
+        "Server Function",
+        "Server Action (older name for a Server Function used as an Action)",
+        "'use server'",
+        "Function-level 'use server' directive",
+        "Module-level 'use server' directive",
+        "'use server' requires async function",
+        "Module-level directive exports callable from client",
+        "Function-level directive cannot be directly imported from client",
+        "Async Server Function",
+        "Server Function reference",
+        "Server Function call from a Client Component",
+        "Serialized arguments",
+        "Serialized return value",
+        "Server Function serializable argument types",
+        "Server Function supported return value types",
+        "FormData Server Function argument",
+        "Server Function as a form action",
+        "Progressive enhancement of form Server Function",
+        "Server Function inside a Transition",
+        "Server Function useActionState argument order"
+      ]
+    },
+    {
+      "id": "security-and-stability",
+      "title": "Server boundary security and framework responsibilities",
+      "items": [
+        "Client-controlled Server Function arguments",
+        "Server Function input validation",
+        "Server Function authorization",
+        "Server Function mutation",
+        "Server Function is not a data-fetching cache",
+        "Server Function network request",
+        "Framework or bundler integration requirement",
+        "Stable React Server Components semantics in React 19",
+        "Unstable lower-level RSC implementation APIs",
+        "Pinning React versions for framework RSC integration",
+        "RSC transport package security advisory",
+        "Unauthenticated RCE risk in vulnerable RSC transport packages",
+        "React RSC security advisory patched versions",
+        "React Server Functions DoS advisory (2026-10-14)",
+        "RSC support can be vulnerable without an app-defined Server Function endpoint",
+        "Experimental React taint APIs are not a security substitute"
+      ]
+    },
+    {
+      "id": "server-components-interoperation",
+      "title": "Server and client interoperation",
+      "items": [
+        "Passing Server Component output to a Client Component",
+        "Passing a Server Function to a Client Component",
+        "Client context provider in a server-rendered tree",
+        "React 19.3 context imported from a use-client module rendered by a Server Component",
+        "Server Component composition",
+        "Client interactivity boundary placement",
+        "Server Component data access",
+        "Client Component state and event handling",
+        "Client Component HTML in framework SSR",
+        "Server Component payload reconciled with client bundle"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Server Component","Client Component"],["Server Component","server-side rendering"],["'use client'","'use server'"],["Server Function","ordinary local function"],["React RSC public semantics","framework bundler implementation APIs"]],
-  "comparisonSources": ["https://react.dev/reference/rsc/server-components","https://react.dev/reference/rsc/server-functions","https://react.dev/reference/rsc/use-client","https://react.dev/reference/rsc/use-server"],
-  "versionNotes": [{"edition":"React 19.3 and security advisories checked 2026-11-17","items":["React 19.3 adds support for rendering a Context imported from a 'use client' module directly from a Server Component; React still cannot create Context from a Server Component.","Server Components and Server Functions are documented as stable user-facing features; underlying framework and bundler integration APIs are not semver-stable across React 19 minor versions.","Documentation uses Server Function as the broader term; Server Action refers to a Server Function used as an Action.","A critical RSC transport RCE and a separate high-severity Server Function denial-of-service advisory were published 2026-10-14. Both list the react-server-dom-webpack, react-server-dom-parcel, and react-server-dom-turbopack packages and patched branches 19.0.9, 19.1.10, 19.2.9, and 19.3.1, but their applicability conditions differ. Resolve framework-bundled versions and update the framework/bundler as directed; do not assume absence of app-defined Server Functions means an RSC-enabled app is unaffected by the RCE advisory."],"sourceUrls":["https://react.dev/reference/rsc/server-components","https://react.dev/reference/rsc/server-functions","https://react.dev/blog/2026/09/09/react-19-3","https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3","https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453","https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components","https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"]}],
-  "sourceSnapshot": {"authority":"Official React Server Components and Server Functions documentation, React release notes, and React security advisories","edition":"React 19.3; RSC advisories checked 2026-11-16","checkedAt":"2026-11-16","urls":["https://react.dev/reference/rsc/server-components","https://react.dev/reference/rsc/server-functions","https://react.dev/reference/rsc/use-client","https://react.dev/reference/rsc/use-server","https://react.dev/reference/rsc/server-components#async-components-with-server-components","https://react.dev/blog/2026/09/09/react-19-3","https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3","https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components","https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"]},
-  "scopeExclusions":["Client and server rendering API signatures (t07-021)","React DOM form Action props and useFormStatus (t07-020)","Framework-specific routing, caching, and deployment (t07-023)","Experimental taint APIs are excluded because they are explicitly under construction in the source snapshot"],
-  "generationAllowed": true
+  "comparisons": [
+    [
+      "Server Component",
+      "Client Component"
+    ],
+    [
+      "Server Component",
+      "server-side rendering"
+    ],
+    [
+      "'use client'",
+      "'use server'"
+    ],
+    [
+      "Server Function",
+      "ordinary local function"
+    ],
+    [
+      "React RSC public semantics",
+      "framework bundler implementation APIs"
+    ]
+  ],
+  "comparisonSources": [
+    "https://react.dev/reference/rsc/server-components",
+    "https://react.dev/reference/rsc/server-functions",
+    "https://react.dev/reference/rsc/use-client",
+    "https://react.dev/reference/rsc/use-server"
+  ],
+  "versionNotes": [
+    {
+      "edition": "React 19.3 and security advisories checked 2026-11-17",
+      "items": [
+        "React 19.3 adds support for rendering a Context imported from a 'use client' module directly from a Server Component; React still cannot create Context from a Server Component.",
+        "Server Components and Server Functions are documented as stable user-facing features; underlying framework and bundler integration APIs are not semver-stable across React 19 minor versions.",
+        "Documentation uses Server Function as the broader term; Server Action refers to a Server Function used as an Action.",
+        "A critical RSC transport RCE and a separate high-severity Server Function denial-of-service advisory were published 2026-10-14. Both list the react-server-dom-webpack, react-server-dom-parcel, and react-server-dom-turbopack packages and patched branches 19.0.9, 19.1.10, 19.2.9, and 19.3.1, but their applicability conditions differ. Resolve framework-bundled versions and update the framework/bundler as directed; do not assume absence of app-defined Server Functions means an RSC-enabled app is unaffected by the RCE advisory."
+      ],
+      "sourceUrls": [
+        "https://react.dev/reference/rsc/server-components",
+        "https://react.dev/reference/rsc/server-functions",
+        "https://react.dev/blog/2026/09/09/react-19-3",
+        "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+        "https://github.com/react/react/security/advisories/GHSA-h3gv-c5rc-p453",
+        "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+        "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Official React Server Components and Server Functions documentation, React release notes, and React security advisories",
+    "edition": "React 19.3; RSC advisories checked 2026-11-16",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://react.dev/reference/rsc/server-components",
+      "https://react.dev/reference/rsc/server-functions",
+      "https://react.dev/reference/rsc/use-client",
+      "https://react.dev/reference/rsc/use-server",
+      "https://react.dev/reference/rsc/server-components#async-components-with-server-components",
+      "https://react.dev/blog/2026/09/09/react-19-3",
+      "https://github.com/react/react/security/advisories/GHSA-xqc2-xf4c-x3h3",
+      "https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components",
+      "https://react.dev/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+    ]
+  },
+  "scopeExclusions": [
+    "Client and server rendering API signatures (t07-021)",
+    "React DOM form Action props and useFormStatus (t07-020)",
+    "Framework-specific routing, caching, and deployment (t07-023)",
+    "Experimental taint APIs are excluded because they are explicitly under construction in the source snapshot"
+  ]
 }

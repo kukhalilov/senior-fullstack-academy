@@ -3,7 +3,7 @@
   "id": "t03-003",
   "track": "track-03",
   "title": "select filtering sorting and pagination",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A SELECT query describes which rows and columns belong in a result. The written clause order is not the same as logical query processing order, so aliases and predicates are visible only at specific stages; filtering, projection, sorting, and row limiting should be reasoned about separately.",
     "A WHERE search condition is evaluated using SQL's three-valued logic: TRUE, FALSE, and UNKNOWN. NULL is not an ordinary value, so equality with NULL does not test for missing data; use IS NULL or the null-safe IS [NOT] DISTINCT FROM predicate where appropriate.",
@@ -244,6 +244,5 @@
     "SQL Server 2025 regular-expression scalar and table-valued functions other than the REGEXP_LIKE predicate are outside this selection/filtering topic.",
     "ORDER BY ALL and QUALIFY are named only to mark their Microsoft Fabric boundary; they are not SQL Server syntax and must not be taught as available SQL Server features.",
     "Keyset pagination is introduced as a design alternative; indexing and application cursor-token implementation details are covered in their own topics."
-  ],
-  "generationAllowed": true
+  ]
 }

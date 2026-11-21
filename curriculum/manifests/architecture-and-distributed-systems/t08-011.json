@@ -3,7 +3,7 @@
   "id": "t08-011",
   "track": "track-08",
   "title": "caching Redis invalidation eviction and stampede",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A cache keeps a faster or closer copy of data to reduce repeated work; it is an optimization whose correctness depends on an explicit freshness, invalidation, and failure policy.",
     "Cache-aside loads on demand: read cache, load the source on a miss, populate cache, and invalidate or refresh after source writes. It is simple and naturally bounds cached data to the working set, but permits stale windows and concurrent miss amplification.",
@@ -566,6 +566,5 @@
     "Database-specific cache coherence, database query design, and EF Core caching APIs (tracks 03 and 04)",
     "Do not imply that Redis is always volatile or cannot persist data; durability depends on deployment and persistence configuration, while this manifest focuses on cache semantics and Redis data structures",
     "Redis Open Source command inventory is bounded to cache/keyspace/data-type/eviction/programmability surfaces named here; this is not a complete inventory of every Redis command or optional module command"
-  ],
-  "generationAllowed": true
+  ]
 }

@@ -3,7 +3,7 @@
   "id": "t02-018",
   "track": "track-02",
   "title": "hosted services background tasks and scheduling",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "inventoryComplete": true,
   "concepts": [
     "A hosted service is started and stopped by the host, so its lifetime belongs to the application rather than to one incoming HTTP request. Use it for long-lived consumers, polling loops, initialization, and graceful shutdown coordination. It is not a durable scheduler or message queue: work held only in process memory can disappear when the process exits.",
@@ -344,6 +344,5 @@
     "Durable queue delivery, broker acknowledgements, retries, ordering, and dead-lettering are covered in the messaging topic; this manifest covers the in-process worker boundary.",
     "Database-specific background work, transactional outbox, distributed locks, leases, and leader election are covered in data and architecture topics.",
     "General container and operating-system service deployment configuration is covered in infrastructure and operations topics."
-  ],
-  "generationAllowed": true
+  ]
 }

@@ -3,19 +3,193 @@
   "id": "t06-007",
   "track": "track-06",
   "title": "TypeScript primitive, literal, object, array, and tuple types",
-  "status": "source-backed-draft-generation-enabled",
-  "concepts": ["Static types describe values without changing JavaScript runtime behavior", "Annotations constrain declarations while inference derives types from expressions", "Literal widening and const contexts preserve or broaden information", "Object and collection types describe property and element shapes", "TypeScript syntax is erased unless a runtime JavaScript construct is emitted"],
+  "status": "source-backed-scope-complete",
+  "concepts": [
+    "Static types describe values without changing JavaScript runtime behavior",
+    "Annotations constrain declarations while inference derives types from expressions",
+    "Literal widening and const contexts preserve or broaden information",
+    "Object and collection types describe property and element shapes",
+    "TypeScript syntax is erased unless a runtime JavaScript construct is emitted"
+  ],
   "inventory": [
-    {"id":"primitive-and-special-types","title":"Primitive, special, literal, and declaration types","items":["string","number","boolean","bigint","symbol","null","undefined","void","never","object","Function","any","unknown","String literal type","Number literal type","Boolean literal type","BigInt literal type","unique symbol type","Type alias declaration","Enum declaration","Numeric enum","String enum","Const enum","Ambient enum"]},
-    {"id":"annotations-and-inference","title":"Type annotations, inference, and assertions","items":["Type annotation","Type inference","Widening literal type","Contextual typing","Type assertion (as Type)","Angle-bracket type assertion","Non-null assertion operator (!)","Definite assignment assertion (!)","as const assertion","satisfies operator","Const variable inference","Return type inference"]},
-    {"id":"object-and-collection-types","title":"Object, property, array, and tuple types","items":["Object type literal","Optional property modifier (?)","Readonly property modifier","Index signature","Call signature in object type","Construct signature in object type","Method signature in object type","Array type (T[])","Generic array type (Array<T>)","ReadonlyArray<T>","Tuple type","Named tuple element","Optional tuple element","Rest tuple element","Readonly tuple type"]}
+    {
+      "id": "primitive-and-special-types",
+      "title": "Primitive, special, literal, and declaration types",
+      "items": [
+        "string",
+        "number",
+        "boolean",
+        "bigint",
+        "symbol",
+        "null",
+        "undefined",
+        "void",
+        "never",
+        "object",
+        "Function",
+        "any",
+        "unknown",
+        "String literal type",
+        "Number literal type",
+        "Boolean literal type",
+        "BigInt literal type",
+        "unique symbol type",
+        "Type alias declaration",
+        "Enum declaration",
+        "Numeric enum",
+        "String enum",
+        "Const enum",
+        "Ambient enum"
+      ]
+    },
+    {
+      "id": "annotations-and-inference",
+      "title": "Type annotations, inference, and assertions",
+      "items": [
+        "Type annotation",
+        "Type inference",
+        "Widening literal type",
+        "Contextual typing",
+        "Type assertion (as Type)",
+        "Angle-bracket type assertion",
+        "Non-null assertion operator (!)",
+        "Definite assignment assertion (!)",
+        "as const assertion",
+        "satisfies operator",
+        "Const variable inference",
+        "Return type inference"
+      ]
+    },
+    {
+      "id": "object-and-collection-types",
+      "title": "Object, property, array, and tuple types",
+      "items": [
+        "Object type literal",
+        "Optional property modifier (?)",
+        "Readonly property modifier",
+        "Index signature",
+        "Call signature in object type",
+        "Construct signature in object type",
+        "Method signature in object type",
+        "Array type (T[])",
+        "Generic array type (Array<T>)",
+        "ReadonlyArray<T>",
+        "Tuple type",
+        "Named tuple element",
+        "Optional tuple element",
+        "Rest tuple element",
+        "Readonly tuple type"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["any","unknown"],["void","never"],["type annotation","type inference"],["type assertion","satisfies operator"],["Array<T>","ReadonlyArray<T>"]],
-  "comparisonSources": ["https://www.typescriptlang.org/docs/handbook/2/everyday-types.html","https://www.typescriptlang.org/docs/handbook/2/objects.html","https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions","https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-any-type","https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-unknown-type","https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-never-type","https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#functions","https://www.typescriptlang.org/docs/handbook/2/objects.html#tuple-types","https://www.typescriptlang.org/docs/handbook/2/objects.html#readonly-properties","https://www.typescriptlang.org/docs/handbook/2/narrowing.html","https://www.typescriptlang.org/docs/handbook/enums.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html","https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"],
-  "versionNotes": [{"edition":"TypeScript 3.4","items":["as const assertion","readonly tuple types"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html"]},{"edition":"TypeScript 4.9","items":["satisfies operator"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html"]},{"edition":"TypeScript 5.0","items":["const type parameters (covered in t06-008)","all enums are union enums"],"sourceUrls":["https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html"]}],
-  "sourceSnapshot": {"authority":"Official TypeScript Handbook and release notes","edition":"TypeScript 7.0 stable; 7.1 beta as of 2026-11-16","checkedAt":"2026-11-16","urls":["https://www.typescriptlang.org/docs/handbook/2/everyday-types.html","https://www.typescriptlang.org/docs/handbook/2/objects.html","https://www.typescriptlang.org/docs/handbook/2/narrowing.html","https://www.typescriptlang.org/docs/handbook/enums.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html","https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html","https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/","https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"]},
-  "accuracyFacts": ["The TypeScript 7.0 release is a native compiler port intended to preserve TypeScript 6.0 type-checking behavior, with the 6.0 deprecations/defaults carried forward; do not imply that the port adds a new type system. TypeScript 7.1 beta is not the stable baseline.","Primitive type names string, number, boolean, bigint, and symbol describe primitive values. Boxed constructors/types such as String/Number/Boolean are not substitutes for the primitive types; this inventory does not enumerate them as recommended types.","With strictNullChecks, null and undefined are distinct types and are not assignable to ordinary value types without a union or check. With strictNullChecks off, nullish assignability is substantially looser.","void is primarily a function-result contract whose returned value is ignored by callers; it is not interchangeable with undefined in every assignment position. never has no values and is assignable to every type, while ordinary values are not assignable to never.","any disables many checks and propagates unsafety; unknown accepts arbitrary inputs but requires narrowing before use. Function has an unsafe callable shape and should not be used to describe a specific callback signature.","object excludes primitive values but includes functions and object values; it is not an exact empty-object type and does not mean a plain JSON object.","Literal types can widen depending on mutable locations and contextual typing. const bindings do not make nested object properties or arrays recursively immutable; `as const` applies a const context and produces readonly literal structure.","Type assertions and non-null assertions are erased and do not validate or transform runtime values. Angle-bracket assertions conflict with JSX syntax and cannot be used in TSX.","satisfies checks assignability without replacing the expression's resulting type with the target type, though contextual typing may influence inference within the expression.","A definite-assignment assertion suppresses a static initialization diagnostic; it does not initialize the field or local. The expression non-null assertion only changes the static type and emits no null check.","Enums are runtime constructs unlike type aliases. Numeric enums emit reverse mappings; string enums do not. Const enums are generally inlined/erased and have publishing/interoperability pitfalls, especially ambient const enums.","TypeScript 5.0 made all enums union enums, including members whose values are not statically known, changing some narrowing/type-check behavior. Keep this brief and distinguish it from earlier enum runtime behavior.","Readonly properties/arrays/tuples are static write restrictions and generally shallow. They do not freeze objects or prevent mutation through other aliases.","An optional tuple element contributes undefined when read and changes tuple length to a range. Rest tuple elements model variable tails; named tuple elements are labels for readability/tooling, not distinct nominal positions.","Array<T> and T[] are equivalent mutable array type forms for ordinary element types. ReadonlyArray<T> removes mutating methods from that view but does not freeze an array at runtime."],
-  "scopeExclusions": ["Union narrowing and control-flow analysis (t06-021)","Generic and advanced type operators (t06-008, t06-022)","Function call and overload signatures (t06-023)","TypeScript compiler options (t06-010)"],
-  "generationAllowed": true
+  "comparisons": [
+    [
+      "any",
+      "unknown"
+    ],
+    [
+      "void",
+      "never"
+    ],
+    [
+      "type annotation",
+      "type inference"
+    ],
+    [
+      "type assertion",
+      "satisfies operator"
+    ],
+    [
+      "Array<T>",
+      "ReadonlyArray<T>"
+    ]
+  ],
+  "comparisonSources": [
+    "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+    "https://www.typescriptlang.org/docs/handbook/2/objects.html",
+    "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions",
+    "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-any-type",
+    "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-unknown-type",
+    "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#the-never-type",
+    "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#functions",
+    "https://www.typescriptlang.org/docs/handbook/2/objects.html#tuple-types",
+    "https://www.typescriptlang.org/docs/handbook/2/objects.html#readonly-properties",
+    "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+    "https://www.typescriptlang.org/docs/handbook/enums.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html",
+    "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/"
+  ],
+  "versionNotes": [
+    {
+      "edition": "TypeScript 3.4",
+      "items": [
+        "as const assertion",
+        "readonly tuple types"
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 4.9",
+      "items": [
+        "satisfies operator"
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html"
+      ]
+    },
+    {
+      "edition": "TypeScript 5.0",
+      "items": [
+        "const type parameters (covered in t06-008)",
+        "all enums are union enums"
+      ],
+      "sourceUrls": [
+        "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "Official TypeScript Handbook and release notes",
+    "edition": "TypeScript 7.0 stable; 7.1 beta as of 2026-11-16",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+      "https://www.typescriptlang.org/docs/handbook/2/objects.html",
+      "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+      "https://www.typescriptlang.org/docs/handbook/enums.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/",
+      "https://devblogs.microsoft.com/typescript/announcing-typescript-7-1-beta/"
+    ]
+  },
+  "accuracyFacts": [
+    "The TypeScript 7.0 release is a native compiler port intended to preserve TypeScript 6.0 type-checking behavior, with the 6.0 deprecations/defaults carried forward; do not imply that the port adds a new type system. TypeScript 7.1 beta is not the stable baseline.",
+    "Primitive type names string, number, boolean, bigint, and symbol describe primitive values. Boxed constructors/types such as String/Number/Boolean are not substitutes for the primitive types; this inventory does not enumerate them as recommended types.",
+    "With strictNullChecks, null and undefined are distinct types and are not assignable to ordinary value types without a union or check. With strictNullChecks off, nullish assignability is substantially looser.",
+    "void is primarily a function-result contract whose returned value is ignored by callers; it is not interchangeable with undefined in every assignment position. never has no values and is assignable to every type, while ordinary values are not assignable to never.",
+    "any disables many checks and propagates unsafety; unknown accepts arbitrary inputs but requires narrowing before use. Function has an unsafe callable shape and should not be used to describe a specific callback signature.",
+    "object excludes primitive values but includes functions and object values; it is not an exact empty-object type and does not mean a plain JSON object.",
+    "Literal types can widen depending on mutable locations and contextual typing. const bindings do not make nested object properties or arrays recursively immutable; `as const` applies a const context and produces readonly literal structure.",
+    "Type assertions and non-null assertions are erased and do not validate or transform runtime values. Angle-bracket assertions conflict with JSX syntax and cannot be used in TSX.",
+    "satisfies checks assignability without replacing the expression's resulting type with the target type, though contextual typing may influence inference within the expression.",
+    "A definite-assignment assertion suppresses a static initialization diagnostic; it does not initialize the field or local. The expression non-null assertion only changes the static type and emits no null check.",
+    "Enums are runtime constructs unlike type aliases. Numeric enums emit reverse mappings; string enums do not. Const enums are generally inlined/erased and have publishing/interoperability pitfalls, especially ambient const enums.",
+    "TypeScript 5.0 made all enums union enums, including members whose values are not statically known, changing some narrowing/type-check behavior. Keep this brief and distinguish it from earlier enum runtime behavior.",
+    "Readonly properties/arrays/tuples are static write restrictions and generally shallow. They do not freeze objects or prevent mutation through other aliases.",
+    "An optional tuple element contributes undefined when read and changes tuple length to a range. Rest tuple elements model variable tails; named tuple elements are labels for readability/tooling, not distinct nominal positions.",
+    "Array<T> and T[] are equivalent mutable array type forms for ordinary element types. ReadonlyArray<T> removes mutating methods from that view but does not freeze an array at runtime."
+  ],
+  "scopeExclusions": [
+    "Union narrowing and control-flow analysis (t06-021)",
+    "Generic and advanced type operators (t06-008, t06-022)",
+    "Function call and overload signatures (t06-023)",
+    "TypeScript compiler options (t06-010)"
+  ]
 }

@@ -3,7 +3,7 @@
   "id": "t04-006",
   "track": "track-04",
   "title": "loading navigation properties eager explicit lazy and N+1",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Related data can be projected, eagerly included, explicitly loaded, or lazily loaded. The right strategy depends on which data is needed, the number of database round trips, result duplication, and context lifetime.",
     "Include and ThenInclude request related entity graphs. Projection often transfers fewer columns and expresses a read model directly; filtered include and tracking fix-up can produce surprising navigation contents.",
@@ -154,6 +154,5 @@
     "Relationship model setup is in t04-003.",
     "Tracking and identity-resolution semantics are in t04-004.",
     "Pagination and query performance are in t04-009."
-  ],
-  "generationAllowed": true
+  ]
 }

@@ -3,7 +3,7 @@
   "id": "t11-005",
   "track": "track-11",
   "title": "binary search, bounds, rotated arrays, and monotone answers",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Binary search repeatedly halves a candidate interval and requires an ordering or monotonicity property that justifies discarding half.",
     "Exact search, lower bound, and upper bound answer different questions when values may be duplicated.",
@@ -16,32 +16,200 @@
     "Binary search is inappropriate when the predicate is not monotone or the data structure cannot provide efficient random access."
   ],
   "inventory": [
-    {"id":"sorted-array-search","title":"Search and bound variants","items":["Exact binary search","Lower bound","Upper bound","First occurrence","Last occurrence","Left-biased midpoint","Right-biased midpoint","Insertion position","Sorted-array precondition"]},
-    {"id":"intervals-and-invariants","title":"Intervals, invariants, and termination","items":["Closed search interval","Half-open search interval","Loop invariant","Candidate elimination","Midpoint floor","Overflow-safe midpoint","Sentinel result","Empty interval","Termination measure"]},
-    {"id":"monotone-answer","title":"Binary search over a monotone answer space","items":["Monotone feasibility predicate","First true boundary","Last true boundary","Minimum feasible answer","Maximum feasible answer","Feasibility check","Proven answer bounds","Answer-space overflow"]},
-    {"id":"rotated-and-matrix","title":"Rotated arrays and matrix search","items":["Rotation pivot","Sorted half in a rotated array","Distinct-value rotated search","Minimum in a rotated sorted array","Virtual one-dimensional matrix index","Row-major sorted matrix"]},
-    {"id":"limits-and-tradeoffs","title":"Limits and algorithm selection","items":["Logarithmic iteration count","Random-access requirement","Monotonicity requirement","Duplicate-value ambiguity","Linear scan versus binary search","Discrete versus continuous search space"]}
+    {
+      "id": "sorted-array-search",
+      "title": "Search and bound variants",
+      "items": [
+        "Exact binary search",
+        "Lower bound",
+        "Upper bound",
+        "First occurrence",
+        "Last occurrence",
+        "Left-biased midpoint",
+        "Right-biased midpoint",
+        "Insertion position",
+        "Sorted-array precondition"
+      ]
+    },
+    {
+      "id": "intervals-and-invariants",
+      "title": "Intervals, invariants, and termination",
+      "items": [
+        "Closed search interval",
+        "Half-open search interval",
+        "Loop invariant",
+        "Candidate elimination",
+        "Midpoint floor",
+        "Overflow-safe midpoint",
+        "Sentinel result",
+        "Empty interval",
+        "Termination measure"
+      ]
+    },
+    {
+      "id": "monotone-answer",
+      "title": "Binary search over a monotone answer space",
+      "items": [
+        "Monotone feasibility predicate",
+        "First true boundary",
+        "Last true boundary",
+        "Minimum feasible answer",
+        "Maximum feasible answer",
+        "Feasibility check",
+        "Proven answer bounds",
+        "Answer-space overflow"
+      ]
+    },
+    {
+      "id": "rotated-and-matrix",
+      "title": "Rotated arrays and matrix search",
+      "items": [
+        "Rotation pivot",
+        "Sorted half in a rotated array",
+        "Distinct-value rotated search",
+        "Minimum in a rotated sorted array",
+        "Virtual one-dimensional matrix index",
+        "Row-major sorted matrix"
+      ]
+    },
+    {
+      "id": "limits-and-tradeoffs",
+      "title": "Limits and algorithm selection",
+      "items": [
+        "Logarithmic iteration count",
+        "Random-access requirement",
+        "Monotonicity requirement",
+        "Duplicate-value ambiguity",
+        "Linear scan versus binary search",
+        "Discrete versus continuous search space"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"binary-search","name":"Binary Search","difficulty":"introductory","patterns":["exact search","closed interval invariant"]},
-    {"id":"search-insert-position","name":"Search Insert Position","difficulty":"introductory","patterns":["lower bound","insertion position"]},
-    {"id":"find-first-last-position","name":"Find First and Last Position of Element in Sorted Array","difficulty":"intermediate","patterns":["lower bound","upper bound","duplicate boundaries"]},
-    {"id":"search-in-rotated-sorted-array","name":"Search in Rotated Sorted Array","difficulty":"intermediate","patterns":["sorted-half detection","rotated-array elimination"]},
-    {"id":"find-minimum-rotated-sorted-array","name":"Find Minimum in Rotated Sorted Array","difficulty":"intermediate","patterns":["rotation pivot","minimum boundary"]},
-    {"id":"koko-eating-bananas","name":"Koko Eating Bananas","difficulty":"intermediate","patterns":["minimum feasible answer","monotone feasibility predicate"]},
-    {"id":"capacity-to-ship-packages","name":"Capacity To Ship Packages Within D Days","difficulty":"intermediate","patterns":["minimum feasible answer","greedy feasibility check"]},
-    {"id":"search-a-2d-matrix","name":"Search a 2D Matrix","difficulty":"intermediate","patterns":["virtual one-dimensional indexing","lower-bound search"]}
+    {
+      "id": "binary-search",
+      "name": "Binary Search",
+      "difficulty": "introductory",
+      "patterns": [
+        "exact search",
+        "closed interval invariant"
+      ]
+    },
+    {
+      "id": "search-insert-position",
+      "name": "Search Insert Position",
+      "difficulty": "introductory",
+      "patterns": [
+        "lower bound",
+        "insertion position"
+      ]
+    },
+    {
+      "id": "find-first-last-position",
+      "name": "Find First and Last Position of Element in Sorted Array",
+      "difficulty": "intermediate",
+      "patterns": [
+        "lower bound",
+        "upper bound",
+        "duplicate boundaries"
+      ]
+    },
+    {
+      "id": "search-in-rotated-sorted-array",
+      "name": "Search in Rotated Sorted Array",
+      "difficulty": "intermediate",
+      "patterns": [
+        "sorted-half detection",
+        "rotated-array elimination"
+      ]
+    },
+    {
+      "id": "find-minimum-rotated-sorted-array",
+      "name": "Find Minimum in Rotated Sorted Array",
+      "difficulty": "intermediate",
+      "patterns": [
+        "rotation pivot",
+        "minimum boundary"
+      ]
+    },
+    {
+      "id": "koko-eating-bananas",
+      "name": "Koko Eating Bananas",
+      "difficulty": "intermediate",
+      "patterns": [
+        "minimum feasible answer",
+        "monotone feasibility predicate"
+      ]
+    },
+    {
+      "id": "capacity-to-ship-packages",
+      "name": "Capacity To Ship Packages Within D Days",
+      "difficulty": "intermediate",
+      "patterns": [
+        "minimum feasible answer",
+        "greedy feasibility check"
+      ]
+    },
+    {
+      "id": "search-a-2d-matrix",
+      "name": "Search a 2D Matrix",
+      "difficulty": "intermediate",
+      "patterns": [
+        "virtual one-dimensional indexing",
+        "lower-bound search"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Exact binary search","Lower bound"],["Lower bound","Upper bound"],["Closed search interval","Half-open search interval"],["Binary search on sorted data","Binary search on a monotone answer"],["Distinct-value rotated search","Search with duplicate values"]],
-  "comparisonSources": ["https://usaco.guide/silver/binary-search"],
+  "comparisons": [
+    [
+      "Exact binary search",
+      "Lower bound"
+    ],
+    [
+      "Lower bound",
+      "Upper bound"
+    ],
+    [
+      "Closed search interval",
+      "Half-open search interval"
+    ],
+    [
+      "Binary search on sorted data",
+      "Binary search on a monotone answer"
+    ],
+    [
+      "Distinct-value rotated search",
+      "Search with duplicate values"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/silver/binary-search"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "USACO Guide binary search and official LeetCode problem statements",
     "edition": "Timeless algorithms; canonical problem statements checked 2026-11-17",
     "checkedAt": "2026-11-17",
-    "urls": ["https://usaco.guide/silver/binary-search","https://leetcode.com/problems/binary-search/","https://leetcode.com/problems/search-insert-position/","https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/","https://leetcode.com/problems/search-in-rotated-sorted-array/","https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/","https://leetcode.com/problems/koko-eating-bananas/","https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/","https://leetcode.com/problems/search-a-2d-matrix/"]
+    "urls": [
+      "https://usaco.guide/silver/binary-search",
+      "https://leetcode.com/problems/binary-search/",
+      "https://leetcode.com/problems/search-insert-position/",
+      "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+      "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+      "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+      "https://leetcode.com/problems/koko-eating-bananas/",
+      "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
+      "https://leetcode.com/problems/search-a-2d-matrix/"
+    ]
   },
-  "scopeExclusions": ["Two-pointer and sliding-window techniques, covered in t11-003","Prefix sums and difference arrays, covered in t11-004","Binary search with duplicate values in rotated arrays","Continuous-domain approximation and floating-point binary search","Exponential or interpolation search","Balanced search trees and dynamic ordered sets","C# Array.BinarySearch and framework collection API catalogs"],
-  "generationAllowed": true
+  "scopeExclusions": [
+    "Two-pointer and sliding-window techniques, covered in t11-003",
+    "Prefix sums and difference arrays, covered in t11-004",
+    "Binary search with duplicate values in rotated arrays",
+    "Continuous-domain approximation and floating-point binary search",
+    "Exponential or interpolation search",
+    "Balanced search trees and dynamic ordered sets",
+    "C# Array.BinarySearch and framework collection API catalogs"
+  ]
 }

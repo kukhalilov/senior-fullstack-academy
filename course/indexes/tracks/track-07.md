@@ -1,0 +1,33 @@
+# React and frontend
+
+[[Start Here|Academy home]] · [[course/indexes/learning-path|Learning path]]
+
+Topics: 27
+
+- [[course/indexes/topics/t07-001|t07-001 — HTML document structure metadata and semantic content elements]]
+- [[course/indexes/topics/t07-002|t07-002 — Web accessibility WCAG semantics keyboard focus ARIA and testing]]
+- [[course/indexes/topics/t07-014|t07-014 — HTML forms controls validation and form submission]]
+- [[course/indexes/topics/t07-015|t07-015 — Browser DOM events storage observers and navigation APIs]]
+- [[course/indexes/topics/t07-026|t07-026 — Browser persistence offline operation and web workers]]
+- [[course/indexes/topics/t07-027|t07-027 — End-to-end browser navigation and web request lifecycle]]
+- [[course/indexes/topics/t07-016|t07-016 — CSS selectors at-rules cascade values and box model]]
+- [[course/indexes/topics/t07-017|t07-017 — CSS layout flexbox grid positioning and responsive design]]
+- [[course/indexes/topics/t07-018|t07-018 — CSS properties typography colors backgrounds surfaces effects motion and specialized features]]
+- [[course/indexes/topics/t07-003|t07-003 — React elements render purity reconciliation identity and keys]]
+- [[course/indexes/topics/t07-019|t07-019 — React API reference React hooks components context and resources]]
+- [[course/indexes/topics/t07-020|t07-020 — React DOM components forms resource hints portals and preload APIs]]
+- [[course/indexes/topics/t07-021|t07-021 — React client hydration server streaming and static rendering APIs]]
+- [[course/indexes/topics/t07-022|t07-022 — React Compiler configuration directives and React rules]]
+- [[course/indexes/topics/t07-004|t07-004 — React function and class components JSX props and events]]
+- [[course/indexes/topics/t07-005|t07-005 — React state reducer context and action hooks]]
+- [[course/indexes/topics/t07-006|t07-006 — React effects refs imperative handles and external systems]]
+- [[course/indexes/topics/t07-007|t07-007 — React context composition state ownership and component architecture]]
+- [[course/indexes/topics/t07-008|t07-008 — React performance transitions deferred values profiling and compiler]]
+- [[course/indexes/topics/t07-009|t07-009 — React DOM rendering modes hydration and host integration]]
+- [[course/indexes/topics/t07-010|t07-010 — React Server Components directives resources and server functions]]
+- [[course/indexes/topics/t07-011|t07-011 — React Redux Toolkit store slices selectors middleware and async workflows]]
+- [[course/indexes/topics/t07-012|t07-012 — MobX observables computeds actions reactions and React integration]]
+- [[course/indexes/topics/t07-013|t07-013 — React application architecture security and deployment]]
+- [[course/indexes/topics/t07-023|t07-023 — React routing frameworks data loading server components and deployment]]
+- [[course/indexes/topics/t07-024|t07-024 — Frontend state management Redux Toolkit and MobX comparisons]]
+- [[course/indexes/topics/t07-025|t07-025 — Frontend component testing unit integration end-to-end and accessibility]]

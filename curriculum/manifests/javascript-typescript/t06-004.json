@@ -3,18 +3,159 @@
   "id": "t06-004",
   "track": "track-06",
   "title": "JavaScript objects, properties, descriptors, and reflection",
-  "status": "source-backed-draft-generation-enabled",
-  "concepts": ["Objects as property collections with identity", "Property keys and own versus inherited lookup", "Data and accessor properties", "Property descriptor attributes", "Prototype chains and reflective operations", "Integrity levels and copying semantics"],
+  "status": "source-backed-scope-complete",
+  "concepts": [
+    "Objects as property collections with identity",
+    "Property keys and own versus inherited lookup",
+    "Data and accessor properties",
+    "Property descriptor attributes",
+    "Prototype chains and reflective operations",
+    "Integrity levels and copying semantics"
+  ],
   "inventory": [
-    {"id":"object-creation-and-property-keys","title":"Object creation, keys, and property definitions","items":["Object literal","Object.create","Object constructor","Computed property name","Property shorthand","Spread property","String property key","Symbol property key","Own property","Inherited property","Data property","Accessor property","Getter","Setter"]},
-    {"id":"property-descriptors-and-reflection","title":"Property descriptors and reflection APIs","items":["Property descriptor","Data descriptor","Accessor descriptor","Enumerable attribute","Configurable attribute","Writable attribute","Object.defineProperty","Object.defineProperties","Object.getOwnPropertyDescriptor","Object.getOwnPropertyDescriptors","Object.getOwnPropertyNames","Object.getOwnPropertySymbols","Object.keys","Object.values","Object.entries","Object.fromEntries","Object.hasOwn","Object.groupBy","Object.prototype.hasOwnProperty","Object.prototype.propertyIsEnumerable"]},
-    {"id":"prototype-and-integrity-apis","title":"Prototype operations, integrity, and Object methods","items":["Object.getPrototypeOf","Object.setPrototypeOf","Object.prototype.isPrototypeOf","Object.prototype.__proto__ (legacy accessor)","Object.assign","Object.is","Object.isExtensible","Object.preventExtensions","Object.isSealed","Object.seal","Object.isFrozen","Object.freeze","Object.prototype.toString","Object.prototype.toLocaleString","Object.prototype.valueOf","Object.prototype.constructor","Object.prototype.__defineGetter__ (legacy)","Object.prototype.__defineSetter__ (legacy)","Object.prototype.__lookupGetter__ (legacy)","Object.prototype.__lookupSetter__ (legacy)"]}
+    {
+      "id": "object-creation-and-property-keys",
+      "title": "Object creation, keys, and property definitions",
+      "items": [
+        "Object literal",
+        "Object.create",
+        "Object constructor",
+        "Computed property name",
+        "Property shorthand",
+        "Spread property",
+        "String property key",
+        "Symbol property key",
+        "Own property",
+        "Inherited property",
+        "Data property",
+        "Accessor property",
+        "Getter",
+        "Setter"
+      ]
+    },
+    {
+      "id": "property-descriptors-and-reflection",
+      "title": "Property descriptors and reflection APIs",
+      "items": [
+        "Property descriptor",
+        "Data descriptor",
+        "Accessor descriptor",
+        "Enumerable attribute",
+        "Configurable attribute",
+        "Writable attribute",
+        "Object.defineProperty",
+        "Object.defineProperties",
+        "Object.getOwnPropertyDescriptor",
+        "Object.getOwnPropertyDescriptors",
+        "Object.getOwnPropertyNames",
+        "Object.getOwnPropertySymbols",
+        "Object.keys",
+        "Object.values",
+        "Object.entries",
+        "Object.fromEntries",
+        "Object.hasOwn",
+        "Object.groupBy",
+        "Object.prototype.hasOwnProperty",
+        "Object.prototype.propertyIsEnumerable"
+      ]
+    },
+    {
+      "id": "prototype-and-integrity-apis",
+      "title": "Prototype operations, integrity, and Object methods",
+      "items": [
+        "Object.getPrototypeOf",
+        "Object.setPrototypeOf",
+        "Object.prototype.isPrototypeOf",
+        "Object.prototype.__proto__ (legacy accessor)",
+        "Object.assign",
+        "Object.is",
+        "Object.isExtensible",
+        "Object.preventExtensions",
+        "Object.isSealed",
+        "Object.seal",
+        "Object.isFrozen",
+        "Object.freeze",
+        "Object.prototype.toString",
+        "Object.prototype.toLocaleString",
+        "Object.prototype.valueOf",
+        "Object.prototype.constructor",
+        "Object.prototype.__defineGetter__ (legacy)",
+        "Object.prototype.__defineSetter__ (legacy)",
+        "Object.prototype.__lookupGetter__ (legacy)",
+        "Object.prototype.__lookupSetter__ (legacy)"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["own property","inherited property"],["data property","accessor property"],["Object.hasOwn","in operator"],["Object.assign","object spread"],["Object.freeze","Object.seal"],["Object.create(null)","ordinary object literal"]],
-  "comparisonSources": ["https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html","https://tc39.es/ecma262/2026/multipage/fundamental-objects.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"],
-  "versionNotes": [{"edition":"ECMAScript 2022","items":["Object.hasOwn"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/fundamental-objects.html"]},{"edition":"ECMAScript 2024","items":["Object.groupBy"],"sourceUrls":["https://tc39.es/ecma262/2026/multipage/fundamental-objects.html"]}],
-  "sourceSnapshot": {"authority":"ECMA-262 and MDN JavaScript reference","edition":"ECMAScript 2026","checkedAt":"2026-11-16","urls":["https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html","https://tc39.es/ecma262/2026/multipage/fundamental-objects.html","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Enumerability_and_ownership_of_properties","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf","https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"]},
+  "comparisons": [
+    [
+      "own property",
+      "inherited property"
+    ],
+    [
+      "data property",
+      "accessor property"
+    ],
+    [
+      "Object.hasOwn",
+      "in operator"
+    ],
+    [
+      "Object.assign",
+      "object spread"
+    ],
+    [
+      "Object.freeze",
+      "Object.seal"
+    ],
+    [
+      "Object.create(null)",
+      "ordinary object literal"
+    ]
+  ],
+  "comparisonSources": [
+    "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+    "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"
+  ],
+  "versionNotes": [
+    {
+      "edition": "ECMAScript 2022",
+      "items": [
+        "Object.hasOwn"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html"
+      ]
+    },
+    {
+      "edition": "ECMAScript 2024",
+      "items": [
+        "Object.groupBy"
+      ],
+      "sourceUrls": [
+        "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html"
+      ]
+    }
+  ],
+  "sourceSnapshot": {
+    "authority": "ECMA-262 and MDN JavaScript reference",
+    "edition": "ECMAScript 2026",
+    "checkedAt": "2026-11-16",
+    "urls": [
+      "https://tc39.es/ecma262/2026/multipage/ordinary-and-exotic-objects-behaviours.html",
+      "https://tc39.es/ecma262/2026/multipage/fundamental-objects.html",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Enumerability_and_ownership_of_properties",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"
+    ]
+  },
   "accuracyFacts": [
     "All property keys are strings or Symbols. Other computed keys are converted with ToPropertyKey; own and inherited are separate from enumerable and non-enumerable.",
     "Object literal spread and Object.assign copy enumerable own string and Symbol properties by reading source values; accessors run and the destination receives data values. Object.assign writes through target [[Set]] and can invoke target setters, while object spread creates data properties on the new object.",
@@ -29,6 +170,10 @@
     "Changing an object's prototype dynamically with Object.setPrototypeOf can be costly and difficult to reason about; prefer Object.create at creation when a custom prototype is needed. Object.prototype.__proto__ and __defineGetter__/__defineSetter__/__lookupGetter__/__lookupSetter__ are legacy/deprecated compatibility APIs.",
     "Object.is uses SameValue semantics: NaN equals itself and positive zero differs from negative zero. It is not the same relation as ==, ===, or SameValueZero."
   ],
-  "scopeExclusions": ["Array-specific properties and methods (t06-012)","Map and Set collection APIs (t06-013)","Class syntax and private elements (t06-018)","JSON serialization methods"],
-  "generationAllowed": true
+  "scopeExclusions": [
+    "Array-specific properties and methods (t06-012)",
+    "Map and Set collection APIs (t06-013)",
+    "Class syntax and private elements (t06-018)",
+    "JSON serialization methods"
+  ]
 }

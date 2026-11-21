@@ -3,7 +3,7 @@
   "id": "t09-006",
   "track": "track-09",
   "title": "Docker images Dockerfiles compose networks volumes and security",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A container image is a packaged filesystem and configuration; a container is an isolated process created from that image. Image layers and build cache make builds efficient, while tags are mutable names and digests identify immutable content.",
     "A Dockerfile is a sequence of build instructions. The build context defines which files are available; multi-stage builds separate compilation tools from the runtime image. Build arguments are not secret storage, and build secrets should be mounted only for the instruction that needs them.",
@@ -702,6 +702,5 @@
     "Application architecture inside the container and language-specific runtime tuning are covered in framework tracks",
     "Compose deploy behavior is implementation/platform-dependent; do not teach unsupported deploy keys as guaranteed local Compose behavior",
     "Legacy Docker Content Trust naming is included only to explain that current image-signing approaches and terms have evolved; do not imply it is the only or recommended signing mechanism"
-  ],
-  "generationAllowed": true
+  ]
 }

@@ -3,7 +3,7 @@
   "id": "t11-029",
   "track": "track-11",
   "title": "knapsack, subset-sum, and resource-allocation DP",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Knapsack DP chooses items subject to a capacity or resource budget; the state records which items remain eligible and how much capacity is available.",
     "In 0/1 knapsack each item may be selected once, so a one-dimensional capacity loop runs downward to avoid reusing the current item.",
@@ -15,29 +15,295 @@
     "When reconstructing selected items, preserve predecessor choices or use a carefully justified recomputation; equal-value choices may produce multiple optimal subsets."
   ],
   "inventory": [
-    {"id":"knapsack-state-and-transitions","title":"Capacity states and item decisions","items":["0/1 knapsack","Unbounded knapsack","Capacity dimension","Item-prefix dimension","Skip current item","Take current item","Maximum-value recurrence","Minimum-cost recurrence","Boolean reachability recurrence","Subset-sum decision"]},
-    {"id":"loop-order-and-space","title":"Loop direction, reuse, and storage optimization","items":["Descending capacity loop for 0/1 use","Ascending capacity loop for unbounded use","Accidental item reuse bug","One-dimensional compression","Two-dimensional reference table","Bitset subset-sum update","Initialize capacity-zero state","Impossible-state initialization"]},
-    {"id":"variants-and-reductions","title":"Subset sum, partition, and counting variants","items":["Equal partition by half-total target","Target Sum sign assignment reduction","Count subsets reaching target","Minimum partition difference","Coin change minimum count relationship","Coin change number-of-combinations relationship","Parity feasibility condition","Zero-valued item counting effect"]},
-    {"id":"complexity-and-reconstruction","title":"Pseudo-polynomial cost and selected-item recovery","items":["O(nW) time bound","O(W) compressed space","Pseudo-polynomial complexity","Capacity-range feasibility","Reconstruct selected item indices","Tie between optimal subsets","Overflow-safe total capacity","Compare with meet-in-the-middle"]}
+    {
+      "id": "knapsack-state-and-transitions",
+      "title": "Capacity states and item decisions",
+      "items": [
+        "0/1 knapsack",
+        "Unbounded knapsack",
+        "Capacity dimension",
+        "Item-prefix dimension",
+        "Skip current item",
+        "Take current item",
+        "Maximum-value recurrence",
+        "Minimum-cost recurrence",
+        "Boolean reachability recurrence",
+        "Subset-sum decision"
+      ]
+    },
+    {
+      "id": "loop-order-and-space",
+      "title": "Loop direction, reuse, and storage optimization",
+      "items": [
+        "Descending capacity loop for 0/1 use",
+        "Ascending capacity loop for unbounded use",
+        "Accidental item reuse bug",
+        "One-dimensional compression",
+        "Two-dimensional reference table",
+        "Bitset subset-sum update",
+        "Initialize capacity-zero state",
+        "Impossible-state initialization"
+      ]
+    },
+    {
+      "id": "variants-and-reductions",
+      "title": "Subset sum, partition, and counting variants",
+      "items": [
+        "Equal partition by half-total target",
+        "Target Sum sign assignment reduction",
+        "Count subsets reaching target",
+        "Minimum partition difference",
+        "Coin change minimum count relationship",
+        "Coin change number-of-combinations relationship",
+        "Parity feasibility condition",
+        "Zero-valued item counting effect"
+      ]
+    },
+    {
+      "id": "complexity-and-reconstruction",
+      "title": "Pseudo-polynomial cost and selected-item recovery",
+      "items": [
+        "O(nW) time bound",
+        "O(W) compressed space",
+        "Pseudo-polynomial complexity",
+        "Capacity-range feasibility",
+        "Reconstruct selected item indices",
+        "Tie between optimal subsets",
+        "Overflow-safe total capacity",
+        "Compare with meet-in-the-middle"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"partition-equal-subset-sum","name":"Partition Equal Subset Sum","difficulty":"intermediate","patterns":["reduce to subset sum at half total","boolean 0/1 capacity DP"],"statement":"Return whether the positive integers in nums can be partitioned into two subsets with equal sums; every array element is used exactly once.","constraints":["1 <= nums.length <= 200","1 <= nums[i] <= 100"],"examples":[{"input":"[1,5,11,5]","output":"true"},{"input":"[1,2,3,5]","output":"false"}],"sourceUrls":["https://leetcode.com/problems/partition-equal-subset-sum/"]},
-    {"id":"target-sum","name":"Target Sum","difficulty":"intermediate","patterns":["sign assignment to subset-count reduction","counting DP by sum"],"statement":"Place either '+' or '-' before every nums element and return the number of resulting expressions whose value equals target. Each index receives exactly one sign, including zero-valued entries.","constraints":["1 <= nums.length <= 20","0 <= nums[i] <= 1000","sum(nums) <= 1000","-1000 <= target <= 1000"],"examples":[{"input":"nums=[1,1,1,1,1], target=3","output":"5"},{"input":"nums=[1], target=1","output":"1"},{"input":"nums=[0,0,1], target=1","output":"4"}],"sourceUrls":["https://leetcode.com/problems/target-sum/"]},
-    {"id":"coin-change-ii","name":"Coin Change II","difficulty":"intermediate","patterns":["count combinations without order duplicates","coin-first unbounded DP loop order"],"statement":"Given distinct positive coin denominations and an amount, return the number of combinations that make the amount when an unlimited number of each coin is available. Different orders of the same coin multiset count as one combination. The answer fits a signed 32-bit integer.","constraints":["1 <= coins.length <= 300","1 <= coins[i] <= 5000","Coin denominations are unique","0 <= amount <= 5000"],"examples":[{"input":"amount=5, coins=[1,2,5]","output":"4"},{"input":"amount=3, coins=[2]","output":"0"},{"input":"amount=10, coins=[10]","output":"1"}],"sourceUrls":["https://leetcode.com/problems/coin-change-ii/"]},
-    {"id":"last-stone-weight-ii","name":"Last Stone Weight II","difficulty":"intermediate","patterns":["partition into two near-equal sums","minimize difference from reachable half sums"],"statement":"Repeatedly smash any two stones of weights x<=y: equal weights disappear; otherwise x disappears and y becomes y-x. Return the smallest possible final stone weight, or zero if none remains.","constraints":["1 <= stones.length <= 30","1 <= stones[i] <= 100"],"examples":[{"input":"[2,7,4,1,8,1]","output":"1"},{"input":"[31,26,33,21,40]","output":"5"}],"sourceUrls":["https://leetcode.com/problems/last-stone-weight-ii/"]},
-    {"id":"ones-and-zeroes","name":"Ones and Zeroes","difficulty":"intermediate","patterns":["two-resource 0/1 knapsack","descending loops across both capacities"],"statement":"Given binary strings strs and budgets m zeroes and n ones, return the largest subset size whose total zero count is at most m and total one count is at most n.","constraints":["1 <= strs.length <= 600","1 <= strs[i].length <= 100","Each string contains only '0' and '1'","1 <= m,n <= 100"],"examples":[{"input":"strs=[\"10\",\"0001\",\"111001\",\"1\",\"0\"], m=5, n=3","output":"4"},{"input":"strs=[\"10\",\"0\",\"1\"], m=1, n=1","output":"2"}],"sourceUrls":["https://leetcode.com/problems/ones-and-zeroes/"]},
-    {"id":"combination-sum-iv","name":"Combination Sum IV","difficulty":"intermediate","patterns":["count ordered sequences","outer target loop changes ordering semantics"],"statement":"Given distinct positive integers nums and target, return the number of ordered sequences (reusing values any number of times) whose sum is target. Different orders count as different combinations; the answer fits a signed 32-bit integer.","constraints":["1 <= nums.length <= 200","1 <= nums[i] <= 1000","All nums values are distinct","1 <= target <= 1000"],"examples":[{"input":"nums=[1,2,3], target=4","output":"7"},{"input":"nums=[9], target=3","output":"0"}],"sourceUrls":["https://leetcode.com/problems/combination-sum-iv/"]}
+    {
+      "id": "partition-equal-subset-sum",
+      "name": "Partition Equal Subset Sum",
+      "difficulty": "intermediate",
+      "patterns": [
+        "reduce to subset sum at half total",
+        "boolean 0/1 capacity DP"
+      ],
+      "statement": "Return whether the positive integers in nums can be partitioned into two subsets with equal sums; every array element is used exactly once.",
+      "constraints": [
+        "1 <= nums.length <= 200",
+        "1 <= nums[i] <= 100"
+      ],
+      "examples": [
+        {
+          "input": "[1,5,11,5]",
+          "output": "true"
+        },
+        {
+          "input": "[1,2,3,5]",
+          "output": "false"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/partition-equal-subset-sum/"
+      ]
+    },
+    {
+      "id": "target-sum",
+      "name": "Target Sum",
+      "difficulty": "intermediate",
+      "patterns": [
+        "sign assignment to subset-count reduction",
+        "counting DP by sum"
+      ],
+      "statement": "Place either '+' or '-' before every nums element and return the number of resulting expressions whose value equals target. Each index receives exactly one sign, including zero-valued entries.",
+      "constraints": [
+        "1 <= nums.length <= 20",
+        "0 <= nums[i] <= 1000",
+        "sum(nums) <= 1000",
+        "-1000 <= target <= 1000"
+      ],
+      "examples": [
+        {
+          "input": "nums=[1,1,1,1,1], target=3",
+          "output": "5"
+        },
+        {
+          "input": "nums=[1], target=1",
+          "output": "1"
+        },
+        {
+          "input": "nums=[0,0,1], target=1",
+          "output": "4"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/target-sum/"
+      ]
+    },
+    {
+      "id": "coin-change-ii",
+      "name": "Coin Change II",
+      "difficulty": "intermediate",
+      "patterns": [
+        "count combinations without order duplicates",
+        "coin-first unbounded DP loop order"
+      ],
+      "statement": "Given distinct positive coin denominations and an amount, return the number of combinations that make the amount when an unlimited number of each coin is available. Different orders of the same coin multiset count as one combination. The answer fits a signed 32-bit integer.",
+      "constraints": [
+        "1 <= coins.length <= 300",
+        "1 <= coins[i] <= 5000",
+        "Coin denominations are unique",
+        "0 <= amount <= 5000"
+      ],
+      "examples": [
+        {
+          "input": "amount=5, coins=[1,2,5]",
+          "output": "4"
+        },
+        {
+          "input": "amount=3, coins=[2]",
+          "output": "0"
+        },
+        {
+          "input": "amount=10, coins=[10]",
+          "output": "1"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/coin-change-ii/"
+      ]
+    },
+    {
+      "id": "last-stone-weight-ii",
+      "name": "Last Stone Weight II",
+      "difficulty": "intermediate",
+      "patterns": [
+        "partition into two near-equal sums",
+        "minimize difference from reachable half sums"
+      ],
+      "statement": "Repeatedly smash any two stones of weights x<=y: equal weights disappear; otherwise x disappears and y becomes y-x. Return the smallest possible final stone weight, or zero if none remains.",
+      "constraints": [
+        "1 <= stones.length <= 30",
+        "1 <= stones[i] <= 100"
+      ],
+      "examples": [
+        {
+          "input": "[2,7,4,1,8,1]",
+          "output": "1"
+        },
+        {
+          "input": "[31,26,33,21,40]",
+          "output": "5"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/last-stone-weight-ii/"
+      ]
+    },
+    {
+      "id": "ones-and-zeroes",
+      "name": "Ones and Zeroes",
+      "difficulty": "intermediate",
+      "patterns": [
+        "two-resource 0/1 knapsack",
+        "descending loops across both capacities"
+      ],
+      "statement": "Given binary strings strs and budgets m zeroes and n ones, return the largest subset size whose total zero count is at most m and total one count is at most n.",
+      "constraints": [
+        "1 <= strs.length <= 600",
+        "1 <= strs[i].length <= 100",
+        "Each string contains only '0' and '1'",
+        "1 <= m,n <= 100"
+      ],
+      "examples": [
+        {
+          "input": "strs=[\"10\",\"0001\",\"111001\",\"1\",\"0\"], m=5, n=3",
+          "output": "4"
+        },
+        {
+          "input": "strs=[\"10\",\"0\",\"1\"], m=1, n=1",
+          "output": "2"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/ones-and-zeroes/"
+      ]
+    },
+    {
+      "id": "combination-sum-iv",
+      "name": "Combination Sum IV",
+      "difficulty": "intermediate",
+      "patterns": [
+        "count ordered sequences",
+        "outer target loop changes ordering semantics"
+      ],
+      "statement": "Given distinct positive integers nums and target, return the number of ordered sequences (reusing values any number of times) whose sum is target. Different orders count as different combinations; the answer fits a signed 32-bit integer.",
+      "constraints": [
+        "1 <= nums.length <= 200",
+        "1 <= nums[i] <= 1000",
+        "All nums values are distinct",
+        "1 <= target <= 1000"
+      ],
+      "examples": [
+        {
+          "input": "nums=[1,2,3], target=4",
+          "output": "7"
+        },
+        {
+          "input": "nums=[9], target=3",
+          "output": "0"
+        }
+      ],
+      "sourceUrls": [
+        "https://leetcode.com/problems/combination-sum-iv/"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["0/1 knapsack","Unbounded knapsack"],["Descending capacity loop","Ascending capacity loop"],["Subset-sum decision","Subset-sum counting"],["Coin-first combination count","Target-first ordered sequence count"],["Pseudo-polynomial DP","Meet-in-the-middle search"]],
-  "comparisonSources": ["https://usaco.guide/gold/intro-dp","https://usaco.guide/PAPS.pdf","https://usaco.guide/problems/cses-1158-book-shop/solution"],
+  "comparisons": [
+    [
+      "0/1 knapsack",
+      "Unbounded knapsack"
+    ],
+    [
+      "Descending capacity loop",
+      "Ascending capacity loop"
+    ],
+    [
+      "Subset-sum decision",
+      "Subset-sum counting"
+    ],
+    [
+      "Coin-first combination count",
+      "Target-first ordered sequence count"
+    ],
+    [
+      "Pseudo-polynomial DP",
+      "Meet-in-the-middle search"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/gold/intro-dp",
+    "https://usaco.guide/PAPS.pdf",
+    "https://usaco.guide/problems/cses-1158-book-shop/solution"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "USACO Guide DP and knapsack references, Competitive Programmer's Handbook, and official LeetCode problem statements",
     "edition": "Timeless DP patterns; canonical problem pages checked 2026-11-15",
     "checkedAt": "2026-11-15",
-    "urls": ["https://usaco.guide/gold/intro-dp","https://usaco.guide/PAPS.pdf","https://usaco.guide/problems/cses-1158-book-shop/solution","https://leetcode.com/problems/partition-equal-subset-sum/","https://leetcode.com/problems/target-sum/","https://leetcode.com/problems/coin-change-ii/","https://leetcode.com/problems/last-stone-weight-ii/","https://leetcode.com/problems/ones-and-zeroes/","https://leetcode.com/problems/combination-sum-iv/"]
+    "urls": [
+      "https://usaco.guide/gold/intro-dp",
+      "https://usaco.guide/PAPS.pdf",
+      "https://usaco.guide/problems/cses-1158-book-shop/solution",
+      "https://leetcode.com/problems/partition-equal-subset-sum/",
+      "https://leetcode.com/problems/target-sum/",
+      "https://leetcode.com/problems/coin-change-ii/",
+      "https://leetcode.com/problems/last-stone-weight-ii/",
+      "https://leetcode.com/problems/ones-and-zeroes/",
+      "https://leetcode.com/problems/combination-sum-iv/"
+    ]
   },
-  "scopeExclusions": ["General DP state-design foundations, covered in t11-015","Backtracking combination enumeration, covered in t11-013","Constraint search for equal buckets, covered in t11-028","Advanced bitset and polynomial convolution optimizations","Multi-dimensional resource DP beyond the named two-resource example"],
-  "generationAllowed": true
+  "scopeExclusions": [
+    "General DP state-design foundations, covered in t11-015",
+    "Backtracking combination enumeration, covered in t11-013",
+    "Constraint search for equal buckets, covered in t11-028",
+    "Advanced bitset and polynomial convolution optimizations",
+    "Multi-dimensional resource DP beyond the named two-resource example"
+  ]
 }

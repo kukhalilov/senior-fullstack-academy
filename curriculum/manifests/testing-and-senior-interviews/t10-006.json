@@ -3,7 +3,7 @@
   "id": "t10-006",
   "track": "track-10",
   "title": "code review refactoring and legacy modernization",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Code review checks whether a change is correct, understandable, maintainable, and appropriate to its users. Reviewers should distinguish must-fix correctness or safety issues from preferences and future improvements.",
     "Small, coherent changes are easier to reason about, test, review, and revert. A change description should state intent, important tradeoffs, and how it was verified.",
@@ -221,7 +221,6 @@
     "Language-specific compiler refactoring APIs and complete Fowler refactoring catalog are outside this bounded scope.",
     "Organizational performance review and promotion processes are not code-review practices."
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "Refactoring is intended to preserve observable behavior; tests provide evidence but do not prove equivalence for unobserved behavior.",
     "A change to a published interface may be behavior breaking even if internal callers were updated; unknown external consumers and serialized/runtime-discovered names expand the observable contract.",

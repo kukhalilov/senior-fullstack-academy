@@ -3,7 +3,7 @@
   "id": "t08-013",
   "track": "track-08",
   "title": "observability logs metrics tracing alerts and OpenTelemetry",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Observability uses emitted telemetry to infer internal behavior from outside the system. Logs, metrics, and traces answer different questions; correlation IDs and context propagation connect them without making any one signal a substitute for the others.",
     "Instrumentation must preserve useful context while controlling cost, cardinality, sensitive data, and sampling loss. Semantic conventions provide shared attribute names, but stability status and schema migration still matter.",
@@ -457,6 +457,5 @@
     "Security audit strategy and privacy regulation are in t07; telemetry redaction is included only as an instrumentation safeguard",
     "Profiling is included as a related signal but exact vendor profiler APIs are excluded",
     "The OpenTelemetry Collector registry contains hundreds of optional components; this source-bounded map names the core architecture and commonly used components, not every third-party distribution plugin"
-  ],
-  "generationAllowed": true
+  ]
 }

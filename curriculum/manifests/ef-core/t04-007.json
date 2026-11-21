@@ -3,7 +3,7 @@
   "id": "t04-007",
   "track": "track-04",
   "title": "migrations schema evolution seeds and deployment",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Migrations record the difference between an EF model and a relational schema. Scaffolding creates proposed operations and a model snapshot; developers must inspect data impact and provider-specific SQL.",
     "Migration files form ordered history. Up applies changes and Down attempts reversal, but destructive or lossy transformations may not be safely reversible.",
@@ -167,6 +167,5 @@
     "SQL Server DDL and backup procedures are in track-03.",
     "Runtime transaction retry and migration execution strategy interaction is in t04-008.",
     "Provider-specific migration operation support must not be generalized."
-  ],
-  "generationAllowed": true
+  ]
 }

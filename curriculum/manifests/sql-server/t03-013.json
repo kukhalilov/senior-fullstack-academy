@@ -3,7 +3,7 @@
   "id": "t03-013",
   "track": "track-03",
   "title": "performance troubleshooting monitoring waits and query tuning",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Troubleshooting begins with a measurable symptom, affected workload, time window, and recent change history; 'slow database' is not yet a diagnosis.",
     "Waits and resource metrics show where work is queued, while query-level evidence identifies expensive statements. A wait category alone does not prove a root cause.",
@@ -273,6 +273,5 @@
     "Do not treat a single wait threshold, average latency, or server-wide counter as proof. Correlate the affected query/workload and time window with query-level evidence, plans, file latency, concurrency, and application telemetry.",
     "SQL Server 2025 CE feedback for expressions supports compatibility level 160 and later, OPPO requires compatibility level 170, and OPTIMIZED_SP_EXECUTESQL is a separate configuration. Verify documented eligibility before attributing a result to an IQP feature.",
     "The documented SQL Server 2022+ permissions for server-scoped performance DMVs use VIEW SERVER PERFORMANCE STATE, subject to per-object exceptions and database-scoped permissions."
-  ],
-  "generationAllowed": true
+  ]
 }

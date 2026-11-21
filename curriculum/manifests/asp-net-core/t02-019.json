@@ -3,7 +3,7 @@
   "id": "t02-019",
   "track": "track-02",
   "title": "SignalR transports hubs connection lifetime groups security scaling",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "inventoryComplete": true,
   "concepts": [
     "SignalR provides server-to-client and bidirectional real-time messaging over a logical connection. A hub is a high-level RPC-like abstraction for client and server method calls; it is not a durable event log or a guarantee that every message is delivered exactly once. Design reconnect, replay, persistence, and acknowledgement behavior explicitly when messages matter. In ASP.NET Core 11, the .NET client can cancel a non-streaming invocation cooperatively, and the JSON Hub Protocol can serialize C# union types through System.Text.Json.",
@@ -418,6 +418,5 @@
     "Browser WebSocket APIs and general HTTP transport semantics are covered in the browser and protocol topics; this manifest covers SignalR transport selection and constraints.",
     "Redis internals, cloud service setup, broker durability, application event design, and distributed presence stores belong to infrastructure and architecture topics.",
     "Client framework integrations beyond the official .NET and JavaScript clients are third-party package APIs and are not enumerated as built-in SignalR features."
-  ],
-  "generationAllowed": true
+  ]
 }

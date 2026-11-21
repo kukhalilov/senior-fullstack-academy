@@ -3,7 +3,7 @@
   "id": "t11-010",
   "track": "track-11",
   "title": "binary trees, recursion, and traversal patterns",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A rooted tree is a connected acyclic hierarchy; in a binary tree each node has at most a left and right child, with no required ordering among values.",
     "A subtree is itself a tree, so recursive solutions describe a node's result in terms of the results for its children and a base case for a missing node.",
@@ -15,31 +15,205 @@
     "Tree input representation and node identity matter: a value may repeat, null children encode structure, and comparisons of nodes may require reference identity rather than values."
   ],
   "inventory": [
-    {"id":"tree-structure","title":"Tree shape, terminology, and representations","items":["Rooted tree","Binary tree","N-ary tree","Root node","Parent and child","Sibling","Leaf node","Subtree","Tree depth","Tree height","Balanced shape","Skewed tree","Null child","Level-order array representation","Node identity"]},
-    {"id":"depth-first-traversal","title":"Depth-first traversal orders","items":["Preorder traversal","Inorder traversal","Postorder traversal","Recursive traversal","Iterative traversal with explicit stack","Visit-before-children rule","Visit-between-children rule","Visit-after-children rule","Null-root base case"]},
-    {"id":"breadth-first-and-level","title":"Breadth-first and level-based traversal","items":["Level-order traversal","Queue-based breadth-first traversal","Process one level by queue-size snapshot","Zigzag level order","Right-side view","Minimum depth and first-leaf reasoning","Queue space proportional to tree width"]},
-    {"id":"recursive-tree-problems","title":"Recursive summaries, paths, and complexity","items":["Recursive subtree result","Postorder combination","Maximum depth recurrence","Tree diameter through child heights","Balance check with height result","Root-to-leaf path state","Path sum","O(n) visit-once traversal","O(height) recursion stack","Skewed-tree stack risk"]}
+    {
+      "id": "tree-structure",
+      "title": "Tree shape, terminology, and representations",
+      "items": [
+        "Rooted tree",
+        "Binary tree",
+        "N-ary tree",
+        "Root node",
+        "Parent and child",
+        "Sibling",
+        "Leaf node",
+        "Subtree",
+        "Tree depth",
+        "Tree height",
+        "Balanced shape",
+        "Skewed tree",
+        "Null child",
+        "Level-order array representation",
+        "Node identity"
+      ]
+    },
+    {
+      "id": "depth-first-traversal",
+      "title": "Depth-first traversal orders",
+      "items": [
+        "Preorder traversal",
+        "Inorder traversal",
+        "Postorder traversal",
+        "Recursive traversal",
+        "Iterative traversal with explicit stack",
+        "Visit-before-children rule",
+        "Visit-between-children rule",
+        "Visit-after-children rule",
+        "Null-root base case"
+      ]
+    },
+    {
+      "id": "breadth-first-and-level",
+      "title": "Breadth-first and level-based traversal",
+      "items": [
+        "Level-order traversal",
+        "Queue-based breadth-first traversal",
+        "Process one level by queue-size snapshot",
+        "Zigzag level order",
+        "Right-side view",
+        "Minimum depth and first-leaf reasoning",
+        "Queue space proportional to tree width"
+      ]
+    },
+    {
+      "id": "recursive-tree-problems",
+      "title": "Recursive summaries, paths, and complexity",
+      "items": [
+        "Recursive subtree result",
+        "Postorder combination",
+        "Maximum depth recurrence",
+        "Tree diameter through child heights",
+        "Balance check with height result",
+        "Root-to-leaf path state",
+        "Path sum",
+        "O(n) visit-once traversal",
+        "O(height) recursion stack",
+        "Skewed-tree stack risk"
+      ]
+    }
   ],
   "practiceProblems": [
-    {"id":"maximum-depth-binary-tree","name":"Maximum Depth of Binary Tree","difficulty":"introductory","patterns":["recursive height recurrence","null base case"]},
-    {"id":"binary-tree-inorder-traversal","name":"Binary Tree Inorder Traversal","difficulty":"introductory","patterns":["left-root-right traversal","recursive and explicit-stack forms"]},
-    {"id":"binary-tree-level-order-traversal","name":"Binary Tree Level Order Traversal","difficulty":"introductory","patterns":["queue breadth-first traversal","level-size snapshot"]},
-    {"id":"invert-binary-tree","name":"Invert Binary Tree","difficulty":"introductory","patterns":["recursive subtree transformation","swap child references"]},
-    {"id":"diameter-binary-tree","name":"Diameter of Binary Tree","difficulty":"intermediate","patterns":["postorder height summary","through-node path combination"]},
-    {"id":"balanced-binary-tree","name":"Balanced Binary Tree","difficulty":"intermediate","patterns":["bottom-up height and balance result","avoid repeated height scans"]},
-    {"id":"path-sum","name":"Path Sum","difficulty":"introductory","patterns":["root-to-leaf state propagation","leaf boundary condition"]},
-    {"id":"symmetric-tree","name":"Symmetric Tree","difficulty":"introductory","patterns":["mirror recursion","paired node comparison"]}
+    {
+      "id": "maximum-depth-binary-tree",
+      "name": "Maximum Depth of Binary Tree",
+      "difficulty": "introductory",
+      "patterns": [
+        "recursive height recurrence",
+        "null base case"
+      ]
+    },
+    {
+      "id": "binary-tree-inorder-traversal",
+      "name": "Binary Tree Inorder Traversal",
+      "difficulty": "introductory",
+      "patterns": [
+        "left-root-right traversal",
+        "recursive and explicit-stack forms"
+      ]
+    },
+    {
+      "id": "binary-tree-level-order-traversal",
+      "name": "Binary Tree Level Order Traversal",
+      "difficulty": "introductory",
+      "patterns": [
+        "queue breadth-first traversal",
+        "level-size snapshot"
+      ]
+    },
+    {
+      "id": "invert-binary-tree",
+      "name": "Invert Binary Tree",
+      "difficulty": "introductory",
+      "patterns": [
+        "recursive subtree transformation",
+        "swap child references"
+      ]
+    },
+    {
+      "id": "diameter-binary-tree",
+      "name": "Diameter of Binary Tree",
+      "difficulty": "intermediate",
+      "patterns": [
+        "postorder height summary",
+        "through-node path combination"
+      ]
+    },
+    {
+      "id": "balanced-binary-tree",
+      "name": "Balanced Binary Tree",
+      "difficulty": "intermediate",
+      "patterns": [
+        "bottom-up height and balance result",
+        "avoid repeated height scans"
+      ]
+    },
+    {
+      "id": "path-sum",
+      "name": "Path Sum",
+      "difficulty": "introductory",
+      "patterns": [
+        "root-to-leaf state propagation",
+        "leaf boundary condition"
+      ]
+    },
+    {
+      "id": "symmetric-tree",
+      "name": "Symmetric Tree",
+      "difficulty": "introductory",
+      "patterns": [
+        "mirror recursion",
+        "paired node comparison"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Binary tree","Binary search tree"],["Depth-first traversal","Breadth-first traversal"],["Recursive traversal","Iterative traversal with explicit stack"],["Preorder","Inorder","Postorder"],["Height measured in edges","Height measured in nodes"],["Top-down repeated computation","Bottom-up postorder summary"]],
-  "comparisonSources": ["https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html","https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html","https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html"],
+  "comparisons": [
+    [
+      "Binary tree",
+      "Binary search tree"
+    ],
+    [
+      "Depth-first traversal",
+      "Breadth-first traversal"
+    ],
+    [
+      "Recursive traversal",
+      "Iterative traversal with explicit stack"
+    ],
+    [
+      "Preorder",
+      "Inorder",
+      "Postorder"
+    ],
+    [
+      "Height measured in edges",
+      "Height measured in nodes"
+    ],
+    [
+      "Top-down repeated computation",
+      "Bottom-up postorder summary"
+    ]
+  ],
+  "comparisonSources": [
+    "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+    "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+    "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "OpenDSA CPSC 270 Fall 2026 tree and recursion chapters and official LeetCode problem statements",
     "edition": "OpenDSA CPSC 270 Fall 2026; canonical problem pages checked 2026-11-17",
     "checkedAt": "2026-11-17",
-    "urls": ["https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html","https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html","https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html","https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html","https://leetcode.com/problems/maximum-depth-of-binary-tree/","https://leetcode.com/problems/binary-tree-inorder-traversal/","https://leetcode.com/problems/binary-tree-level-order-traversal/","https://leetcode.com/problems/invert-binary-tree/","https://leetcode.com/problems/diameter-of-binary-tree/","https://leetcode.com/problems/balanced-binary-tree/","https://leetcode.com/problems/path-sum/","https://leetcode.com/problems/symmetric-tree/"]
+    "urls": [
+      "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/index.html",
+      "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTree.html",
+      "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeTraversal.html",
+      "https://opendsa-server.cs.vt.edu/ODSA/Books/cnu/cpsc270/fall-2026/F26/html/BinaryTreeInfFlw.html",
+      "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+      "https://leetcode.com/problems/binary-tree-inorder-traversal/",
+      "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+      "https://leetcode.com/problems/invert-binary-tree/",
+      "https://leetcode.com/problems/diameter-of-binary-tree/",
+      "https://leetcode.com/problems/balanced-binary-tree/",
+      "https://leetcode.com/problems/path-sum/",
+      "https://leetcode.com/problems/symmetric-tree/"
+    ]
   },
-  "scopeExclusions": ["Binary search tree ordering and mutations, covered in t11-025","AVL, red-black, and other self-balancing search trees","Heaps and priority queues, covered in t11-024","Trie structures, covered in t11-016","General graph cycles and traversal, covered in graph topics","Segment trees and Fenwick trees"],
-  "generationAllowed": true
+  "scopeExclusions": [
+    "Binary search tree ordering and mutations, covered in t11-025",
+    "AVL, red-black, and other self-balancing search trees",
+    "Heaps and priority queues, covered in t11-024",
+    "Trie structures, covered in t11-016",
+    "General graph cycles and traversal, covered in graph topics",
+    "Segment trees and Fenwick trees"
+  ]
 }

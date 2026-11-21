@@ -3,7 +3,7 @@
   "id": "t02-017",
   "track": "track-02",
   "title": "IHttpClientFactory resilience retries and timeouts",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "inventoryComplete": true,
   "concepts": [
     "An outbound HTTP call crosses process and network boundaries. Model it as a dependency operation with explicit destination, deadline, cancellation, response handling, and failure policy. HttpClient owns connection pooling through its handler; repeatedly constructing and disposing clients can create socket pressure, while a forever-lived client can retain stale DNS results unless its connection lifetime is managed.",
@@ -368,6 +368,5 @@
     "Domain-specific retry safety, idempotency storage, fallback content, and service-level objectives depend on the calling operation and are taught as design decisions rather than universal framework behavior.",
     "Full Polly API catalog and resilience pipeline customization beyond HTTP are covered in architecture and resilience topics; this manifest names only the HTTP integration surfaces needed here.",
     "Third-party generated API clients are covered as integration patterns; each generator maintains its own independent client and configuration APIs."
-  ],
-  "generationAllowed": true
+  ]
 }

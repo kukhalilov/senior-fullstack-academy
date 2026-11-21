@@ -3,7 +3,7 @@
   "id": "t01-016",
   "track": "track-01",
   "title": "C# async and await Task ValueTask cancellation and continuation context",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Asynchronous programming represents work that may finish later without forcing the caller's thread to wait. `async` and `await` let code express the Task-based Asynchronous Pattern (TAP); they do not automatically create a new thread or make CPU work parallel.",
     "A `Task` represents an operation's eventual completion, failure, or cancellation; `Task<T>` also carries a result. An async method runs synchronously until it reaches an incomplete awaitable, then its continuation resumes when the awaited operation completes.",
@@ -380,7 +380,6 @@
     "HttpClient and ASP.NET Core request cancellation are applied in their dedicated platform topics.",
     "The task builder implementation and runtime scheduler internals are introduced only as needed; CLR/JIT details belong to t01-019."
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "Task.Yield returns YieldAwaitable. Awaiting it posts continuation to the current SynchronizationContext or, absent one, the current TaskScheduler; it does not guarantee UI responsiveness or a particular thread.",
     "TaskCreationOptions.RunContinuationsAsynchronously causes continuations registered to the task to run asynchronously; it does not promise they run on the thread pool.",

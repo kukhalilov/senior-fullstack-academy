@@ -3,7 +3,7 @@
   "id": "t09-005",
   "track": "track-09",
   "title": "Linux shell permissions processes networking systemd and logs",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A Linux command runs with a process identity, environment, working directory, file descriptors, and permissions. Shell syntax composes commands, while exit status and standard streams provide the basic control and diagnostic contract.",
     "Filesystem access combines ownership, mode bits, ACLs, directory search permission, mount behavior, and process credentials. Use the least authority needed and understand that sudo changes privilege for a command; it does not make unsafe paths or copied commands safe.",
@@ -494,8 +494,8 @@
       "https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html",
       "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html",
       "https://www.freedesktop.org/software/systemd/man/latest/journalctl.html",
-    "https://www.freedesktop.org/software/systemd/man/latest/resolvectl.html",
-    "https://www.freedesktop.org/software/systemd/man/latest/systemd-journald.service.html",
+      "https://www.freedesktop.org/software/systemd/man/latest/resolvectl.html",
+      "https://www.freedesktop.org/software/systemd/man/latest/systemd-journald.service.html",
       "https://lists.gnu.org/archive/html/bug-bash/2025-07/msg00005.html",
       "https://github.com/systemd/systemd/releases",
       "https://man7.org/linux/man-pages/dir_by_project.html"
@@ -508,6 +508,5 @@
     "Bash is the concrete shell for named expansions and job control; POSIX sh differences must be called out when scripting portability matters",
     "Do not claim `set -e` makes every shell script fail safely; pipelines, conditionals, command substitutions, and shell semantics require explicit status handling",
     "Never advise broad chmod 777 or blind recursive chown as routine permission repair"
-  ],
-  "generationAllowed": true
+  ]
 }

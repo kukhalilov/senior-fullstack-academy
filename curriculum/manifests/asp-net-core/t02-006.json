@@ -3,7 +3,7 @@
   "id": "t02-006",
   "track": "track-02",
   "title": "ASP.NET Core Minimal APIs route handlers endpoint filters validation and results",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Minimal APIs expose HTTP endpoints through route-handler delegates and endpoint-routing conventions. They use the same server, middleware pipeline, dependency injection, routing, and HTTP abstractions as controller applications.",
     "Route groups share a prefix and metadata across related handlers. Endpoint filters wrap handler invocation for cross-cutting behavior near the handler; middleware wraps the larger request pipeline.",
@@ -334,13 +334,13 @@
     {
       "edition": "ASP.NET Core 10 and 11 / .NET 11 GA checked 2026-11-20",
       "items": [
-      "ASP.NET Core 10 introduced built-in Minimal API validation support through Microsoft.Extensions.Validation and AddValidation. .NET 11 adds asynchronous DataAnnotations validation APIs, including AsyncValidationAttribute, IAsyncValidatableObject, Validator.ValidateObjectAsync, and asynchronous options validation; Minimal API validation uses the asynchronous path. ASP.NET Core 11 endpoint filters can observe supported parameter-check failures when configured, with ThrowOnBadRequest=false in Development. .NET 11 C# union types work with JSON request/response bodies, not route/query/header/form binding. ASP.NET Core 11's OpenAPI integration defaults to OpenAPI 3.2.0 (3.1.0 in .NET 10) and improves binary file response descriptions. WithOpenApi was deprecated in .NET 10; use document-wide or endpoint-specific operation transformers for customization."
+        "ASP.NET Core 10 introduced built-in Minimal API validation support through Microsoft.Extensions.Validation and AddValidation. .NET 11 adds asynchronous DataAnnotations validation APIs, including AsyncValidationAttribute, IAsyncValidatableObject, Validator.ValidateObjectAsync, and asynchronous options validation; Minimal API validation uses the asynchronous path. ASP.NET Core 11 endpoint filters can observe supported parameter-check failures when configured, with ThrowOnBadRequest=false in Development. .NET 11 C# union types work with JSON request/response bodies, not route/query/header/form binding. ASP.NET Core 11's OpenAPI integration defaults to OpenAPI 3.2.0 (3.1.0 in .NET 10) and improves binary file response descriptions. WithOpenApi was deprecated in .NET 10; use document-wide or endpoint-specific operation transformers for customization."
       ],
       "sourceUrls": [
         "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/validation?view=aspnetcore-11.0",
         "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview",
         "https://learn.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-11?view=aspnetcore-11.0",
-      "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/10/withopenapi-deprecated?view=aspnetcore-10.0"
+        "https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/10/withopenapi-deprecated?view=aspnetcore-10.0"
       ]
     }
   ],
@@ -368,6 +368,5 @@
     "OpenAPI document customization and API versioning belong to t02-013",
     "Authentication and authorization policies are covered in t02-011",
     "Endpoint filter is not a security boundary by itself; apply authorization policy and validate domain invariants"
-  ],
-  "generationAllowed": true
+  ]
 }

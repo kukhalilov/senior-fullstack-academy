@@ -1,0 +1,30 @@
+# C# language and .NET
+
+[[Start Here|Academy home]] · [[course/indexes/learning-path|Learning path]]
+
+Topics: 24
+
+- [[course/indexes/topics/t01-001|t01-001 — .NET platform vs runtime vs SDK vs framework and alternatives]]
+- [[course/indexes/topics/t01-002|t01-002 — C# source-file organization and application entry points]]
+- [[course/indexes/topics/t01-003|t01-003 — C# built-in type aliases and characteristics]]
+- [[course/indexes/topics/t01-024|t01-024 — C# numeric literals and numeric conversions]]
+- [[course/indexes/topics/t01-004|t01-004 — C# value types reference types copying identity and equality]]
+- [[course/indexes/topics/t01-005|t01-005 — C# nullability nullable value types and nullable reference analysis]]
+- [[course/indexes/topics/t01-006|t01-006 — C# classes structs records constructors and initialization]]
+- [[course/indexes/topics/t01-007|t01-007 — inheritance polymorphism interfaces abstract classes and access modifiers]]
+- [[course/indexes/topics/t01-008|t01-008 — properties indexers fields methods parameters and overloads]]
+- [[course/indexes/topics/t01-009|t01-009 — generics constraints and generic methods]]
+- [[course/indexes/topics/t01-010|t01-010 — covariance contravariance invariant types and delegates]]
+- [[course/indexes/topics/t01-011|t01-011 — delegates events lambdas closures and expression trees]]
+- [[course/indexes/topics/t01-012|t01-012 — C# pattern matching user-defined operators and conversions]]
+- [[course/indexes/topics/t01-013|t01-013 — exceptions error handling and disposal]]
+- [[course/indexes/topics/t01-022|t01-022 — C# statements, control flow, and exception-handling statement forms]]
+- [[course/indexes/topics/t01-023|t01-023 — C# operators, precedence, and operand evaluation]]
+- [[course/indexes/topics/t01-014|t01-014 — collections arrays list dictionary set stack queue concurrent and immutable collections]]
+- [[course/indexes/topics/t01-015|t01-015 — LINQ operators deferred execution IEnumerable IQueryable and async sequences]]
+- [[course/indexes/topics/t01-016|t01-016 — C# async and await Task ValueTask cancellation and continuation context]]
+- [[course/indexes/topics/t01-017|t01-017 — threads thread pool synchronization primitives races and parallelism]]
+- [[course/indexes/topics/t01-018|t01-018 — memory spans allocation garbage collection pooling and diagnostics]]
+- [[course/indexes/topics/t01-019|t01-019 — CLR execution IL JIT AOT assemblies reflection attributes and loading]]
+- [[course/indexes/topics/t01-020|t01-020 — streams file system serialization sockets and HTTP clients]]
+- [[course/indexes/topics/t01-021|t01-021 — dates times globalization formatting and regular expressions]]

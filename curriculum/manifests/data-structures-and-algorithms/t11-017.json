@@ -3,7 +3,7 @@
   "id": "t11-017",
   "track": "track-11",
   "title": "solve, explain, test, and analyze algorithm problems",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A reliable solve process begins by restating the task as inputs, outputs, and a precise contract, then identifying constraints that rule algorithms in or out.",
     "Clarifying questions should target ambiguity that changes correctness, such as empty input, duplicates, ordering, numeric limits, and whether mutation is allowed.",
@@ -15,22 +15,115 @@
     "A trustworthy final explanation connects problem contract, algorithm, correctness argument, complexity, implementation, and tests without claiming unverified behavior."
   ],
   "inventory": [
-    {"id":"understand-and-clarify","title":"Restate the contract and clarify constraints","items":["Input and output contract","Restate in own words","Clarifying ambiguity","Empty-input behavior","Duplicate-value behavior","Ordering requirements","Mutation permission","Numeric range and overflow","Input-size constraints","Output-size lower bound"]},
-    {"id":"derive-and-prove","title":"Choose an approach and justify correctness","items":["Small worked example","Brute-force baseline","Candidate data structures","Algorithm pattern selection","Input constraints eliminate slow approaches","Loop invariant","Initialization proof","Invariant-preservation proof","Termination proof","Recursive base case and progress"]},
-    {"id":"implement-and-test","title":"Dry runs, edge cases, and executable checks","items":["Trace state after each iteration","Boundary cases","Adversarial case","Single-element case","All-equal case","Sorted and reverse-sorted cases","Differential test against brute force","Property-based invariant","Regression test","Assertion that throws on failure"]},
-    {"id":"analyze-and-communicate","title":"Complexity, alternatives, and concise explanation","items":["Worst-case time complexity","Auxiliary-space complexity","Expected complexity","Amortized complexity","Input versus output space distinction","Dominant operation count","Tradeoff comparison","Explain why a rejected approach fails","Summarize invariant and proof","Limit claims to tested or sourced evidence"]}
+    {
+      "id": "understand-and-clarify",
+      "title": "Restate the contract and clarify constraints",
+      "items": [
+        "Input and output contract",
+        "Restate in own words",
+        "Clarifying ambiguity",
+        "Empty-input behavior",
+        "Duplicate-value behavior",
+        "Ordering requirements",
+        "Mutation permission",
+        "Numeric range and overflow",
+        "Input-size constraints",
+        "Output-size lower bound"
+      ]
+    },
+    {
+      "id": "derive-and-prove",
+      "title": "Choose an approach and justify correctness",
+      "items": [
+        "Small worked example",
+        "Brute-force baseline",
+        "Candidate data structures",
+        "Algorithm pattern selection",
+        "Input constraints eliminate slow approaches",
+        "Loop invariant",
+        "Initialization proof",
+        "Invariant-preservation proof",
+        "Termination proof",
+        "Recursive base case and progress"
+      ]
+    },
+    {
+      "id": "implement-and-test",
+      "title": "Dry runs, edge cases, and executable checks",
+      "items": [
+        "Trace state after each iteration",
+        "Boundary cases",
+        "Adversarial case",
+        "Single-element case",
+        "All-equal case",
+        "Sorted and reverse-sorted cases",
+        "Differential test against brute force",
+        "Property-based invariant",
+        "Regression test",
+        "Assertion that throws on failure"
+      ]
+    },
+    {
+      "id": "analyze-and-communicate",
+      "title": "Complexity, alternatives, and concise explanation",
+      "items": [
+        "Worst-case time complexity",
+        "Auxiliary-space complexity",
+        "Expected complexity",
+        "Amortized complexity",
+        "Input versus output space distinction",
+        "Dominant operation count",
+        "Tradeoff comparison",
+        "Explain why a rejected approach fails",
+        "Summarize invariant and proof",
+        "Limit claims to tested or sourced evidence"
+      ]
+    }
   ],
   "practiceProblems": [],
   "inventoryComplete": true,
-  "comparisons": [["Brute-force baseline","Constraint-fit optimized algorithm"],["Example trace","Correctness proof"],["Worst-case complexity","Expected complexity"],["Expected complexity","Amortized complexity"],["Happy-path test","Boundary and adversarial test"]],
-  "comparisonSources": ["https://usaco.guide/CP2.pdf","https://usaco.guide/bronze/time-comp","https://learn.microsoft.com/en-us/dotnet/core/testing/"],
+  "comparisons": [
+    [
+      "Brute-force baseline",
+      "Constraint-fit optimized algorithm"
+    ],
+    [
+      "Example trace",
+      "Correctness proof"
+    ],
+    [
+      "Worst-case complexity",
+      "Expected complexity"
+    ],
+    [
+      "Expected complexity",
+      "Amortized complexity"
+    ],
+    [
+      "Happy-path test",
+      "Boundary and adversarial test"
+    ]
+  ],
+  "comparisonSources": [
+    "https://usaco.guide/CP2.pdf",
+    "https://usaco.guide/bronze/time-comp",
+    "https://learn.microsoft.com/en-us/dotnet/core/testing/"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
     "authority": "Competitive Programming 2 problem-solving and complexity chapters, USACO Guide complexity reference, and Microsoft .NET testing documentation",
     "edition": "Timeless problem-solving method; references checked 2026-11-14",
     "checkedAt": "2026-11-14",
-    "urls": ["https://usaco.guide/CP2.pdf","https://usaco.guide/bronze/time-comp","https://learn.microsoft.com/en-us/dotnet/core/testing/"]
+    "urls": [
+      "https://usaco.guide/CP2.pdf",
+      "https://usaco.guide/bronze/time-comp",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/"
+    ]
   },
-  "scopeExclusions": ["Mock interview timing and multi-session review schedule, covered in t11-018","Specific algorithm API inventories, covered in focused DSA topics","System-design interviews and behavioral interview coaching","Formal verification and proof assistants"],
-  "generationAllowed": true
+  "scopeExclusions": [
+    "Mock interview timing and multi-session review schedule, covered in t11-018",
+    "Specific algorithm API inventories, covered in focused DSA topics",
+    "System-design interviews and behavioral interview coaching",
+    "Formal verification and proof assistants"
+  ]
 }

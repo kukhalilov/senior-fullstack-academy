@@ -3,7 +3,7 @@
   "id": "t01-004",
   "track": "track-01",
   "title": "C# value types reference types copying identity and equality",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A value-type variable contains its value; assigning it normally copies that value. A reference-type variable contains a reference; copying the variable copies the reference, so two variables can refer to the same object.",
     "The distinction is about language semantics, not a promise that every value lives on the stack or every object on the heap. Storage location is affected by context, optimization, boxing, and implementation.",
@@ -283,7 +283,6 @@
     "LINQ sequence operators are taught in t01-015",
     "Domain-driven value-object modeling is addressed in the architecture track"
   ],
-  "generationAllowed": true,
   "accuracyFacts": [
     "Value-type variables contain values and normal assignment copies values; reference-type variables contain object references and copying a reference can preserve aliasing. Neither rule promises a physical stack/heap location or says an object reference is a raw address.",
     "record struct is a value type; record class is a reference type.",

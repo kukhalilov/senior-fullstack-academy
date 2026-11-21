@@ -3,7 +3,7 @@
   "id": "t09-004",
   "track": "track-09",
   "title": "Kestrel reverse proxies TLS networking and load balancing",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "Kestrel is ASP.NET Core's cross-platform HTTP server and can run directly at the edge or behind a reverse proxy. The topology decides which component terminates TLS, validates the Host header, limits connections, and supplies the original client context.",
     "An endpoint binds an address and port and selects permitted HTTP protocols. TLS configuration includes certificates, protocol negotiation, SNI, client-certificate requirements, and trust-chain validation; TLS pass-through and TLS termination are different network flows.",
@@ -412,6 +412,5 @@
     "ASP.NET Core middleware APIs unrelated to proxying are in framework topics",
     "Do not enable forwarded-header processing for untrusted direct-edge traffic; do not treat X-Forwarded headers as authenticated merely because they are present",
     "YARP extension points beyond the named public configuration abstractions require version-specific API documentation and aren't exhaustively enumerated here"
-  ],
-  "generationAllowed": true
+  ]
 }

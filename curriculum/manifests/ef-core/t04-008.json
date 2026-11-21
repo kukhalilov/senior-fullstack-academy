@@ -3,7 +3,7 @@
   "id": "t04-008",
   "track": "track-04",
   "title": "transactions savepoints retry execution strategies and concurrency",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "EF Core wraps a single SaveChanges call in a transaction when the provider supports transactions. Explicit transactions combine multiple operations but require correct lifetime and exception handling.",
     "When SaveChanges runs inside an existing transaction, EF may create a savepoint; SQL Server MARS disables this behavior. A failed save can leave a transaction state requiring careful recovery.",
@@ -143,6 +143,5 @@
     "SQL Server isolation modes and lock behavior are in t03-010.",
     "Migration deployment and migration-specific retries are in t04-007.",
     "Distributed transactions, outbox, and saga patterns are in track-08."
-  ],
-  "generationAllowed": true
+  ]
 }

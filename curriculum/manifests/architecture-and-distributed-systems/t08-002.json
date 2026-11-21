@@ -3,7 +3,7 @@
   "id": "t08-002",
   "track": "track-08",
   "title": "creational structural and behavioral design patterns",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A design pattern names a recurring design problem, its participating roles, a reusable solution shape, and the consequences of applying it; it is not a code template that should be inserted automatically.",
     "Creational patterns separate or structure object creation; structural patterns compose objects or classes; behavioral patterns organize communication and responsibility.",
@@ -12,21 +12,107 @@
     "This manifest freezes the canonical 23 Gang of Four patterns in their established three categories; enterprise application and concurrency pattern catalogs are separate scopes."
   ],
   "inventory": [
-    {"id":"creational-patterns","title":"The five canonical GoF creational patterns","items":["Factory Method","Abstract Factory","Builder","Prototype","Singleton"]},
-    {"id":"structural-patterns","title":"The seven canonical GoF structural patterns","items":["Adapter","Bridge","Composite","Decorator","Facade","Flyweight","Proxy"]},
-    {"id":"behavioral-patterns-a","title":"Behavioral patterns: responsibility, commands, iteration, and mediation","items":["Chain of Responsibility","Command","Iterator","Mediator","Memento"]},
-    {"id":"behavioral-patterns-b","title":"Behavioral patterns: observation, state, algorithms, language, and templates","items":["Interpreter","Observer","State","Strategy","Template Method","Visitor"]}
+    {
+      "id": "creational-patterns",
+      "title": "The five canonical GoF creational patterns",
+      "items": [
+        "Factory Method",
+        "Abstract Factory",
+        "Builder",
+        "Prototype",
+        "Singleton"
+      ]
+    },
+    {
+      "id": "structural-patterns",
+      "title": "The seven canonical GoF structural patterns",
+      "items": [
+        "Adapter",
+        "Bridge",
+        "Composite",
+        "Decorator",
+        "Facade",
+        "Flyweight",
+        "Proxy"
+      ]
+    },
+    {
+      "id": "behavioral-patterns-a",
+      "title": "Behavioral patterns: responsibility, commands, iteration, and mediation",
+      "items": [
+        "Chain of Responsibility",
+        "Command",
+        "Iterator",
+        "Mediator",
+        "Memento"
+      ]
+    },
+    {
+      "id": "behavioral-patterns-b",
+      "title": "Behavioral patterns: observation, state, algorithms, language, and templates",
+      "items": [
+        "Interpreter",
+        "Observer",
+        "State",
+        "Strategy",
+        "Template Method",
+        "Visitor"
+      ]
+    }
   ],
   "inventoryComplete": true,
-  "comparisons": [["Factory Method","Abstract Factory","Builder"],["Adapter","Bridge"],["Decorator","Proxy"],["Facade","Adapter"],["Strategy","State"],["Observer","Mediator"],["Command","Memento"]],
-  "comparisonSources": ["https://www.oreilly.com/library/view/design-patterns-elements/0201633612/","https://www.hillside.net/elements-of-reusable-object-oriented-software-book","https://refactoring.guru/design-patterns/catalog"],
+  "comparisons": [
+    [
+      "Factory Method",
+      "Abstract Factory",
+      "Builder"
+    ],
+    [
+      "Adapter",
+      "Bridge"
+    ],
+    [
+      "Decorator",
+      "Proxy"
+    ],
+    [
+      "Facade",
+      "Adapter"
+    ],
+    [
+      "Strategy",
+      "State"
+    ],
+    [
+      "Observer",
+      "Mediator"
+    ],
+    [
+      "Command",
+      "Memento"
+    ]
+  ],
+  "comparisonSources": [
+    "https://www.oreilly.com/library/view/design-patterns-elements/0201633612/",
+    "https://www.hillside.net/elements-of-reusable-object-oriented-software-book",
+    "https://refactoring.guru/design-patterns/catalog"
+  ],
   "versionNotes": [],
   "sourceSnapshot": {
-    "authority":"Original GoF book publisher listing and Hillside Group book page; Refactoring.Guru provides an additional explanatory catalog for 22 of the GoF names",
-    "edition":"Classic 23-pattern GoF catalog, including Interpreter; references checked 2026-11-14",
-    "checkedAt":"2026-11-14",
-    "urls":["https://www.oreilly.com/library/view/design-patterns-elements/0201633612/","https://www.hillside.net/elements-of-reusable-object-oriented-software-book","https://refactoring.guru/design-patterns/catalog","https://refactoring.guru/design-patterns/examples"]
+    "authority": "Original GoF book publisher listing and Hillside Group book page; Refactoring.Guru provides an additional explanatory catalog for 22 of the GoF names",
+    "edition": "Classic 23-pattern GoF catalog, including Interpreter; references checked 2026-11-14",
+    "checkedAt": "2026-11-14",
+    "urls": [
+      "https://www.oreilly.com/library/view/design-patterns-elements/0201633612/",
+      "https://www.hillside.net/elements-of-reusable-object-oriented-software-book",
+      "https://refactoring.guru/design-patterns/catalog",
+      "https://refactoring.guru/design-patterns/examples"
+    ]
   },
-  "scopeExclusions":["Concurrency, enterprise application, integration, cloud, and distributed-system pattern catalogs; these belong to dedicated topics in this track","Language-specific implementations and framework APIs","Patterns must not be presented as mandatory structures or as a substitute for understanding the underlying design problem","The grouped practice lesson may compare listed patterns but may not introduce additional named patterns"],
-  "generationAllowed": true
+  "scopeExclusions": [
+    "Concurrency, enterprise application, integration, cloud, and distributed-system pattern catalogs; these belong to dedicated topics in this track",
+    "Language-specific implementations and framework APIs",
+    "Patterns must not be presented as mandatory structures or as a substitute for understanding the underlying design problem",
+    "The grouped practice lesson may compare listed patterns but may not introduce additional named patterns"
+  ]
 }

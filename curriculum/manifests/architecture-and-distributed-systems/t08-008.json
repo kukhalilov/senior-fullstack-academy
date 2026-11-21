@@ -3,7 +3,7 @@
   "id": "t08-008",
   "track": "track-08",
   "title": "queues pub sub RabbitMQ Kafka ordering and delivery semantics",
-  "status": "source-backed-draft-generation-enabled",
+  "status": "source-backed-scope-complete",
   "concepts": [
     "A broker mediates between publishers and consumers, but products called message brokers may implement different models: routed transient work queues, durable append-only logs, or both. Learn each product's contract instead of assuming the name queue or topic guarantees behavior.",
     "Delivery is an end-to-end chain with distinct publisher acceptance, broker persistence or replication, consumer delivery, application processing, and acknowledgement points. A publisher confirm does not confirm consumer processing, and a consumer acknowledgement does not prove an external side effect is atomic.",
@@ -333,6 +333,5 @@
     "Language-specific RabbitMQ and Kafka client class/method reference is not enumerated here; exact current product behavior and core broker semantics are covered, while library APIs belong with their language track",
     "Managed broker cloud SKU limits, pricing, and vendor-specific operations (track-09)",
     "Kafka ordering is per partition and RabbitMQ delivery order can change under redelivery, requeue, priorities, or concurrent consumption; no global total order is claimed"
-  ],
-  "generationAllowed": true
+  ]
 }
