@@ -4,7 +4,8 @@ A self-study library for C#/.NET, React, data structures and algorithms, and sen
 
 ## Start studying
 
-- [[course/indexes/learning-path|Follow the ordered learning path]]
+- [[course/indexes/interview-prep-one-week|Start the one-week interview prep path]]
+- [[course/indexes/long-term-mastery|Follow the long-term mastery path]]
 - [[course/indexes/tracks/index|Browse all 12 tracks]]
 - [[course/indexes/topics/t11-001|Start with programming and DSA foundations]]
 - [[course/indexes/topics/t12-001|Browse system design]]

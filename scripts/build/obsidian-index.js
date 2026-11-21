@@ -4,6 +4,7 @@ import path from 'node:path';
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const catalog = read('curriculum/catalog.json');
 const learningPath = read('curriculum/learning-path.json');
+const interviewPath = read('curriculum/interview-prep-path.json');
 const queue = read('curriculum/queue.json');
 const ledger = read('curriculum/factual-review-ledger.json');
 const manifests = new Map();
@@ -64,6 +65,7 @@ for (const [topicId, {manifest, track}] of manifests) {
   fs.writeFileSync(target, sections.join('\n'));
 }
 
+const allTopicIds = [...manifests.keys()];
 const stages = learningPath.stages.map((stage, index) => {
   const topics = stage.topics.map(id => {
     const value = manifests.get(id);
@@ -73,10 +75,48 @@ const stages = learningPath.stages.map((stage, index) => {
   const prerequisites = stage.prerequisites?.length ? `\n\nPrerequisites: ${stage.prerequisites.map(id => `**${id}**`).join(', ')}` : '';
   return [`## Stage ${index + 1}: ${stage.title}`, '', ...topics, prerequisites, ''].join('\n');
 }).join('\n');
-fs.writeFileSync(`${indexRoot}/learning-path.md`, [
-  '# Learning path','',
-  'Follow the stages in order. A topic index links its lessons in study order: overview, concepts, references, practice, and interview.', '',
+const longTermTopicIds = learningPath.stages.flatMap(stage => stage.topics);
+if (new Set(longTermTopicIds).size !== longTermTopicIds.length || longTermTopicIds.length !== manifests.size) {
+  throw new Error(`Long-term mastery path must contain all ${manifests.size} topics exactly once.`);
+}
+const missingLongTermTopics = allTopicIds.filter(id => !longTermTopicIds.includes(id));
+if (missingLongTermTopics.length) throw new Error(`Long-term mastery path is missing topics: ${missingLongTermTopics.join(', ')}`);
+fs.writeFileSync(`${indexRoot}/long-term-mastery.md`, [
+  '# Long-term mastery path','',
+  'Follow the stages in order and study each topic index fully. Within a topic, lessons are ordered overview → concepts → references → practice → interview. This path builds prerequisites before later material.', '',
   stages,
+].join('\n'));
+
+const interviewTopicIds = interviewPath.days.flatMap(day => day.topics);
+if (new Set(interviewTopicIds).size !== interviewTopicIds.length) throw new Error('Interview path repeats a topic.');
+const missingInterviewTopics = allTopicIds.filter(id => !interviewTopicIds.includes(id));
+const unknownInterviewTopics = interviewTopicIds.filter(id => !manifests.has(id));
+if (missingInterviewTopics.length || unknownInterviewTopics.length || interviewTopicIds.length !== allTopicIds.length) {
+  throw new Error(`Interview path must contain all ${allTopicIds.length} topics exactly once; missing: ${missingInterviewTopics.join(', ') || 'none'}; unknown: ${unknownInterviewTopics.join(', ') || 'none'}`);
+}
+const interviewDays = interviewPath.days.map((day, index) => {
+  const sections = day.topics.map(id => {
+    const {manifest} = manifests.get(id);
+    const tasks = queue.tasks.filter(task => task.module === id);
+    const firstTask = phase => tasks.find(task => task.phase === phase);
+    const overview = firstTask('overview');
+    const interview = firstTask('interview');
+    const quickLinks = [overview, interview].filter(Boolean).map(task => `[[course/lessons/${task.module}/${task.id}|${task.title.replace(/^.*? — /, '')}]]`).join(' · ');
+    return `- ${link(`${indexRoot}/topics/${id}.md`, `${id} — ${manifest.title}`)}${quickLinks ? `\n  - Quick pass: ${quickLinks}` : ''}`;
+  });
+  return [`## Day ${index + 1}: ${day.title}`, '', `**Focus:** ${day.focus}`, '', ...sections, ''].join('\n');
+}).join('\n');
+fs.writeFileSync(`${indexRoot}/interview-prep-one-week.md`, [
+  '# Interview prep: one-week priority path','',
+  'Move through these topic indexes in order. Every curriculum topic appears once; nothing is omitted. In each topic, the quick pass links to its overview and interview lesson. The topic index links to every lesson, so use concepts, references, and practice when time allows or an interview question exposes a gap.','',
+  '> This is a breadth-first review map, not a promise to master all 2,387 lessons in seven days. If you have only a few days, start at Day 1 and continue in order; if you have a week, cover every day and use the full topic indexes to deepen weak areas.','',
+  interviewDays,
+].join('\n'));
+fs.writeFileSync(`${indexRoot}/learning-path.md`, [
+  '# Choose a learning path','',
+  'The vault has two complete orders over the same curriculum. Neither path moves or duplicates lesson files.','',
+  `- ${link(`${indexRoot}/interview-prep-one-week.md`, 'Interview prep: one-week priority path')} — high-yield topics first, with a quick pass for every topic.` ,
+  `- ${link(`${indexRoot}/long-term-mastery.md`, 'Long-term mastery path')} — prerequisite-led study through all stages.`,'',
 ].join('\n'));
 
 const qualityFindings = ledger.contentQualityFindings ?? [];
@@ -93,7 +133,8 @@ const home = [
   '# Senior Full-Stack Academy','',
   'A self-study library for C#/.NET, React, data structures and algorithms, and senior full-stack engineering. Open this repository as an Obsidian vault and begin here.','',
   '## Start studying','',
-  `- ${link(`${indexRoot}/learning-path.md`, 'Follow the ordered learning path')}`,
+  `- ${link(`${indexRoot}/interview-prep-one-week.md`, 'Start the one-week interview prep path')}`,
+  `- ${link(`${indexRoot}/long-term-mastery.md`, 'Follow the long-term mastery path')}`,
   `- ${link(`${indexRoot}/tracks/index.md`, 'Browse all 12 tracks')}`,
   `- ${link(`${indexRoot}/topics/t11-001.md`, 'Start with programming and DSA foundations')}`,
   `- ${link(`${indexRoot}/topics/t12-001.md`, 'Browse system design')}`,
